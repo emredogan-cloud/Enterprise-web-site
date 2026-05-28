@@ -7,12 +7,18 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "echo 'no tests yet — placeholder; a real test runner (Vitest) lands in a later SUB-PR'"
+    "test": "echo 'no tests yet — placeholder; a real test runner (Vitest) lands in a later SUB-PR'",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
     "@radix-ui/react-slot": "^1.2.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "drizzle-orm": "^0.45.2",
     "lucide-react": "^1.16.0",
     "next": "16.2.6",
     "react": "19.2.4",
@@ -25,6 +31,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "drizzle-kit": "^0.31.10",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
     "tailwindcss": "^4",
