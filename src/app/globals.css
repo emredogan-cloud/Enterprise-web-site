@@ -3,6 +3,13 @@
 @config "../../tailwind.config.ts";
 
 /*
+  Tailwind v4 plugin: @tailwindcss/typography — generates the `prose` /
+  `prose-*` utility families used by the SampleViewer for long-form
+  reading content (Roadmap §13 — "paywall-content problem" fix).
+*/
+@plugin "@tailwindcss/typography";
+
+/*
   Digital Bookstore — design token skeleton (Roadmap §7)
   Direction: typography-forward, calm-literary-but-modern. Warm "paper & ink"
   neutrals, generous whitespace, high contrast, ONE confident accent (evergreen —

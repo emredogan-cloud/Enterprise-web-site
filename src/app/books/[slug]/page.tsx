@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { CoverImage } from "@/components/cover-image";
+import { SampleViewer } from "@/components/sample-viewer";
 import { formatPrice } from "@/lib/format";
 import {
   getPublishedBookBySlug,
   listPublishedBookSlugs,
 } from "@/lib/db/queries/catalog";
+import { PLACEHOLDER_SAMPLE_HTML } from "@/lib/placeholders/book-sample";
 
 // SSG + ISR per ADR-1: pre-generate all published-book slugs at build, then
 // regenerate any page lazily on demand once `revalidate` elapses.
@@ -47,6 +49,20 @@ export default async function BookDetailPage({
   const { slug } = await params;
   const book = await getPublishedBookBySlug(slug);
   if (!book) notFound();
+
+  /*
+   * Sample resolution (Roadmap §13 — SEO-critical):
+   *   The sample HTML MUST be in the rendered DOM at SSG time so search
+   *   engines (and trust-conscious readers) can see the writing inside
+   *   what is otherwise a paywalled file. For SUB-PR 1.3 we always render
+   *   the placeholder; once R2 sample-fetching is wired in a follow-up,
+   *   this becomes:
+   *
+   *     const sampleHtml = book.sampleKey
+   *       ? await fetchSampleFromR2(book.sampleKey)
+   *       : PLACEHOLDER_SAMPLE_HTML;
+   */
+  const sampleHtml = PLACEHOLDER_SAMPLE_HTML;
 
   return (
     <main className="mx-auto max-w-5xl px-6 py-16">
@@ -101,13 +117,21 @@ export default async function BookDetailPage({
               </>
             )}
           </dl>
-
-          <p className="mt-10 text-xs text-muted-foreground">
-            Buy flow lands in SUB-PR 1.4 / 1.5. This page is a static
-            scaffold of the §6 detail surface.
-          </p>
         </div>
       </div>
+
+      <section className="mt-20 border-t border-border pt-16">
+        <header className="mb-10 text-center">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
+            Preview
+          </p>
+          <p className="mt-2 text-base text-muted-foreground">
+            A taste of the writing before you buy.
+          </p>
+        </header>
+
+        <SampleViewer content={sampleHtml} />
+      </section>
     </main>
   );
 }
