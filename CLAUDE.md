@@ -10,10 +10,10 @@
 - `src/app/` - Next.js routes (SSG/ISR first).
 - `src/components/` - Reusable UI components.
 - `src/lib/` - Core business logic and DB access.
-- `src/lib/db/` - Drizzle schema, relations, and the Neon client (`db`).
+- `src/lib/db/` - Drizzle schema, relations, the Neon client (`db`), and per-entity helpers (e.g., `users.ts` JIT upsert).
 - `src/lib/storage/` - Cloudflare R2 S3-compatible client and signed-URL utilities (ADR-6).
 - `src/lib/auth.ts` - Clerk-backed server-side auth helpers (ADR-8).
-- `src/middleware.ts` - Clerk middleware: route protection for /account, /read, /admin (ADR-8).
+- `src/proxy.ts` - Clerk proxy (Next.js 16 file convention): route protection for /account, /read, /admin (ADR-8).
 - `drizzle/` - Generated SQL migrations (committed; applied by `db:migrate`).
 - `memory/` - Agent's long-term memory and ADRs.
 - `scripts/` - Composable utility scripts.

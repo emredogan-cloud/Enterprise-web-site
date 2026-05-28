@@ -8,7 +8,8 @@
  *
  * Security (Roadmap §11):
  *   - Both buckets are PRIVATE; access only via short-lived signed URLs.
- *   - Signed-URL TTL is clamped: 10 minutes default, 15 minutes maximum.
+ *   - Signed-URL TTLs are clamped: 10 minutes default, 15 minutes maximum,
+ *     for BOTH downloads and uploads — same security profile.
  *   - The S3 client is constructed LAZILY so build / tsc do not require R2
  *     credentials in scope; the first real call throws a clear, actionable
  *     error if the env is unset.
@@ -40,6 +41,8 @@ const BUCKET_ENV: Record<BucketKey, string> = {
 // -----------------------------------------------------------------------------
 export const DEFAULT_DOWNLOAD_TTL_SECONDS = 600; // 10 minutes
 export const MAX_DOWNLOAD_TTL_SECONDS = 900; // 15 minutes — hard ceiling
+export const DEFAULT_UPLOAD_TTL_SECONDS = 600; // 10 minutes
+export const MAX_UPLOAD_TTL_SECONDS = 900; // 15 minutes — matches downloads
 
 // -----------------------------------------------------------------------------
 // Lazy S3Client — never constructed at module load. Build, tsc, and any code
@@ -111,6 +114,51 @@ export async function generateSignedDownloadUrl({
   const command = new GetObjectCommand({
     Bucket: resolveBucketName(bucket),
     Key: key,
+  });
+
+  return getSignedUrl(getClient(), command, { expiresIn: ttlSeconds });
+}
+
+export interface GenerateSignedUploadUrlArgs {
+  bucket: BucketKey;
+  key: string;
+  /**
+   * MIME type the eventual PUT must declare. Binding it into the signed URL
+   * prevents content-type confusion: a URL signed for `application/pdf`
+   * cannot be reused to upload, say, an HTML payload.
+   */
+  contentType?: string;
+  /** TTL in seconds. Default 600 (10 min). Hard ceiling 900 (15 min). */
+  ttlSeconds?: number;
+}
+
+/**
+ * Returns a short-lived presigned URL for uploading the object via HTTP PUT.
+ * The client must use the EXACT `contentType` and `key` it was signed with.
+ *
+ * Intended caller: admin catalog ingest (master PDF + cover + sample). The
+ * browser uploads directly to R2 with this URL; the server never proxies
+ * file bytes.
+ */
+export async function generateSignedUploadUrl({
+  bucket,
+  key,
+  contentType,
+  ttlSeconds = DEFAULT_UPLOAD_TTL_SECONDS,
+}: GenerateSignedUploadUrlArgs): Promise<string> {
+  if (!Number.isFinite(ttlSeconds) || ttlSeconds < 1) {
+    throw new Error("ttlSeconds must be a positive number.");
+  }
+  if (ttlSeconds > MAX_UPLOAD_TTL_SECONDS) {
+    throw new Error(
+      `ttlSeconds ${ttlSeconds} exceeds the upload security ceiling of ${MAX_UPLOAD_TTL_SECONDS}s (Roadmap §11).`,
+    );
+  }
+
+  const command = new PutObjectCommand({
+    Bucket: resolveBucketName(bucket),
+    Key: key,
+    ContentType: contentType,
   });
 
   return getSignedUrl(getClient(), command, { expiresIn: ttlSeconds });
