@@ -1,16 +1,18 @@
 import Link from "next/link";
 
+import { CartIndicator } from "@/components/cart-indicator";
 import { SearchBar } from "@/components/search-bar";
 
 /**
- * Global site header — brand link + global search.
+ * Global site header — brand link + global search + cart indicator.
  *
- * Pure Server Component (no `"use client"`, no dynamic hooks): renders into
- * static HTML and embeds the also-static `SearchBar`. Embedding this in
- * `app/layout.tsx` therefore does NOT downgrade any static / SSG route to
- * dynamic — verified in the SUB-PR 1.2 build output.
+ * Pure Server Component. The interactive bits inside (`SearchBar` is a
+ * Server-Component HTML form; `CartIndicator` is a Client Component that
+ * fetches its count from `/api/cart/count`) all keep the layout itself
+ * SERVER-STATIC, so every catalog route inheriting `app/layout.tsx` stays
+ * `○ Static` / `● SSG`.
  *
- * `sticky top-0` + a translucent `backdrop-blur` give the header a calm,
+ * `sticky top-0` + a translucent `backdrop-blur` gives the header a calm,
  * always-reachable presence without dominating page content.
  */
 export function SiteHeader() {
@@ -27,6 +29,8 @@ export function SiteHeader() {
         <div className="ml-auto w-full max-w-sm">
           <SearchBar />
         </div>
+
+        <CartIndicator />
       </div>
     </header>
   );

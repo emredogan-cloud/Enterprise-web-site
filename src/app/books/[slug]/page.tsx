@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { AddToCartButton } from "@/components/add-to-cart-button";
 import { CoverImage } from "@/components/cover-image";
 import { SampleViewer } from "@/components/sample-viewer";
 import { formatPrice } from "@/lib/format";
@@ -117,6 +118,10 @@ export default async function BookDetailPage({
               </>
             )}
           </dl>
+
+          <div className="mt-10">
+            <AddToCartButton bookId={book.id} />
+          </div>
         </div>
       </div>
 
