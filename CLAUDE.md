@@ -11,6 +11,7 @@
 - `src/components/` - Reusable UI components.
 - `src/lib/` - Core business logic and DB access.
 - `src/lib/db/` - Drizzle schema, relations, and the Neon client (`db`).
+- `src/lib/storage/` - Cloudflare R2 S3-compatible client and signed-URL utilities (ADR-6).
 - `drizzle/` - Generated SQL migrations (committed; applied by `db:migrate`).
 - `memory/` - Agent's long-term memory and ADRs.
 - `scripts/` - Composable utility scripts.
