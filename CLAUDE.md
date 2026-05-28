@@ -12,6 +12,8 @@
 - `src/lib/` - Core business logic and DB access.
 - `src/lib/db/` - Drizzle schema, relations, and the Neon client (`db`).
 - `src/lib/storage/` - Cloudflare R2 S3-compatible client and signed-URL utilities (ADR-6).
+- `src/lib/auth.ts` - Clerk-backed server-side auth helpers (ADR-8).
+- `src/middleware.ts` - Clerk middleware: route protection for /account, /read, /admin (ADR-8).
 - `drizzle/` - Generated SQL migrations (committed; applied by `db:migrate`).
 - `memory/` - Agent's long-term memory and ADRs.
 - `scripts/` - Composable utility scripts.

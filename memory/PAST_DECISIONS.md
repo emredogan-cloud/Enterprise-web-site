@@ -15,6 +15,7 @@ Tier 2 — mid-complexity transactional content platform. Build a **modular mono
 ## Locked architectural decisions
 - **Frontend — Next.js (App Router), SSG/ISR-first.** Catalog pages are statically rendered for SEO (the growth engine); account/reader surfaces are dynamic and auth-gated. (ADR-1)
 - **Database — PostgreSQL on Neon (serverless) via Drizzle ORM + drizzle-kit.** Relational + ACID for fulfillment correctness; schema per the §10 ERD. *(Committed in SUB-PR 0.3.)* (§10)
+- **Authentication — Clerk via `@clerk/nextjs`.** Hosted identity (social + email/magic-link) and route protection via `clerkMiddleware`. The Postgres `users` table holds the commercial relationships; a future Clerk-webhook syncer reconciles identity into the local row. *(Committed in SUB-PR 0.5.)* (ADR-8)
 - **File storage — Cloudflare R2 (zero egress).** Selling downloads = sustained egress; R2's $0 egress makes cost near-fixed. S3-compatible, so portable. (ADR-6)
 - **Payments — Paddle / Lemon Squeezy as Merchant of Record (MoR).** Offloads global VAT/sales-tax, PCI scope, and much fraud/chargeback liability. **Not** raw Stripe. (ADR-2)
 - **Content-protection pipeline — async Social DRM.** On the MoR purchase webhook, an idempotent worker (Inngest / Vercel Queues) stamps a per-order watermarked PDF, stores it privately in R2, and serves it via short-lived signed URLs. (ADR-3)
