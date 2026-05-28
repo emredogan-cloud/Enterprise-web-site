@@ -17,7 +17,7 @@ permissions:
 
 jobs:
   verify:
-    name: Lint · Typecheck · Build
+    name: Lint · Typecheck · Test · Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -38,5 +38,32 @@ jobs:
       - name: Type check
         run: npx tsc --noEmit
 
+      - name: Test
+        # Placeholder — a real test runner (Vitest) lands in a later SUB-PR.
+        # `npm test` currently echoes and exits 0 so the pipeline structure
+        # (and any branch-protection rules pinned to this step) are stable.
+        run: npm test
+
+      - name: DB migration (Prisma/Drizzle — placeholder, wired in SUB-PR 0.3)
+        # SUB-PR 0.3 replaces this with `npm run db:migrate:deploy`, using the
+        # production `DATABASE_URL` / `DIRECT_URL` GitHub Environment secrets.
+        # Runs only on `push` to main (post-merge), never against an ephemeral
+        # preview DB. Echo placeholder keeps the structural slot.
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          echo "::notice title=DB migration placeholder::SUB-PR 0.3 will wire schema migrations here (Prisma/Drizzle) against DATABASE_URL/DIRECT_URL secrets."
+
       - name: Build
         run: npm run build
+
+      - name: Preview deploy (Vercel — handled natively by the GitHub integration)
+        # Vercel's native GitHub integration deploys a preview on every PR
+        # out-of-the-box, so no CI step is required here. If this repo is ever
+        # disconnected from Vercel, replace this echo with explicit CLI steps:
+        #   - vercel pull   --yes --environment=preview --token=$VERCEL_TOKEN
+        #   - vercel build  --token=$VERCEL_TOKEN
+        #   - vercel deploy --prebuilt --token=$VERCEL_TOKEN
+        # using VERCEL_TOKEN / VERCEL_ORG_ID / VERCEL_PROJECT_ID GitHub secrets.
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "::notice title=Preview deploy::Handled by Vercel's native GitHub integration. See workflow comments to switch to explicit CLI deploy."

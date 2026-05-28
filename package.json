@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "echo 'no tests yet — placeholder; a real test runner (Vitest) lands in a later SUB-PR'"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
