@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
-import { getAuthenticatedUser, requireUserId } from "@/lib/auth";
+import { UnprovisionedNotice } from "@/components/unprovisioned-notice";
+import { getAuthenticatedUser } from "@/lib/auth";
 import { upsertLocalUser } from "@/lib/db/users";
 
 import { createBook } from "./actions";
 
 // `/admin` reads Clerk session cookies and writes to the database — force
 // dynamic rendering so Next.js never tries to prerender it at build time.
-// (Note: a real production role check arrives in a later SUB-PR — for now
-// any authenticated user can reach this page; gated only by the middleware
-// + `requireUserId` backstop.)
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
@@ -19,34 +16,105 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+// ---------------------------------------------------------------------------
+// Admin context loader — resolves the signed-in user + their local DB row
+// or returns a structured "blocked" reason. Wraps every potentially-failing
+// dependency (Clerk, Postgres) so a missing env var becomes a calm in-page
+// notice instead of a hard 500.
+// ---------------------------------------------------------------------------
+interface AdminContextOk {
+  ok: true;
+  email: string;
+  localUserId: string;
+}
+interface AdminContextBlocked {
+  ok: false;
+  title: string;
+  body: string;
+  missing: ReadonlyArray<string>;
+}
+type AdminContext = AdminContextOk | AdminContextBlocked;
+
+async function loadAdminContext(): Promise<AdminContext> {
+  // Cheap pre-flight: detect the most common cause (missing env) before we
+  // touch Clerk / the DB. Faster to surface and more actionable.
+  const missing: string[] = [];
+  if (
+    !process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
+    !process.env.CLERK_SECRET_KEY
+  ) {
+    missing.push("NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY", "CLERK_SECRET_KEY");
+  }
+  if (!process.env.DATABASE_URL) {
+    missing.push("DATABASE_URL");
+  }
+  if (missing.length > 0) {
+    return {
+      ok: false,
+      title: "Admin panel — configuration required",
+      body: "The admin surface needs Clerk authentication and a database before it can load. Set the variables below and reload.",
+      missing,
+    };
+  }
+
+  try {
+    const user = await getAuthenticatedUser();
+    if (!user) {
+      return {
+        ok: false,
+        title: "Sign in required",
+        body: "You need to be signed in with an admin account to use this page.",
+        missing: [],
+      };
+    }
+    const email = user.emailAddresses.find(
+      (e) => e.id === user.primaryEmailAddressId,
+    )?.emailAddress;
+    if (!email) {
+      return {
+        ok: false,
+        title: "Clerk user is missing a primary email",
+        body: "Configure a primary email address on your Clerk account to use the admin.",
+        missing: [],
+      };
+    }
+
+    const fullName = [user.firstName, user.lastName]
+      .filter(Boolean)
+      .join(" ");
+    const localUserId = await upsertLocalUser({
+      clerkUserId: user.id,
+      email,
+      name: fullName || undefined,
+    });
+
+    return { ok: true, email, localUserId };
+  } catch (err) {
+    // Anything else — Clerk API call failing, DB connection refused, etc.
+    return {
+      ok: false,
+      title: "Admin panel — system unavailable",
+      body:
+        err instanceof Error
+          ? `Setup failed: ${err.message}`
+          : "Setup failed for an unknown reason — see the server logs.",
+      missing: [],
+    };
+  }
+}
+
 export default async function AdminPage() {
-  // Defense-in-depth — the middleware (`src/proxy.ts`) already gates this.
-  await requireUserId();
+  const ctx = await loadAdminContext();
 
-  const user = await getAuthenticatedUser();
-  if (!user) {
-    // Unreachable in practice (middleware + requireUserId both gate this),
-    // but keeps the type narrowed and the failure mode loud.
-    redirect("/");
+  if (!ctx.ok) {
+    return (
+      <UnprovisionedNotice
+        title={ctx.title}
+        body={ctx.body}
+        missing={ctx.missing}
+      />
+    );
   }
-
-  const primaryEmail = user.emailAddresses.find(
-    (e) => e.id === user.primaryEmailAddressId,
-  )?.emailAddress;
-  if (!primaryEmail) {
-    throw new Error("Clerk user has no primary email address.");
-  }
-
-  const fullName = [user.firstName, user.lastName].filter(Boolean).join(" ");
-
-  // JIT upsert — ensures the admin has a local commercial-record row before
-  // any DB-writing action runs. Idempotent; the future Clerk → Postgres sync
-  // webhook will make this call redundant.
-  const localUserId = await upsertLocalUser({
-    clerkUserId: user.id,
-    email: primaryEmail,
-    name: fullName || undefined,
-  });
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
@@ -63,8 +131,8 @@ export default async function AdminPage() {
         lands in a later SUB-PR.
       </p>
       <p className="mt-2 text-xs text-muted-foreground">
-        Signed in as {primaryEmail} · local user{" "}
-        <code className="rounded bg-muted px-1 py-0.5 text-[10px]">{localUserId}</code>
+        Signed in as {ctx.email} · local user{" "}
+        <code className="rounded bg-muted px-1 py-0.5 text-[10px]">{ctx.localUserId}</code>
       </p>
 
       <form action={createBook} className="mt-10 space-y-6">

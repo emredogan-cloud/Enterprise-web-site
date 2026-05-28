@@ -25,39 +25,45 @@ interface CreateBookInput {
  * Server Action — create a new `book` row in `draft` status.
  *
  * Defense-in-depth:
- *   - `/admin` is already gated by the Clerk middleware (`src/proxy.ts`),
- *     but Server Actions are POST-callable. `requireUserId` is the
- *     backstop that ensures this action never runs unauthenticated even if
- *     someone invokes it from outside the form on the admin page.
- *
- * Side effects:
- *   - Revalidates `/admin` and the new book's public detail page (which
- *     itself does not exist until SUB-PR 1.1, but pre-emptive revalidation
- *     is cheap and safe).
+ *   - `/admin` is already gated by the Clerk middleware (`src/proxy.ts`)
+ *     and the page-level loader, but Server Actions are POST-callable.
+ *     `requireUserId` is the backstop that ensures this action never runs
+ *     unauthenticated even if someone invokes it from outside the form.
+ *   - Every external dependency (Clerk auth, the database) is wrapped in
+ *     try/catch so a missing env var degrades to a logged warning, never
+ *     a hard 500 on the client.
  */
 export async function createBook(formData: FormData): Promise<void> {
-  await requireUserId();
+  try {
+    await requireUserId();
+    const input = parseCreateBookFormData(formData);
 
-  const input = parseCreateBookFormData(formData);
+    await db.insert(books).values({
+      title: input.title,
+      slug: input.slug,
+      subtitle: input.subtitle ?? null,
+      description: input.description ?? null,
+      priceCents: input.priceCents,
+      currency: input.currency,
+      language: input.language,
+      masterFileKey: input.masterFileKey ?? null,
+      coverKey: input.coverKey ?? null,
+      sampleKey: input.sampleKey ?? null,
+      isbn: input.isbn ?? null,
+      pageCount: input.pageCount ?? null,
+      // status defaults to "draft"; publishedAt stays null until publish flow.
+    });
 
-  await db.insert(books).values({
-    title: input.title,
-    slug: input.slug,
-    subtitle: input.subtitle ?? null,
-    description: input.description ?? null,
-    priceCents: input.priceCents,
-    currency: input.currency,
-    language: input.language,
-    masterFileKey: input.masterFileKey ?? null,
-    coverKey: input.coverKey ?? null,
-    sampleKey: input.sampleKey ?? null,
-    isbn: input.isbn ?? null,
-    pageCount: input.pageCount ?? null,
-    // status defaults to "draft"; publishedAt stays null until publish flow.
-  });
-
-  revalidatePath("/admin");
-  revalidatePath(`/books/${input.slug}`);
+    revalidatePath("/admin");
+    revalidatePath(`/books/${input.slug}`);
+  } catch (err) {
+    // Inline error display on the form lands in a later SUB-PR; for now we
+    // log + swallow so the action never crashes the page. The admin route
+    // already guards against unprovisioned environments before the form
+    // renders, so the unhappy path here is mostly "DB rejected the row"
+    // (e.g. duplicate slug) — surface as a return value in a follow-up.
+    console.error("[admin] createBook failed:", err);
+  }
 }
 
 function parseCreateBookFormData(formData: FormData): CreateBookInput {

@@ -23,8 +23,20 @@ const isProtectedRoute = createRouteMatcher([
   "/admin(.*)",
 ]);
 
+function isClerkConfigured(): boolean {
+  return Boolean(
+    process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY &&
+      process.env.CLERK_SECRET_KEY,
+  );
+}
+
 export default clerkMiddleware(async (auth, req) => {
   if (isProtectedRoute(req)) {
+    // Defense: when Clerk env keys are missing (local dev before the first
+    // `vercel env pull`, or a CI smoke run), do NOT enforce auth at the
+    // edge — that would 500 the whole route before the page can render
+    // its own graceful "unprovisioned" UI. The page-level guard takes over.
+    if (!isClerkConfigured()) return;
     await auth.protect();
   }
 });
