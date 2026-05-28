@@ -14,6 +14,8 @@
  * `master_file_key`; neither should leave the DB layer.
  */
 
+import { sql } from "drizzle-orm";
+
 import type { BookCardData } from "@/components/book-card";
 
 import { db } from "@/lib/db";
@@ -152,6 +154,72 @@ export async function getPublishedBookBySlug(
       };
     },
     null,
+  );
+}
+
+// -----------------------------------------------------------------------------
+// Full-text search (Roadmap §10 FTS — uses `books.search_tsv` + GIN index)
+//
+// `websearch_to_tsquery('english', $1)` is the right parser for user input:
+//   - accepts natural quoted phrases ("watermarked pdf")
+//   - supports `or` and `-negation` syntax
+//   - gracefully tolerates malformed input (returns an empty query, no crash)
+//
+// Ranking with `ts_rank(search_tsv, query)` keeps the most relevant titles
+// at the top. Hard `limit(50)` caps result-set size — search is for *finding*,
+// not for browsing pages of results.
+//
+// The user's `query` string is passed as a parameter (not interpolated), so
+// it is safe from SQL injection — `websearch_to_tsquery` parses it server-side.
+// -----------------------------------------------------------------------------
+export async function searchBooks(query: string): Promise<BookCardData[]> {
+  const trimmed = query.trim();
+  if (!trimmed) return [];
+
+  return safeQuery(
+    "searchBooks",
+    async () => {
+      const rows = await db.query.books.findMany({
+        where: (b, { eq, and }) =>
+          and(
+            eq(b.status, "published"),
+            sql`${b.searchTsv} @@ websearch_to_tsquery('english', ${trimmed})`,
+          ),
+        orderBy: (b, { desc }) =>
+          desc(
+            sql`ts_rank(${b.searchTsv}, websearch_to_tsquery('english', ${trimmed}))`,
+          ),
+        columns: {
+          id: true,
+          slug: true,
+          title: true,
+          subtitle: true,
+          coverKey: true,
+          priceCents: true,
+          currency: true,
+        },
+        with: {
+          bookAuthors: {
+            orderBy: (ba, { asc }) => asc(ba.position),
+            with: {
+              author: { columns: { slug: true, name: true } },
+            },
+          },
+        },
+        limit: 50,
+      });
+      return rows.map((b) => ({
+        id: b.id,
+        slug: b.slug,
+        title: b.title,
+        subtitle: b.subtitle,
+        coverKey: b.coverKey,
+        priceCents: b.priceCents,
+        currency: b.currency,
+        authors: b.bookAuthors.map((ba) => ba.author),
+      }));
+    },
+    [],
   );
 }
 
