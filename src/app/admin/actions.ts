@@ -19,6 +19,13 @@ interface CreateBookInput {
   sampleKey?: string;
   isbn?: string;
   pageCount?: number;
+  /**
+   * Paddle catalog `priceId` (e.g. `pri_01abc…`). Optional at create time —
+   * the book can land in draft, get its Paddle price set up in the Paddle
+   * dashboard, and have the id filled in via an edit flow before publish.
+   * Checkout fails fast for any cart item lacking this value (SUB-PR 1.5).
+   */
+  paddlePriceId?: string;
 }
 
 /**
@@ -51,6 +58,7 @@ export async function createBook(formData: FormData): Promise<void> {
       sampleKey: input.sampleKey ?? null,
       isbn: input.isbn ?? null,
       pageCount: input.pageCount ?? null,
+      paddlePriceId: input.paddlePriceId ?? null,
       // status defaults to "draft"; publishedAt stays null until publish flow.
     });
 
@@ -111,5 +119,6 @@ function parseCreateBookFormData(formData: FormData): CreateBookInput {
     sampleKey: getString("sampleKey"),
     isbn: getString("isbn"),
     pageCount: getNumber("pageCount"),
+    paddlePriceId: getString("paddlePriceId"),
   };
 }

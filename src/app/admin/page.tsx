@@ -2,8 +2,16 @@ import type { Metadata } from "next";
 
 import { Button } from "@/components/ui/button";
 import { UnprovisionedNotice } from "@/components/unprovisioned-notice";
-import { getAuthenticatedUser } from "@/lib/auth";
-import { upsertLocalUser } from "@/lib/db/users";
+import { AdminAccessError, requireAdmin } from "@/lib/auth";
+import {
+  getDashboardMetrics,
+  getRecentOrders,
+  type DashboardMetrics,
+  type OrderStatus,
+  type RecentOrder,
+} from "@/lib/db/queries/admin";
+import { formatPrice } from "@/lib/format";
+import { cn } from "@/lib/utils";
 
 import { createBook } from "./actions";
 
@@ -17,10 +25,11 @@ export const metadata: Metadata = {
 };
 
 // ---------------------------------------------------------------------------
-// Admin context loader — resolves the signed-in user + their local DB row
-// or returns a structured "blocked" reason. Wraps every potentially-failing
-// dependency (Clerk, Postgres) so a missing env var becomes a calm in-page
-// notice instead of a hard 500.
+// Admin context loader — runs the strict `requireAdmin` gate from
+// `src/lib/auth.ts` and maps any `AdminAccessError.kind` to the right
+// `UnprovisionedNotice` content. Anything else (DB connection refused,
+// Clerk API outage) degrades to a single "system unavailable" notice
+// rather than a hard 500.
 // ---------------------------------------------------------------------------
 interface AdminContextOk {
   ok: true;
@@ -35,9 +44,7 @@ interface AdminContextBlocked {
 }
 type AdminContext = AdminContextOk | AdminContextBlocked;
 
-async function loadAdminContext(): Promise<AdminContext> {
-  // Cheap pre-flight: detect the most common cause (missing env) before we
-  // touch Clerk / the DB. Faster to surface and more actionable.
+function checkRequiredEnv(): string[] {
   const missing: string[] = [];
   if (
     !process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
@@ -48,49 +55,60 @@ async function loadAdminContext(): Promise<AdminContext> {
   if (!process.env.DATABASE_URL) {
     missing.push("DATABASE_URL");
   }
-  if (missing.length > 0) {
-    return {
-      ok: false,
-      title: "Admin panel — configuration required",
-      body: "The admin surface needs Clerk authentication and a database before it can load. Set the variables below and reload.",
-      missing,
-    };
-  }
+  return missing;
+}
 
-  try {
-    const user = await getAuthenticatedUser();
-    if (!user) {
+function mapAdminAccessError(err: AdminAccessError): AdminContextBlocked {
+  switch (err.kind) {
+    case "unconfigured":
+      return {
+        ok: false,
+        title: "Admin allowlist is empty",
+        body: "Set ADMIN_EMAILS to a comma-separated list of admin email addresses, then redeploy.",
+        missing: ["ADMIN_EMAILS"],
+      };
+    case "not_signed_in":
       return {
         ok: false,
         title: "Sign in required",
         body: "You need to be signed in with an admin account to use this page.",
         missing: [],
       };
-    }
-    const email = user.emailAddresses.find(
-      (e) => e.id === user.primaryEmailAddressId,
-    )?.emailAddress;
-    if (!email) {
+    case "no_primary_email":
       return {
         ok: false,
-        title: "Clerk user is missing a primary email",
-        body: "Configure a primary email address on your Clerk account to use the admin.",
+        title: "Your Clerk account has no primary email",
+        body: "Configure a primary email address on your Clerk account, then reload this page.",
         missing: [],
       };
-    }
+    case "not_admin":
+      return {
+        ok: false,
+        title: "Not authorized",
+        body: "Your account is not on the admin allowlist. Ask another admin to add your email to ADMIN_EMAILS.",
+        missing: [],
+      };
+  }
+}
 
-    const fullName = [user.firstName, user.lastName]
-      .filter(Boolean)
-      .join(" ");
-    const localUserId = await upsertLocalUser({
-      clerkUserId: user.id,
-      email,
-      name: fullName || undefined,
-    });
+async function loadAdminContext(): Promise<AdminContext> {
+  // Cheap pre-flight: detect the most common cause (missing env) before
+  // we touch Clerk / the DB. Faster to surface and more actionable.
+  const missingEnv = checkRequiredEnv();
+  if (missingEnv.length > 0) {
+    return {
+      ok: false,
+      title: "Admin panel — configuration required",
+      body: "The admin surface needs Clerk authentication and a database before it can load. Set the variables below and reload.",
+      missing: missingEnv,
+    };
+  }
 
+  try {
+    const { email, localUserId } = await requireAdmin();
     return { ok: true, email, localUserId };
   } catch (err) {
-    // Anything else — Clerk API call failing, DB connection refused, etc.
+    if (err instanceof AdminAccessError) return mapAdminAccessError(err);
     return {
       ok: false,
       title: "Admin panel — system unavailable",
@@ -103,6 +121,9 @@ async function loadAdminContext(): Promise<AdminContext> {
   }
 }
 
+// ===========================================================================
+// Page
+// ===========================================================================
 export default async function AdminPage() {
   const ctx = await loadAdminContext();
 
@@ -116,26 +137,270 @@ export default async function AdminPage() {
     );
   }
 
-  return (
-    <main className="mx-auto max-w-3xl px-6 py-16">
-      <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
-        Admin · Catalog ingest
-      </p>
-      <h1 className="mt-4 font-serif text-4xl font-medium leading-tight text-foreground">
-        Add a book
-      </h1>
-      <p className="mt-3 text-pretty text-muted-foreground">
-        New titles land as <code className="rounded bg-muted px-1 py-0.5 text-xs">draft</code>.
-        Master, cover, and sample R2 keys can be filled in after upload; the
-        publish flow (status → <code className="rounded bg-muted px-1 py-0.5 text-xs">published</code>)
-        lands in a later SUB-PR.
-      </p>
-      <p className="mt-2 text-xs text-muted-foreground">
-        Signed in as {ctx.email} · local user{" "}
-        <code className="rounded bg-muted px-1 py-0.5 text-[10px]">{ctx.localUserId}</code>
-      </p>
+  // Both dashboard queries do their own `requireAdmin()` check (defense
+  // in depth — same `cache()`-backed call, no extra cost). They are
+  // `safeQuery`-wrapped, so a DB outage degrades to empty data rather
+  // than a 500.
+  const [metrics, recentOrders] = await Promise.all([
+    getDashboardMetrics(),
+    getRecentOrders(10),
+  ]);
 
-      <form action={createBook} className="mt-10 space-y-6">
+  return (
+    <main className="mx-auto max-w-6xl space-y-20 px-6 py-16">
+      <header>
+        <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
+          Admin · Dashboard
+        </p>
+        <h1 className="mt-4 font-serif text-4xl font-medium leading-tight text-foreground">
+          Bookstore at a glance
+        </h1>
+        <p className="mt-3 text-xs text-muted-foreground">
+          Signed in as {ctx.email} · local user{" "}
+          <code className="rounded bg-muted px-1 py-0.5 text-[10px]">
+            {ctx.localUserId}
+          </code>
+        </p>
+      </header>
+
+      <MetricsRow metrics={metrics} />
+
+      <RecentOrdersSection orders={recentOrders} />
+
+      <CreateBookSection />
+    </main>
+  );
+}
+
+// ===========================================================================
+// Metrics — 3 cards (revenue / books sold / users).
+// ===========================================================================
+function MetricsRow({ metrics }: { metrics: DashboardMetrics }) {
+  const primary = metrics.revenueByCurrency[0];
+  const others = metrics.revenueByCurrency.slice(1);
+
+  const revenueValue = primary
+    ? formatPrice(primary.netCents, primary.currency)
+    : "—";
+  const revenueSubline = primary
+    ? `Gross ${formatPrice(primary.grossCents, primary.currency)} · ${primary.orderCount} paid ${primary.orderCount === 1 ? "order" : "orders"}`
+    : "No paid orders yet";
+
+  return (
+    <section aria-labelledby="metrics-heading">
+      <h2 id="metrics-heading" className="sr-only">
+        Key metrics
+      </h2>
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <StatCard
+          label="Net revenue"
+          value={revenueValue}
+          sublabel={revenueSubline}
+        />
+        <StatCard
+          label="Books sold"
+          value={metrics.booksSold.toLocaleString("en-US")}
+          sublabel="Across all paid orders"
+        />
+        <StatCard
+          label="Total users"
+          value={metrics.totalUsers.toLocaleString("en-US")}
+          sublabel="Signed-in accounts (Clerk-synced)"
+        />
+      </div>
+
+      {others.length > 0 && (
+        <p className="mt-4 text-xs text-muted-foreground">
+          Additional currencies:{" "}
+          {others
+            .map(
+              (c) =>
+                `${formatPrice(c.netCents, c.currency)} (${c.orderCount} ${c.orderCount === 1 ? "order" : "orders"})`,
+            )
+            .join(" · ")}
+        </p>
+      )}
+    </section>
+  );
+}
+
+interface StatCardProps {
+  label: string;
+  value: string;
+  sublabel?: string;
+}
+
+function StatCard({ label, value, sublabel }: StatCardProps) {
+  return (
+    <div className="rounded-lg border border-border bg-card p-6">
+      <p className="text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
+        {label}
+      </p>
+      <p className="mt-3 font-serif text-3xl font-medium leading-tight text-foreground">
+        {value}
+      </p>
+      {sublabel && (
+        <p className="mt-2 text-xs text-muted-foreground">{sublabel}</p>
+      )}
+    </div>
+  );
+}
+
+// ===========================================================================
+// Recent Orders table.
+// ===========================================================================
+function RecentOrdersSection({ orders }: { orders: RecentOrder[] }) {
+  return (
+    <section aria-labelledby="recent-orders-heading">
+      <header className="flex items-baseline justify-between">
+        <h2
+          id="recent-orders-heading"
+          className="font-serif text-2xl font-medium text-foreground"
+        >
+          Recent orders
+        </h2>
+        <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
+          Newest {orders.length}
+        </p>
+      </header>
+
+      {orders.length === 0 ? (
+        <div className="mt-6 rounded-lg border border-dashed border-border bg-muted/30 px-6 py-12 text-center">
+          <p className="text-sm text-muted-foreground">
+            No orders yet. Once a customer completes a checkout, it appears
+            here.
+          </p>
+        </div>
+      ) : (
+        <div className="mt-6 overflow-x-auto rounded-lg border border-border">
+          <table className="w-full text-sm">
+            <thead className="border-b border-border bg-muted/40 text-left text-xs uppercase tracking-[0.1em] text-muted-foreground">
+              <tr>
+                <th scope="col" className="px-4 py-3 font-medium">
+                  Date
+                </th>
+                <th scope="col" className="px-4 py-3 font-medium">
+                  Customer
+                </th>
+                <th scope="col" className="px-4 py-3 font-medium">
+                  Items
+                </th>
+                <th scope="col" className="px-4 py-3 text-right font-medium">
+                  Total
+                </th>
+                <th scope="col" className="px-4 py-3 font-medium">
+                  Status
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {orders.map((o) => (
+                <RecentOrderRow key={o.id} order={o} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </section>
+  );
+}
+
+function RecentOrderRow({ order }: { order: RecentOrder }) {
+  const firstTitle = order.items[0]?.bookTitle ?? "(empty order)";
+  const moreCount = Math.max(0, order.items.length - 1);
+  const itemSummary =
+    moreCount > 0
+      ? `${firstTitle} +${moreCount} more`
+      : firstTitle;
+
+  return (
+    <tr className="text-foreground">
+      <td className="whitespace-nowrap px-4 py-3 text-xs text-muted-foreground">
+        {formatOrderDate(order.createdAt)}
+      </td>
+      <td className="px-4 py-3">
+        <div className="flex flex-col">
+          <span className="font-medium">{order.customerName ?? "—"}</span>
+          <span className="text-xs text-muted-foreground">
+            {order.customerEmail}
+          </span>
+        </div>
+      </td>
+      <td className="px-4 py-3 text-xs text-foreground/80">
+        {itemSummary}
+        <span className="ml-2 text-muted-foreground">
+          ({order.items.length}{" "}
+          {order.items.length === 1 ? "item" : "items"})
+        </span>
+      </td>
+      <td className="whitespace-nowrap px-4 py-3 text-right font-medium">
+        {formatPrice(order.totalCents, order.currency)}
+      </td>
+      <td className="px-4 py-3">
+        <StatusBadge status={order.status} />
+      </td>
+    </tr>
+  );
+}
+
+const STATUS_BADGE_CLASSES: Record<OrderStatus, string> = {
+  paid: "border-primary/30 bg-primary/10 text-primary",
+  pending: "border-border bg-muted text-muted-foreground",
+  failed: "border-destructive/30 bg-destructive/10 text-destructive",
+  refunded: "border-border bg-accent text-accent-foreground",
+};
+
+function StatusBadge({ status }: { status: OrderStatus }) {
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium uppercase tracking-wide",
+        STATUS_BADGE_CLASSES[status],
+      )}
+    >
+      {status}
+    </span>
+  );
+}
+
+function formatOrderDate(date: Date): string {
+  return date.toLocaleString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
+// ===========================================================================
+// Create Book form — unchanged from SUB-PR 0.6 except for the new
+// Paddle price ID field (SUB-PR 4.1, brief step 3).
+// ===========================================================================
+function CreateBookSection() {
+  return (
+    <section aria-labelledby="create-book-heading">
+      <header>
+        <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
+          Catalog · Ingest
+        </p>
+        <h2
+          id="create-book-heading"
+          className="mt-3 font-serif text-2xl font-medium text-foreground"
+        >
+          Add a book
+        </h2>
+        <p className="mt-2 text-sm text-muted-foreground">
+          New titles land as{" "}
+          <code className="rounded bg-muted px-1 py-0.5 text-xs">draft</code>.
+          Master, cover, and sample R2 keys can be filled in after upload;
+          the publish flow (status →{" "}
+          <code className="rounded bg-muted px-1 py-0.5 text-xs">published</code>
+          ) lands in a later SUB-PR.
+        </p>
+      </header>
+
+      <form action={createBook} className="mt-8 max-w-3xl space-y-6">
         <FormField label="Title" name="title" required />
         <FormField
           label="Slug"
@@ -185,13 +450,24 @@ export default async function AdminPage() {
           />
         </fieldset>
 
+        <fieldset className="space-y-6 rounded-md border border-input p-4">
+          <legend className="px-2 text-sm font-medium text-muted-foreground">
+            Merchant of Record (Paddle) — required before checkout
+          </legend>
+          <FormField
+            label="Paddle price ID"
+            name="paddlePriceId"
+            help="Paste from Paddle dashboard. Example: pri_01h8z…. Checkout fails fast for any cart item without this id."
+          />
+        </fieldset>
+
         <div className="pt-2">
           <Button type="submit" size="lg">
             Create book (draft)
           </Button>
         </div>
       </form>
-    </main>
+    </section>
   );
 }
 
