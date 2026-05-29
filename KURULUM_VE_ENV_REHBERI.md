@@ -32,6 +32,8 @@ yalnızca `.env.example` şablonuna güvenilerek yazılmamıştır.
 | 12 | Sorun giderme |
 | 13 | Üretim çıkış kontrol listesi |
 | 14 | **Upstash Redis** — Rate-limit + Data Cache arka ucu |
+| 15 | **Resend** — Transactional email ("siparişiniz hazır" gibi) |
+| 16 | **Vercel Analytics & Speed Insights** — Ürün analitiği + Core Web Vitals |
 
 ---
 
@@ -131,6 +133,8 @@ hatası** üretir.
 | `INNGEST_SIGNING_KEY` | Inngest | **EVET (üretim)** | Inngest SDK (`serve` handler imza doğrulaması) |
 | `UPSTASH_REDIS_REST_URL` | Upstash | Öneri | `src/lib/rate-limit.ts` (rate limiter Redis istemcisi) |
 | `UPSTASH_REDIS_REST_TOKEN` | Upstash | Öneri | `src/lib/rate-limit.ts` (rate limiter Redis istemcisi) |
+| `RESEND_API_KEY` | Resend | **EVET (üretim)** | `src/lib/email.ts` (`getResendClient`) |
+| `EMAIL_FROM` | Resend | Öneri | `src/lib/email.ts` (gönderen adresi; varsayılan `onboarding@resend.dev` — test) |
 
 > **Önemli:** `NEXT_PUBLIC_*` öneki olan tüm değişkenler **istemci paketine
 > dahil edilir**. Bu nedenle bunlar **gizli olmamalıdır.** Sızması zararlı
@@ -1038,6 +1042,15 @@ Actions → `New repository secret`**.
       Vercel production ortamına eklenmiş; production deploy sonrası
       sunucu loglarında **`[rate-limit] … is not set`** uyarısı
       görünmemeli — görünüyorsa env yanlış yüklenmiş demektir.
+- [ ] **Resend hesabı** + **gönderim domain'i** (örn. `mail.kitabevi.com.tr`)
+      eklenmiş, SPF/DKIM/DMARC kayıtları **Verified** durumunda.
+- [ ] **`RESEND_API_KEY`** üretim ortamında set; **`EMAIL_FROM`** verified
+      domain'inizi kullanıyor (`onboarding@resend.dev` test sender DEĞİL).
+- [ ] **Vercel Analytics** ve **Speed Insights** Vercel panelinden
+      etkinleştirilmiş (Project → Analytics → Enable).
+- [ ] İlk gerçek satın alma testi sonrasında **müşterinin gerçekten
+      "Your digital book is ready" e-postasını aldığı** doğrulanmış
+      (Resend → Logs sekmesinde send id görünmeli).
 
 ---
 
@@ -1177,6 +1190,177 @@ Upstash Redis, **ücretsiz katman**da: 10.000 komut/gün + 256 MB depolama.
 (her istek 1-2 komut tüketir). Üretim trafiği ücretsiz katmanı aştığında
 "Pay-as-you-go" planı tek tıkla etkinleştirilir — fatura yöntemi öncesinde
 veritabanı kullanılamaz olmaz, sadece komutlar throttle edilir.
+
+---
+
+## 15. Resend — Transactional Email
+
+### 15.1. Amaç
+
+Resend; sipariş tamamlandıktan sonra müşteriye **"Dijital kitabınız hazır"**
+e-postasını gönderen transactional servis (SUB-PR 4.3). Tek bir e-posta
+şablonu var bugün; sonraki SUB-PR'larda iade onayı, kullanıcı silme
+onayı vb. eklenebilir.
+
+Akış:
+
+```
+Paddle webhook → Inngest (watermark step) → Inngest (email step) →
+   src/lib/email.ts → Resend API → Müşterinin gelen kutusu
+```
+
+`src/lib/email.ts` yine **lazy init + graceful degradation** kalıbını
+kullanır: `RESEND_API_KEY` set değilse `sendOrderReadyEmail` çağrısı
+`{ ok: false, error }` döner; fulfillment kırılmaz (yetki belgesi zaten
+`ready` durumundadır).
+
+### 15.2. Hesap Açma
+
+1. **Kayıt:** `https://resend.com/signup` → GitHub veya e-posta ile.
+2. Doğrulama e-postasını onaylayın.
+
+### 15.3. Gönderim Domain'ini Doğrulama
+
+Resend; **doğrulanmış bir domain üzerinden** üretim e-postası göndermenizi
+zorunlu kılar. Doğrulanmamış domain'lerde yalnızca `onboarding@resend.dev`
+test gönderen adresi çalışır (günlük 100 e-posta limiti).
+
+1. Sol menü: **Domains** → sağ üstte **`+ Add Domain`** düğmesi.
+2. Form:
+   - **Domain:** `mail.kitabevi.com.tr` (kök domain'i değil, mail için
+     bir subdomain önerilir — kök domain'in reputation'u ile karışmaz).
+   - **Region:** Trafik ana bölgenizle örtüşen Resend bölgesini seçin
+     (Avrupa için `eu-west-1` gibi).
+3. **`Add`** düğmesi.
+4. Resend size **3 DNS kaydı** verir:
+   - **MX** kaydı (gönderim onayları için)
+   - **TXT** (SPF politikası — `v=spf1 include:amazonses.com ~all`)
+   - **TXT** (DKIM imzası — `resend._domainkey…`)
+   - **TXT** (DMARC — opsiyonel ama önerilir: `v=DMARC1; p=quarantine; …`)
+5. Bu kayıtları DNS sağlayıcınızda (Cloudflare, Route53, vb.) ekleyin.
+6. Resend panelinde **`Verify DNS Records`** düğmesine basın → her satır
+   **`Verified`** olmalı (DNS yayılması 1-30 dk).
+
+### 15.4. API Anahtarı
+
+1. Sol menü: **API Keys** → **`+ Create API Key`** düğmesi.
+2. Form:
+   - **Name:** `digital-bookstore-server-prod`
+   - **Permission:** **`Full access`** (üretim için);
+     **`Sending access`** dilerseniz daha kısıtlayıcı bir alternatif.
+   - **Domain:** Az önce eklediğiniz domain'i seçin (anahtar sadece o
+     domain üzerinden gönderim yapabilir).
+3. **`Add`** düğmesi → açılan modal `re_…` ile başlayan anahtarı
+   **bir kez** gösterir. Kopyalayın → `RESEND_API_KEY` olarak yerleştirin.
+
+### 15.5. Üç Ortama Yerleştirme
+
+#### Yerel (test sender ile)
+```bash
+# .env.local — domain doğrulama yoksa test sender ile sınırlı (100/gün)
+RESEND_API_KEY=re_test_...
+EMAIL_FROM="Digital Bookstore <onboarding@resend.dev>"
+```
+
+#### Vercel Preview / Production
+```bash
+vercel env add RESEND_API_KEY  preview
+vercel env add EMAIL_FROM      preview
+vercel env add RESEND_API_KEY  production
+vercel env add EMAIL_FROM      production    # "Digital Bookstore <noreply@mail.kitabevi.com.tr>"
+```
+
+> **Üretimde test sender'ı asla kullanmayın.** `onboarding@resend.dev`'in
+> günlük limiti 100'dür; ayrıca alıcı tarafında Resend-marked sender
+> görünür — kurumsal görünmez. Production'a geçmeden domain doğrulamasını
+> tamamlayın.
+
+### 15.6. Kod Tabanı ile Bağlantı
+
+| Konum | Açıklama |
+|---|---|
+| `src/lib/email.ts` | `sendOrderReadyEmail({ to, buyerName, bookTitle, orderId, bookId })` — Resend istemcisini lazy init eder, `idempotencyKey` ile gönderir |
+| `src/emails/order-ready.tsx` | React Email şablonu (`@react-email/components`) — calm-literary tasarım, evergreen CTA |
+| `src/inngest/functions/watermark.ts` | Watermark adımından sonra ayrı `step.run("email-order-ready-${bookId}", ...)` — Inngest step-level + Resend idempotency-key çift katmanlı koruma |
+
+### 15.7. Doğrulama
+
+1. Yerel test (DB + Paddle sandbox bağlı, Inngest CLI çalışıyor):
+   - Paddle sandbox'tan bir test satın alma yapın.
+   - Inngest dev panelinde (`http://localhost:8288`) iş akışında
+     `email-order-ready-…` adımının `succeeded` olduğunu görün.
+   - Resend panelinde **Emails → Logs** → en üstte gönderilmiş e-postayı
+     ve `delivered` durumunu görün.
+
+2. Üretim doğrulaması: ilk gerçek satın alma sonrasında müşteri e-postası
+   geldikten sonra Resend → **Logs** üzerinden `MessageId`'yi destek
+   notlarınıza ekleyin.
+
+### 15.8. Yaygın Sorunlar — Resend
+
+| Belirti | Olası Sebep | Çözüm |
+|---|---|---|
+| `403 Validation failed: Invalid 'from' field` | `EMAIL_FROM`'daki domain doğrulanmamış | Domains sekmesinde domain'i Verified'a getirin VEYA test sender'a düşün |
+| E-postalar SPAM klasörüne düşüyor | SPF/DKIM/DMARC eksik | Üç DNS kaydını da eklediğinizden ve **Verified** olduğundan emin olun |
+| `429 Rate limited` | Free planın saatlik limiti aşıldı | Pro plana geçin VEYA üretim trafiği için Pay-as-you-go aktive edin |
+| Müşteri e-posta almıyor ama Resend "delivered" diyor | Müşterinin spam filtresi | DMARC `quarantine → reject` geçişi + müşteri destek notu |
+| Duplicate e-posta | İdempotency anahtarı yanlış | `src/lib/email.ts`'te `idempotencyKey: "order-ready:${orderId}:${bookId}"` formatı bozulmamış olmalı |
+
+---
+
+## 16. Vercel Analytics & Speed Insights
+
+### 16.1. Amaç
+
+Sıfır-yapılandırmalı, Vercel'in kendi sunduğu iki gözlemleme ürünü:
+
+- **Analytics** — sayfa görüntüleme + benzersiz ziyaretçi + olay sayma
+  (privacy-first; cookie kullanmaz).
+- **Speed Insights** — Core Web Vitals (LCP, INP, CLS) gerçek kullanıcı
+  ölçümlerini (RUM) toplar.
+
+Her ikisi de:
+- **Hiç env değişkeni gerektirmez** — Vercel deploy'da otomatik enjekte
+  edilir.
+- Vercel **dışında** (yerel dev, self-host) **sessizce devre dışı** kalır
+  — script yüklenmez, beacon atılmaz, console gürültüsü yoktur.
+- Aynı script host'u kullanır: `va.vercel-scripts.com`. Bu host bizim
+  CSP `script-src` allowlist'imize ekli (SUB-PR 4.3 — `next.config.ts`).
+
+### 16.2. Vercel Panelinden Etkinleştirme
+
+1. Vercel projesi → **Analytics** sekmesi → **`Enable`**.
+2. Aynı sekmenin altında **Speed Insights** kartı → **`Enable`**.
+3. (İsteğe bağlı) **Settings → Privacy** üzerinden veri saklama süresini
+   ayarlayın.
+
+Tek başına etkinleştirme yeterli değildir — uygulama tarafında ise zaten
+`src/app/layout.tsx`'te `<Analytics />` + `<SpeedInsights />` bileşenleri
+mount edilmiştir (SUB-PR 4.3). Sıradaki deploy'la birlikte veri akmaya
+başlar.
+
+### 16.3. Kod Tabanı ile Bağlantı
+
+| Konum | Açıklama |
+|---|---|
+| `src/app/layout.tsx` | `<Analytics />` ve `<SpeedInsights />` `<body>` içinde, `{children}`'dan sonra render edilir — ClerkProvider'ın koşullu mount durumundan bağımsız |
+| `next.config.ts` (CSP) | `script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com` — script host'u explicit allowlist'te |
+
+### 16.4. Doğrulama
+
+1. Vercel deploy sonrası bir sayfayı açın → DevTools → Network → filtre
+   `vercel-scripts.com` → `script.js` ve `speed-insights/script.js`
+   yüklenmiş olmalı.
+2. Network → filtre `vitals.vercel-insights.com` → beacon POST'larını
+   görün.
+3. Vercel pano → **Analytics** sekmesi → 30 sn içinde ilk pageview
+   görünür.
+
+### 16.5. Maliyet
+
+Vercel Free planında her iki ürün de **ücretsiz katman** ile
+gelir (aylık 2.5k pageview Analytics + 10k data points Speed Insights).
+Aşılırsa Pro plan'a otomatik geçer; ek ücret deployment sayfasında görünür.
 
 ---
 

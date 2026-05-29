@@ -28,7 +28,10 @@ const cspDirectives = [
   "media-src 'self'",
   "worker-src 'self' blob:",
   // 'unsafe-eval' is dev-only (Turbopack HMR uses eval). Production CSP drops it.
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
+  // `va.vercel-scripts.com` is the host for Vercel Analytics + Speed Insights
+  // (SUB-PR 4.3). Explicitly allowlisted rather than wildcarded so the only
+  // external script host we trust is the one we actually depend on.
+  `script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com${isDev ? " 'unsafe-eval'" : ""}`,
   // Tailwind/Next inject runtime style tags; tighten later via nonces.
   "style-src 'self' 'unsafe-inline'",
   // `https:` is allowed in both dev and prod so client code can fetch from

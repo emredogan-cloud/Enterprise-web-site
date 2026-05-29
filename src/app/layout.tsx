@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { SiteHeader } from "@/components/site-header";
 
@@ -85,6 +87,16 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <SiteHeader />
         {children}
+        {/*
+          Vercel Analytics + Speed Insights (SUB-PR 4.3).
+          Both components lazy-mount their respective beacons; outside a
+          Vercel deployment (local dev, self-host) they NO-OP — no network,
+          no console noise. Placed inside <body> AFTER {children} so they
+          render in BOTH the with-Clerk and without-Clerk root-layout
+          branches (conditional ClerkProvider below).
+        */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

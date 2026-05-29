@@ -3,6 +3,7 @@ import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 
 import { db } from "@/lib/db";
 import { entitlements } from "@/lib/db/schema";
+import { sendOrderReadyEmail } from "@/lib/email";
 import {
   FULFILLMENT_EVENT,
   type FulfillmentTransactionCompletedData,
@@ -59,10 +60,40 @@ export const processFulfillment = inngest.createFunction(
           userId,
           bookId,
           buyerName,
-          buyerEmail,
         });
       });
       results.push({ bookId, ...result });
+
+      // Send the "your book is ready" email — separate Inngest step so it
+      // checkpoints independently of the watermark step (a retry of the
+      // email never re-runs the watermark, and vice-versa). We skip the
+      // send when the entitlement was already-ready (re-trigger scenario:
+      // the customer already got the email on the original delivery).
+      //
+      // Resend-side idempotency via `idempotencyKey` (inside
+      // `sendOrderReadyEmail`) means even if Inngest's at-least-once
+      // delivery causes this step to fire twice, Resend dedupes server-
+      // side and the customer never sees a duplicate.
+      if (result.status === "watermarked") {
+        await step.run(`email-order-ready-${bookId}`, async () => {
+          const emailResult = await sendOrderReadyEmail({
+            to: buyerEmail,
+            buyerName,
+            bookTitle: result.bookTitle,
+            orderId,
+            bookId,
+          });
+          if (!emailResult.ok) {
+            // Log and continue — email failure is observable but does NOT
+            // roll back fulfillment. Entitlement is already `ready`; the
+            // customer can reach the book via /account/library.
+            console.warn(
+              `[email] order-ready send failed for order=${orderId} book=${bookId}: ${emailResult.error}`,
+            );
+          }
+          return emailResult;
+        });
+      }
     }
 
     return {
@@ -75,7 +106,8 @@ export const processFulfillment = inngest.createFunction(
 );
 
 // ---------------------------------------------------------------------------
-// Per-book worker — fetch master → stamp → upload → mark ready → email.
+// Per-book worker — fetch master → stamp → upload → mark ready.
+// Email is sent in the caller's separate `step.run` (SUB-PR 4.3).
 // ---------------------------------------------------------------------------
 
 interface WatermarkArgs {
@@ -83,16 +115,20 @@ interface WatermarkArgs {
   userId: string;
   bookId: string;
   buyerName: string | null;
-  buyerEmail: string;
 }
 
 interface WatermarkResult {
   status: "already-ready" | "watermarked";
   artifactKey: string;
+  /**
+   * Returned so the caller can compose the order-ready email without a
+   * second DB lookup. Populated from `books.title` in step 1.
+   */
+  bookTitle: string;
 }
 
 async function watermarkOneBook(args: WatermarkArgs): Promise<WatermarkResult> {
-  const { orderId, userId, bookId, buyerName, buyerEmail } = args;
+  const { orderId, userId, bookId, buyerName } = args;
 
   // 1. Fetch the entitlement + book in one relational read.
   const entitlement = await db.query.entitlements.findFirst({
@@ -121,6 +157,7 @@ async function watermarkOneBook(args: WatermarkArgs): Promise<WatermarkResult> {
     return {
       status: "already-ready",
       artifactKey: entitlement.watermarkedKey,
+      bookTitle: entitlement.book.title,
     };
   }
 
@@ -158,14 +195,11 @@ async function watermarkOneBook(args: WatermarkArgs): Promise<WatermarkResult> {
       and(eq(entitlements.userId, userId), eq(entitlements.bookId, bookId)),
     );
 
-  // 6. Send "your book is ready" email (PLACEHOLDER — see helper TSDoc).
-  await sendReadyEmailPlaceholder({
-    email: buyerEmail,
+  return {
+    status: "watermarked",
+    artifactKey,
     bookTitle: entitlement.book.title,
-    orderId,
-  });
-
-  return { status: "watermarked", artifactKey };
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -228,21 +262,3 @@ async function stampPdfWithWatermark(
   return await pdfDoc.save();
 }
 
-/**
- * PLACEHOLDER — "your book is ready" transactional email.
- *
- * Wiring (Resend / Postmark — Roadmap §9 / §12) lands in a follow-up
- * SUB-PR. For now the call logs to the console so the pipeline is
- * observable end-to-end; the function is named explicitly so the future
- * swap is one targeted change.
- */
-async function sendReadyEmailPlaceholder(args: {
-  email: string;
-  bookTitle: string;
-  orderId: string;
-}): Promise<void> {
-  console.log(
-    "[email] [PLACEHOLDER] would send 'your book is ready':",
-    JSON.stringify(args),
-  );
-}
