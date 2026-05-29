@@ -64,13 +64,17 @@ export async function POST(request: NextRequest) {
 
       const customerId = tx.customerId ?? null;
 
-      // Paddle webhook payloads don't reliably inline the customer email —
-      // fetch it explicitly when we have a customerId.
+      // Paddle webhook payloads don't reliably inline the customer email /
+      // name — fetch the customer record explicitly when we have an id.
+      // Both fields feed the per-order watermark in SUB-PR 1.6 (Roadmap §11
+      // PII policy: name is OK to embed; email stays server-side).
       let customerEmail: string | null = null;
+      let customerName: string | null = null;
       if (customerId) {
         try {
           const customer = await getPaddleClient().customers.get(customerId);
           customerEmail = customer.email ?? null;
+          customerName = customer.name ?? null;
         } catch (err) {
           console.warn("[paddle-webhook] customer.get failed:", err);
         }
@@ -97,6 +101,7 @@ export async function POST(request: NextRequest) {
         transactionId,
         customerId,
         customerEmail,
+        customerName,
         bookIds,
         totalCents,
         taxCents,

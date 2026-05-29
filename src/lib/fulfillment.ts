@@ -2,6 +2,11 @@ import { db } from "@/lib/db";
 import { getCheckoutItems } from "@/lib/db/queries/catalog";
 import { entitlements, orderItems, orders } from "@/lib/db/schema";
 import { upsertLocalUser } from "@/lib/db/users";
+import {
+  FULFILLMENT_EVENT,
+  type FulfillmentTransactionCompletedData,
+  inngest,
+} from "@/lib/inngest/client";
 
 import { appendFulfillmentLogEntry } from "./fulfillment-log";
 
@@ -10,6 +15,8 @@ export interface ProcessCompletedTransactionArgs {
   transactionId: string;
   customerId: string | null;
   customerEmail: string | null;
+  /** Customer's display name from Paddle (used for the per-order watermark). */
+  customerName: string | null;
   /** Book IDs we passed into Paddle via `customData.bookIds`. */
   bookIds: string[];
   totalCents: number;
@@ -24,21 +31,21 @@ export interface ProcessCompletedTransactionArgs {
  * Idempotency primitive:
  *   Paddle's `transaction_id` is mapped onto `orders.mor_order_ref` which
  *   carries a UNIQUE constraint (Roadmap §10, `orders_mor_order_ref_uk`).
- *   The `onConflictDoNothing(target: mor_order_ref).returning({id})` pattern
- *   *atomically* asks the database "is this the first time?" — a retry
- *   (Paddle resends on a 5xx) finds an existing row, returns no rows, and
- *   we no-op cleanly. No double-fulfillment is possible.
+ *   The `onConflictDoNothing(target).returning({id})` pattern *atomically*
+ *   asks the database "is this the first time?" — a retry (Paddle resends
+ *   on a 5xx, or our handler raced with itself) finds an existing row,
+ *   returns no rows, and we no-op cleanly. No double-fulfillment.
  *
  * Atomic boundary:
  *   Order + OrderItems + Entitlements(pending) are written inside a single
- *   Drizzle transaction. If any insert mid-way fails (e.g., a book vanished
- *   between checkout and webhook), the whole tx rolls back; Paddle's retry
- *   re-attempts cleanly.
+ *   Drizzle transaction. If any insert mid-way fails, the whole tx rolls
+ *   back; Paddle's retry re-attempts cleanly.
  *
- * Watermark enqueue:
- *   Deferred to SUB-PR 1.6. For now we append an audit entry to the
- *   fulfillment log so the boundary is observable while the real queue
- *   (Inngest / Vercel Queues) is wired in.
+ * Watermark enqueue (SUB-PR 1.6):
+ *   Once the DB rows are committed, an `inngest.send(...)` event triggers
+ *   the watermark worker. If the send itself fails (e.g., Inngest env
+ *   missing), the order is still safely committed — we log the failure
+ *   to the fulfillment audit log so the worker can be replayed later.
  */
 export async function processCompletedTransaction(
   args: ProcessCompletedTransactionArgs,
@@ -47,6 +54,7 @@ export async function processCompletedTransaction(
     transactionId,
     customerId,
     customerEmail,
+    customerName,
     bookIds,
     totalCents,
     taxCents,
@@ -68,6 +76,7 @@ export async function processCompletedTransaction(
   const localUserId = await upsertLocalUser({
     clerkUserId: customerId ?? "paddle-customer-unknown",
     email: customerEmail,
+    name: customerName ?? undefined,
   });
 
   const books = await getCheckoutItems(bookIds);
@@ -135,16 +144,40 @@ export async function processCompletedTransaction(
     return;
   }
 
-  // PLACEHOLDER: SUB-PR 1.6 replaces this with the real watermark queue.
-  await appendFulfillmentLogEntry({
-    timestamp: new Date().toISOString(),
+  // Enqueue the watermark job. Order rows are already committed, so even
+  // if the send fails (Inngest env unset, network blip) the canonical
+  // record exists in Postgres and the worker can be replayed later by
+  // re-dispatching the same event with the same data.
+  const eventPayload = {
     transactionId,
     orderId: createdOrderId,
     userId: localUserId,
-    email: customerEmail,
+    buyerName: customerName ?? null,
+    buyerEmail: customerEmail,
     bookIds: books.map((b) => b.id),
-    totalCents,
-    currency,
-    note: "watermark-queue placeholder; SUB-PR 1.6 wires Inngest/Vercel Queues",
-  });
+  } satisfies FulfillmentTransactionCompletedData;
+
+  try {
+    await inngest.send({
+      name: FULFILLMENT_EVENT,
+      data: eventPayload,
+    });
+    await appendFulfillmentLogEntry({
+      timestamp: new Date().toISOString(),
+      ...eventPayload,
+      totalCents,
+      currency,
+      note: "watermark-job enqueued via inngest.send",
+    });
+  } catch (err) {
+    console.error("[fulfillment] inngest.send failed:", err);
+    await appendFulfillmentLogEntry({
+      timestamp: new Date().toISOString(),
+      ...eventPayload,
+      totalCents,
+      currency,
+      note: "ENQUEUE FAILED — Inngest unreachable. Order is committed; replay this event manually once Inngest is configured.",
+      error: err instanceof Error ? err.message : String(err),
+    });
+  }
 }
