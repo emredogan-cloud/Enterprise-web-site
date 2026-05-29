@@ -13,25 +13,38 @@ import type {
   RenderTask,
 } from "pdfjs-dist";
 
+import { syncReadingProgress } from "@/app/read/[bookId]/actions";
 import { Button } from "@/components/ui/button";
 
 interface ReaderShellProps {
+  bookId: string;
   bookTitle: string;
   signedUrl: string;
+  /** 1-indexed page to open at (from `reading_progress`); defaults to 1. */
+  initialPage: number;
 }
 
 const MIN_ZOOM = 0.5;
 const MAX_ZOOM = 3.0;
 const ZOOM_STEP = 0.1;
 const RESIZE_DEBOUNCE_MS = 200;
+const PROGRESS_SYNC_DEBOUNCE_MS = 2000;
 
 /**
- * Online reader (Roadmap ADR-4).
+ * Online reader (Roadmap ADR-4) + reading-progress sync (Roadmap §10).
  *
  * Renders the per-order watermarked PDF (one signed URL away) onto an
  * HTML `<canvas>` using pdf.js. PDF.js issues HTTP range requests against
  * the signed URL natively, so we never download the whole file just to
  * show page 1.
+ *
+ * Resume-where-you-left-off:
+ *   - `initialPage` is the page the user last reached (server-side query
+ *     on `reading_progress`); we initialize `pageNumber` to it so pdf.js
+ *     renders the right page on first paint.
+ *   - On every page change AFTER the first paint, a 2-second debounce
+ *     batches rapid flips and fires `syncReadingProgress` once the user
+ *     settles. Fire-and-forget — UX is never blocked on the sync.
  *
  * Architectural notes:
  *  - Pure Client Component — pdf.js depends on browser globals (Worker,
@@ -53,7 +66,12 @@ const RESIZE_DEBOUNCE_MS = 200;
  *  - In-flight `RenderTask`s are cancelled on cleanup; the doc is
  *    `.destroy()`ed on unmount.
  */
-export function ReaderShell({ bookTitle, signedUrl }: ReaderShellProps) {
+export function ReaderShell({
+  bookId,
+  bookTitle,
+  signedUrl,
+  initialPage,
+}: ReaderShellProps) {
   const router = useRouter();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -61,7 +79,7 @@ export function ReaderShell({ bookTitle, signedUrl }: ReaderShellProps) {
 
   const [pdf, setPdf] = useState<PDFDocumentProxy | null>(null);
   const [numPages, setNumPages] = useState(0);
-  const [pageNumber, setPageNumber] = useState(1);
+  const [pageNumber, setPageNumber] = useState(initialPage);
   const [zoom, setZoom] = useState(1);
   const [renderToken, setRenderToken] = useState(0); // bumps on resize
   const [loading, setLoading] = useState(true);
@@ -90,6 +108,11 @@ export function ReaderShell({ bookTitle, signedUrl }: ReaderShellProps) {
         docHandle = doc;
         setPdf(doc);
         setNumPages(doc.numPages);
+        // Clamp initialPage to the actual page range — a stale resume
+        // point should not push pdf.js to a non-existent page.
+        if (initialPage > doc.numPages) {
+          setPageNumber(doc.numPages);
+        }
         setLoading(false);
       } catch (err) {
         if (cancelled) return;
@@ -109,7 +132,7 @@ export function ReaderShell({ bookTitle, signedUrl }: ReaderShellProps) {
         void docHandle.destroy();
       }
     };
-  }, [signedUrl]);
+  }, [signedUrl, initialPage]);
 
   // -----------------------------------------------------------------------
   // 2. Render the current page on (pdf | pageNumber | zoom | renderToken).
@@ -224,6 +247,27 @@ export function ReaderShell({ bookTitle, signedUrl }: ReaderShellProps) {
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, [numPages, router]);
+
+  // -----------------------------------------------------------------------
+  // 5. Reading-progress sync — debounced 2 s after the last page change.
+  //    Skips the very first render (where `pageNumber === initialPage`)
+  //    so we never write the same value back as a no-op.
+  // -----------------------------------------------------------------------
+  const isFirstSyncRender = useRef(true);
+  useEffect(() => {
+    if (!pdf || numPages === 0) return;
+    if (isFirstSyncRender.current) {
+      isFirstSyncRender.current = false;
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      const percent = (pageNumber / numPages) * 100;
+      void syncReadingProgress({ bookId, page: pageNumber, percent });
+    }, PROGRESS_SYNC_DEBOUNCE_MS);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [pageNumber, pdf, numPages, bookId]);
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-background">

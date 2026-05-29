@@ -76,6 +76,15 @@ export default async function ReadBookPage({ params }: { params: Params }) {
     );
   }
 
+  // Resume-where-you-left-off (Roadmap §10 — `reading_progress`).
+  // A missing row means the user has never opened this book; default to 1.
+  const progress = await db.query.readingProgress.findFirst({
+    where: (rp, { and, eq }) =>
+      and(eq(rp.userId, userCtx.localUserId), eq(rp.bookId, bookId)),
+    columns: { page: true },
+  });
+  const initialPage = progress?.page && progress.page >= 1 ? progress.page : 1;
+
   // Short-TTL signed URL — pdf.js will use HTTP range requests against this
   // single URL; R2 signs the URL itself, not specific byte ranges, so range
   // requests work cleanly.
@@ -107,6 +116,11 @@ export default async function ReadBookPage({ params }: { params: Params }) {
   }
 
   return (
-    <ReaderShell bookTitle={entitlement.book.title} signedUrl={signedUrl} />
+    <ReaderShell
+      bookId={bookId}
+      bookTitle={entitlement.book.title}
+      signedUrl={signedUrl}
+      initialPage={initialPage}
+    />
   );
 }
