@@ -29,7 +29,18 @@ export async function generateMetadata({
   const description = author.bio
     ? `${author.bio.slice(0, 157).trim()}…`
     : `Books by ${author.name} on Digital Bookstore.`;
-  return { title: author.name, description };
+  const url = `/authors/${slug}`;
+  return {
+    title: author.name,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: author.name,
+      description,
+      url,
+      type: "profile",
+    },
+  };
 }
 
 export default async function AuthorPage({

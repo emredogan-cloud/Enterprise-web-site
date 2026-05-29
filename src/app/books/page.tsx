@@ -11,6 +11,14 @@ export const metadata: Metadata = {
   title: "Browse all books",
   description:
     "Browse the full catalog of digital books — owned, never locked.",
+  alternates: { canonical: "/books" },
+  openGraph: {
+    title: "Browse all books",
+    description:
+      "Browse the full catalog of digital books — owned, never locked.",
+    url: "/books",
+    type: "website",
+  },
 };
 
 export default async function BooksCatalogPage() {

@@ -23,13 +23,30 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
+// `metadataBase` absolutizes every relative URL emitted by per-page
+// `generateMetadata` (canonicals, OG images, Twitter images, …). Reads
+// `NEXT_PUBLIC_APP_URL` (declared in `.env.example`); falls back to
+// localhost so dev / unprovisioned-env builds never crash on metadata.
+const BASE_URL =
+  process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: {
     default: "Digital Bookstore",
     template: "%s · Digital Bookstore",
   },
   description:
     "Buy a digital book once, download a watermarked PDF, and read it online. Yours to keep — never locked.",
+  // Per-page metadata extends these defaults via the App Router merge.
+  openGraph: {
+    siteName: "Digital Bookstore",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({

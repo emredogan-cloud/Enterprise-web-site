@@ -4,12 +4,13 @@ import { notFound } from "next/navigation";
 import { AddToCartButton } from "@/components/add-to-cart-button";
 import { CoverImage } from "@/components/cover-image";
 import { SampleViewer } from "@/components/sample-viewer";
-import { formatPrice } from "@/lib/format";
 import {
   getPublishedBookBySlug,
   listPublishedBookSlugs,
 } from "@/lib/db/queries/catalog";
+import { formatPrice } from "@/lib/format";
 import { PLACEHOLDER_SAMPLE_HTML } from "@/lib/placeholders/book-sample";
+import { buildBookJsonLd, getBaseUrl, getCoverImageUrl } from "@/lib/seo";
 
 // SSG + ISR per ADR-1: pre-generate all published-book slugs at build, then
 // regenerate any page lazily on demand once `revalidate` elapses.
@@ -39,7 +40,33 @@ export async function generateMetadata({
       ? `${book.description.slice(0, 157).trim()}…`
       : `${book.title} — Digital Bookstore`);
 
-  return { title: book.title, description };
+  const coverImageUrl = getCoverImageUrl(book.coverKey);
+  const url = `/books/${slug}`;
+
+  return {
+    title: book.title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: book.title,
+      description,
+      url,
+      type: "book",
+      ...(coverImageUrl
+        ? {
+            images: [
+              { url: coverImageUrl, alt: `Cover of ${book.title}` },
+            ],
+          }
+        : {}),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: book.title,
+      description,
+      ...(coverImageUrl ? { images: [coverImageUrl] } : {}),
+    },
+  };
 }
 
 export default async function BookDetailPage({
@@ -65,11 +92,49 @@ export default async function BookDetailPage({
    */
   const sampleHtml = PLACEHOLDER_SAMPLE_HTML;
 
+  // -------------------------------------------------------------------------
+  // JSON-LD (Roadmap §13 — structured data). One `<script>` per page,
+  // single `@graph` with Organization + Breadcrumbs + Book + Product/Offer.
+  // -------------------------------------------------------------------------
+  const baseUrl = getBaseUrl();
+  const coverImageUrl = getCoverImageUrl(book.coverKey);
+  const jsonLd = buildBookJsonLd({
+    baseUrl,
+    slug,
+    title: book.title,
+    subtitle: book.subtitle,
+    description: book.description,
+    isbn: book.isbn,
+    language: book.language,
+    pageCount: book.pageCount,
+    priceCents: book.priceCents,
+    currency: book.currency,
+    authors: book.authors,
+    coverImageUrl,
+  });
+
   return (
     <main className="mx-auto max-w-5xl px-6 py-16">
+      {/*
+        JSON-LD is rendered as a normal <script type="application/ld+json">
+        tag inside the SSG payload — crawlers parse it on the first GET.
+        `dangerouslySetInnerHTML` is the canonical pattern; the content is
+        a JSON-serialized object we control entirely.
+      */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <div className="grid gap-12 md:grid-cols-[minmax(0,_1fr)_minmax(0,_1.5fr)]">
         <div className="md:sticky md:top-16 md:self-start">
-          <CoverImage title={book.title} coverKey={book.coverKey} />
+          {/*
+            `priority` on the cover — it's the LCP candidate on this
+            page, so Next/Image preloads it instead of lazy-loading.
+            (Falls back to the typographic placeholder when no public
+            R2 URL is configured; the prop is then a no-op.)
+          */}
+          <CoverImage title={book.title} coverKey={book.coverKey} priority />
         </div>
 
         <div>

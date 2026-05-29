@@ -224,6 +224,29 @@ export async function searchBooks(query: string): Promise<BookCardData[]> {
 }
 
 // -----------------------------------------------------------------------------
+// Sitemap entries — published-book slugs + their last-modified timestamps.
+// Used by `src/app/sitemap.ts` to emit accurate `<lastmod>` per URL.
+// -----------------------------------------------------------------------------
+export interface BookSitemapEntry {
+  slug: string;
+  lastModified: Date;
+}
+
+export async function getBookSitemapEntries(): Promise<BookSitemapEntry[]> {
+  return safeQuery(
+    "getBookSitemapEntries",
+    async () => {
+      const rows = await db.query.books.findMany({
+        where: (b, { eq }) => eq(b.status, "published"),
+        columns: { slug: true, updatedAt: true },
+      });
+      return rows.map((r) => ({ slug: r.slug, lastModified: r.updatedAt }));
+    },
+    [],
+  );
+}
+
+// -----------------------------------------------------------------------------
 // Cart — fetch the published-book details for the IDs in a session cart.
 // -----------------------------------------------------------------------------
 export async function getCartBooks(bookIds: string[]): Promise<BookCardData[]> {

@@ -26,9 +26,18 @@ export async function generateMetadata({
   const { slug } = await params;
   const category = await getCategoryPageBySlug(slug);
   if (!category) return { title: "Category not found" };
+  const description = `Browse ${category.name} on Digital Bookstore.`;
+  const url = `/categories/${slug}`;
   return {
     title: category.name,
-    description: `Browse ${category.name} on Digital Bookstore.`,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: category.name,
+      description,
+      url,
+      type: "website",
+    },
   };
 }
 

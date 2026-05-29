@@ -61,7 +61,40 @@ const securityHeaders = [
       ]),
 ];
 
+/**
+ * Allow Next/Image to fetch covers from R2. Two pattern families:
+ *  - **Default Cloudflare R2 hostnames** — direct R2 (`*.r2.cloudflarestorage.com`)
+ *    and the per-bucket public dev URLs (`*.r2.dev`). Always allowed.
+ *  - **Custom CDN domain from `R2_PUBLIC_BASE_URL`** — captured at build
+ *    time. If the env var holds a valid HTTPS URL its hostname is added
+ *    to the allowlist; otherwise no extra pattern is emitted.
+ *
+ * Keeping the allowlist build-time-derived (rather than wildcarding all
+ * HTTPS) means an exfiltration of the image proxy can only target hosts
+ * we've explicitly named at deploy time.
+ */
+function buildCustomR2RemotePattern():
+  | { protocol: "https"; hostname: string }[]
+  | [] {
+  const url = process.env.R2_PUBLIC_BASE_URL;
+  if (!url) return [];
+  try {
+    return [{ protocol: "https", hostname: new URL(url).hostname }];
+  } catch {
+    return [];
+  }
+}
+
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "*.r2.cloudflarestorage.com" },
+      { protocol: "https", hostname: "**.r2.cloudflarestorage.com" },
+      { protocol: "https", hostname: "*.r2.dev" },
+      { protocol: "https", hostname: "**.r2.dev" },
+      ...buildCustomR2RemotePattern(),
+    ],
+  },
   async headers() {
     return [
       {

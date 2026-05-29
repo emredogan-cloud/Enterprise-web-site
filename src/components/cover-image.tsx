@@ -1,23 +1,58 @@
+import Image from "next/image";
+
+import { getCoverImageUrl } from "@/lib/seo";
+
 /**
- * Cover image renderer with a typographic placeholder fallback.
+ * Cover image renderer.
  *
- * SUB-PR 1.1 always renders the placeholder: the catalog is empty and
- * wiring real cover URLs needs (a) `R2_PUBLIC_BASE_URL` provisioned and
- * (b) `next.config.ts > images.remotePatterns` set for that hostname.
- * Both arrive when the first real cover is uploaded; this component is
- * the single swap-point.
+ * Two render paths, chosen at request time based on environment + data:
  *
- * The `coverKey` is preserved on a `data-cover-key` attribute so the
- * intended source key is debuggable from the DOM today and ready to
- * drive a `next/image` `src` tomorrow.
+ *   1. **Next/Image** — when `coverKey` is set AND `R2_PUBLIC_BASE_URL` is
+ *      provisioned, render the real cover via `next/image`. The image
+ *      flows through Next's optimization route (`/_next/image`), so the
+ *      browser only ever sees a same-origin request — the remote-pattern
+ *      allowlist in `next.config.ts` guards the server-side fetch.
+ *
+ *   2. **Typographic placeholder** — fallback when either piece of state
+ *      is missing. Same calm 2:3 paper-toned tile from SUB-PR 1.1.
+ *
+ * The `priority` prop opts the rendered image into LCP-friendly preload
+ * (no lazy-loading, no blur-up). Pass `priority` on above-the-fold
+ * surfaces — chiefly the book detail page's hero cover. Catalog grids
+ * stay lazy-loaded.
+ *
+ * The intended `coverKey` is preserved on `data-cover-key` either way so
+ * the DOM is debuggable.
  */
 export function CoverImage({
   title,
   coverKey,
+  priority = false,
 }: {
   title: string;
   coverKey?: string | null;
+  priority?: boolean;
 }) {
+  const src = getCoverImageUrl(coverKey);
+
+  if (src) {
+    return (
+      <div
+        data-cover-key={coverKey || undefined}
+        className="relative aspect-[2/3] w-full overflow-hidden rounded-md bg-muted"
+      >
+        <Image
+          src={src}
+          alt={`Cover of ${title}`}
+          fill
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          priority={priority}
+          className="object-cover"
+        />
+      </div>
+    );
+  }
+
   const initial = (title.charAt(0) || "?").toUpperCase();
   return (
     <div
@@ -32,7 +67,6 @@ export function CoverImage({
           {initial}
         </span>
       </div>
-      {/* subtle bottom shade — gives the placeholder a hint of "spine" weight */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-secondary/40 to-transparent" />
     </div>
   );

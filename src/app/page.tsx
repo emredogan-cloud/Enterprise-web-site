@@ -1,4 +1,25 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
+
+export const metadata: Metadata = {
+  // `absolute` bypasses the root layout's "%s · Digital Bookstore" template
+  // — the home page is already the brand title; we don't want it doubled.
+  title: {
+    absolute: "Digital Bookstore — buy a book once, read it anywhere",
+  },
+  description:
+    "A first-party bookstore for digital books. Buy a title once, download a watermarked PDF, and read it online. Yours to keep — never locked.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Digital Bookstore — buy a book once, read it anywhere",
+    description:
+      "Buy a digital book once, download a watermarked PDF, and read it online. Yours to keep — never locked.",
+    url: "/",
+    type: "website",
+  },
+};
 
 export default function Home() {
   return (
@@ -15,7 +36,9 @@ export default function Home() {
           watermarked PDF, and read it online. Yours to keep — never locked.
         </p>
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button size="lg">Browse the catalog</Button>
+          <Button size="lg" asChild>
+            <Link href="/books">Browse the catalog</Link>
+          </Button>
           <Button size="lg" variant="outline">
             About the project
           </Button>
