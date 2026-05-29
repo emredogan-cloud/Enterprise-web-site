@@ -31,8 +31,10 @@ const cspDirectives = [
   `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
   // Tailwind/Next inject runtime style tags; tighten later via nonces.
   "style-src 'self' 'unsafe-inline'",
-  // Dev needs ws/wss for HMR; prod allows https (extended explicitly when integrations land).
-  `connect-src 'self'${isDev ? " ws: wss:" : " https:"}`,
+  // `https:` is allowed in both dev and prod so client code can fetch from
+  // R2 (PDF reader, future cover images) and other HTTPS integrations.
+  // Dev additionally needs `ws:`/`wss:` for the Turbopack HMR socket.
+  `connect-src 'self' https:${isDev ? " ws: wss:" : ""}`,
   "upgrade-insecure-requests",
 ].join("; ");
 

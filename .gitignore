@@ -47,3 +47,6 @@ next-env.d.ts
 
 # fulfillment audit log (local-dev only; production uses console.log + Vercel logs)
 /logs
+
+# pdf.js worker — copied from node_modules by scripts/copy-pdf-worker.mjs at install time
+/public/pdf.worker.min.mjs
