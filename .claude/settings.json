@@ -9,11 +9,12 @@
       "Write",
       "Edit",
       "Grep",
-      "Glob"
-    ],
-    "ask": [
+      "Glob",
       "Bash(git commit*)",
       "Bash(git push*)",
+      "Bash(git add*)"
+    ],
+    "ask": [
       "Bash(npm run db:push*)",
       "Bash(npm run db:migrate*)"
     ],

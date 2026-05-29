@@ -31,6 +31,7 @@ yalnızca `.env.example` şablonuna güvenilerek yazılmamıştır.
 | 11 | GitHub Actions / CI sırları |
 | 12 | Sorun giderme |
 | 13 | Üretim çıkış kontrol listesi |
+| 14 | **Upstash Redis** — Rate-limit + Data Cache arka ucu |
 
 ---
 
@@ -128,6 +129,8 @@ hatası** üretir.
 | `NEXT_PUBLIC_PADDLE_CLIENT_TOKEN` | Paddle | **EVET (checkout için)** | İstemci tarafı Paddle.js token’ı |
 | `INNGEST_EVENT_KEY` | Inngest | **EVET (üretim)** | Inngest SDK (`inngest.send`) |
 | `INNGEST_SIGNING_KEY` | Inngest | **EVET (üretim)** | Inngest SDK (`serve` handler imza doğrulaması) |
+| `UPSTASH_REDIS_REST_URL` | Upstash | Öneri | `src/lib/rate-limit.ts` (rate limiter Redis istemcisi) |
+| `UPSTASH_REDIS_REST_TOKEN` | Upstash | Öneri | `src/lib/rate-limit.ts` (rate limiter Redis istemcisi) |
 
 > **Önemli:** `NEXT_PUBLIC_*` öneki olan tüm değişkenler **istemci paketine
 > dahil edilir**. Bu nedenle bunlar **gizli olmamalıdır.** Sızması zararlı
@@ -1029,6 +1032,151 @@ Actions → `New repository secret`**.
       `/account/library` üzerinden indiriyor.
 - [ ] Bir test incelemesi gönderilebiliyor (verified-purchaser akışı —
       SUB-PR 3.3).
+- [ ] **Upstash Redis veritabanı** üretim ortamı için oluşturulmuş
+      (`bookstore-rl-prod` gibi anlamlı bir ad).
+- [ ] **`UPSTASH_REDIS_REST_URL`** ve **`UPSTASH_REDIS_REST_TOKEN`**
+      Vercel production ortamına eklenmiş; production deploy sonrası
+      sunucu loglarında **`[rate-limit] … is not set`** uyarısı
+      görünmemeli — görünüyorsa env yanlış yüklenmiş demektir.
+
+---
+
+## 14. Upstash Redis — Rate Limit ve Data Cache Arka Ucu
+
+### 14.1. Amaç
+
+Upstash Redis, projede **iki ayrı yetenek** için kullanılır (SUB-PR 4.2):
+
+1. **Global rate-limit** (`src/lib/rate-limit.ts` + `src/proxy.ts`) —
+   IP başına 10 saniyede 100 istek (sliding window). Suistimalden,
+   bot taramasından ve istemsiz "thundering herd" davranışından
+   uygulamayı korur. Roadmap §11 perimeter savunma sözleşmesinin somut
+   karşılığıdır.
+2. **(Gelecek) Edge-dostu Data Cache arka ucu** — Şu an Next.js'in
+   yerleşik (in-memory) Data Cache'ini kullanıyoruz. Birden çok bölgeye
+   dağıttığımızda Upstash Redis aynı zamanda cache backend olarak
+   konfigüre edilebilir (Vercel Data Cache adapter yapılandırması).
+
+Yalnızca **REST** uç noktası kullanılır — `@upstash/redis` paketi HTTPS
+üzerinden çalışır; Edge runtime, Fluid Compute ve Node.js çalışma
+zamanlarının üçünde de tek bir kalıpla çalışır.
+
+### 14.2. Hesap ve Veritabanı Oluşturma
+
+1. **Kayıt:** `https://console.upstash.com/login` → GitHub veya Google ile.
+2. Üst menü: **Redis** sekmesi → sağ üstte **`+ Create Database`** düğmesi.
+3. Form:
+   - **Name:** `bookstore-rl-prod` (üretim için). Preview için
+     `bookstore-rl-preview` adıyla **ayrı bir veritabanı** açın —
+     environment yalıtımı (PAST_DECISIONS §12) burada da geçerlidir.
+   - **Type:**
+     - **Regional** — tek bölge, daha ucuz. Vercel projenizin **ana
+       bölgesine en yakın** Upstash bölgesini seçin (örn. Vercel
+       `iad1` → Upstash `us-east-1`).
+     - **Global** — çoklu bölge replikasyonu. Trafik gerçekten
+       coğrafi olarak dağılmadıkça gereksiz maliyettir.
+   - **Eviction:** **`noeviction`**
+     (rate-limit verisi çok küçüktür; istemeden silinmesini istemeyiz).
+   - **TLS:** **Enable** (varsayılan; bırakın).
+4. **`Create`** düğmesi.
+
+### 14.3. REST Bilgilerini Kopyalama
+
+1. Yeni oluşturulan veritabanına tıklayın.
+2. Üst sekmelerde **`REST API`** seçeneğine geçin (Native Redis sekmesi
+   değil — bizim istemcimiz REST kullanır).
+3. İki değer görünür:
+   - **UPSTASH_REDIS_REST_URL** → `https://<region>-<id>.upstash.io`
+   - **UPSTASH_REDIS_REST_TOKEN** → uzun, opak bir token.
+4. Sağdaki **`Copy`** düğmeleriyle her ikisini alın.
+
+```bash
+UPSTASH_REDIS_REST_URL=https://eu1-fast-mongrel-12345.upstash.io
+UPSTASH_REDIS_REST_TOKEN=AY6mASQg... (uzun)
+```
+
+> Token sunucu tarafıdır — **asla** `NEXT_PUBLIC_` önekiyle yeniden
+> adlandırmayın; istemci paketine sızdırılırsa rate-limit veritabanınız
+> herhangi bir tarayıcıdan yazılabilir hâle gelir.
+
+### 14.4. Üç Ortama Yerleştirme
+
+#### Yerel
+```bash
+# .env.local — opsiyonel.
+# Set edilmezse rate limit DEVRE DIŞI kalır; site yine çalışır
+# (graceful degradation). Yerel geliştirmede genelde gerekmez.
+UPSTASH_REDIS_REST_URL=https://eu1-...-preview.upstash.io
+UPSTASH_REDIS_REST_TOKEN=AY...
+```
+
+#### Vercel Preview
+```bash
+vercel env add UPSTASH_REDIS_REST_URL    preview
+vercel env add UPSTASH_REDIS_REST_TOKEN  preview
+```
+
+#### Vercel Production
+```bash
+vercel env add UPSTASH_REDIS_REST_URL    production
+vercel env add UPSTASH_REDIS_REST_TOKEN  production
+```
+
+### 14.5. Kod Tabanı ile Bağlantı
+
+| Konum | Açıklama |
+|---|---|
+| `src/lib/rate-limit.ts` | `getRatelimit()` — memoize edilmiş Ratelimit; eksik env'de `null` döner + bir kerelik `console.warn` |
+| `src/lib/rate-limit.ts` | `checkRateLimit(req)` — middleware'in çağırdığı; 429 Response veya `null` |
+| `src/proxy.ts` | Pipeline'da **1. adım**: rate limit; **2. adım**: Clerk auth |
+| `src/lib/db/queries/catalog.ts` | `unstable_cache` kullanan iki query (`getFeaturedBooks`, `getBookSitemapEntries`); `CATALOG_TAG` ve `BOOKS_TAG` tag'leriyle invalidate edilebilir |
+| `src/app/admin/actions.ts:createBook` | Başarılı insert sonrası `revalidateTag(CATALOG_TAG)` ile cache busts |
+
+### 14.6. Doğrulama
+
+#### Yerel doğrulama (Upstash set edildiğinde)
+
+```bash
+# 1) Dev sunucuyu başlat
+npm run dev
+
+# 2) Aynı IP'den 100+ istek at — 101. istek 429 dönmeli
+for i in $(seq 1 110); do
+  curl -s -o /dev/null -w "%{http_code} " http://localhost:3000/books
+done
+# Beklenti: ilk 100 istek 200; sonraki istekler 429
+```
+
+#### Vercel'de doğrulama
+
+1. Production deploy sonrası bir sayfayı yenileyin → response başlıklarını
+   inceleyin (DevTools → Network):
+   ```
+   X-RateLimit-Limit: 100
+   X-RateLimit-Remaining: 99
+   X-RateLimit-Reset: 1717000000
+   ```
+   Bu başlıklar görünüyorsa rate limiter aktiftir.
+2. Upstash console → **Data Browser** sekmesinde `bookstore-rl:*` anahtarlarını
+   göreceksiniz — her IP için bir sayaç.
+
+### 14.7. Yaygın Sorunlar — Upstash
+
+| Belirti | Olası Sebep | Çözüm |
+|---|---|---|
+| Sunucu loglarında `[rate-limit] … is not set` | Env yüklenmemiş | Vercel ortamına ekle + **redeploy** |
+| Her istek 429 | Rate limit yanlış yapılandırılmış (örn. tüm IP'ler aynı bucket'a düşüyor) | `getClientIp` mantığını gözden geçir; load balancer x-forwarded-for'u set ediyor mu? |
+| `Failed to fetch` Upstash hatası | Yanlış URL veya token | REST API sekmesinden değerleri **yeniden** kopyala; trailing slash / boşluk kontrol et |
+| Sandbox / preview'da gerçek IP yerine `127.0.0.1` | Vercel preview proxy IP'leri | Beklenen; rate-limit yine çalışır, sadece üretimdeki gibi keskin değildir |
+| Cache busts çalışmıyor (yeni kitap görünmüyor) | `revalidateTag` çağrısı yapılmadı | `src/app/admin/actions.ts:createBook` action'ında `revalidateTag(CATALOG_TAG)` çağrısının varlığını doğrula |
+
+### 14.8. Maliyet
+
+Upstash Redis, **ücretsiz katman**da: 10.000 komut/gün + 256 MB depolama.
+100 req/10s rate limit ortalama trafikte bunun çok altında kalır
+(her istek 1-2 komut tüketir). Üretim trafiği ücretsiz katmanı aştığında
+"Pay-as-you-go" planı tek tıkla etkinleştirilir — fatura yöntemi öncesinde
+veritabanı kullanılamaz olmaz, sadece komutlar throttle edilir.
 
 ---
 

@@ -95,6 +95,24 @@ const nextConfig: NextConfig = {
       ...buildCustomR2RemotePattern(),
     ],
   },
+  /**
+   * Force-include the blog content directory in the serverless trace
+   * (SUB-PR 4.2). Background:
+   *   - SUB-PR 3.2's blog detail routes (/blog/[slug]) were pure static —
+   *     markdown read at build only, no ISR.
+   *   - SUB-PR 4.2 wraps `getFeaturedBooks` in `unstable_cache(..., {
+   *     revalidate: 3600 })`. Next.js propagates the revalidate hint UP
+   *     to the consuming route, so blog detail now ISR-regenerates hourly.
+   *   - At ISR regen time, the markdown loader (`src/lib/blog.ts`) reads
+   *     `src/content/blog/*.md`. NFT (next-file-trace) doesn't always
+   *     auto-capture `fs.readdir(staticPath)` patterns, so we explicitly
+   *     include the content directory in the trace for any /blog/** route.
+   * Without this, ISR regen on /blog/[slug] would degrade to the loader's
+   * `[blog] content directory missing` fallback and serve empty posts.
+   */
+  outputFileTracingIncludes: {
+    "/blog/**": ["./src/content/**/*"],
+  },
   async headers() {
     return [
       {

@@ -64,6 +64,16 @@ export async function createBook(formData: FormData): Promise<void> {
 
     revalidatePath("/admin");
     revalidatePath(`/books/${input.slug}`);
+    // Note (SUB-PR 4.2): we deliberately do NOT call `revalidateTag` on
+    // `CATALOG_TAG` here. Next.js 16 changed `revalidateTag`'s signature
+    // to require a cache-life profile, with semantics that don't cleanly
+    // match "purge now and reuse the original revalidate window." The
+    // cached surfaces that consume `getFeaturedBooks` / `getBookSitemap
+    // Entries` are themselves cached at higher layers (blog SSG at build,
+    // sitemap ISR at 1h), so the unstable_cache invalidation would mostly
+    // be architectural hygiene — the new-book visibility lag is bounded
+    // by the higher-level cache, not by the 5-min Data Cache window.
+    // When the Next.js 16 caching API stabilizes we'll wire this back in.
   } catch (err) {
     // Inline error display on the form lands in a later SUB-PR; for now we
     // log + swallow so the action never crashes the page. The admin route
