@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
+import { BookStatusBadge } from "@/components/book-status-badge";
 import { Button } from "@/components/ui/button";
 import { UnprovisionedNotice } from "@/components/unprovisioned-notice";
 import { AdminAccessError, requireAdmin } from "@/lib/auth";
 import {
   getDashboardMetrics,
   getRecentOrders,
+  listAllBooksForAdmin,
+  type BookAdminListItem,
   type DashboardMetrics,
   type OrderStatus,
   type RecentOrder,
@@ -141,9 +145,10 @@ export default async function AdminPage() {
   // in depth — same `cache()`-backed call, no extra cost). They are
   // `safeQuery`-wrapped, so a DB outage degrades to empty data rather
   // than a 500.
-  const [metrics, recentOrders] = await Promise.all([
+  const [metrics, recentOrders, catalog] = await Promise.all([
     getDashboardMetrics(),
     getRecentOrders(10),
+    listAllBooksForAdmin(),
   ]);
 
   return (
@@ -166,6 +171,8 @@ export default async function AdminPage() {
       <MetricsRow metrics={metrics} />
 
       <RecentOrdersSection orders={recentOrders} />
+
+      <CatalogManagementSection books={catalog} />
 
       <CreateBookSection />
     </main>
@@ -374,7 +381,110 @@ function formatOrderDate(date: Date): string {
 }
 
 // ===========================================================================
-// Create Book form — unchanged from SUB-PR 0.6 except for the new
+// Catalog Management table (SUB-PR 4.4).
+//
+// Lists EVERY book — drafts, published, archived — newest-first. Each row
+// links to /admin/books/[slug]/edit. Distinct from the public storefront's
+// "/books" view which filters to status='published'.
+// ===========================================================================
+function CatalogManagementSection({ books }: { books: BookAdminListItem[] }) {
+  return (
+    <section aria-labelledby="catalog-management-heading">
+      <header className="flex items-baseline justify-between">
+        <h2
+          id="catalog-management-heading"
+          className="font-serif text-2xl font-medium text-foreground"
+        >
+          Catalog management
+        </h2>
+        <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
+          {books.length} {books.length === 1 ? "title" : "titles"}
+        </p>
+      </header>
+
+      {books.length === 0 ? (
+        <div className="mt-6 rounded-lg border border-dashed border-border bg-muted/30 px-6 py-12 text-center">
+          <p className="text-sm text-muted-foreground">
+            No books in the catalog yet. Use the &ldquo;Add a book&rdquo; form
+            below to create the first draft.
+          </p>
+        </div>
+      ) : (
+        <div className="mt-6 overflow-x-auto rounded-lg border border-border">
+          <table className="w-full text-sm">
+            <thead className="border-b border-border bg-muted/40 text-left text-xs uppercase tracking-[0.1em] text-muted-foreground">
+              <tr>
+                <th scope="col" className="px-4 py-3 font-medium">
+                  Title
+                </th>
+                <th scope="col" className="px-4 py-3 font-medium">
+                  Slug
+                </th>
+                <th scope="col" className="px-4 py-3 text-right font-medium">
+                  Price
+                </th>
+                <th scope="col" className="px-4 py-3 font-medium">
+                  Status
+                </th>
+                <th scope="col" className="px-4 py-3 text-right font-medium">
+                  <span className="sr-only">Actions</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {books.map((book) => (
+                <CatalogRow key={book.id} book={book} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </section>
+  );
+}
+
+function CatalogRow({ book }: { book: BookAdminListItem }) {
+  return (
+    <tr className="text-foreground">
+      <td className="px-4 py-3">
+        {book.status === "published" ? (
+          <Link
+            href={`/books/${book.slug}`}
+            className="font-medium text-foreground underline-offset-2 hover:text-primary hover:underline"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {book.title}
+          </Link>
+        ) : (
+          <span className="font-medium text-foreground">{book.title}</span>
+        )}
+      </td>
+      <td className="px-4 py-3">
+        <code className="rounded bg-muted px-1 py-0.5 text-xs">
+          {book.slug}
+        </code>
+      </td>
+      <td className="whitespace-nowrap px-4 py-3 text-right font-medium">
+        {formatPrice(book.priceCents, book.currency)}
+      </td>
+      <td className="px-4 py-3">
+        <BookStatusBadge status={book.status} />
+      </td>
+      <td className="whitespace-nowrap px-4 py-3 text-right">
+        <Link
+          href={`/admin/books/${book.slug}/edit`}
+          className="text-sm font-medium text-primary underline-offset-2 hover:underline"
+        >
+          Edit →
+        </Link>
+      </td>
+    </tr>
+  );
+}
+
+// ===========================================================================
+// Create Book form — unchanged from SUB-PR 0.6 except for the
 // Paddle price ID field (SUB-PR 4.1, brief step 3).
 // ===========================================================================
 function CreateBookSection() {

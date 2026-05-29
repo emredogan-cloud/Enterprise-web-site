@@ -24,6 +24,13 @@ import { requireAdmin } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { orderItems, orders, users } from "@/lib/db/schema";
 
+/**
+ * Mirror of the `book_status` Postgres enum (see `src/lib/db/schema.ts`).
+ * Exported here so admin surfaces (forms, badges) can type their props
+ * without importing schema internals.
+ */
+export type BookStatus = "draft" | "published" | "archived";
+
 // ---------------------------------------------------------------------------
 // safeQuery — DB-failure fallback only. AuthZ errors bypass this wrapper.
 // ---------------------------------------------------------------------------
@@ -177,6 +184,116 @@ export async function getDashboardMetrics(): Promise<DashboardMetrics> {
  * Uses Drizzle's relational query API (same shape as `account.getUserOrders`
  * but unconstrained by `userId`).
  */
+// ---------------------------------------------------------------------------
+// Catalog management — list + per-book edit fetch (SUB-PR 4.4)
+// ---------------------------------------------------------------------------
+
+export interface BookAdminListItem {
+  id: string;
+  slug: string;
+  title: string;
+  priceCents: number;
+  currency: string;
+  status: BookStatus;
+  publishedAt: Date | null;
+  createdAt: Date;
+}
+
+/**
+ * Every book in the database — drafts, published, and archived. Returned
+ * newest-first so a freshly-created draft lands at the top of the table.
+ *
+ * Distinct from the public `listPublishedBooks` (which filters to
+ * `status = 'published'`); admins need to see the full catalog including
+ * the rows the storefront hides.
+ */
+export async function listAllBooksForAdmin(): Promise<BookAdminListItem[]> {
+  await requireAdmin();
+
+  return safeQuery(
+    "listAllBooksForAdmin",
+    async () => {
+      const rows = await db.query.books.findMany({
+        orderBy: (b, { desc: descFn }) => descFn(b.createdAt),
+        columns: {
+          id: true,
+          slug: true,
+          title: true,
+          priceCents: true,
+          currency: true,
+          status: true,
+          publishedAt: true,
+          createdAt: true,
+        },
+      });
+      return rows;
+    },
+    [],
+  );
+}
+
+export interface BookEditData {
+  id: string;
+  slug: string;
+  title: string;
+  subtitle: string | null;
+  description: string | null;
+  priceCents: number;
+  currency: string;
+  language: string;
+  coverKey: string | null;
+  sampleKey: string | null;
+  masterFileKey: string | null;
+  pageCount: number | null;
+  isbn: string | null;
+  paddlePriceId: string | null;
+  status: BookStatus;
+  publishedAt: Date | null;
+}
+
+/**
+ * Fetch one book for the admin edit page — exposes EVERY editable column
+ * (including the private `masterFileKey` and `paddlePriceId` that the
+ * public catalog projections deliberately omit).
+ *
+ * Returns `null` when no book matches the slug — the edit route calls
+ * `notFound()` in that case.
+ */
+export async function getBookForEdit(
+  slug: string,
+): Promise<BookEditData | null> {
+  await requireAdmin();
+
+  return safeQuery(
+    "getBookForEdit",
+    async () => {
+      const book = await db.query.books.findFirst({
+        where: (b, { eq: eqFn }) => eqFn(b.slug, slug),
+        columns: {
+          id: true,
+          slug: true,
+          title: true,
+          subtitle: true,
+          description: true,
+          priceCents: true,
+          currency: true,
+          language: true,
+          coverKey: true,
+          sampleKey: true,
+          masterFileKey: true,
+          pageCount: true,
+          isbn: true,
+          paddlePriceId: true,
+          status: true,
+          publishedAt: true,
+        },
+      });
+      return book ?? null;
+    },
+    null,
+  );
+}
+
 export async function getRecentOrders(
   limit: number = 10,
 ): Promise<RecentOrder[]> {
