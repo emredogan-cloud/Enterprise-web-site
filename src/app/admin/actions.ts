@@ -7,6 +7,7 @@ import { AdminAccessError, requireAdmin } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { books } from "@/lib/db/schema";
 import type { BookStatus } from "@/lib/db/queries/admin";
+import { logger } from "@/lib/logger";
 
 // ===========================================================================
 // Shared helpers
@@ -131,7 +132,8 @@ export async function createBook(formData: FormData): Promise<void> {
     // Log and swallow — this legacy entry point's form has no inline-error
     // UI. Failure path lives in logs + the admin page rendering an old
     // table. SUB-PR 4.4's edit form returns structured errors instead.
-    console.error("[admin] createBook failed:", err);
+    // SUB-PR 4.5: route through `logger.error` so Sentry catches it too.
+    logger.error("[admin] createBook failed", err);
   }
 }
 
@@ -260,7 +262,9 @@ export async function updateBook(
       publishedAtPatch = new Date();
     }
   } catch (err) {
-    console.error("[admin] updateBook (existing fetch) failed:", err);
+    logger.error("[admin] updateBook (existing fetch) failed", err, {
+      bookId: input.id,
+    });
     return {
       ok: false,
       error: err instanceof Error ? err.message : "Failed to load book.",
@@ -290,7 +294,10 @@ export async function updateBook(
       })
       .where(eq(books.id, input.id));
   } catch (err) {
-    console.error("[admin] updateBook failed:", err);
+    logger.error("[admin] updateBook failed", err, {
+      bookId: input.id,
+      slug: input.slug,
+    });
     const message = err instanceof Error ? err.message : "Update failed.";
     // Duplicate slug is the only meaningful per-user error here (UNIQUE
     // constraint on `books_slug_uk`). Surface a clearer message.
@@ -351,7 +358,10 @@ export async function deleteBook(
   try {
     await db.delete(books).where(eq(books.id, input.id));
   } catch (err) {
-    console.error("[admin] deleteBook failed:", err);
+    logger.error("[admin] deleteBook failed", err, {
+      bookId: input.id,
+      slug: input.slug,
+    });
     const message = err instanceof Error ? err.message : "Delete failed.";
     if (
       message.toLowerCase().includes("foreign key") ||

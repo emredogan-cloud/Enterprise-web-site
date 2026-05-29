@@ -35,8 +35,11 @@ const EMPTY_CART: Cart = { items: [] };
 /**
  * Defensive parser — never throws. Returns an empty cart if the cookie
  * is missing, malformed, or stuffed with garbage by a third party.
+ *
+ * Exported (SUB-PR 4.5) so it can be unit-tested in isolation from
+ * `next/headers` — pure string-in / Cart-out function, no I/O.
  */
-function safeParseCart(raw: string | undefined): Cart {
+export function safeParseCart(raw: string | undefined): Cart {
   if (!raw) return EMPTY_CART;
   try {
     const parsed: unknown = JSON.parse(raw);

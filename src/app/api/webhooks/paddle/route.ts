@@ -1,6 +1,7 @@
 import type { NextRequest } from "next/server";
 
 import { processCompletedTransaction } from "@/lib/fulfillment";
+import { logger } from "@/lib/logger";
 import { getPaddleClient } from "@/lib/paddle";
 
 // We use Drizzle transactions inside the handler → Node runtime required.
@@ -25,7 +26,7 @@ export const dynamic = "force-dynamic";
 export async function POST(request: NextRequest) {
   const webhookSecret = process.env.PADDLE_WEBHOOK_SECRET;
   if (!webhookSecret) {
-    console.error("[paddle-webhook] PADDLE_WEBHOOK_SECRET is not configured");
+    logger.error("[paddle-webhook] PADDLE_WEBHOOK_SECRET is not configured");
     return new Response("Webhook not configured", { status: 503 });
   }
 
@@ -48,7 +49,7 @@ export async function POST(request: NextRequest) {
       signature,
     );
   } catch (err) {
-    console.error("[paddle-webhook] signature verification failed:", err);
+    logger.error("[paddle-webhook] signature verification failed", err);
     return new Response("Invalid signature", { status: 401 });
   }
 
@@ -111,7 +112,7 @@ export async function POST(request: NextRequest) {
       console.log("[paddle-webhook] ignoring event:", event.eventType);
     }
   } catch (err) {
-    console.error("[paddle-webhook] handler failed:", err);
+    logger.error("[paddle-webhook] handler failed", err);
     return new Response("Handler error", { status: 500 });
   }
 

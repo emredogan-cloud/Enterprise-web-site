@@ -1,3 +1,4 @@
+import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
 /*
@@ -127,4 +128,33 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+/**
+ * Sentry build-time wrapper (SUB-PR 4.5).
+ *
+ * Wraps the Next.js config to:
+ *   - Auto-load `sentry.client.config.ts` into the client bundle
+ *   - Auto-tunnel SDK calls (when `tunnelRoute` is set — not used here)
+ *   - Optionally upload source maps to Sentry for symbolicated stack traces
+ *
+ * Graceful degradation:
+ *   - `silent: !process.env.CI` — quiet build logs locally; surface them in CI
+ *   - `sourcemaps.disable: !SENTRY_AUTH_TOKEN` — when no auth token is set,
+ *     skip the upload step entirely (the build still produces source maps,
+ *     they just stay local). Without this guard, every local `npm run build`
+ *     would try to upload and either fail noisily or hang on auth prompts.
+ *   - When `SENTRY_DSN` is missing at runtime, the actual SDK init in
+ *     `sentry.{client,server,edge}.config.ts` no-ops — `withSentryConfig`
+ *     itself doesn't require the DSN at build time.
+ */
+export default withSentryConfig(nextConfig, {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  silent: !process.env.CI,
+  sourcemaps: {
+    disable: !process.env.SENTRY_AUTH_TOKEN,
+  },
+  // Don't widen the deployment surface; just wire up source-map upload
+  // when configured. `tunnelRoute` (ad-blocker bypass) and ReactComponent
+  // Annotation are off by default — opt in later if needed.
+});

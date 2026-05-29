@@ -34,6 +34,7 @@ yalnızca `.env.example` şablonuna güvenilerek yazılmamıştır.
 | 14 | **Upstash Redis** — Rate-limit + Data Cache arka ucu |
 | 15 | **Resend** — Transactional email ("siparişiniz hazır" gibi) |
 | 16 | **Vercel Analytics & Speed Insights** — Ürün analitiği + Core Web Vitals |
+| 17 | **Sentry** — Hata izleme, performans ve source-map sembolizasyonu |
 
 ---
 
@@ -135,6 +136,11 @@ hatası** üretir.
 | `UPSTASH_REDIS_REST_TOKEN` | Upstash | Öneri | `src/lib/rate-limit.ts` (rate limiter Redis istemcisi) |
 | `RESEND_API_KEY` | Resend | **EVET (üretim)** | `src/lib/email.ts` (`getResendClient`) |
 | `EMAIL_FROM` | Resend | Öneri | `src/lib/email.ts` (gönderen adresi; varsayılan `onboarding@resend.dev` — test) |
+| `SENTRY_DSN` | Sentry | Öneri | `sentry.server.config.ts`, `sentry.edge.config.ts`, `src/lib/logger.ts` |
+| `NEXT_PUBLIC_SENTRY_DSN` | Sentry | Öneri | `sentry.client.config.ts` (browser-side init) |
+| `SENTRY_AUTH_TOKEN` | Sentry | Öneri (build) | `next.config.ts` (`withSentryConfig` — source-map upload) |
+| `SENTRY_ORG` | Sentry | Öneri (build) | `next.config.ts` (source-map upload) |
+| `SENTRY_PROJECT` | Sentry | Öneri (build) | `next.config.ts` (source-map upload) |
 
 > **Önemli:** `NEXT_PUBLIC_*` öneki olan tüm değişkenler **istemci paketine
 > dahil edilir**. Bu nedenle bunlar **gizli olmamalıdır.** Sızması zararlı
@@ -1048,6 +1054,15 @@ Actions → `New repository secret`**.
       domain'inizi kullanıyor (`onboarding@resend.dev` test sender DEĞİL).
 - [ ] **Vercel Analytics** ve **Speed Insights** Vercel panelinden
       etkinleştirilmiş (Project → Analytics → Enable).
+- [ ] **Sentry projesi** oluşturulmuş (Next.js platformu), production
+      ortamı için ayrı bir proje veya en azından `environment: production`
+      filtresiyle ayrılabilir bir surface.
+- [ ] **`SENTRY_DSN`** ve **`NEXT_PUBLIC_SENTRY_DSN`** Vercel production
+      ortamına eklenmiş; deploy sonrası ilk hata Sentry → Issues sekmesinde
+      30 sn içinde görünür olmalı.
+- [ ] **`SENTRY_AUTH_TOKEN`** + **`SENTRY_ORG`** + **`SENTRY_PROJECT`**
+      eklenmiş; build loglarında "Successfully uploaded source maps"
+      satırı görünüyor (yoksa hatalar minified halde gelir).
 - [ ] İlk gerçek satın alma testi sonrasında **müşterinin gerçekten
       "Your digital book is ready" e-postasını aldığı** doğrulanmış
       (Resend → Logs sekmesinde send id görünmeli).
@@ -1361,6 +1376,179 @@ başlar.
 Vercel Free planında her iki ürün de **ücretsiz katman** ile
 gelir (aylık 2.5k pageview Analytics + 10k data points Speed Insights).
 Aşılırsa Pro plan'a otomatik geçer; ek ücret deployment sayfasında görünür.
+
+---
+
+## 17. Sentry — Hata İzleme ve Performans
+
+### 17.1. Amaç
+
+Sentry; üretimde fırlatılan tüm yakalanmamış istisnaları, manuel olarak
+`logger.error(...)` ile raporlanan kayıtları ve isteğe bağlı performans
+spanlarını merkezi bir dashboard'a iletir (SUB-PR 4.5). Vercel'in standart
+loglarının üstünde:
+- Hatalar **stack-trace'leri sembolize** edilmiş hâlde gelir (source-map
+  yükleme yapıldıysa).
+- Aynı hata **dedup edilir** — `Issues` görünümünde "ilk görüldüğünden
+  beri X kez" olarak takip edilir.
+- **PII otomatik olarak filtrelenmez** — bizim varsayılan init
+  (`sendDefaultPii: false`) bu güvenliği uygular (Roadmap §11).
+
+Üç farklı runtime için ayrı init dosyaları:
+
+| Dosya | Runtime | DSN değişkeni |
+|---|---|---|
+| `sentry.client.config.ts` | Tarayıcı | `NEXT_PUBLIC_SENTRY_DSN` |
+| `sentry.server.config.ts` | Node (`/api/*`, Server Actions, RSC) | `SENTRY_DSN` |
+| `sentry.edge.config.ts` | Edge (middleware) | `SENTRY_DSN` |
+
+`instrumentation.ts` Next.js'in `NEXT_RUNTIME` env değerine göre doğru
+config dosyasını yükler.
+
+### 17.2. Hesap ve Proje Oluşturma
+
+1. **Kayıt:** `https://sentry.io/signup/` → GitHub veya e-posta ile.
+2. **Yeni proje:** Sol kenar menü → **Projects** → sağ üstte
+   **`+ Create Project`** düğmesi.
+3. Form:
+   - **Platform:** **`Next.js`** (önemli — Sentry buna göre kurulum
+     wizard'ı önerir; biz manuel kurduğumuz için wizard'ı atlayabiliriz).
+   - **Project name:** `digital-bookstore-prod`
+   - **Team:** mevcut takımınız (yoksa yeni bir tane oluşturun).
+4. **`Create Project`** düğmesi.
+
+### 17.3. DSN'lerin Kopyalanması
+
+1. Yeni proje sayfasında **Settings → Client Keys (DSN)** menüsüne
+   girin (URL: `…sentry.io/settings/<org>/projects/<project>/keys/`).
+2. **Default key** kartında üç değer vardır:
+   - **DSN** — `https://<hash>@o<orgid>.ingest.sentry.io/<projectid>`
+   - **Public Key** ve **Secret Key** — bunlar DSN içinde gömülüdür;
+     çoğu zaman ayrıca kullanılmaz.
+3. **DSN değerini kopyalayın** → hem `SENTRY_DSN` (sunucu) hem
+   `NEXT_PUBLIC_SENTRY_DSN` (istemci) için aynı değeri kullanın.
+   - Public ve server için **AYNI DSN** kullanmak güvenlidir; DSN
+     zaten "yalnızca yazma" yetkisine sahiptir (sızsa bile saldırgan
+     yalnızca sahte hatalar gönderebilir, mevcut hataları okuyamaz).
+
+```bash
+SENTRY_DSN=https://xxxx@o1234.ingest.sentry.io/5678
+NEXT_PUBLIC_SENTRY_DSN=https://xxxx@o1234.ingest.sentry.io/5678
+```
+
+> İstemci ve sunucu için **ayrı projeler** kullanmak isterseniz iki
+> ayrı Sentry projesi oluşturun ve DSN'leri ayrı tutun. Çoğu kullanım
+> için tek proje yeterlidir.
+
+### 17.4. Source-Map Upload — Sembolize Stack Trace İçin
+
+Production bundle'lar minified'tır. Source map yüklemezseniz Sentry'deki
+hata satırı `t.x:1:42198` gibi görünür. Yüklerseniz `src/app/admin/actions.ts:172`
+olarak okunur.
+
+1. **Sentry Auth Token oluşturma:**
+   - Sol kenar menü: **Settings → Account → API → Auth Tokens** (URL:
+     `sentry.io/settings/account/api/auth-tokens/`).
+   - **`+ Create New Token`** düğmesi.
+   - Form:
+     - **Name:** `digital-bookstore-ci-source-maps`
+     - **Scopes:** `project:releases` ve `org:read` (minimum gerekli).
+   - **`Create Token`** → görünen `sntrys_…` ile başlayan değeri
+     **bir kez** gösterir. Kopyalayın → `SENTRY_AUTH_TOKEN`.
+2. **Organization slug:**
+   - URL'nizden okuyun: `sentry.io/organizations/<ORG_SLUG>/projects/`
+   - `<ORG_SLUG>` → `SENTRY_ORG` olarak yerleştirin.
+3. **Project slug:**
+   - Proje sayfasının URL'sinden: `sentry.io/organizations/<org>/projects/<PROJECT_SLUG>/`
+   - `<PROJECT_SLUG>` → `SENTRY_PROJECT` olarak yerleştirin (örn.
+     `digital-bookstore-prod`).
+
+### 17.5. Üç Ortama Yerleştirme
+
+#### Yerel (genelde gerekmez — yerel hatalar Sentry'ye gitmesin)
+```bash
+# .env.local — boş bırakmak, init'in atlamasına yol açar; tavsiye edilir.
+# Yerel'de Sentry test etmek istiyorsanız:
+#   SENTRY_DSN=https://...
+#   NEXT_PUBLIC_SENTRY_DSN=https://...
+# Source-map upload yerelde KESİNLİKLE devre dışı bırakılmalı
+# (auth token boş bırakıldığında zaten otomatik atlar).
+```
+
+#### Vercel Preview
+```bash
+vercel env add SENTRY_DSN              preview
+vercel env add NEXT_PUBLIC_SENTRY_DSN  preview
+# Source-map upload preview'da opsiyonel — tipik akış sadece production:
+# vercel env add SENTRY_AUTH_TOKEN     preview
+# vercel env add SENTRY_ORG            preview
+# vercel env add SENTRY_PROJECT        preview
+```
+
+#### Vercel Production
+```bash
+vercel env add SENTRY_DSN              production
+vercel env add NEXT_PUBLIC_SENTRY_DSN  production
+vercel env add SENTRY_AUTH_TOKEN       production
+vercel env add SENTRY_ORG              production
+vercel env add SENTRY_PROJECT          production
+```
+
+### 17.6. Kod Tabanı ile Bağlantı
+
+| Konum | Açıklama |
+|---|---|
+| `sentry.client.config.ts` | İstemci init; `NEXT_PUBLIC_SENTRY_DSN` yoksa atlanır |
+| `sentry.server.config.ts` | Sunucu init; `SENTRY_DSN` yoksa atlanır |
+| `sentry.edge.config.ts` | Edge runtime init |
+| `instrumentation.ts` | Next.js `register()` hook'u; runtime'a göre doğru config'i yükler. `onRequestError` → `Sentry.captureRequestError` (Next.js 15+ hatası yakalama) |
+| `next.config.ts` | `withSentryConfig(nextConfig, …)` — build-time source-map upload + plugin entegrasyonu |
+| `src/lib/logger.ts` | `logger.info / warn / error()` — `error` çağrıları DSN setliyse Sentry'ye iletilir |
+
+### 17.7. Graceful Degradation Sözleşmesi
+
+Sentry **hiçbir env yokken** uygulama tamamen çalışır:
+
+1. `Sentry.init()` çağrıları DSN olmadığında atlanır (config dosyalarının
+   içindeki `if (dsn)` gate'i).
+2. `Sentry.captureException()` / `Sentry.captureMessage()` çağrıları
+   init yapılmamışken **sessizce no-op** olur — istek atılmaz, hata
+   fırlatılmaz.
+3. `withSentryConfig` `SENTRY_AUTH_TOKEN` yoksa source-map upload'u
+   atlar (`sourcemaps.disable: true`), build başarılı olur.
+4. `logger.error()` her zaman `console.error`'a yazar — Vercel logları
+   gözlemleme zemini olarak kalır.
+
+### 17.8. Doğrulama
+
+1. Bir test hatası fırlatın:
+   ```bash
+   # Yerel dev sunucu açıkken bir test endpoint açın
+   curl -X POST http://localhost:3000/api/admin/actions \
+     -H "Content-Type: application/json" \
+     -d '{"badRequest":true}'
+   ```
+2. Sentry → **Issues** sekmesi → 30 sn içinde yeni bir issue görünmeli.
+3. Issue'yu açın → stack trace satır numaraları **kaynak dosya yolları**
+   olmalı (sembolize edilmiş). Eğer `app-<hash>.js:1:NNNN` görünüyorsa
+   source-map upload başarısız demektir — build loglarına bakın.
+
+### 17.9. Yaygın Sorunlar — Sentry
+
+| Belirti | Olası Sebep | Çözüm |
+|---|---|---|
+| Hatalar Sentry'ye düşmüyor | DSN env değişkeni yanlış set | Vercel ortamına ekleyip **redeploy** edin |
+| Stack trace minified (`t.x:1:42198`) | Source-map upload başarısız | `SENTRY_AUTH_TOKEN` + `SENTRY_ORG` + `SENTRY_PROJECT` üçünü de set ettiğinizden emin olun |
+| Build çıktısında `Skipping sentry-cli` | Auth token eksik (graceful skip — sorun değil ama upload da yok) | Token ekleyip yeniden deploy |
+| Test/preview hataları production'a karışıyor | Tek proje + `environment` filtresi yok | İki ayrı proje kullanın VEYA Issues sayfasında `environment` filtresini sabitleyin |
+| Sentry'de PII (e-posta vb.) görünüyor | `sendDefaultPii: true` set edilmiş | Config dosyalarında `sendDefaultPii: false` olduğundan emin olun (Roadmap §11) |
+
+### 17.10. Maliyet
+
+Sentry Developer Plan ücretsiz: aylık 5.000 hata + 10.000 performans
+event'i + 50 replay. Düşük trafikli ürünler için fazlasıyla yeterli.
+Aşıldığında Team plan ($26/ay) veya event quota artırımı satın
+alınabilir.
 
 ---
 
