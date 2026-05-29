@@ -130,6 +130,79 @@ export async function getOrderForUser(args: {
   );
 }
 
+// ---------------------------------------------------------------------------
+// Order history — for `/account/orders`.
+// ---------------------------------------------------------------------------
+
+export type OrderStatus = "pending" | "paid" | "failed" | "refunded";
+
+export interface UserOrderSummaryItem {
+  bookId: string;
+  bookTitle: string;
+  bookSlug: string;
+  priceCentsAtPurchase: number;
+}
+
+export interface UserOrderSummary {
+  id: string;
+  morOrderRef: string;
+  totalCents: number;
+  taxCents: number;
+  currency: string;
+  status: OrderStatus;
+  createdAt: Date;
+  items: UserOrderSummaryItem[];
+}
+
+/**
+ * Chronological order history for one user, newest first.
+ * Keyed strictly on `userId`; no enumeration possible.
+ */
+export async function getUserOrders(userId: string): Promise<UserOrderSummary[]> {
+  return safeQuery(
+    "getUserOrders",
+    async () => {
+      const rows = await db.query.orders.findMany({
+        where: (o, { eq }) => eq(o.userId, userId),
+        orderBy: (o, { desc }) => desc(o.createdAt),
+        columns: {
+          id: true,
+          morOrderRef: true,
+          totalCents: true,
+          taxCents: true,
+          currency: true,
+          status: true,
+          createdAt: true,
+        },
+        with: {
+          items: {
+            columns: { bookId: true, priceCentsAtPurchase: true },
+            with: {
+              book: { columns: { slug: true, title: true } },
+            },
+          },
+        },
+      });
+      return rows.map((o) => ({
+        id: o.id,
+        morOrderRef: o.morOrderRef,
+        totalCents: o.totalCents,
+        taxCents: o.taxCents,
+        currency: o.currency,
+        status: o.status,
+        createdAt: o.createdAt,
+        items: o.items.map((i) => ({
+          bookId: i.bookId,
+          bookTitle: i.book.title,
+          bookSlug: i.book.slug,
+          priceCentsAtPurchase: i.priceCentsAtPurchase,
+        })),
+      }));
+    },
+    [],
+  );
+}
+
 /**
  * All entitlements (across orders) for one user, newest first.
  * This is the source of truth for `/account/library`.
