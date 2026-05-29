@@ -1,27 +1,5 @@
+import { PROSE_CLASSES } from "@/lib/prose";
 import { cn } from "@/lib/utils";
-
-/**
- * Typography classes — applied on the SampleViewer's <article>.
- *
- * Base: `prose prose-lg prose-stone dark:prose-invert` gives us a warm,
- * stone-toned reading column with sensible dark-mode inversion.
- *
- * Brand overrides (Roadmap §7 — typography-forward, calm-literary):
- *   - headings render in our serif face (Fraunces) at a calm `medium`
- *     weight with tightened tracking — not bold, not theatrical.
- *   - blockquotes use the same serif, lose the default italic (calm tone),
- *     and switch their left rule to the brand `primary` (evergreen accent).
- *   - inline links pick up the accent so they read as deliberate, not noisy.
- *   - the reading measure stays at our custom `max-w-prose` (68ch from
- *     `tailwind.config.ts`).
- */
-const PROSE_CLASSES = [
-  "prose prose-lg prose-stone dark:prose-invert",
-  "max-w-prose mx-auto",
-  "prose-headings:font-serif prose-headings:font-medium prose-headings:tracking-tight",
-  "prose-blockquote:font-serif prose-blockquote:border-l-primary prose-blockquote:not-italic prose-blockquote:text-foreground/90",
-  "prose-a:text-primary",
-];
 
 export interface SampleViewerProps {
   /** HTML string. Rendered into the page DOM via `dangerouslySetInnerHTML`. */

@@ -26,6 +26,22 @@ export function SiteHeader() {
           Digital Bookstore
         </Link>
 
+        {/*
+          Primary nav — kept to two items so the header stays calm.
+          `/books` is the catalog front door; `/blog` is the content hub
+          (SUB-PR 3.2). Both are server-rendered links, so the header
+          stays static and the layout's `○ Static` / `● SSG` parents
+          remain pre-renderable.
+        */}
+        <nav className="hidden items-center gap-5 text-sm text-muted-foreground sm:flex">
+          <Link href="/books" className="transition-colors hover:text-primary">
+            Books
+          </Link>
+          <Link href="/blog" className="transition-colors hover:text-primary">
+            Blog
+          </Link>
+        </nav>
+
         <div className="ml-auto w-full max-w-sm">
           <SearchBar />
         </div>

@@ -82,6 +82,55 @@ export async function listPublishedBooks(): Promise<BookCardData[]> {
   );
 }
 
+/**
+ * The "featured books" used by cross-link surfaces such as the blog's
+ * `RelatedBooks` component (SUB-PR 3.2, Roadmap §13 — internal linking).
+ *
+ * Heuristic for v1: the most-recently-published books, capped by `limit`.
+ * That keeps the surface fresh for free; we can later swap the ordering
+ * for category-overlap or hand-curated picks without changing the consumer.
+ */
+export async function getFeaturedBooks(limit: number): Promise<BookCardData[]> {
+  return safeQuery(
+    "getFeaturedBooks",
+    async () => {
+      const rows = await db.query.books.findMany({
+        where: (b, { eq }) => eq(b.status, "published"),
+        orderBy: (b, { desc }) => desc(b.publishedAt),
+        limit,
+        columns: {
+          id: true,
+          slug: true,
+          title: true,
+          subtitle: true,
+          coverKey: true,
+          priceCents: true,
+          currency: true,
+        },
+        with: {
+          bookAuthors: {
+            orderBy: (ba, { asc }) => asc(ba.position),
+            with: {
+              author: { columns: { slug: true, name: true } },
+            },
+          },
+        },
+      });
+      return rows.map((b) => ({
+        id: b.id,
+        slug: b.slug,
+        title: b.title,
+        subtitle: b.subtitle,
+        coverKey: b.coverKey,
+        priceCents: b.priceCents,
+        currency: b.currency,
+        authors: b.bookAuthors.map((ba) => ba.author),
+      }));
+    },
+    [],
+  );
+}
+
 export async function listPublishedBookSlugs(): Promise<Array<{ slug: string }>> {
   return safeQuery(
     "listPublishedBookSlugs",
