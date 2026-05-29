@@ -112,6 +112,14 @@ export const books = pgTable(
     masterFileKey: text("master_file_key"),
     pageCount: integer("page_count"),
     isbn: varchar("isbn", { length: 32 }),
+    /**
+     * Paddle catalog `priceId` (e.g. `pri_01abc…`). Populated by the admin
+     * after registering the book as a non-catalog item in Paddle's
+     * dashboard or via the Paddle API. Nullable so a book can exist in
+     * draft before its Paddle price is set up; checkout fails fast if
+     * any cart item lacks this value.
+     */
+    paddlePriceId: text("paddle_price_id"),
     status: bookStatusEnum("status").notNull().default("draft"),
     publishedAt: timestamp("published_at", { withTimezone: true }),
     createdAt: timestamp("created_at", { withTimezone: true })

@@ -44,3 +44,6 @@ next-env.d.ts
 
 # claude code — machine-local permission grants (shared settings.json stays tracked)
 .claude/settings.local.json
+
+# fulfillment audit log (local-dev only; production uses console.log + Vercel logs)
+/logs

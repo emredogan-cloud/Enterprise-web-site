@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
-import { Button } from "@/components/ui/button";
 import { ClearCartButton, RemoveFromCartButton } from "@/components/cart-buttons";
+import { CheckoutButton } from "@/components/checkout-button";
 import { CoverImage } from "@/components/cover-image";
 import { EmptyState } from "@/components/empty-state";
 import { readCart } from "@/lib/cart";
@@ -92,9 +92,7 @@ export default async function CartPage() {
 
           <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:justify-between">
             <ClearCartButton />
-            <Button size="lg" disabled>
-              Checkout (lands in SUB-PR 1.5)
-            </Button>
+            <CheckoutButton />
           </div>
         </div>
       )}

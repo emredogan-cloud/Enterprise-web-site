@@ -1,0 +1,1 @@
+ALTER TABLE "books" ADD COLUMN "paddle_price_id" text;

@@ -268,6 +268,42 @@ export async function getCartBooks(bookIds: string[]): Promise<BookCardData[]> {
 }
 
 // -----------------------------------------------------------------------------
+// Checkout — narrow projection of just what is needed to start a Paddle
+// transaction (id, title, price, currency, Paddle price-id).
+// -----------------------------------------------------------------------------
+export interface CheckoutItem {
+  id: string;
+  title: string;
+  priceCents: number;
+  currency: string;
+  paddlePriceId: string | null;
+}
+
+export async function getCheckoutItems(
+  bookIds: string[],
+): Promise<CheckoutItem[]> {
+  if (bookIds.length === 0) return [];
+  return safeQuery(
+    "getCheckoutItems",
+    async () => {
+      const rows = await db.query.books.findMany({
+        where: (b, { and, eq, inArray }) =>
+          and(eq(b.status, "published"), inArray(b.id, bookIds)),
+        columns: {
+          id: true,
+          title: true,
+          priceCents: true,
+          currency: true,
+          paddlePriceId: true,
+        },
+      });
+      return rows;
+    },
+    [],
+  );
+}
+
+// -----------------------------------------------------------------------------
 // Categories — hub pages.
 // -----------------------------------------------------------------------------
 export async function listCategorySlugs(): Promise<Array<{ slug: string }>> {
