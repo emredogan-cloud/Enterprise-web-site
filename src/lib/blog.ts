@@ -74,8 +74,21 @@ export interface BlogPostMeta {
 }
 
 export interface BlogPost extends BlogPostMeta {
-  /** Markdown body rendered to HTML via `marked`. */
+  /** Markdown body rendered to HTML via `marked` (with heading IDs annotated). */
   contentHtml: string;
+  /** Flat list of section headings, in document order, for the TOC sidebar. */
+  toc: BlogPostHeading[];
+  /** Estimated reading time in whole minutes (assumes ~200 wpm). */
+  readingMinutes: number;
+}
+
+export interface BlogPostHeading {
+  /** Slug-anchored id (also injected as `id="…"` on the heading element). */
+  id: string;
+  /** Visible heading text, with markdown stripped. */
+  text: string;
+  /** 2 or 3 — corresponds to `<h2>` / `<h3>`. */
+  level: 2 | 3;
 }
 
 export interface CategorySummary {
@@ -207,9 +220,94 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   const { content } = matter(raw);
   // `marked.parse` is sync by default in marked v18 but is typed as
   // `string | Promise<string>`; awaiting handles both contracts safely.
-  const contentHtml = await marked.parse(content);
+  const rawHtml = await marked.parse(content);
 
-  return { ...meta, contentHtml };
+  // Post-process: annotate every <h2>/<h3> with a slug-anchored `id` so
+  // the cinematic reading sidebar's TOC can deep-link + IntersectionObserver
+  // can highlight the active section as the reader scrolls.
+  const { html: contentHtml, toc } = annotateHeadingsAndExtractToc(rawHtml);
+
+  // Reading-time estimate — strip tags + count words at ~200 wpm.
+  const wordCount = content
+    .replace(/```[\s\S]*?```/g, "") // drop code fences
+    .replace(/<[^>]+>/g, "")
+    .split(/\s+/)
+    .filter(Boolean).length;
+  const readingMinutes = Math.max(1, Math.round(wordCount / 200));
+
+  return { ...meta, contentHtml, toc, readingMinutes };
+}
+
+/**
+ * Walk the rendered HTML, inject `id="…"` on every `<h2>` and `<h3>`,
+ * and collect a flat `toc` array in document order.
+ *
+ * Slug strategy: lowercase, strip leading list-style markers like `1.` /
+ * `2.` / `Q&A`, then convert non-alphanumeric runs to single dashes.
+ * Duplicate slugs get a `-2`, `-3`, … suffix to stay unique.
+ *
+ * This is plain regex on the rendered HTML — no DOM parser dependency.
+ * marked produces clean `<h2>text</h2>` shapes; our markdown corpus
+ * doesn't embed HTML inside headings, so a simple capture group is
+ * enough. If we ever start authoring `<h2><a>…</a></h2>` patterns we
+ * can graduate to a real parser.
+ */
+function annotateHeadingsAndExtractToc(html: string): {
+  html: string;
+  toc: BlogPostHeading[];
+} {
+  const toc: BlogPostHeading[] = [];
+  const seen = new Map<string, number>();
+
+  const out = html.replace(
+    /<(h2|h3)>([\s\S]*?)<\/\1>/g,
+    (_match, tag: string, innerHtml: string) => {
+      // Strip nested tags then decode the entities `marked` emits
+      // (apostrophe → `&#39;`, ampersand → `&amp;`, etc.). Without
+      // decoding here, the slug would contain literal entity codes
+      // and the TOC text would render as `What&#39;s` to the reader.
+      const text = decodeBasicEntities(
+        innerHtml.replace(/<[^>]+>/g, ""),
+      ).trim();
+      const baseSlug = slugifyHeading(text);
+      const count = (seen.get(baseSlug) ?? 0) + 1;
+      seen.set(baseSlug, count);
+      const id = count === 1 ? baseSlug : `${baseSlug}-${count}`;
+      const level = tag === "h2" ? 2 : 3;
+      toc.push({ id, text, level: level as 2 | 3 });
+      return `<${tag} id="${id}">${innerHtml}</${tag}>`;
+    },
+  );
+
+  return { html: out, toc };
+}
+
+function slugifyHeading(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/^\d+[.):]?\s*/g, "") // strip leading "1. " / "2)" / "3:"
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+/**
+ * Decode the small handful of HTML entities `marked` emits in heading
+ * text. We don't pull in a full HTML decoder for this — the entity set
+ * inside our authored headings is tiny and well-known.
+ */
+function decodeBasicEntities(s: string): string {
+  return s
+    .replace(/&amp;/g, "&")
+    .replace(/&#39;/g, "'")
+    .replace(/&apos;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&hellip;/g, "…")
+    .replace(/&mdash;/g, "—")
+    .replace(/&ndash;/g, "–")
+    .replace(/&nbsp;/g, " ");
 }
 
 /** Distinct categories with post counts — for browsing surfaces. */

@@ -430,6 +430,209 @@ body:has(.cinematic-root) > header {
   will-change: transform, opacity;
 }
 
+/* =============================================================================
+   CINEMATIC PROSE — long-form editorial reading style.
+   Used by `/blog/[slug]` for the rendered markdown body. Tuned for dark
+   reading: warm-off-white body + emerald accents + serif headings + a
+   prominent drop cap on the first paragraph + glass blockquotes.
+   ========================================================================== */
+.cinematic-root .cinematic-prose {
+  color: #d4d4cc;
+  font-size: 18px;
+  line-height: 1.75;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  max-width: 720px;
+}
+
+.cinematic-root .cinematic-prose > * + * {
+  margin-top: 1.2em;
+}
+
+.cinematic-root .cinematic-prose p {
+  letter-spacing: 0;
+}
+
+.cinematic-root .cinematic-prose strong {
+  color: #e6e6e0;
+  font-weight: 600;
+}
+
+.cinematic-root .cinematic-prose em {
+  font-style: italic;
+  color: #d4d4cc;
+}
+
+.cinematic-root .cinematic-prose a {
+  color: #33f0aa;
+  text-decoration: underline;
+  text-decoration-color: rgba(51, 240, 170, 0.3);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s ease;
+}
+.cinematic-root .cinematic-prose a:hover {
+  text-decoration-color: rgba(51, 240, 170, 0.9);
+}
+
+.cinematic-root .cinematic-prose h2,
+.cinematic-root .cinematic-prose h3 {
+  font-family: var(--font-serif), ui-serif, Georgia, serif;
+  font-weight: 500;
+  color: #e6e6e0;
+  letter-spacing: -0.018em;
+  line-height: 1.2;
+  scroll-margin-top: 96px; /* clears sticky header on anchor jump */
+}
+
+.cinematic-root .cinematic-prose h2 {
+  font-size: 30px;
+  margin-top: 3rem;
+  position: relative;
+}
+
+.cinematic-root .cinematic-prose h3 {
+  font-size: 22px;
+  margin-top: 2.4rem;
+}
+
+/* Numbered-heading detection: when the section starts with "1. " / "2. "
+   we color the leading number in emerald. The trick: the entire heading
+   stays one string in HTML, so the styling is done by the author who
+   includes the number in their markdown. We give it a calm emerald tint
+   via a `:first-letter`-adjacent ::before that scoops the leading number
+   via CSS counter. For simplicity here we don't reorder; the entire
+   h2/h3 reads with its leading number naturally. The emerald color is
+   achieved by detecting "<h2>1." patterns in JS would be brittle, so
+   we accept the unified white. */
+
+/* Drop cap — the FIRST paragraph of the first section. Cinematic emerald,
+   3-line tall, serif. `initial-letter: 3` works in modern Chromium + Safari;
+   the float fallback covers Firefox until they ship it. */
+.cinematic-root .cinematic-prose > p:first-of-type::first-letter {
+  font-family: var(--font-serif), ui-serif, Georgia, serif;
+  font-size: 4.6em;
+  line-height: 1;
+  float: left;
+  margin: 0.08em 0.12em -0.02em -0.02em;
+  font-weight: 500;
+  color: #33f0aa;
+  text-shadow: 0 0 18px rgba(51, 240, 170, 0.45);
+  initial-letter: 3;
+  -webkit-initial-letter: 3;
+}
+
+/* Lists */
+.cinematic-root .cinematic-prose ul,
+.cinematic-root .cinematic-prose ol {
+  padding-left: 1.4em;
+}
+.cinematic-root .cinematic-prose ul > li {
+  list-style: none;
+  position: relative;
+  padding-left: 0.6em;
+}
+.cinematic-root .cinematic-prose ul > li::before {
+  content: "";
+  position: absolute;
+  left: -0.4em;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #33f0aa;
+  box-shadow: 0 0 6px rgba(51, 240, 170, 0.7);
+}
+.cinematic-root .cinematic-prose ol > li {
+  list-style: decimal;
+}
+.cinematic-root .cinematic-prose ol > li::marker {
+  color: #33f0aa;
+  font-weight: 600;
+}
+.cinematic-root .cinematic-prose li + li {
+  margin-top: 0.6em;
+}
+
+/* Blockquote → glass quote card with a large emerald `"` */
+.cinematic-root .cinematic-prose blockquote {
+  position: relative;
+  margin: 2rem 0;
+  padding: 1.8rem 1.8rem 1.8rem 4.2rem;
+  border: 1px solid rgba(51, 240, 170, 0.18);
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(10, 31, 23, 0.55) 0%, rgba(7, 17, 11, 0.55) 100%);
+  backdrop-filter: blur(8px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 14px 32px -18px rgba(0, 0, 0, 0.7),
+    0 0 24px -8px rgba(51, 240, 170, 0.25);
+  font-family: var(--font-serif), ui-serif, Georgia, serif;
+  font-size: 19px;
+  font-style: italic;
+  color: #e6e6e0;
+  line-height: 1.55;
+}
+.cinematic-root .cinematic-prose blockquote::before {
+  content: "“";
+  position: absolute;
+  left: 1.2rem;
+  top: 0.4rem;
+  font-family: var(--font-serif), ui-serif, Georgia, serif;
+  font-size: 4.5rem;
+  font-style: normal;
+  line-height: 1;
+  color: #33f0aa;
+  text-shadow: 0 0 14px rgba(51, 240, 170, 0.45);
+}
+.cinematic-root .cinematic-prose blockquote p {
+  margin: 0;
+}
+.cinematic-root .cinematic-prose blockquote p + p {
+  margin-top: 0.6rem;
+}
+
+/* Code (inline + blocks) */
+.cinematic-root .cinematic-prose code {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.88em;
+  padding: 0.12em 0.4em;
+  border-radius: 4px;
+  background: rgba(51, 240, 170, 0.08);
+  color: #33f0aa;
+  border: 1px solid rgba(51, 240, 170, 0.18);
+}
+.cinematic-root .cinematic-prose pre {
+  padding: 1rem 1.2rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(5, 12, 8, 0.7);
+  overflow-x: auto;
+}
+.cinematic-root .cinematic-prose pre code {
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: #d4d4cc;
+}
+
+/* Horizontal rule → soft glowing emerald ornament */
+.cinematic-root .cinematic-prose hr {
+  border: none;
+  margin: 3rem auto;
+  height: 8px;
+  width: 60%;
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(51, 240, 170, 0.55), transparent 50%),
+    linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.08) 50%, transparent 100%);
+  background-size: 8px 8px, 100% 1px;
+  background-repeat: no-repeat, no-repeat;
+  background-position: center center, center center;
+}
+
+/* =============================================================================
+   END CINEMATIC PROSE
+   ========================================================================== */
+
 /* Cart recommendation shelf — hide the horizontal scrollbar entirely;
    navigation is driven by the arrow buttons, and a stray scrollbar
    would distract from the editorial composition. */

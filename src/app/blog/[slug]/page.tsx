@@ -1,25 +1,33 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { BlogPosting, WithContext } from "schema-dts";
 
+import { ArticleBody } from "@/components/article/article-body";
+import { ArticleHero } from "@/components/article/article-hero";
+import { AuthorNewsletterStrip } from "@/components/article/author-newsletter-strip";
+import { ReadingSidebar } from "@/components/article/reading-sidebar";
 import { RelatedBooks } from "@/components/related-books";
+import { CinematicHeader } from "@/components/home/cinematic-header";
+import { HomeFooter } from "@/components/home/home-footer";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/blog";
-import { PROSE_CLASSES } from "@/lib/prose";
 import { getBaseUrl, SITE_NAME } from "@/lib/seo";
-import { cn } from "@/lib/utils";
 
 /**
- * Blog post detail (Roadmap §6, §13).
+ * Cinematic article reading page — opens after the user clicks
+ * "Read more" inside `/blog`.
  *
  * Classification target: `●` (SSG) via `generateStaticParams`. No
- * `revalidate` export — markdown is deploy-pinned.
+ * `revalidate` — markdown content is deploy-pinned (per SUB-PR 3.2's
+ * choice). The cinematic redesign preserves that contract exactly:
+ *   - Page is a Server Component
+ *   - Markdown HTML + TOC are computed at build time inside
+ *     `getPostBySlug` (post-processed to inject heading IDs)
+ *   - Only the `<ReadingSidebar>` (IntersectionObserver active tracking)
+ *     and `<SharePanel>` (clipboard) + `<AuthorNewsletterStrip>` form
+ *     are Client islands hydrating inside the static HTML
  *
- * Internal-linking surface (the SEO point of the blog):
- *   - Above the article, a back-link to the index + a chip linking to the
- *     category hub (`/blog/category/<slug>`).
- *   - Below the article, a `RelatedBooks` grid that links to up to three
- *     `/books/<slug>` detail pages — the content-to-commerce bridge.
+ * `RelatedBooks` from SUB-PR 3.2 stays beneath the article as the
+ * content-to-commerce bridge.
  */
 
 type BlogSlugParams = Promise<{ slug: string }>;
@@ -48,8 +56,6 @@ export async function generateMetadata({
       title: post.title,
       description: post.excerpt,
       url,
-      // `type: "article"` unlocks `publishedTime` + `section` + `tags` —
-      // the canonical OG shape for editorial content.
       type: "article",
       publishedTime: post.date,
       section: post.category,
@@ -71,11 +77,9 @@ export default async function BlogPostPage({
   const post = await getPostBySlug(slug);
   if (!post) notFound();
 
+  // BlogPosting JSON-LD — same shape as the previous warm-theme version.
+  // The cinematic redesign doesn't change SEO surface.
   const baseUrl = getBaseUrl();
-  // BlogPosting JSON-LD (Roadmap §13 — structured data for editorial
-  // content). Mirrors the Book/Product graph on book pages, but keeps the
-  // payload to a single top-level entity — there's nothing on a blog post
-  // to cross-reference the way a Book / Offer pair would benefit from.
   const jsonLd: WithContext<BlogPosting> = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -96,67 +100,47 @@ export default async function BlogPostPage({
   };
 
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+    <div className="cinematic-root">
+      <CinematicHeader active="blog" />
 
-      <nav
-        aria-label="Breadcrumb"
-        className="text-xs uppercase tracking-[0.15em] text-muted-foreground"
-      >
-        <Link href="/blog" className="hover:text-primary">
-          Blog
-        </Link>
-        <span aria-hidden className="mx-2">
-          /
-        </span>
-        <Link
-          href={`/blog/category/${post.categorySlug}`}
-          className="hover:text-primary"
-        >
-          {post.category}
-        </Link>
-      </nav>
+      <main className="relative z-10">
+        {/* JSON-LD — same structured-data contract as before */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
 
-      <header className="mt-6">
-        <h1 className="text-balance font-serif text-4xl font-medium leading-tight text-foreground sm:text-5xl">
-          {post.title}
-        </h1>
-        <p className="mt-6 text-sm uppercase tracking-[0.15em] text-muted-foreground">
-          <time dateTime={post.date}>{formatDate(post.date)}</time>
-        </p>
-      </header>
+        {/* HERO — large cinematic panel */}
+        <ArticleHero post={post} readingMinutes={post.readingMinutes} />
 
-      {/*
-        Markdown body. The HTML was produced by `marked` at build time;
-        content is repo-controlled (authors PR markdown files), so the
-        `dangerouslySetInnerHTML` boundary is safe — same trust posture as
-        SUB-PR 1.3's SampleViewer.
-      */}
-      <article
-        className={cn(PROSE_CLASSES, "mt-12")}
-        dangerouslySetInnerHTML={{ __html: post.contentHtml }}
-      />
+        {/* Reading layout — sidebar LEFT, article RIGHT.
+            Sticky sidebar on lg+, stacks on mobile (TOC moves below hero). */}
+        <section className="mx-auto mt-14 max-w-[1320px] px-4 sm:mt-16 sm:px-6">
+          <div className="grid gap-10 lg:grid-cols-[280px_minmax(0,_1fr)] lg:gap-14">
+            {/* Sidebar — sticky on lg+ */}
+            <div className="lg:sticky lg:top-24 lg:self-start">
+              <ReadingSidebar toc={post.toc} />
+            </div>
 
-      {/*
-        Content-to-commerce internal-linking surface (Roadmap §13).
-        Server Component — `getFeaturedBooks` runs at SSG time; rendered
-        HTML ships with the post, so the link juice flows immediately.
-      */}
-      <RelatedBooks limit={3} />
-    </main>
+            {/* Article body */}
+            <div>
+              <ArticleBody contentHtml={post.contentHtml} />
+            </div>
+          </div>
+        </section>
+
+        {/* Author + Newsletter strip */}
+        <AuthorNewsletterStrip />
+
+        {/* Related books — content-to-commerce bridge from SUB-PR 3.2 */}
+        <div className="mx-auto max-w-5xl px-6">
+          <RelatedBooks limit={3} />
+        </div>
+
+        <div className="h-20" />
+      </main>
+
+      <HomeFooter />
+    </div>
   );
-}
-
-/** Mirrors `BlogCard`'s date formatting for visual consistency. */
-function formatDate(iso: string): string {
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return iso;
-  return d.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
 }
