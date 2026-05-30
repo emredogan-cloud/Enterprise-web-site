@@ -462,6 +462,26 @@ body:has(.cinematic-root) > header {
   will-change: transform, opacity;
 }
 
+/* About hero — the emerald crystal hovering over the open book gives a
+   slow vertical bob; its aura reuses the homepage `home-breathe` glow so
+   page motion stays in the same family. Reduced-motion is handled globally. */
+@keyframes about-crystal-bob {
+  0%, 100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, -10px);
+  }
+}
+.cinematic-root .about-crystal {
+  animation: about-crystal-bob 6s ease-in-out infinite;
+  will-change: transform;
+}
+.cinematic-root .about-aura {
+  animation: home-breathe 7s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
 /* =============================================================================
    CINEMATIC PROSE — long-form editorial reading style.
    Used by `/blog/[slug]` for the rendered markdown body. Tuned for dark
