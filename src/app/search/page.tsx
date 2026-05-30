@@ -1,23 +1,37 @@
 import type { Metadata } from "next";
 
-import { BookCard } from "@/components/book-card";
-import { EmptyState } from "@/components/empty-state";
-import { SearchBar } from "@/components/search-bar";
+import { CinematicHeader } from "@/components/home/cinematic-header";
+import { HomeFooter } from "@/components/home/home-footer";
+import { CategoryDiscoveryPanel } from "@/components/search/category-discovery-panel";
+import { EmptySearchCard } from "@/components/search/empty-search-card";
+import { LargeSearchInput } from "@/components/search/large-search-input";
+import { PopularSearchesPanel } from "@/components/search/popular-searches-panel";
+import { SearchHero } from "@/components/search/search-hero";
+import { SearchResults } from "@/components/search/search-results";
+import { SuggestionPills } from "@/components/search/suggestion-pills";
 import { searchBooks } from "@/lib/db/queries/catalog";
 
 /**
- * Search depends entirely on a request-time `?q=` query parameter, so it is
- * the one catalog surface that must render dynamically (Roadmap §8 table:
- * "Search results — SSR (dynamic) or client-fetch"). This is the intended
- * single exception to the static-first rule; everything else stays static
- * because `SearchBar` is a pure HTML form with no client JS.
+ * `/search` — cinematic universal search experience.
+ *
+ * Stays `ƒ Dynamic` (reads `?q=` searchParams at request time) — this is
+ * Roadmap §8's single exception to the static-first rule. Two states:
+ *
+ *   - **No query**: hero + large input + suggestion pills + two-panel
+ *     discovery surface (Popular searches LEFT, Browse by category
+ *     RIGHT) + the bottom empty-search focal card.
+ *   - **With query**: hero + input + cinematic results grid (FTS via
+ *     `searchBooks()` from SUB-PR 1.2's full-text search system).
+ *
+ * Both states share the same dark cinematic atmosphere as the rest of
+ * the site, via `.cinematic-root` + the shared header / footer.
  */
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Search",
-  // Search-results pages should not be indexed (they would mostly produce
-  // thin, query-string-driven duplicates of canonical /books).
+  // Search-results pages should not be indexed (mostly thin query-string-
+  // driven duplicates of the canonical /books surface).
   robots: { index: false, follow: false },
 };
 
@@ -31,49 +45,40 @@ export default async function SearchPage({
   const params = await searchParams;
   const raw = Array.isArray(params.q) ? params.q[0] : params.q;
   const query = (raw ?? "").trim();
+  const hasQuery = query.length > 0;
 
-  const results = query ? await searchBooks(query) : [];
+  const results = hasQuery ? await searchBooks(query) : [];
 
   return (
-    <main className="mx-auto max-w-7xl px-6 py-16">
-      <header className="mx-auto max-w-3xl text-center">
-        <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
-          Search
-        </p>
-        <h1 className="mt-4 font-serif text-4xl font-medium leading-tight text-foreground sm:text-5xl">
-          {query ? `Results for ${JSON.stringify(query)}` : "Search the catalog"}
-        </h1>
+    <div className="cinematic-root">
+      <CinematicHeader />
 
-        <div className="mx-auto mt-8 max-w-md">
-          <SearchBar defaultValue={query} />
-        </div>
+      <main className="relative z-10">
+        <SearchHero />
+        {/* `key` remounts the input when the URL `?q=` changes so the
+            controlled state reflects back/forward navigation without
+            requiring a setState-in-effect (React 19 anti-pattern). */}
+        <LargeSearchInput key={query} defaultValue={query} />
 
-        {query && (
-          <p className="mt-4 text-sm text-muted-foreground">
-            {results.length} {results.length === 1 ? "result" : "results"}
-          </p>
+        {hasQuery ? (
+          <SearchResults query={query} results={results} />
+        ) : (
+          <>
+            <SuggestionPills />
+
+            {/* Two-panel discovery — 50/50 on lg, stacked below */}
+            <section className="mx-auto mt-14 grid max-w-7xl gap-5 px-6 lg:grid-cols-2 lg:gap-6">
+              <PopularSearchesPanel />
+              <CategoryDiscoveryPanel />
+            </section>
+
+            <EmptySearchCard />
+            <div className="h-20" />
+          </>
         )}
-      </header>
+      </main>
 
-      {!query ? (
-        <EmptyState
-          heading="Enter a search term."
-          body="Try a title, an author name, or a topic."
-        />
-      ) : results.length === 0 ? (
-        <EmptyState
-          heading={`No books match ${JSON.stringify(query)}.`}
-          body="Try fewer or different words, or browse the full catalog."
-        />
-      ) : (
-        <ul className="mt-16 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-          {results.map((book) => (
-            <li key={book.id}>
-              <BookCard book={book} />
-            </li>
-          ))}
-        </ul>
-      )}
-    </main>
+      <HomeFooter />
+    </div>
   );
 }
