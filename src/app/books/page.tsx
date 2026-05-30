@@ -131,7 +131,7 @@ function mapRealBooksToShell(
  */
 function CatalogShellFallback() {
   return (
-    <div className="mx-auto grid max-w-7xl gap-8 px-6 pb-24 lg:grid-cols-[280px_1fr] lg:gap-10">
+    <div className="mx-auto grid max-w-[1440px] gap-8 px-6 pb-24 lg:grid-cols-[300px_minmax(0,_1fr)] lg:gap-12">
       <div className="hidden h-[400px] rounded-2xl border border-white/[0.05] bg-white/[0.02] lg:block" />
       <div className="min-h-[400px] rounded-2xl border border-white/[0.05] bg-white/[0.02]" />
     </div>

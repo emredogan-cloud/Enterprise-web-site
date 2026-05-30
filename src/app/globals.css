@@ -264,7 +264,10 @@ body:has(.cinematic-root) > header {
 
 .cinematic-root {
   /* Local color tokens — do not pollute the global :root */
-  --home-bg: #07110b;
+  /* Phase 3 correction (Issue 2): base dropped from #07110b → #050705 so the
+     surface reads as an "emerald void" (deep near-black) rather than a flat
+     green wall. Cards (--home-bg-card) now sit a clear step above the void. */
+  --home-bg: #050705;
   --home-bg-elev: #0a1410;
   --home-bg-card: #0c1813;
   --home-surface-glass: rgba(12, 24, 19, 0.6);
@@ -281,21 +284,25 @@ body:has(.cinematic-root) > header {
 
   background-color: var(--home-bg);
   color: var(--home-text-hi);
-  /* Multi-layer atmospheric background — radial bloom + subtle noise */
+  /* Multi-layer atmospheric background — emerald glow suspended in a black-
+     green vacuum (Issue 2). Blooms are soft + offset so the surface reads as
+     "depth + atmosphere," never a painted green panel. Per-page fixed
+     overlays (SettingsBackground, AboutBackground, …) layer on top of this. */
   background-image:
     radial-gradient(
-      ellipse 80% 50% at 50% 0%,
-      rgba(22, 199, 132, 0.08) 0%,
-      transparent 60%
+      ellipse 95% 55% at 50% -6%,
+      rgba(22, 199, 132, 0.1) 0%,
+      rgba(22, 199, 132, 0.03) 40%,
+      transparent 62%
     ),
     radial-gradient(
-      ellipse 60% 40% at 80% 30%,
-      rgba(51, 240, 170, 0.05) 0%,
-      transparent 50%
+      ellipse 55% 42% at 84% 16%,
+      rgba(51, 240, 170, 0.06) 0%,
+      transparent 55%
     ),
     radial-gradient(
-      ellipse 70% 50% at 20% 70%,
-      rgba(22, 199, 132, 0.04) 0%,
+      ellipse 65% 50% at 14% 76%,
+      rgba(22, 199, 132, 0.045) 0%,
       transparent 60%
     );
   min-height: 100vh;
@@ -480,6 +487,35 @@ body:has(.cinematic-root) > header {
 .cinematic-root .about-aura {
   animation: home-breathe 7s ease-in-out infinite;
   will-change: opacity, transform;
+}
+
+/* Homepage hero — floating book cluster (Issue 1). Pure vertical bob so the
+   per-book static rotation can live on an outer wrapper; `--bob-dur` +
+   animation-delay are set inline per book for parallax (the three books drift
+   at different speeds → suspended-in-space feel). Reduced-motion handled
+   globally. */
+@keyframes hero-bob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+.cinematic-root .hero-bob {
+  animation: hero-bob var(--bob-dur, 7s) ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Slow orbital rotation for the faint ring behind the cluster. */
+@keyframes hero-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.cinematic-root .hero-orbit {
+  animation: hero-orbit 60s linear infinite;
+  will-change: transform;
 }
 
 /* =============================================================================

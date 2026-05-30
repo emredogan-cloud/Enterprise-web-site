@@ -13,7 +13,7 @@ import { type DemoBook } from "./demo-books";
 import { FilterSidebar } from "./filter-sidebar";
 import { Pagination } from "./pagination";
 
-const PAGE_SIZE = 10; // 5 cols × 2 rows = the reference's visible window
+const PAGE_SIZE = 12; // 4 cols × 3 rows — larger cards, fuller catalog page (Issue 3)
 const PRICE_MAX_CAP = 50;
 
 const VALID_SORTS: ReadonlyArray<SortOption> = [
@@ -295,7 +295,7 @@ export function CatalogShell({ books }: { books: DemoBook[] }) {
 
   /* --------------------------------- render ----------------------------- */
   return (
-    <div className="mx-auto grid max-w-7xl gap-8 px-6 pb-24 lg:grid-cols-[280px_1fr] lg:gap-10">
+    <div className="mx-auto grid max-w-[1440px] gap-8 px-6 pb-24 lg:grid-cols-[300px_minmax(0,_1fr)] lg:gap-12">
       {/* Sidebar */}
       <FilterSidebar
         allBooks={books}
@@ -337,7 +337,7 @@ export function CatalogShell({ books }: { books: DemoBook[] }) {
         {visible.length === 0 ? (
           <EmptyResults onReset={onResetAll} />
         ) : state.viewMode === "grid" ? (
-          <ul className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          <ul className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
             {visible.map((book) => (
               <li key={book.id}>
                 <CatalogBookCard book={book} />

@@ -1,4 +1,5 @@
 import { Heart, Lock, Star } from "lucide-react";
+import Link from "next/link";
 
 import type { DemoBook } from "./demo-books";
 
@@ -19,6 +20,16 @@ export function CatalogBookCard({ book }: { book: DemoBook }) {
 
   return (
     <article className="home-card-hover home-glass group relative flex flex-col overflow-hidden rounded-[22px] p-3">
+      {/* Issue 4 — the whole card navigates to the product detail page.
+          An overlay link keeps the markup valid (the wishlist button stays a
+          real, separately-clickable button at a higher z-index) while making
+          the entire card a single large click target. */}
+      <Link
+        href={`/books/${book.slug}`}
+        aria-label={`View ${book.title}`}
+        className="absolute inset-0 z-[1] rounded-[22px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/50"
+      />
+
       {/* Cover */}
       <div className="relative overflow-hidden rounded-[14px]">
         <div
@@ -88,7 +99,7 @@ export function CatalogBookCard({ book }: { book: DemoBook }) {
         <button
           type="button"
           aria-label="Add to wishlist"
-          className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.12] bg-black/40 text-white/70 backdrop-blur-md transition-all hover:border-emerald-bright/50 hover:text-emerald-bright hover:shadow-[0_0_14px_rgba(51,240,170,0.45)]"
+          className="absolute right-2 top-2 z-[2] flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.12] bg-black/40 text-white/70 backdrop-blur-md transition-all hover:border-emerald-bright/50 hover:text-emerald-bright hover:shadow-[0_0_14px_rgba(51,240,170,0.45)]"
         >
           <Heart className="h-3.5 w-3.5" aria-hidden />
         </button>
@@ -97,7 +108,7 @@ export function CatalogBookCard({ book }: { book: DemoBook }) {
         <span
           aria-hidden
           title="Locked — buy to unlock"
-          className="absolute bottom-2 right-2 flex h-7 w-7 items-center justify-center rounded-full border border-white/[0.08] bg-black/40 text-white/40 backdrop-blur-md"
+          className="absolute bottom-2 right-2 z-[2] flex h-7 w-7 items-center justify-center rounded-full border border-white/[0.08] bg-black/40 text-white/40 backdrop-blur-md"
         >
           <Lock className="h-3 w-3" />
         </span>

@@ -41,6 +41,12 @@ export interface BookHeroProps {
   isbn: string | null;
   authors: ReadonlyArray<{ slug: string; name: string }>;
   ratingAggregate: { count: number; average: number | null };
+  /**
+   * Preview mode for demo-catalog fallback titles (Issue 4): authors render
+   * as plain text (their slugs may not resolve) and the buy panel becomes a
+   * "browse the catalog" link instead of a real, FK-backed add-to-cart.
+   */
+  preview?: boolean;
 }
 
 export function BookHero({
@@ -56,6 +62,7 @@ export function BookHero({
   isbn,
   authors,
   ratingAggregate,
+  preview = false,
 }: BookHeroProps) {
   return (
     <section className="mx-auto mt-6 max-w-[1320px] px-4 sm:mt-10 sm:px-6">
@@ -82,8 +89,23 @@ export function BookHero({
             </div>
 
             <div className="mt-5">
-              <BookAddToCart bookId={bookId} />
+              {preview ? (
+                <Link
+                  href="/books"
+                  className="home-cta-primary inline-flex h-12 w-full items-center justify-center gap-2 rounded-full text-sm font-semibold tracking-tight"
+                >
+                  Browse the catalog
+                  <span aria-hidden>→</span>
+                </Link>
+              ) : (
+                <BookAddToCart bookId={bookId} />
+              )}
             </div>
+            {preview && (
+              <p className="mt-3 text-center text-[11px] text-fg-soft">
+                Preview listing from the demo catalog.
+              </p>
+            )}
 
             {/* Trust microcopy — the "buy once, yours to keep" promise + refund link */}
             <ul className="mt-5 space-y-2 text-[12px] text-fg-mid">
@@ -118,13 +140,17 @@ export function BookHero({
           {authors.length > 0 && (
             <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
               {authors.map((a, i) => (
-                <span key={a.slug}>
-                  <Link
-                    href={`/authors/${a.slug}`}
-                    className="transition-colors hover:text-fg-hi"
-                  >
-                    {a.name}
-                  </Link>
+                <span key={`${a.slug}-${i}`}>
+                  {preview ? (
+                    <span>{a.name}</span>
+                  ) : (
+                    <Link
+                      href={`/authors/${a.slug}`}
+                      className="transition-colors hover:text-fg-hi"
+                    >
+                      {a.name}
+                    </Link>
+                  )}
                   {i < authors.length - 1 ? ", " : ""}
                 </span>
               ))}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { BookHero } from "@/components/book-detail/book-hero";
+import { DEMO_BOOKS, type DemoBook } from "@/components/catalog/demo-books";
 import { CinematicReviewForm } from "@/components/book-detail/cinematic-review-form";
 import { CinematicReviewsList } from "@/components/book-detail/cinematic-reviews-list";
 import { CinematicSampleSection } from "@/components/book-detail/cinematic-sample-section";
@@ -68,7 +69,20 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const book = await getPublishedBookBySlug(slug);
-  if (!book) return { title: "Book not found" };
+  if (!book) {
+    // Demo-catalog fallback (Issue 4): keep the title meaningful for the
+    // preview detail page rather than emitting "Book not found".
+    const demo = DEMO_BOOKS.find((b) => b.slug === slug);
+    if (demo) {
+      return {
+        title: demo.title,
+        description: `${demo.title} by ${demo.author} — a preview listing on Digital Bookstore.`,
+        alternates: { canonical: `/books/${slug}` },
+        robots: { index: false, follow: true },
+      };
+    }
+    return { title: "Book not found" };
+  }
 
   // Description preference: explicit subtitle > description excerpt > fallback.
   const description =
@@ -113,7 +127,14 @@ export default async function BookDetailPage({
 }) {
   const { slug } = await params;
   const book = await getPublishedBookBySlug(slug);
-  if (!book) notFound();
+  if (!book) {
+    // Issue 4 — when the live DB has no matching title, fall back to the
+    // demo catalog so the card click lands on a real (preview) product page
+    // instead of a 404. Genuinely unknown slugs still 404.
+    const demo = DEMO_BOOKS.find((b) => b.slug === slug);
+    if (demo) return <DemoBookDetail demo={demo} />;
+    notFound();
+  }
 
   // Sample resolution — placeholder for now; R2-served samples are a
   // follow-up (unchanged from the pre-cinematic page).
@@ -257,6 +278,47 @@ export default async function BookDetailPage({
             below as the closing quiet line; both surfaces complement
             each other (catalog discovery + brand closer). */}
         <RelatedBooksShelf books={relatedBooks} />
+
+        <ExploreStrip />
+
+        <div className="h-20" />
+      </main>
+
+      <HomeFooter />
+    </div>
+  );
+}
+
+/**
+ * Demo-catalog preview detail (Issue 4 fallback). Reuses the real
+ * `<BookHero>` in `preview` mode (plain-text author, "browse the catalog"
+ * CTA instead of a FK-backed add-to-cart) + the SSG sample section + the
+ * brand closer. No reviews / related shelf — those need a real book row.
+ */
+function DemoBookDetail({ demo }: { demo: DemoBook }) {
+  return (
+    <div className="cinematic-root">
+      <CinematicHeader active="books" />
+
+      <main className="relative z-10">
+        <BookHero
+          bookId={demo.id}
+          slug={demo.slug}
+          title={demo.title}
+          subtitle={null}
+          description={`A preview listing in the ${demo.category} collection. Once the storefront is stocked, full descriptions, samples, and reader reviews appear here.`}
+          coverKey={null}
+          priceCents={demo.priceCents}
+          currency="USD"
+          pageCount={null}
+          language="English"
+          isbn={null}
+          authors={[{ slug: "", name: demo.author }]}
+          ratingAggregate={{ count: 0, average: null }}
+          preview
+        />
+
+        <CinematicSampleSection content={PLACEHOLDER_SAMPLE_HTML} />
 
         <ExploreStrip />
 
