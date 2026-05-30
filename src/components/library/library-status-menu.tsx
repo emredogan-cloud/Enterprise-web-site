@@ -84,10 +84,10 @@ export function LibraryStatusMenu({
         onClick={() => setOpen((v) => !v)}
         className={`inline-flex h-7 items-center gap-1.5 rounded-full border px-2.5 text-[10px] font-medium uppercase tracking-[0.12em] transition-all ${
           current === "reading"
-            ? "border-[#33f0aa]/40 bg-[#33f0aa]/10 text-[#33f0aa]"
+            ? "border-emerald-bright/40 bg-emerald-bright/10 text-emerald-bright"
             : current === "finished"
-              ? "border-white/[0.12] bg-white/[0.04] text-[#a7a7a0]"
-              : "border-white/[0.08] bg-white/[0.02] text-[#88918a] hover:text-[#a7a7a0]"
+              ? "border-white/[0.12] bg-white/[0.04] text-fg-mid"
+              : "border-white/[0.08] bg-white/[0.02] text-fg-soft hover:text-fg-mid"
         } disabled:cursor-not-allowed disabled:opacity-60`}
       >
         <span>{currentLabel}</span>
@@ -110,8 +110,8 @@ export function LibraryStatusMenu({
                   onClick={() => pick(opt.value)}
                   className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-xs transition-colors ${
                     isActive
-                      ? "bg-[#33f0aa]/10 text-[#33f0aa]"
-                      : "text-[#a7a7a0] hover:bg-white/[0.04] hover:text-[#e6e6e0]"
+                      ? "bg-emerald-bright/10 text-emerald-bright"
+                      : "text-fg-mid hover:bg-white/[0.04] hover:text-fg-hi"
                   }`}
                 >
                   <span>{opt.label}</span>

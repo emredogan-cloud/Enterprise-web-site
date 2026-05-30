@@ -88,7 +88,7 @@ export default async function OrderPage({ params }: { params: Params }) {
           subtitle={
             <p>
               Order{" "}
-              <span className="font-mono text-[#e6e6e0]">
+              <span className="font-mono text-fg-hi">
                 {order.id.slice(0, 8)}
               </span>{" "}
               · {formatPrice(order.totalCents, order.currency)}
@@ -96,7 +96,7 @@ export default async function OrderPage({ params }: { params: Params }) {
                 <>
                   {" "}
                   (
-                  <span className="text-[#a7a7a0]">
+                  <span className="text-fg-mid">
                     {formatPrice(order.taxCents, order.currency)} tax
                   </span>
                   )
@@ -117,14 +117,14 @@ export default async function OrderPage({ params }: { params: Params }) {
                 aria-hidden
                 className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/35 to-transparent"
               />
-              <p className="inline-flex items-center gap-2 font-medium text-[#e6e6e0]">
+              <p className="inline-flex items-center gap-2 font-medium text-fg-hi">
                 <span
                   aria-hidden
                   className="inline-block h-2 w-2 animate-pulse rounded-full bg-[#33f0aa] shadow-[0_0_6px_#33f0aa]"
                 />
                 Preparing your watermarked copy…
               </p>
-              <p className="mt-2 text-sm text-[#a7a7a0]">
+              <p className="mt-2 text-sm text-fg-mid">
                 This usually takes a few seconds. The page updates
                 automatically when each book is ready.
               </p>
@@ -152,7 +152,7 @@ export default async function OrderPage({ params }: { params: Params }) {
             >
               View your library →
             </Link>
-            <p className="mt-4 text-xs text-[#88918a]">
+            <p className="mt-4 text-xs text-fg-soft">
               All your purchased books also live in your library — yours
               to re-download anytime.
             </p>
@@ -199,18 +199,18 @@ function OrderItemCard({
 
       {/* Meta + status footer */}
       <div className="flex flex-1 flex-col">
-        <h2 className="font-serif text-[18px] font-medium leading-tight text-[#e6e6e0]">
+        <h2 className="font-serif text-[18px] font-medium leading-tight text-fg-hi">
           {title}
         </h2>
         {subtitle && (
-          <p className="mt-1 text-sm italic text-[#a7a7a0]">{subtitle}</p>
+          <p className="mt-1 text-sm italic text-fg-mid">{subtitle}</p>
         )}
 
         <div className="mt-auto pt-4">
           {status === "ready" ? (
             <DownloadButton bookId={bookId} size="default" />
           ) : status === "pending" ? (
-            <p className="inline-flex items-center gap-2 text-sm text-[#a7a7a0]">
+            <p className="inline-flex items-center gap-2 text-sm text-fg-mid">
               <span
                 aria-hidden
                 className="inline-block h-2 w-2 animate-pulse rounded-full bg-[#33f0aa] shadow-[0_0_6px_#33f0aa]"

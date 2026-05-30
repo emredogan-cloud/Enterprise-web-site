@@ -56,20 +56,20 @@ export function LegalShell({
       {/* Breadcrumb back to / */}
       <nav
         aria-label="Breadcrumb"
-        className="text-[11px] uppercase tracking-[0.2em] text-[#88918a]"
+        className="text-[11px] uppercase tracking-[0.2em] text-fg-soft"
       >
         <Link
           href="/"
-          className="transition-colors hover:text-[#33f0aa]"
+          className="transition-colors hover:text-emerald-bright"
         >
           Home
         </Link>
-        <span aria-hidden className="mx-2 text-[#33f0aa]">/</span>
-        <span className="text-[#e6e6e0]">{eyebrow}</span>
+        <span aria-hidden className="mx-2 text-emerald-bright">/</span>
+        <span className="text-fg-hi">{eyebrow}</span>
       </nav>
 
       {/* Eyebrow */}
-      <p className="mt-10 text-[11px] font-semibold uppercase tracking-[0.3em] text-[#33f0aa]">
+      <p className="mt-10 text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
         {eyebrow}
       </p>
 
@@ -91,19 +91,19 @@ export function LegalShell({
       </div>
 
       {/* Title */}
-      <h1 className="mt-6 font-serif text-[40px] font-medium leading-[1.1] tracking-[-0.025em] text-[#e6e6e0] sm:text-[52px]">
+      <h1 className="mt-6 font-serif text-[40px] font-medium leading-[1.1] tracking-[-0.025em] text-fg-hi sm:text-[52px]">
         {title}
       </h1>
 
       {/* Last-updated chip — small but legally important */}
       {lastUpdated && (
-        <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-[#88918a]">
+        <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-fg-soft">
           <span
             aria-hidden
             className="h-1.5 w-1.5 rounded-full bg-[#33f0aa] shadow-[0_0_6px_#33f0aa]"
           />
           Last updated{" "}
-          <time dateTime={lastUpdated} className="text-[#a7a7a0]">
+          <time dateTime={lastUpdated} className="text-fg-mid">
             {formatLastUpdated(lastUpdated)}
           </time>
         </p>
@@ -111,7 +111,7 @@ export function LegalShell({
 
       {/* Optional intro paragraph */}
       {intro && (
-        <div className="mt-8 text-lg leading-relaxed text-[#a7a7a0]">
+        <div className="mt-8 text-lg leading-relaxed text-fg-mid">
           {intro}
         </div>
       )}

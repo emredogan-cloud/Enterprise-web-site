@@ -101,12 +101,12 @@ export default async function CategoriesIndexPage() {
         <section className="mx-auto mt-20 max-w-[1320px] px-4 sm:mt-24 sm:px-6">
           {categories.length === 0 ? (
             <div className="home-glass mx-auto max-w-md rounded-[20px] p-8 text-center">
-              <p className="text-sm leading-relaxed text-[#a7a7a0]">
+              <p className="text-sm leading-relaxed text-fg-mid">
                 The catalog hasn&apos;t been populated with categories yet.
                 Check back soon or browse{" "}
                 <Link
                   href="/books"
-                  className="text-[#33f0aa] transition-colors hover:text-[#e6e6e0]"
+                  className="text-emerald-bright transition-colors hover:text-fg-hi"
                 >
                   all books
                 </Link>{" "}
@@ -121,7 +121,7 @@ export default async function CategoriesIndexPage() {
                   <li key={cat.slug}>
                     <Link
                       href={`/categories/${cat.slug}`}
-                      className="home-glass home-card-hover group relative flex aspect-[4/5] flex-col justify-between overflow-hidden rounded-[22px] p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#33f0aa]/40"
+                      className="home-glass home-card-hover group relative flex aspect-[4/5] flex-col justify-between overflow-hidden rounded-[22px] p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/40"
                     >
                       {/* Top emerald edge */}
                       <div
@@ -152,10 +152,10 @@ export default async function CategoriesIndexPage() {
 
                       {/* Name */}
                       <div>
-                        <h2 className="font-serif text-[24px] font-medium leading-[1.05] text-white transition-colors group-hover:text-[#33f0aa]">
+                        <h2 className="font-serif text-[24px] font-medium leading-[1.05] text-white transition-colors group-hover:text-emerald-bright">
                           {cat.name}
                         </h2>
-                        <p className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.15em] text-[#33f0aa]">
+                        <p className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-emerald-bright">
                           Explore
                           <span
                             aria-hidden

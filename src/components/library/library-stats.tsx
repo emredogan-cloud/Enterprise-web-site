@@ -64,19 +64,19 @@ export function LibraryStats({
 
               {/* Horizontal flex per brief — icon LEFT, vertical text stack RIGHT */}
               <div className="flex items-center gap-4">
-                <span className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-[#16c784]/30 bg-[#16c784]/10 text-[#33f0aa] shadow-[0_0_14px_-2px_rgba(51,240,170,0.4)]">
+                <span className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-emerald-deep/30 bg-emerald-deep/10 text-emerald-bright shadow-[0_0_14px_-2px_rgba(51,240,170,0.4)]">
                   <Icon aria-hidden className="h-5 w-5" strokeWidth={1.6} />
                 </span>
 
                 {/* 3-layer vertical stack */}
                 <div className="min-w-0 flex-1">
-                  <p className="font-serif text-[28px] font-medium leading-none tabular-nums text-[#e6e6e0] sm:text-[32px]">
+                  <p className="font-serif text-[28px] font-medium leading-none tabular-nums text-fg-hi sm:text-[32px]">
                     {stat.number}
                   </p>
-                  <p className="mt-1.5 text-sm font-medium text-[#e6e6e0]">
+                  <p className="mt-1.5 text-sm font-medium text-fg-hi">
                     {stat.mainLabel}
                   </p>
-                  <p className="mt-0.5 text-[11px] uppercase tracking-[0.12em] text-[#88918a]">
+                  <p className="mt-0.5 text-[11px] uppercase tracking-[0.12em] text-fg-soft">
                     {stat.subLabel}
                   </p>
                 </div>

@@ -122,7 +122,7 @@ export default async function AuthorPage({
         {/* Books section */}
         <section className="mx-auto mt-20 max-w-[1320px] px-4 sm:mt-24 sm:px-6">
           <header className="text-center">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#33f0aa]">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
               Published works
             </p>
 
@@ -142,7 +142,7 @@ export default async function AuthorPage({
               />
             </div>
 
-            <h2 className="mt-5 font-serif text-[28px] font-medium leading-tight text-[#e6e6e0] sm:text-[36px]">
+            <h2 className="mt-5 font-serif text-[28px] font-medium leading-tight text-fg-hi sm:text-[36px]">
               {author.books.length === 0
                 ? "No titles published yet"
                 : author.books.length === 1
@@ -153,7 +153,7 @@ export default async function AuthorPage({
 
           {author.books.length === 0 ? (
             <div className="home-glass mx-auto mt-12 max-w-md rounded-[20px] p-8 text-center">
-              <p className="text-sm leading-relaxed text-[#a7a7a0]">
+              <p className="text-sm leading-relaxed text-fg-mid">
                 When {author.name} has a published title, it appears here. In
                 the meantime, browse the rest of the catalog.
               </p>
@@ -186,7 +186,7 @@ export default async function AuthorPage({
               style={{ transform: "rotate(45deg)" }}
             />
           </div>
-          <p className="mt-5 font-serif text-[18px] italic leading-relaxed text-[#a7a7a0] sm:text-[20px]">
+          <p className="mt-5 font-serif text-[18px] italic leading-relaxed text-fg-mid sm:text-[20px]">
             Discover more voices. The catalog runs deeper than this profile.
           </p>
         </section>

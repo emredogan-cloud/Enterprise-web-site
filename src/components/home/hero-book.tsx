@@ -82,7 +82,7 @@ export function HeroBook() {
 
             {/* Cover typography */}
             <div className="absolute inset-0 flex flex-col justify-between p-7">
-              <div className="text-[10px] font-medium uppercase tracking-[0.3em] text-[#33f0aa]/80">
+              <div className="text-[10px] font-medium uppercase tracking-[0.3em] text-emerald-bright/80">
                 Featured · Volume I
               </div>
 

@@ -1,20 +1,57 @@
 "use client";
 
-import { Check, Link as LinkIcon } from "lucide-react";
-import { useState } from "react";
+import { Check, Link as LinkIcon, Share2 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 /**
  * Glass share panel below the TOC.
  *
- * Four circular icon buttons: X/Twitter (inline SVG — Lucide dropped the
- * brand icon), Facebook (inline SVG), LinkedIn (Lucide), and Copy-link
- * (Lucide + clipboard interaction).
+ * Five circular icon buttons:
+ *   - Native share (Phase 3.I — Web Share API on mobile; auto-hidden
+ *     when `navigator.share` is unavailable, so desktop browsers see
+ *     four buttons instead of five)
+ *   - X/Twitter (inline SVG — Lucide dropped the brand icon)
+ *   - Facebook (inline SVG)
+ *   - LinkedIn (inline SVG)
+ *   - Copy-link (Lucide + clipboard interaction)
  *
  * The current page URL is resolved on click via `window.location.href`
  * — keeps the component prop-free and SSR-safe.
  */
 export function SharePanel() {
   const [copied, setCopied] = useState(false);
+  // Phase 3.I — detect Web Share API availability client-side. SSR
+  // renders as `false`; the icon flips visible after hydration on the
+  // browsers that support it (Safari iOS, Chromium Android, modern
+  // mobile Edge). Desktop Chrome/Firefox typically return false; in
+  // that case we keep the four intent buttons.
+  const [canNativeShare, setCanNativeShare] = useState(false);
+
+  // Client-side feature-detection — `navigator.share` is only present
+  // on browsers that support it (mobile Safari, Chromium Android, modern
+  // mobile Edge). The useEffect runs after hydration; the state flip is
+  // the canonical "progressive enhancement after mount" pattern. Lint
+  // rule is over-aggressive for this case — we cannot detect the API
+  // synchronously without breaking SSR.
+  useEffect(() => {
+    if (typeof navigator !== "undefined" && typeof navigator.share === "function") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setCanNativeShare(true);
+    }
+  }, []);
+
+  const onNativeShare = async () => {
+    if (typeof window === "undefined" || typeof navigator.share !== "function") return;
+    try {
+      await navigator.share({
+        title: document.title,
+        url: window.location.href,
+      });
+    } catch {
+      // User dismissed the share sheet, or the browser refused. Either
+      // way: silent no-op; the intent buttons remain as a fallback.
+    }
+  };
 
   const onCopy = async () => {
     if (typeof window === "undefined") return;
@@ -48,11 +85,20 @@ export function SharePanel() {
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/35 to-transparent"
       />
 
-      <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#88918a]">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
         Share this article
       </p>
 
       <div className="mt-4 flex items-center gap-2.5">
+        {/* Phase 3.I — native Web Share API button. Only shows on
+            mobile browsers that expose `navigator.share`; on desktop
+            this slot stays hidden so the layout doesn't have a phantom
+            button. */}
+        {canNativeShare && (
+          <IconButton label="Share via system" onClick={onNativeShare}>
+            <Share2 aria-hidden className="h-3.5 w-3.5" strokeWidth={2} />
+          </IconButton>
+        )}
         <IconButton
           label="Share on X"
           onClick={() => share("twitter")}
@@ -102,8 +148,8 @@ function IconButton({
       title={label}
       className={`flex h-9 w-9 items-center justify-center rounded-full border transition-all ${
         active
-          ? "border-[#33f0aa]/60 bg-[#33f0aa]/15 text-[#33f0aa] shadow-[0_0_12px_rgba(51,240,170,0.4)]"
-          : "border-white/[0.1] bg-white/[0.03] text-[#a7a7a0] hover:-translate-y-0.5 hover:border-[#33f0aa]/40 hover:bg-[#33f0aa]/10 hover:text-[#33f0aa] hover:shadow-[0_8px_18px_-6px_rgba(51,240,170,0.4)]"
+          ? "border-emerald-bright/60 bg-emerald-bright/15 text-emerald-bright shadow-[0_0_12px_rgba(51,240,170,0.4)]"
+          : "border-white/[0.1] bg-white/[0.03] text-fg-mid hover:-translate-y-0.5 hover:border-emerald-bright/40 hover:bg-emerald-bright/10 hover:text-emerald-bright hover:shadow-[0_8px_18px_-6px_rgba(51,240,170,0.4)]"
       }`}
     >
       {children}

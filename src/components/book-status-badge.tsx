@@ -4,22 +4,23 @@ import { cn } from "@/lib/utils";
 /**
  * Admin-only pill that announces a book's `status` enum value.
  *
- * Color mapping follows the storefront's brand:
- *   - `draft`     → muted (no-publish-yet, neutral)
- *   - `published` → primary evergreen (the "live" state)
- *   - `archived`  → accent (warm, distinct from destructive — archiving
- *                   is a soft action; it preserves history without
- *                   destroying data)
+ * Phase 3.B — cinematic tones (warm shadcn tokens dropped):
+ *   - `draft`     → calm muted (neutral, not-yet-published)
+ *   - `published` → emerald (live in the catalog)
+ *   - `archived`  → amber (soft warning, history preserved)
  *
- * Deliberately separate from the OrderStatus badge that lives inside
- * `src/app/admin/page.tsx`. The enums look similar at a glance but are
- * fundamentally different domains — coupling them would invite a future
- * dev to use the wrong palette by mistake.
+ * Deliberately separate from the OrderStatus badge in `/admin/page.tsx`
+ * and `/account/orders/page.tsx`. The enums look similar at a glance but
+ * are fundamentally different domains — coupling them would invite the
+ * wrong palette by mistake.
  */
 const STATUS_CLASSES: Record<BookStatus, string> = {
-  draft: "border-border bg-muted text-muted-foreground",
-  published: "border-primary/30 bg-primary/10 text-primary",
-  archived: "border-border bg-accent text-accent-foreground",
+  draft:
+    "border-white/[0.12] bg-white/[0.04] text-fg-mid",
+  published:
+    "border-emerald-bright/30 bg-emerald-bright/10 text-emerald-bright",
+  archived:
+    "border-[#ffce63]/30 bg-[#ffce63]/8 text-[#ffce63]",
 };
 
 export function BookStatusBadge({
@@ -32,7 +33,7 @@ export function BookStatusBadge({
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium uppercase tracking-wide",
+        "inline-flex items-center rounded-full border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em]",
         STATUS_CLASSES[status],
         className,
       )}

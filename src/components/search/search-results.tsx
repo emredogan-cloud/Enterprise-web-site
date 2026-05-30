@@ -23,29 +23,29 @@ export function SearchResults({
 }) {
   return (
     <section className="mx-auto mt-12 max-w-7xl px-6 pb-20">
-      <p className="text-center text-sm text-[#88918a]">
+      <p className="text-center text-sm text-fg-soft">
         {results.length === 0 ? (
           <>
             No results for{" "}
-            <span className="text-[#e6e6e0]">&ldquo;{query}&rdquo;</span>
+            <span className="text-fg-hi">&ldquo;{query}&rdquo;</span>
           </>
         ) : (
           <>
-            <span className="tabular-nums text-[#e6e6e0]">
+            <span className="tabular-nums text-fg-hi">
               {results.length}
             </span>{" "}
             {results.length === 1 ? "result" : "results"} for{" "}
-            <span className="text-[#e6e6e0]">&ldquo;{query}&rdquo;</span>
+            <span className="text-fg-hi">&ldquo;{query}&rdquo;</span>
           </>
         )}
       </p>
 
       {results.length === 0 ? (
         <div className="home-glass mx-auto mt-10 max-w-md rounded-2xl px-8 py-12 text-center">
-          <p className="font-serif text-lg text-[#e6e6e0]">
+          <p className="font-serif text-lg text-fg-hi">
             Try a different search.
           </p>
-          <p className="mt-2 text-sm text-[#88918a]">
+          <p className="mt-2 text-sm text-fg-soft">
             Fewer words, a different spelling, or browse the full catalog
             instead.
           </p>
@@ -94,7 +94,7 @@ function ResultCard({
   return (
     <Link
       href={`/books/${book.slug}`}
-      className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#33f0aa]/60 rounded-lg"
+      className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/60 rounded-lg"
     >
       <div className="home-card-hover relative aspect-[2/3] overflow-hidden rounded-md border border-white/[0.08] shadow-[0_24px_48px_-20px_rgba(0,0,0,0.7)]">
         <div
@@ -123,16 +123,16 @@ function ResultCard({
         />
       </div>
       <div className="mt-3 px-0.5">
-        <h3 className="line-clamp-2 font-serif text-sm font-medium leading-snug text-[#e6e6e0] transition-colors group-hover:text-[#33f0aa]">
+        <h3 className="line-clamp-2 font-serif text-sm font-medium leading-snug text-fg-hi transition-colors group-hover:text-emerald-bright">
           {book.title}
         </h3>
-        <p className="mt-1 text-xs text-[#88918a]">{author}</p>
+        <p className="mt-1 text-xs text-fg-soft">{author}</p>
         <div className="mt-2 flex items-center justify-between">
-          <span className="flex items-center gap-1 text-xs text-[#a7a7a0]">
+          <span className="flex items-center gap-1 text-xs text-fg-mid">
             <Star aria-hidden className="h-3 w-3 fill-[#f4c44b] text-[#f4c44b]" />
             <span className="tabular-nums">4.7</span>
           </span>
-          <span className="text-sm font-semibold text-[#e6e6e0]">
+          <span className="text-sm font-semibold text-fg-hi">
             {formatPrice(book.priceCents, book.currency)}
           </span>
         </div>

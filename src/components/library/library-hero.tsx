@@ -35,7 +35,7 @@ export function LibraryHero() {
         {/* RIGHT — editorial content */}
         <div>
           {/* Eyebrow */}
-          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#33f0aa]">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
             Your library
           </p>
 
@@ -57,7 +57,7 @@ export function LibraryHero() {
           </div>
 
           {/* Headline with emerald-gradient "books" */}
-          <h1 className="mt-6 font-serif text-[48px] font-medium leading-[1.05] tracking-[-0.025em] text-[#e6e6e0] sm:text-[58px] lg:text-[64px] xl:text-[72px]">
+          <h1 className="mt-6 font-serif text-[48px] font-medium leading-[1.05] tracking-[-0.025em] text-fg-hi sm:text-[58px] lg:text-[64px] xl:text-[72px]">
             Your{" "}
             <span
               style={{
@@ -73,7 +73,7 @@ export function LibraryHero() {
           </h1>
 
           {/* Two-line subtitle */}
-          <p className="mt-5 max-w-md text-base leading-relaxed text-[#a7a7a0] sm:text-[17px]">
+          <p className="mt-5 max-w-md text-base leading-relaxed text-fg-mid sm:text-[17px]">
             All the books you own, in one place.
             <br className="hidden sm:block" />
             Read, download, and revisit your favorites anytime.

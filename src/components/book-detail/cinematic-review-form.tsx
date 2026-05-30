@@ -34,7 +34,7 @@ export function CinematicReviewForm(props: CinematicReviewFormProps) {
   if (!CLERK_ENABLED) {
     return (
       <div className="home-glass mt-8 rounded-[20px] p-6 text-center">
-        <p className="text-sm text-[#88918a]">
+        <p className="text-sm text-fg-soft">
           Reviews aren&apos;t available right now — sign-in is not
           configured for this environment.
         </p>
@@ -66,7 +66,7 @@ function CinematicReviewFormAuthed({
   if (!isSignedIn) {
     return (
       <div className="home-glass mt-8 rounded-[20px] p-8 text-center">
-        <p className="text-sm text-[#a7a7a0]">
+        <p className="text-sm text-fg-mid">
           Sign in to share your thoughts on this book.
         </p>
         <div className="mt-5">
@@ -117,7 +117,7 @@ function CinematicReviewFormAuthed({
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/35 to-transparent"
       />
       <fieldset disabled={pending} className="space-y-3">
-        <legend className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#88918a]">
+        <legend className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
           Your rating
         </legend>
         <div className="flex items-center gap-1">
@@ -128,14 +128,14 @@ function CinematicReviewFormAuthed({
               aria-label={`${n} star${n === 1 ? "" : "s"}`}
               aria-pressed={rating === n}
               onClick={() => setRating(n)}
-              className="rounded-md p-1 transition-colors hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#33f0aa]/40"
+              className="rounded-md p-1 transition-colors hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/40"
             >
               <Star
                 aria-hidden
                 className={cn(
                   "h-7 w-7 transition-colors",
                   n <= rating
-                    ? "fill-[#33f0aa] text-[#33f0aa] [filter:drop-shadow(0_0_6px_rgba(51,240,170,0.55))]"
+                    ? "fill-[#33f0aa] text-emerald-bright [filter:drop-shadow(0_0_6px_rgba(51,240,170,0.55))]"
                     : "fill-transparent text-white/15",
                 )}
               />
@@ -147,10 +147,10 @@ function CinematicReviewFormAuthed({
       <div>
         <label
           htmlFor="review-body"
-          className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#88918a]"
+          className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft"
         >
           Your review{" "}
-          <span className="text-[10px] font-normal lowercase tracking-normal text-[#5d675f]">
+          <span className="text-[10px] font-normal lowercase tracking-normal text-fg-fade">
             (optional)
           </span>
         </label>
@@ -163,9 +163,9 @@ function CinematicReviewFormAuthed({
           onChange={(e) => setBody(e.currentTarget.value)}
           disabled={pending}
           placeholder="Share what you thought — what worked, what didn't, who you'd recommend it to…"
-          className="mt-2 w-full rounded-[14px] border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm leading-relaxed text-[#e6e6e0] placeholder:text-[#5d675f] focus-visible:border-[#33f0aa]/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#33f0aa]/20 disabled:cursor-not-allowed disabled:opacity-60"
+          className="mt-2 w-full rounded-[14px] border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm leading-relaxed text-fg-hi placeholder:text-fg-fade focus-visible:border-emerald-bright/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/20 disabled:cursor-not-allowed disabled:opacity-60"
         />
-        <p className="mt-2 text-[11px] text-[#5d675f]">
+        <p className="mt-2 text-[11px] text-fg-fade">
           {body.length.toLocaleString()} / {MAX_BODY_LENGTH.toLocaleString()}{" "}
           characters
         </p>
@@ -182,7 +182,7 @@ function CinematicReviewFormAuthed({
       {success && (
         <p
           role="status"
-          className="rounded-[14px] border border-[#33f0aa]/30 bg-[#33f0aa]/5 px-4 py-3 text-sm text-[#33f0aa]"
+          className="rounded-[14px] border border-emerald-bright/30 bg-emerald-bright/5 px-4 py-3 text-sm text-emerald-bright"
         >
           Thanks — your review has been published. It will appear on the next
           page refresh.

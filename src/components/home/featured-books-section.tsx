@@ -156,16 +156,16 @@ export function FeaturedBooksSection({
         <RevealOnScroll>
           <header className="flex flex-col items-start gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#33f0aa]/80">
+              <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-emerald-bright/80">
                 Handpicked for you
               </p>
-              <h2 className="mt-3 font-serif text-[36px] font-medium leading-tight tracking-tight text-[#e6e6e0] sm:text-[44px]">
+              <h2 className="mt-3 font-serif text-[36px] font-medium leading-tight tracking-tight text-fg-hi sm:text-[44px]">
                 Featured books
               </h2>
             </div>
             <Link
               href="/books"
-              className="text-sm font-medium text-[#33f0aa] underline-offset-4 hover:underline"
+              className="text-sm font-medium text-emerald-bright underline-offset-4 hover:underline"
             >
               View all books →
             </Link>
@@ -193,7 +193,7 @@ function BookCard(book: BookProps) {
   return (
     <Link
       href={href}
-      className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#33f0aa]/60 rounded-lg"
+      className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/60 rounded-lg"
     >
       {/* Cover */}
       <div className="home-card-hover relative aspect-[2/3] overflow-hidden rounded-md border border-white/[0.08] shadow-[0_24px_48px_-20px_rgba(0,0,0,0.7)]">
@@ -260,19 +260,19 @@ function BookCard(book: BookProps) {
 
       {/* Meta */}
       <div className="mt-4 px-0.5">
-        <h3 className="line-clamp-2 font-serif text-sm font-medium leading-snug text-[#e6e6e0] transition-colors group-hover:text-[#33f0aa]">
+        <h3 className="line-clamp-2 font-serif text-sm font-medium leading-snug text-fg-hi transition-colors group-hover:text-emerald-bright">
           {book.title}
         </h3>
-        <p className="mt-1 text-xs text-[#88918a]">{book.author}</p>
+        <p className="mt-1 text-xs text-fg-soft">{book.author}</p>
         <div className="mt-2 flex items-center justify-between">
-          <div className="flex items-center gap-1 text-xs text-[#a7a7a0]">
+          <div className="flex items-center gap-1 text-xs text-fg-mid">
             <Star
               aria-hidden
-              className="h-3 w-3 fill-[#33f0aa] text-[#33f0aa]"
+              className="h-3 w-3 fill-[#33f0aa] text-emerald-bright"
             />
             {book.rating.toFixed(1)}
           </div>
-          <span className="text-sm font-semibold text-[#e6e6e0]">
+          <span className="text-sm font-semibold text-fg-hi">
             {book.price}
           </span>
         </div>

@@ -40,7 +40,7 @@ export function CinematicStarRating({
             className={cn(
               sizeClass,
               isFilled
-                ? "fill-[#33f0aa] text-[#33f0aa] [filter:drop-shadow(0_0_4px_rgba(51,240,170,0.5))]"
+                ? "fill-[#33f0aa] text-emerald-bright [filter:drop-shadow(0_0_4px_rgba(51,240,170,0.5))]"
                 : "fill-transparent text-white/15",
             )}
           />

@@ -51,15 +51,15 @@ const ORDER_STATUS_TONE: Record<
   { border: string; bg: string; text: string; dot: string }
 > = {
   paid: {
-    border: "border-[#33f0aa]/30",
-    bg: "bg-[#33f0aa]/8",
-    text: "text-[#33f0aa]",
+    border: "border-emerald-bright/30",
+    bg: "bg-emerald-bright/8",
+    text: "text-emerald-bright",
     dot: "bg-[#33f0aa] shadow-[0_0_6px_#33f0aa]",
   },
   pending: {
     border: "border-white/[0.12]",
     bg: "bg-white/[0.04]",
-    text: "text-[#a7a7a0]",
+    text: "text-fg-mid",
     dot: "bg-[#a7a7a0] animate-pulse",
   },
   failed: {
@@ -119,10 +119,10 @@ export default async function OrdersPage() {
                 aria-hidden
                 className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/35 to-transparent"
               />
-              <p className="font-serif text-[20px] font-medium leading-tight text-[#e6e6e0] sm:text-[22px]">
+              <p className="font-serif text-[20px] font-medium leading-tight text-fg-hi sm:text-[22px]">
                 You haven&apos;t bought a book yet.
               </p>
-              <p className="mt-3 text-sm text-[#a7a7a0]">
+              <p className="mt-3 text-sm text-fg-mid">
                 When you do, your receipts land here.
               </p>
               <Link
@@ -170,12 +170,12 @@ function OrderRow({ order }: { order: UserOrderSummary }) {
 
       <header className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
         <div className="min-w-0">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#88918a]">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
             {dateText}
           </p>
           <Link
             href={`/order/${order.id}`}
-            className="mt-1 inline-block font-serif text-[18px] font-medium text-[#e6e6e0] transition-colors hover:text-[#33f0aa]"
+            className="mt-1 inline-block font-serif text-[18px] font-medium text-fg-hi transition-colors hover:text-emerald-bright"
           >
             Order{" "}
             <span className="font-mono text-[15px] tracking-tight">
@@ -184,11 +184,11 @@ function OrderRow({ order }: { order: UserOrderSummary }) {
           </Link>
         </div>
         <div className="flex items-center gap-3 sm:flex-col sm:items-end sm:gap-1.5">
-          <p className="font-serif text-[20px] font-medium tabular-nums text-[#e6e6e0]">
+          <p className="font-serif text-[20px] font-medium tabular-nums text-fg-hi">
             {formatPrice(order.totalCents, order.currency)}
           </p>
           <span
-            className={`inline-flex items-center gap-1.5 rounded-full border ${tone.border} ${tone.bg} px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.15em] ${tone.text}`}
+            className={`inline-flex items-center gap-1.5 rounded-full border ${tone.border} ${tone.bg} px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] ${tone.text}`}
           >
             <span
               aria-hidden
@@ -204,15 +204,15 @@ function OrderRow({ order }: { order: UserOrderSummary }) {
           {order.items.map((item) => (
             <li
               key={item.bookId}
-              className="flex items-center gap-2 text-[#a7a7a0]"
+              className="flex items-center gap-2 text-fg-mid"
             >
               <span
                 aria-hidden
-                className="h-1 w-1 rounded-full bg-[#33f0aa]/60"
+                className="h-1 w-1 rounded-full bg-emerald-bright/60"
               />
               <Link
                 href={`/books/${item.bookSlug}`}
-                className="transition-colors hover:text-[#e6e6e0]"
+                className="transition-colors hover:text-fg-hi"
               >
                 {item.bookTitle}
               </Link>
@@ -224,7 +224,7 @@ function OrderRow({ order }: { order: UserOrderSummary }) {
       <div className="mt-5">
         <Link
           href={`/order/${order.id}`}
-          className="text-xs font-semibold uppercase tracking-[0.15em] text-[#33f0aa] transition-colors hover:text-[#e6e6e0]"
+          className="text-xs font-semibold uppercase tracking-[0.12em] text-emerald-bright transition-colors hover:text-fg-hi"
         >
           View details →
         </Link>

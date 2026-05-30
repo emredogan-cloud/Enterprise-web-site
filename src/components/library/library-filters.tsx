@@ -74,8 +74,8 @@ export function LibraryFilters({
                 onClick={() => onTabChange(tab)}
                 className={`rounded-full px-4 py-1.5 text-xs font-medium transition-all ${
                   isActive
-                    ? "bg-gradient-to-b from-[#0e3a28] to-[#0a2c1f] text-[#33f0aa] shadow-[inset_0_1px_0_rgba(51,240,170,0.15),0_0_14px_-2px_rgba(51,240,170,0.35)]"
-                    : "text-[#88918a] hover:text-[#e6e6e0]"
+                    ? "bg-gradient-to-b from-[#0e3a28] to-[#0a2c1f] text-emerald-bright shadow-[inset_0_1px_0_rgba(51,240,170,0.15),0_0_14px_-2px_rgba(51,240,170,0.35)]"
+                    : "text-fg-soft hover:text-fg-hi"
                 }`}
               >
                 {tab}
@@ -90,7 +90,7 @@ export function LibraryFilters({
           <div className="relative">
             <span
               aria-hidden
-              className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-xs text-[#88918a]"
+              className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-xs text-fg-soft"
             >
               Sort by:
             </span>
@@ -100,7 +100,7 @@ export function LibraryFilters({
                 onSortChange(e.currentTarget.value as LibrarySort)
               }
               aria-label="Sort library"
-              className="h-10 cursor-pointer appearance-none rounded-full border border-white/[0.08] bg-white/[0.03] pl-[68px] pr-9 text-sm text-[#e6e6e0] transition-colors hover:border-white/[0.14] focus:border-[#33f0aa]/40 focus:outline-none focus:ring-2 focus:ring-[#33f0aa]/20"
+              className="h-10 cursor-pointer appearance-none rounded-full border border-white/[0.08] bg-white/[0.03] pl-[68px] pr-9 text-sm text-fg-hi transition-colors hover:border-white/[0.14] focus:border-emerald-bright/40 focus:outline-none focus:ring-2 focus:ring-emerald-bright/20"
             >
               {LIBRARY_SORTS.map((s) => (
                 <option key={s} value={s} className="bg-[#0a1410]">
@@ -110,7 +110,7 @@ export function LibraryFilters({
             </select>
             <ChevronDown
               aria-hidden
-              className="pointer-events-none absolute right-3.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[#a7a7a0]"
+              className="pointer-events-none absolute right-3.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-fg-mid"
             />
           </div>
 
@@ -163,8 +163,8 @@ function ViewButton({
       aria-label={label}
       className={`flex h-9 w-9 items-center justify-center rounded-full transition-all ${
         active
-          ? "bg-[#33f0aa]/15 text-[#33f0aa] shadow-[0_0_12px_rgba(51,240,170,0.3)]"
-          : "text-[#88918a] hover:text-[#e6e6e0]"
+          ? "bg-emerald-bright/15 text-emerald-bright shadow-[0_0_12px_rgba(51,240,170,0.3)]"
+          : "text-fg-soft hover:text-fg-hi"
       }`}
     >
       {children}

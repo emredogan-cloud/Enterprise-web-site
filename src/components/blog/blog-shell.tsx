@@ -89,10 +89,10 @@ function EmptyResults({
 }) {
   return (
     <div className="home-glass mx-auto max-w-md rounded-2xl px-8 py-12 text-center">
-      <p className="font-serif text-lg text-[#e6e6e0]">
-        No posts in <span className="text-[#33f0aa]">{categoryName}</span> yet.
+      <p className="font-serif text-lg text-fg-hi">
+        No posts in <span className="text-emerald-bright">{categoryName}</span> yet.
       </p>
-      <p className="mt-2 text-sm text-[#88918a]">
+      <p className="mt-2 text-sm text-fg-soft">
         New essays land when something is worth saying.
       </p>
       <button

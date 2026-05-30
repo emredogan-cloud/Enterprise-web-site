@@ -41,31 +41,31 @@ export function ArticleRow({ post }: { post: BlogPostMeta }) {
         {/* RIGHT — editorial content */}
         <div className="flex flex-col">
           {/* Meta line */}
-          <p className="flex flex-wrap items-center gap-x-2 text-[11px] font-semibold uppercase tracking-[0.18em]">
+          <p className="flex flex-wrap items-center gap-x-2 text-[11px] font-semibold uppercase tracking-[0.2em]">
             <time
               dateTime={post.date}
-              className="text-[#88918a]"
+              className="text-fg-soft"
             >
               {formatMetaDate(post.date)}
             </time>
-            <span aria-hidden className="text-[#33f0aa]">
+            <span aria-hidden className="text-emerald-bright">
               •
             </span>
-            <span className="text-[#33f0aa]">{post.category}</span>
+            <span className="text-emerald-bright">{post.category}</span>
           </p>
 
           {/* Title */}
-          <h2 className="mt-4 font-serif text-[28px] font-medium leading-[1.15] tracking-[-0.015em] text-[#e6e6e0] transition-colors group-hover:text-[#33f0aa] sm:text-[32px] lg:text-[36px]">
+          <h2 className="mt-4 font-serif text-[28px] font-medium leading-[1.15] tracking-[-0.015em] text-fg-hi transition-colors group-hover:text-emerald-bright sm:text-[32px] lg:text-[36px]">
             {post.title}
           </h2>
 
           {/* Excerpt */}
-          <p className="mt-4 text-pretty text-[15px] leading-[1.65] text-[#a7a7a0] sm:text-[16px]">
+          <p className="mt-4 text-pretty text-[15px] leading-[1.65] text-fg-mid sm:text-[16px]">
             {post.excerpt}
           </p>
 
           {/* Read more */}
-          <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#33f0aa]">
+          <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-emerald-bright">
             <span>Read more</span>
             <span
               aria-hidden

@@ -19,7 +19,7 @@ export function CinematicReviewsList({ reviews }: { reviews: ReviewItem[] }) {
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/30 to-transparent"
         />
-        <p className="text-sm text-[#88918a]">
+        <p className="text-sm text-fg-soft">
           No reviews yet. Be the first to share your thoughts.
         </p>
       </div>
@@ -40,13 +40,13 @@ export function CinematicReviewsList({ reviews }: { reviews: ReviewItem[] }) {
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <CinematicStarRating value={r.rating} size="sm" />
-              <span className="text-sm font-medium text-[#e6e6e0]">
+              <span className="text-sm font-medium text-fg-hi">
                 {r.authorName}
               </span>
             </div>
             <time
               dateTime={r.createdAt.toISOString()}
-              className="text-[11px] uppercase tracking-[0.18em] text-[#88918a]"
+              className="text-[11px] uppercase tracking-[0.2em] text-fg-soft"
             >
               {formatReviewDate(r.createdAt)}
             </time>

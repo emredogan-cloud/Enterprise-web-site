@@ -57,31 +57,31 @@ export function CartSummary({
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/45 to-transparent"
       />
 
-      <h2 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#88918a]">
+      <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
         Order summary
       </h2>
 
       {/* Line items count */}
       <div className="mt-6 flex items-baseline justify-between border-b border-white/[0.06] pb-4 text-sm">
-        <span className="text-[#a7a7a0]">
+        <span className="text-fg-mid">
           {itemCount} {itemCount === 1 ? "book" : "books"}
         </span>
-        <span className="text-[#e6e6e0] tabular-nums">
+        <span className="text-fg-hi tabular-nums">
           {formatPrice(totalCents, currency)}
         </span>
       </div>
 
       {/* Tax note — Paddle handles tax at checkout, so we're explicit */}
-      <p className="mt-3 text-xs text-[#5d675f]">
+      <p className="mt-3 text-xs text-fg-fade">
         Local taxes are calculated at checkout by our Merchant of Record.
       </p>
 
       {/* Total */}
       <div className="mt-6 flex items-baseline justify-between">
-        <span className="text-sm font-semibold uppercase tracking-[0.15em] text-[#a7a7a0]">
+        <span className="text-sm font-semibold uppercase tracking-[0.12em] text-fg-mid">
           Total
         </span>
-        <span className="font-serif text-3xl font-medium text-[#e6e6e0] tabular-nums">
+        <span className="font-serif text-3xl font-medium text-fg-hi tabular-nums">
           {formatPrice(totalCents, currency)}
         </span>
       </div>
@@ -116,7 +116,7 @@ export function CartSummary({
           type="button"
           onClick={onClear}
           disabled={clearPending}
-          className="text-xs text-[#5d675f] underline-offset-4 transition-colors hover:text-[#a7a7a0] hover:underline disabled:cursor-not-allowed disabled:opacity-50"
+          className="text-xs text-fg-fade underline-offset-4 transition-colors hover:text-fg-mid hover:underline disabled:cursor-not-allowed disabled:opacity-50"
         >
           {clearPending ? "Clearing…" : "Clear cart"}
         </button>
@@ -124,7 +124,7 @@ export function CartSummary({
 
       {/* Trust microcopy */}
       <div className="mt-7 border-t border-white/[0.06] pt-5">
-        <p className="text-center text-[11px] uppercase tracking-[0.18em] text-[#5d675f]">
+        <p className="text-center text-[11px] uppercase tracking-[0.2em] text-fg-fade">
           ✓ Paddle · MoR &nbsp;·&nbsp; ✓ Watermarked PDF &nbsp;·&nbsp; ✓ Yours to keep
         </p>
       </div>

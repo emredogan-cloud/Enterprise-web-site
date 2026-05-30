@@ -30,7 +30,7 @@ export function ExploreStrip() {
         />
       </div>
 
-      <p className="mt-5 font-serif text-[18px] italic leading-relaxed text-[#a7a7a0] sm:text-[20px]">
+      <p className="mt-5 font-serif text-[18px] italic leading-relaxed text-fg-mid sm:text-[20px]">
         One book at a time. Yours to keep.
       </p>
 
@@ -43,7 +43,7 @@ export function ExploreStrip() {
         </Link>
         <Link
           href="/blog/category/reading-guides"
-          className="text-sm text-[#a7a7a0] transition-colors hover:text-[#33f0aa]"
+          className="text-sm text-fg-mid transition-colors hover:text-emerald-bright"
         >
           Or pick from our reading guides →
         </Link>

@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { BookStatusBadge } from "@/components/book-status-badge";
-import { Button } from "@/components/ui/button";
+import { CinematicHero } from "@/components/cinematic/cinematic-hero";
+import { CinematicHeader } from "@/components/home/cinematic-header";
+import { HomeFooter } from "@/components/home/home-footer";
 import { UnprovisionedNotice } from "@/components/unprovisioned-notice";
 import { AdminAccessError, requireAdmin } from "@/lib/auth";
 import {
@@ -15,12 +17,21 @@ import {
   type RecentOrder,
 } from "@/lib/db/queries/admin";
 import { formatPrice } from "@/lib/format";
-import { cn } from "@/lib/utils";
 
 import { createBook } from "./actions";
 
-// `/admin` reads Clerk session cookies and writes to the database — force
-// dynamic rendering so Next.js never tries to prerender it at build time.
+/**
+ * /admin — internal dashboard.
+ *
+ * Phase 3.B cinematic redesign (Internal Dashboard family — new family
+ * for admin-only surfaces). Same shell as the rest of the cinematic
+ * site, but layout is denser (table-heavy) because the audience is the
+ * operator, not the customer.
+ *
+ * Reads Clerk session cookies and writes to the database — `ƒ Dynamic`
+ * forced; never prerendered.
+ */
+
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
@@ -29,11 +40,7 @@ export const metadata: Metadata = {
 };
 
 // ---------------------------------------------------------------------------
-// Admin context loader — runs the strict `requireAdmin` gate from
-// `src/lib/auth.ts` and maps any `AdminAccessError.kind` to the right
-// `UnprovisionedNotice` content. Anything else (DB connection refused,
-// Clerk API outage) degrades to a single "system unavailable" notice
-// rather than a hard 500.
+// Admin context loader — unchanged behavior, cinematic-ize the surface only.
 // ---------------------------------------------------------------------------
 interface AdminContextOk {
   ok: true;
@@ -96,8 +103,6 @@ function mapAdminAccessError(err: AdminAccessError): AdminContextBlocked {
 }
 
 async function loadAdminContext(): Promise<AdminContext> {
-  // Cheap pre-flight: detect the most common cause (missing env) before
-  // we touch Clerk / the DB. Faster to surface and more actionable.
   const missingEnv = checkRequiredEnv();
   if (missingEnv.length > 0) {
     return {
@@ -141,10 +146,6 @@ export default async function AdminPage() {
     );
   }
 
-  // Both dashboard queries do their own `requireAdmin()` check (defense
-  // in depth — same `cache()`-backed call, no extra cost). They are
-  // `safeQuery`-wrapped, so a DB outage degrades to empty data rather
-  // than a 500.
   const [metrics, recentOrders, catalog] = await Promise.all([
     getDashboardMetrics(),
     getRecentOrders(10),
@@ -152,30 +153,39 @@ export default async function AdminPage() {
   ]);
 
   return (
-    <main className="mx-auto max-w-6xl space-y-20 px-6 py-16">
-      <header>
-        <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
-          Admin · Dashboard
-        </p>
-        <h1 className="mt-4 font-serif text-4xl font-medium leading-tight text-foreground">
-          Bookstore at a glance
-        </h1>
-        <p className="mt-3 text-xs text-muted-foreground">
-          Signed in as {ctx.email} · local user{" "}
-          <code className="rounded bg-muted px-1 py-0.5 text-[10px]">
-            {ctx.localUserId}
-          </code>
-        </p>
-      </header>
+    <div className="cinematic-root">
+      <CinematicHeader />
 
-      <MetricsRow metrics={metrics} />
+      <main className="relative z-10">
+        <CinematicHero
+          eyebrow="Admin · Dashboard"
+          headlineHead="Bookstore"
+          headlineTail="at a glance"
+          size="md"
+          align="center"
+          subtitle={
+            <p>
+              Signed in as <span className="text-fg-hi">{ctx.email}</span>{" "}
+              · local user{" "}
+              <code className="rounded border border-white/[0.08] bg-white/[0.04] px-1.5 py-0.5 font-mono text-[10px] text-emerald-bright">
+                {ctx.localUserId}
+              </code>
+            </p>
+          }
+        />
 
-      <RecentOrdersSection orders={recentOrders} />
+        <div className="mx-auto mt-16 max-w-6xl space-y-16 px-4 sm:px-6">
+          <MetricsRow metrics={metrics} />
+          <RecentOrdersSection orders={recentOrders} />
+          <CatalogManagementSection books={catalog} />
+          <CreateBookSection />
+        </div>
 
-      <CatalogManagementSection books={catalog} />
+        <div className="h-20" />
+      </main>
 
-      <CreateBookSection />
-    </main>
+      <HomeFooter />
+    </div>
   );
 }
 
@@ -198,7 +208,7 @@ function MetricsRow({ metrics }: { metrics: DashboardMetrics }) {
       <h2 id="metrics-heading" className="sr-only">
         Key metrics
       </h2>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
         <StatCard
           label="Net revenue"
           value={revenueValue}
@@ -217,7 +227,7 @@ function MetricsRow({ metrics }: { metrics: DashboardMetrics }) {
       </div>
 
       {others.length > 0 && (
-        <p className="mt-4 text-xs text-muted-foreground">
+        <p className="mt-4 text-xs text-fg-soft">
           Additional currencies:{" "}
           {others
             .map(
@@ -239,15 +249,19 @@ interface StatCardProps {
 
 function StatCard({ label, value, sublabel }: StatCardProps) {
   return (
-    <div className="rounded-lg border border-border bg-card p-6">
-      <p className="text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
+    <div className="home-glass relative overflow-hidden rounded-[20px] p-6">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/30 to-transparent"
+      />
+      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
         {label}
       </p>
-      <p className="mt-3 font-serif text-3xl font-medium leading-tight text-foreground">
+      <p className="mt-3 font-serif text-[32px] font-medium leading-tight tabular-nums text-fg-hi">
         {value}
       </p>
       {sublabel && (
-        <p className="mt-2 text-xs text-muted-foreground">{sublabel}</p>
+        <p className="mt-2 text-xs text-fg-mid">{sublabel}</p>
       )}
     </div>
   );
@@ -262,45 +276,45 @@ function RecentOrdersSection({ orders }: { orders: RecentOrder[] }) {
       <header className="flex items-baseline justify-between">
         <h2
           id="recent-orders-heading"
-          className="font-serif text-2xl font-medium text-foreground"
+          className="font-serif text-[24px] font-medium text-fg-hi"
         >
           Recent orders
         </h2>
-        <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
+        <p className="text-[11px] uppercase tracking-[0.2em] text-fg-soft">
           Newest {orders.length}
         </p>
       </header>
 
       {orders.length === 0 ? (
-        <div className="mt-6 rounded-lg border border-dashed border-border bg-muted/30 px-6 py-12 text-center">
-          <p className="text-sm text-muted-foreground">
+        <div className="home-glass mt-6 rounded-[20px] px-6 py-12 text-center">
+          <p className="text-sm text-fg-mid">
             No orders yet. Once a customer completes a checkout, it appears
             here.
           </p>
         </div>
       ) : (
-        <div className="mt-6 overflow-x-auto rounded-lg border border-border">
+        <div className="home-glass mt-6 overflow-x-auto rounded-[20px]">
           <table className="w-full text-sm">
-            <thead className="border-b border-border bg-muted/40 text-left text-xs uppercase tracking-[0.1em] text-muted-foreground">
+            <thead className="border-b border-white/[0.06] bg-white/[0.02] text-left text-[10px] uppercase tracking-[0.12em] text-fg-soft">
               <tr>
-                <th scope="col" className="px-4 py-3 font-medium">
+                <th scope="col" className="px-4 py-3 font-semibold">
                   Date
                 </th>
-                <th scope="col" className="px-4 py-3 font-medium">
+                <th scope="col" className="px-4 py-3 font-semibold">
                   Customer
                 </th>
-                <th scope="col" className="px-4 py-3 font-medium">
+                <th scope="col" className="px-4 py-3 font-semibold">
                   Items
                 </th>
-                <th scope="col" className="px-4 py-3 text-right font-medium">
+                <th scope="col" className="px-4 py-3 text-right font-semibold">
                   Total
                 </th>
-                <th scope="col" className="px-4 py-3 font-medium">
+                <th scope="col" className="px-4 py-3 font-semibold">
                   Status
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-border">
+            <tbody className="divide-y divide-white/[0.04]">
               {orders.map((o) => (
                 <RecentOrderRow key={o.id} order={o} />
               ))}
@@ -316,54 +330,49 @@ function RecentOrderRow({ order }: { order: RecentOrder }) {
   const firstTitle = order.items[0]?.bookTitle ?? "(empty order)";
   const moreCount = Math.max(0, order.items.length - 1);
   const itemSummary =
-    moreCount > 0
-      ? `${firstTitle} +${moreCount} more`
-      : firstTitle;
+    moreCount > 0 ? `${firstTitle} +${moreCount} more` : firstTitle;
 
   return (
-    <tr className="text-foreground">
-      <td className="whitespace-nowrap px-4 py-3 text-xs text-muted-foreground">
+    <tr className="text-fg-hi transition-colors hover:bg-white/[0.02]">
+      <td className="whitespace-nowrap px-4 py-3 text-xs text-fg-soft">
         {formatOrderDate(order.createdAt)}
       </td>
       <td className="px-4 py-3">
         <div className="flex flex-col">
           <span className="font-medium">{order.customerName ?? "—"}</span>
-          <span className="text-xs text-muted-foreground">
+          <span className="text-xs text-fg-soft">
             {order.customerEmail}
           </span>
         </div>
       </td>
-      <td className="px-4 py-3 text-xs text-foreground/80">
+      <td className="px-4 py-3 text-xs text-fg-mid">
         {itemSummary}
-        <span className="ml-2 text-muted-foreground">
+        <span className="ml-2 text-fg-soft">
           ({order.items.length}{" "}
           {order.items.length === 1 ? "item" : "items"})
         </span>
       </td>
-      <td className="whitespace-nowrap px-4 py-3 text-right font-medium">
+      <td className="whitespace-nowrap px-4 py-3 text-right font-medium tabular-nums">
         {formatPrice(order.totalCents, order.currency)}
       </td>
       <td className="px-4 py-3">
-        <StatusBadge status={order.status} />
+        <OrderStatusBadge status={order.status} />
       </td>
     </tr>
   );
 }
 
-const STATUS_BADGE_CLASSES: Record<OrderStatus, string> = {
-  paid: "border-primary/30 bg-primary/10 text-primary",
-  pending: "border-border bg-muted text-muted-foreground",
-  failed: "border-destructive/30 bg-destructive/10 text-destructive",
-  refunded: "border-border bg-accent text-accent-foreground",
+const ORDER_STATUS_BADGE_CLASSES: Record<OrderStatus, string> = {
+  paid: "border-emerald-bright/30 bg-emerald-bright/10 text-emerald-bright",
+  pending: "border-white/[0.12] bg-white/[0.04] text-fg-mid",
+  failed: "border-[#ff7a7a]/30 bg-[#ff7a7a]/8 text-[#ff9b9b]",
+  refunded: "border-[#ffce63]/30 bg-[#ffce63]/8 text-[#ffce63]",
 };
 
-function StatusBadge({ status }: { status: OrderStatus }) {
+function OrderStatusBadge({ status }: { status: OrderStatus }) {
   return (
     <span
-      className={cn(
-        "inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium uppercase tracking-wide",
-        STATUS_BADGE_CLASSES[status],
-      )}
+      className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] ${ORDER_STATUS_BADGE_CLASSES[status]}`}
     >
       {status}
     </span>
@@ -381,11 +390,7 @@ function formatOrderDate(date: Date): string {
 }
 
 // ===========================================================================
-// Catalog Management table (SUB-PR 4.4).
-//
-// Lists EVERY book — drafts, published, archived — newest-first. Each row
-// links to /admin/books/[slug]/edit. Distinct from the public storefront's
-// "/books" view which filters to status='published'.
+// Catalog Management table.
 // ===========================================================================
 function CatalogManagementSection({ books }: { books: BookAdminListItem[] }) {
   return (
@@ -393,45 +398,45 @@ function CatalogManagementSection({ books }: { books: BookAdminListItem[] }) {
       <header className="flex items-baseline justify-between">
         <h2
           id="catalog-management-heading"
-          className="font-serif text-2xl font-medium text-foreground"
+          className="font-serif text-[24px] font-medium text-fg-hi"
         >
           Catalog management
         </h2>
-        <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
+        <p className="text-[11px] uppercase tracking-[0.2em] text-fg-soft">
           {books.length} {books.length === 1 ? "title" : "titles"}
         </p>
       </header>
 
       {books.length === 0 ? (
-        <div className="mt-6 rounded-lg border border-dashed border-border bg-muted/30 px-6 py-12 text-center">
-          <p className="text-sm text-muted-foreground">
+        <div className="home-glass mt-6 rounded-[20px] px-6 py-12 text-center">
+          <p className="text-sm text-fg-mid">
             No books in the catalog yet. Use the &ldquo;Add a book&rdquo; form
             below to create the first draft.
           </p>
         </div>
       ) : (
-        <div className="mt-6 overflow-x-auto rounded-lg border border-border">
+        <div className="home-glass mt-6 overflow-x-auto rounded-[20px]">
           <table className="w-full text-sm">
-            <thead className="border-b border-border bg-muted/40 text-left text-xs uppercase tracking-[0.1em] text-muted-foreground">
+            <thead className="border-b border-white/[0.06] bg-white/[0.02] text-left text-[10px] uppercase tracking-[0.12em] text-fg-soft">
               <tr>
-                <th scope="col" className="px-4 py-3 font-medium">
+                <th scope="col" className="px-4 py-3 font-semibold">
                   Title
                 </th>
-                <th scope="col" className="px-4 py-3 font-medium">
+                <th scope="col" className="px-4 py-3 font-semibold">
                   Slug
                 </th>
-                <th scope="col" className="px-4 py-3 text-right font-medium">
+                <th scope="col" className="px-4 py-3 text-right font-semibold">
                   Price
                 </th>
-                <th scope="col" className="px-4 py-3 font-medium">
+                <th scope="col" className="px-4 py-3 font-semibold">
                   Status
                 </th>
-                <th scope="col" className="px-4 py-3 text-right font-medium">
+                <th scope="col" className="px-4 py-3 text-right font-semibold">
                   <span className="sr-only">Actions</span>
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-border">
+            <tbody className="divide-y divide-white/[0.04]">
               {books.map((book) => (
                 <CatalogRow key={book.id} book={book} />
               ))}
@@ -445,27 +450,27 @@ function CatalogManagementSection({ books }: { books: BookAdminListItem[] }) {
 
 function CatalogRow({ book }: { book: BookAdminListItem }) {
   return (
-    <tr className="text-foreground">
+    <tr className="text-fg-hi transition-colors hover:bg-white/[0.02]">
       <td className="px-4 py-3">
         {book.status === "published" ? (
           <Link
             href={`/books/${book.slug}`}
-            className="font-medium text-foreground underline-offset-2 hover:text-primary hover:underline"
+            className="font-medium underline-offset-2 hover:text-emerald-bright hover:underline"
             target="_blank"
             rel="noreferrer"
           >
             {book.title}
           </Link>
         ) : (
-          <span className="font-medium text-foreground">{book.title}</span>
+          <span className="font-medium">{book.title}</span>
         )}
       </td>
       <td className="px-4 py-3">
-        <code className="rounded bg-muted px-1 py-0.5 text-xs">
+        <code className="rounded border border-white/[0.06] bg-white/[0.03] px-1.5 py-0.5 font-mono text-xs text-fg-mid">
           {book.slug}
         </code>
       </td>
-      <td className="whitespace-nowrap px-4 py-3 text-right font-medium">
+      <td className="whitespace-nowrap px-4 py-3 text-right font-medium tabular-nums">
         {formatPrice(book.priceCents, book.currency)}
       </td>
       <td className="px-4 py-3">
@@ -474,7 +479,7 @@ function CatalogRow({ book }: { book: BookAdminListItem }) {
       <td className="whitespace-nowrap px-4 py-3 text-right">
         <Link
           href={`/admin/books/${book.slug}/edit`}
-          className="text-sm font-medium text-primary underline-offset-2 hover:underline"
+          className="text-sm font-semibold text-emerald-bright underline-offset-2 hover:underline"
         >
           Edit →
         </Link>
@@ -484,33 +489,44 @@ function CatalogRow({ book }: { book: BookAdminListItem }) {
 }
 
 // ===========================================================================
-// Create Book form — unchanged from SUB-PR 0.6 except for the
-// Paddle price ID field (SUB-PR 4.1, brief step 3).
+// Create Book form.
 // ===========================================================================
 function CreateBookSection() {
   return (
     <section aria-labelledby="create-book-heading">
       <header>
-        <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
           Catalog · Ingest
         </p>
         <h2
           id="create-book-heading"
-          className="mt-3 font-serif text-2xl font-medium text-foreground"
+          className="mt-2 font-serif text-[24px] font-medium text-fg-hi"
         >
           Add a book
         </h2>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-fg-mid">
           New titles land as{" "}
-          <code className="rounded bg-muted px-1 py-0.5 text-xs">draft</code>.
-          Master, cover, and sample R2 keys can be filled in after upload;
-          the publish flow (status →{" "}
-          <code className="rounded bg-muted px-1 py-0.5 text-xs">published</code>
+          <code className="rounded border border-white/[0.08] bg-white/[0.04] px-1 py-0.5 text-xs text-emerald-bright">
+            draft
+          </code>
+          . Master, cover, and sample R2 keys can be filled in after upload; the
+          publish flow (status →{" "}
+          <code className="rounded border border-white/[0.08] bg-white/[0.04] px-1 py-0.5 text-xs text-emerald-bright">
+            published
+          </code>
           ) lands in a later SUB-PR.
         </p>
       </header>
 
-      <form action={createBook} className="mt-8 max-w-3xl space-y-6">
+      <form
+        action={createBook}
+        className="home-glass relative mt-8 max-w-3xl space-y-6 overflow-hidden rounded-[24px] p-6 sm:p-8"
+      >
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/30 to-transparent"
+        />
+
         <FormField label="Title" name="title" required />
         <FormField
           label="Slug"
@@ -539,8 +555,8 @@ function CreateBookSection() {
 
         <FormField label="ISBN" name="isbn" />
 
-        <fieldset className="space-y-6 rounded-md border border-input p-4">
-          <legend className="px-2 text-sm font-medium text-muted-foreground">
+        <fieldset className="space-y-6 rounded-[16px] border border-white/[0.08] bg-white/[0.02] p-5">
+          <legend className="px-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
             R2 object keys (optional now; required before publish)
           </legend>
           <FormField
@@ -560,8 +576,8 @@ function CreateBookSection() {
           />
         </fieldset>
 
-        <fieldset className="space-y-6 rounded-md border border-input p-4">
-          <legend className="px-2 text-sm font-medium text-muted-foreground">
+        <fieldset className="space-y-6 rounded-[16px] border border-white/[0.08] bg-white/[0.02] p-5">
+          <legend className="px-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
             Merchant of Record (Paddle) — required before checkout
           </legend>
           <FormField
@@ -572,9 +588,12 @@ function CreateBookSection() {
         </fieldset>
 
         <div className="pt-2">
-          <Button type="submit" size="lg">
+          <button
+            type="submit"
+            className="home-cta-primary inline-flex h-11 items-center justify-center rounded-full px-7 text-sm font-semibold tracking-tight"
+          >
             Create book (draft)
-          </Button>
+          </button>
         </div>
       </form>
     </section>
@@ -602,13 +621,14 @@ function FormField({
 }: FormFieldProps) {
   return (
     <div>
-      <label htmlFor={name} className="block text-sm font-medium text-foreground">
+      <label
+        htmlFor={name}
+        className="block text-[11px] font-semibold uppercase tracking-[0.12em] text-fg-soft"
+      >
         {label}
-        {required && <span className="text-destructive"> *</span>}
+        {required && <span className="text-[#ff9b9b]"> *</span>}
       </label>
-      {help && (
-        <p className="mt-1 text-xs text-muted-foreground">{help}</p>
-      )}
+      {help && <p className="mt-1.5 text-xs text-fg-mid">{help}</p>}
       {textarea ? (
         <textarea
           id={name}
@@ -616,7 +636,7 @@ function FormField({
           required={required}
           defaultValue={defaultValue}
           rows={4}
-          className="mt-2 block w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring/60"
+          className="mt-2 block w-full rounded-[14px] border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-fg-hi placeholder:text-fg-fade focus-visible:border-emerald-bright/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/20"
         />
       ) : (
         <input
@@ -625,7 +645,7 @@ function FormField({
           type={type}
           required={required}
           defaultValue={defaultValue}
-          className="mt-2 block h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring/60"
+          className="mt-2 block h-10 w-full rounded-full border border-white/[0.08] bg-white/[0.03] px-4 text-sm text-fg-hi placeholder:text-fg-fade focus-visible:border-emerald-bright/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/20"
         />
       )}
     </div>

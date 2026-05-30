@@ -5,12 +5,20 @@ import { notFound } from "next/navigation";
 import { AdminDeleteBookButton } from "@/components/admin-delete-book-button";
 import { AdminEditBookForm } from "@/components/admin-edit-book-form";
 import { BookStatusBadge } from "@/components/book-status-badge";
+import { CinematicHeader } from "@/components/home/cinematic-header";
+import { HomeFooter } from "@/components/home/home-footer";
 import { UnprovisionedNotice } from "@/components/unprovisioned-notice";
 import { AdminAccessError, requireAdmin } from "@/lib/auth";
 import { getBookForEdit } from "@/lib/db/queries/admin";
 
-// Same dynamic posture as `/admin` — Clerk session + admin-only DB reads
-// at request time.
+/**
+ * /admin/books/[slug]/edit — internal book editor.
+ *
+ * Phase 3.B cinematic redesign (Internal Dashboard family). Same shell
+ * as /admin; mid-density single-record edit surface with a clearly-
+ * separated "Danger zone" panel for irreversible actions.
+ */
+
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
@@ -18,12 +26,6 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-// ---------------------------------------------------------------------------
-// AdminAccessError → notice mapping, mirrored from /admin/page.tsx.
-// Centralizing in `src/lib/auth.ts` is a possible future refactor; for now
-// keeping each admin route's mapping local makes the failure modes easy to
-// trace when debugging in production.
-// ---------------------------------------------------------------------------
 interface AdminGate {
   ok: boolean;
   notice?: { title: string; body: string; missing: string[] };
@@ -80,10 +82,6 @@ async function checkAdminGate(): Promise<AdminGate> {
   }
 }
 
-// ---------------------------------------------------------------------------
-// Page
-// ---------------------------------------------------------------------------
-
 type EditPageParams = Promise<{ slug: string }>;
 
 export default async function AdminEditBookPage({
@@ -107,63 +105,93 @@ export default async function AdminEditBookPage({
   if (!book) notFound();
 
   return (
-    <main className="mx-auto max-w-3xl space-y-12 px-6 py-16">
-      <header>
-        <nav
-          aria-label="Breadcrumb"
-          className="text-xs uppercase tracking-[0.15em] text-muted-foreground"
-        >
-          <Link href="/admin" className="hover:text-primary">
-            Admin
-          </Link>
-          <span aria-hidden className="mx-2">
-            /
-          </span>
-          <span>Edit book</span>
-        </nav>
-        <h1 className="mt-4 font-serif text-4xl font-medium leading-tight text-foreground">
-          {book.title}
-        </h1>
-        <div className="mt-3 flex items-center gap-3 text-sm text-muted-foreground">
-          <code className="rounded bg-muted px-1 py-0.5 text-xs">
-            {book.slug}
-          </code>
-          <BookStatusBadge status={book.status} />
-        </div>
-      </header>
+    <div className="cinematic-root">
+      <CinematicHeader />
 
-      <section aria-labelledby="edit-form-heading">
-        <h2 id="edit-form-heading" className="sr-only">
-          Edit book details
-        </h2>
-        <AdminEditBookForm book={book} />
-      </section>
-
-      <section
-        aria-labelledby="danger-zone-heading"
-        className="mt-20 border-t border-destructive/30 pt-12"
-      >
+      <main className="relative z-10 mx-auto max-w-3xl space-y-12 px-4 py-16 sm:px-6">
         <header>
-          <h2
-            id="danger-zone-heading"
-            className="font-serif text-xl font-medium text-destructive"
+          {/* Breadcrumb */}
+          <nav
+            aria-label="Breadcrumb"
+            className="text-[11px] uppercase tracking-[0.2em] text-fg-soft"
           >
-            Danger zone
-          </h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Deleting a book is irreversible. The database refuses the operation
-            for any book with order or entitlement history — archive instead by
-            setting the status to <code>archived</code> above.
-          </p>
+            <Link
+              href="/admin"
+              className="transition-colors hover:text-emerald-bright"
+            >
+              Admin
+            </Link>
+            <span aria-hidden className="mx-2 text-emerald-bright">
+              /
+            </span>
+            <span className="text-fg-hi">Edit book</span>
+          </nav>
+
+          <h1 className="mt-5 font-serif text-[36px] font-medium leading-tight tracking-[-0.025em] text-fg-hi sm:text-[44px]">
+            {book.title}
+          </h1>
+
+          <div className="mt-4 flex items-center gap-3 text-sm">
+            <code className="rounded border border-white/[0.08] bg-white/[0.04] px-1.5 py-0.5 font-mono text-xs text-fg-mid">
+              {book.slug}
+            </code>
+            <BookStatusBadge status={book.status} />
+          </div>
         </header>
-        <div className="mt-6">
-          <AdminDeleteBookButton
-            bookId={book.id}
-            slug={book.slug}
-            title={book.title}
+
+        {/* Edit form panel */}
+        <section
+          aria-labelledby="edit-form-heading"
+          className="home-glass relative overflow-hidden rounded-[24px] p-6 sm:p-8"
+        >
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/35 to-transparent"
           />
-        </div>
-      </section>
-    </main>
+          <h2 id="edit-form-heading" className="sr-only">
+            Edit book details
+          </h2>
+          <AdminEditBookForm book={book} />
+        </section>
+
+        {/* Danger zone */}
+        <section
+          aria-labelledby="danger-zone-heading"
+          className="rounded-[24px] border border-dashed border-[#ff7a7a]/30 bg-[#ff7a7a]/[0.04] p-6 sm:p-8"
+        >
+          <header>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#ff9b9b]">
+              Danger zone
+            </p>
+            <h2
+              id="danger-zone-heading"
+              className="mt-2 font-serif text-[20px] font-medium leading-tight text-fg-hi"
+            >
+              Irreversible actions
+            </h2>
+            <p className="mt-3 max-w-prose text-sm leading-relaxed text-fg-mid">
+              Deleting a book is irreversible. The database refuses the
+              operation for any book with order or entitlement history —
+              archive instead by setting the status to{" "}
+              <code className="rounded border border-white/[0.08] bg-white/[0.04] px-1 py-0.5 text-xs text-[#ffce63]">
+                archived
+              </code>{" "}
+              above.
+            </p>
+          </header>
+          <div className="mt-6">
+            <AdminDeleteBookButton
+              bookId={book.id}
+              slug={book.slug}
+              title={book.title}
+            />
+          </div>
+        </section>
+
+        <div className="h-12" />
+      </main>
+
+      <HomeFooter />
+    </div>
   );
 }

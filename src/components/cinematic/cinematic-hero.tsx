@@ -152,7 +152,7 @@ export function CinematicHero({
   const contentBlock = (
     <div className={`relative flex flex-col ${alignClasses}`}>
       {/* Eyebrow */}
-      <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#33f0aa]">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
         {eyebrow}
       </p>
 
@@ -188,7 +188,7 @@ export function CinematicHero({
       {/* Subtitle */}
       {subtitle && (
         <div
-          className={`mt-5 max-w-md text-base leading-relaxed text-[#a7a7a0] sm:text-[17px] ${
+          className={`mt-5 max-w-md text-base leading-relaxed text-fg-mid sm:text-[17px] ${
             resolvedAlign === "center" ? "mx-auto" : ""
           }`}
         >

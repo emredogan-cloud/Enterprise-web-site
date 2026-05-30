@@ -7,10 +7,12 @@ import { CinematicReviewsList } from "@/components/book-detail/cinematic-reviews
 import { CinematicSampleSection } from "@/components/book-detail/cinematic-sample-section";
 import { CinematicStarRating } from "@/components/book-detail/cinematic-star-rating";
 import { ExploreStrip } from "@/components/book-detail/explore-strip";
+import { RelatedBooksShelf } from "@/components/book-detail/related-books-shelf";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
 import {
   getPublishedBookBySlug,
+  listPublishedBooks,
   listPublishedBookSlugs,
 } from "@/lib/db/queries/catalog";
 import {
@@ -117,12 +119,20 @@ export default async function BookDetailPage({
   // follow-up (unchanged from the pre-cinematic page).
   const sampleHtml = PLACEHOLDER_SAMPLE_HTML;
 
-  // Reviews + aggregate in parallel — both `safeQuery`-wrapped so a
-  // missing DB degrades to `{count: 0, average: null}` + `[]`.
-  const [reviewItems, ratingAggregate] = await Promise.all([
+  // Reviews + aggregate + related books in parallel — all `safeQuery`-
+  // wrapped so a missing DB degrades to `{count: 0, average: null}` /
+  // `[]` / `[]` respectively. The related-books query is the simplest
+  // possible "anything else published" pick; a future SUB-PR can swap
+  // it for a category- or author-similarity query.
+  const [reviewItems, ratingAggregate, allBooks] = await Promise.all([
     getReviewsForBook(book.id),
     getBookRatingAggregate(book.id),
+    listPublishedBooks(),
   ]);
+
+  const relatedBooks = allBooks
+    .filter((b) => b.slug !== slug)
+    .slice(0, 6);
 
   const aggregateRatingForJsonLd =
     ratingAggregate.count > 0 && ratingAggregate.average !== null
@@ -187,7 +197,7 @@ export default async function BookDetailPage({
           className="mx-auto mt-24 max-w-3xl px-4 sm:px-6"
         >
           <header className="text-center">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#33f0aa]">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
               Reader reviews
             </p>
 
@@ -209,7 +219,7 @@ export default async function BookDetailPage({
 
             <h2
               id="reviews-heading"
-              className="mt-5 font-serif text-[32px] font-medium leading-tight text-[#e6e6e0] sm:text-[40px]"
+              className="mt-5 font-serif text-[32px] font-medium leading-tight text-fg-hi sm:text-[40px]"
             >
               What readers say
             </h2>
@@ -220,8 +230,8 @@ export default async function BookDetailPage({
                   value={ratingAggregate.average}
                   size="md"
                 />
-                <p className="text-sm text-[#a7a7a0]">
-                  <span className="font-medium text-[#e6e6e0]">
+                <p className="text-sm text-fg-mid">
+                  <span className="font-medium text-fg-hi">
                     {ratingAggregate.average.toFixed(1)}
                   </span>{" "}
                   across {ratingAggregate.count}{" "}
@@ -235,12 +245,18 @@ export default async function BookDetailPage({
 
           {/* Write-a-review form */}
           <div className="mt-12">
-            <h3 className="text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#88918a]">
+            <h3 className="text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
               Write a review
             </h3>
             <CinematicReviewForm slug={slug} bookId={book.id} />
           </div>
         </section>
+
+        {/* Phase 3.F — RelatedBooksShelf resolves the Phase 1.C
+            "related shelf follow-up" carry-forward. ExploreStrip stays
+            below as the closing quiet line; both surfaces complement
+            each other (catalog discovery + brand closer). */}
+        <RelatedBooksShelf books={relatedBooks} />
 
         <ExploreStrip />
 

@@ -66,7 +66,7 @@ export default async function ReadBookPage({ params }: { params: Params }) {
             The watermark worker is still processing this book. Check{" "}
             <Link
               href="/account/library"
-              className="text-[#33f0aa] underline-offset-4 hover:underline"
+              className="text-emerald-bright underline-offset-4 hover:underline"
             >
               your library
             </Link>{" "}
@@ -106,7 +106,7 @@ export default async function ReadBookPage({ params }: { params: Params }) {
             Please try again in a moment, or download the file from{" "}
             <Link
               href="/account/library"
-              className="text-[#33f0aa] underline-offset-4 hover:underline"
+              className="text-emerald-bright underline-offset-4 hover:underline"
             >
               your library
             </Link>
@@ -154,7 +154,7 @@ function ReaderFallback({
       <main className="relative z-10 mx-auto max-w-2xl px-4 py-24 sm:px-6">
         <div className="flex flex-col items-center text-center">
           {/* Eyebrow */}
-          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#33f0aa]">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
             {eyebrow}
           </p>
 
@@ -175,11 +175,11 @@ function ReaderFallback({
             />
           </div>
 
-          <h1 className="mt-6 font-serif text-[32px] font-medium leading-tight text-[#e6e6e0] sm:text-[40px]">
+          <h1 className="mt-6 font-serif text-[32px] font-medium leading-tight text-fg-hi sm:text-[40px]">
             {title}
           </h1>
 
-          <p className="mt-5 max-w-md text-[15px] leading-relaxed text-[#a7a7a0] sm:text-base">
+          <p className="mt-5 max-w-md text-[15px] leading-relaxed text-fg-mid sm:text-base">
             {body}
           </p>
         </div>

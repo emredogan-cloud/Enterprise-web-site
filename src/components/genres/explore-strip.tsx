@@ -39,10 +39,10 @@ export function ExploreStrip() {
 
             {/* Content sits ABOVE the scene, right side of the panel */}
             <div className="relative z-10 max-w-md ml-auto sm:ml-[42%]">
-              <h2 className="font-serif text-[26px] font-medium leading-tight tracking-tight text-[#e6e6e0] sm:text-[30px]">
+              <h2 className="font-serif text-[26px] font-medium leading-tight tracking-tight text-fg-hi sm:text-[30px]">
                 Not sure where to start?
               </h2>
-              <p className="mt-3 text-sm leading-relaxed text-[#a7a7a0] sm:text-[15px]">
+              <p className="mt-3 text-sm leading-relaxed text-fg-mid sm:text-[15px]">
                 Browse all books or explore handpicked collections created just
                 for you.
               </p>
@@ -69,7 +69,7 @@ export function ExploreStrip() {
 
           {/* RIGHT — stats panel */}
           <div className="border-t border-white/[0.05] p-7 sm:p-9 lg:border-l lg:border-t-0">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#88918a]">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
               Explore More
             </p>
             <div className="mt-5 grid gap-3">
@@ -80,14 +80,14 @@ export function ExploreStrip() {
                     key={stat.label}
                     className="group flex items-center gap-3.5 rounded-xl border border-white/[0.05] bg-white/[0.015] px-4 py-3 transition-colors hover:border-white/[0.1] hover:bg-white/[0.04]"
                   >
-                    <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg border border-[#16c784]/30 bg-[#16c784]/10 text-[#33f0aa] transition-shadow group-hover:shadow-[0_0_14px_rgba(51,240,170,0.3)]">
+                    <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg border border-emerald-deep/30 bg-emerald-deep/10 text-emerald-bright transition-shadow group-hover:shadow-[0_0_14px_rgba(51,240,170,0.3)]">
                       <Icon aria-hidden className="h-4 w-4" />
                     </span>
                     <div className="min-w-0 flex-1">
-                      <p className="font-serif text-[18px] font-medium leading-none text-[#e6e6e0]">
+                      <p className="font-serif text-[18px] font-medium leading-none text-fg-hi">
                         {stat.value}
                       </p>
-                      <p className="mt-1 text-[11px] uppercase tracking-[0.12em] text-[#88918a]">
+                      <p className="mt-1 text-[11px] uppercase tracking-[0.12em] text-fg-soft">
                         {stat.label}
                       </p>
                     </div>

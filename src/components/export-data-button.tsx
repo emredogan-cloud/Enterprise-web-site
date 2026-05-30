@@ -2,7 +2,6 @@
 
 import { useState, useTransition } from "react";
 
-import { Button } from "@/components/ui/button";
 import { exportUserData } from "@/app/account/settings/actions";
 
 /**
@@ -10,9 +9,10 @@ import { exportUserData } from "@/app/account/settings/actions";
  * payload + filename, and triggers a browser download via a temporary Blob
  * URL. No server-side file is ever materialized; nothing is ever cached.
  *
- * The temporary anchor is `appendChild`/`removeChild`'d to satisfy older
- * Firefox versions that ignore a click on a detached `<a>`. `URL.revokeObjectURL`
- * is called immediately after to release the blob memory.
+ * Phase 3.A — cinematic chrome (`.home-cta-secondary`). The temporary
+ * anchor is `appendChild`/`removeChild`'d to satisfy older Firefox versions
+ * that ignore a click on a detached `<a>`. `URL.revokeObjectURL` is called
+ * immediately after to release the blob memory.
  */
 export function ExportDataButton() {
   const [pending, startTransition] = useTransition();
@@ -41,17 +41,17 @@ export function ExportDataButton() {
 
   return (
     <div className="flex flex-col items-start gap-2">
-      <Button
+      <button
         type="button"
-        variant="outline"
         onClick={handleClick}
         disabled={pending}
         aria-live="polite"
+        className="home-cta-secondary inline-flex h-10 items-center justify-center rounded-full px-5 text-sm font-semibold tracking-tight disabled:cursor-not-allowed disabled:opacity-70"
       >
         {pending ? "Preparing your data…" : "Export my data"}
-      </Button>
+      </button>
       {error && (
-        <p role="alert" className="text-xs text-destructive">
+        <p role="alert" className="text-xs text-[#ff9b9b]">
           {error}
         </p>
       )}

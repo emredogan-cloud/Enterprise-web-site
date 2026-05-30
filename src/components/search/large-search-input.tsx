@@ -70,14 +70,14 @@ export function LargeSearchInput({
       <div
         className={`relative flex items-center rounded-full border bg-white/[0.03] backdrop-blur-md transition-all duration-300 ${
           focused
-            ? "border-[#33f0aa]/50 shadow-[0_0_0_4px_rgba(51,240,170,0.08),0_0_32px_-4px_rgba(51,240,170,0.5)]"
+            ? "border-emerald-bright/50 shadow-[0_0_0_4px_rgba(51,240,170,0.08),0_0_32px_-4px_rgba(51,240,170,0.5)]"
             : "border-white/[0.08] shadow-[0_0_18px_-6px_rgba(51,240,170,0.2)]"
         }`}
       >
         {/* Search icon */}
         <span
           aria-hidden
-          className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 text-[#5d675f]"
+          className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 text-fg-fade"
         >
           <Search className="h-5 w-5" />
         </span>
@@ -94,13 +94,13 @@ export function LargeSearchInput({
           placeholder={placeholder}
           autoComplete="off"
           aria-label="Search the catalog"
-          className="h-14 w-full rounded-full bg-transparent pl-14 pr-24 text-[15px] text-[#e6e6e0] placeholder:text-[#5d675f] focus:outline-none"
+          className="h-14 w-full rounded-full bg-transparent pl-14 pr-24 text-[15px] text-fg-hi placeholder:text-fg-fade focus:outline-none"
         />
 
         {/* ⌘K shortcut chip — right */}
         <kbd
           aria-hidden
-          className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 items-center gap-1 rounded-md border border-white/[0.12] bg-white/[0.04] px-2 py-1 font-mono text-[11px] font-medium text-[#a7a7a0] backdrop-blur-md sm:inline-flex"
+          className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 items-center gap-1 rounded-md border border-white/[0.12] bg-white/[0.04] px-2 py-1 font-mono text-[11px] font-medium text-fg-mid backdrop-blur-md sm:inline-flex"
         >
           <span className="text-[12px] leading-none">⌘</span>
           <span>K</span>

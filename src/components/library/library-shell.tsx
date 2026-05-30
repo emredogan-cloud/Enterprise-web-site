@@ -99,7 +99,7 @@ export function LibraryShell({ library }: { library: LibraryEntry[] }) {
           the library itself is not empty. The library-empty-panel only
           fires at library.length === 0; we need a softer signal here. */}
       {library.length > 0 && visible.length === 0 && (
-        <p className="mx-auto mt-10 max-w-md px-6 text-center text-sm text-[#88918a]">
+        <p className="mx-auto mt-10 max-w-md px-6 text-center text-sm text-fg-soft">
           No books match this filter yet. Try a different tab.
         </p>
       )}

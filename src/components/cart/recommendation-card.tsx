@@ -41,7 +41,7 @@ export function RecommendationCard({ book }: { book: DemoBook }) {
   return (
     <Link
       href={`/books/${book.slug}`}
-      className="group relative flex h-full flex-shrink-0 snap-start flex-col gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#33f0aa]/60 rounded-lg"
+      className="group relative flex h-full flex-shrink-0 snap-start flex-col gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/60 rounded-lg"
       style={{ width: "180px" }}
     >
       {/* Cover */}
@@ -95,24 +95,24 @@ export function RecommendationCard({ book }: { book: DemoBook }) {
 
       {/* Meta */}
       <div className="flex flex-col gap-1 px-0.5">
-        <h4 className="line-clamp-1 font-serif text-[14px] font-medium leading-snug text-[#e6e6e0] transition-colors group-hover:text-[#33f0aa]">
+        <h4 className="line-clamp-1 font-serif text-[14px] font-medium leading-snug text-fg-hi transition-colors group-hover:text-emerald-bright">
           {book.title}
         </h4>
-        <p className="text-xs text-[#88918a]">{book.author}</p>
+        <p className="text-xs text-fg-soft">{book.author}</p>
       </div>
 
       {/* Bottom row — rating/price LEFT, + button RIGHT.
           Per the brief: flex space-between + items-end alignment. */}
       <div className="flex items-end justify-between px-0.5">
         <div className="flex flex-col gap-1">
-          <div className="flex items-center gap-1 text-xs text-[#a7a7a0]">
+          <div className="flex items-center gap-1 text-xs text-fg-mid">
             <Star
               aria-hidden
               className="h-3 w-3 fill-[#f4c44b] text-[#f4c44b]"
             />
             <span className="tabular-nums">{book.rating.toFixed(1)}</span>
           </div>
-          <span className="text-sm font-semibold tabular-nums text-[#e6e6e0]">
+          <span className="text-sm font-semibold tabular-nums text-fg-hi">
             ${(book.priceCents / 100).toFixed(0)}
           </span>
         </div>
@@ -125,8 +125,8 @@ export function RecommendationCard({ book }: { book: DemoBook }) {
           aria-pressed={added}
           className={`flex h-8 w-8 items-center justify-center rounded-full border transition-all disabled:cursor-not-allowed disabled:opacity-50 ${
             added
-              ? "border-[#33f0aa]/60 bg-[#33f0aa]/15 text-[#33f0aa] shadow-[0_0_14px_rgba(51,240,170,0.45)]"
-              : "border-white/[0.1] bg-white/[0.03] text-[#a7a7a0] hover:scale-105 hover:border-[#33f0aa]/50 hover:bg-[#33f0aa]/10 hover:text-[#33f0aa] hover:shadow-[0_0_14px_rgba(51,240,170,0.4)]"
+              ? "border-emerald-bright/60 bg-emerald-bright/15 text-emerald-bright shadow-[0_0_14px_rgba(51,240,170,0.45)]"
+              : "border-white/[0.1] bg-white/[0.03] text-fg-mid hover:scale-105 hover:border-emerald-bright/50 hover:bg-emerald-bright/10 hover:text-emerald-bright hover:shadow-[0_0_14px_rgba(51,240,170,0.4)]"
           }`}
         >
           {added ? (
