@@ -1,21 +1,51 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
+import { CategoriesBackground } from "@/components/categories/categories-background";
+import type { CategoryCardData } from "@/components/categories/category-card";
+import { CategoryEmptyNotice } from "@/components/categories/category-empty-notice";
+import {
+  DEMO_CATEGORIES,
+  resolveCategoryArtwork,
+} from "@/components/categories/demo-categories";
+import { DiscoveryStrip } from "@/components/categories/discovery-strip";
+import { GenreGrid } from "@/components/categories/genre-grid";
 import { CinematicHero } from "@/components/cinematic/cinematic-hero";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
 import { listAllCategories } from "@/lib/db/queries/catalog";
 
 /**
- * /categories — the browse-by-category index.
+ * /categories — cinematic genre-discovery gallery.
  *
- * Phase 2.D. Audit-noted gap: the footer's "Categories" link used to
- * 404 (or fall through to /books); this is the missing index that
- * fills the gap. Click a tile → `/categories/[slug]` (cinematic since
- * Phase 1.F).
+ * The doorway into literary worlds (per categories_referance_image.png):
  *
- * Pure Server Component; SSG + ISR (same revalidate cadence as the rest
- * of the catalog).
+ *   ┌─────────────────────────────────────────────────────────────────┐
+ *   │  CinematicHeader (sticky, Genres active)                        │
+ *   ├─────────────────────────────────────────────────────────────────┤
+ *   │  CinematicHero  ("Every genre", centered, drifting dust)        │
+ *   │  CategoryEmptyNotice  (only when the catalog has no categories) │
+ *   │  GenreGrid  (2×5 atmospheric worlds — each a CategoryScene)     │
+ *   │  DiscoveryStrip  ("Can't find…? Browse all books")             │
+ *   ├─────────────────────────────────────────────────────────────────┤
+ *   │  HomeFooter                                                     │
+ *   └─────────────────────────────────────────────────────────────────┘
+ *
+ * Behind everything: `<CategoriesBackground>` — a `fixed` atmospheric
+ * overlay (emerald blooms + fog band + drifting dust).
+ *
+ * Functional integrity (the redesign is presentation-only):
+ *   - the real `listAllCategories()` query is unchanged;
+ *   - when categories exist they render as cards routing to the existing
+ *     SSG `/categories/[slug]` pages (artwork picked by name via
+ *     `resolveCategoryArtwork`);
+ *   - when the catalog is empty the gallery still exists (architecture-
+ *     first) using the curated demo worlds, each routing to a real
+ *     `/search?q=` — no dead cards, no 404s into non-existent slug pages;
+ *   - the empty-state message is preserved (restyled as a premium notice).
+ *
+ * Ships `○ Static` + ISR (same revalidate cadence as the rest of the
+ * catalog). The only client island is the `<RevealOnScroll>` stagger inside
+ * the grid — no Framer Motion (the ecosystem keeps the client bundle lean).
  */
 
 export const revalidate = 3600;
@@ -23,155 +53,86 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Browse by category",
   description:
-    "Browse the Digital Bookstore catalog by category — every genre, alphabetical, with one tile per surface.",
+    "Step into every literary world — fantasy, science fiction, mystery, romance and more. Browse the Digital Bookstore catalog by category.",
   alternates: { canonical: "/categories" },
   openGraph: {
     title: "Browse by category — Digital Bookstore",
     description:
-      "Browse the Digital Bookstore catalog by category — every genre, alphabetical, with one tile per surface.",
+      "Step into every literary world — fantasy, science fiction, mystery, romance and more.",
     url: "/categories",
     type: "website",
   },
 };
 
-// 8 gradient palettes — assigned by index so adjacent tiles don't look
-// identical even when no per-category cover key exists yet. Same family
-// as the library tile palette so the brand color story holds.
-const TILE_PALETTE: Array<{ gradient: string; accent: string }> = [
-  {
-    gradient: "linear-gradient(160deg, #1a3326 0%, #0a1f14 100%)",
-    accent: "#33f0aa",
-  },
-  {
-    gradient: "linear-gradient(160deg, #1a2c4f 0%, #050a1e 100%)",
-    accent: "#7ab6ff",
-  },
-  {
-    gradient: "linear-gradient(160deg, #c98341 0%, #4b1f0a 100%)",
-    accent: "#ffce63",
-  },
-  {
-    gradient: "linear-gradient(160deg, #b41c1c 0%, #4a0808 100%)",
-    accent: "#f4d4a8",
-  },
-  {
-    gradient: "linear-gradient(160deg, #2c1f1a 0%, #14110a 100%)",
-    accent: "#d1a86a",
-  },
-  {
-    gradient: "linear-gradient(160deg, #3a2845 0%, #14081c 100%)",
-    accent: "#b18cff",
-  },
-  {
-    gradient: "linear-gradient(160deg, #1d3d3b 0%, #061818 100%)",
-    accent: "#5ee4d8",
-  },
-  {
-    gradient: "linear-gradient(160deg, #3a2128 0%, #1a0b10 100%)",
-    accent: "#ff9ab7",
-  },
-];
-
 export default async function CategoriesIndexPage() {
   const categories = await listAllCategories();
+  const hasReal = categories.length > 0;
+
+  // Real categories route to their SSG detail pages; the empty-state demo
+  // worlds route to a real search so every card goes somewhere real.
+  const items: CategoryCardData[] = hasReal
+    ? categories.map((cat, i) => {
+        const { icon, artwork } = resolveCategoryArtwork(cat.name, i);
+        return {
+          key: cat.slug,
+          name: cat.name,
+          tagline: "Explore this collection.",
+          href: `/categories/${cat.slug}`,
+          icon,
+          artwork,
+        };
+      })
+    : DEMO_CATEGORIES.map((c) => ({
+        key: c.slug,
+        name: c.name,
+        tagline: c.tagline,
+        href: `/search?q=${encodeURIComponent(c.name)}`,
+        icon: c.icon,
+        artwork: c.artwork,
+      }));
 
   return (
     <div className="cinematic-root">
-      <CinematicHeader />
+      <CinematicHeader active="genres" />
+
+      {/* Atmospheric backdrop — fixed, behind everything */}
+      <CategoriesBackground />
 
       <main className="relative z-10">
         <CinematicHero
           eyebrow="Browse by category"
           headlineHead="Every"
           headlineTail="genre"
-          size="md"
+          size="lg"
           align="center"
+          dust
           subtitle={
             <p>
-              {categories.length === 0
-                ? "Categories will land here as the catalog grows."
-                : categories.length === 1
-                  ? "One category to explore."
-                  : `${categories.length} categories to explore.`}
+              {hasReal
+                ? `${categories.length} ${
+                    categories.length === 1 ? "world" : "worlds"
+                  } to explore — and the shelf keeps growing.`
+                : "Categories will land here as the catalog grows. For now, step into the worlds below."}
             </p>
           }
         />
 
-        {/* Grid OR empty state */}
-        <section className="mx-auto mt-20 max-w-[1320px] px-4 sm:mt-24 sm:px-6">
-          {categories.length === 0 ? (
-            <div className="home-glass mx-auto max-w-md rounded-[20px] p-8 text-center">
-              <p className="text-sm leading-relaxed text-fg-mid">
-                The catalog hasn&apos;t been populated with categories yet.
-                Check back soon or browse{" "}
-                <Link
-                  href="/books"
-                  className="text-emerald-bright transition-colors hover:text-fg-hi"
-                >
-                  all books
-                </Link>{" "}
-                directly.
-              </p>
-            </div>
-          ) : (
-            <ul className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
-              {categories.map((cat, i) => {
-                const palette = TILE_PALETTE[i % TILE_PALETTE.length];
-                return (
-                  <li key={cat.slug}>
-                    <Link
-                      href={`/categories/${cat.slug}`}
-                      className="home-glass home-card-hover group relative flex aspect-[4/5] flex-col justify-between overflow-hidden rounded-[22px] p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/40"
-                    >
-                      {/* Top emerald edge */}
-                      <div
-                        aria-hidden
-                        className="pointer-events-none absolute inset-x-0 top-0 z-20 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/30 to-transparent"
-                      />
+        {/* Premium empty notice — only when there are no real categories */}
+        {!hasReal && (
+          <section className="mx-auto mt-12 max-w-[1320px] px-4 sm:mt-14 sm:px-6">
+            <CategoryEmptyNotice />
+          </section>
+        )}
 
-                      {/* Base gradient */}
-                      <div
-                        aria-hidden
-                        className="absolute inset-0 -z-10"
-                        style={{ background: palette.gradient }}
-                      />
-
-                      {/* Corner accent bloom */}
-                      <div
-                        aria-hidden
-                        className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full opacity-50"
-                        style={{
-                          background: `radial-gradient(circle, ${palette.accent}55 0%, transparent 70%)`,
-                        }}
-                      />
-
-                      {/* Eyebrow */}
-                      <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/55">
-                        Genre
-                      </span>
-
-                      {/* Name */}
-                      <div>
-                        <h2 className="font-serif text-[24px] font-medium leading-[1.05] text-white transition-colors group-hover:text-emerald-bright">
-                          {cat.name}
-                        </h2>
-                        <p className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-emerald-bright">
-                          Explore
-                          <span
-                            aria-hidden
-                            className="inline-block transition-transform duration-300 group-hover:translate-x-1"
-                          >
-                            →
-                          </span>
-                        </p>
-                      </div>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          )}
+        {/* The gallery — the main attraction */}
+        <section className="mx-auto mt-12 max-w-[1320px] px-4 sm:mt-14 sm:px-6">
+          <GenreGrid items={items} />
         </section>
+
+        {/* Discovery CTA */}
+        <div className="mt-24 sm:mt-28">
+          <DiscoveryStrip />
+        </div>
 
         <div className="h-24" />
       </main>
