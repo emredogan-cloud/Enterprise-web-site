@@ -2,6 +2,12 @@
 
 import { useState, type FormEvent } from "react";
 
+import {
+  newsletterErrorMessage,
+  subscribeToNewsletter,
+  type NewsletterErrorCode,
+} from "@/lib/newsletter-client";
+
 import { SharePanel } from "./share-panel";
 
 /**
@@ -10,10 +16,10 @@ import { SharePanel } from "./share-panel";
  * Per the brief: large glass strip, rounded ~32px, two-column on desktop,
  * stacking on mobile.
  *
- * Client Component because the newsletter form holds local state. The
- * actual subscription endpoint isn't wired yet (Beehiiv decision is in
- * `STRATEJI_VE_KITAP_FIKIRLERI.md §9`) — for now we accept the email and
- * show a success state, mirroring the homepage newsletter section.
+ * Phase 2.A — wired to `/api/newsletter` (Resend Audiences). Four-state
+ * UX (idle / loading / ok / error). When the env isn't configured the
+ * route returns 503 and the form shows a real error rather than the
+ * previous sahte "Thanks" message.
  */
 export function AuthorNewsletterStrip({
   authorName = "Eleanor Page",
@@ -23,13 +29,25 @@ export function AuthorNewsletterStrip({
   bio?: string;
 }) {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "ok">("idle");
+  const [status, setStatus] = useState<
+    | { state: "idle" }
+    | { state: "loading" }
+    | { state: "ok" }
+    | { state: "error"; code: NewsletterErrorCode }
+  >({ state: "idle" });
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!email.trim()) return;
-    // TODO: wire to /api/newsletter once a provider lands (STRATEJI §9).
-    setStatus("ok");
+    const trimmed = email.trim();
+    if (!trimmed) return;
+
+    setStatus({ state: "loading" });
+    const result = await subscribeToNewsletter(trimmed);
+    if (result.ok) {
+      setStatus({ state: "ok" });
+    } else {
+      setStatus({ state: "error", code: result.code });
+    }
   };
 
   return (
@@ -91,12 +109,12 @@ export function AuthorNewsletterStrip({
               delivered to your inbox.
             </p>
 
-            {status === "ok" ? (
+            {status.state === "ok" ? (
               <p
                 role="status"
                 className="mt-6 inline-block rounded-full border border-[#33f0aa]/30 bg-[#33f0aa]/10 px-5 py-2.5 text-sm text-[#33f0aa]"
               >
-                Thanks — you&apos;ll hear from us soon.
+                Thanks — you&apos;re on the list. The next book lands in your inbox.
               </p>
             ) : (
               <form
@@ -113,15 +131,23 @@ export function AuthorNewsletterStrip({
                   placeholder="you@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.currentTarget.value)}
-                  className="h-11 flex-1 rounded-full border border-white/[0.08] bg-white/[0.03] px-5 text-sm text-[#e6e6e0] placeholder:text-[#5d675f] focus:border-[#33f0aa]/40 focus:outline-none focus:ring-2 focus:ring-[#33f0aa]/20"
+                  disabled={status.state === "loading"}
+                  className="h-11 flex-1 rounded-full border border-white/[0.08] bg-white/[0.03] px-5 text-sm text-[#e6e6e0] placeholder:text-[#5d675f] focus:border-[#33f0aa]/40 focus:outline-none focus:ring-2 focus:ring-[#33f0aa]/20 disabled:cursor-not-allowed disabled:opacity-60"
                 />
                 <button
                   type="submit"
-                  className="home-cta-primary inline-flex h-11 items-center justify-center rounded-full px-6 text-sm font-semibold tracking-tight"
+                  disabled={status.state === "loading"}
+                  className="home-cta-primary inline-flex h-11 items-center justify-center rounded-full px-6 text-sm font-semibold tracking-tight disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                  Subscribe
+                  {status.state === "loading" ? "Subscribing…" : "Subscribe"}
                 </button>
               </form>
+            )}
+
+            {status.state === "error" && (
+              <p role="alert" className="mt-4 text-sm text-[#ff9b9b]">
+                {newsletterErrorMessage(status.code)}
+              </p>
             )}
           </div>
         </div>

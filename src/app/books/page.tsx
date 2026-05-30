@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 import { CatalogHero } from "@/components/catalog/catalog-hero";
 import { CatalogShell } from "@/components/catalog/catalog-shell";
@@ -53,7 +54,14 @@ export default async function BooksCatalogPage() {
 
       <main className="relative z-10">
         <CatalogHero />
-        <CatalogShell books={books} />
+        {/* Phase 2.F — `<CatalogShell>` uses `useSearchParams()` (URL-
+            synced filter/sort/page state). Next.js requires a Suspense
+            boundary around any client subtree that reads searchParams
+            so the rest of the page can stay statically prerendered
+            without bailing out to CSR. */}
+        <Suspense fallback={<CatalogShellFallback />}>
+          <CatalogShell books={books} />
+        </Suspense>
       </main>
 
       <HomeFooter />
@@ -114,4 +122,18 @@ function mapRealBooksToShell(
     formats: ["PDF"],
     cover: palette[i % palette.length],
   }));
+}
+
+/**
+ * Minimal placeholder rendered during the Suspense bail while
+ * `<CatalogShell>` resolves its URL params. Keeps the layout from
+ * jumping — same outer grid + a dim panel where the books go.
+ */
+function CatalogShellFallback() {
+  return (
+    <div className="mx-auto grid max-w-7xl gap-8 px-6 pb-24 lg:grid-cols-[280px_1fr] lg:gap-10">
+      <div className="hidden h-[400px] rounded-2xl border border-white/[0.05] bg-white/[0.02] lg:block" />
+      <div className="min-h-[400px] rounded-2xl border border-white/[0.05] bg-white/[0.02]" />
+    </div>
+  );
 }

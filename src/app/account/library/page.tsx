@@ -3,11 +3,10 @@ import type { Metadata } from "next";
 import { FulfillmentPoller } from "@/components/fulfillment-poller";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
-import { LibraryBooksGrid } from "@/components/library/library-books-grid";
 import { LibraryEmptyPanel } from "@/components/library/library-empty-panel";
-import { LibraryFilters } from "@/components/library/library-filters";
 import { LibraryHero } from "@/components/library/library-hero";
 import { LibraryRecommendationShelf } from "@/components/library/library-recommendation-shelf";
+import { LibraryShell } from "@/components/library/library-shell";
 import { LibraryStats } from "@/components/library/library-stats";
 import { UnprovisionedNotice } from "@/components/unprovisioned-notice";
 import { loadAuthenticatedLocalUser } from "@/lib/account";
@@ -63,12 +62,15 @@ export default async function LibraryPage() {
 
         <LibraryHero />
         <LibraryStats booksOwned={library.length} />
-        <LibraryFilters />
 
         {isEmpty ? (
           <LibraryEmptyPanel />
         ) : (
-          <LibraryBooksGrid library={library} />
+          // Phase 2.B — `<LibraryShell>` lifts the activeTab / sort / view
+          // state above `<LibraryFilters>` and `<LibraryBooksGrid>` so the
+          // filter bar actually drives the grid. The shell renders both
+          // components in one piece.
+          <LibraryShell library={library} />
         )}
 
         <LibraryRecommendationShelf />

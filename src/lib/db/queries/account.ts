@@ -55,10 +55,18 @@ export interface OrderForUser {
   entitlements: OrderEntitlement[];
 }
 
+export type ReadStatus = "not_started" | "reading" | "finished";
+
 export interface LibraryEntry {
   bookId: string;
   status: EntitlementStatus;
   watermarkedKey: string | null;
+  /** Phase 2.B — independent reading lifecycle (default not_started). */
+  readStatus: ReadStatus;
+  /** Phase 2.B — set on every successful `downloadBook` call; null until
+   *  the user pulls the file for the first time. Drives the "Downloaded"
+   *  filter tab on /account/library. */
+  lastDownloadedAt: Date | null;
   createdAt: Date;
   book: EntitlementBookSummary;
 }
@@ -218,6 +226,8 @@ export async function getUserLibrary(userId: string): Promise<LibraryEntry[]> {
           bookId: true,
           status: true,
           watermarkedKey: true,
+          readStatus: true,
+          lastDownloadedAt: true,
           createdAt: true,
         },
         with: {
@@ -236,6 +246,8 @@ export async function getUserLibrary(userId: string): Promise<LibraryEntry[]> {
         bookId: r.bookId,
         status: r.status,
         watermarkedKey: r.watermarkedKey,
+        readStatus: r.readStatus,
+        lastDownloadedAt: r.lastDownloadedAt,
         createdAt: r.createdAt,
         book: r.book,
       }));

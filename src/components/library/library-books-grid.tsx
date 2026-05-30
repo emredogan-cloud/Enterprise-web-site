@@ -1,22 +1,27 @@
 import Link from "next/link";
 
 import { DownloadButton } from "@/components/download-button";
+import { LibraryStatusMenu } from "@/components/library/library-status-menu";
+import type { LibraryView } from "@/components/library/library-filters";
 import { type LibraryEntry } from "@/lib/db/queries/account";
 
 /**
  * The owned-books grid (rendered when `getUserLibrary` returns ≥ 1 entry).
  *
- * Each tile is a cinematic glass card with:
- *   - CSS-rendered cover (gradient from a small palette so adjacent
- *     cards don't look identical — same approach as catalog when no
- *     `coverKey` is uploaded yet)
- *   - Title + subtitle
- *   - State-specific footer: `<DownloadButton>` when status === "ready",
- *     animated "Preparing your copy…" pulse when "pending",
- *     muted "Access revoked." when "revoked"
+ * Phase 2.B — now accepts the filtered + sorted entries from
+ * `<LibraryShell>` plus a `view` mode that selects between three
+ * layouts:
  *
- * Pure Server Component. `<DownloadButton>` is the only Client island
- * inside each tile (it triggers a signed-URL fetch).
+ *   - `grid`   → 5-up tile grid (the original)
+ *   - `shelf`  → horizontal-scrolling 2-up "shelf" rows (compact)
+ *   - `list`   → table-style single-line per book (data-dense)
+ *
+ * Each layout exposes the same actions: download (when ready), pending
+ * pulse, revoked notice — plus the new `<LibraryStatusMenu>` so the
+ * "Reading" / "Finished" tabs are populatable by the user.
+ *
+ * Pure Server Component (the `<DownloadButton>` and
+ * `<LibraryStatusMenu>` inside each entry are the only Client islands).
  */
 
 const COVER_PALETTE: Array<{ gradient: string; accent: string }> = [
@@ -46,11 +51,32 @@ const COVER_PALETTE: Array<{ gradient: string; accent: string }> = [
   },
 ];
 
-export function LibraryBooksGrid({ library }: { library: LibraryEntry[] }) {
+export function LibraryBooksGrid({
+  library,
+  view = "grid",
+}: {
+  library: LibraryEntry[];
+  view?: LibraryView;
+}) {
+  if (library.length === 0) return null;
+
+  if (view === "list") {
+    return <LibraryListView entries={library} />;
+  }
+  if (view === "shelf") {
+    return <LibraryShelfView entries={library} />;
+  }
+  return <LibraryGridView entries={library} />;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Grid view — the original 5-up tile grid.
+// ─────────────────────────────────────────────────────────────────────────
+function LibraryGridView({ entries }: { entries: LibraryEntry[] }) {
   return (
     <section className="mx-auto mt-8 max-w-[1320px] px-4 sm:px-6">
       <ul className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {library.map((entry, i) => (
+        {entries.map((entry, i) => (
           <li key={entry.bookId}>
             <LibraryTile entry={entry} themeIndex={i} />
           </li>
@@ -59,6 +85,49 @@ export function LibraryBooksGrid({ library }: { library: LibraryEntry[] }) {
     </section>
   );
 }
+
+// ─────────────────────────────────────────────────────────────────────────
+// Shelf view — horizontal-scrolling row with two visible at a time on
+// mobile. Same tile primitive, just a different container.
+// ─────────────────────────────────────────────────────────────────────────
+function LibraryShelfView({ entries }: { entries: LibraryEntry[] }) {
+  return (
+    <section className="mx-auto mt-8 max-w-[1320px] px-4 sm:px-6">
+      <ul className="cart-shelf-track -mx-1 flex snap-x snap-mandatory gap-5 overflow-x-auto px-1 pb-2">
+        {entries.map((entry, i) => (
+          <li
+            key={entry.bookId}
+            className="w-[42vw] flex-shrink-0 snap-start sm:w-[260px]"
+          >
+            <LibraryTile entry={entry} themeIndex={i} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// List view — data-dense single-line-per-book layout. Small cover, title,
+// status menu, download.
+// ─────────────────────────────────────────────────────────────────────────
+function LibraryListView({ entries }: { entries: LibraryEntry[] }) {
+  return (
+    <section className="mx-auto mt-8 max-w-[1320px] px-4 sm:px-6">
+      <ul className="space-y-3">
+        {entries.map((entry, i) => (
+          <li key={entry.bookId}>
+            <LibraryListRow entry={entry} themeIndex={i} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Shared primitives
+// ─────────────────────────────────────────────────────────────────────────
 
 function LibraryTile({
   entry,
@@ -70,7 +139,14 @@ function LibraryTile({
   const palette = COVER_PALETTE[themeIndex % COVER_PALETTE.length];
   return (
     <article className="home-glass home-card-hover group relative flex flex-col overflow-hidden rounded-[22px] p-3">
-      {/* Cover (links to book detail) */}
+      {/* Status menu — top-right above the cover, doesn't compete with download */}
+      <div className="absolute right-4 top-4 z-20">
+        <LibraryStatusMenu
+          bookId={entry.bookId}
+          initialStatus={entry.readStatus}
+        />
+      </div>
+
       <Link
         href={`/books/${entry.book.slug}`}
         className="relative block aspect-[2/3] overflow-hidden rounded-[14px] border border-white/[0.08] shadow-[0_18px_36px_-14px_rgba(0,0,0,0.7)]"
@@ -101,13 +177,14 @@ function LibraryTile({
         />
       </Link>
 
-      {/* Meta + state */}
       <div className="mt-4 flex flex-1 flex-col gap-1 px-1 pb-1">
         <h3 className="line-clamp-2 font-serif text-[14px] font-medium leading-snug text-[#e6e6e0] transition-colors group-hover:text-[#33f0aa]">
           {entry.book.title}
         </h3>
         {entry.book.subtitle && (
-          <p className="line-clamp-1 text-xs text-[#88918a]">{entry.book.subtitle}</p>
+          <p className="line-clamp-1 text-xs text-[#88918a]">
+            {entry.book.subtitle}
+          </p>
         )}
 
         <div className="mt-3">
@@ -125,6 +202,82 @@ function LibraryTile({
             <p className="text-xs text-[#ff9b9b]">Access revoked.</p>
           )}
         </div>
+      </div>
+    </article>
+  );
+}
+
+function LibraryListRow({
+  entry,
+  themeIndex,
+}: {
+  entry: LibraryEntry;
+  themeIndex: number;
+}) {
+  const palette = COVER_PALETTE[themeIndex % COVER_PALETTE.length];
+  return (
+    <article className="home-glass relative flex items-center gap-4 overflow-hidden rounded-[16px] p-3 sm:gap-5 sm:p-4">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/25 to-transparent"
+      />
+
+      {/* Mini cover — w-14 keeps it row-height friendly */}
+      <Link
+        href={`/books/${entry.book.slug}`}
+        className="relative h-20 w-14 flex-shrink-0 overflow-hidden rounded-md border border-white/[0.08]"
+      >
+        <div
+          className="absolute inset-0"
+          style={{ background: palette.gradient }}
+        />
+        <div
+          aria-hidden
+          className="absolute -right-3 -top-3 h-10 w-10 rounded-full opacity-50"
+          style={{
+            background: `radial-gradient(circle, ${palette.accent}55 0%, transparent 70%)`,
+          }}
+        />
+      </Link>
+
+      {/* Title + subtitle */}
+      <div className="min-w-0 flex-1">
+        <Link
+          href={`/books/${entry.book.slug}`}
+          className="block font-serif text-base font-medium leading-tight text-[#e6e6e0] transition-colors hover:text-[#33f0aa]"
+        >
+          {entry.book.title}
+        </Link>
+        {entry.book.subtitle && (
+          <p className="mt-1 line-clamp-1 text-xs text-[#88918a]">
+            {entry.book.subtitle}
+          </p>
+        )}
+      </div>
+
+      {/* Status menu */}
+      <div className="flex-shrink-0">
+        <LibraryStatusMenu
+          bookId={entry.bookId}
+          initialStatus={entry.readStatus}
+        />
+      </div>
+
+      {/* Download / pending / revoked */}
+      <div className="flex-shrink-0">
+        {entry.status === "ready" ? (
+          <DownloadButton bookId={entry.bookId} size="sm" />
+        ) : entry.status === "pending" ? (
+          <span className="inline-flex items-center gap-1.5 text-xs text-[#a7a7a0]">
+            <span
+              aria-hidden
+              className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#33f0aa]"
+            />
+            Preparing…
+          </span>
+        ) : (
+          <span className="text-xs text-[#ff9b9b]">Revoked</span>
+        )}
       </div>
     </article>
   );

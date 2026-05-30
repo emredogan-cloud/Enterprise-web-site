@@ -1,10 +1,13 @@
 "use server";
 
+import { and, eq } from "drizzle-orm";
 import { headers } from "next/headers";
+import { revalidatePath } from "next/cache";
 
 import { loadAuthenticatedLocalUser } from "@/lib/account";
 import { db } from "@/lib/db";
-import { downloadLogs } from "@/lib/db/schema";
+import { downloadLogs, entitlements } from "@/lib/db/schema";
+import type { ReadStatus } from "@/lib/db/queries/account";
 import {
   ARTIFACTS_BUCKET,
   generateSignedDownloadUrl,
@@ -110,6 +113,20 @@ export async function downloadBook(bookId: string): Promise<DownloadResult> {
       key: entitlement.watermarkedKey,
       // Default TTL = 600s; the storage module's hard ceiling is 900s.
     });
+
+    // Phase 2.B — stamp the entitlement so the library "Downloaded" tab
+    // can filter without joining download_logs. Best-effort; a failure
+    // here must NOT block the legitimate download (we already have the
+    // signed URL in hand and the audit log row went in above).
+    try {
+      await db
+        .update(entitlements)
+        .set({ lastDownloadedAt: new Date() })
+        .where(eq(entitlements.id, entitlement.id));
+    } catch (err) {
+      console.error("[download] lastDownloadedAt stamp failed:", err);
+    }
+
     return { ok: true, url };
   } catch (err) {
     console.error("[download] signed URL generation failed:", err);
@@ -118,5 +135,76 @@ export async function downloadBook(bookId: string): Promise<DownloadResult> {
       error:
         "Could not generate download link. Please try again in a moment.",
     };
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Phase 2.B — update the read_status on a user's entitlement.
+// ---------------------------------------------------------------------------
+
+export type UpdateReadStatusResult =
+  | { ok: true }
+  | { ok: false; error: string };
+
+const VALID_READ_STATUSES: ReadonlyArray<ReadStatus> = [
+  "not_started",
+  "reading",
+  "finished",
+];
+
+/**
+ * Phase 2.B — set the per-entitlement reading lifecycle status.
+ *
+ * Same auth + ownership discipline as `downloadBook`:
+ *   1. Auth gate via `loadAuthenticatedLocalUser`
+ *   2. Ownership enforced via composite (userId, bookId) WHERE clause
+ *   3. Input validation against the closed enum set
+ *   4. Revalidates `/account/library` so the filter bar re-renders
+ *      with the new status on the next paint
+ */
+export async function updateReadStatus(
+  bookId: string,
+  status: ReadStatus,
+): Promise<UpdateReadStatusResult> {
+  if (!bookId) {
+    return { ok: false, error: "Missing book reference." };
+  }
+  if (!VALID_READ_STATUSES.includes(status)) {
+    return { ok: false, error: "Invalid status." };
+  }
+
+  const userCtx = await loadAuthenticatedLocalUser();
+  if (!userCtx.ok) {
+    return {
+      ok: false,
+      error:
+        userCtx.title === "Sign in required"
+          ? "Please sign in to update your library."
+          : "Account temporarily unavailable. Please try again.",
+    };
+  }
+
+  try {
+    const result = await db
+      .update(entitlements)
+      .set({ readStatus: status })
+      .where(
+        and(
+          eq(entitlements.userId, userCtx.localUserId),
+          eq(entitlements.bookId, bookId),
+        ),
+      )
+      .returning({ id: entitlements.id });
+
+    if (result.length === 0) {
+      return { ok: false, error: "You do not own this book." };
+    }
+
+    // Drop the cached page so the new status renders on the next request.
+    revalidatePath("/account/library");
+    return { ok: true };
+  } catch (err) {
+    console.error("[updateReadStatus] failed:", err);
+    return { ok: false, error: "Could not update status. Please try again." };
   }
 }

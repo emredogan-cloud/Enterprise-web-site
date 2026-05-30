@@ -57,8 +57,11 @@ next-env.d.ts
 /*-referans-image.png
 /*_referans_image.png
 /*-reference-image.png
+/*_reference_image.png
+/*_referance_image.png
 # Same screenshots when relocated under /images/ (local-only, never shared)
 /images/*-referans-image.png
 /images/*_referans_image.png
 /images/*-reference-image.png
-/*_reference_image.png
+/images/*_reference_image.png
+/images/*_referance_image.png

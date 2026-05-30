@@ -3,6 +3,10 @@ title: "How to choose your next book"
 date: "2026-05-26"
 category: "Reading Guides"
 excerpt: "Three small questions that work better than any best-seller list for picking the next thing you'll actually finish: what's been on your mind, what's the last book you didn't finish, and how much attention do you have right now?"
+tags:
+  - "Choosing Books"
+  - "Reading Habits"
+  - "Focus"
 ---
 
 Best-seller lists are not very useful for picking your *next* book. They tell you what is popular this week, not what is right for you this evening. After a while of buying books that everyone else is reading and not finishing them, it becomes clear that some other selection process would help.

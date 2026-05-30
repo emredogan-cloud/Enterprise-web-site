@@ -63,6 +63,17 @@ export const entitlementStatusEnum = pgEnum("entitlement_status", [
   "revoked",
 ]);
 
+// Reading status — independent of the fulfillment lifecycle in
+// `entitlement_status`. Defaults to "not_started"; users flip it from
+// the /account/library shelf via the `updateReadStatus` server action.
+// "wishlist" is reserved for a future feature (separate wishlist table);
+// the current library tabs only consume not_started/reading/finished.
+export const readStatusEnum = pgEnum("read_status", [
+  "not_started",
+  "reading",
+  "finished",
+]);
+
 export const watermarkJobStatusEnum = pgEnum("watermark_job_status", [
   "queued",
   "running",
@@ -259,6 +270,14 @@ export const entitlements = pgTable(
       .references(() => orders.id, { onDelete: "restrict" }),
     status: entitlementStatusEnum("status").notNull().default("pending"),
     watermarkedKey: text("watermarked_key"),
+    // Phase 2.B — independent reading lifecycle. Defaults to
+    // "not_started" so existing entitlements are non-destructively
+    // backfilled by the migration.
+    readStatus: readStatusEnum("read_status").notNull().default("not_started"),
+    // Phase 2.B — set by the `downloadBook` action on every successful
+    // signed-URL mint. Powers the "Downloaded" library tab without a
+    // JOIN against download_logs.
+    lastDownloadedAt: timestamp("last_downloaded_at", { withTimezone: true }),
     createdAt: timestamp("created_at", { withTimezone: true })
       .notNull()
       .defaultNow(),
@@ -270,6 +289,7 @@ export const entitlements = pgTable(
   (t) => [
     uniqueIndex("entitlements_user_book_uk").on(t.userId, t.bookId),
     index("entitlements_user_status_idx").on(t.userId, t.status),
+    index("entitlements_user_read_status_idx").on(t.userId, t.readStatus),
     index("entitlements_order_idx").on(t.orderId),
   ],
 );

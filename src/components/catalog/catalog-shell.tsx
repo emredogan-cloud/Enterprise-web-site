@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { CatalogBookCard } from "./catalog-book-card";
 import {
@@ -15,56 +16,224 @@ import { Pagination } from "./pagination";
 const PAGE_SIZE = 10; // 5 cols × 2 rows = the reference's visible window
 const PRICE_MAX_CAP = 50;
 
+const VALID_SORTS: ReadonlyArray<SortOption> = [
+  "newest",
+  "price-low",
+  "price-high",
+  "rating",
+];
+const VALID_VIEWS: ReadonlyArray<ViewMode> = ["grid", "list"];
+
 /**
  * The single source of truth for the catalog's interactive state.
  *
- * Why one big Client Component instead of fine-grained Server/Client mix:
- *   - Every interactive surface (filter checkboxes, search input, range
- *     slider, sort dropdown, view toggle, pagination) needs to react to
- *     the same shared state. Lifting that state to a parent keeps it
- *     trivially in sync; no URL syncing / Context / Zustand needed.
- *   - The page (`src/app/books/page.tsx`) stays a Server Component that
- *     fetches `listPublishedBooks()` at SSG/ISR time and passes the
- *     baked-in array as a prop here. Page classification stays
- *     `○ Static + ISR 1h`.
+ * Phase 2.F — URL-synced filters. Every interactive surface writes to
+ * the URL via `router.replace`; mounting reads initial state from
+ * `useSearchParams`; browser back/forward stays in sync because the
+ * URL is authoritative. A refresh restores everything; a shared link
+ * lands on the same filtered view; the back button rewinds filter
+ * history one step at a time.
  *
- * The Hero (which has no state) stays a Server Component above us; the
- * Header is its own small Client island. Only this shell + its children
- * hydrate.
+ * Phase 2.I fold-in — the "Showing X-Y of 50,231" sahte global label
+ * is gone; the toolbar now reflects the real catalog size.
+ *
+ * The page (`src/app/books/page.tsx`) stays a Server Component that
+ * fetches `listPublishedBooks()` at SSG/ISR time and passes the baked-in
+ * array as a prop here. Page classification stays `○ Static + ISR 1h` —
+ * URL params only affect the client view, never the SSG payload.
  */
+
+// URL param keys — kept short for shareable URLs.
+const URL_KEYS = {
+  query: "q",
+  categories: "cat",
+  formats: "fmt",
+  priceMax: "p",
+  rating: "r",
+  sort: "sort",
+  view: "view",
+  page: "page",
+} as const;
+
+interface CatalogState {
+  searchQuery: string;
+  selectedCategories: Set<string>;
+  selectedFormats: Set<string>;
+  priceMax: number;
+  minRating: number;
+  sortBy: SortOption;
+  viewMode: ViewMode;
+  currentPage: number;
+}
+
+const DEFAULT_STATE: CatalogState = {
+  searchQuery: "",
+  selectedCategories: new Set(),
+  selectedFormats: new Set(),
+  priceMax: PRICE_MAX_CAP,
+  minRating: 0,
+  sortBy: "newest",
+  viewMode: "grid",
+  currentPage: 1,
+};
+
+/**
+ * Parse a `URLSearchParams` snapshot into a `CatalogState`, falling back
+ * to defaults for any missing / malformed key. The catalog accepts
+ * arbitrary URLs gracefully — `/books?p=hello` ignores `hello` rather
+ * than throwing.
+ */
+function readStateFromParams(params: URLSearchParams): CatalogState {
+  const categoriesParam = params.get(URL_KEYS.categories);
+  const formatsParam = params.get(URL_KEYS.formats);
+  const priceMaxParam = params.get(URL_KEYS.priceMax);
+  const ratingParam = params.get(URL_KEYS.rating);
+  const sortParam = params.get(URL_KEYS.sort);
+  const viewParam = params.get(URL_KEYS.view);
+  const pageParam = params.get(URL_KEYS.page);
+
+  const priceMaxNum = priceMaxParam ? Number(priceMaxParam) : NaN;
+  const ratingNum = ratingParam ? Number(ratingParam) : NaN;
+  const pageNum = pageParam ? Number(pageParam) : NaN;
+
+  const sort = (VALID_SORTS as readonly string[]).includes(sortParam ?? "")
+    ? (sortParam as SortOption)
+    : DEFAULT_STATE.sortBy;
+  const view = (VALID_VIEWS as readonly string[]).includes(viewParam ?? "")
+    ? (viewParam as ViewMode)
+    : DEFAULT_STATE.viewMode;
+
+  return {
+    searchQuery: params.get(URL_KEYS.query) ?? "",
+    selectedCategories: new Set(
+      categoriesParam ? categoriesParam.split(",").filter(Boolean) : [],
+    ),
+    selectedFormats: new Set(
+      formatsParam ? formatsParam.split(",").filter(Boolean) : [],
+    ),
+    priceMax:
+      Number.isFinite(priceMaxNum) && priceMaxNum >= 0 && priceMaxNum <= PRICE_MAX_CAP
+        ? priceMaxNum
+        : PRICE_MAX_CAP,
+    minRating:
+      Number.isFinite(ratingNum) && ratingNum >= 0 && ratingNum <= 5
+        ? ratingNum
+        : 0,
+    sortBy: sort,
+    viewMode: view,
+    currentPage:
+      Number.isFinite(pageNum) && pageNum >= 1 ? Math.floor(pageNum) : 1,
+  };
+}
+
+/**
+ * Serialize a `CatalogState` into URL query params, omitting any key that
+ * matches the default value so the URL stays short. `/books` (no params)
+ * is the canonical "no filters" URL.
+ */
+function writeStateToParams(state: CatalogState): URLSearchParams {
+  const next = new URLSearchParams();
+  if (state.searchQuery) next.set(URL_KEYS.query, state.searchQuery);
+  if (state.selectedCategories.size > 0) {
+    next.set(URL_KEYS.categories, Array.from(state.selectedCategories).join(","));
+  }
+  if (state.selectedFormats.size > 0) {
+    next.set(URL_KEYS.formats, Array.from(state.selectedFormats).join(","));
+  }
+  if (state.priceMax !== PRICE_MAX_CAP) {
+    next.set(URL_KEYS.priceMax, String(state.priceMax));
+  }
+  if (state.minRating !== 0) {
+    next.set(URL_KEYS.rating, String(state.minRating));
+  }
+  if (state.sortBy !== DEFAULT_STATE.sortBy) {
+    next.set(URL_KEYS.sort, state.sortBy);
+  }
+  if (state.viewMode !== DEFAULT_STATE.viewMode) {
+    next.set(URL_KEYS.view, state.viewMode);
+  }
+  if (state.currentPage !== 1) {
+    next.set(URL_KEYS.page, String(state.currentPage));
+  }
+  return next;
+}
+
 export function CatalogShell({ books }: { books: DemoBook[] }) {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategories, setSelectedCategories] = useState<Set<string>>(
-    new Set(),
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  // Initial state — read from the URL once at mount. Subsequent URL
+  // changes from outside (browser back/forward) re-sync via the effect
+  // below.
+  const [state, setState] = useState<CatalogState>(() =>
+    readStateFromParams(new URLSearchParams(searchParams?.toString() ?? "")),
   );
-  const [selectedFormats, setSelectedFormats] = useState<Set<string>>(new Set());
-  const [priceMax, setPriceMax] = useState(PRICE_MAX_CAP);
-  const [minRating, setMinRating] = useState(0);
-  const [sortBy, setSortBy] = useState<SortOption>("newest");
-  const [viewMode, setViewMode] = useState<ViewMode>("grid");
-  const [currentPage, setCurrentPage] = useState(1);
+
+  // Resync local state when the URL changes from outside this component
+  // (e.g. browser back/forward). We compare a serialized snapshot to
+  // avoid an infinite re-render loop with the writer effect below.
+  const lastWrittenQuery = useRef<string>(searchParams?.toString() ?? "");
+  useEffect(() => {
+    const currentQuery = searchParams?.toString() ?? "";
+    if (currentQuery === lastWrittenQuery.current) return;
+    lastWrittenQuery.current = currentQuery;
+    setState(readStateFromParams(new URLSearchParams(currentQuery)));
+  }, [searchParams]);
+
+  // Write state → URL whenever state changes. Search input is debounced
+  // (300ms) so typing doesn't pollute history. Everything else commits
+  // immediately because filter clicks are deliberate.
+  const writeUrl = useCallback(
+    (next: CatalogState) => {
+      const params = writeStateToParams(next);
+      const queryString = params.toString();
+      lastWrittenQuery.current = queryString;
+      const url = queryString ? `${pathname}?${queryString}` : pathname;
+      router.replace(url, { scroll: false });
+    },
+    [pathname, router],
+  );
+
+  const debouncedSearchWrite = useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  );
+  useEffect(() => {
+    if (debouncedSearchWrite.current) clearTimeout(debouncedSearchWrite.current);
+    debouncedSearchWrite.current = setTimeout(() => {
+      writeUrl(state);
+    }, 300);
+    return () => {
+      if (debouncedSearchWrite.current) clearTimeout(debouncedSearchWrite.current);
+    };
+    // The writer is debounced via this single effect; we re-run on every
+    // state change so search typing collapses into one URL write.
+  }, [state, writeUrl]);
 
   /* -------------------------------- filters ------------------------------ */
   const filtered = useMemo(() => {
-    const needle = searchQuery.trim().toLowerCase();
+    const needle = state.searchQuery.trim().toLowerCase();
     const arr = books.filter((b) => {
       if (needle && !b.title.toLowerCase().includes(needle)) return false;
-      if (selectedCategories.size && !selectedCategories.has(b.category)) {
+      if (
+        state.selectedCategories.size &&
+        !state.selectedCategories.has(b.category)
+      ) {
         return false;
       }
       if (
-        selectedFormats.size &&
-        !b.formats.some((f) => selectedFormats.has(f))
+        state.selectedFormats.size &&
+        !b.formats.some((f) => state.selectedFormats.has(f))
       ) {
         return false;
       }
       const priceDollars = b.priceCents / 100;
-      if (priceDollars > priceMax) return false;
-      if (minRating && b.rating < minRating) return false;
+      if (priceDollars > state.priceMax) return false;
+      if (state.minRating && b.rating < state.minRating) return false;
       return true;
     });
 
-    switch (sortBy) {
+    switch (state.sortBy) {
       case "price-low":
         return [...arr].sort((a, b) => a.priceCents - b.priceCents);
       case "price-high":
@@ -75,19 +244,11 @@ export function CatalogShell({ books }: { books: DemoBook[] }) {
       default:
         return arr; // keep original order
     }
-  }, [
-    books,
-    searchQuery,
-    selectedCategories,
-    selectedFormats,
-    priceMax,
-    minRating,
-    sortBy,
-  ]);
+  }, [books, state]);
 
   /* ----------------------------- pagination ----------------------------- */
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
-  const safePage = Math.min(currentPage, totalPages);
+  const safePage = Math.min(state.currentPage, totalPages);
   const pageStart = (safePage - 1) * PAGE_SIZE;
   const pageEnd = pageStart + PAGE_SIZE;
   const visible = filtered.slice(pageStart, pageEnd);
@@ -96,46 +257,41 @@ export function CatalogShell({ books }: { books: DemoBook[] }) {
   // Every filter change resets pagination to page 1 — without this the
   // user would land on page 5 after toggling a category that only has 8
   // matches, see an empty page, and be confused.
-  const togglerForSet = (
-    setter: React.Dispatch<React.SetStateAction<Set<string>>>,
-  ) => {
+  const togglerForSetKey = (key: "selectedCategories" | "selectedFormats") => {
     return (name: string) => {
-      setter((prev) => {
-        const next = new Set(prev);
+      setState((prev) => {
+        const next = new Set(prev[key]);
         if (next.has(name)) next.delete(name);
         else next.add(name);
-        return next;
+        return { ...prev, [key]: next, currentPage: 1 };
       });
-      setCurrentPage(1);
     };
   };
 
-  const onSearchChange = (q: string) => {
-    setSearchQuery(q);
-    setCurrentPage(1);
-  };
-  const onToggleCategory = togglerForSet(setSelectedCategories);
-  const onToggleFormat = togglerForSet(setSelectedFormats);
-  const onPriceMaxChange = (v: number) => {
-    setPriceMax(v);
-    setCurrentPage(1);
-  };
-  const onMinRatingChange = (v: number) => {
-    setMinRating(v);
-    setCurrentPage(1);
-  };
-  const onSortChange = (s: SortOption) => {
-    setSortBy(s);
-    setCurrentPage(1);
-  };
-  const onResetAll = () => {
-    setSearchQuery("");
-    setSelectedCategories(new Set());
-    setSelectedFormats(new Set());
-    setPriceMax(PRICE_MAX_CAP);
-    setMinRating(0);
-    setCurrentPage(1);
-  };
+  const onSearchChange = (q: string) =>
+    setState((s) => ({ ...s, searchQuery: q, currentPage: 1 }));
+  const onToggleCategory = togglerForSetKey("selectedCategories");
+  const onToggleFormat = togglerForSetKey("selectedFormats");
+  const onPriceMaxChange = (v: number) =>
+    setState((s) => ({ ...s, priceMax: v, currentPage: 1 }));
+  const onMinRatingChange = (v: number) =>
+    setState((s) => ({ ...s, minRating: v, currentPage: 1 }));
+  const onSortChange = (s: SortOption) =>
+    setState((prev) => ({ ...prev, sortBy: s, currentPage: 1 }));
+  const onViewChange = (v: ViewMode) =>
+    setState((s) => ({ ...s, viewMode: v }));
+  const onPageChange = (p: number) =>
+    setState((s) => ({
+      ...s,
+      currentPage: Math.max(1, Math.min(p, totalPages)),
+    }));
+  const onResetAll = () =>
+    setState({
+      ...DEFAULT_STATE,
+      // Replace the Sets with fresh instances so React picks up the change.
+      selectedCategories: new Set(),
+      selectedFormats: new Set(),
+    });
 
   /* --------------------------------- render ----------------------------- */
   return (
@@ -143,11 +299,11 @@ export function CatalogShell({ books }: { books: DemoBook[] }) {
       {/* Sidebar */}
       <FilterSidebar
         allBooks={books}
-        searchQuery={searchQuery}
-        selectedCategories={selectedCategories}
-        selectedFormats={selectedFormats}
-        priceMax={priceMax}
-        minRating={minRating}
+        searchQuery={state.searchQuery}
+        selectedCategories={state.selectedCategories}
+        selectedFormats={state.selectedFormats}
+        priceMax={state.priceMax}
+        minRating={state.minRating}
         onSearchChange={onSearchChange}
         onToggleCategory={onToggleCategory}
         onToggleFormat={onToggleFormat}
@@ -162,24 +318,25 @@ export function CatalogShell({ books }: { books: DemoBook[] }) {
           startIndex={visible.length === 0 ? 0 : pageStart + 1}
           endIndex={pageStart + visible.length}
           totalDisplayed={filtered.length}
-          // Keep the marketing 50K label so the storefront feels populated
-          // even when the underlying dataset is small; once real catalog
-          // grows past 50K, pipe the actual filtered count through here.
+          // Phase 2.I fold-in — the previous "50,231" sahte marketing
+          // label is gone. We always show the real total catalog size
+          // (the input `books` length) when no filters are active, and
+          // the filtered count otherwise.
           totalGlobal={
             filtered.length === books.length
-              ? "50,231"
+              ? books.length.toLocaleString("en-US")
               : filtered.length.toLocaleString("en-US")
           }
-          sortBy={sortBy}
-          viewMode={viewMode}
+          sortBy={state.sortBy}
+          viewMode={state.viewMode}
           onSortChange={onSortChange}
-          onViewChange={setViewMode}
+          onViewChange={onViewChange}
         />
 
         {/* Grid / list */}
         {visible.length === 0 ? (
           <EmptyResults onReset={onResetAll} />
-        ) : viewMode === "grid" ? (
+        ) : state.viewMode === "grid" ? (
           <ul className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {visible.map((book) => (
               <li key={book.id}>
@@ -202,9 +359,7 @@ export function CatalogShell({ books }: { books: DemoBook[] }) {
           <Pagination
             currentPage={safePage}
             totalPages={totalPages}
-            onPageChange={(p) =>
-              setCurrentPage(Math.max(1, Math.min(p, totalPages)))
-            }
+            onPageChange={onPageChange}
           />
         </div>
       </section>

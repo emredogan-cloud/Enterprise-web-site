@@ -53,6 +53,19 @@ export function slugifyCategory(name: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
+/**
+ * Phase 2.H — same shape as `slugifyCategory`, kept as its own export so
+ * future tag-specific tweaks (longer chars, locale-aware) don't have to
+ * touch the category slugger.
+ */
+export function slugifyTag(name: string): string {
+  return name
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 // -----------------------------------------------------------------------------
 // Types — frontmatter, summary, and full post.
 // -----------------------------------------------------------------------------
@@ -71,6 +84,13 @@ export interface BlogPostMeta {
   /** Derived URL slug for the category — never stored in frontmatter. */
   categorySlug: string;
   excerpt: string;
+  /**
+   * Phase 2.H — optional human-readable tag list (frontmatter `tags`).
+   * Authors write something like `tags: ["Choosing Books", "Focus"]`;
+   * the URL-slug form is derived on demand via `slugifyTag`. Always
+   * present — empty array when the post has no tags.
+   */
+  tags: ReadonlyArray<string>;
 }
 
 export interface BlogPost extends BlogPostMeta {
@@ -107,6 +127,8 @@ interface RawFrontmatter {
   date: string;
   category: string;
   excerpt: string;
+  /** Phase 2.H — optional tag array; missing/empty is treated as []. */
+  tags?: string[];
 }
 
 function isValidFrontmatter(
@@ -119,6 +141,21 @@ function isValidFrontmatter(
         `[blog] skipping ${filename}: missing or non-string frontmatter field "${field}"`,
       );
       return false;
+    }
+  }
+  // `tags` is optional — when present it must be an array of strings.
+  // Anything malformed (a string, a number, etc.) is treated as no tags
+  // and warned once so authors notice.
+  if (data.tags !== undefined) {
+    if (
+      !Array.isArray(data.tags) ||
+      !data.tags.every((t) => typeof t === "string" && t.length > 0)
+    ) {
+      console.warn(
+        `[blog] ${filename}: frontmatter "tags" must be an array of non-empty strings; ignoring`,
+      );
+      // Don't reject the post; just drop the malformed tags.
+      delete data.tags;
     }
   }
   return true;
@@ -162,6 +199,7 @@ async function loadAllPostsMeta(): Promise<BlogPostMeta[]> {
         category: data.category,
         categorySlug: slugifyCategory(data.category),
         excerpt: data.excerpt,
+        tags: Array.isArray(data.tags) ? data.tags : [],
       };
       return meta;
     }),
@@ -360,4 +398,79 @@ export async function getCategoryBySlug(
     name: matching[0].category,
     posts: matching,
   };
+}
+
+// -----------------------------------------------------------------------------
+// Tag hubs — Phase 2.H. The blog category sidebar's "topic pills" link
+// here; an individual tag's page (/blog/tag/[slug]) lists every post
+// that carries that tag in its frontmatter.
+// -----------------------------------------------------------------------------
+
+export interface TagSummary {
+  /** URL-slug form. */
+  slug: string;
+  /** Human-readable form (the first author-cased occurrence we see). */
+  name: string;
+  postCount: number;
+}
+
+export interface TagPagePosts {
+  slug: string;
+  name: string;
+  posts: BlogPostMeta[];
+}
+
+/**
+ * Distinct tag slugs (with name + count) across every published post.
+ * Sorted by post count desc → alphabetical. Powers tag-cloud UIs and
+ * `generateStaticParams` on `/blog/tag/[slug]`.
+ */
+export async function getAllTags(): Promise<TagSummary[]> {
+  const posts = await getAllPostsCached();
+  const map = new Map<string, TagSummary>();
+  for (const p of posts) {
+    for (const rawTag of p.tags ?? []) {
+      const slug = slugifyTag(rawTag);
+      if (!slug) continue;
+      const existing = map.get(slug);
+      if (existing) {
+        existing.postCount += 1;
+      } else {
+        map.set(slug, { slug, name: rawTag, postCount: 1 });
+      }
+    }
+  }
+  return Array.from(map.values()).sort((a, b) => {
+    if (b.postCount !== a.postCount) return b.postCount - a.postCount;
+    return a.name.localeCompare(b.name);
+  });
+}
+
+/** Just the slugs — for `generateStaticParams` on `/blog/tag/[slug]`. */
+export async function getAllTagSlugs(): Promise<string[]> {
+  const tags = await getAllTags();
+  return tags.map((t) => t.slug);
+}
+
+/**
+ * All posts that carry a tag whose slug matches `tagSlug`. Returns
+ * `null` if no posts use that tag (unknown slug ⇒ 404).
+ */
+export async function getPostsByTag(
+  tagSlug: string,
+): Promise<TagPagePosts | null> {
+  const posts = await getAllPostsCached();
+  const matching: BlogPostMeta[] = [];
+  let humanName: string | null = null;
+  for (const p of posts) {
+    for (const t of p.tags ?? []) {
+      if (slugifyTag(t) === tagSlug) {
+        matching.push(p);
+        if (!humanName) humanName = t;
+        break; // a post counts once per tag
+      }
+    }
+  }
+  if (matching.length === 0 || !humanName) return null;
+  return { slug: tagSlug, name: humanName, posts: matching };
 }

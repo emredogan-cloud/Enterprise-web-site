@@ -16,13 +16,18 @@ import { DEMO_BOOKS } from "@/components/catalog/demo-books";
  * Clicking a row navigates to `/search?q=<title>`.
  */
 export function PopularSearchesPanel() {
-  // Pick five hand-curated popular titles + their fake "search counts"
-  const popular: { slug: string; title: string; author: string; count: string }[] = [
-    { slug: "the-psychology-of-money", title: "The Psychology of Money", author: "Morgan Housel", count: "12.4K" },
-    { slug: "1984", title: "1984", author: "George Orwell", count: "9.8K" },
-    { slug: "the-silent-patient", title: "The Silent Patient", author: "Alex Michaelides", count: "8.2K" },
-    { slug: "rich-dad-poor-dad", title: "Rich Dad Poor Dad", author: "Robert Kiyosaki", count: "7.5K" },
-    { slug: "the-midnight-library", title: "The Midnight Library", author: "Matt Haig", count: "6.9K" },
+  // Phase 2.J — fake "search count" numbers removed. They were
+  // hard-coded marketing labels with no analytics behind them; showing
+  // "12.4K searches" implied data we don't actually collect. Until an
+  // analytics pipeline ships and feeds real counts in, we just show the
+  // curated title + author. The list itself is still editorially useful
+  // — it's the storefront's pick of "books worth searching for."
+  const popular: { slug: string; title: string; author: string }[] = [
+    { slug: "the-psychology-of-money", title: "The Psychology of Money", author: "Morgan Housel" },
+    { slug: "1984", title: "1984", author: "George Orwell" },
+    { slug: "the-silent-patient", title: "The Silent Patient", author: "Alex Michaelides" },
+    { slug: "rich-dad-poor-dad", title: "Rich Dad Poor Dad", author: "Robert Kiyosaki" },
+    { slug: "the-midnight-library", title: "The Midnight Library", author: "Matt Haig" },
   ];
 
   // Map titles → demo book cover gradients so the mini covers feel coherent
@@ -95,13 +100,8 @@ export function PopularSearchesPanel() {
                   </p>
                 </div>
 
-                {/* Emerald search count — explicitly the accent color */}
-                <span
-                  className="hidden text-xs font-semibold tabular-nums sm:inline-block"
-                  style={{ color: "#16c784" }}
-                >
-                  {p.count} searches
-                </span>
+                {/* Phase 2.J — search-count badge removed (was sahte
+                    marketing data). The list reads cleanly without it. */}
 
                 {/* Arrow */}
                 <span
