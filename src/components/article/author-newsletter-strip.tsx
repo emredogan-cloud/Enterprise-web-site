@@ -72,15 +72,15 @@ export function AuthorNewsletterStrip({
                 }}
               />
               <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#88918a]">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
                   Written by
                 </p>
-                <p className="mt-0.5 font-serif text-[19px] font-medium text-[#e6e6e0]">
+                <p className="mt-0.5 font-serif text-[19px] font-medium text-fg-hi">
                   {authorName}
                 </p>
               </div>
             </div>
-            <p className="mt-5 max-w-md text-sm leading-relaxed text-[#a7a7a0]">
+            <p className="mt-5 max-w-md text-sm leading-relaxed text-fg-mid">
               {bio}
             </p>
 
@@ -98,13 +98,13 @@ export function AuthorNewsletterStrip({
 
           {/* RIGHT — Newsletter CTA */}
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#33f0aa]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-bright">
               Newsletter
             </p>
-            <h2 className="mt-3 font-serif text-[24px] font-medium leading-tight text-[#e6e6e0] sm:text-[28px]">
+            <h2 className="mt-3 font-serif text-[24px] font-medium leading-tight text-fg-hi sm:text-[28px]">
               Enjoyed this article?
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-[#a7a7a0]">
+            <p className="mt-3 text-sm leading-relaxed text-fg-mid">
               Subscribe to get more reading guides and book recommendations
               delivered to your inbox.
             </p>
@@ -112,7 +112,7 @@ export function AuthorNewsletterStrip({
             {status.state === "ok" ? (
               <p
                 role="status"
-                className="mt-6 inline-block rounded-full border border-[#33f0aa]/30 bg-[#33f0aa]/10 px-5 py-2.5 text-sm text-[#33f0aa]"
+                className="mt-6 inline-block rounded-full border border-emerald-bright/30 bg-emerald-bright/10 px-5 py-2.5 text-sm text-emerald-bright"
               >
                 Thanks — you&apos;re on the list. The next book lands in your inbox.
               </p>
@@ -132,7 +132,7 @@ export function AuthorNewsletterStrip({
                   value={email}
                   onChange={(e) => setEmail(e.currentTarget.value)}
                   disabled={status.state === "loading"}
-                  className="h-11 flex-1 rounded-full border border-white/[0.08] bg-white/[0.03] px-5 text-sm text-[#e6e6e0] placeholder:text-[#5d675f] focus:border-[#33f0aa]/40 focus:outline-none focus:ring-2 focus:ring-[#33f0aa]/20 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="h-11 flex-1 rounded-full border border-white/[0.08] bg-white/[0.03] px-5 text-sm text-fg-hi placeholder:text-fg-fade focus:border-emerald-bright/40 focus:outline-none focus:ring-2 focus:ring-emerald-bright/20 disabled:cursor-not-allowed disabled:opacity-60"
                 />
                 <button
                   type="submit"

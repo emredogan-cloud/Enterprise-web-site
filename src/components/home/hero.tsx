@@ -27,13 +27,13 @@ export function Hero() {
               aria-hidden
               className="h-1.5 w-1.5 rounded-full bg-[#33f0aa] shadow-[0_0_6px_#33f0aa]"
             />
-            <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-[#a7a7a0]">
+            <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-fg-mid">
               New · Curated Digital Library
             </span>
           </div>
 
           {/* Headline */}
-          <h1 className="mt-7 font-serif text-[56px] font-medium leading-[1.02] tracking-[-0.025em] text-[#e6e6e0] sm:text-[68px] lg:text-[80px] xl:text-[88px]">
+          <h1 className="mt-7 font-serif text-[56px] font-medium leading-[1.02] tracking-[-0.025em] text-fg-hi sm:text-[68px] lg:text-[80px] xl:text-[88px]">
             <span className="block">Find it.</span>
             <span className="block">Own it.</span>
             <span
@@ -51,7 +51,7 @@ export function Hero() {
           </h1>
 
           {/* Supporting copy */}
-          <p className="mt-7 max-w-[480px] text-[17px] leading-[1.65] text-[#a7a7a0] sm:text-[18px]">
+          <p className="mt-7 max-w-[480px] text-[17px] leading-[1.65] text-fg-mid sm:text-[18px]">
             A modern digital bookstore for the readers of today. Buy once,
             download a watermarked-free PDF, and read on any device. Yours to
             keep — never locked.

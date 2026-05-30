@@ -48,10 +48,10 @@ export function PopularSearchesPanel() {
 
       {/* Header */}
       <header className="flex items-center gap-2.5">
-        <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-[#16c784]/30 bg-[#16c784]/10 text-[#33f0aa] shadow-[0_0_12px_-2px_rgba(51,240,170,0.4)]">
+        <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-emerald-deep/30 bg-emerald-deep/10 text-emerald-bright shadow-[0_0_12px_-2px_rgba(51,240,170,0.4)]">
           <TrendingUp aria-hidden className="h-3.5 w-3.5" strokeWidth={2.2} />
         </span>
-        <h2 className="font-serif text-[18px] font-medium text-[#e6e6e0]">
+        <h2 className="font-serif text-[18px] font-medium text-fg-hi">
           Popular searches
         </h2>
       </header>
@@ -92,10 +92,10 @@ export function PopularSearchesPanel() {
 
                 {/* Title + author */}
                 <div className="min-w-0 flex-1">
-                  <p className="truncate font-serif text-[15px] font-medium leading-tight text-[#e6e6e0] transition-colors group-hover:text-[#33f0aa]">
+                  <p className="truncate font-serif text-[15px] font-medium leading-tight text-fg-hi transition-colors group-hover:text-emerald-bright">
                     {p.title}
                   </p>
-                  <p className="mt-0.5 truncate text-[11px] text-[#88918a]">
+                  <p className="mt-0.5 truncate text-[11px] text-fg-soft">
                     {p.author}
                   </p>
                 </div>
@@ -106,7 +106,7 @@ export function PopularSearchesPanel() {
                 {/* Arrow */}
                 <span
                   aria-hidden
-                  className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-white/[0.06] bg-white/[0.02] text-[#88918a] transition-all group-hover:border-[#33f0aa]/40 group-hover:bg-[#33f0aa]/10 group-hover:text-[#33f0aa]"
+                  className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-white/[0.06] bg-white/[0.02] text-fg-soft transition-all group-hover:border-emerald-bright/40 group-hover:bg-emerald-bright/10 group-hover:text-emerald-bright"
                 >
                   <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
                 </span>

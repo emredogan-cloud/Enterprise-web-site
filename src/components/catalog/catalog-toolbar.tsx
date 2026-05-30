@@ -32,13 +32,13 @@ export function CatalogToolbar(props: CatalogToolbarProps) {
   return (
     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       {/* LEFT — results count */}
-      <p className="text-sm text-[#a7a7a0]">
+      <p className="text-sm text-fg-mid">
         Showing{" "}
-        <span className="tabular-nums text-[#e6e6e0]">
+        <span className="tabular-nums text-fg-hi">
           {props.startIndex}-{props.endIndex}
         </span>{" "}
         of{" "}
-        <span className="tabular-nums text-[#e6e6e0]">
+        <span className="tabular-nums text-fg-hi">
           {props.totalGlobal}
         </span>{" "}
         books
@@ -56,7 +56,7 @@ export function CatalogToolbar(props: CatalogToolbarProps) {
           </label>
           <span
             aria-hidden
-            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-xs text-[#88918a]"
+            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-xs text-fg-soft"
           >
             Sort by:
           </span>
@@ -66,7 +66,7 @@ export function CatalogToolbar(props: CatalogToolbarProps) {
             onChange={(e) =>
               props.onSortChange(e.target.value as SortOption)
             }
-            className="h-9 cursor-pointer appearance-none rounded-full border border-white/[0.08] bg-white/[0.03] py-0 pl-[70px] pr-9 text-sm text-[#e6e6e0] transition-colors hover:border-white/[0.14] focus:border-[#33f0aa]/40 focus:outline-none focus:ring-2 focus:ring-[#33f0aa]/20"
+            className="h-9 cursor-pointer appearance-none rounded-full border border-white/[0.08] bg-white/[0.03] py-0 pl-[70px] pr-9 text-sm text-fg-hi transition-colors hover:border-white/[0.14] focus:border-emerald-bright/40 focus:outline-none focus:ring-2 focus:ring-emerald-bright/20"
           >
             {(Object.keys(SORT_LABELS) as SortOption[]).map((key) => (
               <option key={key} value={key} className="bg-[#0a1410]">
@@ -76,7 +76,7 @@ export function CatalogToolbar(props: CatalogToolbarProps) {
           </select>
           <svg
             aria-hidden
-            className="pointer-events-none absolute right-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#a7a7a0]"
+            className="pointer-events-none absolute right-3 top-1/2 h-3 w-3 -translate-y-1/2 text-fg-mid"
             viewBox="0 0 12 12"
             fill="none"
             stroke="currentColor"
@@ -95,8 +95,8 @@ export function CatalogToolbar(props: CatalogToolbarProps) {
             aria-label="Grid view"
             className={`flex h-8 w-8 items-center justify-center rounded-full transition-all ${
               props.viewMode === "grid"
-                ? "bg-[#33f0aa]/15 text-[#33f0aa] shadow-[0_0_12px_rgba(51,240,170,0.3)]"
-                : "text-[#88918a] hover:text-[#e6e6e0]"
+                ? "bg-emerald-bright/15 text-emerald-bright shadow-[0_0_12px_rgba(51,240,170,0.3)]"
+                : "text-fg-soft hover:text-fg-hi"
             }`}
           >
             <LayoutGrid className="h-3.5 w-3.5" aria-hidden />
@@ -108,8 +108,8 @@ export function CatalogToolbar(props: CatalogToolbarProps) {
             aria-label="List view"
             className={`flex h-8 w-8 items-center justify-center rounded-full transition-all ${
               props.viewMode === "list"
-                ? "bg-[#33f0aa]/15 text-[#33f0aa] shadow-[0_0_12px_rgba(51,240,170,0.3)]"
-                : "text-[#88918a] hover:text-[#e6e6e0]"
+                ? "bg-emerald-bright/15 text-emerald-bright shadow-[0_0_12px_rgba(51,240,170,0.3)]"
+                : "text-fg-soft hover:text-fg-hi"
             }`}
           >
             <List className="h-3.5 w-3.5" aria-hidden />

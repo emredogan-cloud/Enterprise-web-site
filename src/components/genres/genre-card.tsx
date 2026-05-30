@@ -19,7 +19,7 @@ export function GenreCard({ genre }: { genre: DemoGenre }) {
   return (
     <Link
       href={`/categories/${genre.slug}`}
-      className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#33f0aa]/60 rounded-[24px]"
+      className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/60 rounded-[24px]"
     >
       <article className="home-card-hover home-glass relative h-full overflow-hidden rounded-[24px] p-5 sm:p-6">
         <div className="flex gap-5">
@@ -28,13 +28,13 @@ export function GenreCard({ genre }: { genre: DemoGenre }) {
 
           {/* RIGHT — text stack */}
           <div className="min-w-0 flex-1">
-            <h3 className="font-serif text-[18px] font-medium leading-tight text-[#e6e6e0] transition-colors group-hover:text-[#33f0aa] sm:text-[20px]">
+            <h3 className="font-serif text-[18px] font-medium leading-tight text-fg-hi transition-colors group-hover:text-emerald-bright sm:text-[20px]">
               {genre.name}
             </h3>
-            <p className="mt-1 text-xs font-medium tabular-nums text-[#88918a]">
+            <p className="mt-1 text-xs font-medium tabular-nums text-fg-soft">
               {genre.bookCountLabel}
             </p>
-            <p className="mt-3 line-clamp-2 text-sm leading-snug text-[#a7a7a0]">
+            <p className="mt-3 line-clamp-2 text-sm leading-snug text-fg-mid">
               {genre.description}
             </p>
           </div>
@@ -43,7 +43,7 @@ export function GenreCard({ genre }: { genre: DemoGenre }) {
         {/* Bottom-right circular arrow CTA — absolute per the brief */}
         <span
           aria-hidden
-          className="absolute bottom-4 right-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.1] bg-white/[0.03] text-[#a7a7a0] transition-all group-hover:border-[#33f0aa]/50 group-hover:bg-[#33f0aa]/10 group-hover:text-[#33f0aa] group-hover:shadow-[0_0_16px_rgba(51,240,170,0.4)] sm:bottom-5 sm:right-5"
+          className="absolute bottom-4 right-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.1] bg-white/[0.03] text-fg-mid transition-all group-hover:border-emerald-bright/50 group-hover:bg-emerald-bright/10 group-hover:text-emerald-bright group-hover:shadow-[0_0_16px_rgba(51,240,170,0.4)] sm:bottom-5 sm:right-5"
         >
           <ArrowUpRight className="h-4 w-4" strokeWidth={2} />
         </span>

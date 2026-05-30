@@ -37,10 +37,10 @@ export function WhyReadersSection() {
       <div className="mx-auto max-w-7xl">
         <RevealOnScroll>
           <header className="mx-auto max-w-2xl text-center">
-            <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#33f0aa]/80">
+            <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-emerald-bright/80">
               Why readers love us
             </p>
-            <h2 className="mt-4 font-serif text-[36px] font-medium leading-tight tracking-tight text-[#e6e6e0] sm:text-[44px]">
+            <h2 className="mt-4 font-serif text-[36px] font-medium leading-tight tracking-tight text-fg-hi sm:text-[44px]">
               Designed for the way you actually read
             </h2>
           </header>
@@ -57,16 +57,16 @@ export function WhyReadersSection() {
                 key={feature.title}
                 className="home-glass home-card-hover rounded-2xl p-6"
               >
-                <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#16c784]/30 bg-[#16c784]/10">
+                <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-emerald-deep/30 bg-emerald-deep/10">
                   <Icon
                     aria-hidden
-                    className="h-5 w-5 text-[#33f0aa]"
+                    className="h-5 w-5 text-emerald-bright"
                   />
                 </span>
-                <h3 className="mt-5 font-serif text-lg font-medium text-[#e6e6e0]">
+                <h3 className="mt-5 font-serif text-lg font-medium text-fg-hi">
                   {feature.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#a7a7a0]">
+                <p className="mt-2 text-sm leading-relaxed text-fg-mid">
                   {feature.body}
                 </p>
               </div>

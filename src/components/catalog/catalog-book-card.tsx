@@ -88,7 +88,7 @@ export function CatalogBookCard({ book }: { book: DemoBook }) {
         <button
           type="button"
           aria-label="Add to wishlist"
-          className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.12] bg-black/40 text-white/70 backdrop-blur-md transition-all hover:border-[#33f0aa]/50 hover:text-[#33f0aa] hover:shadow-[0_0_14px_rgba(51,240,170,0.45)]"
+          className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.12] bg-black/40 text-white/70 backdrop-blur-md transition-all hover:border-emerald-bright/50 hover:text-emerald-bright hover:shadow-[0_0_14px_rgba(51,240,170,0.45)]"
         >
           <Heart className="h-3.5 w-3.5" aria-hidden />
         </button>
@@ -105,20 +105,20 @@ export function CatalogBookCard({ book }: { book: DemoBook }) {
 
       {/* Meta */}
       <div className="mt-4 flex flex-1 flex-col gap-1 px-1 pb-1">
-        <h4 className="line-clamp-2 font-serif text-[15px] font-medium leading-snug text-[#e6e6e0] transition-colors group-hover:text-[#33f0aa]">
+        <h4 className="line-clamp-2 font-serif text-[15px] font-medium leading-snug text-fg-hi transition-colors group-hover:text-emerald-bright">
           {book.title}
         </h4>
-        <p className="text-xs text-[#88918a]">{book.author}</p>
+        <p className="text-xs text-fg-soft">{book.author}</p>
 
         <div className="mt-auto flex items-center justify-between pt-3">
-          <div className="flex items-center gap-1 text-xs text-[#a7a7a0]">
+          <div className="flex items-center gap-1 text-xs text-fg-mid">
             <Star
               aria-hidden
               className="h-3 w-3 fill-[#f4c44b] text-[#f4c44b]"
             />
             <span className="tabular-nums">{book.rating.toFixed(1)}</span>
           </div>
-          <span className="font-semibold tabular-nums text-[#e6e6e0]">
+          <span className="font-semibold tabular-nums text-fg-hi">
             {priceLabel}
           </span>
         </div>

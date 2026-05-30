@@ -16,7 +16,7 @@ export function CinematicSampleSection({ content }: { content: string }) {
     <section className="mx-auto mt-24 max-w-4xl px-4 sm:px-6">
       {/* Header */}
       <header className="text-center">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#33f0aa]">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
           Preview
         </p>
 
@@ -37,10 +37,10 @@ export function CinematicSampleSection({ content }: { content: string }) {
           />
         </div>
 
-        <h2 className="mt-5 font-serif text-[32px] font-medium leading-tight text-[#e6e6e0] sm:text-[40px]">
+        <h2 className="mt-5 font-serif text-[32px] font-medium leading-tight text-fg-hi sm:text-[40px]">
           A taste of the writing
         </h2>
-        <p className="mt-4 text-[#a7a7a0]">
+        <p className="mt-4 text-fg-mid">
           Read the opening pages before you buy.
         </p>
       </header>

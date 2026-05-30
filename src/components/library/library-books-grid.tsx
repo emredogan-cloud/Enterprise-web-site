@@ -178,11 +178,11 @@ function LibraryTile({
       </Link>
 
       <div className="mt-4 flex flex-1 flex-col gap-1 px-1 pb-1">
-        <h3 className="line-clamp-2 font-serif text-[14px] font-medium leading-snug text-[#e6e6e0] transition-colors group-hover:text-[#33f0aa]">
+        <h3 className="line-clamp-2 font-serif text-[14px] font-medium leading-snug text-fg-hi transition-colors group-hover:text-emerald-bright">
           {entry.book.title}
         </h3>
         {entry.book.subtitle && (
-          <p className="line-clamp-1 text-xs text-[#88918a]">
+          <p className="line-clamp-1 text-xs text-fg-soft">
             {entry.book.subtitle}
           </p>
         )}
@@ -191,7 +191,7 @@ function LibraryTile({
           {entry.status === "ready" ? (
             <DownloadButton bookId={entry.bookId} />
           ) : entry.status === "pending" ? (
-            <p className="inline-flex items-center gap-2 text-xs text-[#a7a7a0]">
+            <p className="inline-flex items-center gap-2 text-xs text-fg-mid">
               <span
                 aria-hidden
                 className="inline-block h-2 w-2 animate-pulse rounded-full bg-[#33f0aa] shadow-[0_0_6px_#33f0aa]"
@@ -244,12 +244,12 @@ function LibraryListRow({
       <div className="min-w-0 flex-1">
         <Link
           href={`/books/${entry.book.slug}`}
-          className="block font-serif text-base font-medium leading-tight text-[#e6e6e0] transition-colors hover:text-[#33f0aa]"
+          className="block font-serif text-base font-medium leading-tight text-fg-hi transition-colors hover:text-emerald-bright"
         >
           {entry.book.title}
         </Link>
         {entry.book.subtitle && (
-          <p className="mt-1 line-clamp-1 text-xs text-[#88918a]">
+          <p className="mt-1 line-clamp-1 text-xs text-fg-soft">
             {entry.book.subtitle}
           </p>
         )}
@@ -268,7 +268,7 @@ function LibraryListRow({
         {entry.status === "ready" ? (
           <DownloadButton bookId={entry.bookId} size="sm" />
         ) : entry.status === "pending" ? (
-          <span className="inline-flex items-center gap-1.5 text-xs text-[#a7a7a0]">
+          <span className="inline-flex items-center gap-1.5 text-xs text-fg-mid">
             <span
               aria-hidden
               className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#33f0aa]"

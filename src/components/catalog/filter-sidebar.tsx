@@ -41,7 +41,7 @@ export function FilterSidebar(props: FilterSidebarProps) {
 
   return (
     <aside
-      className="home-glass relative h-fit overflow-hidden rounded-[26px] p-6"
+      className="home-glass relative h-fit overflow-hidden rounded-[24px] p-6"
       aria-label="Catalog filters"
     >
       {/* Edge glow — top emerald line */}
@@ -52,13 +52,13 @@ export function FilterSidebar(props: FilterSidebarProps) {
 
       {/* Header */}
       <header className="flex items-center justify-between">
-        <h2 className="font-serif text-[18px] font-medium text-[#e6e6e0]">
+        <h2 className="font-serif text-[18px] font-medium text-fg-hi">
           Filters
         </h2>
         <button
           type="button"
           onClick={props.onResetAll}
-          className="text-xs font-medium text-[#33f0aa] transition-colors hover:text-[#1ddf8f]"
+          className="text-xs font-medium text-emerald-bright transition-colors hover:text-emerald"
         >
           Reset all
         </button>
@@ -69,14 +69,14 @@ export function FilterSidebar(props: FilterSidebarProps) {
         <div className="relative">
           <Search
             aria-hidden
-            className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[#5d675f]"
+            className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-fg-fade"
           />
           <input
             type="text"
             value={props.searchQuery}
             onChange={(e) => props.onSearchChange(e.target.value)}
             placeholder="Search within books..."
-            className="block h-9 w-full rounded-lg border border-white/[0.06] bg-white/[0.02] pl-9 pr-3 text-sm text-[#e6e6e0] placeholder:text-[#5d675f] transition-colors focus:border-[#33f0aa]/40 focus:bg-white/[0.04] focus:outline-none focus:ring-2 focus:ring-[#33f0aa]/20"
+            className="block h-9 w-full rounded-lg border border-white/[0.06] bg-white/[0.02] pl-9 pr-3 text-sm text-fg-hi placeholder:text-fg-fade transition-colors focus:border-emerald-bright/40 focus:bg-white/[0.04] focus:outline-none focus:ring-2 focus:ring-emerald-bright/20"
           />
         </div>
       </SectionWrap>
@@ -114,9 +114,9 @@ export function FilterSidebar(props: FilterSidebarProps) {
       {/* Price */}
       <SectionWrap title="Price">
         <div className="space-y-3">
-          <div className="flex items-center justify-between text-xs text-[#a7a7a0]">
+          <div className="flex items-center justify-between text-xs text-fg-mid">
             <span className="tabular-nums">$0</span>
-            <span className="font-medium tabular-nums text-[#e6e6e0]">
+            <span className="font-medium tabular-nums text-fg-hi">
               ${props.priceMax >= PRICE_MAX_CAP ? `${PRICE_MAX_CAP}+` : props.priceMax}
             </span>
           </div>
@@ -152,8 +152,8 @@ export function FilterSidebar(props: FilterSidebarProps) {
                   }
                   className={`flex w-full items-center justify-between rounded-md px-2 py-1.5 text-sm transition-colors ${
                     isActive
-                      ? "bg-[#33f0aa]/10 text-[#e6e6e0]"
-                      : "text-[#a7a7a0] hover:bg-white/[0.04] hover:text-[#e6e6e0]"
+                      ? "bg-emerald-bright/10 text-fg-hi"
+                      : "text-fg-mid hover:bg-white/[0.04] hover:text-fg-hi"
                   }`}
                   aria-pressed={isActive}
                 >
@@ -171,7 +171,7 @@ export function FilterSidebar(props: FilterSidebarProps) {
                     ))}
                     <span className="ml-1.5 text-xs">& up</span>
                   </span>
-                  <span className="text-xs tabular-nums text-[#5d675f]">
+                  <span className="text-xs tabular-nums text-fg-fade">
                     {r.count}
                   </span>
                 </button>
@@ -198,7 +198,7 @@ function SectionWrap({
 }) {
   return (
     <div className="mt-6 border-t border-white/[0.05] pt-5 first-of-type:mt-7">
-      <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#88918a]">
+      <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
         {title}
       </h3>
       {children}
@@ -223,7 +223,7 @@ function FilterCheckbox({
         type="button"
         onClick={onToggle}
         aria-pressed={checked}
-        className="group flex w-full items-center justify-between gap-3 rounded-md px-2 py-1.5 text-sm text-[#a7a7a0] transition-colors hover:bg-white/[0.04] hover:text-[#e6e6e0]"
+        className="group flex w-full items-center justify-between gap-3 rounded-md px-2 py-1.5 text-sm text-fg-mid transition-colors hover:bg-white/[0.04] hover:text-fg-hi"
       >
         <span className="flex items-center gap-2.5">
           <span
@@ -248,9 +248,9 @@ function FilterCheckbox({
               </svg>
             )}
           </span>
-          <span className={checked ? "text-[#e6e6e0]" : ""}>{label}</span>
+          <span className={checked ? "text-fg-hi" : ""}>{label}</span>
         </span>
-        <span className="text-xs tabular-nums text-[#5d675f]">{count}</span>
+        <span className="text-xs tabular-nums text-fg-fade">{count}</span>
       </button>
     </li>
   );

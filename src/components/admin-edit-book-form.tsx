@@ -7,7 +7,6 @@ import {
   updateBook,
   type UpdateBookInput,
 } from "@/app/admin/actions";
-import { Button } from "@/components/ui/button";
 import type { BookEditData, BookStatus } from "@/lib/db/queries/admin";
 
 /**
@@ -182,8 +181,8 @@ export function AdminEditBookForm({ book }: AdminEditBookFormProps) {
         disabled={pending}
       />
 
-      <fieldset className="space-y-6 rounded-md border border-input p-4">
-        <legend className="px-2 text-sm font-medium text-muted-foreground">
+      <fieldset className="space-y-6 rounded-[16px] border border-white/[0.08] bg-white/[0.02] p-5">
+        <legend className="px-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
           R2 object keys
         </legend>
         <Field
@@ -207,8 +206,8 @@ export function AdminEditBookForm({ book }: AdminEditBookFormProps) {
         />
       </fieldset>
 
-      <fieldset className="space-y-6 rounded-md border border-input p-4">
-        <legend className="px-2 text-sm font-medium text-muted-foreground">
+      <fieldset className="space-y-6 rounded-[16px] border border-white/[0.08] bg-white/[0.02] p-5">
+        <legend className="px-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
           Merchant of Record (Paddle)
         </legend>
         <Field
@@ -220,22 +219,22 @@ export function AdminEditBookForm({ book }: AdminEditBookFormProps) {
         />
       </fieldset>
 
-      <fieldset className="space-y-3 rounded-md border border-input p-4">
-        <legend className="px-2 text-sm font-medium text-muted-foreground">
+      <fieldset className="space-y-3 rounded-[16px] border border-white/[0.08] bg-white/[0.02] p-5">
+        <legend className="px-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
           Publish status
         </legend>
         <label
           htmlFor="status"
-          className="block text-sm font-medium text-foreground"
+          className="block text-[11px] font-semibold uppercase tracking-[0.12em] text-fg-soft"
         >
           Status
         </label>
-        <p className="text-xs text-muted-foreground">
-          <strong className="font-medium text-foreground">draft</strong> = hidden
+        <p className="text-xs leading-relaxed text-fg-mid">
+          <strong className="font-medium text-fg-hi">draft</strong> = hidden
           from storefront ·{" "}
-          <strong className="font-medium text-foreground">published</strong> =
-          live (the catalog includes it) ·{" "}
-          <strong className="font-medium text-foreground">archived</strong> =
+          <strong className="font-medium text-emerald-bright">published</strong> = live
+          (the catalog includes it) ·{" "}
+          <strong className="font-medium text-[#ffce63]">archived</strong> =
           hidden from storefront, history preserved
         </p>
         <select
@@ -244,16 +243,25 @@ export function AdminEditBookForm({ book }: AdminEditBookFormProps) {
           value={status}
           onChange={(e) => setStatus(e.currentTarget.value as BookStatus)}
           disabled={pending}
-          className="block h-10 w-full max-w-sm rounded-md border border-input bg-background px-3 text-sm shadow-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring/60"
+          className="block h-10 w-full max-w-sm rounded-full border border-white/[0.08] bg-white/[0.03] px-4 text-sm text-fg-hi focus-visible:border-emerald-bright/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/20"
         >
-          <option value="draft">draft</option>
-          <option value="published">published</option>
-          <option value="archived">archived</option>
+          <option value="draft" className="bg-[#0a1410]">
+            draft
+          </option>
+          <option value="published" className="bg-[#0a1410]">
+            published
+          </option>
+          <option value="archived" className="bg-[#0a1410]">
+            archived
+          </option>
         </select>
         {status === "published" && book.publishedAt === null && (
-          <p className="text-xs text-primary">
-            Publishing for the first time — <code>published_at</code> will be
-            stamped to now on save.
+          <p className="text-xs text-emerald-bright">
+            Publishing for the first time —{" "}
+            <code className="rounded border border-white/[0.08] bg-white/[0.04] px-1 py-0.5 text-[10px]">
+              published_at
+            </code>{" "}
+            will be stamped to now on save.
           </p>
         )}
       </fieldset>
@@ -261,7 +269,7 @@ export function AdminEditBookForm({ book }: AdminEditBookFormProps) {
       {result?.kind === "error" && (
         <p
           role="alert"
-          className="rounded-md border border-destructive/30 bg-destructive/5 px-3 py-2 text-sm text-destructive"
+          className="rounded-[14px] border border-[#ff7a7a]/30 bg-[#ff7a7a]/8 px-4 py-3 text-sm text-[#ff9b9b]"
         >
           {result.message}
         </p>
@@ -269,25 +277,29 @@ export function AdminEditBookForm({ book }: AdminEditBookFormProps) {
       {result?.kind === "ok" && (
         <p
           role="status"
-          className="rounded-md border border-primary/30 bg-primary/5 px-3 py-2 text-sm text-foreground"
+          className="rounded-[14px] border border-emerald-bright/30 bg-emerald-bright/8 px-4 py-3 text-sm text-emerald-bright"
         >
           Saved. Returning to the catalog…
         </p>
       )}
 
       <div className="flex items-center gap-3 pt-2">
-        <Button type="submit" size="lg" disabled={pending}>
+        <button
+          type="submit"
+          disabled={pending}
+          className="home-cta-primary inline-flex h-11 items-center justify-center rounded-full px-7 text-sm font-semibold tracking-tight disabled:cursor-not-allowed disabled:opacity-70"
+        >
           {pending
             ? "Saving…"
             : result?.kind === "ok"
               ? "Saved"
               : "Save changes"}
-        </Button>
+        </button>
         <button
           type="button"
           onClick={() => router.push("/admin")}
           disabled={pending}
-          className="text-sm text-muted-foreground transition-colors hover:text-foreground disabled:cursor-not-allowed disabled:opacity-60"
+          className="text-sm text-fg-mid transition-colors hover:text-fg-hi disabled:cursor-not-allowed disabled:opacity-60"
         >
           Cancel
         </button>
@@ -326,12 +338,12 @@ function Field({
     <div>
       <label
         htmlFor={name}
-        className="block text-sm font-medium text-foreground"
+        className="block text-[11px] font-semibold uppercase tracking-[0.12em] text-fg-soft"
       >
         {label}
-        {required && <span className="text-destructive"> *</span>}
+        {required && <span className="text-[#ff9b9b]"> *</span>}
       </label>
-      {help && <p className="mt-1 text-xs text-muted-foreground">{help}</p>}
+      {help && <p className="mt-1.5 text-xs text-fg-mid">{help}</p>}
       {textarea ? (
         <textarea
           id={name}
@@ -340,7 +352,7 @@ function Field({
           defaultValue={defaultValue}
           disabled={disabled}
           rows={4}
-          className="mt-2 block w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring/60 disabled:cursor-not-allowed disabled:opacity-60"
+          className="mt-2 block w-full rounded-[14px] border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-fg-hi placeholder:text-fg-fade focus-visible:border-emerald-bright/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/20 disabled:cursor-not-allowed disabled:opacity-60"
         />
       ) : (
         <input
@@ -350,7 +362,7 @@ function Field({
           required={required}
           defaultValue={defaultValue}
           disabled={disabled}
-          className="mt-2 block h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring/60 disabled:cursor-not-allowed disabled:opacity-60"
+          className="mt-2 block h-10 w-full rounded-full border border-white/[0.08] bg-white/[0.03] px-4 text-sm text-fg-hi placeholder:text-fg-fade focus-visible:border-emerald-bright/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/20 disabled:cursor-not-allowed disabled:opacity-60"
         />
       )}
     </div>

@@ -32,10 +32,10 @@ export function LibraryEmptyPanel() {
 
           {/* RIGHT — editorial CTA */}
           <div className="relative z-10 flex flex-col justify-center p-8 sm:p-10 lg:p-12">
-            <h2 className="font-serif text-[26px] font-medium leading-tight tracking-tight text-[#e6e6e0] sm:text-[32px]">
+            <h2 className="font-serif text-[26px] font-medium leading-tight tracking-tight text-fg-hi sm:text-[32px]">
               Your library is empty.
             </h2>
-            <p className="mt-3 max-w-md text-[15px] leading-relaxed text-[#a7a7a0]">
+            <p className="mt-3 max-w-md text-[15px] leading-relaxed text-fg-mid">
               Once you buy a book, it appears here — yours to re-download
               anytime, no extra charge.
             </p>

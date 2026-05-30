@@ -66,7 +66,7 @@ export function AuthorsHero() {
 
       <div className="relative mx-auto max-w-3xl">
         {/* Eyebrow */}
-        <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#33f0aa]">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
           Authors
         </p>
 
@@ -88,7 +88,7 @@ export function AuthorsHero() {
         </div>
 
         {/* Headline with emerald-gradient "inspire" */}
-        <h1 className="mt-7 font-serif text-[52px] font-medium leading-[1.05] tracking-[-0.025em] text-[#e6e6e0] sm:text-[64px] lg:text-[72px]">
+        <h1 className="mt-7 font-serif text-[52px] font-medium leading-[1.05] tracking-[-0.025em] text-fg-hi sm:text-[64px] lg:text-[72px]">
           Voices that{" "}
           <span
             style={{
@@ -104,7 +104,7 @@ export function AuthorsHero() {
         </h1>
 
         {/* Two-line muted subtitle */}
-        <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-[#a7a7a0] sm:text-[17px]">
+        <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-fg-mid sm:text-[17px]">
           Discover the minds behind the books.
           <br className="hidden sm:block" />
           Explore authors, their stories, and their works.

@@ -19,12 +19,12 @@ export function TrustRow() {
         return (
           <li
             key={item.label}
-            className="group flex items-center gap-2 text-sm text-[#a7a7a0] transition-colors hover:text-[#e6e6e0]"
+            className="group flex items-center gap-2 text-sm text-fg-mid transition-colors hover:text-fg-hi"
           >
-            <span className="flex h-7 w-7 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.02] transition-all group-hover:border-[#16c784]/40 group-hover:bg-[#16c784]/10">
+            <span className="flex h-7 w-7 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.02] transition-all group-hover:border-emerald-deep/40 group-hover:bg-emerald-deep/10">
               <Icon
                 aria-hidden
-                className="h-3.5 w-3.5 text-[#33f0aa] transition-transform group-hover:scale-110"
+                className="h-3.5 w-3.5 text-emerald-bright transition-transform group-hover:scale-110"
               />
             </span>
             {item.label}

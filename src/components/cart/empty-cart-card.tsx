@@ -46,23 +46,23 @@ export function EmptyCartCard() {
           />
           {/* The thin glass ring */}
           <div
-            className="relative flex h-[88px] w-[88px] items-center justify-center rounded-full border border-[#33f0aa]/30 bg-white/[0.025] backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_0_24px_-6px_rgba(51,240,170,0.4)]"
+            className="relative flex h-[88px] w-[88px] items-center justify-center rounded-full border border-emerald-bright/30 bg-white/[0.025] backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_0_24px_-6px_rgba(51,240,170,0.4)]"
           >
             <ShoppingCart
               aria-hidden
-              className="h-9 w-9 text-[#33f0aa]"
+              className="h-9 w-9 text-emerald-bright"
               strokeWidth={1.4}
             />
           </div>
         </div>
 
         {/* Headline */}
-        <h2 className="mt-9 font-serif text-[28px] font-medium leading-tight tracking-tight text-[#e6e6e0] sm:text-[32px]">
+        <h2 className="mt-9 font-serif text-[28px] font-medium leading-tight tracking-tight text-fg-hi sm:text-[32px]">
           Nothing in here yet.
         </h2>
 
         {/* Body */}
-        <p className="mx-auto mt-4 max-w-md text-[15px] leading-[1.65] text-[#a7a7a0]">
+        <p className="mx-auto mt-4 max-w-md text-[15px] leading-[1.65] text-fg-mid">
           Browse the catalog to add books. They live in a session cookie until
           you check out.
         </p>

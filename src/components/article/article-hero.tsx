@@ -63,7 +63,7 @@ export function ArticleHero({
             {/* Top: category eyebrow */}
             <Link
               href={`/blog/category/${post.categorySlug}`}
-              className="inline-flex w-fit items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#33f0aa] transition-colors hover:text-white"
+              className="inline-flex w-fit items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-bright transition-colors hover:text-white"
             >
               <span
                 aria-hidden
@@ -74,7 +74,7 @@ export function ArticleHero({
 
             {/* Bottom group: headline + subtitle + author meta */}
             <div className="max-w-3xl">
-              <h1 className="font-serif text-[40px] font-medium leading-[1.05] tracking-[-0.022em] text-[#e6e6e0] sm:text-[56px] lg:text-[64px] xl:text-[72px]">
+              <h1 className="font-serif text-[40px] font-medium leading-[1.05] tracking-[-0.022em] text-fg-hi sm:text-[56px] lg:text-[64px] xl:text-[72px]">
                 {head}{" "}
                 <span
                   style={{
@@ -89,12 +89,12 @@ export function ArticleHero({
                 </span>
               </h1>
 
-              <p className="mt-5 max-w-xl text-pretty text-[15px] leading-relaxed text-[#a7a7a0] sm:text-[17px]">
+              <p className="mt-5 max-w-xl text-pretty text-[15px] leading-relaxed text-fg-mid sm:text-[17px]">
                 {post.excerpt}
               </p>
 
               {/* Author meta row */}
-              <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#88918a] sm:gap-x-7">
+              <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-fg-soft sm:gap-x-7">
                 {/* Avatar */}
                 <div className="flex items-center gap-2.5">
                   <span
@@ -105,13 +105,13 @@ export function ArticleHero({
                         "linear-gradient(135deg, #1ddf8f 0%, #0e7f54 100%)",
                     }}
                   />
-                  <span className="text-sm text-[#e6e6e0]">
+                  <span className="text-sm text-fg-hi">
                     By <span className="font-medium">{authorName}</span>
                   </span>
                 </div>
 
                 {/* Dot separator */}
-                <span aria-hidden className="hidden text-[#33f0aa] sm:inline">
+                <span aria-hidden className="hidden text-emerald-bright sm:inline">
                   •
                 </span>
 
@@ -121,7 +121,7 @@ export function ArticleHero({
                 </time>
 
                 {/* Dot separator */}
-                <span aria-hidden className="hidden text-[#33f0aa] sm:inline">
+                <span aria-hidden className="hidden text-emerald-bright sm:inline">
                   •
                 </span>
 

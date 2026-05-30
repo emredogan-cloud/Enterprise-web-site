@@ -81,7 +81,7 @@ export function GenresHero({
         {/* RIGHT — editorial content */}
         <div>
           {/* Eyebrow */}
-          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#33f0aa]">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
             Genres
           </p>
 
@@ -103,7 +103,7 @@ export function GenresHero({
           </div>
 
           {/* Headline with emerald-gradient "dimension" */}
-          <h1 className="mt-6 font-serif text-[48px] font-medium leading-[1.05] tracking-[-0.025em] text-[#e6e6e0] sm:text-[58px] lg:text-[64px] xl:text-[72px]">
+          <h1 className="mt-6 font-serif text-[48px] font-medium leading-[1.05] tracking-[-0.025em] text-fg-hi sm:text-[58px] lg:text-[64px] xl:text-[72px]">
             Stories in every{" "}
             <span
               style={{
@@ -119,7 +119,7 @@ export function GenresHero({
           </h1>
 
           {/* Subtitle */}
-          <p className="mt-5 max-w-md text-base leading-relaxed text-[#a7a7a0] sm:text-[17px]">
+          <p className="mt-5 max-w-md text-base leading-relaxed text-fg-mid sm:text-[17px]">
             From thrilling adventures to life-changing ideas.
             <br className="hidden sm:block" />
             Explore genres that shape the way we read.
@@ -130,14 +130,14 @@ export function GenresHero({
             <div className="relative flex-1">
               <Search
                 aria-hidden
-                className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#5d675f]"
+                className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-fg-fade"
               />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.currentTarget.value)}
                 placeholder="Search genres..."
-                className="h-11 w-full rounded-full border border-white/[0.08] bg-white/[0.03] pl-10 pr-4 text-sm text-[#e6e6e0] placeholder:text-[#5d675f] transition-colors focus:border-[#33f0aa]/40 focus:bg-white/[0.05] focus:outline-none focus:ring-2 focus:ring-[#33f0aa]/20"
+                className="h-11 w-full rounded-full border border-white/[0.08] bg-white/[0.03] pl-10 pr-4 text-sm text-fg-hi placeholder:text-fg-fade transition-colors focus:border-emerald-bright/40 focus:bg-white/[0.05] focus:outline-none focus:ring-2 focus:ring-emerald-bright/20"
               />
             </div>
 
@@ -148,7 +148,7 @@ export function GenresHero({
                   onFormatChange(e.currentTarget.value as FormatFilter)
                 }
                 aria-label="Filter by format"
-                className="h-11 w-full cursor-pointer appearance-none rounded-full border border-white/[0.08] bg-white/[0.03] pl-4 pr-10 text-sm text-[#e6e6e0] transition-colors hover:border-white/[0.14] focus:border-[#33f0aa]/40 focus:outline-none focus:ring-2 focus:ring-[#33f0aa]/20"
+                className="h-11 w-full cursor-pointer appearance-none rounded-full border border-white/[0.08] bg-white/[0.03] pl-4 pr-10 text-sm text-fg-hi transition-colors hover:border-white/[0.14] focus:border-emerald-bright/40 focus:outline-none focus:ring-2 focus:ring-emerald-bright/20"
               >
                 {FORMAT_OPTIONS.map((opt) => (
                   <option key={opt} value={opt} className="bg-[#0a1410]">
@@ -158,7 +158,7 @@ export function GenresHero({
               </select>
               <ChevronDown
                 aria-hidden
-                className="pointer-events-none absolute right-3.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[#a7a7a0]"
+                className="pointer-events-none absolute right-3.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-fg-mid"
               />
             </div>
           </div>

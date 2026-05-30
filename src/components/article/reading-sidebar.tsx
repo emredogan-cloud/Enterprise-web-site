@@ -123,7 +123,7 @@ export function ReadingSidebar({ toc }: { toc: BlogPostHeading[] }) {
           className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/35 to-transparent"
         />
 
-        <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#88918a]">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
           On this page
         </p>
 
@@ -145,8 +145,8 @@ export function ReadingSidebar({ toc }: { toc: BlogPostHeading[] }) {
                     href={`#${h.id}`}
                     className={`block text-[13px] leading-snug transition-colors ${
                       isActive
-                        ? "text-[#33f0aa]"
-                        : "text-[#88918a] hover:text-[#e6e6e0]"
+                        ? "text-emerald-bright"
+                        : "text-fg-soft hover:text-fg-hi"
                     }`}
                   >
                     {display}

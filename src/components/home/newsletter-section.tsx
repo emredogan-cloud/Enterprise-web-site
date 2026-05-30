@@ -45,7 +45,7 @@ export function NewsletterSection() {
     <section className="relative px-6 py-24 sm:py-28">
       <div className="mx-auto max-w-5xl">
         <RevealOnScroll>
-          <div className="home-glass relative overflow-hidden rounded-3xl px-8 py-14 text-center sm:px-14 sm:py-20">
+          <div className="home-glass relative overflow-hidden rounded-[24px] px-8 py-14 text-center sm:px-14 sm:py-20">
             {/* Bloom backdrop */}
             <div
               aria-hidden
@@ -56,13 +56,13 @@ export function NewsletterSection() {
               }}
             />
 
-            <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#33f0aa]/80">
+            <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-emerald-bright/80">
               Stay in the loop
             </p>
-            <h2 className="mt-4 font-serif text-[36px] font-medium leading-tight tracking-tight text-[#e6e6e0] sm:text-[44px]">
+            <h2 className="mt-4 font-serif text-[36px] font-medium leading-tight tracking-tight text-fg-hi sm:text-[44px]">
               New books, every Tuesday
             </h2>
-            <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-[#a7a7a0]">
+            <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-fg-mid">
               One short email when we add something we love. No discount spam,
               no marketing chrome — just the next book that&apos;s worth your
               time.
@@ -71,7 +71,7 @@ export function NewsletterSection() {
             {status.state === "ok" ? (
               <p
                 role="status"
-                className="mx-auto mt-10 inline-block rounded-full border border-[#33f0aa]/30 bg-[#33f0aa]/10 px-5 py-2.5 text-sm text-[#33f0aa]"
+                className="mx-auto mt-10 inline-block rounded-full border border-emerald-bright/30 bg-emerald-bright/10 px-5 py-2.5 text-sm text-emerald-bright"
               >
                 Thanks — you&apos;re on the list. The next book lands in your inbox.
               </p>
@@ -91,7 +91,7 @@ export function NewsletterSection() {
                   value={email}
                   onChange={(e) => setEmail(e.currentTarget.value)}
                   disabled={status.state === "loading"}
-                  className="h-12 flex-1 rounded-full border border-white/[0.08] bg-white/[0.03] px-5 text-sm text-[#e6e6e0] placeholder:text-[#5d675f] focus:border-[#33f0aa]/40 focus:outline-none focus:ring-2 focus:ring-[#33f0aa]/20 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="h-12 flex-1 rounded-full border border-white/[0.08] bg-white/[0.03] px-5 text-sm text-fg-hi placeholder:text-fg-fade focus:border-emerald-bright/40 focus:outline-none focus:ring-2 focus:ring-emerald-bright/20 disabled:cursor-not-allowed disabled:opacity-60"
                 />
                 <button
                   type="submit"

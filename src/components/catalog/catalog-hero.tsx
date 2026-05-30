@@ -60,7 +60,7 @@ export function CatalogHero() {
 
       <div className="mx-auto max-w-3xl">
         {/* Eyebrow */}
-        <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#33f0aa]">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
           Catalog
         </p>
 
@@ -82,12 +82,12 @@ export function CatalogHero() {
         </div>
 
         {/* Headline */}
-        <h1 className="mt-7 font-serif text-[52px] font-medium leading-[1.05] tracking-[-0.025em] text-[#e6e6e0] sm:text-[64px] lg:text-[72px]">
+        <h1 className="mt-7 font-serif text-[52px] font-medium leading-[1.05] tracking-[-0.025em] text-fg-hi sm:text-[64px] lg:text-[72px]">
           All books
         </h1>
 
         {/* Subtitle */}
-        <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-[#a7a7a0] sm:text-[17px]">
+        <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-fg-mid sm:text-[17px]">
           Explore our entire collection of digital books.
         </p>
       </div>

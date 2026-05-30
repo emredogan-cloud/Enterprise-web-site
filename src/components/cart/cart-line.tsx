@@ -83,16 +83,16 @@ export function CartLine({ book }: { book: CartLineBook }) {
       <div className="min-w-0 flex-1">
         <Link
           href={`/books/${book.slug}`}
-          className="block font-serif text-base font-medium leading-tight text-[#e6e6e0] transition-colors hover:text-[#33f0aa]"
+          className="block font-serif text-base font-medium leading-tight text-fg-hi transition-colors hover:text-emerald-bright"
         >
           {book.title}
         </Link>
         {book.authors.length > 0 && (
-          <p className="mt-1 text-sm text-[#88918a]">
+          <p className="mt-1 text-sm text-fg-soft">
             {book.authors.map((a) => a.name).join(", ")}
           </p>
         )}
-        <p className="mt-2 text-sm font-semibold text-[#e6e6e0] tabular-nums">
+        <p className="mt-2 text-sm font-semibold text-fg-hi tabular-nums">
           {formatPrice(book.priceCents, book.currency)}
         </p>
       </div>
@@ -103,7 +103,7 @@ export function CartLine({ book }: { book: CartLineBook }) {
         onClick={onRemove}
         disabled={pending}
         aria-label={`Remove ${book.title} from cart`}
-        className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.02] text-[#88918a] transition-all hover:border-[#ff7a7a]/40 hover:bg-[#ff7a7a]/10 hover:text-[#ff9b9b] disabled:cursor-not-allowed disabled:opacity-50"
+        className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.02] text-fg-soft transition-all hover:border-[#ff7a7a]/40 hover:bg-[#ff7a7a]/10 hover:text-[#ff9b9b] disabled:cursor-not-allowed disabled:opacity-50"
       >
         <X aria-hidden className="h-4 w-4" />
       </button>

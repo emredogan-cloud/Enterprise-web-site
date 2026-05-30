@@ -82,7 +82,7 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
         {/* Logo */}
         <Link
           href="/"
-          className="group flex items-center gap-2 text-[15px] font-medium tracking-tight text-[#e6e6e0]"
+          className="group flex items-center gap-2 text-[15px] font-medium tracking-tight text-fg-hi"
         >
           <span className="font-serif">digital bookstore</span>
           <span
@@ -102,8 +102,11 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
               <Link
                 key={item.key}
                 href={item.href}
+                // Phase 3.M — aria-current announces the active page to
+                // assistive tech (the underline is purely visual).
+                aria-current={isActive ? "page" : undefined}
                 className={`relative transition-colors ${
-                  isActive ? "text-[#e6e6e0]" : "text-[#a7a7a0] hover:text-[#e6e6e0]"
+                  isActive ? "text-fg-hi" : "text-fg-mid hover:text-fg-hi"
                 }`}
               >
                 {item.label}
@@ -121,10 +124,11 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
               points at the real /about page. */}
           <Link
             href="/about"
+            aria-current={active === "about" ? "page" : undefined}
             className={`relative transition-colors ${
               active === "about"
-                ? "text-[#e6e6e0]"
-                : "text-[#a7a7a0] hover:text-[#e6e6e0]"
+                ? "text-fg-hi"
+                : "text-fg-mid hover:text-fg-hi"
             }`}
           >
             About
@@ -142,11 +146,11 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
           {/* Search pill */}
           <Link
             href="/search"
-            className="group hidden h-9 w-64 items-center gap-2.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 text-sm text-[#88918a] transition-colors hover:border-white/[0.14] hover:bg-white/[0.05] hover:text-[#e6e6e0] sm:flex"
+            className="group hidden h-9 w-64 items-center gap-2.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 text-sm text-fg-soft transition-colors hover:border-white/[0.14] hover:bg-white/[0.05] hover:text-fg-hi sm:flex"
           >
             <Search aria-hidden className="h-4 w-4" />
             <span className="flex-1 text-left">Search books, authors…</span>
-            <kbd className="rounded border border-white/[0.1] bg-white/[0.04] px-1.5 py-0.5 font-mono text-[10px] text-[#a7a7a0]">
+            <kbd className="rounded border border-white/[0.1] bg-white/[0.04] px-1.5 py-0.5 font-mono text-[10px] text-fg-mid">
               ⌘K
             </kbd>
           </Link>
@@ -155,7 +159,7 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
           <Link
             href="/search"
             aria-label="Search"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] text-[#a7a7a0] transition-colors hover:text-[#e6e6e0] sm:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] text-fg-mid transition-colors hover:text-fg-hi sm:hidden"
           >
             <Search aria-hidden className="h-4 w-4" />
           </Link>
@@ -225,7 +229,7 @@ function CartTriggerWithBadge() {
             ? "Cart, empty"
             : `Cart, ${count} ${count === 1 ? "item" : "items"}`
       }
-      className="relative flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] text-[#a7a7a0] transition-colors hover:text-[#e6e6e0]"
+      className="relative flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] text-fg-mid transition-colors hover:text-fg-hi"
     >
       <ShoppingCart aria-hidden className="h-4 w-4" />
       {hasItems && (
@@ -283,8 +287,8 @@ const USER_BUTTON_APPEARANCE = {
     userButtonPopoverCard:
       "bg-[#0c1813] border border-white/[0.08] shadow-[0_28px_60px_-22px_rgba(0,0,0,0.8)]",
     userButtonPopoverActionButton:
-      "text-[#a7a7a0] hover:text-[#e6e6e0] hover:bg-white/[0.04]",
-    userButtonPopoverActionButtonText: "text-[#e6e6e0]",
+      "text-fg-mid hover:text-fg-hi hover:bg-white/[0.04]",
+    userButtonPopoverActionButtonText: "text-fg-hi",
     userButtonPopoverFooter: "hidden",
   },
 } as const;
@@ -315,7 +319,7 @@ function ClerkAccountSlot() {
     <SignInButton mode="modal">
       <button
         type="button"
-        className="inline-flex h-9 items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.03] px-4 text-sm text-[#e6e6e0] transition-colors hover:border-[#33f0aa]/40 hover:bg-[#33f0aa]/10"
+        className="inline-flex h-9 items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.03] px-4 text-sm text-fg-hi transition-colors hover:border-emerald-bright/40 hover:bg-emerald-bright/10"
       >
         <User aria-hidden className="h-3.5 w-3.5" />
         Sign in

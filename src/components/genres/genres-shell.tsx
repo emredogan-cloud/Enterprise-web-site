@@ -72,10 +72,10 @@ export function GenresShell({ genres }: { genres: DemoGenre[] }) {
 function EmptyResults({ onClear }: { onClear: () => void }) {
   return (
     <div className="home-glass mx-auto max-w-md rounded-2xl px-8 py-12 text-center">
-      <p className="font-serif text-lg text-[#e6e6e0]">
+      <p className="font-serif text-lg text-fg-hi">
         No genres match those filters.
       </p>
-      <p className="mt-2 text-sm text-[#88918a]">
+      <p className="mt-2 text-sm text-fg-soft">
         Try a different format, or clear the search.
       </p>
       <button

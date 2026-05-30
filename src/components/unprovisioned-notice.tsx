@@ -38,7 +38,7 @@ export function UnprovisionedNotice({
       <main className="relative z-10 mx-auto max-w-2xl px-4 py-24 sm:px-6">
         <div className="flex flex-col items-center text-center">
           {/* Eyebrow */}
-          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#33f0aa]">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
             Configuration required
           </p>
 
@@ -60,12 +60,12 @@ export function UnprovisionedNotice({
           </div>
 
           {/* Title */}
-          <h1 className="mt-6 font-serif text-[36px] font-medium leading-[1.1] tracking-[-0.025em] text-[#e6e6e0] sm:text-[44px]">
+          <h1 className="mt-6 font-serif text-[36px] font-medium leading-[1.1] tracking-[-0.025em] text-fg-hi sm:text-[44px]">
             {title}
           </h1>
 
           {/* Body */}
-          <p className="mt-5 max-w-lg text-base leading-relaxed text-[#a7a7a0] sm:text-[17px]">
+          <p className="mt-5 max-w-lg text-base leading-relaxed text-fg-mid sm:text-[17px]">
             {body}
           </p>
         </div>
@@ -77,10 +77,10 @@ export function UnprovisionedNotice({
               aria-hidden
               className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/35 to-transparent"
             />
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#88918a]">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
               Set these environment variables
             </p>
-            <ul className="mt-4 space-y-1.5 font-mono text-sm text-[#e6e6e0]">
+            <ul className="mt-4 space-y-1.5 font-mono text-sm text-fg-hi">
               {missing.map((name) => (
                 <li key={name} className="flex items-center gap-2">
                   <span
@@ -91,13 +91,13 @@ export function UnprovisionedNotice({
                 </li>
               ))}
             </ul>
-            <p className="mt-5 text-xs leading-relaxed text-[#88918a]">
+            <p className="mt-5 text-xs leading-relaxed text-fg-soft">
               See{" "}
-              <code className="rounded border border-white/[0.08] bg-white/[0.04] px-1.5 py-0.5 text-[#33f0aa]">
+              <code className="rounded border border-white/[0.08] bg-white/[0.04] px-1.5 py-0.5 text-emerald-bright">
                 .env.example
               </code>{" "}
               for the full schema. Pull them from Vercel with{" "}
-              <code className="rounded border border-white/[0.08] bg-white/[0.04] px-1.5 py-0.5 text-[#33f0aa]">
+              <code className="rounded border border-white/[0.08] bg-white/[0.04] px-1.5 py-0.5 text-emerald-bright">
                 vercel env pull .env.local
               </code>
               .

@@ -75,14 +75,14 @@ export function AuthorsShell({ authors }: { authors: DemoAuthor[] }) {
         <div className="relative flex-1">
           <Search
             aria-hidden
-            className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#5d675f]"
+            className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-fg-fade"
           />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.currentTarget.value)}
             placeholder="Search authors, works…"
-            className="h-11 w-full rounded-full border border-white/[0.08] bg-white/[0.03] pl-10 pr-4 text-sm text-[#e6e6e0] placeholder:text-[#5d675f] transition-colors focus:border-[#33f0aa]/40 focus:bg-white/[0.05] focus:outline-none focus:ring-2 focus:ring-[#33f0aa]/20"
+            className="h-11 w-full rounded-full border border-white/[0.08] bg-white/[0.03] pl-10 pr-4 text-sm text-fg-hi placeholder:text-fg-fade transition-colors focus:border-emerald-bright/40 focus:bg-white/[0.05] focus:outline-none focus:ring-2 focus:ring-emerald-bright/20"
           />
         </div>
 
@@ -94,7 +94,7 @@ export function AuthorsShell({ authors }: { authors: DemoAuthor[] }) {
               setSelectedGenre(e.currentTarget.value || null)
             }
             aria-label="Filter by genre"
-            className="h-11 w-full cursor-pointer appearance-none rounded-full border border-white/[0.08] bg-white/[0.03] pl-4 pr-10 text-sm text-[#e6e6e0] transition-colors hover:border-white/[0.14] focus:border-[#33f0aa]/40 focus:outline-none focus:ring-2 focus:ring-[#33f0aa]/20 sm:w-44"
+            className="h-11 w-full cursor-pointer appearance-none rounded-full border border-white/[0.08] bg-white/[0.03] pl-4 pr-10 text-sm text-fg-hi transition-colors hover:border-white/[0.14] focus:border-emerald-bright/40 focus:outline-none focus:ring-2 focus:ring-emerald-bright/20 sm:w-44"
           >
             <option value="" className="bg-[#0a1410]">All Genres</option>
             {AUTHOR_GENRES.map((g) => (
@@ -105,7 +105,7 @@ export function AuthorsShell({ authors }: { authors: DemoAuthor[] }) {
           </select>
           <ChevronDown
             aria-hidden
-            className="pointer-events-none absolute right-3.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[#a7a7a0]"
+            className="pointer-events-none absolute right-3.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-fg-mid"
           />
         </div>
       </div>
@@ -141,7 +141,7 @@ export function AuthorsShell({ authors }: { authors: DemoAuthor[] }) {
         <div className="relative">
           <span
             aria-hidden
-            className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-xs text-[#88918a]"
+            className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-xs text-fg-soft"
           >
             Sort by:
           </span>
@@ -149,7 +149,7 @@ export function AuthorsShell({ authors }: { authors: DemoAuthor[] }) {
             value={sortBy}
             onChange={(e) => setSortBy(e.currentTarget.value as AuthorSort)}
             aria-label="Sort authors"
-            className="h-10 cursor-pointer appearance-none rounded-full border border-white/[0.08] bg-white/[0.03] pl-[68px] pr-9 text-sm text-[#e6e6e0] transition-colors hover:border-white/[0.14] focus:border-[#33f0aa]/40 focus:outline-none focus:ring-2 focus:ring-[#33f0aa]/20"
+            className="h-10 cursor-pointer appearance-none rounded-full border border-white/[0.08] bg-white/[0.03] pl-[68px] pr-9 text-sm text-fg-hi transition-colors hover:border-white/[0.14] focus:border-emerald-bright/40 focus:outline-none focus:ring-2 focus:ring-emerald-bright/20"
           >
             {AUTHOR_SORTS.map((s) => (
               <option key={s} value={s} className="bg-[#0a1410]">
@@ -159,7 +159,7 @@ export function AuthorsShell({ authors }: { authors: DemoAuthor[] }) {
           </select>
           <ChevronDown
             aria-hidden
-            className="pointer-events-none absolute right-3.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[#a7a7a0]"
+            className="pointer-events-none absolute right-3.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-fg-mid"
           />
         </div>
       </div>
@@ -215,16 +215,16 @@ function PillButton({
       aria-pressed={isActive}
       className={`group inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-medium transition-all ${
         isActive
-          ? "border-[#33f0aa]/50 bg-[#33f0aa]/12 text-[#33f0aa] shadow-[0_0_16px_rgba(51,240,170,0.25)]"
-          : "border-white/[0.08] bg-white/[0.03] text-[#a7a7a0] hover:-translate-y-0.5 hover:border-white/[0.16] hover:bg-white/[0.05] hover:text-[#e6e6e0]"
+          ? "border-emerald-bright/50 bg-emerald-bright/12 text-emerald-bright shadow-[0_0_16px_rgba(51,240,170,0.25)]"
+          : "border-white/[0.08] bg-white/[0.03] text-fg-mid hover:-translate-y-0.5 hover:border-white/[0.16] hover:bg-white/[0.05] hover:text-fg-hi"
       }`}
     >
       <span>{label}</span>
       <span
         className={`rounded-full px-1.5 text-[10px] font-semibold tabular-nums ${
           isActive
-            ? "bg-[#33f0aa]/20 text-[#33f0aa]"
-            : "bg-white/[0.05] text-[#5d675f]"
+            ? "bg-emerald-bright/20 text-emerald-bright"
+            : "bg-white/[0.05] text-fg-fade"
         }`}
       >
         {count}
@@ -240,10 +240,10 @@ function PillButton({
 function EmptyResults({ onClear }: { onClear: () => void }) {
   return (
     <div className="home-glass mx-auto mt-6 max-w-md rounded-2xl px-8 py-12 text-center">
-      <p className="font-serif text-lg text-[#e6e6e0]">
+      <p className="font-serif text-lg text-fg-hi">
         No authors match those filters.
       </p>
-      <p className="mt-2 text-sm text-[#88918a]">
+      <p className="mt-2 text-sm text-fg-soft">
         Try a different genre or clear the search.
       </p>
       <button

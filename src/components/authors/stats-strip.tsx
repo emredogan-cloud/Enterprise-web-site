@@ -39,14 +39,14 @@ export function StatsStrip() {
                   key={stat.label}
                   className="group flex items-center gap-3 rounded-2xl border border-white/[0.04] bg-white/[0.015] px-4 py-4 transition-colors hover:border-white/[0.1] hover:bg-white/[0.04]"
                 >
-                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg border border-[#16c784]/30 bg-[#16c784]/10 text-[#33f0aa] transition-shadow group-hover:shadow-[0_0_14px_rgba(51,240,170,0.3)]">
+                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg border border-emerald-deep/30 bg-emerald-deep/10 text-emerald-bright transition-shadow group-hover:shadow-[0_0_14px_rgba(51,240,170,0.3)]">
                     <Icon aria-hidden className="h-5 w-5" />
                   </span>
                   <div className="min-w-0">
-                    <p className="font-serif text-[20px] font-medium leading-none text-[#e6e6e0] sm:text-[22px]">
+                    <p className="font-serif text-[20px] font-medium leading-none text-fg-hi sm:text-[22px]">
                       {stat.value}
                     </p>
-                    <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.12em] text-[#88918a]">
+                    <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.12em] text-fg-soft">
                       {stat.label}
                     </p>
                   </div>
@@ -58,7 +58,7 @@ export function StatsStrip() {
           {/* RIGHT — nested inner card (per brief: distinct slightly-darker
               green surface, cleanly separated from the stats block) */}
           <div
-            className="relative overflow-hidden rounded-2xl border border-[#16c784]/25 p-5"
+            className="relative overflow-hidden rounded-2xl border border-emerald-deep/25 p-5"
             style={{
               background:
                 "linear-gradient(160deg, #0a1f17 0%, #061410 100%)",
@@ -76,10 +76,10 @@ export function StatsStrip() {
               }}
             />
 
-            <h3 className="font-serif text-[18px] font-medium leading-tight text-[#e6e6e0] sm:text-[19px]">
+            <h3 className="font-serif text-[18px] font-medium leading-tight text-fg-hi sm:text-[19px]">
               Are you an author?
             </h3>
-            <p className="mt-2 text-sm leading-relaxed text-[#a7a7a0]">
+            <p className="mt-2 text-sm leading-relaxed text-fg-mid">
               Join our community and share your stories with the world.
             </p>
             <Link

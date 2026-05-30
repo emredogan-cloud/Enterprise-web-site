@@ -43,10 +43,10 @@ export function EmptySearchCard() {
               }}
             />
             {/* Thin glass ring */}
-            <div className="relative flex h-[96px] w-[96px] items-center justify-center rounded-full border border-[#33f0aa]/30 bg-white/[0.025] backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_0_24px_-6px_rgba(51,240,170,0.4)]">
+            <div className="relative flex h-[96px] w-[96px] items-center justify-center rounded-full border border-emerald-bright/30 bg-white/[0.025] backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_0_24px_-6px_rgba(51,240,170,0.4)]">
               <Search
                 aria-hidden
-                className="h-9 w-9 text-[#33f0aa]"
+                className="h-9 w-9 text-emerald-bright"
                 strokeWidth={1.4}
               />
             </div>
@@ -54,10 +54,10 @@ export function EmptySearchCard() {
 
           {/* RIGHT — content */}
           <div className="min-w-0">
-            <h2 className="font-serif text-[26px] font-medium leading-tight tracking-tight text-[#e6e6e0] sm:text-[30px]">
+            <h2 className="font-serif text-[26px] font-medium leading-tight tracking-tight text-fg-hi sm:text-[30px]">
               Enter a search term.
             </h2>
-            <p className="mt-3 max-w-md text-[15px] leading-relaxed text-[#a7a7a0]">
+            <p className="mt-3 max-w-md text-[15px] leading-relaxed text-fg-mid">
               Try a title, an author name, or a topic to find books, authors,
               and more.
             </p>

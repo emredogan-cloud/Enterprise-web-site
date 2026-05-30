@@ -23,7 +23,7 @@ export function CinematicBookTile({ book }: { book: BookCardData }) {
   return (
     <Link
       href={`/books/${book.slug}`}
-      className="home-card-hover home-glass group relative flex flex-col overflow-hidden rounded-[22px] p-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#33f0aa]/40"
+      className="home-card-hover home-glass group relative flex flex-col overflow-hidden rounded-[22px] p-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/40"
     >
       {/* Top emerald edge */}
       <div
@@ -34,24 +34,24 @@ export function CinematicBookTile({ book }: { book: BookCardData }) {
       <BookCover title={book.title} coverKey={book.coverKey} />
 
       <div className="mt-4 flex flex-1 flex-col gap-1 px-1 pb-1">
-        <h3 className="line-clamp-2 font-serif text-[15px] font-medium leading-snug text-[#e6e6e0] transition-colors group-hover:text-[#33f0aa]">
+        <h3 className="line-clamp-2 font-serif text-[15px] font-medium leading-snug text-fg-hi transition-colors group-hover:text-emerald-bright">
           {book.title}
         </h3>
 
         {book.subtitle && (
-          <p className="line-clamp-1 text-xs italic text-[#a7a7a0]">
+          <p className="line-clamp-1 text-xs italic text-fg-mid">
             {book.subtitle}
           </p>
         )}
 
         {book.authors.length > 0 && (
-          <p className="line-clamp-1 text-[11px] uppercase tracking-[0.15em] text-[#88918a]">
+          <p className="line-clamp-1 text-[11px] uppercase tracking-[0.12em] text-fg-soft">
             {book.authors.map((a) => a.name).join(", ")}
           </p>
         )}
 
         <div className="mt-auto flex items-center justify-end pt-3">
-          <span className="font-semibold tabular-nums text-[#e6e6e0]">
+          <span className="font-semibold tabular-nums text-fg-hi">
             {formatPrice(book.priceCents, book.currency)}
           </span>
         </div>

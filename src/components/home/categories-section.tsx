@@ -64,16 +64,16 @@ export function CategoriesSection({
         <RevealOnScroll>
           <header className="flex flex-col items-start gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#33f0aa]/80">
+              <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-emerald-bright/80">
                 Browse the shelves
               </p>
-              <h2 className="mt-3 font-serif text-[36px] font-medium leading-tight tracking-tight text-[#e6e6e0] sm:text-[44px]">
+              <h2 className="mt-3 font-serif text-[36px] font-medium leading-tight tracking-tight text-fg-hi sm:text-[44px]">
                 Browse by category
               </h2>
             </div>
             <Link
               href="/categories"
-              className="text-sm font-medium text-[#33f0aa] underline-offset-4 hover:underline"
+              className="text-sm font-medium text-emerald-bright underline-offset-4 hover:underline"
             >
               View all →
             </Link>
@@ -112,7 +112,7 @@ export function CategoriesSection({
                 <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/55">
                   Genre
                 </span>
-                <h3 className="mt-2 font-serif text-2xl font-medium text-[#e6e6e0] transition-colors group-hover:text-[#33f0aa]">
+                <h3 className="mt-2 font-serif text-2xl font-medium text-fg-hi transition-colors group-hover:text-emerald-bright">
                   {cat.name}
                 </h3>
               </div>

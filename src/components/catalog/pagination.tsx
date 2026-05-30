@@ -38,7 +38,7 @@ export function Pagination({
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
           aria-label="Previous page"
-          className="flex h-9 w-9 items-center justify-center rounded-full text-[#a7a7a0] transition-all hover:bg-white/[0.05] hover:text-[#e6e6e0] disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent"
+          className="flex h-9 w-9 items-center justify-center rounded-full text-fg-mid transition-all hover:bg-white/[0.05] hover:text-fg-hi disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent"
         >
           <ChevronLeft className="h-4 w-4" aria-hidden />
         </button>
@@ -48,7 +48,7 @@ export function Pagination({
             <span
               key={`gap-${i}`}
               aria-hidden
-              className="flex h-9 w-7 items-center justify-center text-xs text-[#5d675f]"
+              className="flex h-9 w-7 items-center justify-center text-xs text-fg-fade"
             >
               …
             </span>
@@ -61,7 +61,7 @@ export function Pagination({
               className={`flex h-9 min-w-9 items-center justify-center rounded-full px-3 text-sm font-medium tabular-nums transition-all ${
                 p === currentPage
                   ? "bg-gradient-to-b from-[#33f0aa] to-[#16c784] text-[#03281b] shadow-[0_0_16px_rgba(51,240,170,0.5),inset_0_1px_0_rgba(255,255,255,0.2)]"
-                  : "text-[#a7a7a0] hover:bg-white/[0.05] hover:text-[#e6e6e0]"
+                  : "text-fg-mid hover:bg-white/[0.05] hover:text-fg-hi"
               }`}
             >
               {p}
@@ -75,7 +75,7 @@ export function Pagination({
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
           aria-label="Next page"
-          className="flex h-9 w-9 items-center justify-center rounded-full text-[#a7a7a0] transition-all hover:bg-white/[0.05] hover:text-[#e6e6e0] disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent"
+          className="flex h-9 w-9 items-center justify-center rounded-full text-fg-mid transition-all hover:bg-white/[0.05] hover:text-fg-hi disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent"
         >
           <ChevronRight className="h-4 w-4" aria-hidden />
         </button>

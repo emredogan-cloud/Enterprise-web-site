@@ -77,18 +77,18 @@ export default async function BlogTagPage({
         {/* Breadcrumb */}
         <nav
           aria-label="Breadcrumb"
-          className="mx-auto mt-6 max-w-[1320px] px-4 text-[11px] uppercase tracking-[0.18em] text-[#88918a] sm:px-6"
+          className="mx-auto mt-6 max-w-[1320px] px-4 text-[11px] uppercase tracking-[0.2em] text-fg-soft sm:px-6"
         >
           <Link
             href="/blog"
-            className="transition-colors hover:text-[#33f0aa]"
+            className="transition-colors hover:text-emerald-bright"
           >
             Blog
           </Link>
-          <span aria-hidden className="mx-2 text-[#33f0aa]">/</span>
-          <span className="text-[#a7a7a0]">Tag</span>
-          <span aria-hidden className="mx-2 text-[#33f0aa]">/</span>
-          <span className="text-[#e6e6e0]">{tag.name}</span>
+          <span aria-hidden className="mx-2 text-emerald-bright">/</span>
+          <span className="text-fg-mid">Tag</span>
+          <span aria-hidden className="mx-2 text-emerald-bright">/</span>
+          <span className="text-fg-hi">{tag.name}</span>
         </nav>
 
         <CinematicHero
@@ -119,22 +119,22 @@ export default async function BlogTagPage({
                     aria-hidden
                     className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/25 to-transparent"
                   />
-                  <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#88918a]">
+                  <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
                     <time dateTime={post.date}>
                       {DATE_FMT.format(new Date(post.date))}
                     </time>
-                    <span aria-hidden className="text-[#33f0aa]">•</span>
+                    <span aria-hidden className="text-emerald-bright">•</span>
                     <Link
                       href={`/blog/category/${post.categorySlug}`}
-                      className="transition-colors hover:text-[#33f0aa]"
+                      className="transition-colors hover:text-emerald-bright"
                     >
                       {post.category}
                     </Link>
                   </p>
-                  <h2 className="mt-3 font-serif text-[22px] font-medium leading-tight text-[#e6e6e0] transition-colors group-hover:text-[#33f0aa] sm:text-[26px]">
+                  <h2 className="mt-3 font-serif text-[22px] font-medium leading-tight text-fg-hi transition-colors group-hover:text-emerald-bright sm:text-[26px]">
                     {post.title}
                   </h2>
-                  <p className="mt-3 line-clamp-3 text-[15px] leading-relaxed text-[#a7a7a0]">
+                  <p className="mt-3 line-clamp-3 text-[15px] leading-relaxed text-fg-mid">
                     {post.excerpt}
                   </p>
                 </Link>

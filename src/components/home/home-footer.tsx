@@ -99,7 +99,7 @@ export function HomeFooter() {
           <div>
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-base font-medium text-[#e6e6e0]"
+              className="inline-flex items-center gap-2 text-base font-medium text-fg-hi"
             >
               <span className="font-serif">digital bookstore</span>
               <span
@@ -107,7 +107,7 @@ export function HomeFooter() {
                 className="h-1.5 w-1.5 rounded-full bg-[#33f0aa] shadow-[0_0_8px_#33f0aa]"
               />
             </Link>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#88918a]">
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-fg-soft">
               A first-party bookstore for digital books. Buy once, download, and
               read anywhere. Yours to keep — never locked.
             </p>
@@ -116,7 +116,7 @@ export function HomeFooter() {
           {/* Link columns */}
           {columns.map((col) => (
             <div key={col.title}>
-              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-[#a7a7a0]">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-fg-mid">
                 {col.title}
               </h3>
               <ul className="mt-5 space-y-3 text-sm">
@@ -124,7 +124,7 @@ export function HomeFooter() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-[#88918a] transition-colors hover:text-[#e6e6e0]"
+                      className="text-fg-soft transition-colors hover:text-fg-hi"
                     >
                       {link.label}
                     </Link>
@@ -139,7 +139,7 @@ export function HomeFooter() {
         <div className="mt-16 flex flex-col-reverse items-start justify-between gap-6 border-t border-white/[0.06] pt-8 sm:flex-row sm:items-center">
           {/* Left: copyright + social */}
           <div className="flex items-center gap-5">
-            <p className="text-xs text-[#5d675f]">
+            <p className="text-xs text-fg-fade">
               © {new Date().getFullYear()} Digital Bookstore. All rights reserved.
             </p>
             {/*
@@ -147,13 +147,13 @@ export function HomeFooter() {
               icons. Instagram and Facebook were `href="#"` dead links;
               empty social slots read as an abandoned brand.
             */}
-            <div className="flex items-center gap-3 text-[#5d675f]">
+            <div className="flex items-center gap-3 text-fg-fade">
               <a
                 href="https://x.com/emredogancloud"
                 aria-label="X (Twitter)"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-colors hover:text-[#33f0aa]"
+                className="transition-colors hover:text-emerald-bright"
               >
                 <XIcon className="h-4 w-4" />
               </a>
@@ -162,18 +162,22 @@ export function HomeFooter() {
                 aria-label="GitHub"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-colors hover:text-[#33f0aa]"
+                className="transition-colors hover:text-emerald-bright"
               >
                 <GitHubIcon className="h-4 w-4" />
               </a>
             </div>
           </div>
 
-          {/* Right: dark-mode indicator chip (visual only — confirms tone) */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[11px] uppercase tracking-[0.15em] text-[#a7a7a0]">
-            <Moon aria-hidden className="h-3 w-3 text-[#33f0aa]" />
-            Dark
-          </div>
+          {/* Phase 3.L — was a pill-chromed div that looked clickable but
+              wasn't. The cinematic site is intentionally single-themed
+              (no light-mode toggle planned), so the chip's affordance
+              was misleading. Reduced to a plain inline note: same icon,
+              same tone, no fake button chrome. */}
+          <span className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.12em] text-fg-fade">
+            <Moon aria-hidden className="h-3 w-3 text-emerald-bright" />
+            Dark theme
+          </span>
         </div>
       </div>
     </footer>

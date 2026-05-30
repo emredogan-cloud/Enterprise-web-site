@@ -73,10 +73,10 @@ export function BookHero({
 
             {/* Price line */}
             <div className="flex items-baseline justify-between">
-              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#88918a]">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
                 Price
               </span>
-              <span className="font-serif text-[28px] font-medium leading-none text-[#e6e6e0]">
+              <span className="font-serif text-[28px] font-medium leading-none text-fg-hi">
                 {formatPrice(priceCents, currency)}
               </span>
             </div>
@@ -86,7 +86,7 @@ export function BookHero({
             </div>
 
             {/* Trust microcopy — the "buy once, yours to keep" promise + refund link */}
-            <ul className="mt-5 space-y-2 text-[12px] text-[#a7a7a0]">
+            <ul className="mt-5 space-y-2 text-[12px] text-fg-mid">
               <li className="flex items-center gap-2">
                 <span
                   aria-hidden
@@ -116,12 +116,12 @@ export function BookHero({
         <div>
           {/* Authors */}
           {authors.length > 0 && (
-            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#33f0aa]">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
               {authors.map((a, i) => (
                 <span key={a.slug}>
                   <Link
                     href={`/authors/${a.slug}`}
-                    className="transition-colors hover:text-[#e6e6e0]"
+                    className="transition-colors hover:text-fg-hi"
                   >
                     {a.name}
                   </Link>
@@ -132,13 +132,13 @@ export function BookHero({
           )}
 
           {/* Title */}
-          <h1 className="mt-5 font-serif text-[44px] font-medium leading-[1.05] tracking-[-0.025em] text-[#e6e6e0] sm:text-[56px] lg:text-[64px]">
+          <h1 className="mt-5 font-serif text-[44px] font-medium leading-[1.05] tracking-[-0.025em] text-fg-hi sm:text-[56px] lg:text-[64px]">
             {title}
           </h1>
 
           {/* Subtitle */}
           {subtitle && (
-            <p className="mt-5 font-serif text-[20px] italic text-[#a7a7a0] sm:text-[22px]">
+            <p className="mt-5 font-serif text-[20px] italic text-fg-mid sm:text-[22px]">
               {subtitle}
             </p>
           )}
@@ -150,8 +150,8 @@ export function BookHero({
                 value={ratingAggregate.average}
                 size="sm"
               />
-              <p className="text-sm text-[#a7a7a0]">
-                <span className="font-medium text-[#e6e6e0]">
+              <p className="text-sm text-fg-mid">
+                <span className="font-medium text-fg-hi">
                   {ratingAggregate.average.toFixed(1)}
                 </span>{" "}
                 · {ratingAggregate.count}{" "}
@@ -171,22 +171,22 @@ export function BookHero({
           <dl className="mt-12 grid grid-cols-[auto_1fr] gap-x-6 gap-y-4 text-sm">
             {pageCount !== null && (
               <>
-                <dt className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#88918a]">
+                <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
                   Pages
                 </dt>
-                <dd className="text-[#e6e6e0]">{pageCount}</dd>
+                <dd className="text-fg-hi">{pageCount}</dd>
               </>
             )}
-            <dt className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#88918a]">
+            <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
               Language
             </dt>
-            <dd className="text-[#e6e6e0]">{language}</dd>
+            <dd className="text-fg-hi">{language}</dd>
             {isbn && (
               <>
-                <dt className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#88918a]">
+                <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
                   ISBN
                 </dt>
-                <dd className="font-mono text-xs text-[#a7a7a0]">{isbn}</dd>
+                <dd className="font-mono text-xs text-fg-mid">{isbn}</dd>
               </>
             )}
           </dl>

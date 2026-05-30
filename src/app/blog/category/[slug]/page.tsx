@@ -65,7 +65,7 @@ export default async function BlogCategoryPage({
     <main className="mx-auto max-w-3xl px-6 py-16">
       <nav
         aria-label="Breadcrumb"
-        className="text-xs uppercase tracking-[0.15em] text-muted-foreground"
+        className="text-xs uppercase tracking-[0.12em] text-muted-foreground"
       >
         <Link href="/blog" className="hover:text-primary">
           Blog

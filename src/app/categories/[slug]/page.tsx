@@ -104,7 +104,7 @@ export default async function CategoryPage({
         <section className="mx-auto mt-20 max-w-[1320px] px-4 sm:mt-24 sm:px-6">
           {category.books.length === 0 ? (
             <div className="home-glass mx-auto max-w-md rounded-[20px] p-8 text-center">
-              <p className="text-sm leading-relaxed text-[#a7a7a0]">
+              <p className="text-sm leading-relaxed text-fg-mid">
                 Once titles are tagged with this category and published,
                 they appear here.
               </p>
@@ -137,7 +137,7 @@ export default async function CategoryPage({
               style={{ transform: "rotate(45deg)" }}
             />
           </div>
-          <p className="mt-5 font-serif text-[18px] italic leading-relaxed text-[#a7a7a0] sm:text-[20px]">
+          <p className="mt-5 font-serif text-[18px] italic leading-relaxed text-fg-mid sm:text-[20px]">
             Browse other genres at the discovery hub.
           </p>
         </section>

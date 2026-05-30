@@ -204,6 +204,24 @@
   }
 }
 
+/*
+ * Phase 3.M — global keyboard-focus outline for cinematic surfaces.
+ *
+ * Keyboard users (Tab navigation) get a visible 2px emerald ring on
+ * EVERY interactive element inside .cinematic-root, with a small
+ * outline-offset so the ring sits clear of the element's edge. Pointer
+ * users see no ring (`:focus-visible` only fires on keyboard focus).
+ *
+ * Components that already define their own focus styling
+ * (`focus-visible:ring-...`) take precedence — Tailwind's specificity
+ * wins because their utility class lands later in the cascade.
+ */
+.cinematic-root *:focus-visible {
+  outline: 2px solid #33f0aa;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 /* =============================================================================
    HOMEPAGE — Cinematic Dark Theme (scoped)
    =============================================================================
@@ -359,16 +377,9 @@ body:has(.cinematic-root) > header {
   }
 }
 
-@keyframes home-fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* Phase 3.G — `home-fade-up` keyframe removed (was defined but never
+   referenced; the IntersectionObserver-driven reveal at `[data-reveal]`
+   uses inline `transition` properties, not this keyframe). */
 
 /* Catalog hero — diamond ornament breathing glow */
 @keyframes catalog-diamond-pulse {

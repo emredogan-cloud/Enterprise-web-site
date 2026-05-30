@@ -379,7 +379,7 @@ function ListRow({ book }: { book: DemoBook }) {
         style={{ background: book.cover.gradient }}
       >
         <span
-          className="font-semibold uppercase tracking-[0.15em]"
+          className="font-semibold uppercase tracking-[0.12em]"
           style={{
             color: book.cover.darkText
               ? "rgba(0,0,0,0.45)"
@@ -397,11 +397,11 @@ function ListRow({ book }: { book: DemoBook }) {
       </div>
 
       <div className="min-w-0 flex-1">
-        <h4 className="truncate font-serif text-base font-medium text-[#e6e6e0] group-hover:text-[#33f0aa]">
+        <h4 className="truncate font-serif text-base font-medium text-fg-hi group-hover:text-emerald-bright">
           {book.title}
         </h4>
-        <p className="mt-0.5 truncate text-sm text-[#88918a]">{book.author}</p>
-        <div className="mt-2 flex items-center gap-4 text-xs text-[#a7a7a0]">
+        <p className="mt-0.5 truncate text-sm text-fg-soft">{book.author}</p>
+        <div className="mt-2 flex items-center gap-4 text-xs text-fg-mid">
           <span className="rounded-full bg-white/[0.04] px-2 py-0.5">
             {book.category}
           </span>
@@ -410,10 +410,10 @@ function ListRow({ book }: { book: DemoBook }) {
       </div>
 
       <div className="flex flex-col items-end gap-1">
-        <span className="text-base font-semibold tabular-nums text-[#e6e6e0]">
+        <span className="text-base font-semibold tabular-nums text-fg-hi">
           ${(book.priceCents / 100).toFixed(0)}
         </span>
-        <span className="flex items-center gap-1 text-xs text-[#a7a7a0]">
+        <span className="flex items-center gap-1 text-xs text-fg-mid">
           <svg
             aria-hidden
             viewBox="0 0 12 12"
@@ -435,10 +435,10 @@ function ListRow({ book }: { book: DemoBook }) {
 function EmptyResults({ onReset }: { onReset: () => void }) {
   return (
     <div className="home-glass mt-10 rounded-2xl px-8 py-16 text-center">
-      <p className="font-serif text-xl text-[#e6e6e0]">
+      <p className="font-serif text-xl text-fg-hi">
         No books match these filters.
       </p>
-      <p className="mt-2 text-sm text-[#88918a]">
+      <p className="mt-2 text-sm text-fg-soft">
         Try widening the price range, or clear the filters to start over.
       </p>
       <button

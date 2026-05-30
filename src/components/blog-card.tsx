@@ -23,7 +23,7 @@ export function BlogCard({ post }: { post: BlogPostMeta }) {
 
   return (
     <article className="group">
-      <div className="flex items-center gap-3 text-xs uppercase tracking-[0.15em] text-muted-foreground">
+      <div className="flex items-center gap-3 text-xs uppercase tracking-[0.12em] text-muted-foreground">
         <time dateTime={post.date}>{displayDate}</time>
         <span aria-hidden>·</span>
         <Link
