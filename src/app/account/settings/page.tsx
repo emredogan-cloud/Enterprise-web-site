@@ -1,38 +1,68 @@
 import type { Metadata } from "next";
 import { eq } from "drizzle-orm";
 
-import { CinematicHero } from "@/components/cinematic/cinematic-hero";
-import { DeleteAccountButton } from "@/components/delete-account-button";
-import { ExportDataButton } from "@/components/export-data-button";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
+import { DangerZoneCard } from "@/components/settings/danger-zone-card";
+import { ExportDataCard } from "@/components/settings/export-data-card";
+import { PrivacyOverviewCard } from "@/components/settings/privacy-overview-card";
+import { ProfileIdentityCard } from "@/components/settings/profile-identity-card";
+import { SettingsBackground } from "@/components/settings/settings-background";
+import { SettingsHero } from "@/components/settings/settings-hero";
+import { SettingsSidebar } from "@/components/settings/settings-sidebar";
+import { TrustStrip } from "@/components/settings/trust-strip";
 import { UnprovisionedNotice } from "@/components/unprovisioned-notice";
 import { loadAuthenticatedLocalUser } from "@/lib/account";
 import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
 
 /**
- * /account/settings — profile + privacy actions.
+ * /account/settings — Cinematic Account Control Center.
  *
- * Phase 3.A cinematic redesign (Account Dashboard family — same shell
- * as /account/orders from Phase 2.C). Two stacked glass panels:
+ * Layout:
  *
- *   1. Profile — read-only display of email, name, member-since
- *   2. Privacy — Export Data + Delete Account (both buttons rewritten
- *      to cinematic chrome in this same phase)
+ *   ┌──────────────────────────────────────────────────────────────────┐
+ *   │                  CinematicHeader (sticky)                        │
+ *   ├──────────────────────────────────────────────────────────────────┤
+ *   │  ┌──── Sidebar ────┐ ┌──── Main column ──────────────────────┐  │
+ *   │  │  ACCOUNT        │ │  SettingsHero (text + desk scene)     │  │
+ *   │  │  · Library      │ │                                       │  │
+ *   │  │  · Orders       │ │  Profile & Identity                   │  │
+ *   │  │  · Settings ●   │ │  Privacy overview (3 columns)         │  │
+ *   │  │  · Profile      │ │  Export your data (illustration)      │  │
+ *   │  │  · Security ◌   │ │  Danger zone (delete, red burst)      │  │
+ *   │  │  · Notif.   ◌   │ │  Trust strip (4 indicators)           │  │
+ *   │  │  · Billing  ◌   │ └───────────────────────────────────────┘  │
+ *   │  │                 │                                            │
+ *   │  │  Member card    │                                            │
+ *   │  └─────────────────┘                                            │
+ *   ├──────────────────────────────────────────────────────────────────┤
+ *   │                  HomeFooter                                      │
+ *   └──────────────────────────────────────────────────────────────────┘
  *
- * Classification: `ƒ Dynamic` (per-user session + per-request DB read).
+ * Behind everything: `<SettingsBackground>` atmospheric `fixed` overlay
+ * (radial blooms + drifting dust), z-index -10 so it sits behind every
+ * card without affecting layout.
+ *
+ * Functional preservation (audit + Phase 3 protocol):
+ *   - `loadAuthenticatedLocalUser` auth gate unchanged
+ *   - `users.createdAt` query unchanged
+ *   - `<ExportDataButton>` server-action wiring preserved (wrapped in
+ *     `<ExportDataCard>` chrome only)
+ *   - `<DeleteAccountButton>` two-stage destruction UX preserved
+ *     (wrapped in `<DangerZoneCard>` chrome only)
+ *   - `<UnprovisionedNotice>` fallback preserved
+ *
+ * Classification stays `ƒ Dynamic` — per-user session + per-request DB
+ * read; never cache.
  */
 
-// Per-user, per-request — never cache.
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Account settings",
   robots: { index: false, follow: false },
 };
-
-const DATE_FMT = new Intl.DateTimeFormat("en-US", { dateStyle: "long" });
 
 export default async function SettingsPage() {
   const userCtx = await loadAuthenticatedLocalUser();
@@ -46,131 +76,46 @@ export default async function SettingsPage() {
     );
   }
 
-  // Pull the local-row's `createdAt` ("member since"). The other fields
-  // are already on `userCtx`; this single targeted column read is the
-  // only DB call this page needs.
   const [localUser] = await db
     .select({ createdAt: users.createdAt })
     .from(users)
     .where(eq(users.id, userCtx.localUserId))
     .limit(1);
 
+  const memberSince = localUser?.createdAt ?? null;
+
   return (
     <div className="cinematic-root">
       <CinematicHeader />
 
-      <main className="relative z-10">
-        <CinematicHero
-          eyebrow="Your account"
-          headlineHead=""
-          headlineTail="Settings"
-          size="md"
-          align="center"
-          subtitle={
-            <p>
-              Your profile, your data, your account — every control on one page.
-            </p>
-          }
-        />
+      {/* Atmospheric backdrop — fixed, behind every card */}
+      <SettingsBackground />
 
-        <section className="mx-auto mt-16 max-w-2xl space-y-6 px-4 sm:px-6">
-          {/* Profile panel */}
-          <article className="home-glass relative overflow-hidden rounded-[24px] p-6 sm:p-8">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/35 to-transparent"
+      <main className="relative z-10 mx-auto max-w-[1320px] px-4 pt-8 sm:px-6 sm:pt-12">
+        {/* Two-column body: sidebar + main */}
+        <div className="grid gap-8 lg:grid-cols-[260px_minmax(0,_1fr)] lg:gap-12">
+          {/* LEFT — sidebar (collapses to top stack on mobile) */}
+          <SettingsSidebar memberSince={memberSince} />
+
+          {/* RIGHT — settings content */}
+          <div className="min-w-0 space-y-8 sm:space-y-10">
+            <SettingsHero />
+
+            <ProfileIdentityCard
+              email={userCtx.email}
+              name={userCtx.name ?? null}
+              memberSince={memberSince}
             />
-            <header>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
-                Profile
-              </p>
-              <h2 className="mt-2 font-serif text-[22px] font-medium leading-tight text-fg-hi sm:text-[24px]">
-                Who you are on the site
-              </h2>
-            </header>
 
-            <dl className="mt-6 grid grid-cols-[auto_1fr] gap-x-8 gap-y-4 text-sm">
-              <dt className="text-[11px] font-semibold uppercase tracking-[0.12em] text-fg-soft">
-                Email
-              </dt>
-              <dd className="font-mono text-xs text-fg-hi">
-                {userCtx.email}
-              </dd>
+            <PrivacyOverviewCard />
 
-              {userCtx.name && (
-                <>
-                  <dt className="text-[11px] font-semibold uppercase tracking-[0.12em] text-fg-soft">
-                    Name
-                  </dt>
-                  <dd className="text-fg-hi">{userCtx.name}</dd>
-                </>
-              )}
+            <ExportDataCard />
 
-              {localUser?.createdAt && (
-                <>
-                  <dt className="text-[11px] font-semibold uppercase tracking-[0.12em] text-fg-soft">
-                    Member since
-                  </dt>
-                  <dd className="text-fg-hi">
-                    {DATE_FMT.format(localUser.createdAt)}
-                  </dd>
-                </>
-              )}
-            </dl>
-          </article>
+            <DangerZoneCard />
 
-          {/* Privacy panel */}
-          <article className="home-glass relative overflow-hidden rounded-[24px] p-6 sm:p-8">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/35 to-transparent"
-            />
-            <header>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
-                Privacy
-              </p>
-              <h2 className="mt-2 font-serif text-[22px] font-medium leading-tight text-fg-hi sm:text-[24px]">
-                Your data is yours
-              </h2>
-              <p className="mt-3 text-sm leading-relaxed text-fg-mid">
-                Export it anytime, or remove it from this site entirely.
-                Both actions are documented in our{" "}
-                <a
-                  href="/privacy"
-                  className="text-emerald-bright underline-offset-4 hover:underline"
-                >
-                  privacy policy
-                </a>
-                .
-              </p>
-            </header>
-
-            <div className="mt-8 space-y-3">
-              <h3 className="font-serif text-[16px] font-medium text-fg-hi">
-                Export your data
-              </h3>
-              <p className="text-sm leading-relaxed text-fg-mid">
-                Download a JSON file with your profile, orders, entitlements,
-                reading progress, and reviews. Internal storage keys are not
-                included.
-              </p>
-              <ExportDataButton />
-            </div>
-
-            <div className="mt-10 space-y-3 border-t border-white/[0.06] pt-8">
-              <h3 className="font-serif text-[16px] font-medium text-fg-hi">
-                Delete your account
-              </h3>
-              <p className="text-sm leading-relaxed text-fg-mid">
-                Removes your personal data (reading progress, reviews, name,
-                email). Commercial records (orders, receipts, entitlements)
-                are retained for tax compliance, attached to an anonymized
-                account row.
-              </p>
-              <DeleteAccountButton />
-            </div>
-          </article>
-        </section>
+            <TrustStrip />
+          </div>
+        </div>
 
         <div className="h-20" />
       </main>
