@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { AddToCartButton } from "@/components/add-to-cart-button";
-import { CoverImage } from "@/components/cover-image";
-import { ReviewForm } from "@/components/review-form";
-import { ReviewsList } from "@/components/reviews-list";
-import { SampleViewer } from "@/components/sample-viewer";
-import { StarRating } from "@/components/star-rating";
+import { BookHero } from "@/components/book-detail/book-hero";
+import { CinematicReviewForm } from "@/components/book-detail/cinematic-review-form";
+import { CinematicReviewsList } from "@/components/book-detail/cinematic-reviews-list";
+import { CinematicSampleSection } from "@/components/book-detail/cinematic-sample-section";
+import { CinematicStarRating } from "@/components/book-detail/cinematic-star-rating";
+import { ExploreStrip } from "@/components/book-detail/explore-strip";
+import { CinematicHeader } from "@/components/home/cinematic-header";
+import { HomeFooter } from "@/components/home/home-footer";
 import {
   getPublishedBookBySlug,
   listPublishedBookSlugs,
@@ -15,17 +17,41 @@ import {
   getBookRatingAggregate,
   getReviewsForBook,
 } from "@/lib/db/queries/reviews";
-import { formatPrice } from "@/lib/format";
 import { PLACEHOLDER_SAMPLE_HTML } from "@/lib/placeholders/book-sample";
 import { buildBookJsonLd, getBaseUrl, getCoverImageUrl } from "@/lib/seo";
 
-// SSG + ISR per ADR-1: pre-generate all published-book slugs at build, then
-// regenerate any page lazily on demand once `revalidate` elapses. The
-// review SUBMISSION flow calls `revalidatePath` for the affected slug, so
-// new reviews appear on the next request without waiting the full hour.
+/**
+ * /books/[slug] — Product Detail page.
+ *
+ * Phase 1.C cinematic redesign. Wraps the cinematic shell
+ * (`.cinematic-root` + `<CinematicHeader>` + `<HomeFooter>`) around a
+ * new composition:
+ *
+ *   1. <BookHero> — two-col: sticky cover + buy panel LEFT, meta + title
+ *      + description RIGHT
+ *   2. <CinematicSampleSection> — glass-framed sample, SSG-rendered for SEO
+ *   3. Reviews section — aggregate header + <CinematicReviewsList> +
+ *      <CinematicReviewForm>
+ *   4. <ExploreStrip> — quiet "continue browsing" close
+ *
+ * Classification target preserved: `● SSG` via `generateStaticParams`
+ * over `listPublishedBookSlugs()`. ISR `revalidate = 3600`.
+ *
+ * Functional contracts preserved end-to-end:
+ *   - JSON-LD payload (Roadmap §13 — Book + Product + Offer +
+ *     AggregateRating when reviews exist) is rendered verbatim
+ *   - Sample HTML lands in the static payload (paywall-content fix)
+ *   - Review submission flow (server action `submitReview` → revalidate)
+ *     untouched; the form just has cinematic chrome
+ *   - Add-to-cart uses the same `addToCart` server action + `cart-changed`
+ *     event broadcast
+ */
+
+// SSG + ISR per ADR-1. The review SUBMISSION flow calls `revalidatePath`
+// for the affected slug, so new reviews appear on the next request
+// without waiting the full hour.
 export const revalidate = 3600;
 
-// In Next.js 16 the `params` argument is a Promise — must be awaited.
 type BookSlugParams = Promise<{ slug: string }>;
 
 export async function generateStaticParams(): Promise<Array<{ slug: string }>> {
@@ -87,35 +113,17 @@ export default async function BookDetailPage({
   const book = await getPublishedBookBySlug(slug);
   if (!book) notFound();
 
-  /*
-   * Sample resolution (Roadmap §13 — SEO-critical):
-   *   The sample HTML MUST be in the rendered DOM at SSG time so search
-   *   engines (and trust-conscious readers) can see the writing inside
-   *   what is otherwise a paywalled file. For SUB-PR 1.3 we always render
-   *   the placeholder; once R2 sample-fetching is wired in a follow-up,
-   *   this becomes:
-   *
-   *     const sampleHtml = book.sampleKey
-   *       ? await fetchSampleFromR2(book.sampleKey)
-   *       : PLACEHOLDER_SAMPLE_HTML;
-   */
+  // Sample resolution — placeholder for now; R2-served samples are a
+  // follow-up (unchanged from the pre-cinematic page).
   const sampleHtml = PLACEHOLDER_SAMPLE_HTML;
 
-  // -------------------------------------------------------------------------
-  // Reviews — fetch the per-book list AND the SQL-level aggregate in
-  // parallel with anything else still pending. Both are `safeQuery`-wrapped,
-  // so a missing DB at build / ISR time degrades to `{count: 0, average: null}`
-  // and `[]` respectively — the page renders, the JSON-LD omits
-  // AggregateRating, and the form falls back to its empty state.
-  // -------------------------------------------------------------------------
+  // Reviews + aggregate in parallel — both `safeQuery`-wrapped so a
+  // missing DB degrades to `{count: 0, average: null}` + `[]`.
   const [reviewItems, ratingAggregate] = await Promise.all([
     getReviewsForBook(book.id),
     getBookRatingAggregate(book.id),
   ]);
 
-  // Translate the aggregate into the JSON-LD input shape. When `count === 0`
-  // we pass `null`, which the helper turns into "no `aggregateRating` field"
-  // on both Book and Product (Google's eligibility rule).
   const aggregateRatingForJsonLd =
     ratingAggregate.count > 0 && ratingAggregate.average !== null
       ? {
@@ -124,11 +132,7 @@ export default async function BookDetailPage({
         }
       : null;
 
-  // -------------------------------------------------------------------------
-  // JSON-LD (Roadmap §13 — structured data). One `<script>` per page,
-  // single `@graph` with Organization + Breadcrumbs + Book + Product/Offer
-  // + (when available) AggregateRating on both Book and Product.
-  // -------------------------------------------------------------------------
+  // JSON-LD payload — identical shape to the pre-cinematic page.
   const baseUrl = getBaseUrl();
   const coverImageUrl = getCoverImageUrl(book.coverKey);
   const jsonLd = buildBookJsonLd({
@@ -148,165 +152,102 @@ export default async function BookDetailPage({
   });
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-16">
-      {/*
-        JSON-LD is rendered as a normal <script type="application/ld+json">
-        tag inside the SSG payload — crawlers parse it on the first GET.
-        `dangerouslySetInnerHTML` is the canonical pattern; the content is
-        a JSON-serialized object we control entirely.
-      */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+    <div className="cinematic-root">
+      <CinematicHeader active="books" />
 
-      <div className="grid gap-12 md:grid-cols-[minmax(0,_1fr)_minmax(0,_1.5fr)]">
-        <div className="md:sticky md:top-16 md:self-start">
-          {/*
-            `priority` on the cover — it's the LCP candidate on this
-            page, so Next/Image preloads it instead of lazy-loading.
-            (Falls back to the typographic placeholder when no public
-            R2 URL is configured; the prop is then a no-op.)
-          */}
-          <CoverImage title={book.title} coverKey={book.coverKey} priority />
-        </div>
+      <main className="relative z-10">
+        {/* JSON-LD — same payload, same emission strategy */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
 
-        <div>
-          {book.authors.length > 0 && (
-            <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">
-              {book.authors.map((a) => a.name).join(", ")}
+        <BookHero
+          bookId={book.id}
+          slug={slug}
+          title={book.title}
+          subtitle={book.subtitle}
+          description={book.description}
+          coverKey={book.coverKey}
+          priceCents={book.priceCents}
+          currency={book.currency}
+          pageCount={book.pageCount}
+          language={book.language}
+          isbn={book.isbn}
+          authors={book.authors}
+          ratingAggregate={ratingAggregate}
+        />
+
+        <CinematicSampleSection content={sampleHtml} />
+
+        {/* Reviews section */}
+        <section
+          id="reviews"
+          aria-labelledby="reviews-heading"
+          className="mx-auto mt-24 max-w-3xl px-4 sm:px-6"
+        >
+          <header className="text-center">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#33f0aa]">
+              Reader reviews
             </p>
-          )}
 
-          <h1 className="mt-3 text-balance font-serif text-4xl font-medium leading-tight text-foreground sm:text-5xl">
-            {book.title}
-          </h1>
-
-          {book.subtitle && (
-            <p className="mt-4 text-xl text-muted-foreground">
-              {book.subtitle}
-            </p>
-          )}
-
-          {/*
-            Aggregate rating headline — shown inline near the title when
-            there is at least one review. Mirrors the JSON-LD payload so
-            users see the same number crawlers do. Hidden entirely at
-            zero reviews to avoid the "0.0 stars" anti-pattern.
-          */}
-          {ratingAggregate.count > 0 && ratingAggregate.average !== null && (
-            <div className="mt-5 flex items-center gap-3">
-              <StarRating value={ratingAggregate.average} size="sm" />
-              <p className="text-sm text-muted-foreground">
-                <span className="font-medium text-foreground">
-                  {ratingAggregate.average.toFixed(1)}
-                </span>{" "}
-                · {ratingAggregate.count}{" "}
-                {ratingAggregate.count === 1 ? "review" : "reviews"}
-              </p>
+            <div className="relative mx-auto mt-4 flex h-6 w-6 items-center justify-center">
+              <div
+                aria-hidden
+                className="absolute h-6 w-6 rounded-full opacity-60"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(51,240,170,0.7) 0%, transparent 70%)",
+                }}
+              />
+              <span
+                aria-hidden
+                className="catalog-diamond block h-2 w-2 rounded-[1px] bg-[#33f0aa]"
+                style={{ transform: "rotate(45deg)" }}
+              />
             </div>
-          )}
 
-          {book.description && (
-            <p className="mt-8 max-w-prose text-pretty text-base leading-relaxed text-foreground/80">
-              {book.description}
-            </p>
-          )}
+            <h2
+              id="reviews-heading"
+              className="mt-5 font-serif text-[32px] font-medium leading-tight text-[#e6e6e0] sm:text-[40px]"
+            >
+              What readers say
+            </h2>
 
-          <dl className="mt-10 grid grid-cols-[auto_1fr] gap-x-6 gap-y-3 text-sm">
-            <dt className="text-muted-foreground">Price</dt>
-            <dd className="font-medium">
-              {formatPrice(book.priceCents, book.currency)}
-            </dd>
-
-            {book.pageCount !== null && (
-              <>
-                <dt className="text-muted-foreground">Pages</dt>
-                <dd>{book.pageCount}</dd>
-              </>
+            {ratingAggregate.count > 0 && ratingAggregate.average !== null && (
+              <div className="mt-5 flex items-center justify-center gap-3">
+                <CinematicStarRating
+                  value={ratingAggregate.average}
+                  size="md"
+                />
+                <p className="text-sm text-[#a7a7a0]">
+                  <span className="font-medium text-[#e6e6e0]">
+                    {ratingAggregate.average.toFixed(1)}
+                  </span>{" "}
+                  across {ratingAggregate.count}{" "}
+                  {ratingAggregate.count === 1 ? "review" : "reviews"}
+                </p>
+              </div>
             )}
+          </header>
 
-            <dt className="text-muted-foreground">Language</dt>
-            <dd>{book.language}</dd>
+          <CinematicReviewsList reviews={reviewItems} />
 
-            {book.isbn && (
-              <>
-                <dt className="text-muted-foreground">ISBN</dt>
-                <dd className="font-mono text-xs">{book.isbn}</dd>
-              </>
-            )}
-          </dl>
-
-          <div className="mt-10">
-            <AddToCartButton bookId={book.id} />
+          {/* Write-a-review form */}
+          <div className="mt-12">
+            <h3 className="text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#88918a]">
+              Write a review
+            </h3>
+            <CinematicReviewForm slug={slug} bookId={book.id} />
           </div>
-        </div>
-      </div>
+        </section>
 
-      <section className="mt-20 border-t border-border pt-16">
-        <header className="mb-10 text-center">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
-            Preview
-          </p>
-          <p className="mt-2 text-base text-muted-foreground">
-            A taste of the writing before you buy.
-          </p>
-        </header>
+        <ExploreStrip />
 
-        <SampleViewer content={sampleHtml} />
-      </section>
+        <div className="h-20" />
+      </main>
 
-      <section
-        id="reviews"
-        className="mt-20 border-t border-border pt-16"
-        aria-labelledby="reviews-heading"
-      >
-        <header className="text-center">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
-            Reader Reviews
-          </p>
-          <h2
-            id="reviews-heading"
-            className="mt-3 font-serif text-3xl font-medium leading-tight text-foreground"
-          >
-            What readers say
-          </h2>
-          {ratingAggregate.count > 0 && ratingAggregate.average !== null && (
-            <div className="mt-4 flex items-center justify-center gap-3">
-              <StarRating value={ratingAggregate.average} size="md" />
-              <p className="text-sm text-muted-foreground">
-                <span className="font-medium text-foreground">
-                  {ratingAggregate.average.toFixed(1)}
-                </span>{" "}
-                across {ratingAggregate.count}{" "}
-                {ratingAggregate.count === 1 ? "review" : "reviews"}
-              </p>
-            </div>
-          )}
-        </header>
-
-        {/*
-          List of approved reviews — rendered into the SSG HTML, so search
-          engines see the review copy (Roadmap §13: the crawler-visible
-          content surface is what determines ranking).
-        */}
-        <div className="mx-auto mt-10 max-w-2xl">
-          <ReviewsList reviews={reviewItems} />
-        </div>
-
-        {/*
-          Write-a-review form. Client Component — Clerk-gated for auth UI;
-          entitlement gate lives in the Server Action (the authoritative
-          check). Embedding a Client Component inside an SSG page is safe;
-          only the form hydrates, the page itself stays `● SSG`.
-        */}
-        <div className="mx-auto mt-12 max-w-xl">
-          <h3 className="text-center font-serif text-xl font-medium text-foreground">
-            Write a review
-          </h3>
-          <ReviewForm slug={slug} bookId={book.id} />
-        </div>
-      </section>
-    </main>
+      <HomeFooter />
+    </div>
   );
 }

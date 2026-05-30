@@ -41,7 +41,7 @@ export function LibraryEmptyPanel() {
             </p>
             <Link
               href="/books"
-              className="home-cta-primary mt-7 inline-flex h-11 w-fit items-center gap-2 rounded-full px-6 text-sm font-semibold tracking-tight"
+              className="home-cta-primary group mt-7 inline-flex h-11 w-fit items-center gap-2 rounded-full px-6 text-sm font-semibold tracking-tight"
             >
               <BookOpen aria-hidden className="h-4 w-4" />
               <span>Browse books</span>

@@ -36,7 +36,13 @@ export function CartLine({ book }: { book: CartLineBook }) {
   };
 
   return (
-    <article className="home-glass home-card-hover relative flex items-center gap-5 rounded-2xl p-4 transition-opacity duration-300 data-[pending=true]:opacity-50">
+    // Phase 1.I — `data-pending` attribute is now actually set, so the
+    // existing `data-[pending=true]:opacity-50` Tailwind selector fires
+    // while the remove-from-cart server action is in flight.
+    <article
+      data-pending={pending ? "true" : "false"}
+      className="home-glass home-card-hover relative flex items-center gap-5 rounded-2xl p-4 transition-opacity duration-300 data-[pending=true]:opacity-50"
+    >
       {/* Mini cover — CSS-rendered placeholder (same primitive as catalog) */}
       <Link
         href={`/books/${book.slug}`}
