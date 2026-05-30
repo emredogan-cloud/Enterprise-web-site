@@ -1,18 +1,20 @@
 import type { Metadata } from "next";
 
-import { CoverImage } from "@/components/cover-image";
-import { DownloadButton } from "@/components/download-button";
-import { EmptyState } from "@/components/empty-state";
 import { FulfillmentPoller } from "@/components/fulfillment-poller";
+import { CinematicHeader } from "@/components/home/cinematic-header";
+import { HomeFooter } from "@/components/home/home-footer";
+import { LibraryBooksGrid } from "@/components/library/library-books-grid";
+import { LibraryEmptyPanel } from "@/components/library/library-empty-panel";
+import { LibraryFilters } from "@/components/library/library-filters";
+import { LibraryHero } from "@/components/library/library-hero";
+import { LibraryRecommendationShelf } from "@/components/library/library-recommendation-shelf";
+import { LibraryStats } from "@/components/library/library-stats";
 import { UnprovisionedNotice } from "@/components/unprovisioned-notice";
 import { loadAuthenticatedLocalUser } from "@/lib/account";
-import {
-  type LibraryEntry,
-  getUserLibrary,
-} from "@/lib/db/queries/account";
+import { getUserLibrary } from "@/lib/db/queries/account";
 
 // Account routes read the cookie session + per-user DB — never cache,
-// never prerender. Layout-level `<ClerkProvider>` already mounts above us.
+// never prerender. The cinematic redesign preserves the classification.
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
@@ -20,6 +22,21 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+/**
+ * Cinematic library page — opens after purchase / from the nav.
+ *
+ * Two states (both inside `.cinematic-root`):
+ *   - **Empty** (`library.length === 0`): hero + stats (all zero) +
+ *     filter bar + empty focal panel + recommendation shelf.
+ *   - **With books**: same hero + stats (with real counts) + filter
+ *     bar + owned-books grid + recommendation shelf.
+ *
+ * Auth gate untouched — `loadAuthenticatedLocalUser()` returns either a
+ * resolved user context or a structured `UnprovisionedNotice` payload.
+ * The notice surface uses the warm theme by default; rather than
+ * cinematic-ize the gate too, we accept the visual hop in the unauth
+ * case (it's rare and the notice is actionable).
+ */
 export default async function LibraryPage() {
   const userCtx = await loadAuthenticatedLocalUser();
   if (!userCtx.ok) {
@@ -34,72 +51,32 @@ export default async function LibraryPage() {
 
   const library = await getUserLibrary(userCtx.localUserId);
   const hasPending = library.some((entry) => entry.status === "pending");
+  const isEmpty = library.length === 0;
 
   return (
-    <main className="mx-auto max-w-7xl px-6 py-16">
-      <FulfillmentPoller enabled={hasPending} />
+    <div className="cinematic-root">
+      <CinematicHeader active="library" />
 
-      <header className="mx-auto max-w-3xl text-center">
-        <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
-          Your library
-        </p>
-        <h1 className="mt-4 font-serif text-4xl font-medium leading-tight text-foreground sm:text-5xl">
-          Your books
-        </h1>
-        <p className="mt-3 text-sm text-muted-foreground">
-          {library.length === 0
-            ? "Nothing here yet."
-            : `${library.length} ${library.length === 1 ? "book" : "books"} · yours forever, watermarked, never locked`}
-        </p>
-      </header>
+      <main className="relative z-10">
+        {/* Poll for pending fulfillments — unchanged behavior */}
+        <FulfillmentPoller enabled={hasPending} />
 
-      {library.length === 0 ? (
-        <EmptyState
-          heading="Your library is empty."
-          body="Once you buy a book, it appears here — yours to re-download anytime, no extra charge."
-        />
-      ) : (
-        <ul className="mt-12 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-          {library.map((entry) => (
-            <li key={entry.bookId}>
-              <LibraryItem entry={entry} />
-            </li>
-          ))}
-        </ul>
-      )}
-    </main>
-  );
-}
+        <LibraryHero />
+        <LibraryStats booksOwned={library.length} />
+        <LibraryFilters />
 
-function LibraryItem({ entry }: { entry: LibraryEntry }) {
-  return (
-    <article className="flex flex-col gap-4">
-      <CoverImage title={entry.book.title} coverKey={entry.book.coverKey} />
-      <div>
-        <h2 className="font-serif text-lg font-medium leading-snug text-foreground">
-          {entry.book.title}
-        </h2>
-        {entry.book.subtitle && (
-          <p className="mt-1 text-sm text-muted-foreground">
-            {entry.book.subtitle}
-          </p>
-        )}
-      </div>
-      <div className="mt-auto">
-        {entry.status === "ready" ? (
-          <DownloadButton bookId={entry.bookId} />
-        ) : entry.status === "pending" ? (
-          <p className="inline-flex items-center gap-2 text-sm text-muted-foreground">
-            <span
-              aria-hidden
-              className="inline-block size-2 animate-pulse rounded-full bg-primary/60"
-            />
-            Preparing your copy…
-          </p>
+        {isEmpty ? (
+          <LibraryEmptyPanel />
         ) : (
-          <p className="text-sm text-destructive">Access revoked.</p>
+          <LibraryBooksGrid library={library} />
         )}
-      </div>
-    </article>
+
+        <LibraryRecommendationShelf />
+
+        <div className="h-20" />
+      </main>
+
+      <HomeFooter />
+    </div>
   );
 }

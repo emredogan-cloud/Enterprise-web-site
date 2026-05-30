@@ -24,17 +24,26 @@ import { useEffect } from "react";
  * current section's nav link. Pass it from each page that mounts the
  * header.
  */
-export type ActiveNavSection = "home" | "books" | "authors" | "genres" | "blog";
+export type ActiveNavSection =
+  | "home"
+  | "books"
+  | "authors"
+  | "genres"
+  | "blog"
+  | "library";
 
 const NAV_ITEMS: { key: ActiveNavSection; label: string; href: string }[] = [
   { key: "books", label: "Books", href: "/books" },
   // `/authors` is the cinematic discovery page (SUB-PR — authors redesign).
   // Previously fell through to /books because no index existed.
   { key: "authors", label: "Authors", href: "/authors" },
-  // `/genres` is the new cinematic discovery page (SUB-PR — genres redesign).
+  // `/genres` is the cinematic discovery page (SUB-PR — genres redesign).
   // Previously fell through to /books because no index existed.
   { key: "genres", label: "Genres", href: "/genres" },
   { key: "blog", label: "Blog", href: "/blog" },
+  // `/account/library` is the cinematic personal library (SUB-PR — library
+  // redesign). Auth-gated server-side; the link itself is always visible.
+  { key: "library", label: "Library", href: "/account/library" },
 ];
 
 export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
