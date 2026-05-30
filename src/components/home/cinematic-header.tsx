@@ -28,10 +28,12 @@ export type ActiveNavSection = "home" | "books" | "authors" | "genres" | "blog";
 
 const NAV_ITEMS: { key: ActiveNavSection; label: string; href: string }[] = [
   { key: "books", label: "Books", href: "/books" },
-  // `/authors` is the new cinematic discovery page (SUB-PR — authors redesign).
+  // `/authors` is the cinematic discovery page (SUB-PR — authors redesign).
   // Previously fell through to /books because no index existed.
   { key: "authors", label: "Authors", href: "/authors" },
-  { key: "genres", label: "Genres", href: "/books" },
+  // `/genres` is the new cinematic discovery page (SUB-PR — genres redesign).
+  // Previously fell through to /books because no index existed.
+  { key: "genres", label: "Genres", href: "/genres" },
   { key: "blog", label: "Blog", href: "/blog" },
 ];
 
