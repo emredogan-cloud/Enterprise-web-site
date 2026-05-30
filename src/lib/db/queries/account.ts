@@ -42,6 +42,15 @@ export interface OrderEntitlement {
   bookId: string;
   status: EntitlementStatus;
   watermarkedKey: string | null;
+  /**
+   * Per-book price paid at purchase time (cents). Pulled from
+   * `order_items.priceCentsAtPurchase` so it is **historically accurate**
+   * — book prices can change later, but the order page must always
+   * reflect what the customer actually paid. Null only when the
+   * order_items row is missing (degraded state — shouldn't happen in
+   * practice, but defensive UI handles the missing-price case).
+   */
+  priceCentsAtPurchase: number | null;
   book: EntitlementBookSummary;
 }
 
@@ -116,9 +125,24 @@ export async function getOrderForUser(args: {
               },
             },
           },
+          // Pull order_items alongside so we can join per-book price into
+          // each entitlement view. `priceCentsAtPurchase` is the snapshot
+          // the customer paid — never the current books.price_cents.
+          // Relation name on `orders` is `items` (see ordersRelations in
+          // schema.ts).
+          items: {
+            columns: { bookId: true, priceCentsAtPurchase: true },
+          },
         },
       });
       if (!order) return null;
+
+      // Build a (bookId → price) map once, then merge into entitlements.
+      const priceByBookId = new Map<string, number>();
+      for (const item of order.items) {
+        priceByBookId.set(item.bookId, item.priceCentsAtPurchase);
+      }
+
       return {
         id: order.id,
         totalCents: order.totalCents,
@@ -130,6 +154,7 @@ export async function getOrderForUser(args: {
           bookId: e.bookId,
           status: e.status,
           watermarkedKey: e.watermarkedKey,
+          priceCentsAtPurchase: priceByBookId.get(e.bookId) ?? null,
           book: e.book,
         })),
       };
