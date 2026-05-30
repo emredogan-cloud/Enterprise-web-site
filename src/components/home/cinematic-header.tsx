@@ -1,5 +1,6 @@
 "use client";
 
+import { SignInButton, UserButton, useAuth } from "@clerk/nextjs";
 import { Search, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -23,7 +24,19 @@ import { useEffect } from "react";
  * `active` prop drives the underline + micro emerald glow under the
  * current section's nav link. Pass it from each page that mounts the
  * header.
+ *
+ * Phase 0.F — the avatar slot now hosts Clerk's `<UserButton>` (signed
+ * in: real avatar + sign-out menu) / `<SignInButton>` (signed out:
+ * pill). When the Clerk publishable key is missing (local dev before
+ * `vercel env pull`), the slot falls back to the legacy avatar link so
+ * the cinematic shell still renders on unprovisioned environments.
  */
+
+// Inlined at build time. Used to short-circuit Clerk hook usage when no
+// provider is mounted (see `<AccountSlot>` below).
+const CLERK_CONFIGURED = Boolean(
+  process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
+);
 export type ActiveNavSection =
   | "home"
   | "books"
@@ -150,16 +163,99 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
             />
           </Link>
 
-          {/* Avatar */}
-          <Link
-            href="/account/library"
-            aria-label="Account"
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#1ddf8f] to-[#0e7f54] text-[#032015] transition-transform hover:scale-105"
-          >
-            <User aria-hidden className="h-4 w-4" />
-          </Link>
+          {/* Account slot — Clerk-aware. Renders sign-in pill when signed
+              out, UserButton (real avatar + menu + sign-out) when signed
+              in, and falls back to the legacy avatar link when no Clerk
+              provider is mounted (e.g. unprovisioned local dev). */}
+          <AccountSlot />
         </div>
       </div>
     </header>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Account slot — encapsulates the Clerk vs unprovisioned-fallback branch.
+//
+// Rules-of-hooks safety: each leaf component consistently calls (or does
+// not call) `useAuth`. The outer `<AccountSlot>` picks the leaf without
+// ever conditionally toggling a hook itself.
+// ─────────────────────────────────────────────────────────────────────────
+
+function AccountSlot() {
+  if (!CLERK_CONFIGURED) return <LegacyAccountFallback />;
+  return <ClerkAccountSlot />;
+}
+
+/** Legacy avatar link — used when Clerk isn't configured. Keeps the
+ * cinematic shell renderable on unprovisioned environments. */
+function LegacyAccountFallback() {
+  return (
+    <Link
+      href="/account/library"
+      aria-label="Account"
+      className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#1ddf8f] to-[#0e7f54] text-[#032015] transition-transform hover:scale-105"
+    >
+      <User aria-hidden className="h-4 w-4" />
+    </Link>
+  );
+}
+
+/** Cinematic-themed UserButton appearance. Tuned to read against the
+ * dark sticky header without dragging in `@clerk/themes`. */
+const USER_BUTTON_APPEARANCE = {
+  variables: {
+    colorPrimary: "#1ddf8f",
+    colorBackground: "#0c1813",
+    colorText: "#e6e6e0",
+    colorTextSecondary: "#a7a7a0",
+    colorInputBackground: "rgba(255, 255, 255, 0.03)",
+    colorInputText: "#e6e6e0",
+    borderRadius: "0.75rem",
+  },
+  elements: {
+    avatarBox:
+      "h-9 w-9 ring-1 ring-white/[0.08] shadow-[0_0_0_1px_rgba(51,240,170,0.15)]",
+    userButtonPopoverCard:
+      "bg-[#0c1813] border border-white/[0.08] shadow-[0_28px_60px_-22px_rgba(0,0,0,0.8)]",
+    userButtonPopoverActionButton:
+      "text-[#a7a7a0] hover:text-[#e6e6e0] hover:bg-white/[0.04]",
+    userButtonPopoverActionButtonText: "text-[#e6e6e0]",
+    userButtonPopoverFooter: "hidden",
+  },
+} as const;
+
+function ClerkAccountSlot() {
+  const { isLoaded, isSignedIn } = useAuth();
+
+  // First paint while Clerk is hydrating — show a calm neutral placeholder
+  // (NOT the emerald gradient avatar, which would flash and then morph
+  // into a different shape once isSignedIn resolves).
+  if (!isLoaded) {
+    return (
+      <div
+        aria-hidden
+        className="h-9 w-9 rounded-full border border-white/[0.08] bg-white/[0.03]"
+      />
+    );
+  }
+
+  if (isSignedIn) {
+    // After-sign-out redirect is configured at the <ClerkProvider> level
+    // (defaults to "/"); not a UserButton prop in Clerk v7+.
+    return <UserButton appearance={USER_BUTTON_APPEARANCE} />;
+  }
+
+  // Signed-out: small cinematic "Sign in" pill that triggers the modal.
+  return (
+    <SignInButton mode="modal">
+      <button
+        type="button"
+        className="inline-flex h-9 items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.03] px-4 text-sm text-[#e6e6e0] transition-colors hover:border-[#33f0aa]/40 hover:bg-[#33f0aa]/10"
+      >
+        <User aria-hidden className="h-3.5 w-3.5" />
+        Sign in
+      </button>
+    </SignInButton>
   );
 }
