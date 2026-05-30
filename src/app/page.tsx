@@ -4,7 +4,7 @@ import { CategoriesSection } from "@/components/home/categories-section";
 import { FeaturedBooksSection } from "@/components/home/featured-books-section";
 import { Hero } from "@/components/home/hero";
 import { HomeFooter } from "@/components/home/home-footer";
-import { HomeHeader } from "@/components/home/home-header";
+import { CinematicHeader } from "@/components/home/cinematic-header";
 import { NewsletterSection } from "@/components/home/newsletter-section";
 import { WhyReadersSection } from "@/components/home/why-readers-section";
 
@@ -42,8 +42,8 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="homepage-root">
-      <HomeHeader />
+    <div className="cinematic-root">
+      <CinematicHeader active="home" />
 
       <main className="relative z-10">
         <Hero />

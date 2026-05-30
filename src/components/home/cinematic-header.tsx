@@ -6,19 +6,34 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 /**
- * Homepage-scope dark sticky header (cinematic theme).
+ * Dark sticky header — shared by every cinematic-scoped route
+ * (currently `/` and `/books`; available to any future page that
+ * wraps itself in `.cinematic-root`).
  *
- * Replaces the global `<SiteHeader>` (warm theme) which is hidden via
- * `body:has(.homepage-root) > header { display: none }` in globals.css.
+ * The global `<SiteHeader>` (warm theme, calm-literary tone) is hidden
+ * on cinematic pages by `body:has(.cinematic-root) > header { display:
+ * none }` in globals.css — this component takes its place.
  *
  * Client Component because:
- *   - `⌘K` / `Ctrl-K` keyboard shortcut wires a global keydown listener
- *     that routes to `/search`.
- *   - Future cart-count display would hook into the same `cart-changed`
- *     event the rest of the site uses (currently rendered as a static
- *     emerald dot, mirroring the reference image's notification badge).
+ *   - `⌘K` / `Ctrl-K` global keyboard shortcut routes to `/search`
+ *   - The search-pill / cart / avatar all need to feel reactive at
+ *     hover-time; doing the hover with CSS is fine but ergonomic to
+ *     keep the whole thing in one Client component.
+ *
+ * `active` prop drives the underline + micro emerald glow under the
+ * current section's nav link. Pass it from each page that mounts the
+ * header.
  */
-export function HomeHeader() {
+export type ActiveNavSection = "home" | "books" | "authors" | "genres" | "blog";
+
+const NAV_ITEMS: { key: ActiveNavSection; label: string; href: string }[] = [
+  { key: "books", label: "Books", href: "/books" },
+  { key: "authors", label: "Authors", href: "/books" },
+  { key: "genres", label: "Genres", href: "/books" },
+  { key: "blog", label: "Blog", href: "/blog" },
+];
+
+export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
   const router = useRouter();
 
   useEffect(() => {
@@ -52,31 +67,35 @@ export function HomeHeader() {
         {/* Center nav — hidden below md */}
         <nav
           aria-label="Primary"
-          className="ml-6 hidden items-center gap-7 text-sm text-[#a7a7a0] md:flex"
+          className="ml-6 hidden items-center gap-7 text-sm md:flex"
         >
-          <Link href="/books" className="transition-colors hover:text-[#e6e6e0]">
-            Books
-          </Link>
-          <Link
-            href="/books"
-            className="transition-colors hover:text-[#e6e6e0]"
-            title="All authors"
-          >
-            Authors
-          </Link>
-          <Link
-            href="/books"
-            className="transition-colors hover:text-[#e6e6e0]"
-            title="All genres"
-          >
-            Genres
-          </Link>
-          <Link href="/blog" className="transition-colors hover:text-[#e6e6e0]">
-            Blog
-          </Link>
+          {NAV_ITEMS.map((item) => {
+            const isActive = item.key === active;
+            return (
+              <Link
+                key={item.key}
+                href={item.href}
+                className={`relative transition-colors ${
+                  isActive ? "text-[#e6e6e0]" : "text-[#a7a7a0] hover:text-[#e6e6e0]"
+                }`}
+              >
+                {item.label}
+                {isActive && (
+                  <span
+                    aria-hidden
+                    className="absolute -bottom-[22px] left-0 right-0 h-[2px] rounded-full bg-[#33f0aa] shadow-[0_0_10px_#33f0aa]"
+                  />
+                )}
+              </Link>
+            );
+          })}
           <a
             href="#about"
-            className="transition-colors hover:text-[#e6e6e0]"
+            className={`transition-colors ${
+              "about" === (active as string | undefined)
+                ? "text-[#e6e6e0]"
+                : "text-[#a7a7a0] hover:text-[#e6e6e0]"
+            }`}
           >
             About
           </a>

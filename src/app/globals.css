@@ -190,7 +190,7 @@
    =============================================================================
    The homepage uses a completely separate visual language from the rest of
    the storefront — dark cinematic / luxury SaaS. Tokens, animations, and
-   the header-hider rule are scoped beneath `.homepage-root` so the calm-
+   the header-hider rule are scoped beneath `.cinematic-root` so the calm-
    literary warm theme on every other route stays untouched.
 
    When the homepage mounts, the modern `body:has()` selector hides the
@@ -198,11 +198,34 @@
    own dark sticky `<HomeHeader>` instead.
    ========================================================================== */
 
-body:has(.homepage-root) > header {
+body:has(.cinematic-root) > header {
   display: none;
 }
 
-.homepage-root {
+/* Custom scrollbar — scoped to cinematic pages so the warm-theme routes
+   keep the browser default. Thin, dark, with an emerald thumb. */
+.cinematic-root ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.cinematic-root ::-webkit-scrollbar-track {
+  background: #050a08;
+}
+.cinematic-root ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(22, 199, 132, 0.4) 0%, rgba(22, 199, 132, 0.2) 100%);
+  border-radius: 999px;
+  border: 2px solid #050a08;
+}
+.cinematic-root ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(51, 240, 170, 0.6) 0%, rgba(22, 199, 132, 0.4) 100%);
+}
+/* Firefox */
+.cinematic-root {
+  scrollbar-color: rgba(22, 199, 132, 0.35) #050a08;
+  scrollbar-width: thin;
+}
+
+.cinematic-root {
   /* Local color tokens — do not pollute the global :root */
   --home-bg: #07110b;
   --home-bg-elev: #0a1410;
@@ -241,7 +264,7 @@ body:has(.homepage-root) > header {
 }
 
 /* Subtle film-grain noise overlay for premium texture */
-.homepage-root::before {
+.cinematic-root::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -326,10 +349,38 @@ body:has(.homepage-root) > header {
   }
 }
 
+/* Catalog hero — diamond ornament breathing glow */
+@keyframes catalog-diamond-pulse {
+  0%, 100% {
+    opacity: 0.65;
+    transform: rotate(45deg) scale(1);
+    filter: drop-shadow(0 0 8px rgba(51, 240, 170, 0.6));
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(45deg) scale(1.15);
+    filter: drop-shadow(0 0 18px rgba(51, 240, 170, 0.9));
+  }
+}
+
+/* Hero dust — slow drift */
+@keyframes catalog-dust-drift {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  10% { opacity: 0.7; }
+  90% { opacity: 0.7; }
+  100% {
+    transform: translate(var(--dust-x, 30px), -100px);
+    opacity: 0;
+  }
+}
+
 /* IntersectionObserver-driven reveal:
    `[data-reveal]` starts hidden, `[data-reveal="visible"]` triggers fade-up.
    Stagger handled in the wrapper via CSS variable on each child. */
-.homepage-root [data-reveal] {
+.cinematic-root [data-reveal] {
   opacity: 0;
   transform: translateY(24px);
   transition:
@@ -337,38 +388,89 @@ body:has(.homepage-root) > header {
     transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: var(--reveal-delay, 0ms);
 }
-.homepage-root [data-reveal="visible"] {
+.cinematic-root [data-reveal="visible"] {
   opacity: 1;
   transform: translateY(0);
 }
 
 /* Hero book — slow float; pedestal — breathing pulse beneath */
-.homepage-root .home-hero-book {
+.cinematic-root .home-hero-book {
   animation: home-float 7s ease-in-out infinite;
   will-change: transform;
 }
-.homepage-root .home-hero-pedestal {
+.cinematic-root .home-hero-pedestal {
   animation: home-pedestal-pulse 5s ease-in-out infinite;
   will-change: opacity, filter;
 }
-.homepage-root .home-hero-aura {
+.cinematic-root .home-hero-aura {
   animation: home-breathe 6s ease-in-out infinite;
   will-change: opacity, transform;
 }
 
 /* Scroll cue pulse */
-.homepage-root .home-scroll-cue-glyph {
+.cinematic-root .home-scroll-cue-glyph {
   animation: home-scroll-pulse 2.5s ease-in-out infinite;
 }
 
 /* Floating particles in hero background — staggered via inline delay */
-.homepage-root .home-particle {
+.cinematic-root .home-particle {
   animation: home-particle-drift 8s ease-out infinite;
   will-change: transform, opacity;
 }
 
+/* Catalog hero ornament */
+.cinematic-root .catalog-diamond {
+  animation: catalog-diamond-pulse 4s ease-in-out infinite;
+  will-change: transform, opacity, filter;
+}
+
+/* Catalog hero dust particles */
+.cinematic-root .catalog-dust {
+  animation: catalog-dust-drift 14s ease-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Catalog filter — custom range slider (no default browser chrome) */
+.cinematic-root .catalog-range {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 4px;
+  background: linear-gradient(
+    to right,
+    #16c784 0%,
+    #16c784 var(--range-progress, 50%),
+    rgba(255, 255, 255, 0.08) var(--range-progress, 50%),
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  border-radius: 999px;
+  outline: none;
+}
+.cinematic-root .catalog-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: #33f0aa;
+  border: 2px solid #07110b;
+  box-shadow: 0 0 12px rgba(51, 240, 170, 0.6);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.cinematic-root .catalog-range::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+.cinematic-root .catalog-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: #33f0aa;
+  border: 2px solid #07110b;
+  box-shadow: 0 0 12px rgba(51, 240, 170, 0.6);
+  cursor: pointer;
+}
+
 /* Glass card utility — used by stats card, newsletter, feature cards */
-.homepage-root .home-glass {
+.cinematic-root .home-glass {
   background: var(--home-surface-glass);
   backdrop-filter: blur(12px) saturate(140%);
   -webkit-backdrop-filter: blur(12px) saturate(140%);
@@ -379,13 +481,13 @@ body:has(.homepage-root) > header {
 }
 
 /* Card hover lift — uniform across feature / category / book cards */
-.homepage-root .home-card-hover {
+.cinematic-root .home-card-hover {
   transition:
     transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
     border-color 0.4s ease,
     box-shadow 0.4s ease;
 }
-.homepage-root .home-card-hover:hover {
+.cinematic-root .home-card-hover:hover {
   transform: translateY(-4px);
   border-color: var(--home-border-strong);
   box-shadow:
@@ -395,7 +497,7 @@ body:has(.homepage-root) > header {
 }
 
 /* Primary CTA — emerald with bloom; hover intensifies the glow */
-.homepage-root .home-cta-primary {
+.cinematic-root .home-cta-primary {
   background: linear-gradient(180deg, var(--home-emerald-bright) 0%, var(--home-emerald) 100%);
   color: #032015;
   box-shadow:
@@ -406,7 +508,7 @@ body:has(.homepage-root) > header {
     transform 0.3s ease,
     box-shadow 0.3s ease;
 }
-.homepage-root .home-cta-primary:hover {
+.cinematic-root .home-cta-primary:hover {
   transform: translateY(-2px);
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.14) inset,
@@ -414,7 +516,7 @@ body:has(.homepage-root) > header {
     0 0 60px -6px var(--home-emerald-glow);
 }
 
-.homepage-root .home-cta-secondary {
+.cinematic-root .home-cta-secondary {
   background: rgba(255, 255, 255, 0.02);
   color: var(--home-text-hi);
   border: 1px solid var(--home-border-strong);
@@ -423,7 +525,7 @@ body:has(.homepage-root) > header {
     background-color 0.3s ease,
     border-color 0.3s ease;
 }
-.homepage-root .home-cta-secondary:hover {
+.cinematic-root .home-cta-secondary:hover {
   transform: translateY(-2px);
   background: rgba(255, 255, 255, 0.05);
   border-color: var(--home-emerald);
