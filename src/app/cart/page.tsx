@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 
-import { ClearCartButton, RemoveFromCartButton } from "@/components/cart-buttons";
-import { CheckoutButton } from "@/components/checkout-button";
-import { CoverImage } from "@/components/cover-image";
-import { EmptyState } from "@/components/empty-state";
+import { CartHero } from "@/components/cart/cart-hero";
+import { CartLine } from "@/components/cart/cart-line";
+import { CartSummary } from "@/components/cart/cart-summary";
+import { EmptyCartCard } from "@/components/cart/empty-cart-card";
+import { RecommendationShelf } from "@/components/cart/recommendation-shelf";
+import { CinematicHeader } from "@/components/home/cinematic-header";
+import { HomeFooter } from "@/components/home/home-footer";
 import { readCart } from "@/lib/cart";
 import { getCartBooks } from "@/lib/db/queries/catalog";
-import { formatPrice } from "@/lib/format";
 
 // `/cart` reads the per-request cart cookie, so it is intentionally dynamic.
-// This is the *only* cart-aware page; the catalog stays statically rendered
-// because the header's count badge is fetched client-side from /api/cart/count.
+// The classification stays `ƒ Dynamic`; only the visual language changed.
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
@@ -18,6 +19,20 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+/**
+ * Cinematic cart page — dark luxury aesthetic shared with homepage / catalog / blog.
+ *
+ * Two states, both inside `.cinematic-root`:
+ *   - **Empty** (cookie has no items): hero ("Your cart is empty") + glass
+ *     empty-card with circular cart-icon ring + CTA to /books + the
+ *     "You might like" recommendation shelf below.
+ *   - **With items**: hero ("N books ready") + a two-column body
+ *     (`<CartLine>` items LEFT, `<CartSummary>` panel RIGHT) + the same
+ *     recommendation shelf at the bottom so users can keep browsing.
+ *
+ * Both states render the shared `<CinematicHeader>` and `<HomeFooter>`,
+ * so the visual continuity from the homepage / catalog / blog is total.
+ */
 export default async function CartPage() {
   const cart = await readCart();
   const books =
@@ -25,9 +40,7 @@ export default async function CartPage() {
       ? await getCartBooks(cart.items.map((i) => i.bookId))
       : [];
 
-  // Preserve add-order from the cookie; books returned by the DB may come
-  // back in arbitrary order, and may be missing entirely if a title was
-  // unpublished or deleted since it landed in the cart.
+  // Preserve cookie order; drop unpublished/missing books defensively.
   const booksById = new Map(books.map((b) => [b.id, b]));
   const orderedBooks = cart.items
     .map((item) => booksById.get(item.bookId))
@@ -35,67 +48,50 @@ export default async function CartPage() {
 
   const totalCents = orderedBooks.reduce((s, b) => s + b.priceCents, 0);
   const currency = orderedBooks[0]?.currency ?? "USD";
+  const isEmpty = orderedBooks.length === 0;
 
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16">
-      <header className="text-center">
-        <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
-          Your cart
-        </p>
-        <h1 className="mt-4 font-serif text-4xl font-medium leading-tight text-foreground">
-          {orderedBooks.length === 0
-            ? "Your cart is empty"
-            : `${orderedBooks.length} ${orderedBooks.length === 1 ? "book" : "books"}`}
-        </h1>
-      </header>
+    <div className="cinematic-root">
+      <CinematicHeader />
 
-      {orderedBooks.length === 0 ? (
-        <EmptyState
-          heading="Nothing in here yet."
-          body="Browse the catalog to add books. They live in a session cookie until you check out."
+      <main className="relative z-10">
+        <CartHero
+          variant={isEmpty ? "empty" : "with-items"}
+          itemCount={orderedBooks.length}
         />
-      ) : (
-        <div className="mt-12 space-y-4">
-          {orderedBooks.map((book) => (
-            <article
-              key={book.id}
-              className="flex gap-6 rounded-lg border border-border p-4"
-            >
-              <div className="w-20 shrink-0">
-                <CoverImage title={book.title} coverKey={book.coverKey} />
-              </div>
-              <div className="flex flex-1 flex-col">
-                <h2 className="font-serif text-lg font-medium leading-tight text-foreground">
-                  {book.title}
-                </h2>
-                {book.authors.length > 0 && (
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {book.authors.map((a) => a.name).join(", ")}
-                  </p>
-                )}
-                <div className="mt-auto flex items-center justify-between pt-3">
-                  <p className="font-medium text-foreground">
-                    {formatPrice(book.priceCents, book.currency)}
-                  </p>
-                  <RemoveFromCartButton bookId={book.id} />
-                </div>
-              </div>
-            </article>
-          ))}
 
-          <div className="flex items-center justify-between border-t border-border pt-6">
-            <p className="text-sm text-muted-foreground">Total</p>
-            <p className="font-serif text-2xl font-medium text-foreground">
-              {formatPrice(totalCents, currency)}
-            </p>
-          </div>
+        {isEmpty ? (
+          <EmptyCartCard />
+        ) : (
+          <section className="mx-auto max-w-5xl px-6">
+            <div className="grid gap-6 lg:grid-cols-[1fr_320px] lg:gap-8">
+              {/* Items list */}
+              <div className="space-y-3">
+                {orderedBooks.map((book) => (
+                  <CartLine key={book.id} book={book} />
+                ))}
+              </div>
 
-          <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:justify-between">
-            <ClearCartButton />
-            <CheckoutButton />
-          </div>
-        </div>
-      )}
-    </main>
+              {/* Summary + checkout */}
+              <CartSummary
+                totalCents={totalCents}
+                currency={currency}
+                itemCount={orderedBooks.length}
+              />
+            </div>
+          </section>
+        )}
+
+        {/* Recommendation shelf — visible in BOTH states.
+            Empty state: anchors the page so it doesn't feel dead.
+            With-items state: encourages browsing without leaving the cart. */}
+        <RecommendationShelf />
+
+        {/* Bottom breathing space before footer */}
+        <div className="h-24" />
+      </main>
+
+      <HomeFooter />
+    </div>
   );
 }

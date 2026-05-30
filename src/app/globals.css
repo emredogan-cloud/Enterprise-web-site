@@ -430,6 +430,17 @@ body:has(.cinematic-root) > header {
   will-change: transform, opacity;
 }
 
+/* Cart recommendation shelf — hide the horizontal scrollbar entirely;
+   navigation is driven by the arrow buttons, and a stray scrollbar
+   would distract from the editorial composition. */
+.cinematic-root .cart-shelf-track::-webkit-scrollbar {
+  height: 0;
+  background: transparent;
+}
+.cinematic-root .cart-shelf-track {
+  scrollbar-width: none;
+}
+
 /* Catalog filter — custom range slider (no default browser chrome) */
 .cinematic-root .catalog-range {
   appearance: none;
