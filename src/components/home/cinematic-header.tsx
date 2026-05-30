@@ -28,7 +28,9 @@ export type ActiveNavSection = "home" | "books" | "authors" | "genres" | "blog";
 
 const NAV_ITEMS: { key: ActiveNavSection; label: string; href: string }[] = [
   { key: "books", label: "Books", href: "/books" },
-  { key: "authors", label: "Authors", href: "/books" },
+  // `/authors` is the new cinematic discovery page (SUB-PR — authors redesign).
+  // Previously fell through to /books because no index existed.
+  { key: "authors", label: "Authors", href: "/authors" },
   { key: "genres", label: "Genres", href: "/books" },
   { key: "blog", label: "Blog", href: "/blog" },
 ];
