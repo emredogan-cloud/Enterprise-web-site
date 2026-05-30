@@ -15,6 +15,13 @@
       "when": 1780018558723,
       "tag": "0001_funny_kid_colt",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1780152764254,
+      "tag": "0002_naive_the_captain",
+      "breakpoints": true
     }
   ]
 }

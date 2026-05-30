@@ -458,6 +458,32 @@ export async function listCategorySlugs(): Promise<Array<{ slug: string }>> {
   );
 }
 
+/**
+ * Phase 2.D — every category with its name and slug, ordered by name.
+ * Powers the `/categories` index page (the new browse-by-category hub).
+ *
+ * Currently returns just slug + name; a future enhancement can add
+ * book-count or featured cover via a sub-query.
+ */
+export interface CategorySummary {
+  slug: string;
+  name: string;
+}
+
+export async function listAllCategories(): Promise<CategorySummary[]> {
+  return safeQuery(
+    "listAllCategories",
+    async () => {
+      const rows = await db.query.categories.findMany({
+        columns: { slug: true, name: true },
+        orderBy: (c, { asc }) => asc(c.name),
+      });
+      return rows;
+    },
+    [],
+  );
+}
+
 export interface CategoryPageData {
   slug: string;
   name: string;

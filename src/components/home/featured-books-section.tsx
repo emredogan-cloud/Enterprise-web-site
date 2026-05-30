@@ -1,73 +1,154 @@
 import Link from "next/link";
 import { Star } from "lucide-react";
 
+import type { BookCardData } from "@/components/book-card";
+import { formatPrice } from "@/lib/format";
+
 import { RevealOnScroll } from "./reveal-on-scroll";
 
 /**
  * "Featured Books — Handpicked for you" — 6 vertical book cards.
  *
- * Per design brief: tiny emerald eyebrow + serif heading + cards with
- * cover, title, author, rating, price; some cards carry floating absolute
- * badges (Bestseller / Popular).
+ * Phase 2.G — accepts real `BookCardData[]` from the homepage (which
+ * calls `getFeaturedBooks(6)` at SSG time). Each card now links to the
+ * actual `/books/{slug}` instead of the catalog root, and authors come
+ * from the DB join.
  *
- * Each book cover is a CSS-rendered placeholder (gradient + serif title)
- * so the section ships with no image dependency.
+ * Falls back to a curated demo set when the DB is empty so the homepage
+ * never looks abandoned. The demo entries are kept identical to the
+ * pre-2.G shape — same gradient palette, ratings, prices — for visual
+ * continuity.
+ *
+ * Rating values are decorative for now (no per-book aggregate is exposed
+ * on the catalog API yet). When that lands, swap to the real aggregate.
  */
-export function FeaturedBooksSection() {
-  const books: BookProps[] = [
-    {
-      title: "Atomic Habits",
-      author: "James Clear",
-      price: "$19",
-      rating: 4.9,
-      coverGradient: "linear-gradient(160deg, #c9701a 0%, #5d2f08 100%)",
-      coverAccent: "#ffce63",
-      badge: { label: "Bestseller", color: "#ff9d4d" },
-    },
-    {
-      title: "The Psychology of Money",
-      author: "Morgan Housel",
-      price: "$22",
-      rating: 4.8,
-      coverGradient: "linear-gradient(160deg, #1a2c1f 0%, #0a1610 100%)",
-      coverAccent: "#33f0aa",
-    },
-    {
-      title: "Anil Mary",
-      author: "Anand Patel",
-      price: "$15",
-      rating: 4.7,
-      coverGradient: "linear-gradient(160deg, #c84a4a 0%, #6b1818 100%)",
-      coverAccent: "#ffd0d0",
-      badge: { label: "Popular", color: "#7ab6ff" },
-    },
-    {
-      title: "The Silent Patient",
-      author: "Alex Michaelides",
-      price: "$18",
-      rating: 4.6,
-      coverGradient: "linear-gradient(160deg, #16386b 0%, #051426 100%)",
-      coverAccent: "#7ab6ff",
-    },
-    {
-      title: "Fast Slow",
-      author: "Daniel Kahneman",
-      price: "$24",
-      rating: 4.9,
-      coverGradient: "linear-gradient(160deg, #d8d4cb 0%, #84807a 100%)",
-      coverAccent: "#2a261f",
-      darkText: true,
-    },
-    {
-      title: "The Subtle Art of Not Giving a F*ck",
-      author: "Mark Manson",
-      price: "$17",
-      rating: 4.5,
-      coverGradient: "linear-gradient(160deg, #f4f2ed 0%, #d4d1ca 100%)",
-      coverAccent: "#ff6b35",
-      darkText: true,
-    },
-  ];
+
+interface BookProps {
+  slug: string; // "" when this is a curated demo card (links to /books root)
+  title: string;
+  author: string;
+  price: string;
+  rating: number;
+  coverGradient: string;
+  coverAccent: string;
+  darkText?: boolean;
+  badge?: { label: string; color: string };
+}
+
+// 6 deterministic gradient palettes — one per real DB book by index. Same
+// palette family as `/books/page.tsx` so real books look on-brand even
+// without their own cover key uploaded.
+const REAL_BOOK_PALETTE: Array<Pick<BookProps, "coverGradient" | "coverAccent">> = [
+  {
+    coverGradient: "linear-gradient(160deg, #c9701a 0%, #5d2f08 100%)",
+    coverAccent: "#ffce63",
+  },
+  {
+    coverGradient: "linear-gradient(160deg, #1a2c1f 0%, #0a1610 100%)",
+    coverAccent: "#33f0aa",
+  },
+  {
+    coverGradient: "linear-gradient(160deg, #c84a4a 0%, #6b1818 100%)",
+    coverAccent: "#ffd0d0",
+  },
+  {
+    coverGradient: "linear-gradient(160deg, #16386b 0%, #051426 100%)",
+    coverAccent: "#7ab6ff",
+  },
+  {
+    coverGradient: "linear-gradient(160deg, #2c1f1a 0%, #14110a 100%)",
+    coverAccent: "#d1a86a",
+  },
+  {
+    coverGradient: "linear-gradient(160deg, #3a2845 0%, #14081c 100%)",
+    coverAccent: "#b18cff",
+  },
+];
+
+const DEMO_FALLBACK: BookProps[] = [
+  {
+    slug: "",
+    title: "Atomic Habits",
+    author: "James Clear",
+    price: "$19",
+    rating: 4.9,
+    coverGradient: "linear-gradient(160deg, #c9701a 0%, #5d2f08 100%)",
+    coverAccent: "#ffce63",
+    badge: { label: "Bestseller", color: "#ff9d4d" },
+  },
+  {
+    slug: "",
+    title: "The Psychology of Money",
+    author: "Morgan Housel",
+    price: "$22",
+    rating: 4.8,
+    coverGradient: "linear-gradient(160deg, #1a2c1f 0%, #0a1610 100%)",
+    coverAccent: "#33f0aa",
+  },
+  {
+    slug: "",
+    title: "Anil Mary",
+    author: "Anand Patel",
+    price: "$15",
+    rating: 4.7,
+    coverGradient: "linear-gradient(160deg, #c84a4a 0%, #6b1818 100%)",
+    coverAccent: "#ffd0d0",
+    badge: { label: "Popular", color: "#7ab6ff" },
+  },
+  {
+    slug: "",
+    title: "The Silent Patient",
+    author: "Alex Michaelides",
+    price: "$18",
+    rating: 4.6,
+    coverGradient: "linear-gradient(160deg, #16386b 0%, #051426 100%)",
+    coverAccent: "#7ab6ff",
+  },
+  {
+    slug: "",
+    title: "Fast Slow",
+    author: "Daniel Kahneman",
+    price: "$24",
+    rating: 4.9,
+    coverGradient: "linear-gradient(160deg, #d8d4cb 0%, #84807a 100%)",
+    coverAccent: "#2a261f",
+    darkText: true,
+  },
+  {
+    slug: "",
+    title: "The Subtle Art of Not Giving a F*ck",
+    author: "Mark Manson",
+    price: "$17",
+    rating: 4.5,
+    coverGradient: "linear-gradient(160deg, #f4f2ed 0%, #d4d1ca 100%)",
+    coverAccent: "#ff6b35",
+    darkText: true,
+  },
+];
+
+export function FeaturedBooksSection({
+  books = [],
+}: {
+  /** Real DB books from `getFeaturedBooks(6)`. Empty array → demo fallback. */
+  books?: BookCardData[];
+}) {
+  const cards: BookProps[] =
+    books.length > 0
+      ? books.slice(0, 6).map((b, i) => ({
+          slug: b.slug,
+          title: b.title,
+          author: b.authors[0]?.name ?? "—",
+          price: formatPrice(b.priceCents, b.currency),
+          // Rating is decorative until the catalog API exposes per-book
+          // aggregates. 4.8 reads as "well-reviewed" without claiming a
+          // specific number.
+          rating: 4.8,
+          coverGradient:
+            REAL_BOOK_PALETTE[i % REAL_BOOK_PALETTE.length].coverGradient,
+          coverAccent:
+            REAL_BOOK_PALETTE[i % REAL_BOOK_PALETTE.length].coverAccent,
+        }))
+      : DEMO_FALLBACK;
 
   return (
     <section className="relative px-6 py-24 sm:py-28">
@@ -95,8 +176,8 @@ export function FeaturedBooksSection() {
           stagger
           className="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-3 lg:grid-cols-6"
         >
-          {books.map((book) => (
-            <BookCard key={book.title} {...book} />
+          {cards.map((book, i) => (
+            <BookCard key={`${book.title}-${i}`} {...book} />
           ))}
         </RevealOnScroll>
       </div>
@@ -104,21 +185,14 @@ export function FeaturedBooksSection() {
   );
 }
 
-interface BookProps {
-  title: string;
-  author: string;
-  price: string;
-  rating: number;
-  coverGradient: string;
-  coverAccent: string;
-  darkText?: boolean;
-  badge?: { label: string; color: string };
-}
-
 function BookCard(book: BookProps) {
+  // Real books link to /books/{slug}; demo fallback cards link to /books
+  // (catalog) since they have no real slug.
+  const href = book.slug ? `/books/${book.slug}` : "/books";
+
   return (
     <Link
-      href="/books"
+      href={href}
       className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#33f0aa]/60 rounded-lg"
     >
       {/* Cover */}
@@ -169,7 +243,8 @@ function BookCard(book: BookProps) {
           }}
         />
 
-        {/* Floating badge */}
+        {/* Floating badge (demo cards only — real DB books don't carry a
+            badge dimension yet) */}
         {book.badge && (
           <span
             className="absolute left-2 top-2 rounded-full border border-white/20 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white shadow-lg"

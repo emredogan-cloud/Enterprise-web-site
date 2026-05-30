@@ -2,26 +2,43 @@
 
 import { useState, type FormEvent } from "react";
 
+import {
+  newsletterErrorMessage,
+  subscribeToNewsletter,
+  type NewsletterErrorCode,
+} from "@/lib/newsletter-client";
+
 import { RevealOnScroll } from "./reveal-on-scroll";
 
 /**
  * "Stay in the loop" — glass CTA with email input.
  *
- * Client Component because the form has local state. The actual newsletter
- * subscription endpoint is not wired yet (Beehiiv / ConvertKit decision
- * is part of the STRATEJI_VE_KITAP_FIKIRLERI roadmap) — for now we just
- * accept the email and show a success state, validating the UX.
+ * Phase 2.A — wired to the real `/api/newsletter` endpoint that Phase
+ * 0.C ships. Four states: idle / loading / ok / error. No more sahte
+ * success message: when the env isn't configured the route returns 503
+ * and the form shows a real error.
  */
 export function NewsletterSection() {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "success">("idle");
+  const [status, setStatus] = useState<
+    | { state: "idle" }
+    | { state: "loading" }
+    | { state: "ok" }
+    | { state: "error"; code: NewsletterErrorCode }
+  >({ state: "idle" });
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!email.trim()) return;
-    // TODO: POST to /api/newsletter (lands in a follow-up SUB-PR once
-    // a provider is chosen — see STRATEJI_VE_KITAP_FIKIRLERI §9).
-    setStatus("success");
+    const trimmed = email.trim();
+    if (!trimmed) return;
+
+    setStatus({ state: "loading" });
+    const result = await subscribeToNewsletter(trimmed);
+    if (result.ok) {
+      setStatus({ state: "ok" });
+    } else {
+      setStatus({ state: "error", code: result.code });
+    }
   };
 
   return (
@@ -51,12 +68,12 @@ export function NewsletterSection() {
               time.
             </p>
 
-            {status === "success" ? (
+            {status.state === "ok" ? (
               <p
                 role="status"
                 className="mx-auto mt-10 inline-block rounded-full border border-[#33f0aa]/30 bg-[#33f0aa]/10 px-5 py-2.5 text-sm text-[#33f0aa]"
               >
-                Thanks — you&apos;ll hear from us soon.
+                Thanks — you&apos;re on the list. The next book lands in your inbox.
               </p>
             ) : (
               <form
@@ -73,15 +90,26 @@ export function NewsletterSection() {
                   placeholder="you@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.currentTarget.value)}
-                  className="h-12 flex-1 rounded-full border border-white/[0.08] bg-white/[0.03] px-5 text-sm text-[#e6e6e0] placeholder:text-[#5d675f] focus:border-[#33f0aa]/40 focus:outline-none focus:ring-2 focus:ring-[#33f0aa]/20"
+                  disabled={status.state === "loading"}
+                  className="h-12 flex-1 rounded-full border border-white/[0.08] bg-white/[0.03] px-5 text-sm text-[#e6e6e0] placeholder:text-[#5d675f] focus:border-[#33f0aa]/40 focus:outline-none focus:ring-2 focus:ring-[#33f0aa]/20 disabled:cursor-not-allowed disabled:opacity-60"
                 />
                 <button
                   type="submit"
-                  className="home-cta-primary inline-flex h-12 items-center justify-center rounded-full px-7 text-sm font-semibold tracking-tight"
+                  disabled={status.state === "loading"}
+                  className="home-cta-primary inline-flex h-12 items-center justify-center rounded-full px-7 text-sm font-semibold tracking-tight disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                  Subscribe
+                  {status.state === "loading" ? "Subscribing…" : "Subscribe"}
                 </button>
               </form>
+            )}
+
+            {status.state === "error" && (
+              <p
+                role="alert"
+                className="mx-auto mt-5 max-w-md text-sm text-[#ff9b9b]"
+              >
+                {newsletterErrorMessage(status.code)}
+              </p>
             )}
           </div>
         </RevealOnScroll>

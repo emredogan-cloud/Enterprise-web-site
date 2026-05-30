@@ -1,52 +1,62 @@
 import Link from "next/link";
 
+import type { CategorySummary } from "@/lib/db/queries/catalog";
+
 import { RevealOnScroll } from "./reveal-on-scroll";
 
 /**
- * "Browse by category" — 5 horizontal category cards.
+ * "Browse by category" — up to 5 horizontal category cards.
  *
- * Each card is a gradient panel with overlay text + book count. No image
- * dependency — palettes evoke the category mood. Hover lifts + bloom via
- * `.home-card-hover`.
+ * Phase 2.G — accepts real `CategorySummary[]` from the homepage
+ * (`listAllCategories()` at SSG time). Cards now link to the actual
+ * cinematic `/categories/{slug}` instead of `/books`.
+ *
+ * The sahte "12.4K books" count is gone — there's no per-category book
+ * count exposed yet, so the card just shows the category name with a
+ * subtle eyebrow. Cleaner and honest.
+ *
+ * Demo fallback for when the DB returns empty — same brand surface even
+ * before the catalog is populated.
  */
-export function CategoriesSection() {
-  const categories = [
-    {
-      name: "Fiction",
-      count: "12.4K books",
-      href: "/books",
-      gradient:
-        "linear-gradient(160deg, #1a3326 0%, #0a1f14 100%), radial-gradient(circle at 30% 20%, rgba(51,240,170,0.15) 0%, transparent 60%)",
-    },
-    {
-      name: "Sci-Fi",
-      count: "4.1K books",
-      href: "/books",
-      gradient:
-        "linear-gradient(160deg, #14292e 0%, #081116 100%), radial-gradient(circle at 70% 30%, rgba(99,180,255,0.16) 0%, transparent 60%)",
-    },
-    {
-      name: "Growth",
-      count: "6.8K books",
-      href: "/books",
-      gradient:
-        "linear-gradient(160deg, #2c2316 0%, #14110a 100%), radial-gradient(circle at 50% 30%, rgba(255,190,90,0.16) 0%, transparent 60%)",
-    },
-    {
-      name: "Business",
-      count: "9.2K books",
-      href: "/books",
-      gradient:
-        "linear-gradient(160deg, #1a2336 0%, #0a0e16 100%), radial-gradient(circle at 30% 70%, rgba(160,160,255,0.14) 0%, transparent 60%)",
-    },
-    {
-      name: "History",
-      count: "3.5K books",
-      href: "/books",
-      gradient:
-        "linear-gradient(160deg, #2c1f1a 0%, #1a0f0a 100%), radial-gradient(circle at 50% 50%, rgba(220,150,90,0.14) 0%, transparent 60%)",
-    },
-  ];
+
+interface CategoryCardData {
+  name: string;
+  href: string;
+  gradient: string;
+}
+
+// Deterministic gradient palette — 5 moods that cycle through the
+// category list by index. Same family as the rest of the brand palette.
+const CATEGORY_GRADIENTS = [
+  "linear-gradient(160deg, #1a3326 0%, #0a1f14 100%), radial-gradient(circle at 30% 20%, rgba(51,240,170,0.15) 0%, transparent 60%)",
+  "linear-gradient(160deg, #14292e 0%, #081116 100%), radial-gradient(circle at 70% 30%, rgba(99,180,255,0.16) 0%, transparent 60%)",
+  "linear-gradient(160deg, #2c2316 0%, #14110a 100%), radial-gradient(circle at 50% 30%, rgba(255,190,90,0.16) 0%, transparent 60%)",
+  "linear-gradient(160deg, #1a2336 0%, #0a0e16 100%), radial-gradient(circle at 30% 70%, rgba(160,160,255,0.14) 0%, transparent 60%)",
+  "linear-gradient(160deg, #2c1f1a 0%, #1a0f0a 100%), radial-gradient(circle at 50% 50%, rgba(220,150,90,0.14) 0%, transparent 60%)",
+];
+
+const DEMO_FALLBACK: CategoryCardData[] = [
+  { name: "Fiction", href: "/categories", gradient: CATEGORY_GRADIENTS[0] },
+  { name: "Sci-Fi", href: "/categories", gradient: CATEGORY_GRADIENTS[1] },
+  { name: "Growth", href: "/categories", gradient: CATEGORY_GRADIENTS[2] },
+  { name: "Business", href: "/categories", gradient: CATEGORY_GRADIENTS[3] },
+  { name: "History", href: "/categories", gradient: CATEGORY_GRADIENTS[4] },
+];
+
+export function CategoriesSection({
+  categories = [],
+}: {
+  /** Real DB categories from `listAllCategories()`. Empty → demo fallback. */
+  categories?: CategorySummary[];
+}) {
+  const cards: CategoryCardData[] =
+    categories.length > 0
+      ? categories.slice(0, 5).map((c, i) => ({
+          name: c.name,
+          href: `/categories/${c.slug}`,
+          gradient: CATEGORY_GRADIENTS[i % CATEGORY_GRADIENTS.length],
+        }))
+      : DEMO_FALLBACK;
 
   return (
     <section className="relative px-6 py-24 sm:py-28">
@@ -62,7 +72,7 @@ export function CategoriesSection() {
               </h2>
             </div>
             <Link
-              href="/books"
+              href="/categories"
               className="text-sm font-medium text-[#33f0aa] underline-offset-4 hover:underline"
             >
               View all →
@@ -74,9 +84,9 @@ export function CategoriesSection() {
           stagger
           className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5"
         >
-          {categories.map((cat) => (
+          {cards.map((cat) => (
             <Link
-              key={cat.name}
+              key={`${cat.name}-${cat.href}`}
               href={cat.href}
               className="home-card-hover group relative aspect-[3/4] overflow-hidden rounded-2xl border border-white/[0.06]"
               style={{ background: cat.gradient }}
@@ -99,12 +109,12 @@ export function CategoriesSection() {
 
               {/* Content */}
               <div className="relative z-10 flex h-full flex-col justify-end p-5">
-                <h3 className="font-serif text-2xl font-medium text-[#e6e6e0] transition-colors group-hover:text-[#33f0aa]">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/55">
+                  Genre
+                </span>
+                <h3 className="mt-2 font-serif text-2xl font-medium text-[#e6e6e0] transition-colors group-hover:text-[#33f0aa]">
                   {cat.name}
                 </h3>
-                <p className="mt-1 text-xs font-medium text-[#a7a7a0]">
-                  {cat.count}
-                </p>
               </div>
             </Link>
           ))}
