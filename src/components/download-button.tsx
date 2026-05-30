@@ -2,18 +2,27 @@
 
 import { useState, useTransition } from "react";
 
-import { Button } from "@/components/ui/button";
 import { downloadBook } from "@/app/account/library/actions";
 
 /**
- * Download button — calls the `downloadBook` Server Action, which does the
- * server-side ownership + status check, writes a `download_logs` row, then
- * returns a short-lived signed URL. On success we hard-navigate the browser
- * to the URL; on a denied / not-ready case we surface a calm inline error.
+ * Download button — calls the `downloadBook` Server Action, which does
+ * the server-side ownership + status check, writes a `download_logs`
+ * row, then returns a short-lived signed URL. On success we
+ * hard-navigate the browser to the URL; on a denied / not-ready case
+ * we surface a calm inline error.
  *
- * Returning the URL (rather than `redirect()`-ing inside the action) gives
- * us symmetric error handling — `{ ok: false, error }` flows into the same
- * UI path as success. The user's experience is identical: click → file.
+ * Phase 1.E — cinematic chrome (drops the warm shadcn `<Button>`
+ * dependency). The same shape ships across:
+ *   - `/account/library` (Phase 0 cinematic): library tile per-book
+ *     download
+ *   - `/order/[id]` (Phase 1.E cinematic): post-checkout per-item
+ *     download
+ *
+ * Variant API:
+ *   - "default" (default) → emerald primary pill (`home-cta-primary`)
+ *   - "secondary"         → glass secondary pill (`home-cta-secondary`)
+ *
+ * Size API: maps to vertical height; chrome is otherwise identical.
  */
 export function DownloadButton({
   bookId,
@@ -22,7 +31,7 @@ export function DownloadButton({
   label = "Download",
 }: {
   bookId: string;
-  variant?: "default" | "outline" | "secondary" | "ghost";
+  variant?: "default" | "secondary";
   size?: "default" | "sm" | "lg";
   label?: string;
 }) {
@@ -41,20 +50,37 @@ export function DownloadButton({
     });
   };
 
+  const heightClass =
+    size === "sm" ? "h-9" : size === "default" ? "h-10" : "h-11";
+  const chromeClass =
+    variant === "secondary" ? "home-cta-secondary" : "home-cta-primary";
+
   return (
-    <div className="flex flex-col items-stretch gap-1">
-      <Button
+    <div className="flex flex-col items-stretch gap-1.5">
+      <button
         type="button"
-        variant={variant}
-        size={size}
         onClick={handleClick}
         disabled={pending}
         aria-live="polite"
+        className={`${chromeClass} ${heightClass} inline-flex items-center justify-center rounded-full px-5 text-sm font-semibold tracking-tight disabled:cursor-not-allowed disabled:opacity-70`}
       >
-        {pending ? "Generating link…" : label}
-      </Button>
+        {pending ? (
+          <span className="inline-flex items-center gap-2">
+            <span
+              aria-hidden
+              className="h-1.5 w-1.5 animate-pulse rounded-full bg-current"
+            />
+            Generating link…
+          </span>
+        ) : (
+          label
+        )}
+      </button>
       {error && (
-        <p role="alert" className="text-xs text-destructive">
+        <p
+          role="alert"
+          className="text-xs text-[#ff9b9b]"
+        >
           {error}
         </p>
       )}

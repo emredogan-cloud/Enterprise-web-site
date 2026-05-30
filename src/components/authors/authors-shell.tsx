@@ -1,7 +1,6 @@
 "use client";
 
 import { ChevronDown, Search } from "lucide-react";
-import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { RevealOnScroll } from "@/components/home/reveal-on-scroll";
@@ -186,21 +185,10 @@ export function AuthorsShell({ authors }: { authors: DemoAuthor[] }) {
         )}
       </section>
 
-      {/* View all CTA */}
-      <div className="mt-14 flex justify-center px-6">
-        <Link
-          href="#all"
-          className="home-cta-secondary inline-flex h-12 items-center gap-2 rounded-full px-7 text-sm font-medium tracking-tight"
-        >
-          <span>View all authors</span>
-          <span
-            aria-hidden
-            className="inline-block transition-transform duration-300 group-hover:translate-x-1"
-          >
-            →
-          </span>
-        </Link>
-      </div>
+      {/* Phase 1.I — "View all authors" CTA removed (was `href="#all"`,
+          a dead anchor with no matching target element in the DOM, AND
+          redundant since the grid already shows every author after
+          filters are cleared via the empty-state Reset button). */}
     </>
   );
 }

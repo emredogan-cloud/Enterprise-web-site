@@ -81,10 +81,12 @@ export function HomeFooter() {
     {
       title: "Legal",
       links: [
-        { label: "Terms", href: "#" },
-        { label: "Privacy", href: "#" },
-        { label: "Refund Policy", href: "#" },
-        { label: "KVKK", href: "#" },
+        // Phase 1.A — all four legal pages now ship with real content.
+        // Phase 1.G wires the footer to point at them.
+        { label: "Terms", href: "/terms" },
+        { label: "Privacy", href: "/privacy" },
+        { label: "Refund Policy", href: "/refund" },
+        { label: "KVKK", href: "/kvkk" },
       ],
     },
   ];

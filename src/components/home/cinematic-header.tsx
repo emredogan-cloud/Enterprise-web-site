@@ -4,7 +4,7 @@ import { SignInButton, UserButton, useAuth } from "@clerk/nextjs";
 import { Search, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * Dark sticky header — shared by every cinematic-scoped route
@@ -43,7 +43,8 @@ export type ActiveNavSection =
   | "authors"
   | "genres"
   | "blog"
-  | "library";
+  | "library"
+  | "about";
 
 const NAV_ITEMS: { key: ActiveNavSection; label: string; href: string }[] = [
   { key: "books", label: "Books", href: "/books" },
@@ -115,16 +116,25 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
               </Link>
             );
           })}
-          <a
-            href="#about"
-            className={`transition-colors ${
-              "about" === (active as string | undefined)
+          {/* Phase 1.B — was `<a href="#about">` (anchor hack to the
+              footer's id="about"; only worked on the homepage). Now
+              points at the real /about page. */}
+          <Link
+            href="/about"
+            className={`relative transition-colors ${
+              active === "about"
                 ? "text-[#e6e6e0]"
                 : "text-[#a7a7a0] hover:text-[#e6e6e0]"
             }`}
           >
             About
-          </a>
+            {active === "about" && (
+              <span
+                aria-hidden
+                className="absolute -bottom-[22px] left-0 right-0 h-[2px] rounded-full bg-[#33f0aa] shadow-[0_0_10px_#33f0aa]"
+              />
+            )}
+          </Link>
         </nav>
 
         {/* Right cluster */}
@@ -150,18 +160,11 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
             <Search aria-hidden className="h-4 w-4" />
           </Link>
 
-          {/* Cart */}
-          <Link
-            href="/cart"
-            aria-label="Cart"
-            className="relative flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] text-[#a7a7a0] transition-colors hover:text-[#e6e6e0]"
-          >
-            <ShoppingCart aria-hidden className="h-4 w-4" />
-            <span
-              aria-hidden
-              className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-[#33f0aa] shadow-[0_0_6px_#33f0aa]"
-            />
-          </Link>
+          {/* Cart — badge dot is state-driven (Phase 1.H). Was always-on
+              before; now fetches `/api/cart/count` on mount + listens for
+              the `cart-changed` custom event that RecommendationCard,
+              CartLine, AddToCart all dispatch. */}
+          <CartTriggerWithBadge />
 
           {/* Account slot — Clerk-aware. Renders sign-in pill when signed
               out, UserButton (real avatar + menu + sign-out) when signed
@@ -171,6 +174,67 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
         </div>
       </div>
     </header>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Cart trigger with state-driven badge (Phase 1.H).
+//
+// Replaces the previous always-on dot. The dot now reflects whether the
+// cart has any items: fetches `/api/cart/count` on mount + refetches on
+// every `cart-changed` window event that RecommendationCard, CartLine,
+// AddToCart all dispatch. Network failures fall back to "no dot".
+// ─────────────────────────────────────────────────────────────────────────
+
+function CartTriggerWithBadge() {
+  const [count, setCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function refresh() {
+      try {
+        const res = await fetch("/api/cart/count", { cache: "no-store" });
+        if (!res.ok) return;
+        const data = (await res.json()) as { count?: number };
+        if (!cancelled && typeof data.count === "number") {
+          setCount(data.count);
+        }
+      } catch {
+        // Network/parse error → leave previous value; never throw to UI.
+      }
+    }
+
+    refresh();
+    window.addEventListener("cart-changed", refresh);
+    return () => {
+      cancelled = true;
+      window.removeEventListener("cart-changed", refresh);
+    };
+  }, []);
+
+  const hasItems = count !== null && count > 0;
+
+  return (
+    <Link
+      href="/cart"
+      aria-label={
+        count === null
+          ? "Cart"
+          : count === 0
+            ? "Cart, empty"
+            : `Cart, ${count} ${count === 1 ? "item" : "items"}`
+      }
+      className="relative flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] text-[#a7a7a0] transition-colors hover:text-[#e6e6e0]"
+    >
+      <ShoppingCart aria-hidden className="h-4 w-4" />
+      {hasItems && (
+        <span
+          aria-hidden
+          className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-[#33f0aa] shadow-[0_0_6px_#33f0aa]"
+        />
+      )}
+    </Link>
   );
 }
 

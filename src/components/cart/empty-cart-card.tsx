@@ -71,7 +71,7 @@ export function EmptyCartCard() {
         <div className="mt-9 flex justify-center">
           <Link
             href="/books"
-            className="home-cta-primary inline-flex h-12 items-center gap-2.5 rounded-full px-6 text-sm font-semibold tracking-tight"
+            className="home-cta-primary group inline-flex h-12 items-center gap-2.5 rounded-full px-6 text-sm font-semibold tracking-tight"
           >
             <BookOpen aria-hidden className="h-4 w-4" />
             <span>Browse the catalog</span>
