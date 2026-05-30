@@ -41,7 +41,7 @@ export function FilterSidebar(props: FilterSidebarProps) {
 
   return (
     <aside
-      className="home-glass relative h-fit overflow-hidden rounded-[24px] p-6"
+      className="home-glass relative h-fit overflow-hidden rounded-[24px] p-6 lg:sticky lg:top-24 lg:self-start"
       aria-label="Catalog filters"
     >
       {/* Edge glow — top emerald line */}

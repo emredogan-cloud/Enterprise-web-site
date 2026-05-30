@@ -1,4 +1,4 @@
-import { Pencil } from "lucide-react";
+import { EditProfileButton, ProfileAvatar } from "./profile-actions";
 
 /**
  * Profile & Identity card — horizontal glass panel in the settings
@@ -16,11 +16,12 @@ import { Pencil } from "lucide-react";
  * this card. `scroll-margin-top` is set so the cinematic header doesn't
  * clip the top of the card after the jump.
  *
- * "Edit profile" CTA points at Clerk's hosted account portal (managed
- * profile is Clerk's responsibility, per ADR-8). Falls back to "#" with
- * a `disabled`-style affordance when Clerk isn't configured.
+ * Issue 7 fix: the avatar + "Edit profile" CTA now open Clerk's hosted
+ * `UserProfile` modal (avatar upload + name/email management) via the
+ * `<ProfileAvatar>` / `<EditProfileButton>` client islands — previously the
+ * button hard-linked to `/account/library`, which was simply wrong.
  *
- * Pure Server Component.
+ * Pure Server Component (the two action islands hydrate on their own).
  */
 
 const DATE_FMT = new Intl.DateTimeFormat("en-US", { dateStyle: "long" });
@@ -35,9 +36,6 @@ export function ProfileIdentityCard({
   memberSince: Date | null;
 }) {
   const initial = (name?.charAt(0) || email.charAt(0) || "?").toUpperCase();
-  const clerkConfigured = Boolean(
-    process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
-  );
 
   return (
     <article
@@ -59,7 +57,7 @@ export function ProfileIdentityCard({
 
       {/* Body — avatar + identity + edit row */}
       <div className="mt-5 flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-7">
-        {/* Avatar */}
+        {/* Avatar — click to change photo (opens Clerk's profile modal) */}
         <div className="relative flex-shrink-0">
           {/* Bloom backdrop */}
           <div
@@ -70,15 +68,7 @@ export function ProfileIdentityCard({
                 "radial-gradient(circle, rgba(51, 240, 170, 0.4) 0%, transparent 70%)",
             }}
           />
-          <div
-            className="home-avatar-gradient relative flex h-20 w-20 items-center justify-center rounded-full font-serif text-[28px] font-medium text-[#032015] sm:h-24 sm:w-24"
-            style={{
-              boxShadow:
-                "inset 0 1px 0 rgba(255,255,255,0.08), 0 0 0 1px rgba(51,240,170,0.12), 0 12px 24px -8px rgba(0,0,0,0.6)",
-            }}
-          >
-            {initial}
-          </div>
+          <ProfileAvatar initial={initial} />
         </div>
 
         {/* Identity */}
@@ -98,24 +88,7 @@ export function ProfileIdentityCard({
 
         {/* Right cluster — Edit + Premium pill */}
         <div className="flex flex-col items-start gap-3 sm:items-end">
-          {clerkConfigured ? (
-            <a
-              href="/account/library"
-              className="inline-flex h-10 items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.03] px-4 text-sm font-medium tracking-tight text-fg-mid transition-all hover:-translate-y-0.5 hover:border-emerald-bright/40 hover:bg-emerald-bright/8 hover:text-fg-hi hover:shadow-[0_8px_18px_-6px_rgba(51,240,170,0.3)]"
-            >
-              <Pencil aria-hidden className="h-3.5 w-3.5" />
-              Edit profile
-            </a>
-          ) : (
-            <span
-              aria-disabled="true"
-              className="inline-flex h-10 cursor-not-allowed items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.02] px-4 text-sm font-medium tracking-tight text-fg-fade"
-              title="Profile editing requires the auth provider to be configured"
-            >
-              <Pencil aria-hidden className="h-3.5 w-3.5" />
-              Edit profile
-            </span>
-          )}
+          <EditProfileButton />
 
           {/* Premium Member pill */}
           <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-bright/30 bg-emerald-bright/8 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-bright">

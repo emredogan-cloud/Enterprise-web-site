@@ -25,7 +25,7 @@ export function CatalogHero() {
   ];
 
   return (
-    <section className="relative overflow-hidden px-6 pb-16 pt-20 text-center sm:pb-20 sm:pt-28">
+    <section className="relative overflow-hidden px-6 pb-12 pt-12 text-center sm:pb-14 sm:pt-16">
       {/* Wide radial bloom behind everything */}
       <div
         aria-hidden

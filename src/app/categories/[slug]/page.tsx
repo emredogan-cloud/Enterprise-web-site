@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { DEMO_CATEGORIES } from "@/components/categories/demo-categories";
 import { CinematicBookTile } from "@/components/cinematic/cinematic-book-tile";
 import { CinematicHero } from "@/components/cinematic/cinematic-hero";
+import { DEMO_GENRES } from "@/components/genres/demo-genres";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
 import {
@@ -51,19 +53,21 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const category = await getCategoryPageBySlug(slug);
-  if (!category) return { title: "Category not found" };
-  const description = `Browse ${category.name} on Digital Bookstore.`;
+  const name = category?.name ?? resolveDemoCategoryName(slug);
+  if (!name) return { title: "Category not found" };
+  const description = `Browse ${name} on Digital Bookstore.`;
   const url = `/categories/${slug}`;
   return {
-    title: category.name,
+    title: name,
     description,
     alternates: { canonical: url },
     openGraph: {
-      title: category.name,
+      title: name,
       description,
       url,
       type: "website",
     },
+    ...(category ? {} : { robots: { index: false, follow: true } }),
   };
 }
 
@@ -74,9 +78,17 @@ export default async function CategoryPage({
 }) {
   const { slug } = await params;
   const category = await getCategoryPageBySlug(slug);
-  if (!category) notFound();
 
-  const { head, tail } = splitNameForAccent(category.name);
+  // Issue 6 — a genre/category card must never 404. When the live DB has no
+  // matching category, resolve the name from the demo genre/category sets and
+  // render the page with its (already-cinematic) empty state.
+  const demoName = category ? null : resolveDemoCategoryName(slug);
+  if (!category && !demoName) notFound();
+
+  const name = category?.name ?? demoName!;
+  const books = category?.books ?? [];
+
+  const { head, tail } = splitNameForAccent(name);
 
   return (
     <div className="cinematic-root">
@@ -91,18 +103,18 @@ export default async function CategoryPage({
           align="center"
           subtitle={
             <p>
-              {category.books.length === 0
+              {books.length === 0
                 ? "No published titles in this genre yet."
-                : category.books.length === 1
+                : books.length === 1
                   ? "One published title to explore."
-                  : `${category.books.length} published titles to explore.`}
+                  : `${books.length} published titles to explore.`}
             </p>
           }
         />
 
         {/* Books grid OR empty state */}
         <section className="mx-auto mt-20 max-w-[1320px] px-4 sm:mt-24 sm:px-6">
-          {category.books.length === 0 ? (
+          {books.length === 0 ? (
             <div className="home-glass mx-auto max-w-md rounded-[20px] p-8 text-center">
               <p className="text-sm leading-relaxed text-fg-mid">
                 Once titles are tagged with this category and published,
@@ -111,7 +123,7 @@ export default async function CategoryPage({
             </div>
           ) : (
             <ul className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-              {category.books.map((book) => (
+              {books.map((book) => (
                 <li key={book.id}>
                   <CinematicBookTile book={book} />
                 </li>
@@ -158,4 +170,17 @@ function splitNameForAccent(name: string): { head: string; tail: string } {
     head: words.slice(0, -1).join(" "),
     tail: words[words.length - 1],
   };
+}
+
+/**
+ * Resolve a demo genre/category display name from a slug (Issue 6). Both the
+ * `/genres` discovery cards and the `/categories` gallery point here, so we
+ * check both demo sets. Returns null for genuinely unknown slugs (→ 404).
+ */
+function resolveDemoCategoryName(slug: string): string | null {
+  return (
+    DEMO_GENRES.find((g) => g.slug === slug)?.name ??
+    DEMO_CATEGORIES.find((c) => c.slug === slug)?.name ??
+    null
+  );
 }
