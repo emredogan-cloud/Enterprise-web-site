@@ -57,6 +57,25 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* ---------------------------------------------------------------------------
+     Cinematic palette — bleeds *into* the global @theme so utility classes
+     (`text-fg-hi`, `bg-emerald-deep`, etc.) are available everywhere.
+     They only render correctly inside `.cinematic-root` (the dark scope) —
+     using them on warm pages emits the cinematic color, which is a deliberate
+     brand-level decision (Phase 0.A — Roadmap §6.2).
+
+     Naming reads top→down by emphasis: fg-hi (heading) > fg-mid (body) >
+     fg-soft (caption) > fg-fade (decorative). Emerald: bright (accent) >
+     mid (default) > deep (icon-tile background).
+     ------------------------------------------------------------------------- */
+  --color-fg-hi: #e6e6e0;
+  --color-fg-mid: #a7a7a0;
+  --color-fg-soft: #88918a;
+  --color-fg-fade: #5d675f;
+  --color-emerald: #1ddf8f;
+  --color-emerald-bright: #33f0aa;
+  --color-emerald-deep: #16c784;
 }
 
 :root {
@@ -232,10 +251,12 @@ body:has(.cinematic-root) > header {
   --home-bg-card: #0c1813;
   --home-surface-glass: rgba(12, 24, 19, 0.6);
   --home-emerald: #16c784;
+  --home-emerald-mid: #1ddf8f;
   --home-emerald-bright: #33f0aa;
   --home-emerald-glow: rgba(22, 199, 132, 0.35);
   --home-text-hi: #e6e6e0;
   --home-text-mid: #a7a7a0;
+  --home-text-soft: #88918a;
   --home-text-muted: #5d675f;
   --home-border: rgba(255, 255, 255, 0.06);
   --home-border-strong: rgba(255, 255, 255, 0.12);
@@ -743,4 +764,91 @@ body:has(.cinematic-root) > header {
   transform: translateY(-2px);
   background: rgba(255, 255, 255, 0.05);
   border-color: var(--home-emerald);
+}
+
+/* =============================================================================
+   PHASE 0.A — Shared cinematic utilities
+   =============================================================================
+   Five utilities extracted from the audit's "duplicated inline pattern" list:
+   - `home-headline-accent` was 10 inline copies of the same gradient-text
+   - `home-hero-frame`      was 3 inline copies of the same rounded panel shadow
+   - `home-icon-tile`       was 6+ inline copies of the emerald icon chrome
+   - `home-pill-hover`      was 3 inline copies of the pill lift + glow
+   - `home-avatar-gradient` was 3 inline copies of the avatar gradient
+
+   New code MUST use these utilities; existing inline duplicates are migrated
+   in Phase 3.D + 3.E once the heroes themselves are deduped behind
+   `<CinematicHero>`.
+   ========================================================================== */
+
+/* Emerald gradient text — for the last word in a hero headline.
+   Apply to a <span> inside an <h1>: <h1>Reading <span class="home-headline-accent">Guides</span></h1>
+   The element must have its own text content; the gradient clips to glyphs. */
+.cinematic-root .home-headline-accent {
+  background: linear-gradient(135deg, #33f0aa 0%, #1ddf8f 60%, #16c784 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Hero panel — the rounded ring around an atmospheric scene.
+   Sets the radius, border, and the full 3-layer shadow that was inline
+   on `library-hero`, `category-hero`, `article-hero` with subtle drift
+   (alpha 0.32 vs 0.35). Standardized at 0.35. */
+.cinematic-root .home-hero-frame {
+  border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 28px 60px -22px rgba(0, 0, 0, 0.8),
+    inset 0 0 0 1px rgba(51, 240, 170, 0.05),
+    0 0 36px -12px rgba(22, 199, 132, 0.35);
+  overflow: hidden;
+}
+
+/* Small icon tile — emerald-tinted chrome around a lucide icon.
+   Use inside a flex row: <span class="home-icon-tile"><BookOpen className="h-4 w-4" /></span>
+   The size is opinionated (9×9 = 36px); override with explicit sizing classes
+   only when the layout demands it. */
+.cinematic-root .home-icon-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.25rem; /* h-9 */
+  width: 2.25rem;  /* w-9 */
+  flex-shrink: 0;
+  border-radius: 0.5rem; /* rounded-lg */
+  border: 1px solid rgba(22, 199, 132, 0.3);
+  background: rgba(22, 199, 132, 0.1);
+  color: #33f0aa;
+  box-shadow: 0 0 10px -2px rgba(51, 240, 170, 0.4);
+}
+
+/* Pill hover — the canonical micro-interaction for small inline interactive
+   elements (topic pills, suggestion pills, category discovery pills).
+   Apply to the <button> or <a> directly; pairs with a base
+   `border border-white/[0.08] bg-white/[0.03] rounded-full px-3 py-1`. */
+.cinematic-root .home-pill-hover {
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.cinematic-root .home-pill-hover:hover {
+  transform: translateY(-2px);
+  border-color: rgba(51, 240, 170, 0.3);
+  background-color: rgba(51, 240, 170, 0.08);
+  color: var(--home-text-hi);
+  box-shadow: 0 8px 18px -6px rgba(51, 240, 170, 0.3);
+}
+
+/* Avatar gradient — the placeholder author/user circle used until real
+   photography lands. Apply on a circular element (h-7 w-7 rounded-full,
+   etc.). The inner highlight stripe + dark border come for free. */
+.cinematic-root .home-avatar-gradient {
+  background: linear-gradient(135deg, #1ddf8f 0%, #0e7f54 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
