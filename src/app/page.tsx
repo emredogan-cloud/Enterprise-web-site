@@ -1,21 +1,40 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
+import { CategoriesSection } from "@/components/home/categories-section";
+import { FeaturedBooksSection } from "@/components/home/featured-books-section";
+import { Hero } from "@/components/home/hero";
+import { HomeFooter } from "@/components/home/home-footer";
+import { HomeHeader } from "@/components/home/home-header";
+import { NewsletterSection } from "@/components/home/newsletter-section";
+import { WhyReadersSection } from "@/components/home/why-readers-section";
 
+/**
+ * Cinematic homepage — dark luxury SaaS aesthetic (Roadmap §7 redesign).
+ *
+ * Pure Server Component → page ships as `○ Static`. The page's own dark
+ * theme is scoped via `.homepage-root`; the global `<SiteHeader>` from
+ * `app/layout.tsx` is hidden by the `:has()` rule in `globals.css`, and
+ * this page renders its own dark `<HomeHeader>` instead.
+ *
+ * Only four Client islands hydrate inside this static page:
+ *   • `<HomeHeader>` — ⌘K keyboard shortcut + interactive nav
+ *   • `<RevealOnScroll>` (×N) — IntersectionObserver fade-up triggers
+ *   • `<NewsletterSection>` form — local input state
+ *
+ * Everything else (hero showcase, cards, footer) is pure HTML + CSS
+ * animation, keeping the client-bundle cost minimal and the LCP fast.
+ */
 export const metadata: Metadata = {
-  // `absolute` bypasses the root layout's "%s · Digital Bookstore" template
-  // — the home page is already the brand title; we don't want it doubled.
   title: {
-    absolute: "Digital Bookstore — buy a book once, read it anywhere",
+    absolute: "Digital Bookstore — Find it. Own it. Read it anywhere.",
   },
   description:
-    "A first-party bookstore for digital books. Buy a title once, download a watermarked PDF, and read it online. Yours to keep — never locked.",
+    "A modern digital bookstore. Buy a digital book once, download a watermarked-free PDF, and read it on any device. Yours to keep — never locked.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Digital Bookstore — buy a book once, read it anywhere",
+    title: "Digital Bookstore — Find it. Own it. Read it anywhere.",
     description:
-      "Buy a digital book once, download a watermarked PDF, and read it online. Yours to keep — never locked.",
+      "Buy a digital book once, download a watermarked-free PDF, and read it on any device. Yours to keep — never locked.",
     url: "/",
     type: "website",
   },
@@ -23,31 +42,18 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="flex flex-1 items-center justify-center px-6 py-24">
-      <div className="mx-auto w-full max-w-prose text-center">
-        <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
-          Digital Bookstore
-        </p>
-        <h1 className="mt-6 text-balance font-serif text-5xl font-medium leading-[1.05] text-foreground sm:text-6xl">
-          Find it. Own it. Read it anywhere.
-        </h1>
-        <p className="mx-auto mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
-          A first-party bookstore for digital books. Buy a title once, download a
-          watermarked PDF, and read it online. Yours to keep — never locked.
-        </p>
-        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button size="lg" asChild>
-            <Link href="/books">Browse the catalog</Link>
-          </Button>
-          <Button size="lg" variant="outline">
-            About the project
-          </Button>
-        </div>
-        <p className="mt-16 text-xs text-muted-foreground">
-          SUB-PR 0.1 — scaffold, design tokens, and CI standard. Light and dark
-          themes are fully tokenized.
-        </p>
-      </div>
-    </main>
+    <div className="homepage-root">
+      <HomeHeader />
+
+      <main className="relative z-10">
+        <Hero />
+        <WhyReadersSection />
+        <CategoriesSection />
+        <FeaturedBooksSection />
+        <NewsletterSection />
+      </main>
+
+      <HomeFooter />
+    </div>
   );
 }

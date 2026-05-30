@@ -51,3 +51,10 @@ next-env.d.ts
 
 # pdf.js worker — copied from node_modules by scripts/copy-pdf-worker.mjs at install time
 /public/pdf.worker.min.mjs
+
+# design-reference screenshots placed at the project root (working files;
+# not source-of-truth in Git — they live next to the live design instead)
+/*-referans-image.png
+/*_referans_image.png
+/*-reference-image.png
+/*_reference_image.png
