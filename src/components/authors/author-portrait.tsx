@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import type { PortraitTheme } from "./demo-authors";
 
 /**
@@ -16,7 +18,46 @@ import type { PortraitTheme } from "./demo-authors";
  * Hover behavior (driven by the parent `.group` from `<AuthorCard>`):
  *   - The silhouette layer scales 1.06 on a 700ms cubic-bezier ease-out
  */
-export function AuthorPortrait({ theme }: { theme: PortraitTheme }) {
+export function AuthorPortrait({
+  theme,
+  imageSrc,
+}: {
+  theme: PortraitTheme;
+  /** Optional real portrait (/images/authors/{slug}.webp). When present it
+   *  replaces the procedural silhouette; otherwise the silhouette renders. */
+  imageSrc?: string | null;
+}) {
+  if (imageSrc) {
+    return (
+      <div className="relative h-full w-full overflow-hidden">
+        <Image
+          src={imageSrc}
+          alt=""
+          fill
+          sizes="(min-width: 1024px) 16vw, 50vw"
+          className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
+        />
+        {/* Same anchoring vignette so it sits in the card like the silhouette */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 90% 70% at 50% 110%, rgba(0,0,0,0.55) 0%, transparent 65%)",
+          }}
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-[42%]"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(0,0,0,0.4) 0%, transparent 100%)",
+          }}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="relative h-full w-full overflow-hidden">
       {/* Background gradient */}

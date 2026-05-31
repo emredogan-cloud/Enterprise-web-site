@@ -1,5 +1,7 @@
 import { formatPrice } from "@/lib/format";
 
+import { AssetImage } from "@/components/cinematic/asset-image";
+
 import { LanternScene } from "./lantern-scene";
 
 /**
@@ -97,7 +99,12 @@ export function OrderHero({
             aria-hidden
             className="pointer-events-none absolute inset-x-0 top-0 z-20 h-px bg-gradient-to-r from-transparent via-emerald-bright/40 to-transparent"
           />
-          <LanternScene />
+          <AssetImage
+            src="/images/order/order_lantern_scene.webp"
+            alt=""
+            fallback={<LanternScene />}
+            sizes="(min-width: 1024px) 42vw, 100vw"
+          />
         </div>
       </div>
     </section>

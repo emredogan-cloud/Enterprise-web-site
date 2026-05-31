@@ -1,5 +1,6 @@
 import { Receipt } from "lucide-react";
 
+import { AssetImage } from "@/components/cinematic/asset-image";
 import { LanternScene } from "@/components/order/lantern-scene";
 
 /**
@@ -65,7 +66,12 @@ export function OrdersHero({ count }: { count: number }) {
             aria-hidden
             className="pointer-events-none absolute inset-x-0 top-0 z-20 h-px bg-gradient-to-r from-transparent via-emerald-bright/40 to-transparent"
           />
-          <LanternScene />
+          <AssetImage
+            src="/images/order/order_lantern_scene.webp"
+            alt=""
+            fallback={<LanternScene />}
+            sizes="(min-width: 1024px) 40vw, 100vw"
+          />
         </div>
       </div>
     </section>

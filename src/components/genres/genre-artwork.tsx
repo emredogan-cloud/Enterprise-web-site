@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import type { DemoGenre } from "./demo-genres";
 
 /**
@@ -15,7 +17,15 @@ import type { DemoGenre } from "./demo-genres";
  *   - Whole artwork scales 1.06 with 700ms cubic-bezier
  *   - Halo intensifies slightly via opacity
  */
-export function GenreArtwork({ artwork }: { artwork: DemoGenre["artwork"] }) {
+export function GenreArtwork({
+  artwork,
+  imageSrc,
+}: {
+  artwork: DemoGenre["artwork"];
+  /** Optional real genre artwork (/images/genres/{slug}.webp). When present
+   *  it fills the circular frame; otherwise the SVG symbol renders. */
+  imageSrc?: string | null;
+}) {
   return (
     <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-full sm:h-[88px] sm:w-[88px]">
       {/* Background gradient */}
@@ -45,10 +55,21 @@ export function GenreArtwork({ artwork }: { artwork: DemoGenre["artwork"] }) {
         }}
       />
 
-      {/* Symbol — scales on group hover */}
-      <div className="absolute inset-0 flex items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.08]">
-        <SymbolFor kind={artwork.kind} color={artwork.glow} />
-      </div>
+      {/* Symbol — scales on group hover. Replaced by a real image when one
+          exists at /images/genres/{slug}.webp. */}
+      {imageSrc ? (
+        <Image
+          src={imageSrc}
+          alt=""
+          fill
+          sizes="88px"
+          className="rounded-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.08]"
+        />
+      ) : (
+        <div className="absolute inset-0 flex items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.08]">
+          <SymbolFor kind={artwork.kind} color={artwork.glow} />
+        </div>
+      )}
 
       {/* Outer edge glow ring */}
       <div

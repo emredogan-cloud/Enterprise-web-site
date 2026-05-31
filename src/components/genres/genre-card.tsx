@@ -24,7 +24,7 @@ export function GenreCard({ genre }: { genre: DemoGenre }) {
       <article className="home-card-hover home-glass relative h-full overflow-hidden rounded-[24px] p-5 sm:p-6">
         <div className="flex gap-5">
           {/* LEFT — artwork */}
-          <GenreArtwork artwork={genre.artwork} />
+          <GenreArtwork artwork={genre.artwork} imageSrc={genre.imageSrc} />
 
           {/* RIGHT — text stack */}
           <div className="min-w-0 flex-1">

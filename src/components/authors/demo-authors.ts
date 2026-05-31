@@ -24,6 +24,9 @@ export interface DemoAuthor {
   category: string;
   featured?: boolean;
   portrait: PortraitTheme;
+  /** Server-resolved real portrait path (/images/authors/{slug}.webp) or
+   *  null. Set by the page; the procedural portrait renders when null. */
+  portraitSrc?: string | null;
 }
 
 export interface PortraitTheme {

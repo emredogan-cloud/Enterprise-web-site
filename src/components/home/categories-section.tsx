@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { AssetImage } from "@/components/cinematic/asset-image";
 import type { CategorySummary } from "@/lib/db/queries/catalog";
 
 import { RevealOnScroll } from "./reveal-on-scroll";
@@ -23,6 +24,8 @@ interface CategoryCardData {
   name: string;
   href: string;
   gradient: string;
+  /** Slug key for the optional genre artwork at /images/genres/{imageKey}.webp */
+  imageKey: string;
 }
 
 // Deterministic gradient palette — 5 moods that cycle through the
@@ -36,11 +39,11 @@ const CATEGORY_GRADIENTS = [
 ];
 
 const DEMO_FALLBACK: CategoryCardData[] = [
-  { name: "Fiction", href: "/categories", gradient: CATEGORY_GRADIENTS[0] },
-  { name: "Sci-Fi", href: "/categories", gradient: CATEGORY_GRADIENTS[1] },
-  { name: "Growth", href: "/categories", gradient: CATEGORY_GRADIENTS[2] },
-  { name: "Business", href: "/categories", gradient: CATEGORY_GRADIENTS[3] },
-  { name: "History", href: "/categories", gradient: CATEGORY_GRADIENTS[4] },
+  { name: "Fiction", href: "/categories", gradient: CATEGORY_GRADIENTS[0], imageKey: "fiction" },
+  { name: "Sci-Fi", href: "/categories", gradient: CATEGORY_GRADIENTS[1], imageKey: "science-fiction" },
+  { name: "Growth", href: "/categories", gradient: CATEGORY_GRADIENTS[2], imageKey: "personal-growth" },
+  { name: "Business", href: "/categories", gradient: CATEGORY_GRADIENTS[3], imageKey: "business" },
+  { name: "History", href: "/categories", gradient: CATEGORY_GRADIENTS[4], imageKey: "history" },
 ];
 
 export function CategoriesSection({
@@ -55,6 +58,7 @@ export function CategoriesSection({
           name: c.name,
           href: `/categories/${c.slug}`,
           gradient: CATEGORY_GRADIENTS[i % CATEGORY_GRADIENTS.length],
+          imageKey: c.slug,
         }))
       : DEMO_FALLBACK;
 
@@ -91,6 +95,17 @@ export function CategoriesSection({
               className="home-card-hover group relative aspect-[3/4] overflow-hidden rounded-2xl border border-white/[0.06]"
               style={{ background: cat.gradient }}
             >
+              {/* Optional real genre artwork over the gradient base.
+                  Missing → fallback renders nothing → gradient shows. */}
+              <div aria-hidden className="absolute inset-0">
+                <AssetImage
+                  src={`/images/genres/${cat.imageKey}.webp`}
+                  alt=""
+                  fallback={null}
+                  sizes="(min-width: 1024px) 20vw, 50vw"
+                />
+              </div>
+
               {/* Top emerald highlight */}
               <div
                 aria-hidden

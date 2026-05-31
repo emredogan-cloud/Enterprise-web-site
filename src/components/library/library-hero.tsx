@@ -1,4 +1,5 @@
 import { LibraryScene } from "@/components/article/library-scene";
+import { AssetImage } from "@/components/cinematic/asset-image";
 
 /**
  * Library two-column hero — atmospheric library scene LEFT (~45%),
@@ -29,7 +30,12 @@ export function LibraryHero() {
             aria-hidden
             className="pointer-events-none absolute inset-x-0 top-0 z-20 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/40 to-transparent"
           />
-          <LibraryScene />
+          <AssetImage
+            src="/images/library/library_atmosphere.webp"
+            alt="A cinematic personal library at night"
+            fallback={<LibraryScene />}
+            sizes="(min-width: 1024px) 45vw, 100vw"
+          />
         </div>
 
         {/* RIGHT — editorial content */}

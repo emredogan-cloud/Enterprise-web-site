@@ -40,7 +40,7 @@ export function AuthorCard({ author }: { author: DemoAuthor }) {
       >
         {/* Portrait */}
         <div className="relative aspect-[3/4] w-full">
-          <AuthorPortrait theme={author.portrait} />
+          <AuthorPortrait theme={author.portrait} imageSrc={author.portraitSrc} />
 
           {/* Top-left: follower count pill */}
           <span className="absolute left-2.5 top-2.5 inline-flex items-center gap-1 rounded-full border border-white/[0.12] bg-black/40 px-2 py-0.5 text-[10px] font-semibold text-white/85 backdrop-blur-md">

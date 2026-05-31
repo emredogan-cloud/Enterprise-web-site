@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { BookOpen } from "lucide-react";
 
+import { AssetImage } from "@/components/cinematic/asset-image";
+
 /**
  * Empty library focal panel — two-column glass card.
  *
@@ -25,9 +27,14 @@ export function LibraryEmptyPanel() {
         />
 
         <div className="relative grid min-h-[280px] gap-0 lg:grid-cols-[1.1fr_1fr]">
-          {/* LEFT — scene flush-left with mask-fade */}
+          {/* LEFT — scene flush-left with mask-fade (or real empty-state art) */}
           <div className="relative h-[240px] sm:h-[300px] lg:h-auto">
-            <StackedBooksAndPlantScene />
+            <AssetImage
+              src="/images/library/library_empty_scene.webp"
+              alt=""
+              fallback={<StackedBooksAndPlantScene />}
+              sizes="(min-width: 1024px) 55vw, 100vw"
+            />
           </div>
 
           {/* RIGHT — editorial CTA */}

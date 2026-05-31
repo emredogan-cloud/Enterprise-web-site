@@ -5,6 +5,7 @@ import { ExploreStrip } from "@/components/genres/explore-strip";
 import { GenresShell } from "@/components/genres/genres-shell";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
+import { resolveAsset } from "@/lib/assets";
 
 /**
  * `/genres` — cinematic genre discovery page.
@@ -33,12 +34,19 @@ export const metadata: Metadata = {
 };
 
 export default function GenresDiscoveryPage() {
+  // Resolve optional real genre artwork server-side (the shell is a client
+  // component). Missing → null → SVG symbol. Drop /images/genres/{slug}.webp.
+  const genres = DEMO_GENRES.map((g) => ({
+    ...g,
+    imageSrc: resolveAsset(`/images/genres/${g.slug}.webp`),
+  }));
+
   return (
     <div className="cinematic-root">
       <CinematicHeader active="genres" />
 
       <main className="relative z-10">
-        <GenresShell genres={DEMO_GENRES} />
+        <GenresShell genres={genres} />
         <ExploreStrip />
         <div className="h-20" />
       </main>

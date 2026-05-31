@@ -1,6 +1,8 @@
 import { ArrowRight, BookOpen } from "lucide-react";
 import Link from "next/link";
 
+import { AssetImage } from "@/components/cinematic/asset-image";
+
 import { AboutScene } from "./about-scene";
 
 /**
@@ -92,7 +94,12 @@ export function AboutHero() {
             aria-hidden
             className="pointer-events-none absolute inset-x-0 top-0 z-20 h-px bg-gradient-to-r from-transparent via-emerald-bright/40 to-transparent"
           />
-          <AboutScene />
+          <AssetImage
+            src="/images/about/about_hero_scene.webp"
+            alt=""
+            fallback={<AboutScene />}
+            sizes="(min-width: 1024px) 44vw, 100vw"
+          />
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { AssetImage } from "@/components/cinematic/asset-image";
 import type { BlogPostMeta } from "@/lib/blog";
 
 import { LibraryScene } from "./library-scene";
@@ -53,9 +54,16 @@ export function ArticleHero({
 
         {/* Aspect ratio container holds the scene */}
         <div className="relative aspect-[16/9] min-h-[440px] w-full sm:aspect-[18/8] lg:aspect-[21/8]">
-          {/* Backdrop */}
+          {/* Backdrop — optional real article hero image
+              (/images/blog/{slug}.webp), else the cinematic library scene. */}
           <div className="absolute inset-0 z-0">
-            <LibraryScene />
+            <AssetImage
+              src={`/images/blog/${post.slug}.webp`}
+              alt=""
+              fallback={<LibraryScene />}
+              sizes="100vw"
+              priority
+            />
           </div>
 
           {/* Content overlay — LEFT-aligned */}

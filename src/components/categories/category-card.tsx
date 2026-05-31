@@ -1,6 +1,8 @@
 import { ArrowUpRight, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 
+import { AssetImage } from "@/components/cinematic/asset-image";
+
 import type { CategoryArtwork } from "./demo-categories";
 import { CategoryScene } from "./category-scene";
 
@@ -43,7 +45,12 @@ export function CategoryCard({ item }: { item: CategoryCardData }) {
 
         {/* Atmospheric scene — slow zoom on hover (light parallax feel) */}
         <div className="absolute inset-0 transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]">
-          <CategoryScene artwork={item.artwork} />
+          <AssetImage
+            src={`/images/genres/${item.key}.webp`}
+            alt=""
+            fallback={<CategoryScene artwork={item.artwork} />}
+            sizes="(min-width: 1024px) 20vw, 50vw"
+          />
         </div>
 
         {/* Bottom scrim — legibility for the overlaid title */}
