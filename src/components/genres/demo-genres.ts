@@ -34,6 +34,9 @@ export interface DemoGenre {
     /** Outer halo color (radial bloom). */
     halo: string;
   };
+  /** Server-resolved real artwork path (/images/genres/{slug}.webp) or null.
+   *  Set by the page; the SVG symbol renders when null. */
+  imageSrc?: string | null;
 }
 
 export const FORMAT_OPTIONS = ["All Formats", "PDF", "EPUB", "MOBI"] as const;

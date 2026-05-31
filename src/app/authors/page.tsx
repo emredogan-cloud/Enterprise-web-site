@@ -6,6 +6,7 @@ import { DEMO_AUTHORS } from "@/components/authors/demo-authors";
 import { StatsStrip } from "@/components/authors/stats-strip";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
+import { resolveAsset } from "@/lib/assets";
 
 /**
  * `/authors` — cinematic author discovery page.
@@ -35,13 +36,21 @@ export const metadata: Metadata = {
 };
 
 export default function AuthorsDiscoveryPage() {
+  // Resolve optional real portraits server-side (the discovery shell is a
+  // client component and can't touch the filesystem). Missing → null →
+  // procedural portrait. Drop /images/authors/{slug}.webp to light one up.
+  const authors = DEMO_AUTHORS.map((a) => ({
+    ...a,
+    portraitSrc: resolveAsset(`/images/authors/${a.slug}.webp`),
+  }));
+
   return (
     <div className="cinematic-root">
       <CinematicHeader active="authors" />
 
       <main className="relative z-10">
         <AuthorsHero />
-        <AuthorsShell authors={DEMO_AUTHORS} />
+        <AuthorsShell authors={authors} />
         <StatsStrip />
         <div className="h-20" />
       </main>

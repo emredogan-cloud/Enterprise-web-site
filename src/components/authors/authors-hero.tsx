@@ -15,6 +15,8 @@
  * Reuses the same `catalog-diamond-pulse` + `catalog-dust-drift` CSS
  * keyframes other heroes use.
  */
+import { AssetImage } from "@/components/cinematic/asset-image";
+
 export function AuthorsHero() {
   const dust = [
     { left: "12%", delay: 0, xDrift: "28px" },
@@ -39,8 +41,28 @@ export function AuthorsHero() {
         }}
       />
 
-      {/* Portal arch backdrop with reader silhouette */}
+      {/* Portal arch backdrop with reader silhouette (fallback) */}
       <PortalArchBackdrop />
+
+      {/* Optional real hero atmosphere — layered over the portal, same
+          masked fade. Missing → nothing renders → portal shows. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[480px]"
+        style={{
+          maskImage:
+            "radial-gradient(ellipse 70% 90% at 50% 60%, black 30%, transparent 95%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 70% 90% at 50% 60%, black 30%, transparent 95%)",
+        }}
+      >
+        <AssetImage
+          src="/images/authors/authors_hero_atmosphere.webp"
+          alt=""
+          fallback={null}
+          sizes="100vw"
+        />
+      </div>
 
       {/* Drifting dust particles */}
       <div

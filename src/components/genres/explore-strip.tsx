@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { BookOpen, Layers, Sparkles } from "lucide-react";
 
+import { AssetImage } from "@/components/cinematic/asset-image";
+
 /**
  * Bottom "Not sure where to start?" + stats strip — large glass panel
  * with a two-part layout.
@@ -34,8 +36,15 @@ export function ExploreStrip() {
         <div className="grid gap-0 lg:grid-cols-[1.4fr_1fr]">
           {/* LEFT — atmospheric scene + copy + CTA */}
           <div className="relative flex flex-col justify-center overflow-hidden p-7 sm:p-10">
-            {/* Atmospheric scene — flush-left, bleeds via mask fade */}
-            <ExploreScene />
+            {/* Atmospheric scene — flush-left, bleeds via mask fade. Optional
+                real image (/images/genres/genres_explore_scene.webp) takes over
+                when present; otherwise the CSS scene renders. */}
+            <AssetImage
+              src="/images/genres/genres_explore_scene.webp"
+              alt=""
+              fallback={<ExploreScene />}
+              sizes="(min-width: 1024px) 58vw, 100vw"
+            />
 
             {/* Content sits ABOVE the scene, right side of the panel */}
             <div className="relative z-10 max-w-md ml-auto sm:ml-[42%]">
