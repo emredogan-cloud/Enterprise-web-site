@@ -29,8 +29,10 @@ const fraunces = Fraunces({
 // `generateMetadata` (canonicals, OG images, Twitter images, …). Reads
 // `NEXT_PUBLIC_APP_URL` (declared in `.env.example`); falls back to
 // localhost so dev / unprovisioned-env builds never crash on metadata.
+// NOTE: `||` (not `??`) is deliberate — an empty-string env value ("")
+// must also fall back; `new URL("")` throws and would 500 every page.
 const BASE_URL =
-  process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+  process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
