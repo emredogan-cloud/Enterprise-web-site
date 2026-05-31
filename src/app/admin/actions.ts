@@ -1,12 +1,18 @@
 "use server";
 
-import { eq } from "drizzle-orm";
+import { eq, inArray } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
 import { AdminAccessError, requireAdmin } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { books } from "@/lib/db/schema";
-import type { BookStatus } from "@/lib/db/queries/admin";
+import {
+  authors,
+  bookAuthors,
+  bookCategories,
+  books,
+  categories,
+} from "@/lib/db/schema";
+import { CORE_COLLECTIONS, type BookStatus } from "@/lib/db/queries/admin";
 import { logger } from "@/lib/logger";
 
 // ===========================================================================
@@ -77,6 +83,124 @@ function invalidateCatalogPaths(args: {
 }
 
 // ===========================================================================
+// Relational ingestion (Blocker #1 patch) — authors + categories.
+// ===========================================================================
+
+/** Slugify a display name for find-or-create (e.g. "Marcus Aurelius" →
+ *  "marcus-aurelius"). ASCII-folded, lowercase, hyphenated, ≤200 chars to
+ *  fit `authors.slug` / `categories.slug` varchar(200). */
+function slugify(input: string): string {
+  return input
+    .normalize("NFKD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 200);
+}
+
+// The transaction handle Drizzle hands to `db.transaction(cb)` — same query
+// surface as `db`, scoped to the open transaction.
+type Tx = Parameters<Parameters<typeof db.transaction>[0]>[0];
+
+/**
+ * Atomically sync a book's M:N relations (authors + categories) to the given
+ * sets using replace semantics (delete-all-then-insert), INSIDE `tx` so a
+ * failure rolls back the whole write — never an authorless / partial state.
+ *
+ *   - Authors: find-or-create by slug (idempotent `onConflictDoNothing`),
+ *     linked with `position` preserving the entered order.
+ *   - Categories: validated against existing rows; unknown ids are dropped
+ *     (the admin can only pick real checkboxes, so this is just belt-and-
+ *     suspenders).
+ */
+async function syncBookRelations(
+  tx: Tx,
+  bookId: string,
+  authorNames: string[],
+  categoryIds: string[],
+): Promise<void> {
+  // ---- Authors ----
+  const seen = new Set<string>();
+  const wanted: Array<{ name: string; slug: string }> = [];
+  for (const raw of authorNames) {
+    const name = raw.trim();
+    if (!name) continue;
+    const slug = slugify(name);
+    if (!slug || seen.has(slug)) continue;
+    seen.add(slug);
+    wanted.push({ name, slug });
+  }
+
+  if (wanted.length > 0) {
+    await tx
+      .insert(authors)
+      .values(wanted.map((a) => ({ slug: a.slug, name: a.name })))
+      .onConflictDoNothing({ target: authors.slug });
+  }
+
+  const slugs = wanted.map((a) => a.slug);
+  const authorRows =
+    slugs.length > 0
+      ? await tx
+          .select({ id: authors.id, slug: authors.slug })
+          .from(authors)
+          .where(inArray(authors.slug, slugs))
+      : [];
+  const idBySlug = new Map(authorRows.map((r) => [r.slug, r.id]));
+
+  await tx.delete(bookAuthors).where(eq(bookAuthors.bookId, bookId));
+  const authorLinks = wanted
+    .map((a, i) => {
+      const authorId = idBySlug.get(a.slug);
+      return authorId ? { bookId, authorId, position: i } : null;
+    })
+    .filter((r): r is { bookId: string; authorId: string; position: number } => r !== null);
+  if (authorLinks.length > 0) {
+    await tx.insert(bookAuthors).values(authorLinks);
+  }
+
+  // ---- Categories / collections ----
+  const uniqueCatIds = [...new Set(categoryIds.map((c) => c.trim()).filter(Boolean))];
+  let validCatIds: string[] = [];
+  if (uniqueCatIds.length > 0) {
+    const catRows = await tx
+      .select({ id: categories.id })
+      .from(categories)
+      .where(inArray(categories.id, uniqueCatIds));
+    validCatIds = catRows.map((r) => r.id);
+  }
+
+  await tx.delete(bookCategories).where(eq(bookCategories.bookId, bookId));
+  if (validCatIds.length > 0) {
+    await tx
+      .insert(bookCategories)
+      .values(validCatIds.map((categoryId) => ({ bookId, categoryId })));
+  }
+}
+
+/**
+ * Idempotently insert the canonical collection rows (PD Spine, Builder Core,
+ * Deep Thinking, Speculative Shelf). Safe to re-run — `onConflictDoNothing`
+ * on the unique `categories.slug` means existing rows are untouched and no
+ * duplicate is ever created. Triggered by the "Ensure core collections"
+ * button on /admin.
+ */
+export async function ensureCoreCollections(): Promise<void> {
+  try {
+    await requireAdmin();
+    await db
+      .insert(categories)
+      .values(CORE_COLLECTIONS.map((c) => ({ slug: c.slug, name: c.name })))
+      .onConflictDoNothing({ target: categories.slug });
+    revalidatePath("/admin");
+  } catch (err) {
+    logger.error("[admin] ensureCoreCollections failed", err);
+  }
+}
+
+// ===========================================================================
 // createBook — unchanged shape, but `requireUserId` upgraded to
 // `requireAdmin` (consistency fix; SUB-PR 4.1 added the strict gate to the
 // page-level loader and to `updateBook` / `deleteBook` below, so leaving
@@ -103,6 +227,10 @@ interface CreateBookInput {
    * Checkout fails fast for any cart item lacking this value (SUB-PR 1.5).
    */
   paddlePriceId?: string;
+  /** Author display names (find-or-created by slug, linked in order). */
+  authorNames: string[];
+  /** Category/collection ids to link (validated against existing rows). */
+  categoryIds: string[];
 }
 
 export async function createBook(formData: FormData): Promise<void> {
@@ -110,21 +238,29 @@ export async function createBook(formData: FormData): Promise<void> {
     await requireAdmin();
     const input = parseCreateBookFormData(formData);
 
-    await db.insert(books).values({
-      title: input.title,
-      slug: input.slug,
-      subtitle: input.subtitle ?? null,
-      description: input.description ?? null,
-      priceCents: input.priceCents,
-      currency: input.currency,
-      language: input.language,
-      masterFileKey: input.masterFileKey ?? null,
-      coverKey: input.coverKey ?? null,
-      sampleKey: input.sampleKey ?? null,
-      isbn: input.isbn ?? null,
-      pageCount: input.pageCount ?? null,
-      paddlePriceId: input.paddlePriceId ?? null,
-      // status defaults to "draft"; publishedAt stays null until publish flow.
+    // Book row + relations in one transaction → no authorless/partial state.
+    await db.transaction(async (tx) => {
+      const [row] = await tx
+        .insert(books)
+        .values({
+          title: input.title,
+          slug: input.slug,
+          subtitle: input.subtitle ?? null,
+          description: input.description ?? null,
+          priceCents: input.priceCents,
+          currency: input.currency,
+          language: input.language,
+          masterFileKey: input.masterFileKey ?? null,
+          coverKey: input.coverKey ?? null,
+          sampleKey: input.sampleKey ?? null,
+          isbn: input.isbn ?? null,
+          pageCount: input.pageCount ?? null,
+          paddlePriceId: input.paddlePriceId ?? null,
+          // status defaults to "draft"; publishedAt stays null until publish.
+        })
+        .returning({ id: books.id });
+
+      await syncBookRelations(tx, row.id, input.authorNames, input.categoryIds);
     });
 
     invalidateCatalogPaths({ newSlug: input.slug });
@@ -183,6 +319,13 @@ function parseCreateBookFormData(formData: FormData): CreateBookInput {
     isbn: getString("isbn"),
     pageCount: getNumber("pageCount"),
     paddlePriceId: getString("paddlePriceId"),
+    authorNames: (getString("authorNames") ?? "")
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean),
+    categoryIds: formData
+      .getAll("categoryIds")
+      .filter((v): v is string => typeof v === "string"),
   };
 }
 
@@ -214,6 +357,10 @@ export interface UpdateBookInput {
   isbn: string | null;
   paddlePriceId: string | null;
   status: BookStatus;
+  /** Author display names (find-or-created by slug, linked in order). */
+  authorNames: string[];
+  /** Category/collection ids to link (validated against existing rows). */
+  categoryIds: string[];
 }
 
 export type UpdateBookResult = { ok: true } | { ok: false; error: string };
@@ -271,28 +418,37 @@ export async function updateBook(
     };
   }
 
-  // ---- 4. Persist --------------------------------------------------------
+  // ---- 4. Persist (book row + relations, atomically) ---------------------
   try {
-    await db
-      .update(books)
-      .set({
-        title: input.title.trim(),
-        slug: input.slug.trim(),
-        subtitle: input.subtitle?.trim() || null,
-        description: input.description?.trim() || null,
-        priceCents: input.priceCents,
-        currency: input.currency.trim() || "USD",
-        language: input.language.trim() || "en",
-        coverKey: input.coverKey?.trim() || null,
-        sampleKey: input.sampleKey?.trim() || null,
-        masterFileKey: input.masterFileKey?.trim() || null,
-        pageCount: input.pageCount,
-        isbn: input.isbn?.trim() || null,
-        paddlePriceId: input.paddlePriceId?.trim() || null,
-        status: input.status,
-        ...(publishedAtPatch ? { publishedAt: publishedAtPatch } : {}),
-      })
-      .where(eq(books.id, input.id));
+    await db.transaction(async (tx) => {
+      await tx
+        .update(books)
+        .set({
+          title: input.title.trim(),
+          slug: input.slug.trim(),
+          subtitle: input.subtitle?.trim() || null,
+          description: input.description?.trim() || null,
+          priceCents: input.priceCents,
+          currency: input.currency.trim() || "USD",
+          language: input.language.trim() || "en",
+          coverKey: input.coverKey?.trim() || null,
+          sampleKey: input.sampleKey?.trim() || null,
+          masterFileKey: input.masterFileKey?.trim() || null,
+          pageCount: input.pageCount,
+          isbn: input.isbn?.trim() || null,
+          paddlePriceId: input.paddlePriceId?.trim() || null,
+          status: input.status,
+          ...(publishedAtPatch ? { publishedAt: publishedAtPatch } : {}),
+        })
+        .where(eq(books.id, input.id));
+
+      await syncBookRelations(
+        tx,
+        input.id,
+        input.authorNames,
+        input.categoryIds,
+      );
+    });
   } catch (err) {
     logger.error("[admin] updateBook failed", err, {
       bookId: input.id,
