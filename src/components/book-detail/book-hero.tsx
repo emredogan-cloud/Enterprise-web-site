@@ -34,6 +34,8 @@ export interface BookHeroProps {
   subtitle: string | null;
   description: string | null;
   coverKey: string | null;
+  /** Pre-resolved cover source (R2 coverKey URL → /images/books/{slug}.webp). */
+  coverSrc?: string | null;
   priceCents: number;
   currency: string;
   pageCount: number | null;
@@ -55,6 +57,7 @@ export function BookHero({
   subtitle,
   description,
   coverKey,
+  coverSrc,
   priceCents,
   currency,
   pageCount,
@@ -69,7 +72,12 @@ export function BookHero({
       <div className="grid gap-12 lg:grid-cols-[minmax(0,_1fr)_minmax(0,_1.4fr)] lg:gap-16">
         {/* LEFT — cover + sticky buy panel */}
         <div className="lg:sticky lg:top-24 lg:self-start">
-          <BookCover title={title} coverKey={coverKey} priority />
+          <BookCover
+            title={title}
+            coverKey={coverKey}
+            coverSrc={coverSrc}
+            priority
+          />
 
           {/* Buy panel — glass card with price + CTA + trust microcopy */}
           <div className="home-glass relative mt-10 overflow-hidden rounded-[20px] p-6">

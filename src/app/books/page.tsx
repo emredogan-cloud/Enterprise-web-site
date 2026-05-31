@@ -78,9 +78,10 @@ export default async function BooksCatalogPage() {
 
 /**
  * Translate live `BookCardData` rows into the richer `DemoBook` shape
- * the catalog UI consumes. Defaults stand in for fields the current
- * query doesn't yet surface (category/format/rating/badge); a later
- * SUB-PR can extend `listPublishedBooks` to include them.
+ * the catalog UI consumes. The card's category tag reads the real primary
+ * collection (`primaryCategory`, from the `book_categories` relation); the
+ * remaining defaults stand in for fields the query doesn't yet surface
+ * (format/rating/badge) and a later SUB-PR can extend them.
  *
  * Cover gradients cycle through a small palette so adjacent cards
  * don't look identical when no real cover image is uploaded yet.
@@ -93,6 +94,7 @@ function mapRealBooksToShell(
     priceCents: number;
     currency: string;
     authors: ReadonlyArray<{ name: string }>;
+    primaryCategory?: string | null;
   }>,
 ): DemoBook[] {
   const palette: DemoBook["cover"][] = [
@@ -125,7 +127,7 @@ function mapRealBooksToShell(
     author: row.authors[0]?.name ?? "—",
     priceCents: row.priceCents,
     rating: 0,
-    category: "Fiction",
+    category: row.primaryCategory ?? "",
     formats: ["PDF"],
     cover: palette[i % palette.length],
   }));

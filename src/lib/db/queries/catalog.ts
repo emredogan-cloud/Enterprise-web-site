@@ -97,6 +97,11 @@ export async function listPublishedBooks(): Promise<BookCardData[]> {
               author: { columns: { slug: true, name: true } },
             },
           },
+          bookCategories: {
+            with: {
+              category: { columns: { name: true } },
+            },
+          },
         },
       });
       return rows.map((b) => ({
@@ -108,6 +113,12 @@ export async function listPublishedBooks(): Promise<BookCardData[]> {
         priceCents: b.priceCents,
         currency: b.currency,
         authors: b.bookAuthors.map((ba) => ba.author),
+        // Primary collection for the catalog card — first by name when a book
+        // belongs to several (deterministic; book_categories has no order col).
+        primaryCategory:
+          b.bookCategories
+            .map((bc) => bc.category.name)
+            .sort((a, z) => a.localeCompare(z))[0] ?? null,
       }));
     },
     [],
