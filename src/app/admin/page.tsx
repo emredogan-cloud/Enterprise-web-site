@@ -11,6 +11,8 @@ import {
   getDashboardMetrics,
   getRecentOrders,
   listAllBooksForAdmin,
+  listCategoriesForAdmin,
+  type AdminCategory,
   type BookAdminListItem,
   type DashboardMetrics,
   type OrderStatus,
@@ -18,7 +20,7 @@ import {
 } from "@/lib/db/queries/admin";
 import { formatPrice } from "@/lib/format";
 
-import { createBook } from "./actions";
+import { createBook, ensureCoreCollections } from "./actions";
 
 /**
  * /admin — internal dashboard.
@@ -146,10 +148,11 @@ export default async function AdminPage() {
     );
   }
 
-  const [metrics, recentOrders, catalog] = await Promise.all([
+  const [metrics, recentOrders, catalog, allCategories] = await Promise.all([
     getDashboardMetrics(),
     getRecentOrders(10),
     listAllBooksForAdmin(),
+    listCategoriesForAdmin(),
   ]);
 
   return (
@@ -178,7 +181,7 @@ export default async function AdminPage() {
           <MetricsRow metrics={metrics} />
           <RecentOrdersSection orders={recentOrders} />
           <CatalogManagementSection books={catalog} />
-          <CreateBookSection />
+          <CreateBookSection allCategories={allCategories} />
         </div>
 
         <div className="h-20" />
@@ -491,7 +494,11 @@ function CatalogRow({ book }: { book: BookAdminListItem }) {
 // ===========================================================================
 // Create Book form.
 // ===========================================================================
-function CreateBookSection() {
+function CreateBookSection({
+  allCategories,
+}: {
+  allCategories: AdminCategory[];
+}) {
   return (
     <section aria-labelledby="create-book-heading">
       <header>
@@ -516,6 +523,21 @@ function CreateBookSection() {
           </code>
           ) lands in a later SUB-PR.
         </p>
+
+        {/* Bootstrap the curated core collections (PD Spine, Builder Core,
+            Deep Thinking, Speculative Shelf) so they can be assigned below.
+            Idempotent — safe to click repeatedly; existing rows are skipped. */}
+        <form action={ensureCoreCollections} className="mt-5">
+          <button
+            type="submit"
+            className="inline-flex h-9 items-center justify-center rounded-full border border-white/[0.12] bg-white/[0.04] px-4 text-xs font-medium text-fg-mid transition-colors hover:border-emerald-bright/40 hover:text-emerald-bright"
+          >
+            Ensure core collections
+          </button>
+          <span className="ml-3 text-xs text-fg-soft">
+            Seeds the 4 curated collections if missing. Idempotent.
+          </span>
+        </form>
       </header>
 
       <form
@@ -554,6 +576,42 @@ function CreateBookSection() {
         </div>
 
         <FormField label="ISBN" name="isbn" />
+
+        <FormField
+          label="Authors"
+          name="authorNames"
+          help="Comma-separated. New names are created automatically. Example: Marcus Aurelius, Gregory Hays."
+        />
+
+        <fieldset className="space-y-3 rounded-[16px] border border-white/[0.08] bg-white/[0.02] p-5">
+          <legend className="px-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+            Collections / categories
+          </legend>
+          {allCategories.length === 0 ? (
+            <p className="text-xs leading-relaxed text-fg-soft">
+              No collections yet. Click{" "}
+              <span className="text-fg-mid">Ensure core collections</span> above
+              to seed the curated set, then reload this page.
+            </p>
+          ) : (
+            <div className="grid gap-2 sm:grid-cols-2">
+              {allCategories.map((category) => (
+                <label
+                  key={category.id}
+                  className="flex items-center gap-2.5 rounded-[10px] border border-white/[0.06] bg-white/[0.02] px-3 py-2 text-sm text-fg-mid transition-colors hover:border-emerald-bright/30 hover:text-fg-hi"
+                >
+                  <input
+                    type="checkbox"
+                    name="categoryIds"
+                    value={category.id}
+                    className="h-4 w-4 rounded border-white/20 bg-transparent accent-emerald-bright"
+                  />
+                  <span>{category.name}</span>
+                </label>
+              ))}
+            </div>
+          )}
+        </fieldset>
 
         <fieldset className="space-y-6 rounded-[16px] border border-white/[0.08] bg-white/[0.02] p-5">
           <legend className="px-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">

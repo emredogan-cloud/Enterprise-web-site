@@ -249,6 +249,52 @@ export interface BookEditData {
   paddlePriceId: string | null;
   status: BookStatus;
   publishedAt: Date | null;
+  /** Current author display names, in `position` order, comma-joined — used
+   *  to pre-fill the admin "Authors" field. Empty string when none. */
+  authorNames: string;
+  /** Current linked category ids — used to pre-check the admin category
+   *  checkboxes. */
+  categoryIds: string[];
+}
+
+// ---------------------------------------------------------------------------
+// Categories / collections — for admin relation selection (ingestion patch).
+// ---------------------------------------------------------------------------
+
+export interface AdminCategory {
+  id: string;
+  slug: string;
+  name: string;
+}
+
+/**
+ * Canonical "collection" rows the catalog is organized around (Builder's
+ * Library strategy). `ensureCoreCollections` (admin action) idempotently
+ * inserts these by unique slug; admins then tick them on each book. Plain
+ * `categories` rows — no schema change needed.
+ */
+export const CORE_COLLECTIONS: ReadonlyArray<{ slug: string; name: string }> = [
+  { slug: "pd-spine", name: "PD Spine" },
+  { slug: "builder-core", name: "Builder Core" },
+  { slug: "deep-thinking", name: "Deep Thinking" },
+  { slug: "speculative-shelf", name: "Speculative Shelf" },
+];
+
+/** Every category/collection, name-sorted — backs the admin checkboxes. */
+export async function listCategoriesForAdmin(): Promise<AdminCategory[]> {
+  await requireAdmin();
+
+  return safeQuery(
+    "listCategoriesForAdmin",
+    async () => {
+      const rows = await db.query.categories.findMany({
+        columns: { id: true, slug: true, name: true },
+        orderBy: (c, { asc }) => asc(c.name),
+      });
+      return rows;
+    },
+    [],
+  );
 }
 
 /**
@@ -287,8 +333,23 @@ export async function getBookForEdit(
           status: true,
           publishedAt: true,
         },
+        with: {
+          bookAuthors: {
+            orderBy: (ba, { asc }) => asc(ba.position),
+            with: { author: { columns: { name: true } } },
+          },
+          bookCategories: {
+            with: { category: { columns: { id: true } } },
+          },
+        },
       });
-      return book ?? null;
+      if (!book) return null;
+      const { bookAuthors, bookCategories, ...rest } = book;
+      return {
+        ...rest,
+        authorNames: bookAuthors.map((ba) => ba.author.name).join(", "),
+        categoryIds: bookCategories.map((bc) => bc.category.id),
+      };
     },
     null,
   );

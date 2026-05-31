@@ -9,7 +9,7 @@ import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
 import { UnprovisionedNotice } from "@/components/unprovisioned-notice";
 import { AdminAccessError, requireAdmin } from "@/lib/auth";
-import { getBookForEdit } from "@/lib/db/queries/admin";
+import { getBookForEdit, listCategoriesForAdmin } from "@/lib/db/queries/admin";
 
 /**
  * /admin/books/[slug]/edit — internal book editor.
@@ -101,7 +101,10 @@ export default async function AdminEditBookPage({
   }
 
   const { slug } = await params;
-  const book = await getBookForEdit(slug);
+  const [book, allCategories] = await Promise.all([
+    getBookForEdit(slug),
+    listCategoriesForAdmin(),
+  ]);
   if (!book) notFound();
 
   return (
@@ -151,7 +154,7 @@ export default async function AdminEditBookPage({
           <h2 id="edit-form-heading" className="sr-only">
             Edit book details
           </h2>
-          <AdminEditBookForm book={book} />
+          <AdminEditBookForm book={book} allCategories={allCategories} />
         </section>
 
         {/* Danger zone */}

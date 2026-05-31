@@ -7,7 +7,11 @@ import {
   updateBook,
   type UpdateBookInput,
 } from "@/app/admin/actions";
-import type { BookEditData, BookStatus } from "@/lib/db/queries/admin";
+import type {
+  AdminCategory,
+  BookEditData,
+  BookStatus,
+} from "@/lib/db/queries/admin";
 
 /**
  * Admin edit form for a single book row (SUB-PR 4.4).
@@ -32,6 +36,8 @@ import type { BookEditData, BookStatus } from "@/lib/db/queries/admin";
 
 interface AdminEditBookFormProps {
   book: BookEditData;
+  /** All categories/collections to offer as checkboxes. */
+  allCategories: AdminCategory[];
 }
 
 type FormResult =
@@ -39,7 +45,10 @@ type FormResult =
   | { kind: "error"; message: string }
   | null;
 
-export function AdminEditBookForm({ book }: AdminEditBookFormProps) {
+export function AdminEditBookForm({
+  book,
+  allCategories,
+}: AdminEditBookFormProps) {
   // Only `status` needs reactive state — used to drive the StatusBadge
   // hint above the select AND read at submit time (selects don't always
   // round-trip cleanly via FormData when the form has many controls).
@@ -93,6 +102,13 @@ export function AdminEditBookForm({ book }: AdminEditBookFormProps) {
       isbn: getStrOrNull("isbn"),
       paddlePriceId: getStrOrNull("paddlePriceId"),
       status,
+      authorNames: getStr("authorNames")
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean),
+      categoryIds: fd
+        .getAll("categoryIds")
+        .filter((v): v is string => typeof v === "string"),
     };
 
     startTransition(async () => {
@@ -180,6 +196,45 @@ export function AdminEditBookForm({ book }: AdminEditBookFormProps) {
         defaultValue={book.isbn ?? ""}
         disabled={pending}
       />
+
+      <Field
+        label="Authors"
+        name="authorNames"
+        defaultValue={book.authorNames}
+        disabled={pending}
+        help="Comma-separated display names. Created automatically if new (e.g. Marcus Aurelius, Gregory Hays)."
+      />
+
+      <fieldset className="space-y-3 rounded-[16px] border border-white/[0.08] bg-white/[0.02] p-5">
+        <legend className="px-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+          Collections / categories
+        </legend>
+        {allCategories.length === 0 ? (
+          <p className="text-xs leading-relaxed text-fg-mid">
+            No categories yet. Use &ldquo;Ensure core collections&rdquo; on the
+            admin dashboard, then reopen this form.
+          </p>
+        ) : (
+          <div className="grid gap-2.5 sm:grid-cols-2">
+            {allCategories.map((c) => (
+              <label
+                key={c.id}
+                className="flex items-center gap-2.5 text-sm text-fg-mid"
+              >
+                <input
+                  type="checkbox"
+                  name="categoryIds"
+                  value={c.id}
+                  defaultChecked={book.categoryIds.includes(c.id)}
+                  disabled={pending}
+                  className="h-4 w-4 flex-shrink-0 rounded border border-white/[0.2] bg-white/[0.03] accent-emerald-bright"
+                />
+                {c.name}
+              </label>
+            ))}
+          </div>
+        )}
+      </fieldset>
 
       <fieldset className="space-y-6 rounded-[16px] border border-white/[0.08] bg-white/[0.02] p-5">
         <legend className="px-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
