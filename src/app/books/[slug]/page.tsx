@@ -11,6 +11,7 @@ import { ExploreStrip } from "@/components/book-detail/explore-strip";
 import { RelatedBooksShelf } from "@/components/book-detail/related-books-shelf";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
+import { resolveAsset } from "@/lib/assets";
 import {
   getPublishedBookBySlug,
   listPublishedBooks,
@@ -166,6 +167,11 @@ export default async function BookDetailPage({
   // JSON-LD payload — identical shape to the pre-cinematic page.
   const baseUrl = getBaseUrl();
   const coverImageUrl = getCoverImageUrl(book.coverKey);
+  // Hero cover priority: R2 `coverKey` URL → local public asset
+  // (`/images/books/{slug}.webp`) → typographic placeholder. This is what
+  // lets a slug-named cover render when `coverKey` is still null.
+  const coverSrc =
+    coverImageUrl ?? resolveAsset(`/images/books/${slug}.webp`);
   const jsonLd = buildBookJsonLd({
     baseUrl,
     slug,
@@ -200,6 +206,7 @@ export default async function BookDetailPage({
           subtitle={book.subtitle}
           description={book.description}
           coverKey={book.coverKey}
+          coverSrc={coverSrc}
           priceCents={book.priceCents}
           currency={book.currency}
           pageCount={book.pageCount}
@@ -308,6 +315,7 @@ function DemoBookDetail({ demo }: { demo: DemoBook }) {
           subtitle={null}
           description={`A preview listing in the ${demo.category} collection. Once the storefront is stocked, full descriptions, samples, and reader reviews appear here.`}
           coverKey={null}
+          coverSrc={resolveAsset(`/images/books/${demo.slug}.webp`)}
           priceCents={demo.priceCents}
           currency="USD"
           pageCount={null}

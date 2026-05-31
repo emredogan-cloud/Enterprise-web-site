@@ -17,6 +17,13 @@ export interface BookCardData {
   priceCents: number;
   currency: string;
   authors: ReadonlyArray<{ slug: string; name: string }>;
+  /**
+   * Primary collection/category name from the `book_categories` relation
+   * (first by name when a book is in several). Optional — surfaces that don't
+   * need it (search, cart, related) leave it undefined. Used by the catalog
+   * grid card so it shows the real collection instead of a hardcoded tag.
+   */
+  primaryCategory?: string | null;
 }
 
 export function BookCard({ book }: { book: BookCardData }) {

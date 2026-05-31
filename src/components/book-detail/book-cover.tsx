@@ -21,13 +21,22 @@ import { getCoverImageUrl } from "@/lib/seo";
 export function BookCover({
   title,
   coverKey,
+  coverSrc,
   priority = false,
 }: {
   title: string;
   coverKey?: string | null;
+  /**
+   * Pre-resolved cover source. The server page resolves it with the priority
+   * R2 `coverKey` URL → local public asset (`/images/books/{slug}.webp`); when
+   * provided it wins. Callers that don't resolve a public-asset fallback
+   * (order panel, library tiles) omit it and we derive the R2 URL from
+   * `coverKey` directly. Either way, a missing source → typographic placeholder.
+   */
+  coverSrc?: string | null;
   priority?: boolean;
 }) {
-  const src = getCoverImageUrl(coverKey);
+  const src = coverSrc ?? getCoverImageUrl(coverKey);
 
   return (
     <div className="relative">
