@@ -89,12 +89,13 @@ export function Hero() {
         </div>
 
         {/* RIGHT — cinematic showcase. Optional real hero artwork
-            (/images/homepage/hero_reading_room.webp) renders when present;
-            otherwise the procedural floating-book cluster is the fallback. */}
+            (/images/homepage/homepage_hero_reading_room.webp) renders when
+            present; otherwise the procedural floating-book cluster is the
+            fallback. */}
         <div className="relative">
           <div className="relative mx-auto h-[560px] w-full max-w-lg sm:h-[640px]">
             <AssetImage
-              src="/images/homepage/hero_reading_room.webp"
+              src="/images/homepage/homepage_hero_reading_room.webp"
               alt="A cinematic late-night reading room"
               fallback={<HeroBook />}
               sizes="(min-width: 1024px) 44vw, 100vw"
