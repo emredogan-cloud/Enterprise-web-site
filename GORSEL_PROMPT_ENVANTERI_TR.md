@@ -1,224 +1,241 @@
-# 🎨 Görsel Prompt Envanteri (Visual Asset Source-of-Truth)
+# 🎨 Görsel Prompt Envanteri — İKİNCİ PASS (forensic, asset-by-asset)
 
-Bu dosya, tüm sinematik sayfalardaki **gerçek görsel varlıklar** için tek merkezî kaynaktır. Görselleri **biz üretmiyoruz**; her eksik görsel için **GPT Image 2.0 üretim promptu** + **kaydedilecek dosya adı/yol** burada tanımlıdır. Sen görseli üretip doğru yola koyunca, kod onu **otomatik** gösterir.
+Tüm sinematik sayfalardaki **gerçek görsel varlıklar** için tek merkezî kaynak. Görselleri **biz üretmiyoruz**; her **ayrı** varlık için **GPT Image 2.0 promptu** + **dosya adı/yol** burada. Sen üretip doğru yola koyunca kod onu **otomatik** gösterir.
 
-> Bu bir **redesign değildir**. Mevcut sinematik prosedürel sahneler (LanternScene, DeskScene, AboutScene, CategoryScene, anasayfa yüzen kitaplar, gradient kapak placeholder'ları) **kasıtlıdır** ve **fallback** olarak korunur. Bu hat, üstlerine **opsiyonel gerçek görsel katmanı** ekler.
+> **2. PASS notu:** 1. pass varlıkları gruplamıştı ("tek hero artwork", "kapaklar = R2"). Bu pass **her ayrık görsel katmanını** çözer: her kapak, her portre, her tür dünyası, her hero atmosferi, her çerçeveli illüstrasyon ve ikincil kompozisyon **kendi başına** bir satırdır. **Birleştirme/sıkıştırma yok.**
 
----
-
-## 1. Çalışma Mantığı (Auto-Wiring + Güvenli Fallback)
-
-- **Mekanizma:** `src/components/cinematic/asset-image.tsx` → `<AssetImage>`. Sunucuda `/public<src>` dosyasının var olup olmadığını kontrol eder (`src/lib/assets.ts`).
-  - Dosya **varsa** → optimize `next/image` gösterilir.
-  - Dosya **yoksa** → mevcut **prosedürel sahne / placeholder** (fallback) gösterilir.
-- **Prensip:** `image-first → cinematic-fallback`. Slot **asla boş**, **asla kırık** olmaz.
-- **Görsel ekleyince:** Aynı ad/yola `.webp` koy → **bir sonraki build / ISR yenilenmesinde** otomatik görünür. Ek kod gerekmez.
-  - `○ Static` sayfalar build anında kontrol eder → görsel ekledikten sonra **redeploy** gerekir.
-  - `ƒ Dynamic` sayfalar her istekte kontrol eder → anında görünür.
-- **İstemci (client) bileşenleri** (örn. `/genres`, `/authors` filtre kabukları) dosya sistemine erişemez; oralarda yol sunucuda çözülüp `imageSrc` prop'u olarak aşağıya geçirilir (aynı güvenli fallback davranışı).
-
-## 2. Adlandırma & Klasör Kuralları
-
-- Format: **`.webp`** (gerekirse `.jpg`/`.png` da çalışır — kod uzantıyı `.webp` bekler; farklı uzantı kullanacaksan envanterdeki dosya adını ona göre güncelle).
-- İsimlendirme: **`snake_case`**, stabil, tahmin edilebilir.
-- Kök klasör: **`/public/images/`** → URL'de `/images/...`.
-- Alt klasörler:
-  - `/public/images/homepage/`
-  - `/public/images/genres/`  → tür/kategori görselleri (slug bazlı, **tüm sayfalarda paylaşılır**)
-  - `/public/images/authors/` → yazar portreleri (slug bazlı, **paylaşılır**)
-  - `/public/images/blog/`
-  - `/public/images/library/`
-  - `/public/images/search/`
-  - `/public/images/cart/`
-
-## 3. Kapsam Notu — Kitap Kapakları (R2 hattı, bu envanterin DIŞINDA)
-
-Kitap kapakları bu statik `/public` hattına **dahil değildir**. Kapaklar zaten ayrı bir boru hattına sahip: **Cloudflare R2** + admin yükleme (`books.coverKey` → `getCoverImageUrl`). Kapak görseli yoksa kod zaten sinematik **gradient/tipografik placeholder**'a düşer (`CoverImage`, `BookCover`, `OrderCoverStack`, katalog kart kapağı). Yani:
-- Gerçek kapak istiyorsan → `/admin` üzerinden ilgili kitabın `coverKey`'ini yükle (R2).
-- Üretim promptu istiyorsan → §"Ortak Aile: Kitap Kapağı Şablonu" altındaki şablonu kullan, üretip R2'ye yükle.
+> Bu bir **redesign değildir.** Prosedürel sahneler (LanternScene, DeskScene, AboutScene, CategoryScene, yüzen kitaplar, gradient kapaklar) **kasıtlıdır** ve **fallback** olarak korunur. Bu katman üstlerine **opsiyonel gerçek görsel** ekler.
 
 ---
 
-## ORTAK AİLELER (slug bazlı, çok sayfada paylaşılır)
+## 1. Mekanizma (Auto-Wiring + Güvenli Fallback)
+- **Sunucu slotları:** `<AssetImage src alt fallback>` (`src/components/cinematic/asset-image.tsx`) → `/public<src>` varsa `next/image`, yoksa prosedürel fallback.
+- **İstemci slotları** (katalog kartları, /genres & /authors kabukları): yol sunucuda `resolveAsset()` ile çözülür, `imageSrc`/`coverSrc`/`portraitSrc` prop'u olarak indirilir → bileşen `next/image`-veya-prosedürel render eder.
+- **Prensip:** `image-first → cinematic-fallback`. Asla boş, asla kırık. Dosyayı bırak → sonraki build/ISR'de görünür.
 
-### Aile A — Tür / Kategori Görselleri
-**Yol:** `/public/images/genres/{slug}.webp` · **Kullanım:** `/genres` kartları, `/categories` galeri kartları, anasayfa "Browse by category" kartları, `/categories/[slug]` hero. Hepsi aynı dosyayı paylaşır.
-
-Ortak prompt iskeleti (her tür için `[SAHNE]` ve `[PALET]` değişir):
-> Cinematic, atmospheric establishing shot representing the **[GENRE]** book genre as a "world". [SAHNE]. Painterly digital matte-painting, volumetric god-rays, deep shadows, fine film grain, subtle emerald rim-light accent (#33f0aa) blended into the scene's own palette ([PALET]). No text, no people's faces, no logos, no watermark. 3:2 landscape, premium editorial book-cover-art quality, moody, mysterious, expensive.
-> **Negative:** text, typography, watermark, ui, frame, border, low-res, cartoonish, stock-photo cliché.
-
-| Slug (dosya) | Tür | [SAHNE] | [PALET] |
-|---|---|---|---|
-| `fantasy.webp` | Fantasy | a dark castle on a misty mountain ridge under a moon, distant spires | deep violet/indigo + moonlit silver |
-| `science-fiction.webp` | Science Fiction | a neon megacity skyline at night, holographic haze, a distant ringed planet | cyan/electric-blue + magenta glow |
-| `mystery.webp` | Mystery | a foggy cobblestone night street, a single lit lamppost, long shadows | slate-teal + cold amber lamp |
-| `historical-fiction.webp` | Historical Fiction | weathered classical stone columns / a candlelit study with old maps | warm sepia/amber + parchment |
-| `romance.webp` | Romance | rolling warm hills at golden hour, soft bokeh, a low setting sun | rose/peach + warm gold |
-| `horror.webp` | Horror | a bare dead forest under a dim blood-moon, low mist, heavy vignette | blood-red + near-black |
-| `adventure.webp` | Adventure | a layered mountain range at dawn with a faint trail and big sky | teal-green + sunrise gold |
-| `literary-fiction.webp` | Literary Fiction | a quiet desk by a rain window, an open book in soft lamplight | warm neutral + emerald lamp |
-| `poetry.webp` | Poetry | an ink-blue desk with an inkwell, a quill and a single sheet of paper | deep indigo + soft moonlight |
-| `young-adult.webp` | Young Adult | a vast starry sky over a low horizon, a lone small figure, aurora band | violet/pink + starlight |
-
-`/genres` keşif sayfasındaki **geniş türler** de aynı klasörü kullanır (dosya = slug): `fiction.webp`, `personal-growth.webp`, `business.webp`, `history.webp`, `technology.webp`, `philosophy.webp`, `arts-photography.webp`. Aynı iskelet; sırasıyla: açık kitap/hikâye atmosferi · filizlenen bitki & sabah ışığı · minimalist kule/satranç şahı & altın · antik sütunlar & zaman · devre kartı/çip & emerald veri ışığı · klasik büst & sis · objektif/kamera & sıcak ışık.
-
-### Aile B — Yazar Portreleri
-**Yol:** `/public/images/authors/{slug}.webp` · **Kullanım:** `/authors` kartları + `/authors/[slug]` hero paneli. Paylaşılır.
-
-Ortak portre promptu (her yazar için `[İSİM-TANIM]` ve `[MIZAÇ/PALET]` değişir):
-> Cinematic chiaroscuro studio portrait of **[İSİM-TANIM]**, three-quarter view, looking slightly off-camera, dramatic single-source rim light, deep shadow background, shallow depth of field, fine grain, subtle emerald edge-light accent (#33f0aa). Mood: [MIZAÇ/PALET]. Photoreal, editorial author-portrait quality, dignified, literary. Square 1:1, head-and-shoulders. No text, no logo, no watermark, no extra people.
-> **Negative:** text, watermark, deformed hands, extra fingers, multiple faces, cartoon, oversaturated, stock-photo.
-
-| Slug (dosya) | Yazar | [İSİM-TANIM] | [MIZAÇ/PALET] |
-|---|---|---|---|
-| `yuval-noah-harari.webp` | Yuval Noah Harari | a thoughtful contemporary historian | cool sage-green, intellectual calm |
-| `jane-austen.webp` | Jane Austen | a refined early-19th-century English novelist | warm candlelit sepia, period elegance |
-| `dan-brown.webp` | Dan Brown | a modern thriller novelist | tense cold blue, cinematic suspense |
-| `george-orwell.webp` | George Orwell | a mid-20th-century essayist in muted tweed | grey, austere, smoky |
-| `j-k-rowling.webp` | J. K. Rowling | a contemporary storyteller | soft warm amber, imaginative |
-| `robert-kiyosaki.webp` | Robert Kiyosaki | a confident business author | gold-accented charcoal, assured |
-| `isaac-asimov.webp` | Isaac Asimov | a visionary 20th-century sci-fi author | deep blue, futurist |
-| `frank-herbert.webp` | Frank Herbert | a contemplative sci-fi author | desert-amber + dark, epic |
-| `james-clear.webp` | James Clear | a clean modern self-improvement author | bright minimal emerald, focused |
-| `marcus-aurelius.webp` | Marcus Aurelius | a Roman emperor-philosopher (classical bust feel) | marble + warm torchlight, stoic |
-| `martin-kleppmann.webp` | Martin Kleppmann | a modern software/systems author | cool teal, precise, technical |
-| `daniel-kahneman.webp` | Daniel Kahneman | a wise behavioural-science author | warm neutral, perceptive |
+## 2. Klasör & Adlandırma
+Format **`.webp`** (kod uzantıyı `.webp` bekler) · **`snake_case`** · kök **`/public/images/`**.
+Klasörler: `books/` · `genres/` · `authors/` · `homepage/` · `blog/` · `library/` · `about/` · `settings/` · `order/` · `search/`.
 
 ---
 
-## SAYFA SAYFA ENVANTER
+# ORTAK AİLE A — KİTAP KAPAKLARI (her başlık AYRI)
+**Yol:** `/public/images/books/{slug}.webp` · **Görünür:** katalog (`/books`), anasayfa "Featured", sepet "You might like", kütüphane önerileri, arama "Popular searches", sipariş kalemleri, hesap-siparişleri kapak yığını. Hepsi aynı dosyayı slug ile paylaşır → bir kez üret, her yerde çıkar.
 
-> Aşağıdaki tablolar **planlanan slotları + promptları** listeler. **Gerçek wiring durumu** için dosyanın sonundaki **"WIRING DURUMU (Özet)"** bölümü esastır — bazı slotlar bilinçli ertelendi (metin-hero / ikon boş-durum / istemci kabuğu) ve orada açıkça işaretlidir.
+**Ortak kapak iskeleti** (her başlık için `[KONSEPT]` değişir):
+> Original cinematic **book cover** design (NOT a replica of the real published edition), portrait 2:3, for **"[TITLE]"**. [KONSEPT]. Strong central motif, elegant serif title typography integrated into the art, deep cinematic lighting, premium publishing-house quality, subtle film grain. Cohesive with a dark emerald-accented bookstore. High contrast, legible at thumbnail size.
+> **Negative:** exact copy of existing cover, photo of a real person, watermark, ui frame, blurry, low-res, cluttered.
 
-### 1) Homepage (`/`)
-| Slot | Amaç | Dosya | Yol | Tür | Wiring |
-|---|---|---|---|---|---|
-| Hero artwork (sağ) | Hero'daki yüzen-kitap kümesinin yerine sinematik okuma-odası kompozisyonu | `homepage_hero_reading_room.webp` | `/public/images/homepage/` | AI | `Hero` → `<AssetImage>` fallback=`<HeroBook/>` |
-| Kategori kartı görseli (×5) | "Browse by category" kartlarının arka planı | `genres/{slug}.webp` (Aile A) | `/public/images/genres/` | AI | `CategoriesSection` → `<AssetImage>` fallback=gradient |
-| Featured kapaklar (×6) | Öne çıkan kitap kapakları | (R2 `coverKey`) | — | R2 | Kapak hattı (§3) |
+| Slug (dosya) | Başlık | [KONSEPT] |
+|---|---|---|
+| `the-midnight-library.webp` | The Midnight Library | infinite glowing library shelves bending into a starlit midnight sky, single warm doorway |
+| `the-silent-patient.webp` | The Silent Patient | a fractured portrait silhouette over cold grey-blue, a single red brushstroke |
+| `atomic-habits.webp` | Atomic Habits | bold orange field, a stylized atom/orbit motif made of tiny dots compounding |
+| `the-psychology-of-money.webp` | The Psychology of Money | minimalist cream cover, a single coin casting a long psychological shadow |
+| `dune.webp` | Dune | vast amber desert dunes, two tiny figures, a colossal sandworm shadow, twin suns |
+| `1984.webp` | 1984 | a single watching eye dissolving into pixels, oppressive dark slab, cold red |
+| `sapiens.webp` | Sapiens | a red field, a thumbprint that morphs from ape to human silhouettes |
+| `thinking-fast-and-slow.webp` | Thinking, Fast and Slow | a sharpened pencil splitting into a fast scribble and a slow precise line, pale cover |
+| `the-subtle-art-of-not-giving-a-fck.webp` | The Subtle Art… | bold orange, a calm minimalist mark amid chaotic scribbles |
+| `brave-new-world.webp` | Brave New World | sterile rows of identical glowing pods, one tinted red, cold utopian light |
+| `the-pragmatic-programmer.webp` | The Pragmatic Programmer | emerald terminal glow, a craftsman's tools merged with code glyphs |
+| `meditations.webp` | Meditations | a weathered marble Roman bust in warm torchlight, deep stoic shadow |
+| `designing-data-intensive-applications.webp` | Designing Data-Intensive Applications | interlocking data-pipeline nodes glowing teal on deep blue, blueprint feel |
+| `zero-to-one.webp` | Zero to One | a single seedling of light rising from a flat line, clean pale cover |
+| `the-foundation-trilogy.webp` | The Foundation Trilogy | a spiral galaxy encoded as a vast equation, violet cosmic depth |
+| `the-art-of-war.webp` | The Art of War | a lone ink-brush general silhouette on a blood-red banner, gold seal |
 
-**Hero prompt (`homepage_hero_reading_room.webp`):**
-> Cinematic wide hero artwork: a luxurious late-night private reading room floating in an emerald-tinted void — a leather armchair, a tall glowing bookshelf, a single warm reading lamp, an open book emitting soft emerald light, fine dust motes in god-rays. Deep blacks (#050705) with emerald atmosphere (#16c784/#33f0aa), volumetric depth, premium A24/editorial mood, painterly matte-painting realism. No text, no logo, no watermark, no readable faces. 4:5 portrait composition, focal subject centered, dark negative space at edges for UI overlay.
-> **Negative:** text, ui, watermark, busy, neon-cyberpunk, low-res, flat.
+**Yalnız anasayfa "Featured" / öneri raflarında görünen ek başlıklar** (aynı iskelet):
+`the-seven-husbands-of-evelyn-hugo.webp` (glamorous golden Hollywood-era portrait silhouette, emerald dress) · `rich-dad-poor-dad.webp` (two contrasting houses, gold vs grey) · `anil-mary.webp` (warm red literary cover, two intertwined names motif).
 
-### 2) Books (`/books`)
-| Slot | Amaç | Dosya | Yol | Tür | Wiring |
-|---|---|---|---|---|---|
-| Katalog kart kapakları | Her kitabın kapağı | (R2 `coverKey`) | — | R2 | Kapak hattı (§3). Yoksa gradient placeholder. |
-| Ürün detay kapağı (`/books/[slug]`) | Detay hero kapağı | (R2 `coverKey`) | — | R2 | `BookCover` zaten R2-or-placeholder |
+> Kitap kapakları AYRICA R2 hattından da gelebilir (`coverKey`, `/admin`). Kod önceliği: `/images/books/{slug}.webp` (katalogda wire edildi) → R2 → gradient placeholder.
 
-Not: Katalog hero'su (eyebrow + "All books" + toz) **kasıtlı prosedürel** — gerçek görsel slotu yok. Kapaklar R2 hattından gelir.
+---
 
-### 3) Blog (`/blog`)
-| Slot | Amaç | Dosya | Yol | Tür | Wiring |
-|---|---|---|---|---|---|
-| Blog hero görseli | Editöryel hero atmosferi | `blog_hero_editorial.webp` | `/public/images/blog/` | AI | `BlogHero` → `<AssetImage>` fallback=mevcut sahne |
-| Makale satırı görselleri | Liste öğesi kapak/önizleme | `blog/{post-slug}.webp` | `/public/images/blog/` | AI | `article-row`/`article-image` → `<AssetImage>` fallback |
+# ORTAK AİLE B — TÜR / KATEGORİ GÖRSELLERİ (her tür AYRI)
+**Yol:** `/public/images/genres/{slug}.webp` · **Görünür:** anasayfa kategori kartları, `/genres` kartları, `/categories` galeri kartları, arama "browse by category". Slug ile paylaşılır.
 
-**Blog hero prompt (`blog_hero_editorial.webp`):**
-> Cinematic editorial header image: an antique writing desk at night with an open journal, a fountain pen, scattered manuscript pages and a warm lamp, emerald dust in the air, deep black-green background. Painterly, moody, premium magazine feel. No text, no faces, no watermark. 3:1 wide banner, subject left, dark space right for headline overlay.
+**İskelet:** Cinematic atmospheric "world" for the **[GENRE]** genre. [SAHNE]. Painterly matte-painting, volumetric light, deep shadow, fine grain, subtle emerald rim accent (#33f0aa) within the scene's palette ([PALET]). No text, no faces, no watermark. 3:2.
 
-**Makale görseli iskeleti (`blog/{post-slug}.webp`):** her yazının konusuna uygun, emerald-tinted, metinsiz, 3:2, painterly editorial illustration. (Mevcut yazılar: `why-we-built-a-digital-bookstore`, `how-to-choose-your-next-book`, `designing-for-readers-not-algorithms`.)
+**B1 — Kurgu alt türleri (`/categories`, 10):**
+| Dosya | Tür | [SAHNE] / [PALET] |
+|---|---|---|
+| `fantasy.webp` | Fantasy | dark castle on a misty moonlit ridge / violet-indigo + silver |
+| `science-fiction.webp` | Science Fiction | neon megacity skyline, ringed planet / cyan-blue + magenta |
+| `mystery.webp` | Mystery | foggy lamplit cobblestone street / slate-teal + amber |
+| `historical-fiction.webp` | Historical Fiction | candlelit study, old maps, stone columns / sepia-amber |
+| `romance.webp` | Romance | rolling golden-hour hills, soft bokeh, low sun / rose-peach + gold |
+| `horror.webp` | Horror | bare dead forest under a dim blood-moon, mist / blood-red + near-black |
+| `adventure.webp` | Adventure | layered mountains at dawn, faint trail / teal-green + sunrise gold |
+| `literary-fiction.webp` | Literary Fiction | quiet desk by a rain window, open book / warm neutral + emerald |
+| `poetry.webp` | Poetry | ink-blue desk, inkwell, quill, single sheet / indigo + moonlight |
+| `young-adult.webp` | Young Adult | vast starry sky, lone figure, aurora / violet-pink + starlight |
 
-### 4) Blog Article (`/blog/[slug]`)
-| Slot | Amaç | Dosya | Yol | Tür | Wiring |
-|---|---|---|---|---|---|
-| Makale hero görseli | Yazı başı büyük görsel | `blog/{slug}.webp` (yukarıdakiyle aynı) | `/public/images/blog/` | AI | `ArticleHero`/`LibraryScene` → `<AssetImage>` fallback |
-| Gömülü kütüphane atmosferi | Yazı içi atmosfer (`library-scene`) | `blog/article_library_atmosphere.webp` | `/public/images/blog/` | AI | `LibraryScene` (article) → `<AssetImage>` fallback |
+**B2 — Geniş türler (`/genres`, 8):**
+| Dosya | Tür | [SAHNE] |
+|---|---|---|
+| `fiction.webp` | Fiction | open book emitting story-light, drifting pages |
+| `personal-growth.webp` | Personal Growth | a glowing sprout breaking through stacked books at sunrise |
+| `business.webp` | Business | a minimalist chess king / rising glass tower at dusk |
+| `history.webp` | History | weathered ancient columns and an unrolled timeline scroll |
+| `technology.webp` | Technology | a glowing emerald microchip city, data traces |
+| `philosophy.webp` | Philosophy | a classical marble bust half-lit in fog |
+| `arts-photography.webp` | Arts & Photography | a vintage camera lens refracting warm light into color |
 
-**Gömülü atmosfer prompt (`article_library_atmosphere.webp`):**
-> Cinematic wide shot of a vast dim library reading hall at night, tall shelves vanishing into emerald shadow, a few warm desk lamps, dust in light shafts. Painterly, atmospheric, deep #050705 blacks + emerald glow. No text, no faces. 16:9.
+---
 
-### 5) Reading Guides (`/blog/category/reading-guides`)
-| Slot | Amaç | Dosya | Yol | Tür | Wiring |
-|---|---|---|---|---|---|
-| Reading-guides hero | Rehber atmosferi | `blog/reading_guides_hero.webp` | `/public/images/blog/` | AI | kategori hero → `<AssetImage>` fallback |
+# ORTAK AİLE C — YAZAR PORTRELERİ (her yazar AYRI)
+**Yol:** `/public/images/authors/{slug}.webp` · **Görünür:** `/authors` kartları + `/authors/[slug]` hero. (WIRE EDİLDİ.)
 
-**Prompt (`reading_guides_hero.webp`):**
-> Cinematic image: a curated reading nook — a stack of books, a steaming cup, a soft blanket, a window with rain at night, warm lamp + emerald ambient glow. Cozy, premium, editorial. No text, no faces. 3:1 wide.
+**İskelet:** Cinematic chiaroscuro portrait of **[TANIM]**, three-quarter view, single-source rim light, deep shadow bg, shallow DoF, fine grain, subtle emerald edge accent. Mood: [MIZAÇ]. Editorial author-portrait quality, dignified. 1:1 head-and-shoulders. No text/logo/watermark/extra people.
 
-### 6) Cart (`/cart`)
-| Slot | Amaç | Dosya | Yol | Tür | Wiring |
-|---|---|---|---|---|---|
-| Öneri kitap kapakları | Recommendation shelf kapakları | (R2 `coverKey`) | — | R2 | Kapak hattı |
-| Boş sepet görseli | Empty-cart atmosferi | `cart_empty_scene.webp` | `/public/images/cart/` | AI | `empty-cart-card` → `<AssetImage>` fallback |
+| Dosya | Yazar / [TANIM] | [MIZAÇ] |
+|---|---|---|
+| `yuval-noah-harari.webp` | contemporary historian | sage-green, intellectual calm |
+| `jane-austen.webp` | refined early-1800s English novelist | candlelit sepia, period elegance |
+| `dan-brown.webp` | modern thriller novelist | cold blue, suspense |
+| `george-orwell.webp` | mid-20th-c essayist in tweed | grey, austere, smoky |
+| `j-k-rowling.webp` | contemporary storyteller | warm amber, imaginative |
+| `robert-kiyosaki.webp` | confident business author | gold-charcoal, assured |
+| `isaac-asimov.webp` | visionary sci-fi author | deep blue, futurist |
+| `frank-herbert.webp` | contemplative sci-fi author | desert-amber, epic |
+| `james-clear.webp` | clean self-improvement author | bright emerald, focused |
+| `marcus-aurelius.webp` | Roman emperor-philosopher (bust) | marble + torchlight, stoic |
+| `martin-kleppmann.webp` | software/systems author | cool teal, precise |
+| `daniel-kahneman.webp` | behavioural-science author | warm neutral, perceptive |
 
-**Boş sepet prompt (`cart_empty_scene.webp`):**
-> Cinematic still life: a single empty woven basket beside a small stack of books on a dark table, soft emerald rim-light, dust motes, deep black-green background. Quiet, premium, inviting. No text, no faces. 4:3.
+---
 
-### 7) Authors (`/authors` + `/authors/[slug]`)
-| Slot | Amaç | Dosya | Yol | Tür | Wiring |
-|---|---|---|---|---|---|
-| Yazar portreleri | Kart + detay hero portresi | `authors/{slug}.webp` (Aile B) | `/public/images/authors/` | AI | `AuthorPortrait` → `imageSrc` (server-resolved), fallback=prosedürel portre |
+# SAYFA SAYFA — HER AYRI GÖRSEL KATMANI
 
-### 8) Genres (`/genres`)
-| Slot | Amaç | Dosya | Yol | Tür | Wiring |
-|---|---|---|---|---|---|
-| Tür kartı görselleri | Keşif kartı görseli | `genres/{slug}.webp` (Aile A) | `/public/images/genres/` | AI | `GenreArtwork` → `imageSrc` (server-resolved), fallback=SVG sembol |
+> Wiring sütunu: ✓ = kod bu yolu bekler (bırak → çıkar). "convention" = aynı aile yolu, ilgili sayfada henüz wire edilmedi. "deferred" = bilinçli ertelendi (sebebi yazılı).
 
-### 9) Search (`/search`)
-| Slot | Amaç | Dosya | Yol | Tür | Wiring |
-|---|---|---|---|---|---|
-| Boş-durum / öneri görseli | Sorgu yokken atmosfer | `search_discovery_scene.webp` | `/public/images/search/` | AI | search empty paneli → `<AssetImage>` fallback |
-
-**Prompt (`search_discovery_scene.webp`):**
-> Cinematic image: a glowing magnifying glass hovering over an open book, emerald light beams forming constellations of tiny letters rising into a dark void. Magical discovery mood, premium. No text, no faces. 3:2.
-
-### 10) Library (`/account/library`)
-| Slot | Amaç | Dosya | Yol | Tür | Wiring |
-|---|---|---|---|---|---|
-| Kütüphane atmosfer görseli | Hero/atmosfer | `library/library_atmosphere.webp` | `/public/images/library/` | AI | library hero/scene → `<AssetImage>` fallback |
-| Boş kütüphane illüstrasyonu | Hiç kitap yokken | `library/library_empty_scene.webp` | `/public/images/library/` | AI | empty-state → `<AssetImage>` fallback |
-| Kitap kapakları | Sahip olunan kitaplar | (R2 `coverKey`) | — | R2 | Kapak hattı |
-
-**Atmosfer prompt (`library_atmosphere.webp`):**
-> Cinematic personal home library at night: floor-to-ceiling shelves, a rolling ladder, a warm reading lamp, an armchair, emerald moonlight through a tall window, dust in light. Premium, intimate, deep #050705 + emerald. No text, no faces. 16:9.
-
-**Boş kütüphane prompt (`library_empty_scene.webp`):**
-> Cinematic image: a single empty wooden bookshelf softly lit by emerald light in a dark room, one lonely book on the shelf, dust motes, inviting negative space. Quiet, premium, hopeful. No text, no faces. 4:3.
-
-### 11) Kalan sinematik rotalar (atmosfer sahneleri — WIRE EDİLDİ ✓)
-Bu sahneler **kasıtlı prosedüreldir** ama `<AssetImage>` ile augment edildi (sahne fallback olarak korunur):
-| Sayfa | Slot | Dosya | Yol | Wiring |
+### 1) Homepage `/`
+| # | Ayrı görsel | Dosya | Yol | Wiring |
 |---|---|---|---|---|
-| `/about` | Hero atmosferi (AboutScene) | `about_hero_scene.webp` | `/public/images/about/` | ✓ `about-hero` |
-| `/account/settings` | Desk sahnesi (DeskScene) | `settings_desk_scene.webp` | `/public/images/settings/` | ✓ `settings-hero` |
-| `/order/[id]` + `/account/orders` | Lantern sahnesi (LanternScene) | `order_lantern_scene.webp` | `/public/images/order/` | ✓ `order-hero` + `orders-hero` (aynı dosya) |
+| 1 | Hero — birleşik kompozisyon (pedestaldeki ana kitap + 2 yüzen kitap + okuma odası) | `homepage_hero_reading_room.webp` | `homepage/` | ✓ (fallback=yüzen-kitap kümesi) |
+| 1a | Hero ana kitap kapağı "The Luminous Library" (yüzen, yüzlü amblem) | `homepage_hero_main_cover.webp` | `homepage/` | enumerated (alternatif; #1 birleşik slot wire) |
+| 1b–c | Hero arka 2 yüzen kitap kapağı | `homepage_hero_back_cover_1/2.webp` | `homepage/` | enumerated |
+| 2 | Kategori kartı görselleri ×5 | `genres/{slug}.webp` (Aile B) | `genres/` | ✓ |
+| 3 | Featured kapaklar ×6 | `books/{slug}.webp` (Aile A) | `books/` | convention (sunucu; AssetImage ile eklenebilir) |
+*Pedestal aurası, "Why readers" ikonları = prosedürel/ikon, görsel slotu yok.*
 
-**Prompt (`about_hero_scene.webp`):** açık kitap + üstünde havada asılı emerald kristal + fener, gece okuma masası; cinematic, emerald void, painterly, metinsiz, 4:5.
-**Prompt (`settings_desk_scene.webp`):** gece çalışma masası, emerald masa lambası bloom'u, küçük kristal süs; cinematic, sakin, metinsiz, 4:3.
-**Prompt (`order_lantern_scene.webp`):** sıcak fener + emerald kristal + raf üstü kitap silüetleri, gece okuma köşesi; cinematic, metinsiz, 4:3.
+**Hero birleşik prompt (`homepage_hero_reading_room.webp`):**
+> Cinematic hero artwork: three premium books floating/suspended in an emerald-tinted cosmic void above a soft glowing pedestal, a faint nebula band, dust motes in god-rays; the central book larger and lit, two smaller behind at depth. Deep #050705 + emerald (#16c784/#33f0aa). Painterly, A24/editorial, dark negative space at edges for UI. 4:5. No text, no readable faces, no watermark.
+> Ayrı kapak isteyenler için 1a: *original cover for "The Luminous Library" — a glowing library reflected inside a single open book, a luminous face-emblem medallion, emerald + gold.*
+
+### 2) Books `/books`
+| # | Ayrı görsel | Dosya | Wiring |
+|---|---|---|---|
+| 1 | Katalog kapakları ×10 (Midnight Library, Silent Patient, Atomic Habits, Psychology of Money, Dune, 1984, Sapiens, Thinking Fast&Slow, Subtle Art, Brave New World, …) | `books/{slug}.webp` (Aile A) | ✓ (sunucu-resolved `coverSrc` → katalog kartı) |
+*Katalog hero'su = metin + toz (prosedürel).*
+
+### 3) Blog index `/blog` ("Notes from the bookstore")
+| # | Ayrı görsel | Dosya | Wiring |
+|---|---|---|---|
+| 1 | Makale satırı önizleme ×3 (warm-library / emerald-portal / open-book) | `blog/{post-slug}.webp` | deferred (satırlar `blog-shell` istemci kabuğunda; `server-only AssetImage` kullanılamaz — aynı dosya makale hero'da gösterilir) |
+*Hero = metin + toz.*
+
+### 4) Blog Article `/blog/[slug]`
+| # | Ayrı görsel | Dosya | Yol | Wiring |
+|---|---|---|---|---|
+| 1 | Makale hero görseli (gece kütüphane/masa, yeşil lamba, pencere) | `blog/{slug}.webp` | `blog/` | ✓ (fallback=LibraryScene) |
+| 2 | Yazar byline + bio avatarı (Eleanor Page) | `blog/author_eleanor_page.webp` | `blog/` | deferred (byline gradient avatar; eklenebilir) |
+| 3 | Gövde içi gömülü görsel(ler) | `blog/{slug}_inline_1.webp` … | `blog/` | deferred (markdown gövdesi; ileride) |
+
+**Hero prompt (`blog/{slug}.webp`):** her yazının konusuna uygun, gece kütüphane/masa atmosferi, emerald lamba, metinsiz, 21:9 geniş. Örn `blog/how-to-choose-your-next-book.webp`: *a desk at night, an open book under a green banker's lamp, a rain window, shelves behind.*
+
+### 5) Reading Guides `/blog/category/reading-guides`
+| # | Ayrı görsel | Dosya | Yol | Wiring |
+|---|---|---|---|---|
+| 1 | Hero atmosferi (rahat okuma köşesi: koltuk, battaniye, lamba, bitki, gece) | `blog/reading_guides_hero.webp` | `blog/` | deferred (kategori metin-hero'su) |
+| 2 | Satır önizleme ×N | `blog/{slug}.webp` | `blog/` | deferred (bkz. §3) |
+
+### 6) Cart `/cart`
+| # | Ayrı görsel | Dosya | Wiring |
+|---|---|---|---|
+| 1 | "You might like" öneri kapakları ×6 | `books/{slug}.webp` (Aile A) | convention |
+*Boş sepet = ikon (görsel slotu yok).*
+
+### 7) Authors `/authors` + `/authors/[slug]`
+| # | Ayrı görsel | Dosya | Yol | Wiring |
+|---|---|---|---|---|
+| 1 | Hero atmosferi (emerald kapı/portal içinde okuyucu silüeti, raflar) | `authors/authors_hero_atmosphere.webp` | `authors/` | ✓ (fallback=portal sahnesi) |
+| 2 | Yazar portreleri ×12 | `authors/{slug}.webp` (Aile C) | `authors/` | ✓ |
+
+**Hero prompt:** *Cinematic dim library hall, a lone reader silhouette standing in a glowing emerald archway/portal, tall shelves fading into shadow, dust in light. Mysterious, premium. No text/face detail. 21:9, dark edges for overlay.*
+
+### 8) Genres `/genres`
+| # | Ayrı görsel | Dosya | Yol | Wiring |
+|---|---|---|---|---|
+| 1 | Hero atmosferi (emerald kemer/portal + raflar) | `genres/genres_hero_atmosphere.webp` | `genres/` | deferred (GenresShell istemci kabuğunda; prop-thread ile eklenebilir) |
+| 2 | Tür kartı artwork ×8 | `genres/{slug}.webp` (Aile B2) | `genres/` | ✓ |
+| 3 | Alt "Not sure where to start?" sahnesi (yığılı kitaplar + filiz) | `genres/genres_explore_scene.webp` | `genres/` | ✓ (fallback=ExploreScene) |
+
+**Explore prompt (`genres_explore_scene.webp`):** *a tidy stack/row of book spines on a shelf with a small glowing emerald sprout growing from them, soft bloom, dark bg. 16:9, mask-fades right.*
+
+### 9) Search `/search`
+| # | Ayrı görsel | Dosya | Wiring |
+|---|---|---|---|
+| 1 | "Popular searches" kapak küçük resimleri | `books/{slug}.webp` (Aile A) | convention |
+| 2 | "Browse by category" tür ikon-artwork ×8 | `genres/{slug}.webp` (Aile B) | convention |
+*Hero = metin + toz; boş kart = ikon.*
+
+### 10) Library `/account/library`
+| # | Ayrı görsel | Dosya | Yol | Wiring |
+|---|---|---|---|---|
+| 1 | Hero atmosferi (gece kütüphane rafı + sıcak fener) | `library/library_atmosphere.webp` | `library/` | ✓ |
+| 2 | Boş kütüphane sahnesi (yığılı kitaplar + emerald parıltı) | `library/library_empty_scene.webp` | `library/` | ✓ |
+| 3 | "Discover next favorite" öneri kapakları ×5 | `books/{slug}.webp` (Aile A) | convention |
+
+### 11) Categories `/categories`
+| # | Ayrı görsel | Dosya | Wiring |
+|---|---|---|---|
+| 1 | Tür dünyası sahneleri ×10 | `genres/{slug}.webp` (Aile B1) | ✓ |
+*Hero = metin; bildirim şeridi = cam.*
+
+### 12) Order `/order/[id]`
+| # | Ayrı görsel | Dosya | Yol | Wiring |
+|---|---|---|---|---|
+| 1 | Hero fener sahnesi (fener + emerald kristal + raf kitapları, gece) | `order/order_lantern_scene.webp` | `order/` | ✓ |
+| 2 | Sipariş kalemi kapakları | `books/{slug}.webp` (Aile A) | convention |
+
+### 13) Account Orders `/account/orders`
+| # | Ayrı görsel | Dosya | Wiring |
+|---|---|---|---|
+| 1 | Hero fener sahnesi | `order/order_lantern_scene.webp` (paylaşılır) | ✓ |
+| 2 | Sipariş kartı kapak yığını mini kapakları | `books/{slug}.webp` (Aile A) | convention |
+
+### 14) Settings `/account/settings`
+| # | Ayrı görsel | Dosya | Yol | Wiring |
+|---|---|---|---|---|
+| 1 | Hero desk sahnesi (emerald masa lambası + kristal) | `settings/settings_desk_scene.webp` | `settings/` | ✓ |
+| 2 | "Export your data" parıltılı sandık/veri illüstrasyonu | `settings/settings_export_chest.webp` | `settings/` | deferred (eklenebilir) |
+| 3 | "Delete account" kırmızı parçacık patlaması | `settings/settings_danger_burst.webp` | `settings/` | deferred (prosedürel kırmızı burst yeterli) |
+*Profil avatarı = Clerk fotoğrafı (statik asset değil).*
+
+**Export prompt (`settings_export_chest.webp`):** *a glowing emerald data-chest/portable archive box opening with light streams of JSON glyphs, dark bg, premium. 4:3.*
+
+### 15) About `/about`
+| # | Ayrı görsel | Dosya | Yol | Wiring |
+|---|---|---|---|---|
+| 1 | Hero sahnesi (açık kitap + havada emerald kristal + fener) | `about/about_hero_scene.webp` | `about/` | ✓ |
+| 2 | Kurucu portresi ("Who built it") | `about/founder_portrait.webp` | `about/` | ✓ (fallback=ED baş harfleri) |
+*"What we believe" = 4 ikon; manifesto = metin.*
 
 ---
 
 ## WIRING DURUMU (Özet — orphan kontrolü)
 
-**Wire edilmiş yollar** (kod `<AssetImage>`/`imageSrc` ile bu dosyaları bekler; bırakınca otomatik görünür):
-| Yol | Nerede kullanılır | Fallback |
-|---|---|---|
-| `/images/homepage/hero_reading_room.webp` | Homepage hero | yüzen-kitap kümesi |
-| `/images/genres/{slug}.webp` | Homepage kategori kartları · `/genres` kartları · `/categories` galeri | gradient / SVG sembol / CategoryScene |
-| `/images/authors/{slug}.webp` | `/authors` kartları · `/authors/[slug]` hero | prosedürel portre |
-| `/images/blog/{slug}.webp` | `/blog/[slug]` makale hero | LibraryScene |
-| `/images/library/library_atmosphere.webp` | `/account/library` hero | LibraryScene |
-| `/images/library/library_empty_scene.webp` | `/account/library` boş durum | StackedBooksAndPlantScene |
-| `/images/about/about_hero_scene.webp` | `/about` hero | AboutScene |
-| `/images/settings/settings_desk_scene.webp` | `/account/settings` hero | DeskScene |
-| `/images/order/order_lantern_scene.webp` | `/order/[id]` + `/account/orders` hero | LanternScene |
+**Wire edilmiş yollar** (kod bekler → bırak → çıkar; yoksa prosedürel/gradient):
+`books/{slug}.webp` (katalog) · `genres/{slug}.webp` (anasayfa kat. + /genres kart + /categories) · `authors/{slug}.webp` (/authors kart+detay) · `authors/authors_hero_atmosphere.webp` · `genres/genres_explore_scene.webp` · `blog/{slug}.webp` (makale hero) · `library/library_atmosphere.webp` · `library/library_empty_scene.webp` · `about/about_hero_scene.webp` · `about/founder_portrait.webp` · `settings/settings_desk_scene.webp` · `order/order_lantern_scene.webp` (order+orders) · `homepage/hero_reading_room.webp`.
 
-**Kitap kapakları:** R2 hattı (`coverKey`) — `/admin` üzerinden yüklenir, bu envanterin dışında (§3). Kapak yoksa sinematik gradient/tipografik placeholder gösterilir.
+**convention** (aynı aile, sunucu slotunda AssetImage ile kolayca eklenir): featured/cart/library/search/order kapakları, search tür ikonları.
 
-**Wire EDİLMEDİ (gelecek/opsiyonel — kod referansı yok, orphan değil; bilinçli ertelendi):**
-- `blog_hero_editorial.webp`, `reading_guides_hero.webp` — bunlar **metin hero** (`CinematicHero`), görsel çerçevesi yok; eklemek layout değişikliği gerektirir.
-- Blog liste satırı görselleri (`ArticleImage`) — istemci kabuğu (`blog-shell`) içinde; `server-only AssetImage` kullanılamaz. (Aynı `blog/{slug}.webp` zaten makale hero'da gösterilir.)
-- `cart_empty_scene.webp`, `search_discovery_scene.webp` — bunlar **ikon tabanlı** boş-durumlar; sahne/görsel slotu yok.
-- `article_library_atmosphere.webp` — yazı-içi gömülü atmosfer; şu an ayrı slot olarak wire edilmedi.
-
-> İleride bu ertelenmiş slotlar istenirse aynı `<AssetImage>` desenleriyle eklenebilir; ilgili promptlar yukarıda hazır.
+**deferred** (sebebi yazılı): istemci-kabuğu slotları (blog satırları, /genres hero), metin-hero'lar (blog/reading-guides), ikon boş-durumlar (cart/search), settings export-chest & danger-burst, blog yazar avatarı & gövde-içi görseller, homepage ayrık hero kapakları.
 
 ## Doğrulama
-- [x] `AssetImage` + `assets.ts` altyapısı (image-first → güvenli fallback).
-- [x] Sayfa sayfa wiring (yukarıdaki tablo).
-- [x] Wire edilen her yol ↔ prompt eşleşti; ertelenenler açıkça işaretlendi (orphan yok).
-- [x] `npm run lint` · `npx tsc --noEmit` · `npm run build` temiz; fallback'ler kırılmadan render ediliyor.
+- [x] 15 referans görseli **ayrı-ayrı** forensic tarandı (kapak/portre/tür/hero/illüstrasyon/atmosfer katmanları).
+- [x] Her ayrık varlık → kendi dosya adı + yol + prompt (gruplama yok).
+- [x] Wire edilen yollar ↔ kod; convention/deferred açıkça işaretli (orphan yok).
+- [x] `lint` · `tsc` · `build` temiz; görsel yokken tüm slotlar prosedürel sahneye düşer.

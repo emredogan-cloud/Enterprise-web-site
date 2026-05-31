@@ -22,6 +22,9 @@ export interface DemoBook {
   formats: ReadonlyArray<"PDF" | "EPUB" | "MOBI">;
   badge?: { label: string; tone: "bestseller" | "popular" | "new" };
   cover: { gradient: string; accent: string; darkText?: boolean };
+  /** Server-resolved real cover (/images/books/{slug}.webp) or null. Set by
+   *  the page; the gradient/typographic cover renders when null. */
+  coverSrc?: string | null;
 }
 
 export const CATEGORIES = [

@@ -1,4 +1,5 @@
 import { Heart, Lock, Star } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 import type { DemoBook } from "./demo-books";
@@ -91,6 +92,18 @@ export function CatalogBookCard({ book }: { book: DemoBook }) {
             }}
           />
         </div>
+
+        {/* Optional real cover (/images/books/{slug}.webp) over the
+            typographic gradient cover. Missing → gradient cover shows. */}
+        {book.coverSrc && (
+          <Image
+            src={book.coverSrc}
+            alt=""
+            fill
+            sizes="(min-width: 1024px) 22vw, 50vw"
+            className="object-cover"
+          />
+        )}
 
         {/* Floating badge */}
         {book.badge && <BadgePill {...book.badge} />}

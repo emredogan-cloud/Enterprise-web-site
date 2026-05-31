@@ -6,6 +6,7 @@ import { CatalogShell } from "@/components/catalog/catalog-shell";
 import { DEMO_BOOKS, type DemoBook } from "@/components/catalog/demo-books";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
+import { resolveAsset } from "@/lib/assets";
 import { listPublishedBooks } from "@/lib/db/queries/catalog";
 
 // ISR — revalidate every hour (matches the existing classification: `○ Static + ISR 1h`).
@@ -45,8 +46,14 @@ export const metadata: Metadata = {
  */
 export default async function BooksCatalogPage() {
   const realBooks = await listPublishedBooks();
-  const books: DemoBook[] =
+  const baseBooks: DemoBook[] =
     realBooks.length > 0 ? mapRealBooksToShell(realBooks) : DEMO_BOOKS;
+  // Resolve optional real covers (/images/books/{slug}.webp) server-side
+  // (the catalog shell is a client component). Missing → gradient cover.
+  const books: DemoBook[] = baseBooks.map((b) => ({
+    ...b,
+    coverSrc: resolveAsset(`/images/books/${b.slug}.webp`),
+  }));
 
   return (
     <div className="cinematic-root">

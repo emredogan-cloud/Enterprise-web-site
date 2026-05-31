@@ -2,6 +2,7 @@ import { Mail, PenLine, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
 import { GitHubIcon, XIcon } from "@/components/brand-icons";
+import { AssetImage } from "@/components/cinematic/asset-image";
 
 /**
  * "Who built it" — the human, transparent half of the page.
@@ -106,8 +107,18 @@ export function FounderCard() {
           {/* Portrait area — initials placeholder (no stock photography) */}
           <div className="flex items-center gap-4">
             <div className="relative">
-              <span className="home-avatar-gradient flex h-16 w-16 items-center justify-center rounded-2xl font-serif text-xl font-medium text-[#032015]">
-                ED
+              <span className="home-avatar-gradient relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl">
+                {/* Optional real founder portrait; else the initials. */}
+                <AssetImage
+                  src="/images/about/founder_portrait.webp"
+                  alt="Emre Doğan"
+                  fallback={
+                    <span className="font-serif text-xl font-medium text-[#032015]">
+                      ED
+                    </span>
+                  }
+                  sizes="64px"
+                />
               </span>
               <span
                 aria-hidden
