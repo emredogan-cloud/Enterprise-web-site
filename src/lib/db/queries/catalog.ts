@@ -498,6 +498,8 @@ export async function listAllCategories(): Promise<CategorySummary[]> {
 export interface CategoryPageData {
   slug: string;
   name: string;
+  /** Editorial hub copy (nullable; rendered when present). */
+  description: string | null;
   books: BookCardData[];
 }
 
@@ -560,6 +562,7 @@ export async function getCategoryPageBySlug(
       return {
         slug: category.slug,
         name: category.name,
+        description: category.description,
         books,
       };
     },

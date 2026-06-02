@@ -171,6 +171,10 @@ export const categories = pgTable("categories", {
   id: uuid("id").primaryKey().defaultRandom(),
   slug: varchar("slug", { length: 200 }).notNull().unique(),
   name: text("name").notNull(),
+  // Editorial hub copy for /categories/[slug] (taxonomy enrichment). Nullable
+  // + additive; the column is already live in prod (0003 applied directly —
+  // see docs/seo/08). The page renders it only when present.
+  description: text("description"),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),

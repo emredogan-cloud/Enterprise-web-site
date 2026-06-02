@@ -133,6 +133,13 @@ export default async function CategoryPage({
           }
         />
 
+        {/* Editorial hub copy (categories.description) — rendered when set */}
+        {category?.description && (
+          <p className="mx-auto mt-8 max-w-2xl px-6 text-center text-base leading-relaxed text-fg-mid">
+            {category.description}
+          </p>
+        )}
+
         {/* Books grid OR empty state */}
         <section className="mx-auto mt-20 max-w-[1320px] px-4 sm:mt-24 sm:px-6">
           {books.length === 0 ? (
