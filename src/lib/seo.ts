@@ -10,7 +10,12 @@
  *    is available (added in SUB-PR 3.3).
  */
 
-import type { Graph, SearchAction } from "schema-dts";
+import type {
+  BreadcrumbList,
+  Graph,
+  SearchAction,
+  WithContext,
+} from "schema-dts";
 
 import { getSiteUrl } from "./site-url";
 
@@ -252,6 +257,89 @@ export function buildSiteJsonLd(baseUrl: string): Graph {
         inLanguage: "en",
         publisher: { "@id": `${baseUrl}/#organization` },
         potentialAction: searchAction,
+      },
+    ],
+  };
+}
+
+export interface BreadcrumbTrail {
+  name: string;
+  /** Path relative to the site origin, e.g. `"/authors"`. */
+  path: string;
+}
+
+/**
+ * Reusable `BreadcrumbList` JSON-LD for hub/detail pages (WS-G). Emit it as
+ * its own `<script type="application/ld+json">` — Google reads breadcrumbs
+ * independently of any page graph, so multiple JSON-LD blocks are fine.
+ */
+export function buildBreadcrumbJsonLd(
+  baseUrl: string,
+  trail: ReadonlyArray<BreadcrumbTrail>,
+): WithContext<BreadcrumbList> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: trail.map((crumb, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: crumb.name,
+      item: `${baseUrl}${crumb.path}`,
+    })),
+  };
+}
+
+interface AuthorJsonLdArgs {
+  baseUrl: string;
+  slug: string;
+  name: string;
+  bio: string | null;
+}
+
+/**
+ * JSON-LD `@graph` for an author page (WS-G) — Organization (cross-ref) +
+ * BreadcrumbList + ProfilePage + Person. Establishes the author as a first-
+ * class entity (E-E-A-T / knowledge-graph) under the same brand `@id` every
+ * other graph references; the page's books link back via each book's own
+ * `Book.author` Person (see `buildBookJsonLd`).
+ */
+export function buildAuthorJsonLd(args: AuthorJsonLdArgs): Graph {
+  const url = `${args.baseUrl}/authors/${args.slug}`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${args.baseUrl}/#organization`,
+        name: SITE_NAME,
+        url: args.baseUrl,
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: args.baseUrl },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Authors",
+            item: `${args.baseUrl}/authors`,
+          },
+          { "@type": "ListItem", position: 3, name: args.name, item: url },
+        ],
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": `${url}#profilepage`,
+        url,
+        name: args.name,
+        mainEntity: { "@id": `${url}#person` },
+      },
+      {
+        "@type": "Person",
+        "@id": `${url}#person`,
+        name: args.name,
+        url,
+        ...(args.bio ? { description: args.bio } : {}),
       },
     ],
   };
