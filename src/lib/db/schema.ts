@@ -171,6 +171,10 @@ export const categories = pgTable("categories", {
   id: uuid("id").primaryKey().defaultRandom(),
   slug: varchar("slug", { length: 200 }).notNull().unique(),
   name: text("name").notNull(),
+  // Editorial hub copy for /categories/[slug] (WS-F taxonomy enrichment).
+  // Nullable + additive: existing rows default to NULL and the page renders
+  // it only when present, so the column is fully backward-compatible.
+  description: text("description"),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),
