@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { buildPageMetadata } from "@/lib/metadata";
+import { buildBreadcrumbJsonLd, getBaseUrl } from "@/lib/seo";
+import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 
 import { DEMO_CATEGORIES } from "@/components/categories/demo-categories";
 import { CinematicBookTile } from "@/components/cinematic/cinematic-book-tile";
@@ -91,6 +93,29 @@ export default async function CategoryPage({
       <CinematicHeader active="genres" />
 
       <main className="relative z-10">
+        {/* Breadcrumb structured data + visible trail (WS-G / WS-F) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              buildBreadcrumbJsonLd(getBaseUrl(), [
+                { name: "Home", path: "/" },
+                { name: "Browse by category", path: "/categories" },
+                { name, path: `/categories/${slug}` },
+              ]),
+            ),
+          }}
+        />
+        <div className="mx-auto max-w-[1320px] px-4 pt-6 sm:px-6">
+          <Breadcrumbs
+            trail={[
+              { name: "Home", href: "/" },
+              { name: "Categories", href: "/categories" },
+              { name },
+            ]}
+          />
+        </div>
+
         <CinematicHero
           eyebrow="Genre"
           headlineHead={head}

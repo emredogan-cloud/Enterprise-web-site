@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { buildPageMetadata } from "@/lib/metadata";
+import { buildAuthorJsonLd, getBaseUrl } from "@/lib/seo";
+import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 
 import { AuthorPortrait } from "@/components/authors/author-portrait";
 import {
@@ -113,6 +115,26 @@ export default async function AuthorPage({
       <CinematicHeader active="authors" />
 
       <main className="relative z-10">
+        {/* Author entity graph (Organization + Breadcrumb + ProfilePage +
+            Person) + visible breadcrumb trail (WS-G / WS-F) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              buildAuthorJsonLd({ baseUrl: getBaseUrl(), slug, name, bio }),
+            ),
+          }}
+        />
+        <div className="mx-auto max-w-[1320px] px-4 pt-6 sm:px-6">
+          <Breadcrumbs
+            trail={[
+              { name: "Home", href: "/" },
+              { name: "Authors", href: "/authors" },
+              { name },
+            ]}
+          />
+        </div>
+
         <CinematicHero
           eyebrow="Author"
           headlineHead={head}

@@ -10,8 +10,9 @@ import { RelatedBooks } from "@/components/related-books";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/blog";
-import { getBaseUrl, SITE_NAME } from "@/lib/seo";
+import { buildBreadcrumbJsonLd, getBaseUrl, SITE_NAME } from "@/lib/seo";
 import { buildPageMetadata } from "@/lib/metadata";
+import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 
 /**
  * Cinematic article reading page — opens after the user clicks
@@ -100,6 +101,28 @@ export default async function BlogPostPage({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* BreadcrumbList structured data + visible trail (WS-G / WS-F) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              buildBreadcrumbJsonLd(baseUrl, [
+                { name: "Home", path: "/" },
+                { name: "Blog", path: "/blog" },
+                { name: post.title, path: `/blog/${slug}` },
+              ]),
+            ),
+          }}
+        />
+        <div className="mx-auto max-w-[1320px] px-4 pt-6 sm:px-6">
+          <Breadcrumbs
+            trail={[
+              { name: "Home", href: "/" },
+              { name: "Blog", href: "/blog" },
+              { name: post.title },
+            ]}
+          />
+        </div>
 
         {/* HERO — large cinematic panel */}
         <ArticleHero post={post} readingMinutes={post.readingMinutes} />
