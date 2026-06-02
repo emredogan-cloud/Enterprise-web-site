@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 
 import { addToCart } from "@/app/cart/actions";
+import { trackEvent } from "@/lib/analytics";
 
 /**
  * Cinematic "Add to cart" button for `/books/[slug]`.
@@ -27,6 +28,7 @@ export function BookAddToCart({ bookId }: { bookId: string }) {
   const handleClick = () => {
     startTransition(async () => {
       await addToCart(bookId);
+      trackEvent("add_to_cart", { bookId });
       setAdded(true);
       if (typeof window !== "undefined") {
         window.dispatchEvent(new CustomEvent("cart-changed"));

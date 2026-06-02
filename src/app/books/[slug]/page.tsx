@@ -24,6 +24,7 @@ import {
 import { PLACEHOLDER_SAMPLE_HTML } from "@/lib/placeholders/book-sample";
 import { buildBookJsonLd, getBaseUrl, getCoverImageUrl } from "@/lib/seo";
 import { buildPageMetadata } from "@/lib/metadata";
+import { TrackEvent } from "@/components/analytics/track-event";
 
 /**
  * /books/[slug] — Product Detail page.
@@ -184,6 +185,10 @@ export default async function BookDetailPage({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <TrackEvent
+          event="view_item"
+          props={{ slug, priceCents: book.priceCents, currency: book.currency }}
+        />
 
         <BookHero
           bookId={book.id}
@@ -203,6 +208,7 @@ export default async function BookDetailPage({
         />
 
         <CinematicSampleSection content={sampleHtml} />
+        <TrackEvent event="sample_read" onView props={{ slug }} />
 
         {/* Reviews section */}
         <section
