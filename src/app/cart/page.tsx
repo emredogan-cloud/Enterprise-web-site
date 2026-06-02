@@ -7,7 +7,9 @@ import { EmptyCartCard } from "@/components/cart/empty-cart-card";
 import { RecommendationShelf } from "@/components/cart/recommendation-shelf";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
+import { getCurrentLocalUserIdReadOnly } from "@/lib/account";
 import { readCart } from "@/lib/cart";
+import { getOwnedBookIds } from "@/lib/db/queries/account";
 import { getCartBooks } from "@/lib/db/queries/catalog";
 
 // `/cart` reads the per-request cart cookie, so it is intentionally dynamic.
@@ -50,6 +52,16 @@ export default async function CartPage() {
   const currency = orderedBooks[0]?.currency ?? "USD";
   const isEmpty = orderedBooks.length === 0;
 
+  // Mark books the signed-in visitor already owns (so they don't re-buy).
+  // Anonymous visitors resolve to null → own nothing → no markers.
+  const localUserId = await getCurrentLocalUserIdReadOnly();
+  const ownedIds = localUserId
+    ? await getOwnedBookIds(
+        localUserId,
+        orderedBooks.map((b) => b.id),
+      )
+    : new Set<string>();
+
   return (
     <div className="cinematic-root">
       <CinematicHeader />
@@ -68,7 +80,11 @@ export default async function CartPage() {
               {/* Items list */}
               <div className="space-y-3">
                 {orderedBooks.map((book) => (
-                  <CartLine key={book.id} book={book} />
+                  <CartLine
+                    key={book.id}
+                    book={book}
+                    owned={ownedIds.has(book.id)}
+                  />
                 ))}
               </div>
 

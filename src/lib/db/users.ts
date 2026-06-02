@@ -73,3 +73,19 @@ export async function upsertLocalUser({
 
   return existing.id;
 }
+
+/**
+ * Read-only counterpart to `upsertLocalUser`: resolve a local user id by email
+ * WITHOUT creating a row. Returns `null` when no local user exists yet. Used by
+ * read/guard paths (e.g. ownership-aware cart) that must not write on a read.
+ */
+export async function findLocalUserIdByEmail(
+  email: string,
+): Promise<string | null> {
+  const [existing] = await db
+    .select({ id: users.id })
+    .from(users)
+    .where(eq(users.email, email))
+    .limit(1);
+  return existing?.id ?? null;
+}
