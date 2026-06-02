@@ -8,6 +8,7 @@ import { LargeSearchInput } from "@/components/search/large-search-input";
 import { PopularSearchesPanel } from "@/components/search/popular-searches-panel";
 import { SearchHero } from "@/components/search/search-hero";
 import { SearchResults } from "@/components/search/search-results";
+import { TrackEvent } from "@/components/analytics/track-event";
 import { SuggestionPills } from "@/components/search/suggestion-pills";
 import { searchBooks } from "@/lib/db/queries/catalog";
 
@@ -61,7 +62,13 @@ export default async function SearchPage({
         <LargeSearchInput key={query} defaultValue={query} />
 
         {hasQuery ? (
-          <SearchResults query={query} results={results} />
+          <>
+            <TrackEvent
+              event="search"
+              props={{ resultCount: results.length }}
+            />
+            <SearchResults query={query} results={results} />
+          </>
         ) : (
           <>
             <SuggestionPills />

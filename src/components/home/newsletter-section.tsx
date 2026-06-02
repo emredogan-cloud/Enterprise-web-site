@@ -7,6 +7,7 @@ import {
   subscribeToNewsletter,
   type NewsletterErrorCode,
 } from "@/lib/newsletter-client";
+import { trackEvent } from "@/lib/analytics";
 
 import { RevealOnScroll } from "./reveal-on-scroll";
 
@@ -35,6 +36,7 @@ export function NewsletterSection() {
     setStatus({ state: "loading" });
     const result = await subscribeToNewsletter(trimmed);
     if (result.ok) {
+      trackEvent("newsletter_signup");
       setStatus({ state: "ok" });
     } else {
       setStatus({ state: "error", code: result.code });

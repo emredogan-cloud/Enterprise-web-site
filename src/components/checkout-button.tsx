@@ -4,6 +4,7 @@ import { useState, useTransition } from "react";
 
 import { Button } from "@/components/ui/button";
 import { createCheckoutSession } from "@/app/cart/actions";
+import { trackEvent } from "@/lib/analytics";
 
 /**
  * Checkout button on `/cart` — calls the `createCheckoutSession` Server
@@ -24,6 +25,7 @@ export function CheckoutButton() {
     startTransition(async () => {
       const result = await createCheckoutSession();
       if (result.ok) {
+        trackEvent("begin_checkout");
         window.location.href = result.url;
       } else {
         setError(result.error);

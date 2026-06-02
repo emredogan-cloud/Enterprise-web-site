@@ -6,6 +6,7 @@ import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
 import { OrderActionBar } from "@/components/order/order-action-bar";
 import { OrderHero } from "@/components/order/order-hero";
+import { TrackEvent } from "@/components/analytics/track-event";
 import { OrderItemsPanel } from "@/components/order/order-items-panel";
 import { OrderStatusTimeline } from "@/components/order/order-status-timeline";
 import { OrderSummaryCard } from "@/components/order/order-summary-card";
@@ -103,6 +104,10 @@ export default async function OrderPage({ params }: { params: Params }) {
         {/* Background poller — flips entitlement status as Inngest
             finishes each watermark job. No UI; just revalidatePath. */}
         <FulfillmentPoller enabled={hasPending} />
+        <TrackEvent
+          event="purchase"
+          props={{ valueCents: order.totalCents, currency: order.currency }}
+        />
 
         <div className="mx-auto max-w-[1320px] px-4 pt-8 sm:px-6 sm:pt-12">
           {/* Hero */}

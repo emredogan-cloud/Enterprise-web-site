@@ -32,6 +32,12 @@ const fraunces = Fraunces({
 // (WS-A) — no ad-hoc `??`/`||` here, so an empty env can never `new URL("")`.
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
+  // Google Search Console verification (WS-D). Set `GSC_VERIFICATION` in the
+  // Vercel env to the token from GSC's "HTML tag" method; when unset, Next
+  // omits the meta tag. The sitemap is already auto-discovered via robots.txt.
+  ...(process.env.GSC_VERIFICATION
+    ? { verification: { google: process.env.GSC_VERIFICATION } }
+    : {}),
   title: {
     default: "Digital Bookstore",
     template: "%s · Digital Bookstore",
