@@ -11,6 +11,7 @@ import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/blog";
 import { getBaseUrl, SITE_NAME } from "@/lib/seo";
+import { buildPageMetadata } from "@/lib/metadata";
 
 /**
  * Cinematic article reading page — opens after the user clicks
@@ -48,24 +49,14 @@ export async function generateMetadata({
 
   const url = `/blog/${slug}`;
 
-  return {
+  return buildPageMetadata({
     title: post.title,
     description: post.excerpt,
-    alternates: { canonical: url },
-    openGraph: {
-      title: post.title,
-      description: post.excerpt,
-      url,
-      type: "article",
-      publishedTime: post.date,
-      section: post.category,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title,
-      description: post.excerpt,
-    },
-  };
+    path: url,
+    type: "article",
+    publishedTime: post.date,
+    section: post.category,
+  });
 }
 
 export default async function BlogPostPage({

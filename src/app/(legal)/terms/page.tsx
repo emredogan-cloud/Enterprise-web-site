@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { LegalShell } from "@/components/cinematic/legal-shell";
+import { buildPageMetadata } from "@/lib/metadata";
 
 /**
  * /terms — Terms of Service.
@@ -14,19 +15,14 @@ import { LegalShell } from "@/components/cinematic/legal-shell";
  *   - Watermarked PDF artifacts (ADR-3) — not DRM
  *   - Account deletion / data export self-serve in /account/settings
  */
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Terms of service",
   description:
     "The rules for buying, downloading, and reading books on Digital Bookstore.",
-  alternates: { canonical: "/terms" },
-  openGraph: {
-    title: "Terms of service — Digital Bookstore",
-    description:
-      "The rules for buying, downloading, and reading books on Digital Bookstore.",
-    url: "/terms",
-    type: "article",
-  },
-};
+  path: "/terms",
+  ogTitle: "Terms of service — Digital Bookstore",
+  type: "article",
+});
 
 export default function TermsPage() {
   return (

@@ -17,6 +17,7 @@
 import { Resend } from "resend";
 
 import { OrderReadyEmail } from "@/emails/order-ready";
+import { getSiteUrl } from "@/lib/site-url";
 
 // ---------------------------------------------------------------------------
 // Client init — memoized; one-shot warn when unconfigured.
@@ -59,14 +60,12 @@ function getFromAddress(): string {
 
 /**
  * Absolute base URL for in-email links. Email clients require absolute
- * URLs — relative paths render as broken links in most webmail UIs.
- * Mirrors `getBaseUrl()` from `src/lib/seo.ts`.
+ * URLs — relative paths render as broken links in most webmail UIs. Uses the
+ * single validated resolver (`@/lib/site-url`, WS-A) so emails, canonicals,
+ * and OG all share one origin.
  */
 function getAppBaseUrl(): string {
-  return (process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000").replace(
-    /\/$/,
-    "",
-  );
+  return getSiteUrl();
 }
 
 // ---------------------------------------------------------------------------

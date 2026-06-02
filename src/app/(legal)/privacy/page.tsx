@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { LegalShell } from "@/components/cinematic/legal-shell";
+import { buildPageMetadata } from "@/lib/metadata";
 
 /**
  * /privacy — Privacy Policy.
@@ -16,19 +17,14 @@ import { LegalShell } from "@/components/cinematic/legal-shell";
  * compliance). The dedicated /kvkk page expands the Turkish-specific
  * rights and contact information in Turkish.
  */
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Privacy policy",
   description:
     "What data Digital Bookstore collects, how it flows through our infrastructure, and how to control it.",
-  alternates: { canonical: "/privacy" },
-  openGraph: {
-    title: "Privacy policy — Digital Bookstore",
-    description:
-      "What data Digital Bookstore collects, how it flows through our infrastructure, and how to control it.",
-    url: "/privacy",
-    type: "article",
-  },
-};
+  path: "/privacy",
+  ogTitle: "Privacy policy — Digital Bookstore",
+  type: "article",
+});
 
 export default function PrivacyPage() {
   return (

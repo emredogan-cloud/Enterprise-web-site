@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { buildPageMetadata } from "@/lib/metadata";
+
 import { AboutBackground } from "@/components/about/about-background";
 import { AboutHero } from "@/components/about/about-hero";
 import { BeliefGrid } from "@/components/about/belief-grid";
@@ -48,19 +50,16 @@ import { RevealOnScroll } from "@/components/home/reveal-on-scroll";
  * the tiny `<RevealOnScroll>` IntersectionObserver wrapper (no Framer
  * Motion — the ecosystem deliberately keeps the client bundle lean).
  */
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "About",
   description:
     "Why Digital Bookstore exists, who built it, and what it stands for. Buy once, yours to keep, never locked.",
-  alternates: { canonical: "/about" },
-  openGraph: {
-    title: "About — Digital Bookstore",
-    description:
-      "Why Digital Bookstore exists, who built it, and what it stands for.",
-    url: "/about",
-    type: "article",
-  },
-};
+  path: "/about",
+  ogTitle: "About — Digital Bookstore",
+  ogDescription:
+    "Why Digital Bookstore exists, who built it, and what it stands for.",
+  type: "article",
+});
 
 export default function AboutPage() {
   return (

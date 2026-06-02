@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { CategoriesBackground } from "@/components/categories/categories-background";
+import { buildPageMetadata } from "@/lib/metadata";
 import type { CategoryCardData } from "@/components/categories/category-card";
 import { CategoryEmptyNotice } from "@/components/categories/category-empty-notice";
 import {
@@ -50,19 +51,15 @@ import { listAllCategories } from "@/lib/db/queries/catalog";
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Browse by category",
   description:
     "Step into every literary world — fantasy, science fiction, mystery, romance and more. Browse the Digital Bookstore catalog by category.",
-  alternates: { canonical: "/categories" },
-  openGraph: {
-    title: "Browse by category — Digital Bookstore",
-    description:
-      "Step into every literary world — fantasy, science fiction, mystery, romance and more.",
-    url: "/categories",
-    type: "website",
-  },
-};
+  path: "/categories",
+  ogTitle: "Browse by category — Digital Bookstore",
+  ogDescription:
+    "Step into every literary world — fantasy, science fiction, mystery, romance and more.",
+});
 
 export default async function CategoriesIndexPage() {
   const categories = await listAllCategories();

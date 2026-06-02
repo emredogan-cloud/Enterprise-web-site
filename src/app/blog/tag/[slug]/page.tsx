@@ -6,6 +6,7 @@ import { CinematicHero } from "@/components/cinematic/cinematic-hero";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
 import { getAllTagSlugs, getPostsByTag } from "@/lib/blog";
+import { buildPageMetadata } from "@/lib/metadata";
 
 /**
  * /blog/tag/[slug] — tag hub.
@@ -41,17 +42,12 @@ export async function generateMetadata({
   const description = `Blog posts tagged ${tag.name} — Digital Bookstore.`;
   const url = `/blog/tag/${slug}`;
 
-  return {
+  return buildPageMetadata({
     title: `#${tag.name}`,
     description,
-    alternates: { canonical: url },
-    openGraph: {
-      title: `${tag.name} — Blog tag`,
-      description,
-      url,
-      type: "website",
-    },
-  };
+    path: url,
+    ogTitle: `${tag.name} — Blog tag`,
+  });
 }
 
 const DATE_FMT = new Intl.DateTimeFormat("en-US", {

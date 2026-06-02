@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { LegalShell } from "@/components/cinematic/legal-shell";
+import { buildPageMetadata } from "@/lib/metadata";
 
 /**
  * /kvkk — Kişisel Verilerin Korunması Kanunu aydınlatma metni.
@@ -15,19 +16,14 @@ import { LegalShell } from "@/components/cinematic/legal-shell";
  * Brand voice stays the same as the other legal pages — sade,
  * editoryal, kurumsal-soğuk değil.
  */
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "KVKK aydınlatma metni",
   description:
     "Digital Bookstore'un kişisel verilerinizi nasıl işlediğini ve KVKK kapsamındaki haklarınızı açıklayan aydınlatma metni.",
-  alternates: { canonical: "/kvkk" },
-  openGraph: {
-    title: "KVKK aydınlatma metni — Digital Bookstore",
-    description:
-      "Digital Bookstore'un kişisel verilerinizi nasıl işlediğini ve KVKK kapsamındaki haklarınızı açıklayan aydınlatma metni.",
-    url: "/kvkk",
-    type: "article",
-  },
-};
+  path: "/kvkk",
+  ogTitle: "KVKK aydınlatma metni — Digital Bookstore",
+  type: "article",
+});
 
 export default function KvkkPage() {
   return (

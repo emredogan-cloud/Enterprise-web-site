@@ -12,7 +12,12 @@
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { buildBookJsonLd, getBaseUrl, getCoverImageUrl } from "./seo";
+import {
+  buildBookJsonLd,
+  buildSiteJsonLd,
+  getBaseUrl,
+  getCoverImageUrl,
+} from "./seo";
 
 beforeEach(() => {
   vi.unstubAllEnvs();
@@ -126,5 +131,53 @@ describe("buildBookJsonLd — AggregateRating guard", () => {
       bestRating: 5,
       worstRating: 1,
     });
+  });
+});
+
+describe("buildSiteJsonLd", () => {
+  const baseUrl = "https://kitabevi.com.tr";
+
+  function entitiesOf(url: string) {
+    return buildSiteJsonLd(url)["@graph"] as ReadonlyArray<
+      Record<string, unknown>
+    >;
+  }
+
+  it("emits exactly an Organization and a WebSite node, in that order", () => {
+    expect(entitiesOf(baseUrl).map((e) => e["@type"])).toEqual([
+      "Organization",
+      "WebSite",
+    ]);
+  });
+
+  it("anchors the Organization @id and links it as the WebSite publisher", () => {
+    const entities = entitiesOf(baseUrl);
+    const org = entities.find((e) => e["@type"] === "Organization");
+    const site = entities.find((e) => e["@type"] === "WebSite");
+
+    // Must match `buildBookJsonLd`'s Organization @id so book graphs and the
+    // homepage describe ONE brand entity across the whole site.
+    expect(org?.["@id"]).toBe("https://kitabevi.com.tr/#organization");
+    expect(site?.publisher).toEqual({
+      "@id": "https://kitabevi.com.tr/#organization",
+    });
+  });
+
+  it("exposes a SearchAction targeting the real /search endpoint", () => {
+    const site = entitiesOf(baseUrl).find((e) => e["@type"] === "WebSite");
+    expect(site?.potentialAction).toEqual({
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: "https://kitabevi.com.tr/search?q={search_term_string}",
+      },
+      "query-input": "required name=search_term_string",
+    });
+  });
+
+  it("omits logo and sameAs until real brand assets exist (no placeholders)", () => {
+    const org = entitiesOf(baseUrl).find((e) => e["@type"] === "Organization");
+    expect(org).not.toHaveProperty("logo");
+    expect(org).not.toHaveProperty("sameAs");
   });
 });

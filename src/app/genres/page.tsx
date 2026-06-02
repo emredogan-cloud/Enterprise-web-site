@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { buildPageMetadata } from "@/lib/metadata";
+
 import { DEMO_GENRES } from "@/components/genres/demo-genres";
 import { ExploreStrip } from "@/components/genres/explore-strip";
 import { GenresShell } from "@/components/genres/genres-shell";
@@ -19,19 +21,13 @@ import { resolveAsset } from "@/lib/assets";
  * destination for each card — clicking a genre card takes you to that
  * category's book listing.
  */
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Genres · Stories in every dimension",
   description:
     "From thrilling adventures to life-changing ideas — explore the genres that shape the way we read.",
-  alternates: { canonical: "/genres" },
-  openGraph: {
-    title: "Genres · Digital Bookstore",
-    description:
-      "From thrilling adventures to life-changing ideas — explore the genres that shape the way we read.",
-    url: "/genres",
-    type: "website",
-  },
-};
+  path: "/genres",
+  ogTitle: "Genres · Digital Bookstore",
+});
 
 export default function GenresDiscoveryPage() {
   // Resolve optional real genre artwork server-side (the shell is a client

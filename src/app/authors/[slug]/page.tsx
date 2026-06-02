@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { buildPageMetadata } from "@/lib/metadata";
+
 import { AuthorPortrait } from "@/components/authors/author-portrait";
 import {
   DEMO_AUTHORS,
@@ -61,18 +63,13 @@ export async function generateMetadata({
       : `Books by ${name} on Digital Bookstore.`;
   const url = `/authors/${slug}`;
 
-  return {
+  return buildPageMetadata({
     title: name,
     description,
-    alternates: { canonical: url },
-    openGraph: {
-      title: name,
-      description,
-      url,
-      type: "profile",
-    },
-    ...(demo ? { robots: { index: false, follow: true } } : {}),
-  };
+    path: url,
+    type: "profile",
+    robots: demo ? { index: false, follow: true } : undefined,
+  });
 }
 
 // Default portrait theme — used when an author doesn't have a custom

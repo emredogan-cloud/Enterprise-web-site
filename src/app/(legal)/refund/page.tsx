@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { LegalShell } from "@/components/cinematic/legal-shell";
+import { buildPageMetadata } from "@/lib/metadata";
 
 /**
  * /refund — Refund Policy.
@@ -11,19 +12,14 @@ import { LegalShell } from "@/components/cinematic/legal-shell";
  * gives the EU-required 14-day window for digital goods that haven't
  * been downloaded yet.
  */
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Refund policy",
   description:
     "How refunds work for digital books bought on Digital Bookstore — 14 days, no questions asked, before you download.",
-  alternates: { canonical: "/refund" },
-  openGraph: {
-    title: "Refund policy — Digital Bookstore",
-    description:
-      "How refunds work for digital books bought on Digital Bookstore — 14 days, no questions asked, before you download.",
-    url: "/refund",
-    type: "article",
-  },
-};
+  path: "/refund",
+  ogTitle: "Refund policy — Digital Bookstore",
+  type: "article",
+});
 
 export default function RefundPage() {
   return (
