@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/metadata";
 
 import { CategoriesSection } from "@/components/home/categories-section";
 import { FeaturedBooksSection } from "@/components/home/featured-books-section";
@@ -11,6 +12,7 @@ import {
   getFeaturedBooks,
   listAllCategories,
 } from "@/lib/db/queries/catalog";
+import { buildSiteJsonLd, getBaseUrl } from "@/lib/seo";
 
 /**
  * Cinematic homepage — dark luxury SaaS aesthetic.
@@ -30,21 +32,17 @@ import {
 
 export const revalidate = 3600; // ISR — matches the catalog's revalidate cadence.
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: {
     absolute: "Digital Bookstore — Find it. Own it. Read it anywhere.",
   },
   description:
     "A modern digital bookstore. Buy a digital book once, download a watermarked-free PDF, and read it on any device. Yours to keep — never locked.",
-  alternates: { canonical: "/" },
-  openGraph: {
-    title: "Digital Bookstore — Find it. Own it. Read it anywhere.",
-    description:
-      "Buy a digital book once, download a watermarked-free PDF, and read it on any device. Yours to keep — never locked.",
-    url: "/",
-    type: "website",
-  },
-};
+  path: "/",
+  // og:description deliberately drops the "A modern digital bookstore." lead-in.
+  ogDescription:
+    "Buy a digital book once, download a watermarked-free PDF, and read it on any device. Yours to keep — never locked.",
+});
 
 export default async function Home() {
   // Both fetches are SSG-time and safeQuery-wrapped — a missing or empty
@@ -55,11 +53,22 @@ export default async function Home() {
     listAllCategories(),
   ]);
 
+  // Site-level structured data (Organization + WebSite + SearchAction),
+  // built from the same env-driven origin as the sitemap and canonicals.
+  const siteJsonLd = buildSiteJsonLd(getBaseUrl());
+
   return (
     <div className="cinematic-root">
       <CinematicHeader active="home" />
 
       <main className="relative z-10">
+        {/* Site-level JSON-LD — emitted only on the homepage (which carries
+            no book graph) so the shared Organization `@id` stays unique. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }}
+        />
+
         <Hero />
         <WhyReadersSection />
         <CategoriesSection categories={categories} />

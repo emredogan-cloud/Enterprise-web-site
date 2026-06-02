@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 
+import { buildPageMetadata } from "@/lib/metadata";
+
 import { CatalogHero } from "@/components/catalog/catalog-hero";
 import { CatalogShell } from "@/components/catalog/catalog-shell";
 import { DEMO_BOOKS, type DemoBook } from "@/components/catalog/demo-books";
@@ -12,19 +14,12 @@ import { listPublishedBooks } from "@/lib/db/queries/catalog";
 // ISR — revalidate every hour (matches the existing classification: `○ Static + ISR 1h`).
 export const revalidate = 3600;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "All books · Browse the catalog",
   description:
     "Explore the entire collection of digital books. Filter by category, format, price, and rating; own every purchase forever.",
-  alternates: { canonical: "/books" },
-  openGraph: {
-    title: "All books · Browse the catalog",
-    description:
-      "Explore the entire collection of digital books. Filter by category, format, price, and rating; own every purchase forever.",
-    url: "/books",
-    type: "website",
-  },
-};
+  path: "/books",
+});
 
 /**
  * `/books` — cinematic catalog page.

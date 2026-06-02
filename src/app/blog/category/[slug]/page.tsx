@@ -14,6 +14,7 @@ import {
   getCategoryBySlug,
   getPostBySlug,
 } from "@/lib/blog";
+import { buildPageMetadata } from "@/lib/metadata";
 
 /**
  * Cinematic blog-category archive — opens after the user taps a category
@@ -70,17 +71,12 @@ export async function generateMetadata({
   const description = `Blog posts filed under ${category.name} — Digital Bookstore.`;
   const url = `/blog/category/${slug}`;
 
-  return {
+  return buildPageMetadata({
     title: category.name,
     description,
-    alternates: { canonical: url },
-    openGraph: {
-      title: `${category.name} — Blog`,
-      description,
-      url,
-      type: "website",
-    },
-  };
+    path: url,
+    ogTitle: `${category.name} — Blog`,
+  });
 }
 
 export default async function BlogCategoryPage({

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { buildPageMetadata } from "@/lib/metadata";
+
 import { AuthorsHero } from "@/components/authors/authors-hero";
 import { AuthorsShell } from "@/components/authors/authors-shell";
 import { DEMO_AUTHORS } from "@/components/authors/demo-authors";
@@ -21,19 +23,13 @@ import { resolveAsset } from "@/lib/assets";
  * SSG route that uses the warm-theme layout for long-form bio reading;
  * the cinematic redesign here is for the discovery surface only.
  */
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Authors · Voices that inspire",
   description:
     "Discover the minds behind the books — explore authors, their stories, and their works.",
-  alternates: { canonical: "/authors" },
-  openGraph: {
-    title: "Authors · Digital Bookstore",
-    description:
-      "Discover the minds behind the books — explore authors, their stories, and their works.",
-    url: "/authors",
-    type: "website",
-  },
-};
+  path: "/authors",
+  ogTitle: "Authors · Digital Bookstore",
+});
 
 export default function AuthorsDiscoveryPage() {
   // Resolve optional real portraits server-side (the discovery shell is a

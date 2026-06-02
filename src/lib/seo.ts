@@ -10,22 +10,20 @@
  *    is available (added in SUB-PR 3.3).
  */
 
-import type { Graph } from "schema-dts";
+import type { Graph, SearchAction } from "schema-dts";
+
+import { getSiteUrl } from "./site-url";
 
 export const SITE_NAME = "Digital Bookstore";
 
-const DEFAULT_DEV_BASE_URL = "http://localhost:3000";
-
 /**
- * Canonical site origin. Reads `NEXT_PUBLIC_APP_URL` (declared in
- * `.env.example` since SUB-PR 0.2). Falls back to localhost for
- * unprovisioned dev / build so server-rendering never crashes; production
- * deploys MUST set the env (Vercel's project URL is the natural source).
+ * Canonical site origin. Delegates to the single source of truth
+ * (`getSiteUrl`) so canonical / OG / JSON-LD / sitemap / robots all resolve
+ * through one validated, empty-safe, fallback-guarded resolver (WS-A).
+ * Never throws.
  */
 export function getBaseUrl(): string {
-  const fromEnv = process.env.NEXT_PUBLIC_APP_URL;
-  if (!fromEnv) return DEFAULT_DEV_BASE_URL;
-  return fromEnv.replace(/\/$/, "");
+  return getSiteUrl();
 }
 
 /**
@@ -192,6 +190,68 @@ export function buildBookJsonLd(args: BookJsonLdArgs): Graph {
         ...(aggregateRatingBlock
           ? { aggregateRating: aggregateRatingBlock }
           : {}),
+      },
+    ],
+  };
+}
+
+/**
+ * JSON-LD `@graph` for the site root — Organization + WebSite. Intended to
+ * be emitted ONLY on the homepage (`src/app/page.tsx`).
+ *
+ * Why homepage-only and not the root layout: every book-detail graph
+ * (`buildBookJsonLd`) already emits an Organization node under the SAME
+ * `@id` (`${baseUrl}/#organization`). Declaring this graph globally would
+ * produce duplicate `@id` nodes on those pages. The homepage carries no
+ * book graph, so emitting it here keeps each `@id` unique per page while
+ * still establishing the canonical brand + site entities that every book
+ * graph cross-references.
+ *
+ * The `WebSite` node advertises on-site search via a `SearchAction`
+ * (Google's sitelinks-search-box hint); its target — `/search?q=…` — is a
+ * real, functioning endpoint, kept crawlable-but-`noindex` so the action
+ * resolves for users while the results pages stay out of the index.
+ *
+ * Deliberately minimal: `logo` and `sameAs` are OMITTED until a real
+ * square logo asset and verified social profiles exist. Emitting
+ * placeholder or 404 URLs there would actively damage entity trust — add
+ * them HERE (the single source of brand identity) when those assets land.
+ */
+export function buildSiteJsonLd(baseUrl: string): Graph {
+  // schema-dts models schema.org, which has no `query-input` property —
+  // that token is Google's search-box convention, not a schema.org term.
+  // Assert the action as `SearchAction` so the literal still lands in the
+  // emitted JSON without loosening the typing of the rest of the graph.
+  const searchAction = {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${baseUrl}/search?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  } as unknown as SearchAction;
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${baseUrl}/#organization`,
+        name: SITE_NAME,
+        url: baseUrl,
+        description:
+          "A first-party digital bookstore selling DRM-free, watermarked PDFs — buy once, own forever, read on any device.",
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${baseUrl}/#website`,
+        url: baseUrl,
+        name: SITE_NAME,
+        description:
+          "Buy a digital book once, download a watermark-free PDF, and read it on any device. Yours to keep — never locked.",
+        inLanguage: "en",
+        publisher: { "@id": `${baseUrl}/#organization` },
+        potentialAction: searchAction,
       },
     ],
   };

@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { SiteHeader } from "@/components/site-header";
+import { getSiteUrl } from "@/lib/site-url";
 
 import "./globals.css";
 
@@ -26,16 +27,11 @@ const fraunces = Fraunces({
 });
 
 // `metadataBase` absolutizes every relative URL emitted by per-page
-// `generateMetadata` (canonicals, OG images, Twitter images, …). Reads
-// `NEXT_PUBLIC_APP_URL` (declared in `.env.example`); falls back to
-// localhost so dev / unprovisioned-env builds never crash on metadata.
-// NOTE: `||` (not `??`) is deliberate — an empty-string env value ("")
-// must also fall back; `new URL("")` throws and would 500 every page.
-const BASE_URL =
-  process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-
+// `generateMetadata` (canonicals, OG images, Twitter images, …). The origin
+// comes from the single, validated, empty-safe resolver in `@/lib/site-url`
+// (WS-A) — no ad-hoc `??`/`||` here, so an empty env can never `new URL("")`.
 export const metadata: Metadata = {
-  metadataBase: new URL(BASE_URL),
+  metadataBase: new URL(getSiteUrl()),
   title: {
     default: "Digital Bookstore",
     template: "%s · Digital Bookstore",

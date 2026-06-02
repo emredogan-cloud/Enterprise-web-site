@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { buildPageMetadata } from "@/lib/metadata";
+
 import { DEMO_CATEGORIES } from "@/components/categories/demo-categories";
 import { CinematicBookTile } from "@/components/cinematic/cinematic-book-tile";
 import { CinematicHero } from "@/components/cinematic/cinematic-hero";
@@ -57,18 +59,12 @@ export async function generateMetadata({
   if (!name) return { title: "Category not found" };
   const description = `Browse ${name} on Digital Bookstore.`;
   const url = `/categories/${slug}`;
-  return {
+  return buildPageMetadata({
     title: name,
     description,
-    alternates: { canonical: url },
-    openGraph: {
-      title: name,
-      description,
-      url,
-      type: "website",
-    },
-    ...(category ? {} : { robots: { index: false, follow: true } }),
-  };
+    path: url,
+    robots: category ? undefined : { index: false, follow: true },
+  });
 }
 
 export default async function CategoryPage({

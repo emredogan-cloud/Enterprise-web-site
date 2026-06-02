@@ -23,6 +23,7 @@ import {
 } from "@/lib/db/queries/reviews";
 import { PLACEHOLDER_SAMPLE_HTML } from "@/lib/placeholders/book-sample";
 import { buildBookJsonLd, getBaseUrl, getCoverImageUrl } from "@/lib/seo";
+import { buildPageMetadata } from "@/lib/metadata";
 
 /**
  * /books/[slug] — Product Detail page.
@@ -75,12 +76,12 @@ export async function generateMetadata({
     // preview detail page rather than emitting "Book not found".
     const demo = DEMO_BOOKS.find((b) => b.slug === slug);
     if (demo) {
-      return {
+      return buildPageMetadata({
         title: demo.title,
         description: `${demo.title} by ${demo.author} — a preview listing on Digital Bookstore.`,
-        alternates: { canonical: `/books/${slug}` },
+        path: `/books/${slug}`,
         robots: { index: false, follow: true },
-      };
+      });
     }
     return { title: "Book not found" };
   }
@@ -95,30 +96,15 @@ export async function generateMetadata({
   const coverImageUrl = getCoverImageUrl(book.coverKey);
   const url = `/books/${slug}`;
 
-  return {
+  return buildPageMetadata({
     title: book.title,
     description,
-    alternates: { canonical: url },
-    openGraph: {
-      title: book.title,
-      description,
-      url,
-      type: "book",
-      ...(coverImageUrl
-        ? {
-            images: [
-              { url: coverImageUrl, alt: `Cover of ${book.title}` },
-            ],
-          }
-        : {}),
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: book.title,
-      description,
-      ...(coverImageUrl ? { images: [coverImageUrl] } : {}),
-    },
-  };
+    path: url,
+    type: "book",
+    image: coverImageUrl
+      ? { url: coverImageUrl, alt: `Cover of ${book.title}` }
+      : undefined,
+  });
 }
 
 export default async function BookDetailPage({

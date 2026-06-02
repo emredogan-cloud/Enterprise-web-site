@@ -17,7 +17,14 @@
 
 import * as Sentry from "@sentry/nextjs";
 
+import { assertSiteUrlConfigured } from "./src/lib/site-url";
+
 export async function register(): Promise<void> {
+  // Fail loudly on a real production misconfiguration of the canonical origin
+  // (WS-A): a silent empty/invalid NEXT_PUBLIC_APP_URL would corrupt every
+  // canonical / OG / JSON-LD / sitemap URL. No-op off Vercel production.
+  assertSiteUrlConfigured();
+
   if (process.env.NEXT_RUNTIME === "nodejs") {
     await import("./sentry.server.config");
   }
