@@ -2,7 +2,9 @@
 
 import { revalidatePath } from "next/cache";
 
+import { getCurrentLocalUserIdReadOnly } from "@/lib/account";
 import { deleteCart, readCart, writeCart } from "@/lib/cart";
+import { getOwnedBookIds } from "@/lib/db/queries/account";
 import { getCheckoutItems } from "@/lib/db/queries/catalog";
 import { getPaddleClient, isPaddleConfigured } from "@/lib/paddle";
 
@@ -90,6 +92,28 @@ export async function createCheckoutSession(): Promise<CheckoutResult> {
       ok: false,
       error: `Not ready for checkout — these titles have no Paddle price yet: ${titles}.`,
     };
+  }
+
+  // Ownership guard — keep a signed-in owner from re-buying (and being charged
+  // again for) a book they already hold. Purchases create a perpetual
+  // entitlement, so a non-revoked grant means "already owned". Anonymous
+  // visitors resolve to null and own nothing, so they pass straight through.
+  const localUserId = await getCurrentLocalUserIdReadOnly();
+  if (localUserId) {
+    const owned = await getOwnedBookIds(
+      localUserId,
+      books.map((b) => b.id),
+    );
+    if (owned.size > 0) {
+      const titles = books
+        .filter((b) => owned.has(b.id))
+        .map((b) => b.title)
+        .join(", ");
+      return {
+        ok: false,
+        error: `Already in your library: ${titles}. Remove ${owned.size === 1 ? "it" : "them"} from your cart to continue.`,
+      };
+    }
   }
 
   try {

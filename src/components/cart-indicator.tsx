@@ -13,9 +13,10 @@ import { useEffect, useState } from "react";
  * every catalog route stay `○ Static` / `● SSG`.
  *
  * Updates after a cart mutation come via a `cart-changed` `CustomEvent`
- * dispatched on `window` from `AddToCartButton` / `RemoveFromCartButton`
- * / `ClearCartButton`. That's deliberately lightweight — no context, no
- * state library; the data is in the cookie and we re-fetch on signal.
+ * dispatched on `window` from the cart controls (`BookAddToCart`,
+ * `CartLine` remove, `CartSummary` clear). That's deliberately lightweight —
+ * no context, no state library; the data is in the cookie and we re-fetch
+ * on signal.
  */
 export function CartIndicator() {
   const [count, setCount] = useState<number | null>(null);

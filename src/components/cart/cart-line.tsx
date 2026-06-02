@@ -23,7 +23,14 @@ export interface CartLineBook {
   currency: string;
 }
 
-export function CartLine({ book }: { book: CartLineBook }) {
+export function CartLine({
+  book,
+  owned = false,
+}: {
+  book: CartLineBook;
+  /** Signed-in user already owns this book (non-revoked entitlement). */
+  owned?: boolean;
+}) {
   const [pending, startTransition] = useTransition();
 
   const onRemove = () => {
@@ -95,6 +102,14 @@ export function CartLine({ book }: { book: CartLineBook }) {
         <p className="mt-2 text-sm font-semibold text-fg-hi tabular-nums">
           {formatPrice(book.priceCents, book.currency)}
         </p>
+        {owned && (
+          <Link
+            href="/account/library"
+            className="mt-2 inline-flex w-fit items-center gap-1 rounded-full border border-[#f4c44b]/30 bg-[#f4c44b]/10 px-2.5 py-0.5 text-[11px] font-medium text-[#f4c44b] transition-colors hover:border-[#f4c44b]/50"
+          >
+            Already in your library — remove to check out
+          </Link>
+        )}
       </div>
 
       {/* Remove — circular glass icon button */}

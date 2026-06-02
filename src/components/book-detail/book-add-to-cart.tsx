@@ -1,16 +1,19 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import Link from "next/link";
+import { useEffect, useState, useTransition } from "react";
 
 import { addToCart } from "@/app/cart/actions";
 
 /**
  * Cinematic "Add to cart" button for `/books/[slug]`.
  *
- * Phase 1.C. Same server-action contract as the warm `<AddToCartButton>`:
+ * Phase 1.C cart-control contract:
  *   - Calls `addToCart(bookId)` (writes the cart cookie server-side)
  *   - Dispatches `cart-changed` so the header's cart badge can refresh
  *   - Reverts the "Added" affordance after ~2.5s
+ *   - Phase A: a signed-in owner sees an "In your library" link instead
+ *     (ownership resolved client-side via `/api/entitlement`)
  *
  * Chrome differences:
  *   - `.home-cta-primary` — emerald gradient pill, not warm shadcn Button
@@ -23,6 +26,25 @@ import { addToCart } from "@/app/cart/actions";
 export function BookAddToCart({ bookId }: { bookId: string }) {
   const [pending, startTransition] = useTransition();
   const [added, setAdded] = useState(false);
+  const [owned, setOwned] = useState(false);
+
+  // Ownership check — runs client-side so the SSG product page stays static.
+  // A signed-in owner gets a "library" link instead of a buy button; anonymous
+  // or non-owning visitors (and any hiccup) keep the normal add-to-cart control.
+  useEffect(() => {
+    let active = true;
+    fetch(`/api/entitlement?bookId=${encodeURIComponent(bookId)}`, {
+      cache: "no-store",
+    })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (active && data?.owned === true) setOwned(true);
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, [bookId]);
 
   const handleClick = () => {
     startTransition(async () => {
@@ -34,6 +56,22 @@ export function BookAddToCart({ bookId }: { bookId: string }) {
       window.setTimeout(() => setAdded(false), 2500);
     });
   };
+
+  // Already owned — send them to the library instead of letting them re-buy.
+  if (owned) {
+    return (
+      <Link
+        href="/account/library"
+        className="home-cta-primary inline-flex h-12 w-full items-center justify-center gap-2 rounded-full text-sm font-semibold tracking-tight"
+      >
+        <span
+          aria-hidden
+          className="h-2 w-2 rounded-full bg-[#032015] shadow-[0_0_6px_rgba(3,32,21,0.6)]"
+        />
+        In your library
+      </Link>
+    );
+  }
 
   return (
     <button

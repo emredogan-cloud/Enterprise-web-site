@@ -280,3 +280,34 @@ export async function getUserLibrary(userId: string): Promise<LibraryEntry[]> {
     [],
   );
 }
+
+/**
+ * Which of `bookIds` the given user already owns — non-revoked entitlements
+ * only (status `pending` or `ready`; a `revoked` grant means a refunded book
+ * the user may legitimately re-buy). Read-only. Used to keep a signed-in owner
+ * from re-purchasing a book they already hold (Phase A — ownership-aware
+ * cart/checkout). Returns an empty set on any DB issue (degrade open: never
+ * block checkout because of a query failure).
+ */
+export async function getOwnedBookIds(
+  userId: string,
+  bookIds: string[],
+): Promise<Set<string>> {
+  if (bookIds.length === 0) return new Set();
+  return safeQuery(
+    "getOwnedBookIds",
+    async () => {
+      const rows = await db.query.entitlements.findMany({
+        where: (e, { and, eq, inArray, ne }) =>
+          and(
+            eq(e.userId, userId),
+            inArray(e.bookId, bookIds),
+            ne(e.status, "revoked"),
+          ),
+        columns: { bookId: true },
+      });
+      return new Set(rows.map((r) => r.bookId));
+    },
+    new Set<string>(),
+  );
+}

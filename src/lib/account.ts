@@ -1,5 +1,5 @@
 import { getAuthenticatedUser } from "@/lib/auth";
-import { upsertLocalUser } from "@/lib/db/users";
+import { findLocalUserIdByEmail, upsertLocalUser } from "@/lib/db/users";
 
 /**
  * Account-context loader — used by every protected, account-aware page
@@ -104,5 +104,36 @@ export async function loadAuthenticatedLocalUser(): Promise<AuthedLocalUserResul
           : "Setup failed for an unknown reason — see the server logs.",
       missing: [],
     };
+  }
+}
+
+/**
+ * Resolve the current signed-in user's LOCAL id WITHOUT creating a row
+ * (read-only counterpart to `loadAuthenticatedLocalUser`). Returns `null` when
+ * the visitor is anonymous, lacks a primary email, or has no local `users` row
+ * yet (i.e. has never transacted) — in every such case they own nothing.
+ *
+ * Used by ownership-aware read/guard paths (cart, checkout) so the read never
+ * triggers a JIT upsert. Degrades open (returns null) on any auth/DB hiccup so
+ * an ownership check can never block the cart for the wrong reason.
+ */
+export async function getCurrentLocalUserIdReadOnly(): Promise<string | null> {
+  if (
+    !process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
+    !process.env.CLERK_SECRET_KEY ||
+    !process.env.DATABASE_URL
+  ) {
+    return null;
+  }
+  try {
+    const user = await getAuthenticatedUser();
+    if (!user) return null;
+    const email = user.emailAddresses.find(
+      (e) => e.id === user.primaryEmailAddressId,
+    )?.emailAddress;
+    if (!email) return null;
+    return await findLocalUserIdByEmail(email);
+  } catch {
+    return null;
   }
 }
