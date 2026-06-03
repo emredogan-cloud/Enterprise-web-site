@@ -19,32 +19,14 @@ export interface SyncReadingProgressResult {
 }
 
 /**
- * Idempotent UPSERT into `reading_progress` (Roadmap §10).
+ * Idempotent reading-progress sync (Roadmap §10) — the action
+ * `<ReaderShell />` calls after a 2-second debounce on page changes
+ * (fire-and-forget; reading UX is never blocked on a sync).
  *
- * Triggered from `<ReaderShell />` after a 2-second debounce on page
- * changes — fire-and-forget from the client (we never block reading
- * UX on a sync).
- *
- * Concurrency model:
- *   - Schema has `UNIQUE (user_id, book_id)` (`reading_progress_user_book_uk`
- *     from SUB-PR 0.3).
- *   - We INSERT and `ON CONFLICT` UPDATE — the DB itself is the lock.
- *     Two simultaneous sync calls (rapid resize + page flip, two tabs)
- *     converge to "last write wins" deterministically.
- *
- * Auth scope:
- *   - AuthN via `loadAuthenticatedLocalUser` (per the SUB-PR 2.2 brief).
- *   - **No entitlement check** — `reading_progress` is benign metadata
- *     keyed on the caller's own `user_id`. A malicious client can only
- *     pollute their own progress rows; they cannot read other users'
- *     data or affect any other user's library. The download / reader
- *     paths (1.7 / 2.1) remain the AuthZ chokepoints.
- *
- * Failure mode:
- *   - All exceptions are caught and logged; the action returns
- *     `{ ok: false }`. The reader continues; the next page flip will
- *     attempt another sync. We never throw — a sync failure must
- *     never break the reader.
+ * Thin wrapper: validate input → AuthN (`loadAuthenticatedLocalUser`) →
+ * delegate to `writeReadingProgress`, which enforces the Phase E ownership
+ * gate and performs the UPSERT. Never throws — a sync failure must never
+ * break the reader.
  */
 export async function syncReadingProgress(
   args: SyncReadingProgressArgs,
@@ -59,20 +41,65 @@ export async function syncReadingProgress(
     return { ok: false };
   }
 
-  // Clamp percent defensively — accept any positive page but never let a
-  // garbage `percent` (negative, > 100, NaN) reach the DB.
-  const percent = Math.max(0, Math.min(100, args.percent));
-
   const userCtx = await loadAuthenticatedLocalUser();
   if (!userCtx.ok) {
     return { ok: false };
   }
 
+  return writeReadingProgress({
+    userId: userCtx.localUserId,
+    bookId: args.bookId,
+    page: args.page,
+    percent: args.percent,
+  });
+}
+
+/**
+ * Core reading-progress write. Exported so the Phase E reader/progress e2e
+ * harness can drive it against the real DB without a Clerk session — the
+ * `syncReadingProgress` action above is the only production caller and
+ * supplies the authenticated `userId`.
+ *
+ * **Ownership gate (Phase E hardening):** only a user who OWNS the book — has
+ * an entitlement for `(userId, bookId)`, any status — may write progress for
+ * it. This path used to be AuthN-only; the gate makes progress writes
+ * ownership-protected and consistent with the download / reader access rules,
+ * so a non-owner can no longer create progress rows for books they don't own.
+ *
+ * **Isolation** is unchanged and structural: `reading_progress` has
+ * UNIQUE (user_id, book_id) and we only ever write the caller's own
+ * `user_id`, so one user can never read or overwrite another user's progress.
+ *
+ * Concurrency: INSERT ... ON CONFLICT UPDATE — the DB is the lock; two
+ * simultaneous syncs converge to "last write wins". `percent` is clamped to
+ * [0, 100] defensively. Never throws.
+ */
+export async function writeReadingProgress(args: {
+  userId: string;
+  bookId: string;
+  page: number;
+  percent: number;
+}): Promise<SyncReadingProgressResult> {
+  // Ownership gate — entitlement existence keyed on the UNIQUE
+  // (user_id, book_id) index. A missing row means the caller does not own
+  // this book, so they may not write progress for it.
+  const owned = await db.query.entitlements.findFirst({
+    where: (e, { and, eq }) =>
+      and(eq(e.userId, args.userId), eq(e.bookId, args.bookId)),
+    columns: { id: true },
+  });
+  if (!owned) {
+    return { ok: false };
+  }
+
+  // Clamp percent defensively — never let a garbage `percent` reach the DB.
+  const percent = Math.max(0, Math.min(100, args.percent));
+
   try {
     await db
       .insert(readingProgress)
       .values({
-        userId: userCtx.localUserId,
+        userId: args.userId,
         bookId: args.bookId,
         page: args.page,
         percent,
@@ -80,8 +107,7 @@ export async function syncReadingProgress(
       .onConflictDoUpdate({
         target: [readingProgress.userId, readingProgress.bookId],
         // Canonical Postgres UPSERT: `EXCLUDED.<col>` references the row
-        // that would have been inserted. Functionally equivalent to passing
-        // the values again, but matches the §10 spec wording precisely.
+        // that would have been inserted. Matches the §10 spec wording.
         set: {
           page: sql`EXCLUDED.page`,
           percent: sql`EXCLUDED.percent`,
@@ -90,7 +116,7 @@ export async function syncReadingProgress(
       });
     return { ok: true };
   } catch (err) {
-    console.error("[reading-progress] sync failed:", err);
+    console.error("[reading-progress] write failed:", err);
     return { ok: false };
   }
 }
