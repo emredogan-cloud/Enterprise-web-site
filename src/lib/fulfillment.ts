@@ -1,6 +1,11 @@
 import { db } from "@/lib/db";
 import { getCheckoutItems } from "@/lib/db/queries/catalog";
-import { entitlements, orderItems, orders } from "@/lib/db/schema";
+import {
+  entitlements,
+  orderItems,
+  orders,
+  watermarkJobs,
+} from "@/lib/db/schema";
 import { upsertLocalUser } from "@/lib/db/users";
 import {
   FULFILLMENT_EVENT,
@@ -123,7 +128,7 @@ export async function processCompletedTransaction(
         priceCentsAtPurchase: book.priceCents,
       });
 
-      await tx
+      const [grantedEntitlement] = await tx
         .insert(entitlements)
         .values({
           userId: localUserId,
@@ -133,7 +138,21 @@ export async function processCompletedTransaction(
         })
         .onConflictDoNothing({
           target: [entitlements.userId, entitlements.bookId],
-        });
+        })
+        .returning({ id: entitlements.id });
+
+      // Queue a watermark job for each freshly-granted entitlement. The row's
+      // status defaults to `queued`, so a fulfillment that never reaches the
+      // worker (Inngest unsynced / silent queue) is VISIBLE as a `queued` row
+      // that never advances — the diagnostic that turns the previously-dead
+      // `watermark_jobs` table into a stuck-pipeline signal (Roadmap §6,
+      // ADR-3). On a Paddle retry the order insert above no-ops and the whole
+      // tx returns early, so this block never double-creates a job.
+      if (grantedEntitlement) {
+        await tx
+          .insert(watermarkJobs)
+          .values({ entitlementId: grantedEntitlement.id });
+      }
     }
   });
 
