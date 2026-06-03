@@ -1,14 +1,15 @@
-import { and, eq } from "drizzle-orm";
+import { and, eq, sql } from "drizzle-orm";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 
 import { db } from "@/lib/db";
-import { entitlements } from "@/lib/db/schema";
+import { entitlements, watermarkJobs } from "@/lib/db/schema";
 import { sendOrderReadyEmail } from "@/lib/email";
 import {
   FULFILLMENT_EVENT,
   type FulfillmentTransactionCompletedData,
   inngest,
 } from "@/lib/inngest/client";
+import { logger } from "@/lib/logger";
 import {
   ARTIFACTS_BUCKET,
   MASTERS_BUCKET,
@@ -38,6 +39,29 @@ export const processFulfillment = inngest.createFunction(
     id: "process-fulfillment-transaction",
     retries: 3,
     triggers: [{ event: FULFILLMENT_EVENT }],
+    // Fires ONCE, only after all `retries` are exhausted. Each failed attempt
+    // already persisted `watermark_jobs.status='failed'` + the error message
+    // (see `watermarkOneBook`'s catch); this is the loud, terminal ALARM so a
+    // stuck fulfillment — entitlement frozen at `pending`, the order page
+    // polling forever — is never silent. `logger.error` routes to Sentry when
+    // a DSN is configured and always lands in the runtime logs otherwise.
+    onFailure: async ({ event, error }) => {
+      const original = (
+        event as unknown as {
+          data?: { event?: { data?: FulfillmentTransactionCompletedData } };
+        }
+      ).data?.event?.data;
+      logger.error(
+        "[watermark] ALARM: fulfillment retries exhausted — entitlement(s) stuck at pending",
+        error,
+        {
+          orderId: original?.orderId,
+          transactionId: original?.transactionId,
+          userId: original?.userId,
+          bookIds: original?.bookIds,
+        },
+      );
+    },
   },
   async ({ event, step }) => {
     // v4 `event.data` is loosely typed without schemas; we cast through
@@ -127,7 +151,9 @@ interface WatermarkResult {
   bookTitle: string;
 }
 
-async function watermarkOneBook(args: WatermarkArgs): Promise<WatermarkResult> {
+export async function watermarkOneBook(
+  args: WatermarkArgs,
+): Promise<WatermarkResult> {
   const { orderId, userId, bookId, buyerName } = args;
 
   // 1. Fetch the entitlement + book in one relational read.
@@ -146,14 +172,23 @@ async function watermarkOneBook(args: WatermarkArgs): Promise<WatermarkResult> {
   if (!entitlement.book) {
     throw new Error(`[watermark] book ${bookId} not found`);
   }
-  if (!entitlement.book.masterFileKey) {
-    throw new Error(
-      `[watermark] book ${bookId} has no masterFileKey — cannot watermark`,
-    );
-  }
 
-  // 1a. Idempotency short-circuit: already done? Return without touching R2.
+  // 1a. Idempotency short-circuit FIRST — a re-trigger of an already-
+  //     fulfilled entitlement must NOT spend a worker attempt. Reconcile the
+  //     job row to `succeeded` for consistency (defensive; it is normally
+  //     already succeeded), then return without touching R2.
   if (entitlement.status === "ready" && entitlement.watermarkedKey) {
+    const existingJob = await db.query.watermarkJobs.findFirst({
+      where: (j, { eq: _eq }) => _eq(j.entitlementId, entitlement.id),
+      orderBy: (j, { desc }) => [desc(j.createdAt)],
+      columns: { id: true, status: true },
+    });
+    if (existingJob && existingJob.status !== "succeeded") {
+      await markWatermarkJobSucceeded(
+        existingJob.id,
+        entitlement.watermarkedKey,
+      );
+    }
     return {
       status: "already-ready",
       artifactKey: entitlement.watermarkedKey,
@@ -161,45 +196,136 @@ async function watermarkOneBook(args: WatermarkArgs): Promise<WatermarkResult> {
     };
   }
 
-  // 2. Pull the master PDF bytes from the private R2 bucket.
-  const master = await getObject({
-    bucket: MASTERS_BUCKET,
-    key: entitlement.book.masterFileKey,
-  });
+  // 1b. Advance the watermark_jobs row: queued|failed → running, attempts++.
+  //     The row was created `queued` at enqueue time
+  //     (`processCompletedTransaction`); we find-or-create defensively so a
+  //     replay against a pre-existing entitlement is still tracked. The job
+  //     lifecycle stays INSIDE this Inngest step (not a separate `step.run`)
+  //     so every retry re-runs it and `attempts` genuinely counts attempts.
+  const jobId = await beginWatermarkJob(entitlement.id);
 
-  // 3. Stamp watermark — name + short order id (NO raw email — Roadmap §11
-  //    PII minimization). The order id maps back to email server-side.
-  const watermarkText = buildWatermarkText({ buyerName, orderId });
-  const watermarkedBytes = await stampPdfWithWatermark(
-    master.body,
-    watermarkText,
-    { bookId, orderId },
-  );
+  try {
+    if (!entitlement.book.masterFileKey) {
+      throw new Error(
+        `[watermark] book ${bookId} has no masterFileKey — cannot watermark`,
+      );
+    }
 
-  // 4. Upload artifact to the private ARTIFACTS bucket.
-  const artifactKey = buildArtifactKey({ orderId, bookId });
-  await putObject({
-    bucket: ARTIFACTS_BUCKET,
-    key: artifactKey,
-    body: Buffer.from(watermarkedBytes),
-    contentType: "application/pdf",
-    cacheControl: "private, max-age=0, no-store",
-    metadata: { orderId, userId, bookId },
-  });
+    // 2. Pull the master PDF bytes from the private R2 bucket.
+    const master = await getObject({
+      bucket: MASTERS_BUCKET,
+      key: entitlement.book.masterFileKey,
+    });
 
-  // 5. Update the entitlement to `ready` + record the artifact key.
-  await db
-    .update(entitlements)
-    .set({ status: "ready", watermarkedKey: artifactKey })
-    .where(
-      and(eq(entitlements.userId, userId), eq(entitlements.bookId, bookId)),
+    // 3. Stamp watermark — name + short order id (NO raw email — Roadmap §11
+    //    PII minimization). The order id maps back to email server-side.
+    const watermarkText = buildWatermarkText({ buyerName, orderId });
+    const watermarkedBytes = await stampPdfWithWatermark(
+      master.body,
+      watermarkText,
+      { bookId, orderId },
     );
 
-  return {
-    status: "watermarked",
-    artifactKey,
-    bookTitle: entitlement.book.title,
-  };
+    // 4. Upload artifact to the private ARTIFACTS bucket.
+    const artifactKey = buildArtifactKey({ orderId, bookId });
+    await putObject({
+      bucket: ARTIFACTS_BUCKET,
+      key: artifactKey,
+      body: Buffer.from(watermarkedBytes),
+      contentType: "application/pdf",
+      cacheControl: "private, max-age=0, no-store",
+      metadata: { orderId, userId, bookId },
+    });
+
+    // 5. Commit entitlement→ready AND job→succeeded in one transaction so the
+    //    fulfillment state and its audit row can never disagree (e.g. a crash
+    //    between the two writes can't leave a `ready` book with a `running`
+    //    job). This preserves the existing entitlement-status idempotency —
+    //    a later re-trigger hits the short-circuit in 1b.
+    await db.transaction(async (tx) => {
+      await tx
+        .update(entitlements)
+        .set({ status: "ready", watermarkedKey: artifactKey })
+        .where(
+          and(eq(entitlements.userId, userId), eq(entitlements.bookId, bookId)),
+        );
+      await tx
+        .update(watermarkJobs)
+        .set({ status: "succeeded", artifactKey, error: null })
+        .where(eq(watermarkJobs.id, jobId));
+    });
+
+    return {
+      status: "watermarked",
+      artifactKey,
+      bookTitle: entitlement.book.title,
+    };
+  } catch (err) {
+    // Persist the failure on the job row and re-throw so Inngest retries.
+    // The entitlement deliberately STAYS `pending` (download gate closed).
+    // After the final retry the row stays `failed` → `onFailure` alarm fires.
+    await markWatermarkJobFailed(jobId, err);
+    throw err;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// watermark_jobs lifecycle (ADR-3 observability: queued → running →
+// succeeded / failed). One row per entitlement; `attempts` counts worker
+// attempts; `error` holds the last failure; `artifactKey` mirrors the
+// entitlement's watermarked key on success. The row is created `queued` at
+// enqueue time in `processCompletedTransaction`.
+// ---------------------------------------------------------------------------
+
+/** queued|failed → running, attempts += 1. Find-or-create by entitlement. */
+async function beginWatermarkJob(entitlementId: string): Promise<string> {
+  const existing = await db.query.watermarkJobs.findFirst({
+    where: (j, { eq: _eq }) => _eq(j.entitlementId, entitlementId),
+    orderBy: (j, { desc }) => [desc(j.createdAt)],
+    columns: { id: true },
+  });
+
+  if (existing) {
+    await db
+      .update(watermarkJobs)
+      .set({
+        status: "running",
+        attempts: sql`${watermarkJobs.attempts} + 1`,
+        error: null,
+      })
+      .where(eq(watermarkJobs.id, existing.id));
+    return existing.id;
+  }
+
+  // Defensive create — the enqueue-time row is normally present, but a manual
+  // replay (or a pre-feature entitlement) may have none.
+  const [created] = await db
+    .insert(watermarkJobs)
+    .values({ entitlementId, status: "running", attempts: 1 })
+    .returning({ id: watermarkJobs.id });
+  return created.id;
+}
+
+async function markWatermarkJobSucceeded(
+  jobId: string,
+  artifactKey: string,
+): Promise<void> {
+  await db
+    .update(watermarkJobs)
+    .set({ status: "succeeded", artifactKey, error: null })
+    .where(eq(watermarkJobs.id, jobId));
+}
+
+async function markWatermarkJobFailed(
+  jobId: string,
+  error: unknown,
+): Promise<void> {
+  const message = error instanceof Error ? error.message : String(error);
+  await db
+    .update(watermarkJobs)
+    // Cap the stored message so a stack-trace-laden error can't bloat the row.
+    .set({ status: "failed", error: message.slice(0, 1000) })
+    .where(eq(watermarkJobs.id, jobId));
 }
 
 // ---------------------------------------------------------------------------
