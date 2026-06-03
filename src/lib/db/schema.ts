@@ -87,6 +87,18 @@ export const reviewStatusEnum = pgEnum("review_status", [
   "rejected",
 ]);
 
+// Commerce lifecycle audit-event types (Phase F — order/entitlement state
+// transitions driven by Paddle MoR webhooks; `revoked` is also reachable via
+// support action). Append-only; see `commerce_events`.
+export const commerceEventTypeEnum = pgEnum("commerce_event_type", [
+  "paid",
+  "payment_failed",
+  "transaction_canceled",
+  "refunded",
+  "chargeback",
+  "revoked",
+]);
+
 // -----------------------------------------------------------------------------
 // users
 // -----------------------------------------------------------------------------
@@ -397,6 +409,49 @@ export const downloadLogs = pgTable(
       t.entitlementId,
       t.createdAt,
     ),
+  ],
+);
+
+// -----------------------------------------------------------------------------
+// commerce_events  ·  append-only audit trail of MoR lifecycle transitions
+// (Phase F — commerce safety & operability). Every paid / payment_failed /
+// refunded / chargeback / revoked transition is recorded here so that a
+// purchased book's history is VISIBLE, AUDITABLE and RECOVERABLE. Rows are
+// never mutated. `provider_event_id` (Paddle `evt_…`) is UNIQUE so a
+// re-delivered webhook produces exactly one audit row (idempotency). FK
+// columns are nullable + `set null` on delete so the audit trail survives
+// even if a referenced row is ever removed (orders/entitlements are
+// `restrict` elsewhere, so in practice they are not).
+// -----------------------------------------------------------------------------
+export const commerceEvents = pgTable(
+  "commerce_events",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    type: commerceEventTypeEnum("type").notNull(),
+    // Paddle event id (`evt_…`) — UNIQUE → idempotent webhook re-delivery.
+    providerEventId: text("provider_event_id"),
+    // Paddle transaction id (`txn_…`) the event concerns; mirrors
+    // `orders.mor_order_ref` (present even when no order row exists, e.g.
+    // a failed payment attempt).
+    morOrderRef: text("mor_order_ref"),
+    orderId: uuid("order_id").references(() => orders.id, {
+      onDelete: "set null",
+    }),
+    entitlementId: uuid("entitlement_id").references(() => entitlements.id, {
+      onDelete: "set null",
+    }),
+    // Short human-readable reason/summary (Paddle adjustment action, decline
+    // reason, support note, …). Never PII beyond what the watermark allows.
+    reason: text("reason"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (t) => [
+    uniqueIndex("commerce_events_provider_event_uk").on(t.providerEventId),
+    index("commerce_events_order_idx").on(t.orderId),
+    index("commerce_events_ref_idx").on(t.morOrderRef),
+    index("commerce_events_type_created_idx").on(t.type, t.createdAt),
   ],
 );
 

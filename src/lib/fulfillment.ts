@@ -1,3 +1,4 @@
+import { recordCommerceEvent } from "@/lib/commerce/events";
 import { db } from "@/lib/db";
 import { getCheckoutItems } from "@/lib/db/queries/catalog";
 import {
@@ -162,6 +163,18 @@ export async function processCompletedTransaction(
     );
     return;
   }
+
+  // Phase F — audit the `paid` transition so the full commerce lifecycle
+  // (paid → … → refunded/revoked) is queryable in `commerce_events`.
+  // Best-effort + idempotent (keyed on the txn; only runs on genuine first
+  // fulfillment since `createdOrderId` is truthy only once).
+  await recordCommerceEvent({
+    type: "paid",
+    providerEventId: `paid:${transactionId}`,
+    morOrderRef: transactionId,
+    orderId: createdOrderId,
+    reason: `order paid — ${books.length} item(s), ${totalCents} ${currency}`,
+  });
 
   // Enqueue the watermark job. Order rows are already committed, so even
   // if the send fails (Inngest env unset, network blip) the canonical
