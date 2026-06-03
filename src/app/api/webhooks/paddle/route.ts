@@ -1,5 +1,9 @@
 import type { NextRequest } from "next/server";
 
+import {
+  handlePaymentFailure,
+  handleRefundOrChargeback,
+} from "@/lib/commerce/lifecycle";
 import { processCompletedTransaction } from "@/lib/fulfillment";
 import { logger } from "@/lib/logger";
 import { getPaddleClient } from "@/lib/paddle";
@@ -117,26 +121,36 @@ export async function POST(request: NextRequest) {
         currency,
       });
     } else if (event.eventType === "transaction.payment_failed") {
-      // [Phase B] Acknowledge + audit a failed payment attempt instead of
-      // silently ignoring it. We deliberately do NOT write an order row here:
-      // a failed attempt shares its transaction id (= mor_order_ref) with the
-      // eventual `transaction.completed`, so inserting a 'failed' order would
-      // collide with that idempotent insert and block fulfillment. The full
-      // order-status lifecycle (failed / refunded + revocation) is a
-      // fulfillment-layer concern handled in a later phase — here we surface
-      // the failure so it is never lost.
-      const tx = event.data;
-      const rawBookIds = (tx.customData as { bookIds?: unknown } | null)
-        ?.bookIds;
-      const bookIds = Array.isArray(rawBookIds)
-        ? rawBookIds.filter(
-            (x): x is string => typeof x === "string" && x.length > 0,
-          )
-        : [];
-      logger.warn("[paddle-webhook] transaction.payment_failed", {
-        transactionId: tx.id,
-        customerId: tx.customerId ?? null,
-        bookIds,
+      // [Phase F] Audit the failed attempt. We still write NO order row: a
+      // failed attempt shares its transaction id with the eventual
+      // `transaction.completed` (same txn, customer retried), so a `failed`
+      // order keyed on `mor_order_ref` would collide with the idempotent
+      // completed-insert and BLOCK fulfillment (Phase B finding). The failed
+      // STATE lives in the audit trail (commerce_events), queryable by ref.
+      await handlePaymentFailure({
+        transactionId: event.data.id,
+        providerEventId: event.eventId,
+        reason: "transaction.payment_failed",
+      });
+    } else if (event.eventType === "transaction.canceled") {
+      // [Phase F] A canceled transaction — same audit-only treatment.
+      await handlePaymentFailure({
+        transactionId: event.data.id,
+        providerEventId: event.eventId,
+        reason: "transaction.canceled",
+        canceled: true,
+      });
+    } else if (event.eventType === "adjustment.created") {
+      // [Phase F] Refund / chargeback — Paddle models both as adjustments
+      // (discriminated by `action`). Mark the referenced order `refunded` and
+      // revoke its entitlements so download + reader deny access immediately;
+      // recorded in the audit trail and alerted. Idempotent on re-delivery.
+      const adj = event.data;
+      await handleRefundOrChargeback({
+        transactionId: adj.transactionId,
+        action: String(adj.action),
+        providerEventId: event.eventId,
+        reason: `adjustment ${adj.id} (${adj.status})`,
       });
     } else {
       console.log("[paddle-webhook] ignoring event:", event.eventType);
