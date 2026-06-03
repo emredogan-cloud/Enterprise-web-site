@@ -189,7 +189,18 @@ function LibraryTile({
 
         <div className="mt-3">
           {entry.status === "ready" ? (
-            <DownloadButton bookId={entry.bookId} />
+            // Phase E — primary "Read" (online reader) + secondary Download.
+            // Shown ONLY for `ready`; the reader route re-checks ownership +
+            // status, so this link never grants access on its own.
+            <div className="flex flex-col gap-2">
+              <Link
+                href={`/read/${entry.bookId}`}
+                className="home-cta-primary inline-flex h-11 items-center justify-center rounded-full px-5 text-sm font-semibold tracking-tight"
+              >
+                Read
+              </Link>
+              <DownloadButton bookId={entry.bookId} variant="secondary" />
+            </div>
           ) : entry.status === "pending" ? (
             <p className="inline-flex items-center gap-2 text-xs text-fg-mid">
               <span
@@ -263,10 +274,19 @@ function LibraryListRow({
         />
       </div>
 
-      {/* Download / pending / revoked */}
+      {/* Read / Download / pending / revoked */}
       <div className="flex-shrink-0">
         {entry.status === "ready" ? (
-          <DownloadButton bookId={entry.bookId} size="sm" />
+          // Phase E — status-gated "Read" entry-point beside Download.
+          <div className="flex items-center gap-2">
+            <Link
+              href={`/read/${entry.bookId}`}
+              className="home-cta-primary inline-flex h-9 items-center justify-center rounded-full px-4 text-sm font-semibold tracking-tight"
+            >
+              Read
+            </Link>
+            <DownloadButton bookId={entry.bookId} size="sm" variant="secondary" />
+          </div>
         ) : entry.status === "pending" ? (
           <span className="inline-flex items-center gap-1.5 text-xs text-fg-mid">
             <span
