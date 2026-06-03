@@ -8,6 +8,7 @@ import { loadAuthenticatedLocalUser } from "@/lib/account";
 import { db } from "@/lib/db";
 import { downloadLogs, entitlements } from "@/lib/db/schema";
 import type { ReadStatus } from "@/lib/db/queries/account";
+import { resolveEntitlementAccess } from "@/lib/db/queries/ownership";
 import {
   ARTIFACTS_BUCKET,
   generateSignedDownloadUrl,
@@ -63,26 +64,25 @@ export async function downloadBook(bookId: string): Promise<DownloadResult> {
     };
   }
 
-  // 2. AuthZ — entitlement lookup, keyed on the UNIQUE (user_id, book_id)
-  //    composite index. A missing row means "you don't own this book".
-  const entitlement = await db.query.entitlements.findFirst({
-    where: (e, { and, eq }) =>
-      and(eq(e.userId, userCtx.localUserId), eq(e.bookId, bookId)),
-    columns: { id: true, status: true, watermarkedKey: true },
-  });
+  // 2-3. AuthZ + state — delegated to the shared `resolveEntitlementAccess`
+  //      chokepoint (Phase D) so the reader and the downloader can never
+  //      drift on the ownership/readiness rule. Keyed on the UNIQUE
+  //      (user_id, book_id) index → cross-user access is structurally
+  //      impossible, and a missing entitlement is indistinguishable from a
+  //      non-existent book (no enumeration).
+  const access = await resolveEntitlementAccess(userCtx.localUserId, bookId);
 
-  if (!entitlement) {
+  if (access.state === "not-owned") {
     return { ok: false, error: "You do not own this book." };
   }
-
-  // 3. State — only `ready` entitlements with a real artifact key qualify.
-  if (entitlement.status !== "ready" || !entitlement.watermarkedKey) {
+  if (access.state === "not-ready") {
     return {
       ok: false,
       error:
         "Your copy is still being prepared. Please check back in a moment.",
     };
   }
+  const entitlement = access.entitlement;
 
   // 4. Audit log — insert BEFORE returning the URL so the request appears
   //    in the velocity trail even if the client never actually clicks
@@ -110,7 +110,7 @@ export async function downloadBook(bookId: string): Promise<DownloadResult> {
   try {
     const url = await generateSignedDownloadUrl({
       bucket: ARTIFACTS_BUCKET,
-      key: entitlement.watermarkedKey,
+      key: access.artifactKey,
       // Default TTL = 600s; the storage module's hard ceiling is 900s.
     });
 
