@@ -9,6 +9,7 @@ import { ReaderShell } from "@/components/reader-shell";
 import { UnprovisionedNotice } from "@/components/unprovisioned-notice";
 import { loadAuthenticatedLocalUser } from "@/lib/account";
 import { db } from "@/lib/db";
+import { resolveEntitlementAccess } from "@/lib/db/queries/ownership";
 import {
   ARTIFACTS_BUCKET,
   generateSignedDownloadUrl,
@@ -39,24 +40,19 @@ export default async function ReadBookPage({ params }: { params: Params }) {
     );
   }
 
-  // AuthZ — entitlement lookup keyed on the UNIQUE (user_id, book_id)
-  // composite index. The DB enforces ownership; a missing row 404s.
-  // (Same discipline as `downloadBook` in SUB-PR 1.7, intentionally
-  // duplicated for clarity — the reader and the downloader are two
-  // separate read paths to the same private artifact.)
-  const entitlement = await db.query.entitlements.findFirst({
-    where: (e, { and, eq }) =>
-      and(eq(e.userId, userCtx.localUserId), eq(e.bookId, bookId)),
-    columns: { id: true, status: true, watermarkedKey: true },
-    with: {
-      book: { columns: { id: true, slug: true, title: true } },
-    },
-  });
+  // AuthZ + state — delegated to the shared `resolveEntitlementAccess`
+  // chokepoint (Phase D), the SAME one `downloadBook` uses, so the reader and
+  // the downloader can never drift on the ownership/readiness rule. Keyed on
+  // the UNIQUE (user_id, book_id) index → the DB enforces ownership and a
+  // missing entitlement 404s (indistinguishable from a non-existent book — no
+  // enumeration).
+  const access = await resolveEntitlementAccess(userCtx.localUserId, bookId);
 
-  if (!entitlement) notFound();
+  if (access.state === "not-owned") notFound();
 
-  // State guard — only `ready` + a stored artifact key qualify.
-  if (entitlement.status !== "ready" || !entitlement.watermarkedKey) {
+  // Only `ready` + a stored artifact key qualify; pending AND revoked both
+  // fall here, so a revoked entitlement closes the reader gate immediately.
+  if (access.state === "not-ready") {
     return (
       <ReaderFallback
         eyebrow="Almost there"
@@ -85,6 +81,7 @@ export default async function ReadBookPage({ params }: { params: Params }) {
     columns: { page: true },
   });
   const initialPage = progress?.page && progress.page >= 1 ? progress.page : 1;
+  const entitlement = access.entitlement;
 
   // Short-TTL signed URL — pdf.js will use HTTP range requests against this
   // single URL; R2 signs the URL itself, not specific byte ranges, so range
@@ -93,7 +90,7 @@ export default async function ReadBookPage({ params }: { params: Params }) {
   try {
     signedUrl = await generateSignedDownloadUrl({
       bucket: ARTIFACTS_BUCKET,
-      key: entitlement.watermarkedKey,
+      key: access.artifactKey,
     });
   } catch (err) {
     console.error("[reader] signed URL generation failed:", err);
