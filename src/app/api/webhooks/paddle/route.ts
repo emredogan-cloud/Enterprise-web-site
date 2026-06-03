@@ -77,7 +77,15 @@ export async function POST(request: NextRequest) {
           customerEmail = customer.email ?? null;
           customerName = customer.name ?? null;
         } catch (err) {
-          console.warn("[paddle-webhook] customer.get failed:", err);
+          // [Phase B — robustness] Do NOT swallow into a null email: fulfillment
+          // then early-returns and we'd respond 200, so Paddle never retries and
+          // the paid order is lost. Re-throw → the handler returns 500 → Paddle
+          // retries (customer.get failures are usually transient).
+          throw err instanceof Error
+            ? err
+            : new Error(
+                `customer.get failed for ${customerId} (tx ${transactionId})`,
+              );
         }
       }
 
@@ -107,6 +115,28 @@ export async function POST(request: NextRequest) {
         totalCents,
         taxCents,
         currency,
+      });
+    } else if (event.eventType === "transaction.payment_failed") {
+      // [Phase B] Acknowledge + audit a failed payment attempt instead of
+      // silently ignoring it. We deliberately do NOT write an order row here:
+      // a failed attempt shares its transaction id (= mor_order_ref) with the
+      // eventual `transaction.completed`, so inserting a 'failed' order would
+      // collide with that idempotent insert and block fulfillment. The full
+      // order-status lifecycle (failed / refunded + revocation) is a
+      // fulfillment-layer concern handled in a later phase — here we surface
+      // the failure so it is never lost.
+      const tx = event.data;
+      const rawBookIds = (tx.customData as { bookIds?: unknown } | null)
+        ?.bookIds;
+      const bookIds = Array.isArray(rawBookIds)
+        ? rawBookIds.filter(
+            (x): x is string => typeof x === "string" && x.length > 0,
+          )
+        : [];
+      logger.warn("[paddle-webhook] transaction.payment_failed", {
+        transactionId: tx.id,
+        customerId: tx.customerId ?? null,
+        bookIds,
       });
     } else {
       console.log("[paddle-webhook] ignoring event:", event.eventType);
