@@ -34,7 +34,7 @@ export function NewsletterSection() {
     if (!trimmed) return;
 
     setStatus({ state: "loading" });
-    const result = await subscribeToNewsletter(trimmed);
+    const result = await subscribeToNewsletter(trimmed, "home");
     if (result.ok) {
       trackEvent("newsletter_signup");
       setStatus({ state: "ok" });

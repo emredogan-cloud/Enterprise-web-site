@@ -3,6 +3,13 @@
 import { Info, Mail } from "lucide-react";
 import { useState, type FormEvent } from "react";
 
+import { trackEvent } from "@/lib/analytics";
+import {
+  newsletterErrorMessage,
+  subscribeToNewsletter,
+  type NewsletterErrorCode,
+} from "@/lib/newsletter-client";
+
 /**
  * Editorial sidebar — two stacked glass cards:
  *
@@ -14,8 +21,13 @@ import { useState, type FormEvent } from "react";
  * subtle emerald glow + hover lift on pills.
  *
  * Client Component because the newsletter form holds local state.
- * Same handler / TODO pattern as the homepage / article-page newsletter
- * (waiting on Beehiiv decision).
+ *
+ * ⚠ This form used to `setStatus("ok")` and subscribe nobody — it told
+ * the reader "you'll hear from us soon" and then threw the address away.
+ * The other three cinematic forms were wired to `/api/newsletter` in
+ * Phase 2.A; this one was left behind with a TODO, so the lie the route's
+ * own header says was ended survived here. It is wired now, and it is
+ * tagged `category` so one master list stays segmentable.
  */
 
 const TOPICS_BY_CATEGORY: Record<string, string[]> = {
@@ -55,13 +67,26 @@ export function CategorySidebar({
   const about = ABOUT_BY_CATEGORY[categorySlug] ?? DEFAULT_ABOUT;
 
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "ok">("idle");
+  const [status, setStatus] = useState<
+    | { state: "idle" }
+    | { state: "loading" }
+    | { state: "ok" }
+    | { state: "error"; code: NewsletterErrorCode }
+  >({ state: "idle" });
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!email.trim()) return;
-    // TODO: wire to /api/newsletter once a provider lands (STRATEJI §9).
-    setStatus("ok");
+    const trimmed = email.trim();
+    if (!trimmed) return;
+
+    setStatus({ state: "loading" });
+    const result = await subscribeToNewsletter(trimmed, "category");
+    if (result.ok) {
+      trackEvent("newsletter_signup");
+      setStatus({ state: "ok" });
+    } else {
+      setStatus({ state: "error", code: result.code });
+    }
   };
 
   return (
@@ -122,7 +147,7 @@ export function CategorySidebar({
           Subscribe to follow our reading guides and book recommendations.
         </p>
 
-        {status === "ok" ? (
+        {status.state === "ok" ? (
           <p
             role="status"
             className="mt-5 inline-block rounded-full border border-[#33f0aa]/30 bg-[#33f0aa]/10 px-4 py-2 text-xs text-[#33f0aa]"
@@ -145,10 +170,16 @@ export function CategorySidebar({
             />
             <button
               type="submit"
-              className="home-cta-primary inline-flex h-10 w-full items-center justify-center rounded-full text-xs font-semibold tracking-tight"
+              disabled={status.state === "loading"}
+              className="home-cta-primary inline-flex h-10 w-full items-center justify-center rounded-full text-xs font-semibold tracking-tight disabled:cursor-not-allowed disabled:opacity-60"
             >
-              Subscribe
+              {status.state === "loading" ? "Subscribing…" : "Subscribe"}
             </button>
+            {status.state === "error" ? (
+              <p role="alert" className="text-xs leading-relaxed text-[#f0a3a3]">
+                {newsletterErrorMessage(status.code)}
+              </p>
+            ) : null}
           </form>
         )}
       </div>

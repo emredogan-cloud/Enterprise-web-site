@@ -15,7 +15,16 @@ export type AnalyticsEvent =
   | "purchase"
   | "newsletter_signup"
   | "sample_read"
-  | "search";
+  | "search"
+  /*
+   * Codex Enigmatica verification funnel. Both events carry NOTHING but
+   * their own name — no submission, no normalized form, no length. The
+   * whole point of the verification endpoint is that the answer never
+   * leaves the server, and an analytics beacon is exactly the kind of
+   * side channel that quietly undoes that.
+   */
+  | "codex_verify_attempt"
+  | "codex_verify_success";
 
 export type EventProps = Record<string, string | number | boolean | null>;
 

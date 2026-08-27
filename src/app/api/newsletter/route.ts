@@ -27,7 +27,12 @@ import { Resend } from "resend";
  *     no-op from the user's perspective.
  *
  * Body shape:
- *   { "email": "you@example.com" }
+ *   { "email": "you@example.com", "source"?: "home" | "article" |
+ *     "category" | "codex-verify" }
+ *
+ * `source` is optional and advisory: an unknown value is dropped rather
+ * than rejected, because a mistyped tag must never cost someone their
+ * subscription.
  *
  * Responses:
  *   200 { ok: true, status: "subscribed" | "already-subscribed" }
@@ -46,6 +51,23 @@ const MAX_EMAIL_LENGTH = 254; // RFC 5321 maximum
 // Pragmatic email check — not RFC-perfect (no regex can be), but tight enough
 // to reject obvious garbage at the edge. The real validation is at Resend.
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/**
+ * Which form produced this subscription.
+ *
+ * ONE audience, tagged by origin — not one audience per form. Splitting
+ * the list is how a person ends up on three lists, unsubscribing from
+ * one, and still hearing from you: technically compliant, actually
+ * ignoring them.
+ *
+ * The allow-list is closed on purpose. `source` arrives from the browser
+ * and is therefore untrusted input; echoing an arbitrary string into a
+ * stored contact property would let a caller write whatever they like
+ * into the audience record. Anything not on this list is dropped —
+ * silently, because a bad tag is not the subscriber's problem and must
+ * not cost them their subscription.
+ */
+const SOURCES = new Set(["home", "article", "category", "codex-verify"]);
 
 function badRequest(error: string) {
   return NextResponse.json({ ok: false, error }, { status: 400 });
@@ -76,6 +98,12 @@ export async function POST(req: Request) {
     return badRequest("invalid-email");
   }
 
+  const rawSource =
+    typeof body === "object" && body !== null && "source" in body
+      ? String((body as { source: unknown }).source ?? "")
+      : "";
+  const source = SOURCES.has(rawSource) ? rawSource : "";
+
   // ---- 2. Resolve provider ----------------------------------------------
   const apiKey = process.env.RESEND_API_KEY;
   const audienceId = process.env.RESEND_AUDIENCE_ID;
@@ -96,6 +124,18 @@ export async function POST(req: Request) {
       audienceId,
       email,
       unsubscribed: false,
+      // Custom properties are what make ONE list segmentable. Recording
+      // the origin at subscribe time is the only moment it is knowable —
+      // reconstructing it later is guesswork, and guesswork about why
+      // someone consented is exactly what a consent record must not be.
+      //
+      // Deliberately NOT recorded: IP address, user agent, country. None
+      // is needed to honour this consent, and collecting personal data
+      // because it happens to be in the request is how a mailing list
+      // becomes a surveillance record.
+      ...(source
+        ? { properties: { source, signup_purpose: "product-updates" } }
+        : {}),
     });
 
     // Resend returns `{ data, error }` — `error` is set on validation /

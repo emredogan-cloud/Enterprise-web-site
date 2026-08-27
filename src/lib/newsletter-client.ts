@@ -11,6 +11,25 @@
  * shows a real error instead of a hung pending state.
  */
 
+/**
+ * Where a subscription came from.
+ *
+ * ONE master list, many sources — not one list per form. A second list is
+ * a second unsubscribe surface, and a reader who opts out of "the
+ * newsletter" but keeps receiving "the Codex list" has been ignored, not
+ * segmented.
+ *
+ * The value is stored as a Resend custom property so the audience can be
+ * segmented later without re-asking anyone for consent. Keep this union
+ * closed: an open string would let a caller invent a tag that no segment
+ * ever matches, and the record would be silently useless.
+ */
+export type NewsletterSource =
+  | "home"
+  | "article"
+  | "category"
+  | "codex-verify";
+
 export type NewsletterErrorCode =
   | "invalid-email"
   | "provider-unavailable"
@@ -51,13 +70,14 @@ export function newsletterErrorMessage(code: NewsletterErrorCode): string {
  */
 export async function subscribeToNewsletter(
   email: string,
+  source?: NewsletterSource,
 ): Promise<NewsletterResult> {
   let res: Response;
   try {
     res = await fetch("/api/newsletter", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify(source ? { email, source } : { email }),
     });
   } catch {
     return { ok: false, code: "network" };

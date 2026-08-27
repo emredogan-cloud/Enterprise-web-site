@@ -42,7 +42,7 @@ export function AuthorNewsletterStrip({
     if (!trimmed) return;
 
     setStatus({ state: "loading" });
-    const result = await subscribeToNewsletter(trimmed);
+    const result = await subscribeToNewsletter(trimmed, "article");
     if (result.ok) {
       setStatus({ state: "ok" });
     } else {
