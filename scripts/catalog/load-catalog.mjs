@@ -36,9 +36,11 @@ const commit = process.argv.includes("--commit");
 const prodOk = process.argv.includes("--i-know-this-is-production");
 
 function readEnvUrl() {
-  const raw = readFileSync(".env.local", "utf8");
+  const flag = process.argv.indexOf("--env");
+  const envFile = flag !== -1 ? process.argv[flag + 1] : ".env.local";
+  const raw = readFileSync(envFile, "utf8");
   const line = raw.split("\n").find((l) => l.startsWith("DATABASE_URL="));
-  if (!line) throw new Error("DATABASE_URL not found in .env.local");
+  if (!line) throw new Error(`DATABASE_URL not found in ${envFile}`);
   return line.slice("DATABASE_URL=".length).trim().replace(/^["']|["']$/g, "");
 }
 

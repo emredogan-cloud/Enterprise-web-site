@@ -65,3 +65,4 @@ next-env.d.ts
 /images/*-reference-image.png
 /images/*_reference_image.png
 /images/*_referance_image.png
+scripts/tmp/
