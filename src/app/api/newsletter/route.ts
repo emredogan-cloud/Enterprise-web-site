@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
+import { sendWelcomeEmail } from "@/lib/email";
+import type { NewsletterSource } from "@/lib/newsletter-client";
+
 /**
  * POST /api/newsletter — subscribe an email to the Valice Press audience.
  *
@@ -69,6 +72,17 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
  */
 const SOURCES = new Set(["home", "article", "category", "codex-verify"]);
 
+/**
+ * The consent sentence, stored verbatim on every subscriber record.
+ *
+ * This must stay in sync with the wording shown next to the signup forms.
+ * When the form copy changes, change it here too and leave the old value
+ * on existing records — a consent record describes what someone agreed to
+ * at the time, not what the current form says.
+ */
+const CONSENT_TEXT =
+  "I agree to receive occasional email from Valice Press about new books and editions. I can unsubscribe at any time.";
+
 function badRequest(error: string) {
   return NextResponse.json({ ok: false, error }, { status: 400 });
 }
@@ -133,9 +147,18 @@ export async function POST(req: Request) {
       // is needed to honour this consent, and collecting personal data
       // because it happens to be in the request is how a mailing list
       // becomes a surveillance record.
-      ...(source
-        ? { properties: { source, signup_purpose: "product-updates" } }
-        : {}),
+      properties: {
+        ...(source ? { source } : {}),
+        // The consent record. `signup_purpose` is the machine-readable
+        // scope; `consent_text` stores, verbatim, the sentence the person
+        // actually agreed to. Storing only a code means that if the form
+        // wording changes later, nobody can reconstruct what any given
+        // subscriber consented to — which is exactly the question a
+        // consent record exists to answer.
+        signup_purpose: "product-updates",
+        consent_text: CONSENT_TEXT,
+        consent_at: new Date().toISOString(),
+      },
     });
 
     // Resend returns `{ data, error }` — `error` is set on validation /
@@ -154,6 +177,17 @@ export async function POST(req: Request) {
         { status: 500 },
       );
     }
+
+    // Welcome email — fire and forget. A failed send must not turn a
+    // successful subscription into an error response: the person is on the
+    // list either way, and telling them otherwise would be false. Resend
+    // de-duplicates on the address, so a resubmission cannot double-send.
+    void sendWelcomeEmail({
+      to: email,
+      source: (source || null) as NewsletterSource | null,
+    }).then((r) => {
+      if (!r.ok) console.warn("[api/newsletter] welcome email failed:", r.error);
+    });
 
     return NextResponse.json({ ok: true, status: "subscribed" });
   } catch (err) {

@@ -70,10 +70,9 @@ describe("POST /api/newsletter", () => {
     const res = await post({ email: "a@b.co", source: "codex-verify" });
     expect(res.status).toBe(200);
     expect(created).toHaveLength(1);
-    expect(created[0].properties).toEqual({
-      source: "codex-verify",
-      signup_purpose: "product-updates",
-    });
+    const props = created[0].properties as Record<string, string>;
+    expect(props.source).toBe("codex-verify");
+    expect(props.signup_purpose).toBe("product-updates");
   });
 
   it.each(["home", "article", "category", "codex-verify"])(
@@ -91,7 +90,11 @@ describe("POST /api/newsletter", () => {
     // cost a real person their subscription over a typo in our code.
     const res = await post({ email: "a@b.co", source: "not-a-real-source" });
     expect(res.status).toBe(200);
-    expect(created[0].properties).toBeUndefined();
+    const props = created[0].properties as Record<string, string>;
+    expect(props.source).toBeUndefined();
+    // The consent record is still written — consent is not conditional on
+    // us having correctly identified which form it came from.
+    expect(props.signup_purpose).toBe("product-updates");
   });
 
   it("never writes arbitrary input into the contact record", async () => {
@@ -99,13 +102,17 @@ describe("POST /api/newsletter", () => {
     expect(JSON.stringify(created[0])).not.toContain("script");
   });
 
-  it("omits properties entirely when no source is given", async () => {
+  it("records consent even when no source is given", async () => {
+    // Consent is recorded on every subscription, not only tagged ones.
+    // `source` is analytics; `signup_purpose`, `consent_text` and
+    // `consent_at` are the record of what this person agreed to, and that
+    // must exist for every subscriber or it is not a consent record.
     await post({ email: "a@b.co" });
-    expect(created[0]).toEqual({
-      audienceId: "aud_test",
-      email: "a@b.co",
-      unsubscribed: false,
-    });
+    const props = created[0].properties as Record<string, string>;
+    expect(props.source).toBeUndefined();
+    expect(props.signup_purpose).toBe("product-updates");
+    expect(props.consent_text).toMatch(/unsubscribe at any time/i);
+    expect(Date.parse(props.consent_at)).not.toBeNaN();
   });
 
   it("does not record IP, user agent or country", async () => {

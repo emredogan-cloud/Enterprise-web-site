@@ -17,6 +17,8 @@
 import { Resend } from "resend";
 
 import { OrderReadyEmail } from "@/emails/order-ready";
+import { WelcomeEmail } from "@/emails/welcome";
+import type { NewsletterSource } from "@/lib/newsletter-client";
 import { getSiteUrl } from "@/lib/site-url";
 
 // ---------------------------------------------------------------------------
@@ -130,6 +132,88 @@ export async function sendOrderReadyEmail(
         }),
       },
       { idempotencyKey },
+    );
+
+    if (result.error) {
+      return {
+        ok: false,
+        error: result.error.message ?? "Unknown Resend error",
+      };
+    }
+    return { ok: true, id: result.data?.id ?? "" };
+  } catch (err) {
+    return {
+      ok: false,
+      error: err instanceof Error ? err.message : "Unknown email error",
+    };
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Marketing email
+//
+// Everything above this line is transactional: it is sent because someone
+// bought something, and consent is not the gate — the purchase is. Below
+// this line is marketing, and the rules are different. A marketing send
+// requires an opt-in, carries an unsubscribe link, and must never be
+// triggered by a purchase alone. Buying a book is not subscribing to a
+// newsletter, and conflating the two is how a storefront ends up mailing
+// people who never agreed to hear from it.
+// ---------------------------------------------------------------------------
+
+export interface SendWelcomeArgs {
+  to: string;
+  /** Which form the subscription came from; changes only the opening line. */
+  source: NewsletterSource | null;
+}
+
+/**
+ * Send the one-off welcome email to a new subscriber.
+ *
+ * Idempotency: keyed on the address, so a double form submission or a
+ * retried request cannot produce two welcomes. Resend de-duplicates inside
+ * its own pipeline on this key.
+ *
+ * Non-critical, like every other send here: a failure is logged and the
+ * subscription still stands. Losing the welcome email is a small problem;
+ * losing the subscription because the welcome failed would be a bigger one.
+ */
+export async function sendWelcomeEmail(
+  args: SendWelcomeArgs,
+): Promise<SendEmailResult> {
+  const resend = getResendClient();
+  if (!resend) {
+    return {
+      ok: false,
+      error: "Resend not configured (RESEND_API_KEY missing).",
+    };
+  }
+
+  const base = getAppBaseUrl();
+
+  try {
+    const result = await resend.emails.send(
+      {
+        from: getFromAddress(),
+        to: args.to,
+        subject: "You're on the Valice Press list",
+        react: WelcomeEmail({
+          source: args.source,
+          catalogUrl: `${base}/books`,
+          // Resend expands this token to the per-recipient unsubscribe URL
+          // for the audience. Hard-coding a link here would produce an
+          // unsubscribe button that unsubscribes nobody.
+          unsubscribeUrl: "{{{RESEND_UNSUBSCRIBE_URL}}}",
+        }),
+        headers: {
+          // One-click unsubscribe (RFC 8058). Gmail and Yahoo require this
+          // on bulk mail, and it is the difference between a reader
+          // unsubscribing and a reader marking the message as spam.
+          "List-Unsubscribe": "<{{{RESEND_UNSUBSCRIBE_URL}}}>",
+          "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+        },
+      },
+      { idempotencyKey: `welcome:${args.to.toLowerCase()}` },
     );
 
     if (result.error) {
