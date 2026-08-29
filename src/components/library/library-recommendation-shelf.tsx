@@ -1,7 +1,7 @@
 import { BookOpen } from "lucide-react";
 import Link from "next/link";
 
-import { DEMO_BOOKS } from "@/components/catalog/demo-books";
+import type { CatalogItem } from "@/components/catalog/catalog-item";
 import { CinematicRecommendationCarousel } from "@/components/cinematic/recommendation-carousel";
 import { RecommendationCard } from "@/components/cart/recommendation-card";
 
@@ -17,9 +17,12 @@ import { RecommendationCard } from "@/components/cart/recommendation-card";
  * add-to-cart button). On a library page, encouraging the reader to
  * add more books to their cart matches the surface intent.
  */
-const PICKS = DEMO_BOOKS.slice(0, 8);
-
-export function LibraryRecommendationShelf() {
+export function LibraryRecommendationShelf({
+  picks,
+}: {
+  picks: CatalogItem[];
+}) {
+  if (picks.length === 0) return null;
   return (
     <section className="mx-auto mt-20 max-w-[1320px] px-4 sm:mt-24 sm:px-6">
       <div className="home-glass relative overflow-hidden rounded-[36px]">
@@ -65,7 +68,7 @@ export function LibraryRecommendationShelf() {
           {/* RIGHT — carousel */}
           <div className="relative border-t border-white/[0.05] py-7 lg:border-l lg:border-t-0 lg:py-9">
             <CinematicRecommendationCarousel arrowVariant="overlay" padX={7}>
-              {PICKS.map((book) => (
+              {picks.map((book) => (
                 <RecommendationCard key={book.id} book={book} />
               ))}
             </CinematicRecommendationCarousel>

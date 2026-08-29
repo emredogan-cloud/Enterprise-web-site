@@ -38,7 +38,7 @@ export function FounderCard() {
 
           <div className="mt-6 space-y-5 text-base leading-relaxed text-fg-mid sm:text-[17px]">
             <p>
-              Digital Bookstore is run by Emre Doğan as a sole proprietor — a
+              Valice Press is run by Emre Doğan as a sole proprietor — a
               serious one-person project, built in the open. Every
               architectural decision is documented in the{" "}
               <Link

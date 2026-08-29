@@ -68,7 +68,7 @@ export async function generateMetadata({
   const category = await getCategoryBySlug(slug);
   if (!category) return { title: "Category not found" };
 
-  const description = `Blog posts filed under ${category.name} — Digital Bookstore.`;
+  const description = `Blog posts filed under ${category.name} — Valice Press.`;
   const url = `/blog/category/${slug}`;
 
   return buildPageMetadata({

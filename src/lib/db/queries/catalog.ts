@@ -586,6 +586,52 @@ export async function listAuthorSlugs(): Promise<Array<{ slug: string }>> {
   );
 }
 
+/**
+ * Every author with a published book, plus how many they have.
+ *
+ * Powers the `/authors` discovery page. That page used to render a
+ * hard-coded roster — Harari, Austen, Orwell, Rowling — with invented
+ * roles and follower counts. Those are real people who do not publish with
+ * Valice Press; listing them on a publisher's author page is a false claim
+ * about who we publish, not placeholder styling. Real rows only.
+ */
+export interface AuthorSummary {
+  slug: string;
+  name: string;
+  bio: string | null;
+  bookCount: number;
+}
+
+export async function listAllAuthors(): Promise<AuthorSummary[]> {
+  return safeQuery(
+    "listAllAuthors",
+    async () => {
+      const rows = await db.query.authors.findMany({
+        columns: { slug: true, name: true, bio: true },
+        with: {
+          bookAuthors: {
+            with: { book: { columns: { status: true } } },
+          },
+        },
+        orderBy: (a, { asc }) => asc(a.name),
+      });
+
+      return rows
+        .map((a) => ({
+          slug: a.slug,
+          name: a.name,
+          bio: a.bio,
+          bookCount: a.bookAuthors.filter(
+            (ba) => ba.book?.status === "published",
+          ).length,
+        }))
+        // An author with nothing published yet has no page worth linking to.
+        .filter((a) => a.bookCount > 0);
+    },
+    [],
+  );
+}
+
 export interface AuthorPageData {
   slug: string;
   name: string;

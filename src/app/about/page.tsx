@@ -53,11 +53,11 @@ import { RevealOnScroll } from "@/components/home/reveal-on-scroll";
 export const metadata: Metadata = buildPageMetadata({
   title: "About",
   description:
-    "Why Digital Bookstore exists, who built it, and what it stands for. Buy once, yours to keep, never locked.",
+    "Why Valice Press exists, who built it, and what it stands for. Buy once, yours to keep, never locked.",
   path: "/about",
-  ogTitle: "About — Digital Bookstore",
+  ogTitle: "About — Valice Press",
   ogDescription:
-    "Why Digital Bookstore exists, who built it, and what it stands for.",
+    "Why Valice Press exists, who built it, and what it stands for.",
   type: "article",
 });
 

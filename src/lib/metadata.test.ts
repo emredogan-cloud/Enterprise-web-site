@@ -25,7 +25,7 @@ describe("buildPageMetadata", () => {
     expect(m.title).toBe("All books");
 
     const og = m.openGraph as Loose;
-    expect(og.siteName).toBe("Digital Bookstore");
+    expect(og.siteName).toBe("Valice Press");
     expect(og.locale).toBe("en_US");
     expect(og.url).toBe("/books");
     expect(og.type).toBe("website");
@@ -43,11 +43,11 @@ describe("buildPageMetadata", () => {
       title: "About",
       description: "Long-form description.",
       path: "/about",
-      ogTitle: "About — Digital Bookstore",
+      ogTitle: "About — Valice Press",
       ogDescription: "Short share blurb.",
       type: "article",
     }).openGraph as Loose;
-    expect(og.title).toBe("About — Digital Bookstore");
+    expect(og.title).toBe("About — Valice Press");
     expect(og.description).toBe("Short share blurb.");
     expect(og.type).toBe("article");
   });
@@ -64,7 +64,7 @@ describe("buildPageMetadata", () => {
     expect(withCover.images).toEqual([
       { url: "https://cdn.example/meditations.webp", alt: "Cover of Meditations" },
     ]);
-    expect(withCover.siteName).toBe("Digital Bookstore");
+    expect(withCover.siteName).toBe("Valice Press");
 
     const noCover = buildPageMetadata({
       title: "Meditations",
@@ -77,14 +77,14 @@ describe("buildPageMetadata", () => {
 
   it("passes robots through (demo/preview noindex) and uses {absolute} title for og", () => {
     const m = buildPageMetadata({
-      title: { absolute: "Digital Bookstore — Find it. Own it." },
+      title: { absolute: "Valice Press — Find it. Own it." },
       description: "d",
       path: "/",
       robots: { index: false, follow: true },
     });
     expect(m.robots).toEqual({ index: false, follow: true });
-    expect(m.title).toEqual({ absolute: "Digital Bookstore — Find it. Own it." });
-    expect((m.openGraph as Loose).title).toBe("Digital Bookstore — Find it. Own it.");
+    expect(m.title).toEqual({ absolute: "Valice Press — Find it. Own it." });
+    expect((m.openGraph as Loose).title).toBe("Valice Press — Find it. Own it.");
   });
 
   it("emits article publishedTime/section when provided; omits robots otherwise", () => {

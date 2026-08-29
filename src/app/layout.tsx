@@ -39,14 +39,14 @@ export const metadata: Metadata = {
     ? { verification: { google: process.env.GSC_VERIFICATION } }
     : {}),
   title: {
-    default: "Digital Bookstore",
-    template: "%s · Digital Bookstore",
+    default: "Valice Press",
+    template: "%s · Valice Press",
   },
   description:
     "Buy a digital book once, download a watermarked PDF, and read it online. Yours to keep — never locked.",
   // Per-page metadata extends these defaults via the App Router merge.
   openGraph: {
-    siteName: "Digital Bookstore",
+    siteName: "Valice Press",
     type: "website",
     locale: "en_US",
   },

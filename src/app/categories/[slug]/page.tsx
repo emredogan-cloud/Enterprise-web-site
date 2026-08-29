@@ -59,7 +59,7 @@ export async function generateMetadata({
   const category = await getCategoryPageBySlug(slug);
   const name = category?.name ?? resolveDemoCategoryName(slug);
   if (!name) return { title: "Category not found" };
-  const description = `Browse ${name} on Digital Bookstore.`;
+  const description = `Browse ${name} on Valice Press.`;
   const url = `/categories/${slug}`;
   return buildPageMetadata({
     title: name,

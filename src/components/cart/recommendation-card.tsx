@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useTransition } from "react";
 
 import { addToCart } from "@/app/cart/actions";
-import type { DemoBook } from "@/components/catalog/demo-books";
+import type { CatalogItem } from "@/components/catalog/catalog-item";
 
 /**
  * Single recommendation card for the "You might like" shelf.
@@ -19,7 +19,7 @@ import type { DemoBook } from "@/components/catalog/demo-books";
  * once added, it flips to a green ✓ check to confirm the addition. The
  * `cart-changed` event refreshes the header's cart-count indicator.
  */
-export function RecommendationCard({ book }: { book: DemoBook }) {
+export function RecommendationCard({ book }: { book: CatalogItem }) {
   const [pending, startTransition] = useTransition();
   // Local "added" flag — visible for 2 seconds, then resets.
   // We use a stale `useState` ref pattern via a CSS data attribute so we

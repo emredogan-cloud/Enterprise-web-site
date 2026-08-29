@@ -10,7 +10,8 @@ import { SearchHero } from "@/components/search/search-hero";
 import { SearchResults } from "@/components/search/search-results";
 import { TrackEvent } from "@/components/analytics/track-event";
 import { SuggestionPills } from "@/components/search/suggestion-pills";
-import { searchBooks } from "@/lib/db/queries/catalog";
+import { listPublishedBooks, searchBooks } from "@/lib/db/queries/catalog";
+import { toCatalogItems } from "@/components/catalog/catalog-item";
 
 /**
  * `/search` — cinematic universal search experience.
@@ -50,6 +51,11 @@ export default async function SearchPage({
 
   const results = hasQuery ? await searchBooks(query) : [];
 
+  // Real titles for the "Popular searches" panel. Not analytics-ranked —
+  // there is no search-volume pipeline — just the published catalog, so
+  // every row leads somewhere real. Empty catalog → the panel hides itself.
+  const popularPicks = toCatalogItems((await listPublishedBooks()).slice(0, 5));
+
   return (
     <div className="cinematic-root">
       <CinematicHeader />
@@ -75,7 +81,7 @@ export default async function SearchPage({
 
             {/* Two-panel discovery — 50/50 on lg, stacked below */}
             <section className="mx-auto mt-14 grid max-w-7xl gap-5 px-6 lg:grid-cols-2 lg:gap-6">
-              <PopularSearchesPanel />
+              <PopularSearchesPanel picks={popularPicks} />
               <CategoryDiscoveryPanel />
             </section>
 

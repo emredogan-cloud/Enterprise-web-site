@@ -54,9 +54,9 @@ export const revalidate = 3600;
 export const metadata: Metadata = buildPageMetadata({
   title: "Browse by category",
   description:
-    "Step into every literary world — fantasy, science fiction, mystery, romance and more. Browse the Digital Bookstore catalog by category.",
+    "Step into every literary world — fantasy, science fiction, mystery, romance and more. Browse the Valice Press catalog by category.",
   path: "/categories",
-  ogTitle: "Browse by category — Digital Bookstore",
+  ogTitle: "Browse by category — Valice Press",
   ogDescription:
     "Step into every literary world — fantasy, science fiction, mystery, romance and more.",
 });

@@ -84,7 +84,7 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
           href="/"
           className="group flex items-center gap-2 text-[15px] font-medium tracking-tight text-fg-hi"
         >
-          <span className="font-serif">digital bookstore</span>
+          <span className="font-serif">Valice Press</span>
           <span
             aria-hidden
             className="h-1.5 w-1.5 rounded-full bg-[#33f0aa] shadow-[0_0_8px_#33f0aa] transition-shadow group-hover:shadow-[0_0_14px_#33f0aa]"

@@ -10,7 +10,7 @@ import type { BookCardData } from "@/components/book-card";
  *
  * Phase 1.D ships it for `/authors/[slug]`; Phase 1.F reuses it for
  * `/categories/[slug]`. The catalog page uses its own `<CatalogBookCard>`
- * (DemoBook shape with synthetic ratings/badges) — we don't want to merge
+ * (CatalogItem shape with synthetic ratings/badges) — we don't want to merge
  * those two contracts in this phase.
  *
  * Composition: glass card + `<BookCover>` (cinematic emerald rim) + title

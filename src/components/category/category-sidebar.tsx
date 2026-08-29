@@ -56,7 +56,7 @@ const ABOUT_BY_CATEGORY: Record<string, string> = {
 
 const DEFAULT_TOPICS = ["Featured", "Editorial", "Notes", "Lists", "Essays"];
 const DEFAULT_ABOUT =
-  "Curated essays and field notes from the Digital Bookstore editorial desk.";
+  "Curated essays and field notes from the Valice Press editorial desk.";
 
 export function CategorySidebar({
   categorySlug,

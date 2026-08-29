@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
 /**
- * POST /api/newsletter — subscribe an email to the Digital Bookstore audience.
+ * POST /api/newsletter — subscribe an email to the Valice Press audience.
  *
  * Phase 0.C — one shared endpoint for all 3 cinematic newsletter forms:
  *   - `home/newsletter-section.tsx` (homepage)

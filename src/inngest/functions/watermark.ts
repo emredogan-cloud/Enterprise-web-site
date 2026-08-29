@@ -342,7 +342,7 @@ function buildWatermarkText(args: {
 }): string {
   const name = (args.buyerName?.trim() || "reader").slice(0, 80);
   const shortOrder = args.orderId.slice(0, 8);
-  return `Licensed to ${name} · Order ${shortOrder} · Digital Bookstore`;
+  return `Licensed to ${name} · Order ${shortOrder} · Valice Press`;
 }
 
 /**
@@ -379,7 +379,7 @@ async function stampPdfWithWatermark(
 
   // Forensic-only XMP metadata — invisible to readers, queryable by tooling.
   pdfDoc.setSubject(watermarkText);
-  pdfDoc.setProducer("Digital Bookstore");
+  pdfDoc.setProducer("Valice Press");
   pdfDoc.setKeywords([
     `orderId:${forensic.orderId}`,
     `bookId:${forensic.bookId}`,

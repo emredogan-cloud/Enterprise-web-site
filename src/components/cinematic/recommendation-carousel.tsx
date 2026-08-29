@@ -13,7 +13,7 @@ import { useRef, type ReactNode } from "react";
  * `/books/[slug]`) call this single primitive.
  *
  * Children = the cards. The carousel doesn't care what shape they are
- * (cart-shelf uses `<RecommendationCard book={DemoBook}>`, library uses
+ * (cart-shelf uses `<RecommendationCard book={CatalogItem}>`, library uses
  * the same, RelatedBooks uses its own). Width-180 + gap-20 is the
  * canonical card geometry; the arrow `scrollBy` is calibrated against
  * those numbers.

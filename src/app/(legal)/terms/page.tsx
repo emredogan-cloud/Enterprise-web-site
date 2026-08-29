@@ -18,9 +18,9 @@ import { buildPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = buildPageMetadata({
   title: "Terms of service",
   description:
-    "The rules for buying, downloading, and reading books on Digital Bookstore.",
+    "The rules for buying, downloading, and reading books on Valice Press.",
   path: "/terms",
-  ogTitle: "Terms of service — Digital Bookstore",
+  ogTitle: "Terms of service — Valice Press",
   type: "article",
 });
 
@@ -41,7 +41,7 @@ export default function TermsPage() {
     >
       <h2>1. Who we are</h2>
       <p>
-        Digital Bookstore is a first-party online store for digital
+        Valice Press is a first-party online store for digital
         books. The site is operated by Emre Doğan as a sole proprietor.
         You can reach us at{" "}
         <a href="mailto:emre30283@gmail.com">emre30283@gmail.com</a>{" "}
@@ -117,7 +117,7 @@ export default function TermsPage() {
 
       <h2>7. Reviews and user-submitted content</h2>
       <p>
-        When you post a review, you grant Digital Bookstore a
+        When you post a review, you grant Valice Press a
         non-exclusive license to display it on the book&apos;s page and
         in editorial summaries. You can delete your own reviews at any
         time. We may remove reviews that contain spam, abuse, or off-topic

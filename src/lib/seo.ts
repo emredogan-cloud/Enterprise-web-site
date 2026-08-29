@@ -19,7 +19,7 @@ import type {
 
 import { getSiteUrl } from "./site-url";
 
-export const SITE_NAME = "Digital Bookstore";
+export const SITE_NAME = "Valice Press";
 
 /**
  * Canonical site origin. Delegates to the single source of truth
@@ -245,7 +245,7 @@ export function buildSiteJsonLd(baseUrl: string): Graph {
         name: SITE_NAME,
         url: baseUrl,
         description:
-          "A first-party digital bookstore selling DRM-free, watermarked PDFs — buy once, own forever, read on any device.",
+          "The Valice Press Book Store — first-party editions sold as DRM-free, watermarked PDFs. Buy once, own forever, read on any device.",
       },
       {
         "@type": "WebSite",

@@ -154,7 +154,7 @@ export function OrderReadyEmail({
       <Preview>{`Your digital book is ready: ${bookTitle}`}</Preview>
       <Body style={bodyStyle}>
         <Container style={containerStyle}>
-          <Text style={brandStyle}>Digital Bookstore</Text>
+          <Text style={brandStyle}>Valice Press</Text>
 
           <Heading as="h1" style={titleStyle}>
             Your book is ready
@@ -197,7 +197,7 @@ export function OrderReadyEmail({
           <Hr style={hrStyle} />
 
           <Text style={footerStyle}>
-            Order ref · {shortOrderRef} · Digital Bookstore
+            Order ref · {shortOrderRef} · Valice Press
           </Text>
         </Container>
       </Body>

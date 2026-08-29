@@ -46,4 +46,4 @@ const SLOGANS: Record<string, string> = {
     "Built in the open. Argued for. Shipped with intention.",
 };
 const DEFAULT_SLOGAN =
-  "Stories, ideas, and notes from the Digital Bookstore.";
+  "Stories, ideas, and notes from the Valice Press.";

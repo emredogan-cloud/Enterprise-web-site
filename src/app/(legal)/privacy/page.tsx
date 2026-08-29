@@ -20,9 +20,9 @@ import { buildPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = buildPageMetadata({
   title: "Privacy policy",
   description:
-    "What data Digital Bookstore collects, how it flows through our infrastructure, and how to control it.",
+    "What data Valice Press collects, how it flows through our infrastructure, and how to control it.",
   path: "/privacy",
-  ogTitle: "Privacy policy — Digital Bookstore",
+  ogTitle: "Privacy policy — Valice Press",
   type: "article",
 });
 

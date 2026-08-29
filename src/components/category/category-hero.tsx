@@ -112,7 +112,7 @@ const SUBTITLES: Record<string, string> = {
     "Decisions behind the storefront, why we made them, and the trade-offs we accepted along the way.",
 };
 const DEFAULT_SUBTITLE =
-  "Curated essays and field notes from the Digital Bookstore editorial desk.";
+  "Curated essays and field notes from the Valice Press editorial desk.";
 
 /** Single-word headline → all emerald. Multi-word → last word emerald. */
 function splitNameForAccent(name: string): { head: string; tail: string } {

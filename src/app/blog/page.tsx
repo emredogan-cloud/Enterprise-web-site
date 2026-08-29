@@ -22,9 +22,9 @@ import { getAllCategories, getAllPosts } from "@/lib/blog";
 export const metadata: Metadata = buildPageMetadata({
   title: "Blog",
   description:
-    "Notes from the Digital Bookstore — decisions behind the storefront, reading guides, and the occasional essay.",
+    "Notes from the Valice Press — decisions behind the storefront, reading guides, and the occasional essay.",
   path: "/blog",
-  ogTitle: "Blog — Digital Bookstore",
+  ogTitle: "Blog — Valice Press",
 });
 
 export default async function BlogIndexPage() {

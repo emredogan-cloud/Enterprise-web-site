@@ -4,7 +4,8 @@ import { buildPageMetadata } from "@/lib/metadata";
 
 import { AuthorsHero } from "@/components/authors/authors-hero";
 import { AuthorsShell } from "@/components/authors/authors-shell";
-import { DEMO_AUTHORS } from "@/components/authors/demo-authors";
+import { DEFAULT_PORTRAIT } from "@/components/authors/author-card-data";
+import { listAllAuthors } from "@/lib/db/queries/catalog";
 import { StatsStrip } from "@/components/authors/stats-strip";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
@@ -28,15 +29,17 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     "Discover the minds behind the books — explore authors, their stories, and their works.",
   path: "/authors",
-  ogTitle: "Authors · Digital Bookstore",
+  ogTitle: "Authors · Valice Press",
 });
 
-export default function AuthorsDiscoveryPage() {
-  // Resolve optional real portraits server-side (the discovery shell is a
-  // client component and can't touch the filesystem). Missing → null →
-  // procedural portrait. Drop /images/authors/{slug}.webp to light one up.
-  const authors = DEMO_AUTHORS.map((a) => ({
+export default async function AuthorsDiscoveryPage() {
+  // Real authors only — whoever has a published book. Resolve optional
+  // portraits server-side (the discovery shell is a client component and
+  // can't touch the filesystem). Missing → null → procedural portrait.
+  // Drop /images/authors/{slug}.webp to light one up.
+  const authors = (await listAllAuthors()).map((a) => ({
     ...a,
+    portrait: DEFAULT_PORTRAIT,
     portraitSrc: resolveAsset(`/images/authors/${a.slug}.webp`),
   }));
 
@@ -46,12 +49,38 @@ export default function AuthorsDiscoveryPage() {
 
       <main className="relative z-10">
         <AuthorsHero />
-        <AuthorsShell authors={authors} />
-        <StatsStrip />
+        {authors.length > 0 ? (
+          <>
+            <AuthorsShell authors={authors} />
+            <StatsStrip />
+          </>
+        ) : (
+          <AuthorsEmpty />
+        )}
         <div className="h-20" />
       </main>
 
       <HomeFooter />
     </div>
+  );
+}
+
+/**
+ * No author has a published book yet. Shown instead of the discovery shell
+ * and the stats strip — a search box over nothing, above a row of zeroes,
+ * is worse than a sentence explaining the situation.
+ */
+function AuthorsEmpty() {
+  return (
+    <section className="mx-auto mt-10 max-w-2xl px-6 text-center">
+      <div className="home-glass rounded-[24px] px-8 py-14">
+        <p className="font-serif text-xl text-fg-hi">
+          No author pages yet.
+        </p>
+        <p className="mt-3 text-sm leading-relaxed text-fg-soft">
+          Author pages appear here as Valice Press titles are published.
+        </p>
+      </div>
+    </section>
   );
 }

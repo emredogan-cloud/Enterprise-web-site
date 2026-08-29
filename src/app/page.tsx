@@ -34,12 +34,12 @@ export const revalidate = 3600; // ISR — matches the catalog's revalidate cade
 
 export const metadata: Metadata = buildPageMetadata({
   title: {
-    absolute: "Digital Bookstore — Find it. Own it. Read it anywhere.",
+    absolute: "Valice Press — Find it. Own it. Read it anywhere.",
   },
   description:
-    "A modern digital bookstore. Buy a digital book once, download a watermarked-free PDF, and read it on any device. Yours to keep — never locked.",
+    "The Valice Press Book Store. Buy a digital book once, download a watermarked-free PDF, and read it on any device. Yours to keep — never locked.",
   path: "/",
-  // og:description deliberately drops the "A modern digital bookstore." lead-in.
+  // og:description deliberately drops the "The Valice Press Book Store." lead-in.
   ogDescription:
     "Buy a digital book once, download a watermarked-free PDF, and read it on any device. Yours to keep — never locked.",
 });

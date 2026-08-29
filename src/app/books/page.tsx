@@ -5,7 +5,10 @@ import { buildPageMetadata } from "@/lib/metadata";
 
 import { CatalogHero } from "@/components/catalog/catalog-hero";
 import { CatalogShell } from "@/components/catalog/catalog-shell";
-import { DEMO_BOOKS, type DemoBook } from "@/components/catalog/demo-books";
+import {
+  toCatalogItems,
+  type CatalogItem,
+} from "@/components/catalog/catalog-item";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
 import { resolveAsset } from "@/lib/assets";
@@ -30,22 +33,23 @@ export const metadata: Metadata = buildPageMetadata({
  * `listPublishedBooks()` fetch happens at build/regen time and the
  * interactive `<CatalogShell>` is a hydrating Client island.
  *
- * Data flow: the DB query returns `BookCardData[]`. The catalog UI
- * needs richer dimensions (category, format, rating, badge, cover
- * gradient) that the current schema doesn't yet expose at the query
- * layer. Until those columns ship (a separate SUB-PR), the page falls
- * back to a curated `DEMO_BOOKS` set whenever the DB returns empty —
- * which matches the brief's "do not simplify, do not fall back to
- * generic marketplace UI" rule. When real books exist they take over;
- * when they don't, the cinematic showcase still lands.
+ * Data flow: the DB query returns `BookCardData[]`, which `toCatalogItems`
+ * widens into the richer shape the catalog UI consumes (facet category,
+ * formats, cover treatment). When the query returns nothing, the shell
+ * renders its empty state.
+ *
+ * There used to be a demo-catalog fallback here — eleven hard-coded
+ * bestsellers that rendered whenever no real book was published. It was
+ * removed: those are books Valice Press has no right to sell, and a
+ * visitor cannot distinguish "showcase" from "inventory". An empty shelf
+ * is honest; a full shelf of other publishers' books is not.
  */
 export default async function BooksCatalogPage() {
   const realBooks = await listPublishedBooks();
-  const baseBooks: DemoBook[] =
-    realBooks.length > 0 ? mapRealBooksToShell(realBooks) : DEMO_BOOKS;
+  const baseBooks: CatalogItem[] = toCatalogItems(realBooks);
   // Resolve optional real covers (/images/books/{slug}.webp) server-side
   // (the catalog shell is a client component). Missing → gradient cover.
-  const books: DemoBook[] = baseBooks.map((b) => ({
+  const books: CatalogItem[] = baseBooks.map((b) => ({
     ...b,
     coverSrc: resolveAsset(`/images/books/${b.slug}.webp`),
   }));
@@ -71,62 +75,6 @@ export default async function BooksCatalogPage() {
   );
 }
 
-/**
- * Translate live `BookCardData` rows into the richer `DemoBook` shape
- * the catalog UI consumes. The card's category tag reads the real primary
- * collection (`primaryCategory`, from the `book_categories` relation); the
- * remaining defaults stand in for fields the query doesn't yet surface
- * (format/rating/badge) and a later SUB-PR can extend them.
- *
- * Cover gradients cycle through a small palette so adjacent cards
- * don't look identical when no real cover image is uploaded yet.
- */
-function mapRealBooksToShell(
-  rows: Array<{
-    id: string;
-    slug: string;
-    title: string;
-    priceCents: number;
-    currency: string;
-    authors: ReadonlyArray<{ name: string }>;
-    primaryCategory?: string | null;
-  }>,
-): DemoBook[] {
-  const palette: DemoBook["cover"][] = [
-    {
-      gradient: "linear-gradient(160deg, #1a3326 0%, #0a1f14 100%)",
-      accent: "#33f0aa",
-    },
-    {
-      gradient: "linear-gradient(160deg, #1a2c4f 0%, #050a1e 100%)",
-      accent: "#7ab6ff",
-    },
-    {
-      gradient: "linear-gradient(160deg, #c98341 0%, #4b1f0a 100%)",
-      accent: "#ffce63",
-    },
-    {
-      gradient: "linear-gradient(160deg, #b41c1c 0%, #4a0808 100%)",
-      accent: "#f4d4a8",
-    },
-    {
-      gradient: "linear-gradient(160deg, #2c1f1a 0%, #14110a 100%)",
-      accent: "#d1a86a",
-    },
-  ];
-
-  return rows.map((row, i) => ({
-    id: row.id,
-    slug: row.slug,
-    title: row.title,
-    author: row.authors[0]?.name ?? "—",
-    priceCents: row.priceCents,
-    rating: 0,
-    category: row.primaryCategory ?? "",
-    formats: ["PDF"],
-    cover: palette[i % palette.length],
-  }));
-}
 
 /**
  * Minimal placeholder rendered during the Suspense bail while

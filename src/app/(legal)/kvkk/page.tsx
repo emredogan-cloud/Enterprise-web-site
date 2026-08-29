@@ -19,9 +19,9 @@ import { buildPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = buildPageMetadata({
   title: "KVKK aydınlatma metni",
   description:
-    "Digital Bookstore'un kişisel verilerinizi nasıl işlediğini ve KVKK kapsamındaki haklarınızı açıklayan aydınlatma metni.",
+    "Valice Press'in kişisel verilerinizi nasıl işlediğini ve KVKK kapsamındaki haklarınızı açıklayan aydınlatma metni.",
   path: "/kvkk",
-  ogTitle: "KVKK aydınlatma metni — Digital Bookstore",
+  ogTitle: "KVKK aydınlatma metni — Valice Press",
   type: "article",
 });
 
@@ -34,7 +34,7 @@ export default function KvkkPage() {
       intro={
         <p>
           6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında,
-          Digital Bookstore olarak hangi kişisel verilerinizi neden
+          Valice Press olarak hangi kişisel verilerinizi neden
           işlediğimizi, kimlerle paylaştığımızı ve sahip olduğunuz hakları
           aşağıda açıklıyoruz.
         </p>
@@ -43,7 +43,7 @@ export default function KvkkPage() {
       <h2>1. Veri sorumlusu</h2>
       <p>
         KVKK&apos;nın 3. maddesi uyarınca veri sorumlusu sıfatıyla Emre
-        Doğan, şahıs firması olarak Digital Bookstore platformunu
+        Doğan, şahıs firması olarak Valice Press platformunu
         işletmektedir. İletişim:{" "}
         <a href="mailto:emre30283@gmail.com">emre30283@gmail.com</a>.
       </p>

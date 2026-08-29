@@ -11,6 +11,8 @@ import { LibraryStats } from "@/components/library/library-stats";
 import { UnprovisionedNotice } from "@/components/unprovisioned-notice";
 import { loadAuthenticatedLocalUser } from "@/lib/account";
 import { getUserLibrary } from "@/lib/db/queries/account";
+import { listPublishedBooks } from "@/lib/db/queries/catalog";
+import { toCatalogItems } from "@/components/catalog/catalog-item";
 
 // Account routes read the cookie session + per-user DB — never cache,
 // never prerender. The cinematic redesign preserves the classification.
@@ -52,6 +54,16 @@ export default async function LibraryPage() {
   const hasPending = library.some((entry) => entry.status === "pending");
   const isEmpty = library.length === 0;
 
+  // "What to read next" — real published books, minus the ones already in
+  // this reader's library. Recommending a book someone has already bought is
+  // the one recommendation guaranteed to be useless.
+  const ownedBookIds = new Set(library.map((entry) => entry.bookId));
+  const recommendations = toCatalogItems(
+    (await listPublishedBooks())
+      .filter((b) => !ownedBookIds.has(b.id))
+      .slice(0, 8),
+  );
+
   return (
     <div className="cinematic-root">
       <CinematicHeader active="library" />
@@ -73,7 +85,7 @@ export default async function LibraryPage() {
           <LibraryShell library={library} />
         )}
 
-        <LibraryRecommendationShelf />
+        <LibraryRecommendationShelf picks={recommendations} />
 
         <div className="h-20" />
       </main>

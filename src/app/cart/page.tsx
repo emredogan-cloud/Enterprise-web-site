@@ -10,7 +10,8 @@ import { HomeFooter } from "@/components/home/home-footer";
 import { getCurrentLocalUserIdReadOnly } from "@/lib/account";
 import { readCart } from "@/lib/cart";
 import { getOwnedBookIds } from "@/lib/db/queries/account";
-import { getCartBooks } from "@/lib/db/queries/catalog";
+import { getCartBooks, listPublishedBooks } from "@/lib/db/queries/catalog";
+import { toCatalogItems } from "@/components/catalog/catalog-item";
 
 // `/cart` reads the per-request cart cookie, so it is intentionally dynamic.
 // The classification stays `ƒ Dynamic`; only the visual language changed.
@@ -62,6 +63,17 @@ export default async function CartPage() {
       )
     : new Set<string>();
 
+  // Real recommendations, drawn from the published catalog. Anything already
+  // in the cart is filtered out, and anything the visitor owns is dropped
+  // too — the cart blocks re-buying an owned book, so recommending one leads
+  // straight to a dead end.
+  const inCart = new Set(orderedBooks.map((b) => b.id));
+  const recommendations = toCatalogItems(
+    (await listPublishedBooks())
+      .filter((b) => !inCart.has(b.id) && !ownedIds.has(b.id))
+      .slice(0, 8),
+  );
+
   return (
     <div className="cinematic-root">
       <CinematicHeader />
@@ -98,10 +110,10 @@ export default async function CartPage() {
           </section>
         )}
 
-        {/* Recommendation shelf — visible in BOTH states.
-            Empty state: anchors the page so it doesn't feel dead.
-            With-items state: encourages browsing without leaving the cart. */}
-        <RecommendationShelf />
+        {/* Recommendation shelf — visible in BOTH states, but only when
+            there is something real to recommend. Books already in the cart
+            are excluded; suggesting what someone is about to buy is noise. */}
+        <RecommendationShelf picks={recommendations} />
 
         {/* Bottom breathing space before footer */}
         <div className="h-24" />

@@ -15,9 +15,9 @@ import { buildPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = buildPageMetadata({
   title: "Refund policy",
   description:
-    "How refunds work for digital books bought on Digital Bookstore — 14 days, no questions asked, before you download.",
+    "How refunds work for digital books bought on Valice Press — 14 days, no questions asked, before you download.",
   path: "/refund",
-  ogTitle: "Refund policy — Digital Bookstore",
+  ogTitle: "Refund policy — Valice Press",
   type: "article",
 });
 

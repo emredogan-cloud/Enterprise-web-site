@@ -19,7 +19,7 @@ import { SITE_NAME } from "./seo";
 
 /** Alt mirrors `app/opengraph-image.tsx`'s `alt` export. */
 const DEFAULT_OG_ALT =
-  "Digital Bookstore — Buy once, own forever. DRM-free, watermarked PDFs you can read on any device.";
+  "Valice Press — Buy once, own forever. DRM-free, watermarked PDFs you can read on any device.";
 
 /**
  * Branded default social image — the `/opengraph-image` route (1200×630 PNG),
@@ -45,7 +45,7 @@ export interface PageImage {
 
 export interface PageMetadataInput {
   /**
-   * `<title>`: a string runs through the root `"%s · Digital Bookstore"`
+   * `<title>`: a string runs through the root `"%s · Valice Press"`
    * template; `{ absolute }` bypasses it (homepage).
    */
   title: string | { absolute: string };

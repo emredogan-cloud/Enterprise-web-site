@@ -81,7 +81,7 @@ export function HomeFooter() {
               href="/"
               className="inline-flex items-center gap-2 text-base font-medium text-fg-hi"
             >
-              <span className="font-serif">digital bookstore</span>
+              <span className="font-serif">Valice Press</span>
               <span
                 aria-hidden
                 className="h-1.5 w-1.5 rounded-full bg-[#33f0aa] shadow-[0_0_8px_#33f0aa]"
@@ -120,7 +120,7 @@ export function HomeFooter() {
           {/* Left: copyright + social */}
           <div className="flex items-center gap-5">
             <p className="text-xs text-fg-fade">
-              © {new Date().getFullYear()} Digital Bookstore. All rights reserved.
+              © {new Date().getFullYear()} Valice Press. All rights reserved.
             </p>
             {/*
               Phase 0.E — only the two real, owner-controlled accounts get

@@ -1,5 +1,5 @@
 import { CinematicRecommendationCarousel } from "@/components/cinematic/recommendation-carousel";
-import { DEMO_BOOKS } from "@/components/catalog/demo-books";
+import type { CatalogItem } from "@/components/catalog/catalog-item";
 
 import { RecommendationCard } from "./recommendation-card";
 
@@ -9,11 +9,12 @@ import { RecommendationCard } from "./recommendation-card";
  * Phase 3.F — carousel logic (arrows + scroll + edge fades) moved into
  * the shared `<CinematicRecommendationCarousel>` primitive.
  *
- * Picks: first 8 entries from the catalog's demo set, so the showcase
- * stays consistent with what users see on the /books page.
+ * Picks are real published books passed in by the page. When the catalog
+ * has nothing to recommend the shelf renders nothing at all — an empty
+ * "You might like" heading over a blank rail is worse than no shelf.
  */
-export function RecommendationShelf() {
-  const picks = DEMO_BOOKS.slice(0, 8);
+export function RecommendationShelf({ picks }: { picks: CatalogItem[] }) {
+  if (picks.length === 0) return null;
 
   return (
     <section className="relative mt-24 px-6 sm:mt-28">

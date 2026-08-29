@@ -23,7 +23,7 @@ export function SiteHeader() {
           href="/"
           className="font-serif text-lg font-medium text-foreground transition-colors hover:text-primary"
         >
-          Digital Bookstore
+          Valice Press
         </Link>
 
         {/*

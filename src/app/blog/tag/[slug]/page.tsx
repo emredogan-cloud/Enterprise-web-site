@@ -39,7 +39,7 @@ export async function generateMetadata({
   const tag = await getPostsByTag(slug);
   if (!tag) return { title: "Tag not found" };
 
-  const description = `Blog posts tagged ${tag.name} — Digital Bookstore.`;
+  const description = `Blog posts tagged ${tag.name} — Valice Press.`;
   const url = `/blog/tag/${slug}`;
 
   return buildPageMetadata({

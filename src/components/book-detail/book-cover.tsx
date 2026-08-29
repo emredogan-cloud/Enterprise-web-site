@@ -106,7 +106,7 @@ function CinematicCoverPlaceholder({ title }: { title: string }) {
       />
       <div className="absolute inset-0 flex flex-col justify-between p-6">
         <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40">
-          Digital Bookstore
+          Valice Press
         </span>
         <span
           aria-hidden

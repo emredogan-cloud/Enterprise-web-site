@@ -3,11 +3,11 @@
 import { Search, Star } from "lucide-react";
 
 import {
-  type DemoBook,
+  type CatalogItem,
   getCategoryCounts,
   getFormatCounts,
   getRatingCounts,
-} from "./demo-books";
+} from "./catalog-item";
 
 /**
  * Premium filter sidebar — props-driven, presentational only.
@@ -18,7 +18,7 @@ import {
  * props.
  */
 export interface FilterSidebarProps {
-  allBooks: DemoBook[];
+  allBooks: CatalogItem[];
   searchQuery: string;
   selectedCategories: ReadonlySet<string>;
   selectedFormats: ReadonlySet<string>;

@@ -1,5 +1,5 @@
 /**
- * Digital Bookstore — Drizzle schema (Roadmap §10).
+ * Valice Press — Drizzle schema (Roadmap §10).
  *
  * Conventions
  *  - Physical table names are plural snake_case (avoids the reserved-word

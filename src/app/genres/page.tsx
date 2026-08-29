@@ -26,7 +26,7 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     "From thrilling adventures to life-changing ideas — explore the genres that shape the way we read.",
   path: "/genres",
-  ogTitle: "Genres · Digital Bookstore",
+  ogTitle: "Genres · Valice Press",
 });
 
 export default function GenresDiscoveryPage() {

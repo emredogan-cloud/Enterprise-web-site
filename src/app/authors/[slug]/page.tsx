@@ -6,10 +6,7 @@ import { buildAuthorJsonLd, getBaseUrl } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 
 import { AuthorPortrait } from "@/components/authors/author-portrait";
-import {
-  DEMO_AUTHORS,
-  type PortraitTheme,
-} from "@/components/authors/demo-authors";
+import { DEFAULT_PORTRAIT } from "@/components/authors/author-card-data";
 import { CinematicBookTile } from "@/components/cinematic/cinematic-book-tile";
 import { CinematicHero } from "@/components/cinematic/cinematic-hero";
 import { CinematicHeader } from "@/components/home/cinematic-header";
@@ -54,37 +51,20 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const author = await getAuthorPageBySlug(slug);
-  const demo = author ? null : DEMO_AUTHORS.find((a) => a.slug === slug);
-  if (!author && !demo) return { title: "Author not found" };
+  if (!author) return { title: "Author not found" };
 
-  const name = author?.name ?? demo!.name;
-  const description = author?.bio
+  const description = author.bio
     ? `${author.bio.slice(0, 157).trim()}…`
-    : demo
-      ? `${demo.role}. Known for ${demo.works}.`
-      : `Books by ${name} on Digital Bookstore.`;
-  const url = `/authors/${slug}`;
+    : `Books by ${author.name} on Valice Press.`;
 
   return buildPageMetadata({
-    title: name,
+    title: author.name,
     description,
-    path: url,
+    path: `/authors/${slug}`,
     type: "profile",
-    robots: demo ? { index: false, follow: true } : undefined,
   });
 }
 
-// Default portrait theme — used when an author doesn't have a custom
-// PortraitTheme set (current state: real DB authors have no portrait
-// data; the discovery `/authors` page uses bespoke themes per demo
-// author, but per-author profiles fall back to this calm emerald scheme).
-const DEFAULT_PORTRAIT: PortraitTheme = {
-  background:
-    "radial-gradient(ellipse at 35% 30%, #1a3326 0%, #0a1f14 60%, #050a08 100%)",
-  silhouette: "#06120c",
-  rimLight: "#33f0aa",
-  accent: "rgba(51, 240, 170, 0.4)",
-};
 
 export default async function AuthorPage({
   params,
@@ -92,19 +72,16 @@ export default async function AuthorPage({
   params: AuthorSlugParams;
 }) {
   const { slug } = await params;
-  const realAuthor = await getAuthorPageBySlug(slug);
+  const author = await getAuthorPageBySlug(slug);
 
-  // Issue 5 — fall back to the demo author roster (with its bespoke portrait
-  // theme) when the live DB has no match, so author cards never 404.
-  const demo = realAuthor ? null : DEMO_AUTHORS.find((a) => a.slug === slug);
-  if (!realAuthor && !demo) notFound();
+  // A slug with no author row is not an author. The demo-roster fallback
+  // that used to render here invented a role and a "known for" line for
+  // whoever was asked about — see `author-card-data.ts`.
+  if (!author) notFound();
 
-  const name = realAuthor?.name ?? demo!.name;
-  const bio = realAuthor
-    ? realAuthor.bio
-    : `${demo!.role}. Known for ${demo!.works}.`;
-  const books = realAuthor?.books ?? [];
-  const portrait = realAuthor ? DEFAULT_PORTRAIT : demo!.portrait;
+  const { name, bio } = author;
+  const books = author.books;
+  const portrait = DEFAULT_PORTRAIT;
 
   // Split the name so the last token gets the emerald accent (same
   // strategy as every cinematic hero).
@@ -143,7 +120,7 @@ export default async function AuthorPage({
             bio ? (
               <p>{bio}</p>
             ) : (
-              <p>Books by {name} on Digital Bookstore.</p>
+              <p>Books by {name} on Valice Press.</p>
             )
           }
           size="md"

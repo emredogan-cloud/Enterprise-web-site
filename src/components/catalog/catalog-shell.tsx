@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
@@ -9,7 +10,7 @@ import {
   type SortOption,
   type ViewMode,
 } from "./catalog-toolbar";
-import { type DemoBook } from "./demo-books";
+import { type CatalogItem } from "./catalog-item";
 import { FilterSidebar } from "./filter-sidebar";
 import { Pagination } from "./pagination";
 
@@ -158,7 +159,7 @@ function writeStateToParams(state: CatalogState): URLSearchParams {
   return next;
 }
 
-export function CatalogShell({ books }: { books: DemoBook[] }) {
+export function CatalogShell({ books }: { books: CatalogItem[] }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -334,7 +335,9 @@ export function CatalogShell({ books }: { books: DemoBook[] }) {
         />
 
         {/* Grid / list */}
-        {visible.length === 0 ? (
+        {books.length === 0 ? (
+          <CatalogEmpty />
+        ) : visible.length === 0 ? (
           <EmptyResults onReset={onResetAll} />
         ) : state.viewMode === "grid" ? (
           <ul className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
@@ -371,7 +374,7 @@ export function CatalogShell({ books }: { books: DemoBook[] }) {
 /* List view row — compact horizontal layout for the alternate view mode      */
 /* -------------------------------------------------------------------------- */
 
-function ListRow({ book }: { book: DemoBook }) {
+function ListRow({ book }: { book: CatalogItem }) {
   return (
     <div className="home-glass home-card-hover group flex items-center gap-5 rounded-2xl p-4">
       <div
@@ -431,6 +434,31 @@ function ListRow({ book }: { book: DemoBook }) {
 /* -------------------------------------------------------------------------- */
 /* Empty-results state — shown when filters yield zero matches                */
 /* -------------------------------------------------------------------------- */
+
+/**
+ * Nothing is published yet — distinct from "your filters matched nothing".
+ * Offering a "reset filters" button when the catalog itself is empty sends
+ * the reader in a circle, so this state offers the newsletter instead.
+ */
+function CatalogEmpty() {
+  return (
+    <div className="home-glass mt-10 rounded-2xl px-8 py-16 text-center">
+      <p className="font-serif text-xl text-fg-hi">
+        The first editions are still at the press.
+      </p>
+      <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-fg-soft">
+        Valice Press publishes a small number of carefully made books rather
+        than a large number of quick ones. Nothing is listed here yet.
+      </p>
+      <Link
+        href="/#newsletter"
+        className="home-cta-secondary mt-7 inline-flex h-10 items-center rounded-full px-5 text-sm font-medium"
+      >
+        Hear when the first one ships
+      </Link>
+    </div>
+  );
+}
 
 function EmptyResults({ onReset }: { onReset: () => void }) {
   return (

@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import type { PortraitTheme } from "./demo-authors";
+import type { PortraitTheme } from "./author-card-data";
 
 /**
  * CSS-rendered author "portrait" — a stylized atmospheric silhouette

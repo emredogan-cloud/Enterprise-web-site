@@ -20,7 +20,7 @@ import { ImageResponse } from "next/og";
  */
 
 export const alt =
-  "Digital Bookstore — Buy once, own forever. DRM-free, watermarked PDFs you can read on any device.";
+  "Valice Press — Buy once, own forever. DRM-free, watermarked PDFs you can read on any device.";
 
 export const size = { width: 1200, height: 630 };
 
@@ -80,7 +80,7 @@ export default function OpengraphImage() {
               transform: "rotate(45deg)",
             }}
           />
-          Digital Bookstore
+          Valice Press
         </div>
 
         {/* Headline + subhead. */}

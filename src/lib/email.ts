@@ -54,7 +54,7 @@ function getResendClient(): Resend | null {
  */
 function getFromAddress(): string {
   return (
-    process.env.EMAIL_FROM ?? "Digital Bookstore <onboarding@resend.dev>"
+    process.env.EMAIL_FROM ?? "Valice Press <onboarding@resend.dev>"
   );
 }
 

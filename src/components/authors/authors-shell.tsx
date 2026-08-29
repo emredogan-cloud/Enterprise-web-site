@@ -7,12 +7,10 @@ import { RevealOnScroll } from "@/components/home/reveal-on-scroll";
 
 import { AuthorCard } from "./author-card";
 import {
-  AUTHOR_GENRES,
   AUTHOR_SORTS,
   type AuthorSort,
-  type DemoAuthor,
-  getAuthorCountsByGenre,
-} from "./demo-authors";
+  type AuthorCardData,
+} from "./author-card-data";
 
 /**
  * Single Client wrapper holding all interactive state for the authors
@@ -31,110 +29,53 @@ import {
  * The page itself (`/authors/page.tsx`) stays a Server Component; this
  * wrapper hydrates with the demo author list baked-in.
  */
-export function AuthorsShell({ authors }: { authors: DemoAuthor[] }) {
+export function AuthorsShell({ authors }: { authors: AuthorCardData[] }) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
-  const [sortBy, setSortBy] = useState<AuthorSort>("Popular");
-
-  const genreCounts = getAuthorCountsByGenre(authors);
+  const [sortBy, setSortBy] = useState<AuthorSort>("A → Z");
 
   const filtered = useMemo(() => {
     const needle = searchQuery.trim().toLowerCase();
-    let result = authors.filter((a) => {
-      if (selectedGenre && a.category !== selectedGenre) return false;
-      if (needle) {
-        const hay = `${a.name} ${a.works} ${a.role}`.toLowerCase();
-        if (!hay.includes(needle)) return false;
-      }
-      return true;
+    // Search covers name and bio — the two fields that actually hold text.
+    // The genre facet went with the demo roster: `category` was a made-up
+    // label on made-up people, and the real `authors` table has no genre.
+    const result = authors.filter((a) => {
+      if (!needle) return true;
+      return `${a.name} ${a.bio ?? ""}`.toLowerCase().includes(needle);
     });
-    switch (sortBy) {
-      case "A → Z":
-        result = [...result].sort((a, b) => a.name.localeCompare(b.name));
-        break;
-      case "Most books":
-        result = [...result].sort((a, b) => b.bookCount - a.bookCount);
-        break;
-      case "Popular":
-      default:
-        // Featured first, then by parsed follower count (millions > K > raw)
-        result = [...result].sort((a, b) => {
-          if (a.featured && !b.featured) return -1;
-          if (b.featured && !a.featured) return 1;
-          return parseFollowers(b.followerCount) - parseFollowers(a.followerCount);
-        });
-    }
-    return result;
-  }, [authors, searchQuery, selectedGenre, sortBy]);
+
+    return sortBy === "Most books"
+      ? [...result].sort(
+          (a, b) => b.bookCount - a.bookCount || a.name.localeCompare(b.name),
+        )
+      : [...result].sort((a, b) => a.name.localeCompare(b.name));
+  }, [authors, searchQuery, sortBy]);
 
   return (
     <>
-      {/* Centered search + genre dropdown cluster (brief explicit). */}
-      <div className="mx-auto mt-6 flex max-w-2xl flex-col items-stretch justify-center gap-3 px-6 sm:flex-row sm:items-center">
-        {/* Search input */}
-        <div className="relative flex-1">
+      {/* Centered search. The genre dropdown and pill row that used to sit
+          beside it are gone: they filtered on a `category` field that only
+          ever existed on the fabricated author roster. The real `authors`
+          table has no genre, so those controls promised a cut of the data
+          that cannot be made. */}
+      <div className="mx-auto mt-6 flex max-w-2xl items-center justify-center px-6">
+        <div className="relative w-full">
           <Search
             aria-hidden
             className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-fg-fade"
           />
+          <label htmlFor="author-search" className="sr-only">
+            Search authors
+          </label>
           <input
-            type="text"
+            id="author-search"
+            type="search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.currentTarget.value)}
-            placeholder="Search authors, works…"
+            placeholder="Search authors…"
             className="h-11 w-full rounded-full border border-white/[0.08] bg-white/[0.03] pl-10 pr-4 text-sm text-fg-hi placeholder:text-fg-fade transition-colors focus:border-emerald-bright/40 focus:bg-white/[0.05] focus:outline-none focus:ring-2 focus:ring-emerald-bright/20"
           />
         </div>
-
-        {/* Genre dropdown — glass select */}
-        <div className="relative">
-          <select
-            value={selectedGenre ?? ""}
-            onChange={(e) =>
-              setSelectedGenre(e.currentTarget.value || null)
-            }
-            aria-label="Filter by genre"
-            className="h-11 w-full cursor-pointer appearance-none rounded-full border border-white/[0.08] bg-white/[0.03] pl-4 pr-10 text-sm text-fg-hi transition-colors hover:border-white/[0.14] focus:border-emerald-bright/40 focus:outline-none focus:ring-2 focus:ring-emerald-bright/20 sm:w-44"
-          >
-            <option value="" className="bg-[#0a1410]">All Genres</option>
-            {AUTHOR_GENRES.map((g) => (
-              <option key={g} value={g} className="bg-[#0a1410]">
-                {g}
-              </option>
-            ))}
-          </select>
-          <ChevronDown
-            aria-hidden
-            className="pointer-events-none absolute right-3.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-fg-mid"
-          />
-        </div>
       </div>
-
-      {/* Genre pills row */}
-      <nav
-        aria-label="Filter by genre"
-        className="mx-auto mt-6 flex max-w-5xl flex-wrap items-center justify-center gap-2 px-6"
-      >
-        <PillButton
-          label="All Authors"
-          count={authors.length}
-          isActive={selectedGenre === null}
-          onClick={() => setSelectedGenre(null)}
-        />
-        {genreCounts
-          .filter((g) => g.count > 0)
-          .map((g) => (
-            <PillButton
-              key={g.name}
-              label={g.name}
-              count={g.count}
-              isActive={selectedGenre === g.name}
-              onClick={() =>
-                setSelectedGenre(selectedGenre === g.name ? null : g.name)
-              }
-            />
-          ))}
-      </nav>
 
       {/* Sort bar — right-aligned glass dropdown */}
       <div className="mx-auto mt-12 flex max-w-7xl items-center justify-end px-6">
@@ -167,12 +108,7 @@ export function AuthorsShell({ authors }: { authors: DemoAuthor[] }) {
       {/* Author grid */}
       <section className="mx-auto mt-6 max-w-7xl px-6">
         {filtered.length === 0 ? (
-          <EmptyResults
-            onClear={() => {
-              setSearchQuery("");
-              setSelectedGenre(null);
-            }}
-          />
+          <EmptyResults onClear={() => setSearchQuery("")} />
         ) : (
           <RevealOnScroll
             stagger
@@ -190,46 +126,6 @@ export function AuthorsShell({ authors }: { authors: DemoAuthor[] }) {
           redundant since the grid already shows every author after
           filters are cleared via the empty-state Reset button). */}
     </>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/* Pill — used for the genre filter row                                       */
-/* -------------------------------------------------------------------------- */
-
-function PillButton({
-  label,
-  count,
-  isActive,
-  onClick,
-}: {
-  label: string;
-  count: number;
-  isActive: boolean;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-pressed={isActive}
-      className={`group inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-medium transition-all ${
-        isActive
-          ? "border-emerald-bright/50 bg-emerald-bright/12 text-emerald-bright shadow-[0_0_16px_rgba(51,240,170,0.25)]"
-          : "border-white/[0.08] bg-white/[0.03] text-fg-mid hover:-translate-y-0.5 hover:border-white/[0.16] hover:bg-white/[0.05] hover:text-fg-hi"
-      }`}
-    >
-      <span>{label}</span>
-      <span
-        className={`rounded-full px-1.5 text-[10px] font-semibold tabular-nums ${
-          isActive
-            ? "bg-emerald-bright/20 text-emerald-bright"
-            : "bg-white/[0.05] text-fg-fade"
-        }`}
-      >
-        {count}
-      </span>
-    </button>
   );
 }
 
@@ -261,13 +157,3 @@ function EmptyResults({ onClear }: { onClear: () => void }) {
 /* Helpers                                                                    */
 /* -------------------------------------------------------------------------- */
 
-/** Parse "1.2M" / "843K" / "287" → numeric for the Popular sort. */
-function parseFollowers(s: string): number {
-  const trimmed = s.trim();
-  const last = trimmed.slice(-1).toUpperCase();
-  const base = parseFloat(trimmed);
-  if (Number.isNaN(base)) return 0;
-  if (last === "M") return base * 1_000_000;
-  if (last === "K") return base * 1_000;
-  return base;
-}

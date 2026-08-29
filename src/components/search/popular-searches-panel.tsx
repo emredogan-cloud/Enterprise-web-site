@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, TrendingUp } from "lucide-react";
 
-import { DEMO_BOOKS } from "@/components/catalog/demo-books";
+import type { CatalogItem } from "@/components/catalog/catalog-item";
 
 /**
  * Left panel — Popular searches.
@@ -15,28 +15,16 @@ import { DEMO_BOOKS } from "@/components/catalog/demo-books";
  * No harsh separators between rows — soft glow dividers instead.
  * Clicking a row navigates to `/search?q=<title>`.
  */
-export function PopularSearchesPanel() {
-  // Phase 2.J — fake "search count" numbers removed. They were
-  // hard-coded marketing labels with no analytics behind them; showing
-  // "12.4K searches" implied data we don't actually collect. Until an
-  // analytics pipeline ships and feeds real counts in, we just show the
-  // curated title + author. The list itself is still editorially useful
-  // — it's the storefront's pick of "books worth searching for."
-  const popular: { slug: string; title: string; author: string }[] = [
-    { slug: "the-psychology-of-money", title: "The Psychology of Money", author: "Morgan Housel" },
-    { slug: "1984", title: "1984", author: "George Orwell" },
-    { slug: "the-silent-patient", title: "The Silent Patient", author: "Alex Michaelides" },
-    { slug: "rich-dad-poor-dad", title: "Rich Dad Poor Dad", author: "Robert Kiyosaki" },
-    { slug: "the-midnight-library", title: "The Midnight Library", author: "Matt Haig" },
-  ];
+export function PopularSearchesPanel({ picks }: { picks: CatalogItem[] }) {
+  // Phase 2.J removed the fake "12.4K searches" counts (analytics we do not
+  // collect). This pass removed the rest of the fiction: the five rows were
+  // hard-coded bestsellers by other publishers, each linking to a search
+  // that returns nothing. The list now shows real published titles, and
+  // renders nothing at all when there are none.
+  if (picks.length === 0) return null;
 
-  // Map titles → demo book cover gradients so the mini covers feel coherent
-  const coverFor = (slug: string): { gradient: string; accent: string } => {
-    const book = DEMO_BOOKS.find((b) => b.slug === slug);
-    return book
-      ? { gradient: book.cover.gradient, accent: book.cover.accent }
-      : { gradient: "linear-gradient(160deg, #1a3326 0%, #0a1f14 100%)", accent: "#33f0aa" };
-  };
+  const popular = picks.slice(0, 5);
+  const coverFor = (book: CatalogItem) => book.cover;
 
   return (
     <div className="home-glass relative overflow-hidden rounded-[28px] p-6 sm:p-7">
@@ -59,7 +47,7 @@ export function PopularSearchesPanel() {
       {/* List */}
       <ul className="mt-5">
         {popular.map((p, i) => {
-          const cover = coverFor(p.slug);
+          const cover = coverFor(p);
           return (
             <li key={p.slug}>
               <Link

@@ -2,7 +2,7 @@ import { Heart, Lock, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-import type { DemoBook } from "./demo-books";
+import type { CatalogItem } from "./catalog-item";
 
 /**
  * Catalog book card — premium glass + CSS-rendered cover.
@@ -16,7 +16,7 @@ import type { DemoBook } from "./demo-books";
  * No client interactivity inside the card itself — hover lift + glow are
  * pure CSS via `.home-card-hover` (reused from the homepage system).
  */
-export function CatalogBookCard({ book }: { book: DemoBook }) {
+export function CatalogBookCard({ book }: { book: CatalogItem }) {
   const priceLabel = `$${(book.priceCents / 100).toFixed(0)}`;
 
   return (
