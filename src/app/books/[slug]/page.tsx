@@ -7,6 +7,7 @@ import { CinematicReviewsList } from "@/components/book-detail/cinematic-reviews
 import { CinematicSampleSection } from "@/components/book-detail/cinematic-sample-section";
 import { CinematicStarRating } from "@/components/book-detail/cinematic-star-rating";
 import { ExploreStrip } from "@/components/book-detail/explore-strip";
+import { FormatTable } from "@/components/book-detail/format-table";
 import { RelatedBooksShelf } from "@/components/book-detail/related-books-shelf";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
@@ -190,6 +191,13 @@ export default async function BookDetailPage({
           authors={book.authors}
           ratingAggregate={ratingAggregate}
         />
+
+        {/* Editions — every format this title exists in, with the buy
+            route each one actually supports. Print goes to Amazon because
+            Amazon is what fulfils it; see <FormatTable>. */}
+        <div className="mx-auto max-w-[900px] px-6">
+          <FormatTable formats={book.formats} />
+        </div>
 
         <CinematicSampleSection content={sampleHtml} />
         <TrackEvent event="sample_read" onView props={{ slug }} />

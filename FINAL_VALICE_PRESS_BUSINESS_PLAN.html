@@ -1,0 +1,587 @@
+<title>Valice Press İş Planı</title>
+<style>
+  @font-face {
+    font-family: 'Fraunces';
+    src: local('Fraunces');
+  }
+  :root {
+    --bg: #f6f3ec;
+    --surface: #ffffff;
+    --surface-2: #efeadf;
+    --ink: #16211c;
+    --ink-soft: #55635a;
+    --ink-faint: #8b968c;
+    --border: #e3ddcd;
+    --accent: #146b52;
+    --accent-bright: #0e8f66;
+    --accent-wash: #14a67e14;
+    --gold: #a9752c;
+    --good: #2f7d4f;
+    --good-wash: #2f7d4f1a;
+    --warn: #a9752c;
+    --warn-wash: #a9752c1a;
+    --bad: #ab3d33;
+    --bad-wash: #ab3d331a;
+    --shadow: 0 1px 2px rgba(22,33,28,0.04), 0 8px 24px -12px rgba(22,33,28,0.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0c1411;
+      --surface: #121c17;
+      --surface-2: #17221c;
+      --ink: #eef2ee;
+      --ink-soft: #a7b4ac;
+      --ink-faint: #6c7a72;
+      --border: #24322a;
+      --accent: #33f0aa;
+      --accent-bright: #5ef7bf;
+      --accent-wash: #33f0aa1c;
+      --gold: #e0ac5f;
+      --good: #4fcf8e;
+      --good-wash: #4fcf8e1e;
+      --warn: #e0ac5f;
+      --warn-wash: #e0ac5f1e;
+      --bad: #f28a7c;
+      --bad-wash: #f28a7c1e;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 32px -16px rgba(0,0,0,0.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0c1411;
+    --surface: #121c17;
+    --surface-2: #17221c;
+    --ink: #eef2ee;
+    --ink-soft: #a7b4ac;
+    --ink-faint: #6c7a72;
+    --border: #24322a;
+    --accent: #33f0aa;
+    --accent-bright: #5ef7bf;
+    --accent-wash: #33f0aa1c;
+    --gold: #e0ac5f;
+    --good: #4fcf8e;
+    --good-wash: #4fcf8e1e;
+    --warn: #e0ac5f;
+    --warn-wash: #e0ac5f1e;
+    --bad: #f28a7c;
+    --bad-wash: #f28a7c1e;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 32px -16px rgba(0,0,0,0.6);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Source Sans 3', 'Segoe UI', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  h1, h2, h3 { font-family: 'Fraunces', Georgia, 'Times New Roman', serif; text-wrap: balance; color: var(--ink); }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, Consolas, monospace; font-variant-numeric: tabular-nums; }
+
+  a { color: var(--accent-bright); }
+
+  /* ---------- Masthead ---------- */
+  header.masthead {
+    padding: 56px 24px 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background:
+      radial-gradient(ellipse 900px 260px at 50% -80px, var(--accent-wash), transparent);
+  }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  header.masthead h1 {
+    margin: 0;
+    font-size: clamp(32px, 5.5vw, 56px);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  header.masthead .dateline {
+    margin: 16px auto 0;
+    max-width: 640px;
+    color: var(--ink-soft);
+    font-size: 15px;
+  }
+  .rule {
+    width: 64px;
+    height: 2px;
+    background: var(--accent);
+    margin: 22px auto 0;
+    border-radius: 2px;
+  }
+
+  /* ---------- Layout shell ---------- */
+  main { max-width: 900px; margin: 0 auto; padding: 0 24px 120px; }
+
+  /* ---------- Sticky TOC ---------- */
+  nav.toc {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 24px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: thin;
+  }
+  nav.toc a {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 999px;
+    margin-right: 4px;
+  }
+  nav.toc a:hover { background: var(--surface-2); color: var(--ink); }
+
+  /* ---------- Executive summary cards ---------- */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 14px;
+    margin: 40px 0 8px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 18px 16px;
+    box-shadow: var(--shadow);
+  }
+  .card .k { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); margin: 0 0 8px; }
+  .card .v { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; margin: 0; }
+  .card .v small { font-family: 'Source Sans 3', sans-serif; font-size: 13px; font-weight: 400; color: var(--ink-soft); display: block; margin-top: 4px; }
+
+  /* ---------- Status pills ---------- */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.04em;
+    padding: 3px 10px 3px 8px;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+  .pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  .pill.good { background: var(--good-wash); color: var(--good); }
+  .pill.warn { background: var(--warn-wash); color: var(--warn); }
+  .pill.bad  { background: var(--bad-wash);  color: var(--bad); }
+
+  /* ---------- Section blocks ---------- */
+  section.block { margin-top: 56px; scroll-margin-top: 64px; }
+  .block-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 20px; }
+  .block-head h2 { margin: 0; font-size: 26px; }
+  .block-num { font-family: 'IBM Plex Mono', monospace; color: var(--ink-faint); font-size: 13px; }
+
+  p { color: var(--ink); max-width: 68ch; }
+  p.lede { color: var(--ink-soft); font-size: 15.5px; }
+  ul, ol { max-width: 68ch; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+
+  /* ---------- Tables ---------- */
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); margin: 18px 0; }
+  table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 14px; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-faint); background: var(--surface-2); white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--surface-2); }
+
+  /* ---------- Details / expandable ---------- */
+  details.report {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    padding: 4px 0;
+    margin: 14px 0;
+  }
+  details.report summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 20px;
+    font-weight: 600;
+    font-size: 15px;
+  }
+  details.report summary::-webkit-details-marker { display: none; }
+  details.report summary::after {
+    content: "+";
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 18px;
+    color: var(--ink-faint);
+    transition: transform 0.15s ease;
+  }
+  details.report[open] summary::after { transform: rotate(45deg); }
+  details.report .body { padding: 0 20px 20px; color: var(--ink-soft); font-size: 14.5px; }
+  details.report .body p:first-child { margin-top: 0; }
+
+  /* ---------- Checklist ---------- */
+  ul.checklist { list-style: none; padding: 0; margin: 14px 0; }
+  ul.checklist li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14.5px;
+  }
+  ul.checklist li:last-child { border-bottom: none; }
+  ul.checklist input[type="checkbox"] {
+    margin-top: 3px;
+    width: 16px; height: 16px;
+    accent-color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ---------- Quote / verdict callouts ---------- */
+  .verdict {
+    border-left: 3px solid var(--accent);
+    background: var(--accent-wash);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px;
+    margin: 18px 0;
+    font-size: 14.5px;
+  }
+  .verdict b { color: var(--accent-bright); }
+
+  .rank-list { list-style: none; padding: 0; margin: 20px 0; display: grid; gap: 10px; }
+  .rank-list li {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 14px;
+    align-items: start;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+  }
+  .rank-list .n { font-family: 'Fraunces', serif; font-size: 24px; color: var(--accent); font-weight: 600; }
+  .rank-list .t { font-weight: 600; margin-bottom: 3px; }
+  .rank-list .d { color: var(--ink-soft); font-size: 13.5px; }
+
+  footer {
+    max-width: 900px;
+    margin: 80px auto 0;
+    padding: 24px 24px 60px;
+    border-top: 1px solid var(--border);
+    color: var(--ink-faint);
+    font-size: 12.5px;
+  }
+  footer a { color: var(--ink-faint); }
+
+  code.pathref {
+    font-family: 'IBM Plex Mono', monospace;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: 5px;
+    font-size: 12.5px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<header class="masthead">
+  <p class="eyebrow">Kurucuya Özel · Ticari Strateji Denetimi</p>
+  <h1>Vâliçe Press</h1>
+  <p class="dateline">Web sitesi + Amazon/KDP kataloğunun gerçek, tekrarlanabilir, kârlı bir yayıncılık işine dönüştürülmesi için tam denetim, araştırma ve yol haritası. Hazırlanma tarihi: 29 Ağustos 2026.</p>
+  <div class="rule"></div>
+</header>
+
+<nav class="toc" aria-label="İçindekiler">
+  <a href="#ozet">Özet</a>
+  <a href="#site">Site Durumu</a>
+  <a href="#kdp">KDP Kataloğu</a>
+  <a href="#politika">Amazon Politikaları</a>
+  <a href="#satis">Satış Modeli</a>
+  <a href="#email">E-posta Listesi</a>
+  <a href="#pd">Kamu Malı Katalog</a>
+  <a href="#gelir">Gelir Modeli</a>
+  <a href="#musteri">Müşteri Kazanımı</a>
+  <a href="#90gun">90 Gün</a>
+  <a href="#12ay">12 Ay</a>
+  <a href="#sonuc">Nihai Karar</a>
+</nav>
+
+<main>
+
+  <section id="ozet" class="block">
+    <div class="block-head"><span class="block-num">00</span><h2>Yönetici Özeti</h2></div>
+    <p class="lede">Bu rapor dört ayrı disiplinden okunmalı: yazılım hazır mı, katalog gerçek mi, Amazon kuralları ne diyor, ve para nereden gelecek. Kısa cevap: <b>yazılım bitti, katalog neredeyse boş, kurallar netleşti, ilk gerçek gelir günler uzaklıkta — haftalar değil.</b></p>
+
+    <div class="summary-grid">
+      <div class="card">
+        <p class="k">Site — kod</p>
+        <p class="v">Hazır <small>Next.js 16 · Paddle · R2 · Inngest, uçtan uca kodlu ve test edilmiş</small></p>
+      </div>
+      <div class="card">
+        <p class="k">Site — satış</p>
+        <p class="v">Kapalı <small>Sahte ödeme fiyatı + canlı Paddle hesabı yok → gerçek satın alma başarısız olur</small></p>
+      </div>
+      <div class="card">
+        <p class="k">Gerçek kitap sayısı</p>
+        <p class="v">1 <small><em>Meditations</em> (kamu malı) — geri kalan katalog sahte/örnek veri</small></p>
+      </div>
+      <div class="card">
+        <p class="k">KDP kataloğu (Amazon)</p>
+        <p class="v">Doğrulanamadı <small>Codex Enigmatica dahil hiçbir başlık web aramasında bulunamadı</small></p>
+      </div>
+    </div>
+
+    <div class="verdict">
+      <b>En hızlı gerçek gelir yolu:</b> Meditations'ın sahte Paddle fiyatını gerçek bir fiyatla değiştirmek + canlı Paddle hesabı açmak + Inngest'i production'a bağlamak. Bunların hepsi <b>kod değil, operasyon</b> — birkaç saatlik iş, mevcut altyapı zaten hazır.
+    </div>
+  </section>
+
+  <section id="site" class="block">
+    <div class="block-head"><span class="block-num">01</span><h2>Web Sitesi — Mevcut Durum</h2></div>
+    <p>Site, tek seferlik satın alma ile çalışan, filigranlı (DRM'siz) PDF satan tam donanımlı bir dijital kitapçı olarak <b>kodlanmış ve production'a deploy edilmiş</b> durumda. Neon Postgres + Drizzle, Clerk kimlik doğrulama, Cloudflare R2 depolama, Paddle ödeme (Merchant of Record), Inngest ile asenkron filigranlama, Resend ile e-posta. Sipariş → teslimat → kütüphane → okuma → iade → erişim iptali zinciri sandbox ortamında uçtan uca kanıtlanmış.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Alan</th><th>Puan /100</th><th>Gerekçe</th></tr></thead>
+        <tbody>
+          <tr><td>Mimari / kod kalitesi</td><td class="mono">85</td><td>İdempotent ticaret hattı, tek yetkilendirme noktası, 6 iç faz raporuyla denetlenmiş</td></tr>
+          <tr><td>Katalog / içerik</td><td class="mono">8</td><td>Tek gerçek ürün; geri kalanı yer tutucu (placeholder) veri</td></tr>
+          <tr><td>Ödeme akışı</td><td class="mono">20</td><td>Kod tamam; sahte fiyat kimliği + canlı hesap yok → bugün %0 çalışır</td></tr>
+          <tr><td>Dijital teslimat</td><td class="mono">75</td><td>Sandbox'ta kanıtlı; yalnız Inngest/DB provizyonu eksik</td></tr>
+          <tr><td>E-posta / CRM altyapısı</td><td class="mono">65</td><td>Gerçek Resend Audience + kaynak etiketleme kurulu; otomasyon dizileri yok</td></tr>
+          <tr><td>Marka tutarlılığı</td><td class="mono">30</td><td>Site meta verisi "Digital Bookstore" diyor, "Vâliçe Press" değil</td></tr>
+          <tr><td>Dönüşüm hazırlığı</td><td class="mono">15</td><td>Çalışan bir satın alma yolu henüz yok</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <details class="report">
+      <summary>Hazır / Kısmen Hazır / Bozuk — tam liste <span class="pill good">detay</span></summary>
+      <div class="body">
+        <p><b>Hazır:</b> SSG/ISR katalog sayfaları, ödeme→teslimat kod hattı, sahiplik/erişim denetimi, iade→erişim-iptali, pdf.js okuyucu, tek-liste e-posta altyapısı, yasal sayfalar (gizlilik/şartlar/iade/KVKK).</p>
+        <p><b>Kısmen hazır:</b> Production veritabanı şeması doğrulanmadı (bazı tablolar eksik olabilir), Inngest production'a bağlı değil, Meditations'ın Paddle fiyatı sahte, marka adı tutarsız, Codex Enigmatica doğrulama sayfası var ama arkasında satılabilir bir ürün yok.</p>
+        <p><b>Bozuk / şu an production'a uygun değil:</b> Gerçek bir ziyaretçi bugün siteye girip gerçek para ödeyerek kitap satın alamaz.</p>
+        <p><b>Kaynak:</b> <code class="pathref">01_REPORTS/WEBSITE_CURRENT_STATE_AUDIT.md</code></p>
+      </div>
+    </details>
+  </section>
+
+  <section id="kdp" class="block">
+    <div class="block-head"><span class="block-num">02</span><h2>KDP / Amazon Kataloğu</h2></div>
+    <p class="lede">Talimat gereği hiçbir başlık varsayılmadı — her biri tek tek arandı.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Aday başlık</th><th>Arama sonucu</th><th>Durum</th></tr></thead>
+        <tbody>
+          <tr><td>Codex Enigmatica</td><td>Eşleşen Amazon listesi bulunamadı</td><td><span class="pill warn">doğrulanamadı</span></td></tr>
+          <tr><td>The Great Book of World Myths</td><td>Eşleşme yok</td><td><span class="pill warn">doğrulanamadı</span></td></tr>
+          <tr><td>The Great Book of World Games</td><td>Eşleşme yok</td><td><span class="pill warn">doğrulanamadı</span></td></tr>
+          <tr><td>The Myth Hunter's Field Book</td><td>Eşleşme yok (farklı bir yazarın alakasız "Myth Hunter" kurgu serisi var)</td><td><span class="pill warn">doğrulanamadı</span></td></tr>
+          <tr><td>Codex Bestiarium</td><td>Eşleşme yok</td><td><span class="pill warn">doğrulanamadı</span></td></tr>
+          <tr><td>Codex Mythologica</td><td>Eşleşme yok</td><td><span class="pill warn">doğrulanamadı</span></td></tr>
+          <tr><td>"Vâliçe Press" yayıncı/yazar sayfası</td><td>Amazon Author Page bulunamadı</td><td><span class="pill bad">bulunamadı</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="verdict">
+      Bu, kitapların var olmadığı anlamına gelmez. Sitedeki <code class="pathref">/codex-enigmatica/verify</code> sayfası, Codex Enigmatica'nın <b>gerçek, basılı bir kitap</b> olduğunun güçlü kanıtıdır (kitabın son yaprağına basılan adres, 100 bulmaca mekaniği). Genel web araması, Amazon'un kendi iç aramasının zayıf bir vekilidir ve yeni/düşük yorumlu KDP başlıklarını iyi indekslemez.
+    </div>
+    <p><b>Kurucudan istenen tek somut adım:</b> KDP Bookshelf'ten başlık, ASIN, durum ve fiyatların 5 dakikalık bir dökümü — bu, bu raporun her yerinde "çalışma başlığı" olarak geçen isimleri gerçek verilerle değiştirir.</p>
+  </section>
+
+  <section id="politika" class="block">
+    <div class="block-head"><span class="block-num">03</span><h2>Amazon / KDP Kuralları — Doğrulanmış</h2></div>
+    <ul class="checklist">
+      <li><input type="checkbox" checked disabled> <span><b>İzin verilir:</b> Kitap arkasında ("About the Author") yazarın kendi web sitesine bağlantı; okuyucuya gerçek fayda sağlayan bir doğrulama/bonus sayfasına yönlendirme (Codex Enigmatica deseni tam olarak budur).</span></li>
+      <li><input type="checkbox" disabled> <span><b>Kısıtlanır:</b> Başka bir e-kitap mağazasına bağlantı; müşteri bilgisi (e-posta, adres) isteyen formlara doğrudan bağlantı.</span></li>
+      <li><input type="checkbox" disabled> <span><b>Dikkatli ifade gerektirir:</b> Her arka sayfa çağrısı "cevabını kontrol et / bonus içeriği indir" gibi okuyucu faydası olarak kurulmalı — "e-posta listeme kaydol" birincil mesaj olmamalı.</span></li>
+      <li><input type="checkbox" disabled> <span><b>Asla yapılmamalı:</b> Kitap içinden doğrudan bir e-posta toplama formuna bağlantı vermek; KDP Select'te kayıtlıyken aynı e-kitabı başka yerde (kendi sitemiz dahil) satmak.</span></li>
+    </ul>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Soru</th><th>Cevap</th><th>Kanıt</th></tr></thead>
+        <tbody>
+          <tr><td>KDP yayını = KDP Select zorunluluğu mu?</td><td><b>Hayır.</b> İkisi ayrı — Select isteğe bağlıdır.</td><td>kdp.amazon.com/en_US/select</td></tr>
+          <tr><td>KDP Select'te iken e-kitabı kendi sitemizde satabilir miyiz?</td><td><b>Hayır</b> — tam dijital münhasırlık gerektirir.</td><td>KDP Select şartları</td></tr>
+          <tr><td>Basılı kitap aynı kısıtlamaya tabi mi?</td><td><b>Hayır</b> — basılı format münhasırlıktan muaftır.</td><td>KDP Select şartları</td></tr>
+          <tr><td>Amazon alıcı e-postalarını verir mi?</td><td>Hiçbir resmi sayfa bulunamadı; <b>güvenli varsayım: hayır</b> (yüksek güvenilirlikli çıkarım).</td><td>Doğrudan kaynak yok — bkz. politika raporu §4</td></tr>
+          <tr><td>Amazon web sitesinden gelen basılı sipariş gönderebilir mi?</td><td><b>Hayır</b> — KDP baskı yalnızca Amazon'un kendi pazaryerindeki siparişlerde çalışır.</td><td>kdp.amazon.com yazar-kopyası politikası</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="satis" class="block">
+    <div class="block-head"><span class="block-num">04</span><h2>Doğrudan Satış Modeli</h2></div>
+    <p class="lede">Format bazında net cevap:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Format</th><th>Karar</th><th>Neden</th></tr></thead>
+        <tbody>
+          <tr><td>E-kitap (Kindle)</td><td><span class="pill good">HİBRİT</span></td><td>KDP Select'te olmayan başlıklar için doğrudan sat — altyapı zaten hazır ve marj çok daha yüksek</td></tr>
+          <tr><td>Karton kapak (paperback)</td><td><span class="pill bad">HAYIR (doğrudan teslimat)</span></td><td>Amazon site siparişlerini karşılayamaz; her yerde "Amazon'da satın al" bağlantısı yeterli</td></tr>
+          <tr><td>Ciltli (hardcover)</td><td><span class="pill bad">HAYIR (doğrudan teslimat)</span></td><td>Aynı gerekçe, daha da düşük marj</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><b>Abonelik:</b> <span class="pill warn">SONRA</span> — en az 8–12 gerçek başlık ve tekrar-satın-alma kanıtı olmadan başlamayın. <b>Sayfa-bazlı ödeme ekonomisi:</b> teknik olarak mümkün ama <span class="pill bad">önerilmiyor</span> — çözdüğü sorun bu kataloğun henüz sahip olmadığı bir sorun.</p>
+  </section>
+
+  <section id="email" class="block">
+    <div class="block-head"><span class="block-num">05</span><h2>E-posta Listesi Mimarisi</h2></div>
+    <p>Amazon alıcı verisi vermez — bu yüzden tüm strateji <b>sitede gönüllü onay</b> üzerine kurulu. İyi haber: bu mimari <b>zaten kodlanmış</b>: tek bir Resend Audience, kaynağa göre etiketlenmiş (<code class="pathref">home</code>, <code class="pathref">article</code>, <code class="pathref">category</code>, <code class="pathref">codex-verify</code>).</p>
+    <div class="verdict"><b>Huni:</b> Amazon okuyucu → kitabın arka sayfasındaki adres → <code class="pathref">/codex-enigmatica/verify</code> (önce fayda, sonra isteğe bağlı e-posta) → tek etiketli liste → (henüz yok) otomasyon → sonraki kitap.</p></div>
+    <p>Eksik olan: hoş geldin ve satın-alma-sonrası otomasyon dizileri, ve ikinci bir bulmaca kitabı için aynı desenin tekrarı.</p>
+  </section>
+
+  <section id="pd" class="block">
+    <div class="block-head"><span class="block-num">06</span><h2>Kamu Malı Katalog Stratejisi</h2></div>
+    <p>"Eski" ≠ "kamu malı." <em>Meditations</em> için yapılan çeviri-seçimi titizliği (George Long 1862, telifli Hays çevirisinden özellikle kaçınılarak) doğru örnek — her yeni başlıkta tekrarlanmalı.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Öncelik</th><th>Kategori</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill good">A — yüksek uyum</span></td><td>Orijinal bulmaca kitapları (Codex serisi); açıklamalı/küratörlü kamu malı klasikler (Meditations deseni)</td></tr>
+          <tr><td><span class="pill warn">B — iyi fırsat</span></td><td>Mit & folklor (kamu malı kaynak + orijinal çerçeveleme); orijinal oyun/strateji içeriği</td></tr>
+          <tr><td>C — deneysel</td><td>Koleksiyonlar/paketler (A+B'den türetilir, ayrı bir edinim kategorisi değil)</td></tr>
+          <tr><td>D — şimdilik kaçının</td><td>Elde mevcut telif/çeviri/tasarım varlığı olmayan her yeni kategori (çocuk kitapları, doğa tarihi)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><b>Pazaryeri sorusu:</b> Yalnızca kendi kitaplarımızı + küratörlü kamu malı edisyonlarını satın. Üçüncü taraf yayıncı davet etmeyin, tam pazaryeri kurmayın — bu, kilitli mimari kararla çelişir.</p>
+  </section>
+
+  <section id="gelir" class="block">
+    <div class="block-head"><span class="block-num">07</span><h2>Gelir Modeli</h2></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Senaryo</th><th>Aylık ziyaretçi</th><th>Dönüşüm</th><th>Aylık gelir</th><th>Katkı marjı</th></tr></thead>
+        <tbody>
+          <tr><td>Muhafazakâr</td><td class="mono">500</td><td class="mono">%0,8</td><td class="mono">$48</td><td class="mono">−$54</td></tr>
+          <tr><td>Temel</td><td class="mono">3.000</td><td class="mono">%1,5</td><td class="mono">$540</td><td class="mono">+$393</td></tr>
+          <tr><td>Agresif</td><td class="mono">12.000</td><td class="mono">%2,2</td><td class="mono">$4.752</td><td class="mono">+$4.364</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;color:var(--ink-faint)">Tüm rakamlar etiketli VARSAYIM'dır, ölçülmüş veri değil — bkz. <code class="pathref">01_REPORTS/WEBSITE_REVENUE_MODEL.md</code> §2. En büyük kaldıraç trafiktir; trafik de katalog derinliğine bağlıdır.</p>
+  </section>
+
+  <section id="musteri" class="block">
+    <div class="block-head"><span class="block-num">08</span><h2>Müşteri Kazanımı</h2></div>
+    <ol>
+      <li><b>Amazon arka-sayfa hunisi</b> (Codex Enigmatica deseni) — maliyet ~$0, zaten kanıtlı.</li>
+      <li><b>SEO / organik</b> — kamu malı çeviri-seçim hikayesinin kendisi iyi bir makale ("bu çeviriyi neden seçtik").</li>
+      <li><b>E-posta otomasyonu</b> — altyapı hazır, dizi eksik.</li>
+      <li><b>Amazon Ads</b> — Amazon-içi satış rankı için kullanın, siteye trafik çekmek için değil (Amazon bunu ödüllendirmez).</li>
+      <li><b>Kurumsal / eğitimci satışlar</b> — yalnızca kanıtlanmış bir tüketici geçmişinden sonra (SONRA).</li>
+    </ol>
+  </section>
+
+  <section id="90gun" class="block">
+    <div class="block-head"><span class="block-num">09</span><h2>90 Günlük Uygulama Planı</h2></div>
+    <details class="report" open>
+      <summary>Hafta 1–2 — Temel <span class="pill bad">kritik yol</span></summary>
+      <div class="body">
+        <ul class="checklist">
+          <li><input type="checkbox"> Meditations'ın production Paddle fiyat kimliğini gerçek bir fiyatla değiştir</li>
+          <li><input type="checkbox"> Canlı Paddle hesabı + webhook kur</li>
+          <li><input type="checkbox"> Inngest fonksiyonunu production'a senkronize et</li>
+          <li><input type="checkbox"> Eksik production DB migration'larını uygula</li>
+          <li><input type="checkbox"> Vercel Deployment Protection'ı kapat / doğrula</li>
+          <li><input type="checkbox"> "Digital Bookstore" → "Vâliçe Press" marka geçişi</li>
+          <li><input type="checkbox"> Tek gerçek düşük tutarlı satın alma ile tam döngüyü doğrula</li>
+        </ul>
+      </div>
+    </details>
+    <details class="report">
+      <summary>Hafta 3–4 — Dönüşüm</summary>
+      <div class="body">
+        <ul class="checklist">
+          <li><input type="checkbox"> Sahte örnek katalogu (Midnight Library vb.) kaldır / açıkça etiketle</li>
+          <li><input type="checkbox"> Codex Enigmatica'yı gerçek bir katalog ürünü olarak yayınla (KDP Select durumunu kontrol ettikten sonra)</li>
+          <li><input type="checkbox"> Basılı kitaplar için "Amazon'da satın al" bağlantıları ekle</li>
+          <li><input type="checkbox"> Satın-alma-sonrası e-posta toplamayı bağla</li>
+        </ul>
+      </div>
+    </details>
+    <details class="report">
+      <summary>Ay 2 — Katalog + E-posta</summary>
+      <div class="body">
+        <ul class="checklist">
+          <li><input type="checkbox"> 3–5 küratörlü kamu malı edisyon ekle</li>
+          <li><input type="checkbox"> Hoş geldin + satın-alma-sonrası e-posta otomasyonu kur</li>
+          <li><input type="checkbox"> İkinci bir bulmaca kitabı için arka-sayfa hunisini tekrarla</li>
+        </ul>
+      </div>
+    </details>
+    <details class="report">
+      <summary>Ay 3 — Gelir Genişletme</summary>
+      <div class="body">
+        <ul class="checklist">
+          <li><input type="checkbox"> İlk paketi (bundle) yayınla (≥3 ilişkili başlık)</li>
+          <li><input type="checkbox"> 90 günlük KPI'ları gözden geçir, Ay 4+ kapsamına karar ver</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <section id="12ay" class="block">
+    <div class="block-head"><span class="block-num">10</span><h2>12 Aylık Yol Haritası</h2></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Aşama</th><th>Zaman</th><th>Odak</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td class="mono">Ay 1</td><td>Amazon + site gerçek hale getirilir</td></tr>
+          <tr><td>2</td><td class="mono">Ay 1–2</td><td>E-posta ilişkisi kurulur</td></tr>
+          <tr><td>3</td><td class="mono">Ay 2–4</td><td>Gerçek ölçekte doğrudan dijital satış (6–10 başlık)</td></tr>
+          <tr><td>4</td><td class="mono">Ay 4–6</td><td>Paketler (bundles)</td></tr>
+          <tr><td>5</td><td class="mono">Ay 6–9</td><td>Abonelik — <b>yalnızca eşik karşılanırsa</b></td></tr>
+          <tr><td>6</td><td class="mono">Ay 6–12</td><td>Kamu malı katalog derinleşmesi (paralel)</td></tr>
+          <tr><td>7</td><td class="mono">Ay 9–12</td><td>Kurumsal satışlar — <b>yalnızca kanıtlanmış tüketici izi varsa</b></td></tr>
+          <tr><td>8</td><td class="mono">Ay 12+</td><td>Ölçeklenmiş Vâliçe Press mağazası — verilerle yeniden değerlendirme</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="sonuc" class="block">
+    <div class="block-head"><span class="block-num">11</span><h2>Nihai Stratejik Sıralama</h2></div>
+    <ol class="rank-list">
+      <li><span class="n">1</span><div><div class="t">Doğrudan e-kitap satışı</div><div class="d">Mevcut Paddle/R2/Inngest hattı ile — altyapı bitti, engel operasyonel</div></div></li>
+      <li><span class="n">2</span><div><div class="t">Amazon arka-sayfa → site → e-posta hunisi</div><div class="d">Kanıtlanmış mekanizma (Codex Enigmatica), yeni mimari gerektirmiyor</div></div></li>
+      <li><span class="n">3</span><div><div class="t">Küratörlü kamu malı katalog derinliği</div><div class="d">Meditations titizliği tekrarlanabilir bir hendek (moat) ve SEO varlığı</div></div></li>
+    </ol>
+    <div class="table-wrap">
+      <table>
+        <tbody>
+          <tr><th>En büyük hata</th><td>Gerçek, çok başlıklı bir katalog ve tekrar-satın-alma kanıtı olmadan abonelik / sayfa-bazlı ödeme / pazaryeri inşa etmek</td></tr>
+          <tr><th>En değersiz görülen varlık</th><td>Codex Enigmatica doğrulama sayfası + tek-liste e-posta mimarisi — zaten var, tam kullanılmıyor</td></tr>
+          <tr><th>En kârlı gelecek kategori</th><td>Küratörlü kamu malı klasikler + orijinal bulmaca kitapları</td></tr>
+          <tr><th>En hızlı Amazon-dışı gelir</th><td>Meditations'ın sahte fiyatını düzeltmek + canlı Paddle/Inngest — saatler, haftalar değil</td></tr>
+          <tr><th>En iyi uzun vadeli model</th><td>Hibrit: Amazon = kazanım motoru, site = sahip olunan ilişki + tam marjlı doğrudan satış, e-posta = birleştirici varlık</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Bu rapor <code class="pathref">01_REPORTS/</code> altındaki 11 ayrıntılı belgenin kurucu-dostu özetidir: WEBSITE_CURRENT_STATE_AUDIT, KDP_CATALOG_AUDIT, KDP_WEBSITE_POLICY_RESEARCH, DIRECT_SALES_BUSINESS_MODEL, EMAIL_LIST_STRATEGY, PUBLIC_DOMAIN_CATALOG_STRATEGY, WEBSITE_REVENUE_MODEL, CUSTOMER_ACQUISITION_STRATEGY, 90_DAY_EXECUTION_PLAN, 12_MONTH_VALICE_PRESS_ROADMAP, FINAL_COMMERCIAL_STRATEGY. Kanıtlanmamış her iddia açıkça işaretlenmiştir; kaynaklı politika iddiaları tarih ve URL ile belgelenmiştir. Bu sayfa çevrimdışı çalışır, arka uç gerektirmez.</p>
+</footer>

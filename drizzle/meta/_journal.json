@@ -36,6 +36,13 @@
       "when": 1780503231045,
       "tag": "0004_whole_karma",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1788019477953,
+      "tag": "0005_soft_glorian",
+      "breakpoints": true
     }
   ]
 }

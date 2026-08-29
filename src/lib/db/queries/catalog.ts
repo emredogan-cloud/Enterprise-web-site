@@ -192,6 +192,74 @@ export async function getFeaturedBooks(limit: number): Promise<BookCardData[]> {
   );
 }
 
+/**
+ * Published books that have a **direct-sale ebook edition** — the subset a
+ * reader can actually buy on this site.
+ *
+ * Every other format links out to Amazon, so this is the real inventory of
+ * the storefront as a shop rather than as a catalogue. `available` is the
+ * gate, not merely the existence of an ebook row: a `coming_soon` ebook is
+ * an intention, not stock.
+ */
+export async function listEbooks(): Promise<BookCardData[]> {
+  return safeQuery(
+    "listEbooks",
+    async () => {
+      const rows = await db.query.books.findMany({
+        where: (b, { eq }) => eq(b.status, "published"),
+        orderBy: (b, { desc }) => desc(b.publishedAt),
+        columns: {
+          id: true,
+          slug: true,
+          title: true,
+          subtitle: true,
+          coverKey: true,
+          priceCents: true,
+          currency: true,
+        },
+        with: {
+          bookAuthors: {
+            orderBy: (ba, { asc }) => asc(ba.position),
+            with: { author: { columns: { slug: true, name: true } } },
+          },
+          bookCategories: { with: { category: { columns: { name: true } } } },
+          formats: true,
+        },
+      });
+
+      return rows
+        .filter((b) =>
+          b.formats.some(
+            (f) =>
+              f.format === "ebook" &&
+              f.fulfillment === "direct" &&
+              f.availability === "available",
+          ),
+        )
+        .map((b) => {
+          const ebook = b.formats.find((f) => f.format === "ebook");
+          return {
+            id: b.id,
+            slug: b.slug,
+            title: b.title,
+            subtitle: b.subtitle,
+            coverKey: b.coverKey,
+            // Show the ebook's own price, not the book's canonical one —
+            // this page is specifically about the ebook edition.
+            priceCents: ebook?.priceCents ?? b.priceCents,
+            currency: ebook?.currency ?? b.currency,
+            authors: b.bookAuthors.map((ba) => ba.author),
+            primaryCategory:
+              b.bookCategories
+                .map((bc) => bc.category.name)
+                .sort((a, z) => a.localeCompare(z))[0] ?? null,
+          };
+        });
+    },
+    [],
+  );
+}
+
 export async function listPublishedBookSlugs(): Promise<Array<{ slug: string }>> {
   return safeQuery(
     "listPublishedBookSlugs",
@@ -206,13 +274,43 @@ export async function listPublishedBookSlugs(): Promise<Array<{ slug: string }>>
   );
 }
 
+/**
+ * One purchasable (or linkable) edition of a book.
+ *
+ * `fulfillment` is the field that decides what the reader is offered:
+ * `direct` becomes an add-to-cart, `amazon` becomes a link out. Nothing in
+ * the UI should infer that from the format name — a paperback is only an
+ * Amazon link because Amazon fulfils it, and that is data, not a rule about
+ * paperbacks.
+ */
+export interface BookFormat {
+  format: "ebook" | "paperback" | "hardcover" | "large_print";
+  availability: "available" | "coming_soon" | "unavailable";
+  fulfillment: "direct" | "amazon";
+  priceCents: number | null;
+  currency: string;
+  amazonAsin: string | null;
+  amazonUrl: string | null;
+  pageCount: number | null;
+  isbn: string | null;
+}
+
 export interface BookDetail extends BookCardData {
   description: string | null;
   pageCount: number | null;
   language: string;
   isbn: string | null;
   publishedAt: Date | null;
+  formats: BookFormat[];
 }
+
+/** Display order: what we sell ourselves first, then print by weight. */
+const FORMAT_ORDER: Record<BookFormat["format"], number> = {
+  ebook: 0,
+  paperback: 1,
+  hardcover: 2,
+  large_print: 3,
+};
 
 export async function getPublishedBookBySlug(
   slug: string,
@@ -244,6 +342,7 @@ export async function getPublishedBookBySlug(
               author: { columns: { slug: true, name: true } },
             },
           },
+          formats: true,
         },
       });
       if (!book) return null;
@@ -261,6 +360,24 @@ export async function getPublishedBookBySlug(
         isbn: book.isbn,
         publishedAt: book.publishedAt,
         authors: book.bookAuthors.map((ba) => ba.author),
+        // `unavailable` formats are dropped rather than rendered as a
+        // struck-through row: a format the press decided not to produce is
+        // not news to the reader. The write-in Myth Hunter has no ebook and
+        // says nothing about one.
+        formats: book.formats
+          .filter((f) => f.availability !== "unavailable")
+          .sort((a, b) => FORMAT_ORDER[a.format] - FORMAT_ORDER[b.format])
+          .map((f) => ({
+            format: f.format,
+            availability: f.availability,
+            fulfillment: f.fulfillment,
+            priceCents: f.priceCents,
+            currency: f.currency,
+            amazonAsin: f.amazonAsin,
+            amazonUrl: f.amazonUrl,
+            pageCount: f.pageCount,
+            isbn: f.isbn,
+          })),
       };
     },
     null,

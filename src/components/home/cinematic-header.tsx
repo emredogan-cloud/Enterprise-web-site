@@ -40,6 +40,7 @@ const CLERK_CONFIGURED = Boolean(
 export type ActiveNavSection =
   | "home"
   | "books"
+  | "ebooks"
   | "authors"
   | "genres"
   | "blog"
@@ -47,7 +48,12 @@ export type ActiveNavSection =
   | "about";
 
 const NAV_ITEMS: { key: ActiveNavSection; label: string; href: string }[] = [
-  { key: "books", label: "Books", href: "/books" },
+  { key: "books", label: "All books", href: "/books" },
+  // Ebooks get their own destination rather than living as a filter on
+  // /books. They are the only format sold on this site — everything else
+  // links out to Amazon — so the one thing a reader can actually buy here
+  // should not be something they have to filter for.
+  { key: "ebooks", label: "Ebooks", href: "/ebooks" },
   // `/authors` is the cinematic discovery page (SUB-PR — authors redesign).
   // Previously fell through to /books because no index existed.
   { key: "authors", label: "Authors", href: "/authors" },

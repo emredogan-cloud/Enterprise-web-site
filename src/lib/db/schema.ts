@@ -99,6 +99,40 @@ export const commerceEventTypeEnum = pgEnum("commerce_event_type", [
   "revoked",
 ]);
 
+// The editions a title can exist in. One book, many formats — a reader
+// choosing between the paperback and the ebook is choosing a format of the
+// same work, not a different product.
+export const bookFormatEnum = pgEnum("book_format", [
+  "ebook",
+  "paperback",
+  "hardcover",
+  "large_print",
+]);
+
+// Who actually fulfils an order for a given format.
+//
+// This distinction is the whole reason `book_formats` exists. Amazon's KDP
+// print pipeline only fulfils orders placed on Amazon — it cannot ship a
+// book ordered on this site. So a print format is a *link out*, never an
+// add-to-cart, and the data model has to say which is which rather than
+// leaving it to whoever writes the button label.
+export const fulfillmentChannelEnum = pgEnum("fulfillment_channel", [
+  // Sold here: Paddle checkout → entitlement → watermarked download.
+  "direct",
+  // Sold on Amazon: we link to the product page and Amazon does the rest.
+  "amazon",
+]);
+
+export const formatAvailabilityEnum = pgEnum("format_availability", [
+  // Buyable now (direct) or linkable now (amazon).
+  "available",
+  // Edition exists and is intended, but is not purchasable yet. Renders as
+  // a stated future edition, never as a buy button.
+  "coming_soon",
+  // Deliberately not offered in this format.
+  "unavailable",
+]);
+
 // -----------------------------------------------------------------------------
 // users
 // -----------------------------------------------------------------------------
@@ -160,6 +194,68 @@ export const books = pgTable(
     uniqueIndex("books_slug_uk").on(t.slug),
     index("books_status_published_at_idx").on(t.status, t.publishedAt),
     index("books_search_gin_idx").using("gin", t.searchTsv),
+  ],
+);
+
+// -----------------------------------------------------------------------------
+// book_formats — the editions a title is sold in, and by whom
+//
+// A book row carries the *work*: title, description, cover, canonical
+// direct-sale price. A format row carries one *edition* of it: what it
+// costs in that edition, whether it can be bought at all, and — critically
+// — whether buying it happens here or on Amazon.
+//
+// `amazonAsin` / `amazonUrl` are nullable and must stay that way. A print
+// edition that has been typeset but not yet uploaded to KDP has no ASIN,
+// and inventing one produces a dead "Buy on Amazon" button. Availability
+// is what decides whether a CTA renders; the identifiers only decide where
+// it points.
+// -----------------------------------------------------------------------------
+export const bookFormats = pgTable(
+  "book_formats",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    bookId: uuid("book_id")
+      .notNull()
+      .references(() => books.id, { onDelete: "cascade" }),
+    format: bookFormatEnum("format").notNull(),
+    availability: formatAvailabilityEnum("availability")
+      .notNull()
+      .default("coming_soon"),
+    fulfillment: fulfillmentChannelEnum("fulfillment").notNull(),
+    /**
+     * Price in minor units. NULL means "not established yet" and renders as
+     * no price at all — distinct from a zero price. Most print prices are
+     * modelled from KDP's cost tables rather than confirmed on a live
+     * listing, so a null here is honest and a guess is not.
+     */
+    priceCents: integer("price_cents"),
+    currency: varchar("currency", { length: 3 }).notNull().default("USD"),
+    /** Amazon identifiers — only ever set once the edition is actually live. */
+    amazonAsin: varchar("amazon_asin", { length: 16 }),
+    amazonUrl: text("amazon_url"),
+    /** Per-edition physical facts; page counts differ between editions. */
+    pageCount: integer("page_count"),
+    isbn: varchar("isbn", { length: 32 }),
+    /**
+     * Private R2 key of the master file for a `direct` ebook. The
+     * fulfillment worker watermarks this per order. NULL for every
+     * Amazon-fulfilled format — we hold no file for those.
+     */
+    masterFileKey: text("master_file_key"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (t) => [
+    // One row per format per book. Re-running the catalog loader must
+    // update an edition, never duplicate it.
+    uniqueIndex("book_formats_book_format_uk").on(t.bookId, t.format),
+    index("book_formats_book_idx").on(t.bookId),
   ],
 );
 
@@ -467,12 +563,20 @@ export const usersRelations = relations(users, ({ many }) => ({
 }));
 
 export const booksRelations = relations(books, ({ many }) => ({
+  formats: many(bookFormats),
   orderItems: many(orderItems),
   entitlements: many(entitlements),
   readingProgress: many(readingProgress),
   reviews: many(reviews),
   bookAuthors: many(bookAuthors),
   bookCategories: many(bookCategories),
+}));
+
+export const bookFormatsRelations = relations(bookFormats, ({ one }) => ({
+  book: one(books, {
+    fields: [bookFormats.bookId],
+    references: [books.id],
+  }),
 }));
 
 export const authorsRelations = relations(authors, ({ many }) => ({
