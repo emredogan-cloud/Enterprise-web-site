@@ -2,6 +2,8 @@ import { Heart, Lock, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { formatCatalogPrice } from "@/lib/format";
+
 import type { CatalogItem } from "./catalog-item";
 
 /**
@@ -21,8 +23,7 @@ export function CatalogBookCard({ book }: { book: CatalogItem }) {
   // whose editions are all fulfilled by Amazon (see `books.price_cents` and
   // <BookHero>). Printing "$0" on the card would advertise a giveaway that
   // does not exist, so the card says where the book is bought instead.
-  const priceLabel =
-    book.priceCents > 0 ? `$${(book.priceCents / 100).toFixed(0)}` : "On Amazon";
+  const priceLabel = formatCatalogPrice(book.priceCents, "USD");
 
   return (
     <article className="home-card-hover home-glass group relative flex flex-col overflow-hidden rounded-[22px] p-3">

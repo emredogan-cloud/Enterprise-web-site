@@ -6,6 +6,7 @@ import { useTransition } from "react";
 
 import { addToCart } from "@/app/cart/actions";
 import type { CatalogItem } from "@/components/catalog/catalog-item";
+import { formatCatalogPrice } from "@/lib/format";
 
 /**
  * Single recommendation card for the "You might like" shelf.
@@ -113,7 +114,7 @@ export function RecommendationCard({ book }: { book: CatalogItem }) {
             <span className="tabular-nums">{book.rating.toFixed(1)}</span>
           </div>
           <span className="text-sm font-semibold tabular-nums text-fg-hi">
-            ${(book.priceCents / 100).toFixed(0)}
+            {formatCatalogPrice(book.priceCents, "USD")}
           </span>
         </div>
 

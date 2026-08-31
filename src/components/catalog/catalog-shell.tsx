@@ -12,6 +12,7 @@ import {
 } from "./catalog-toolbar";
 import { type CatalogItem } from "./catalog-item";
 import { FilterSidebar } from "./filter-sidebar";
+import { formatCatalogPrice } from "@/lib/format";
 import { Pagination } from "./pagination";
 
 const PAGE_SIZE = 12; // 4 cols × 3 rows — larger cards, fuller catalog page (Issue 3)
@@ -416,9 +417,7 @@ function ListRow({ book }: { book: CatalogItem }) {
         {/* 0 means "not sold here" rather than "free" — same rule as the
             grid card. See <CatalogBookCard>. */}
         <span className="text-base font-semibold tabular-nums text-fg-hi">
-          {book.priceCents > 0
-            ? `$${(book.priceCents / 100).toFixed(0)}`
-            : "On Amazon"}
+          {formatCatalogPrice(book.priceCents, "USD")}
         </span>
         <span className="flex items-center gap-1 text-xs text-fg-mid">
           <svg

@@ -184,14 +184,24 @@ export function buildBookJsonLd(args: BookJsonLdArgs): Graph {
         ...(longDescription ? { description: longDescription } : {}),
         ...(cover ? { image: [cover] } : {}),
         brand: { "@type": "Organization", name: SITE_NAME },
-        offers: {
-          "@type": "Offer",
-          url: bookUrl,
-          price: priceText,
-          priceCurrency: args.currency.toUpperCase(),
-          availability: "https://schema.org/InStock",
-          seller: { "@type": "Organization", name: SITE_NAME },
-        },
+        // An Offer is a statement that WE sell this, at this price. A book
+        // with a price of 0 is not free — it is a title this store does not
+        // sell, whose editions are all fulfilled by Amazon. Emitting
+        // `price: "0.00"` + `InStock` for those told Google, and any
+        // aggregator reading the markup, that Codex Mythologica was a free
+        // download. No offer is the accurate markup when there is no offer.
+        ...(args.priceCents > 0
+          ? {
+              offers: {
+                "@type": "Offer" as const,
+                url: bookUrl,
+                price: priceText,
+                priceCurrency: args.currency.toUpperCase(),
+                availability: "https://schema.org/InStock",
+                seller: { "@type": "Organization" as const, name: SITE_NAME },
+              },
+            }
+          : {}),
         ...(aggregateRatingBlock
           ? { aggregateRating: aggregateRatingBlock }
           : {}),

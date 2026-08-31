@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { BookCover } from "@/components/book-detail/book-cover";
-import { formatPrice } from "@/lib/format";
+import { formatCatalogPrice } from "@/lib/format";
 import type { BookCardData } from "@/components/book-card";
 
 /**
@@ -52,7 +52,7 @@ export function CinematicBookTile({ book }: { book: BookCardData }) {
 
         <div className="mt-auto flex items-center justify-end pt-3">
           <span className="font-semibold tabular-nums text-fg-hi">
-            {formatPrice(book.priceCents, book.currency)}
+            {formatCatalogPrice(book.priceCents, book.currency)}
           </span>
         </div>
       </div>

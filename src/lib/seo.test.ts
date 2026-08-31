@@ -181,3 +181,43 @@ describe("buildSiteJsonLd", () => {
     expect(org).not.toHaveProperty("sameAs");
   });
 });
+
+describe("buildBookJsonLd — Offer emission", () => {
+  const base = {
+    baseUrl: "https://example.test",
+    slug: "a-book",
+    title: "A Book",
+    subtitle: null,
+    description: "About the book.",
+    isbn: null,
+    language: "en",
+    pageCount: 100,
+    currency: "USD",
+    authors: [{ slug: "an-author", name: "An Author" }],
+    coverImageUrl: null,
+    aggregateRating: null,
+  };
+
+  const productOf = (priceCents: number) => {
+    const graph = buildBookJsonLd({ ...base, priceCents })[
+      "@graph"
+    ] as unknown as Array<Record<string, unknown>>;
+    return graph.find((n) => n["@type"] === "Product")!;
+  };
+
+  it("emits an Offer for a book this store sells", () => {
+    const offer = productOf(1299).offers as Record<string, unknown>;
+    expect(offer).toBeDefined();
+    expect(offer.price).toBe("12.99");
+    expect(offer.availability).toBe("https://schema.org/InStock");
+  });
+
+  it("emits NO Offer for a book priced at zero", () => {
+    // Zero means "not sold here", not "free". Emitting price "0.00" with
+    // InStock told Google that Codex Mythologica — a $4.99 Kindle title
+    // enrolled in KDP Select — was a free download from this site.
+    const product = productOf(0);
+    expect(product.offers).toBeUndefined();
+    expect(JSON.stringify(product)).not.toContain("0.00");
+  });
+});
