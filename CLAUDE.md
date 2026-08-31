@@ -1,4 +1,4 @@
-# Digital Bookstore - Agent Instructions
+# Valice Press — Agent Instructions
 
 ## Architecture & Stack
 - Next.js (App Router), TypeScript, Tailwind CSS, shadcn/ui.
@@ -17,6 +17,10 @@
 - `drizzle/` - Generated SQL migrations (committed; applied by `db:migrate`).
 - `memory/` - Agent's long-term memory and ADRs.
 - `scripts/` - Composable utility scripts.
+- `scripts/catalog/` - The catalog as source-controlled data, plus its loader
+  and the operational scripts that provision Paddle, cut digital editions,
+  upload masters and render previews. **`valice-catalog.mjs` is the source of
+  truth for what this store sells.** Never edit catalog rows in the database.
 
 ## Commands
 - Install: `npm install`
@@ -28,6 +32,31 @@
 - DB apply migrations: `npm run db:migrate`
 - DB push (dev convenience only): `npm run db:push`
 - DB browser (Drizzle Studio): `npm run db:studio`
+
+## Catalog rules (see `memory/PAST_DECISIONS.md` for the full list)
+- **Publication is data.** A book goes live because `websiteStatus:
+  "published"` is written next to its blockers in `valice-catalog.mjs`, then
+  `load-catalog.mjs` applies it. The loader demotes as well as promotes.
+- **Never invent a fact about a book.** No ASIN without a live KDP edition, no
+  price you cannot point at, no rating without a review, no cover you have not
+  seen. `valice-catalog.test.ts` enforces most of this; the loader refuses to
+  write a catalog that fails the same checks.
+- **KDP Select is exclusivity.** A Select-enrolled book's ebook may not be sold
+  here. A test asserts it — do not weaken that test.
+- **`price_cents = 0` means "not sold here", not "free".** Use
+  `formatCatalogPrice`, and emit no JSON-LD Offer.
+- Catalog scripts are dry-run by default and refuse to touch production
+  without an explicit flag. Keep it that way.
+
+## Verifying integrations
+Presence checks lie. Four of five providers were once configured with a
+wrong-but-plausible value that `process.env.X !== undefined` accepted. Verify
+by making the system do the thing:
+- Paddle: `provision-paddle.mjs` (dry run) lists live products, prices and the
+  webhook's subscribed events.
+- Inngest: `PUT /api/inngest` must return `{"message":"Successfully registered"}`.
+- Resend: send to the account owner's address and read the delivery log.
+- R2: list and write to both buckets.
 
 ## Agent Workflow Rules
 - Read before Write: Always `Read` or `Grep` a file before attempting to `Edit` it to avoid stale diffs.
