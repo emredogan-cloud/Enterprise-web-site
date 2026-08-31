@@ -24,6 +24,7 @@ export function CatalogBookCard({ book }: { book: CatalogItem }) {
   // <BookHero>). Printing "$0" on the card would advertise a giveaway that
   // does not exist, so the card says where the book is bought instead.
   const priceLabel = formatCatalogPrice(book.priceCents, "USD");
+  const hasRealCover = Boolean(book.coverSrc);
 
   return (
     <article className="home-card-hover home-glass group relative flex flex-col overflow-hidden rounded-[22px] p-3">
@@ -66,27 +67,35 @@ export function CatalogBookCard({ book }: { book: CatalogItem }) {
             />
           )}
 
-          {/* Top eyebrow on cover */}
-          <span
-            className="relative z-10 text-[8px] font-semibold uppercase tracking-[0.2em]"
-            style={{
-              color: book.cover.darkText
-                ? "rgba(0,0,0,0.45)"
-                : "rgba(255,255,255,0.45)",
-            }}
-          >
-            {book.category}
-          </span>
+          {/* The typographic cover — category + title set on the gradient.
+              It is a STAND-IN for missing art, so it is suppressed the moment
+              real art exists. Both used to render, and because the text
+              carries `z-10` and the image does not, every real cover in the
+              catalog was published with a second, redundant title printed
+              across artwork that already had one. */}
+          {!hasRealCover && (
+            <>
+              <span
+                className="relative z-10 text-[8px] font-semibold uppercase tracking-[0.2em]"
+                style={{
+                  color: book.cover.darkText
+                    ? "rgba(0,0,0,0.45)"
+                    : "rgba(255,255,255,0.45)",
+                }}
+              >
+                {book.category}
+              </span>
 
-          {/* Title on cover */}
-          <h3
-            className="relative z-10 font-serif text-[20px] font-medium leading-[1.05] tracking-tight"
-            style={{
-              color: book.cover.darkText ? "#1a1612" : "#ffffff",
-            }}
-          >
-            {book.title}
-          </h3>
+              <h3
+                className="relative z-10 font-serif text-[20px] font-medium leading-[1.05] tracking-tight"
+                style={{
+                  color: book.cover.darkText ? "#1a1612" : "#ffffff",
+                }}
+              >
+                {book.title}
+              </h3>
+            </>
+          )}
 
           {/* Right edge highlight — page thickness illusion */}
           <div
@@ -99,11 +108,12 @@ export function CatalogBookCard({ book }: { book: CatalogItem }) {
           />
         </div>
 
-        {/* Optional real cover (/images/books/{slug}.webp) over the
-            typographic gradient cover. Missing → gradient cover shows. */}
-        {book.coverSrc && (
+        {/* The real cover (/images/books/{slug}.webp). `alt=""` because the
+            title is announced by the heading directly beneath it — a screen
+            reader hearing the title twice is not better served. */}
+        {hasRealCover && (
           <Image
-            src={book.coverSrc}
+            src={book.coverSrc!}
             alt=""
             fill
             sizes="(min-width: 1024px) 22vw, 50vw"

@@ -96,7 +96,10 @@ export function FilterSidebar(props: FilterSidebarProps) {
         </ul>
       </SectionWrap>
 
-      {/* Formats */}
+      {/* Formats — hidden entirely when the catalog has only one, which it
+          does today: every ebook here is a watermarked PDF. A single-option
+          filter filters nothing. */}
+      {formatCounts.length > 1 && (
       <SectionWrap title="Formats">
         <ul className="space-y-1">
           {formatCounts.map((fmt) => (
@@ -110,6 +113,7 @@ export function FilterSidebar(props: FilterSidebarProps) {
           ))}
         </ul>
       </SectionWrap>
+      )}
 
       {/* Price */}
       <SectionWrap title="Price">
@@ -138,7 +142,11 @@ export function FilterSidebar(props: FilterSidebarProps) {
         </div>
       </SectionWrap>
 
-      {/* Rating */}
+      {/* Rating — hidden while nothing is reviewed. Every book in this
+          catalog has zero reviews, so all five rows read 0 and every one of
+          them returns an empty grid. Reappears on its own the moment a
+          review lands. */}
+      {ratingCounts.some((r) => r.count > 0) && (
       <SectionWrap title="Rating">
         <ul className="space-y-1">
           {ratingCounts.map((r) => {
@@ -180,6 +188,7 @@ export function FilterSidebar(props: FilterSidebarProps) {
           })}
         </ul>
       </SectionWrap>
+      )}
 
     </aside>
   );

@@ -48,10 +48,14 @@ export function CatalogToolbar(props: CatalogToolbarProps) {
       <div className="flex items-center gap-3">
         {/* Sort — glass dropdown (native select with custom styling) */}
         <div className="relative">
-          <label
-            htmlFor="catalog-sort"
-            className="absolute -left-[200px] -top-[200px]"
-          >
+          {/* `sr-only`, not a negative offset. The old
+              `absolute -left-[200px] -top-[200px]` positioned this against
+              the nearest positioned ancestor rather than off the document,
+              so on a wide screen the words "Sort by" rendered in open space
+              above the toolbar — visible on the live /books and /ebooks
+              pages. `sr-only` is the clipping technique this codebase
+              already uses everywhere else. */}
+          <label htmlFor="catalog-sort" className="sr-only">
             Sort by
           </label>
           <span

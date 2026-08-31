@@ -83,7 +83,14 @@ export function getFormatCounts(books: CatalogItem[]): Array<{
       counts.set(fmt, (counts.get(fmt) ?? 0) + 1);
     }
   }
-  return FORMATS.map((name) => ({ name, count: counts.get(name) ?? 0 }));
+  // Only formats this catalog actually contains. Every Valice Press ebook
+  // is a watermarked PDF, so listing EPUB and MOBI at 0 offered two filters
+  // that could never return anything and implied two editions that do not
+  // exist. A filter is a promise that something is behind it.
+  return FORMATS.filter((name) => (counts.get(name) ?? 0) > 0).map((name) => ({
+    name,
+    count: counts.get(name) as number,
+  }));
 }
 
 /**
