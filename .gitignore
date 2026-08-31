@@ -66,3 +66,9 @@ next-env.d.ts
 /images/*_reference_image.png
 /images/*_referance_image.png
 scripts/tmp/
+
+# Founder-supplied dashboard screenshots (KDP, Resend, Paddle).
+# Evidence for a verification session, not source. They show account
+# interiors and a personal profile photo, so they stay out of the repo.
+/e-book/
+/resend.png

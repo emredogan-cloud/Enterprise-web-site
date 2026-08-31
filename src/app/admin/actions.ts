@@ -12,7 +12,7 @@ import {
   books,
   categories,
 } from "@/lib/db/schema";
-import { CORE_COLLECTIONS, type BookStatus } from "@/lib/db/queries/admin";
+import { type BookStatus } from "@/lib/db/queries/admin";
 import { logger } from "@/lib/logger";
 
 // ===========================================================================
@@ -180,25 +180,13 @@ async function syncBookRelations(
   }
 }
 
-/**
- * Idempotently insert the canonical collection rows (PD Spine, Builder Core,
- * Deep Thinking, Speculative Shelf). Safe to re-run — `onConflictDoNothing`
- * on the unique `categories.slug` means existing rows are untouched and no
- * duplicate is ever created. Triggered by the "Ensure core collections"
- * button on /admin.
+/*
+ * `ensureCoreCollections` has been removed along with the four collections it
+ * seeded. Categories are declared in `scripts/catalog/valice-catalog.mjs` and
+ * applied by the catalog loader, which also deletes categories that no longer
+ * have a book in them — so a one-click button that creates empty shelves is
+ * now working directly against the thing that keeps the navigation honest.
  */
-export async function ensureCoreCollections(): Promise<void> {
-  try {
-    await requireAdmin();
-    await db
-      .insert(categories)
-      .values(CORE_COLLECTIONS.map((c) => ({ slug: c.slug, name: c.name })))
-      .onConflictDoNothing({ target: categories.slug });
-    revalidatePath("/admin");
-  } catch (err) {
-    logger.error("[admin] ensureCoreCollections failed", err);
-  }
-}
 
 // ===========================================================================
 // createBook — unchanged shape, but `requireUserId` upgraded to

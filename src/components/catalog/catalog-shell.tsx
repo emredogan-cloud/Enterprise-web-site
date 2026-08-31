@@ -413,8 +413,12 @@ function ListRow({ book }: { book: CatalogItem }) {
       </div>
 
       <div className="flex flex-col items-end gap-1">
+        {/* 0 means "not sold here" rather than "free" — same rule as the
+            grid card. See <CatalogBookCard>. */}
         <span className="text-base font-semibold tabular-nums text-fg-hi">
-          ${(book.priceCents / 100).toFixed(0)}
+          {book.priceCents > 0
+            ? `$${(book.priceCents / 100).toFixed(0)}`
+            : "On Amazon"}
         </span>
         <span className="flex items-center gap-1 text-xs text-fg-mid">
           <svg

@@ -17,7 +17,12 @@ import type { CatalogItem } from "./catalog-item";
  * pure CSS via `.home-card-hover` (reused from the homepage system).
  */
 export function CatalogBookCard({ book }: { book: CatalogItem }) {
-  const priceLabel = `$${(book.priceCents / 100).toFixed(0)}`;
+  // A price of 0 is not a free book — it is a book this store does not sell,
+  // whose editions are all fulfilled by Amazon (see `books.price_cents` and
+  // <BookHero>). Printing "$0" on the card would advertise a giveaway that
+  // does not exist, so the card says where the book is bought instead.
+  const priceLabel =
+    book.priceCents > 0 ? `$${(book.priceCents / 100).toFixed(0)}` : "On Amazon";
 
   return (
     <article className="home-card-hover home-glass group relative flex flex-col overflow-hidden rounded-[22px] p-3">

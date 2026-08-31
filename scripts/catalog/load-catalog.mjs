@@ -8,16 +8,20 @@
  *
  * Deliberately conservative in three ways:
  *
- *  1. Books load as `draft`. This script never publishes anything. Whether
- *     a title is fit to sell depends on the per-book `blockers` list, which
- *     includes things like an unresolved content licence and an untested
- *     puzzle set — decisions that belong to the founder, not to a loader.
- *     Publishing is a separate, explicit action (see the operations manual).
+ *  1. Publication is DATA, not a side effect. A book reaches `published`
+ *     only because `websiteStatus: "published"` is written next to its
+ *     blockers in `valice-catalog.mjs`, where the decision is reviewable in
+ *     a diff. The loader does not decide; it applies a decision that was
+ *     already made in the open. A book whose `websiteStatus` is `draft`
+ *     is actively demoted on re-run, so removing a title from sale is one
+ *     edit rather than a manual database visit.
  *
- *  2. It never sets `paddlePriceId`. That value must come from a real
- *     Paddle price, and writing a plausible-looking fake is precisely how
- *     the existing production row ended up with `pri_test_meditations_999`
- *     and a checkout that fails at the till.
+ *  2. `paddlePriceId` is only ever a real id produced by
+ *     `provision-paddle.mjs` against the live account. Writing a
+ *     plausible-looking fake is precisely how the existing production row
+ *     ended up with `pri_test_meditations_999` and a checkout that failed
+ *     at the till — so a value that does not look like a Paddle price id is
+ *     rejected here rather than discovered by a customer.
  *
  *  3. It refuses to touch a database it wasn't pointed at deliberately.
  *     Production (`neondb`) and sandbox (`bookstore`) live on the same host;
@@ -62,15 +66,75 @@ if (db === "neondb" && commit && !prodOk) {
   process.exit(1);
 }
 
+// ---- integrity gate -------------------------------------------------------
+// Run before any write, on every run including dry runs. Each of these has
+// been a real production defect at some point in this project's history.
+const PADDLE_PRICE_RE = /^pri_[a-z0-9]{20,}$/;
+const problems = [];
+
+for (const b of BOOKS) {
+  const ebook = b.formats.find((f) => f.format === "ebook");
+  const sellsDirect =
+    ebook?.fulfillment === "direct" && ebook.availability === "available";
+
+  if (b.paddlePriceId && !PADDLE_PRICE_RE.test(b.paddlePriceId)) {
+    problems.push(
+      `${b.slug}: paddlePriceId "${b.paddlePriceId}" is not a Paddle price id. ` +
+        `This is how pri_test_meditations_999 reached production.`,
+    );
+  }
+  if (sellsDirect && !b.paddlePriceId) {
+    problems.push(`${b.slug}: sold directly but has no Paddle price id — checkout would fail.`);
+  }
+  if (sellsDirect && !ebook.masterFileKey) {
+    problems.push(
+      `${b.slug}: sold directly but has no master file in R2 — fulfillment would have nothing to watermark.`,
+    );
+  }
+  if (sellsDirect && b.kdpSelect) {
+    problems.push(
+      `${b.slug}: sold directly while enrolled in KDP Select. That is an exclusivity breach.`,
+    );
+  }
+  for (const f of b.formats) {
+    // An Amazon call to action without a verified destination is the exact
+    // defect this catalog was rebuilt to prevent.
+    if (f.amazonUrl && !f.amazonAsin) {
+      problems.push(`${b.slug}/${f.format}: amazonUrl without an ASIN.`);
+    }
+    if (f.amazonAsin && f.kdp !== "live") {
+      problems.push(
+        `${b.slug}/${f.format}: has an ASIN but kdp="${f.kdp}". An ASIN only exists once a title is live.`,
+      );
+    }
+    if (f.fulfillment === "amazon" && f.availability === "available" && !f.amazonUrl) {
+      problems.push(
+        `${b.slug}/${f.format}: Amazon-fulfilled and available, but no URL to send the buyer to.`,
+      );
+    }
+  }
+  if (b.websiteStatus !== "published" && b.websiteStatus !== "draft") {
+    problems.push(`${b.slug}: websiteStatus must be "published" or "draft".`);
+  }
+}
+
+if (problems.length) {
+  console.error("CATALOG INTEGRITY FAILURES — refusing to load:\n");
+  for (const p of problems) console.error(`  - ${p}`);
+  process.exit(1);
+}
+console.log("catalog integrity : OK\n");
+
 if (!commit) {
   for (const b of BOOKS) {
-    const sellable = b.formats.filter(
+    const buyable = b.formats.filter(
       (f) => f.fulfillment === "direct" && f.availability === "available",
     ).length;
+    const amazonLinks = b.formats.filter((f) => f.amazonUrl).length;
     console.log(
-      `WOULD UPSERT  ${b.slug.padEnd(36)} draft  ${String(b.formats.length).padStart(2)} formats  ` +
-        `${b.directSaleEligible ? "direct-eligible" : "NOT direct-eligible"}  ` +
-        `${sellable} buyable  ${b.blockers.length} blocker(s)`,
+      `WOULD UPSERT  ${b.slug.padEnd(36)} ${b.websiteStatus.padEnd(9)} ` +
+        `${String(b.formats.length).padStart(2)} formats  ` +
+        `${buyable} buyable  ${amazonLinks} amazon  ${b.blockers.length} blocker(s)`,
     );
   }
   console.log("\ndry run complete — re-run with --commit to write.");
@@ -109,33 +173,59 @@ for (const b of BOOKS) {
   // isn't (print-only titles, or a price the founder hasn't set), store 0
   // and leave the book in draft — a zero here is only ever seen by the
   // admin, because nothing at zero is publishable.
+  // The canonical price is what this store charges, so it is the DIRECT
+  // ebook price and nothing else. A book we only link to Amazon for has no
+  // price of ours; storing Amazon's list price here would mean the cart
+  // could quote a number we never charge.
   const ebook = b.formats.find((f) => f.format === "ebook");
-  const canonicalPrice = ebook?.priceCents ?? 0;
+  const sellsDirect =
+    ebook?.fulfillment === "direct" && ebook.availability === "available";
+  const canonicalPrice = sellsDirect ? ebook.priceCents : 0;
 
   const [book] = await sql`
     insert into books (slug, title, subtitle, description, language,
-                       price_cents, currency, page_count, status)
+                       price_cents, currency, page_count, status,
+                       paddle_price_id)
     values (${b.slug}, ${b.title}, ${b.subtitle}, ${b.description}, ${b.language},
-            ${canonicalPrice}, 'USD', ${b.pageCount}, 'draft')
+            ${canonicalPrice}, 'USD', ${b.pageCount}, ${b.websiteStatus},
+            ${b.paddlePriceId ?? null})
     on conflict (slug) do update set
-      title       = excluded.title,
-      subtitle    = excluded.subtitle,
-      description = excluded.description,
-      language    = excluded.language,
-      page_count  = excluded.page_count,
-      -- Price and status are deliberately NOT overwritten on re-run: once
-      -- the founder has set a real price or published a title, a routine
-      -- re-load must not silently revert either.
-      updated_at  = now()
+      title           = excluded.title,
+      subtitle        = excluded.subtitle,
+      description     = excluded.description,
+      language        = excluded.language,
+      page_count      = excluded.page_count,
+      price_cents     = excluded.price_cents,
+      -- Status and price ARE overwritten now, because both are declared in
+      -- the catalog file and reviewed in a diff. The previous revision left
+      -- them alone to protect a hand-made production edit; that protection
+      -- has become the thing that lets production drift away from source.
+      status          = excluded.status,
+      paddle_price_id = excluded.paddle_price_id,
+      updated_at      = now()
     returning id, status`;
 
-  console.log(`book      ${b.slug}  (${book.status})`);
+  console.log(`book      ${b.slug.padEnd(36)} ${book.status}`);
 
-  for (const slug of b.categories) {
+  // Reconcile, don't just add. Inserting with `on conflict do nothing` and
+  // never deleting is how Meditations ended up filed under BOTH `pd-spine`
+  // and `deep-thinking` — two categories from an abandoned strategy — long
+  // after the catalog said it belonged in neither. Membership is now exactly
+  // what the catalog file says it is.
+  const wantedCategoryIds = b.categories.map((slug) => categoryIds.get(slug));
+  for (const id of wantedCategoryIds) {
     await sql`
       insert into book_categories (book_id, category_id)
-      values (${book.id}, ${categoryIds.get(slug)})
+      values (${book.id}, ${id})
       on conflict do nothing`;
+  }
+  const removed = await sql`
+    delete from book_categories
+    where book_id = ${book.id}
+      and category_id <> all(${wantedCategoryIds}::uuid[])
+    returning category_id`;
+  if (removed.length) {
+    console.log(`  categories  removed ${removed.length} stale assignment(s)`);
   }
   for (const slug of b.authors) {
     await sql`
@@ -145,6 +235,23 @@ for (const b of BOOKS) {
   }
 
   for (const f of b.formats) {
+    // `unavailable` does not mean "not ready" — it means this edition does
+    // not exist and is not going to. The Myth Hunter's Field Book has no
+    // ebook because it is written in by hand; World Myths has no large
+    // print by decision K6/A6. Loading those would put a row on the product
+    // page reading "Not yet available", which promises a forthcoming
+    // edition that nobody intends to make. The reason stays in the catalog
+    // file, where it belongs; the storefront simply does not list it.
+    //
+    // Deleted rather than skipped so that marking an edition unavailable
+    // actually removes it on the next run instead of leaving a stale row.
+    if (f.availability === "unavailable") {
+      await sql`delete from book_formats
+                where book_id = ${book.id} and format = ${f.format}`;
+      console.log(`  format  ${f.format.padEnd(12)} (not an edition — omitted)`);
+      continue;
+    }
+
     await sql`
       insert into book_formats (book_id, format, availability, fulfillment,
                                 price_cents, currency, amazon_asin, amazon_url,
@@ -168,7 +275,27 @@ for (const b of BOOKS) {
   }
 }
 
-console.log(`\nloaded ${BOOKS.length} books into ${db}. All draft.`);
-console.log(
-  "Nothing is published and no Paddle price was written — both are deliberate.",
+// ---- remove categories nothing is filed under ----------------------------
+// A category page with no books on it is a promise the catalog cannot keep.
+// Two of these ("Builder Core", "Speculative Shelf") were live in production
+// with zero books. Only empty ones are removed — a category that still holds
+// a book is never deleted out from under it, whatever the catalog says.
+const orphans = await sql`
+  delete from categories c
+  where not exists (select 1 from book_categories bc where bc.category_id = c.id)
+  returning slug`;
+for (const o of orphans) console.log(`category  removed (empty)  ${o.slug}`);
+
+const published = BOOKS.filter((b) => b.websiteStatus === "published").length;
+const buyable = BOOKS.filter((b) =>
+  b.formats.some((f) => f.fulfillment === "direct" && f.availability === "available"),
+).length;
+const amazonFormats = BOOKS.reduce(
+  (n, b) => n + b.formats.filter((f) => f.amazonUrl).length,
+  0,
 );
+
+console.log(`\nloaded ${BOOKS.length} books into ${db}.`);
+console.log(`  published on the site      : ${published}`);
+console.log(`  buyable here (direct ebook): ${buyable}`);
+console.log(`  formats linking to Amazon  : ${amazonFormats} (all ASIN-verified)`);

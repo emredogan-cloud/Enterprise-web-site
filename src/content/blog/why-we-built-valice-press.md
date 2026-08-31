@@ -1,5 +1,5 @@
 ---
-title: "Why we built a Digital Bookstore"
+title: "Why we built Valice Press"
 date: "2026-05-20"
 category: "Behind the Scenes"
 excerpt: "Buying a digital book online today is split between rented-forever ebook stores and big-tech ecosystems. We wanted a third option: buy a book once, download it, and read it anywhere — yours to keep."

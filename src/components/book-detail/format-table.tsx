@@ -24,13 +24,30 @@ const FORMAT_LABELS: Record<BookFormat["format"], string> = {
   large_print: "Large print",
 };
 
-/** What the reader actually gets, in one line. */
-const FORMAT_NOTES: Record<BookFormat["format"], string> = {
-  ebook: "Watermarked PDF — yours to keep, readable on any device",
-  paperback: "Printed and shipped by Amazon",
-  hardcover: "Printed and shipped by Amazon",
-  large_print: "Larger type, printed and shipped by Amazon",
-};
+/**
+ * What the reader actually gets, in one line.
+ *
+ * The ebook line depends on who is selling it, not on the format. Our ebook
+ * is a DRM-free watermarked PDF; Amazon's is a Kindle file with Kindle's
+ * restrictions. Describing the second as the first would be a straight
+ * misdescription of the product — and it is a live case, because Codex
+ * Mythologica's Kindle edition is enrolled in KDP Select and therefore can
+ * only ever be bought from Amazon.
+ */
+function formatNote(f: BookFormat): string {
+  switch (f.format) {
+    case "ebook":
+      return f.fulfillment === "direct"
+        ? "DRM-free watermarked PDF — yours to keep, readable on any device"
+        : "Kindle edition, sold by Amazon";
+    case "paperback":
+      return "Printed and shipped by Amazon";
+    case "hardcover":
+      return "Printed and shipped by Amazon";
+    case "large_print":
+      return "Larger type, printed and shipped by Amazon";
+  }
+}
 
 function amazonHref(f: BookFormat): string | null {
   if (f.amazonUrl) return f.amazonUrl;
@@ -77,7 +94,7 @@ export function FormatTable({
                   {FORMAT_LABELS[f.format]}
                 </p>
                 <p className="mt-0.5 text-[13px] text-fg-soft">
-                  {FORMAT_NOTES[f.format]}
+                  {formatNote(f)}
                   {f.pageCount ? ` · ${f.pageCount} pages` : ""}
                 </p>
               </div>

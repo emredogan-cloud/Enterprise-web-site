@@ -267,20 +267,23 @@ export interface AdminCategory {
   name: string;
 }
 
-/**
- * Canonical "collection" rows the catalog is organized around (Builder's
- * Library strategy). `ensureCoreCollections` (admin action) idempotently
- * inserts these by unique slug; admins then tick them on each book. Plain
- * `categories` rows — no schema change needed.
+/*
+ * The four "core collections" that used to be seeded here — PD Spine,
+ * Builder Core, Deep Thinking, Speculative Shelf — have been removed.
+ *
+ * They came from an abandoned "Builder's Library" strategy and outlived it.
+ * By the time they were found in production, two of them (Builder Core,
+ * Speculative Shelf) contained no books at all and were still rendering
+ * category pages, and the other two held exactly one book between them under
+ * names that are internal shorthand rather than anything a reader would
+ * recognise — "PD Spine" means "public-domain backbone", which is a note to
+ * ourselves, not a shelf label.
+ *
+ * Categories now come from `scripts/catalog/valice-catalog.mjs` alongside the
+ * books that populate them, so a category cannot exist without a reason to.
  */
-export const CORE_COLLECTIONS: ReadonlyArray<{ slug: string; name: string }> = [
-  { slug: "pd-spine", name: "PD Spine" },
-  { slug: "builder-core", name: "Builder Core" },
-  { slug: "deep-thinking", name: "Deep Thinking" },
-  { slug: "speculative-shelf", name: "Speculative Shelf" },
-];
 
-/** Every category/collection, name-sorted — backs the admin checkboxes. */
+/** Every category, name-sorted — backs the admin checkboxes. */
 export async function listCategoriesForAdmin(): Promise<AdminCategory[]> {
   await requireAdmin();
 

@@ -1,0 +1,149 @@
+{
+  "meditations": {
+    "note": "Book Two, mid-argument — Long's prose doing the thing it is bought for.",
+    "pages": [
+      {
+        "src": "/images/previews/meditations/p21.webp",
+        "page": 21
+      },
+      {
+        "src": "/images/previews/meditations/p22.webp",
+        "page": 22
+      },
+      {
+        "src": "/images/previews/meditations/p23.webp",
+        "page": 23
+      },
+      {
+        "src": "/images/previews/meditations/p24.webp",
+        "page": 24
+      }
+    ]
+  },
+  "codex-mythologica": {
+    "note": "Inside the Greek sequence, mid-retelling, at full narrative length.",
+    "pages": [
+      {
+        "src": "/images/previews/codex-mythologica/p24.webp",
+        "page": 24
+      },
+      {
+        "src": "/images/previews/codex-mythologica/p25.webp",
+        "page": 25
+      },
+      {
+        "src": "/images/previews/codex-mythologica/p26.webp",
+        "page": 26
+      },
+      {
+        "src": "/images/previews/codex-mythologica/p27.webp",
+        "page": 27
+      }
+    ]
+  },
+  "codex-bestiarium": {
+    "note": "Two complete creature entries with their line-engraved plates.",
+    "pages": [
+      {
+        "src": "/images/previews/codex-bestiarium/p39.webp",
+        "page": 39
+      },
+      {
+        "src": "/images/previews/codex-bestiarium/p40.webp",
+        "page": 40
+      },
+      {
+        "src": "/images/previews/codex-bestiarium/p41.webp",
+        "page": 41
+      },
+      {
+        "src": "/images/previews/codex-bestiarium/p42.webp",
+        "page": 42
+      }
+    ]
+  },
+  "codex-enigmatica": {
+    "note": "The first gate's opening puzzles — clues, constraints and answer form, no solutions.",
+    "pages": [
+      {
+        "src": "/images/previews/codex-enigmatica/p24.webp",
+        "page": 24
+      },
+      {
+        "src": "/images/previews/codex-enigmatica/p25.webp",
+        "page": 25
+      },
+      {
+        "src": "/images/previews/codex-enigmatica/p26.webp",
+        "page": 26
+      },
+      {
+        "src": "/images/previews/codex-enigmatica/p27.webp",
+        "page": 27
+      }
+    ]
+  },
+  "the-great-book-of-world-games": {
+    "note": "A complete game entry: provenance, rules and the board diagram you play from.",
+    "pages": [
+      {
+        "src": "/images/previews/the-great-book-of-world-games/p16.webp",
+        "page": 16
+      },
+      {
+        "src": "/images/previews/the-great-book-of-world-games/p17.webp",
+        "page": 17
+      },
+      {
+        "src": "/images/previews/the-great-book-of-world-games/p18.webp",
+        "page": 18
+      },
+      {
+        "src": "/images/previews/the-great-book-of-world-games/p19.webp",
+        "page": 19
+      }
+    ]
+  },
+  "the-great-book-of-world-myths": {
+    "note": "A full myth with its illustration, at the length a 9-year-old actually reads.",
+    "pages": [
+      {
+        "src": "/images/previews/the-great-book-of-world-myths/p22.webp",
+        "page": 22
+      },
+      {
+        "src": "/images/previews/the-great-book-of-world-myths/p23.webp",
+        "page": 23
+      },
+      {
+        "src": "/images/previews/the-great-book-of-world-myths/p24.webp",
+        "page": 24
+      },
+      {
+        "src": "/images/previews/the-great-book-of-world-myths/p25.webp",
+        "page": 25
+      }
+    ]
+  },
+  "the-myth-hunters-field-book": {
+    "note": "Two puzzle spreads as they are printed — deliberately without the answer key.",
+    "pages": [
+      {
+        "src": "/images/previews/the-myth-hunters-field-book/p14.webp",
+        "page": 14
+      },
+      {
+        "src": "/images/previews/the-myth-hunters-field-book/p15.webp",
+        "page": 15
+      },
+      {
+        "src": "/images/previews/the-myth-hunters-field-book/p16.webp",
+        "page": 16
+      },
+      {
+        "src": "/images/previews/the-myth-hunters-field-book/p17.webp",
+        "page": 17
+      }
+    ]
+  }
+}

@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { BookHero } from "@/components/book-detail/book-hero";
 import { CinematicReviewForm } from "@/components/book-detail/cinematic-review-form";
 import { CinematicReviewsList } from "@/components/book-detail/cinematic-reviews-list";
-import { CinematicSampleSection } from "@/components/book-detail/cinematic-sample-section";
+import { BookPreviewPages } from "@/components/book-detail/book-preview-pages";
 import { CinematicStarRating } from "@/components/book-detail/cinematic-star-rating";
 import { ExploreStrip } from "@/components/book-detail/explore-strip";
 import { FormatTable } from "@/components/book-detail/format-table";
@@ -21,7 +21,6 @@ import {
   getBookRatingAggregate,
   getReviewsForBook,
 } from "@/lib/db/queries/reviews";
-import { PLACEHOLDER_SAMPLE_HTML } from "@/lib/placeholders/book-sample";
 import { buildBookJsonLd, getBaseUrl, getCoverImageUrl } from "@/lib/seo";
 import { buildPageMetadata } from "@/lib/metadata";
 import { TrackEvent } from "@/components/analytics/track-event";
@@ -35,10 +34,11 @@ import { TrackEvent } from "@/components/analytics/track-event";
  *
  *   1. <BookHero> — two-col: sticky cover + buy panel LEFT, meta + title
  *      + description RIGHT
- *   2. <CinematicSampleSection> — glass-framed sample, SSG-rendered for SEO
- *   3. Reviews section — aggregate header + <CinematicReviewsList> +
+ *   2. <FormatTable> — every edition and the buy route it supports
+ *   3. <BookPreviewPages> — real pages from the book, rendered as images
+ *   4. Reviews section — aggregate header + <CinematicReviewsList> +
  *      <CinematicReviewForm>
- *   4. <ExploreStrip> — quiet "continue browsing" close
+ *   5. <ExploreStrip> — quiet "continue browsing" close
  *
  * Classification target preserved: `● SSG` via `generateStaticParams`
  * over `listPublishedBookSlugs()`. ISR `revalidate = 3600`.
@@ -46,7 +46,7 @@ import { TrackEvent } from "@/components/analytics/track-event";
  * Functional contracts preserved end-to-end:
  *   - JSON-LD payload (Roadmap §13 — Book + Product + Offer +
  *     AggregateRating when reviews exist) is rendered verbatim
- *   - Sample HTML lands in the static payload (paywall-content fix)
+ *   - Preview pages land in the static payload (paywall-content fix)
  *   - Review submission flow (server action `submitReview` → revalidate)
  *     untouched; the form just has cinematic chrome
  *   - Add-to-cart uses the same `addToCart` server action + `cart-changed`
@@ -108,10 +108,6 @@ export default async function BookDetailPage({
   // a demo-catalog fallback here that rendered a "preview listing" for
   // hard-coded bestsellers; it advertised books Valice Press cannot sell.
   if (!book) notFound();
-
-  // Sample resolution — placeholder for now; R2-served samples are a
-  // follow-up (unchanged from the pre-cinematic page).
-  const sampleHtml = PLACEHOLDER_SAMPLE_HTML;
 
   // Reviews + aggregate + related books in parallel — all `safeQuery`-
   // wrapped so a missing DB degrades to `{count: 0, average: null}` /
@@ -190,6 +186,15 @@ export default async function BookDetailPage({
           isbn={book.isbn}
           authors={book.authors}
           ratingAggregate={ratingAggregate}
+          // Only a book with an ebook we may actually sell gets a price and
+          // an add-to-cart. For the rest the panel points at the editions
+          // table, which is where their real buy routes live.
+          directSale={book.formats.some(
+            (f) =>
+              f.format === "ebook" &&
+              f.fulfillment === "direct" &&
+              f.availability === "available",
+          )}
         />
 
         {/* Editions — every format this title exists in, with the buy
@@ -199,7 +204,7 @@ export default async function BookDetailPage({
           <FormatTable formats={book.formats} />
         </div>
 
-        <CinematicSampleSection content={sampleHtml} />
+        <BookPreviewPages slug={slug} title={book.title} />
         <TrackEvent event="sample_read" onView props={{ slug }} />
 
         {/* Reviews section */}

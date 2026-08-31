@@ -20,7 +20,7 @@ import {
 } from "@/lib/db/queries/admin";
 import { formatPrice } from "@/lib/format";
 
-import { createBook, ensureCoreCollections } from "./actions";
+import { createBook } from "./actions";
 
 /**
  * /admin — internal dashboard.
@@ -524,20 +524,15 @@ function CreateBookSection({
           ) lands in a later SUB-PR.
         </p>
 
-        {/* Bootstrap the curated core collections (PD Spine, Builder Core,
-            Deep Thinking, Speculative Shelf) so they can be assigned below.
-            Idempotent — safe to click repeatedly; existing rows are skipped. */}
-        <form action={ensureCoreCollections} className="mt-5">
-          <button
-            type="submit"
-            className="inline-flex h-9 items-center justify-center rounded-full border border-white/[0.12] bg-white/[0.04] px-4 text-xs font-medium text-fg-mid transition-colors hover:border-emerald-bright/40 hover:text-emerald-bright"
-          >
-            Ensure core collections
-          </button>
-          <span className="ml-3 text-xs text-fg-soft">
-            Seeds the 4 curated collections if missing. Idempotent.
-          </span>
-        </form>
+        <p className="mt-5 text-xs leading-relaxed text-fg-soft">
+          Categories are declared in{" "}
+          <code className="rounded border border-white/[0.08] bg-white/[0.04] px-1 py-0.5 text-xs text-emerald-bright">
+            scripts/catalog/valice-catalog.mjs
+          </code>{" "}
+          and applied by the catalog loader, which also removes any category
+          left with no books in it. There is deliberately no button here that
+          creates a shelf before there is anything to put on it.
+        </p>
       </header>
 
       <form

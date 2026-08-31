@@ -121,7 +121,7 @@ export async function exportUserData(): Promise<ExportUserDataResult> {
 
     const payload = {
       exportedAt: new Date().toISOString(),
-      generator: "digital-bookstore",
+      generator: "valice-press",
       profile: profile ?? null,
       orders: userOrders,
       entitlements: userEntitlements,
@@ -129,7 +129,7 @@ export async function exportUserData(): Promise<ExportUserDataResult> {
       reviews: userReviews,
     };
 
-    const filename = `digital-bookstore-export-${localUserId}-${Date.now()}.json`;
+    const filename = `valice-press-export-${localUserId}-${Date.now()}.json`;
     return {
       ok: true,
       filename,

@@ -44,11 +44,21 @@ export interface BookHeroProps {
   authors: ReadonlyArray<{ slug: string; name: string }>;
   ratingAggregate: { count: number; average: number | null };
   /**
-   * Preview mode for demo-catalog fallback titles (Issue 4): authors render
-   * as plain text (their slugs may not resolve) and the buy panel becomes a
-   * "browse the catalog" link instead of a real, FK-backed add-to-cart.
+   * Whether this store can actually sell this book.
+   *
+   * False for a title that exists only as print, or whose ebook is
+   * elsewhere — Codex Mythologica's Kindle edition is enrolled in KDP
+   * Select, and The Myth Hunter's Field Book is written in by hand and has
+   * no digital edition at all. Both are real, published, buyable books; they
+   * are simply not buyable *here*.
+   *
+   * `books.price_cents` is 0 for exactly those titles, because zero is what
+   * this store charges for something it does not sell. Rendering that as
+   * "$0.00" above an add-to-cart button — which is what happened the moment
+   * the first Amazon-only book was published — advertises a free book and
+   * then fails. So the panel switches instead of formatting a zero.
    */
-  preview?: boolean;
+  directSale?: boolean;
 }
 
 export function BookHero({
@@ -65,7 +75,7 @@ export function BookHero({
   isbn,
   authors,
   ratingAggregate,
-  preview = false,
+  directSale = true,
 }: BookHeroProps) {
   return (
     <section className="mx-auto mt-6 max-w-[1320px] px-4 sm:mt-10 sm:px-6">
@@ -86,32 +96,33 @@ export function BookHero({
               className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/40 to-transparent"
             />
 
-            {/* Price line */}
+            {/* Price line — only when there is a price of ours to state. */}
             <div className="flex items-baseline justify-between">
               <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
-                Price
+                {directSale ? "Price" : "Editions"}
               </span>
               <span className="font-serif text-[28px] font-medium leading-none text-fg-hi">
-                {formatPrice(priceCents, currency)}
+                {directSale ? formatPrice(priceCents, currency) : "In print"}
               </span>
             </div>
 
             <div className="mt-5">
-              {preview ? (
-                <Link
-                  href="/books"
+              {directSale ? (
+                <BookAddToCart bookId={bookId} />
+              ) : (
+                <a
+                  href="#formats-heading"
                   className="home-cta-primary inline-flex h-12 w-full items-center justify-center gap-2 rounded-full text-sm font-semibold tracking-tight"
                 >
-                  Browse the catalog
-                  <span aria-hidden>→</span>
-                </Link>
-              ) : (
-                <BookAddToCart bookId={bookId} />
+                  See editions and prices
+                  <span aria-hidden>↓</span>
+                </a>
               )}
             </div>
-            {preview && (
-              <p className="mt-3 text-center text-[11px] text-fg-soft">
-                Preview listing from the demo catalog.
+            {!directSale && (
+              <p className="mt-3 text-center text-[11px] leading-relaxed text-fg-soft">
+                This title isn&apos;t sold on this site. Every edition it
+                exists in is listed below, with where to buy it.
               </p>
             )}
 
@@ -149,16 +160,16 @@ export function BookHero({
             <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
               {authors.map((a, i) => (
                 <span key={`${a.slug}-${i}`}>
-                  {preview ? (
-                    <span>{a.name}</span>
-                  ) : (
-                    <Link
-                      href={`/authors/${a.slug}`}
-                      className="transition-colors hover:text-fg-hi"
-                    >
-                      {a.name}
-                    </Link>
-                  )}
+                  {/* Always a real link now. The plain-text branch existed
+                      for demo-catalog titles whose author slugs resolved to
+                      nothing; those titles are gone and every author here is
+                      a row with a page. */}
+                  <Link
+                    href={`/authors/${a.slug}`}
+                    className="transition-colors hover:text-fg-hi"
+                  >
+                    {a.name}
+                  </Link>
                   {i < authors.length - 1 ? ", " : ""}
                 </span>
               ))}
