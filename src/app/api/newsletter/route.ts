@@ -134,7 +134,8 @@ export async function POST(req: Request) {
   // ---- 3. Subscribe via Resend ------------------------------------------
   const resend = new Resend(apiKey);
   try {
-    const result = await resend.contacts.create({
+    let consentRecorded = true;
+    let result = await resend.contacts.create({
       audienceId,
       email,
       unsubscribed: false,
@@ -161,14 +162,50 @@ export async function POST(req: Request) {
       },
     });
 
+    // Custom properties must be DECLARED on the audience in the Resend
+    // dashboard before a contact may carry them; Resend rejects the whole
+    // create with `422 "One or more properties do not exist"` otherwise, and
+    // there is no API to declare them. That is a configuration gap, and the
+    // person who just typed their address into a form must not pay for it —
+    // so retry without the metadata and keep the subscription.
+    //
+    // The consent record is the thing being lost, which is not nothing. It
+    // is logged at error level rather than warn for exactly that reason, and
+    // the fix is one visit to Audience → Properties.
+    if (
+      result.error &&
+      result.error.name === "validation_error" &&
+      /propert/i.test(result.error.message ?? "")
+    ) {
+      console.error(
+        "[api/newsletter] Resend rejected the consent properties — subscribing " +
+          "WITHOUT a consent record. Declare source, signup_purpose, " +
+          "consent_text and consent_at under Audience → Properties in Resend. " +
+          `Resend said: ${result.error.message}`,
+      );
+      consentRecorded = false;
+      result = await resend.contacts.create({
+        audienceId,
+        email,
+        unsubscribed: false,
+      });
+    }
+
     // Resend returns `{ data, error }` — `error` is set on validation /
     // auth failures. A duplicate contact is NOT an error in the v6 SDK
     // (the API is idempotent), so we treat the success path uniformly.
     if (result.error) {
-      // Map known Resend error name strings to our status taxonomy. The
-      // SDK error shape: `{ name: string, message: string, ... }`.
-      const name = result.error.name ?? "unknown";
-      if (name === "validation_error") {
+      // Only tell someone their address is invalid when it actually is.
+      // This used to map EVERY `validation_error` to `invalid-email`, so a
+      // misconfigured audience made the form reject perfectly good addresses
+      // and blame the person typing them — which is both wrong and the
+      // hardest kind of bug to report, because the user assumes it is them.
+      const message = result.error.message ?? "";
+      if (
+        result.error.name === "validation_error" &&
+        /email/i.test(message) &&
+        !/propert/i.test(message)
+      ) {
         return badRequest("invalid-email");
       }
       console.error("[api/newsletter] resend error:", result.error);
@@ -189,7 +226,10 @@ export async function POST(req: Request) {
       if (!r.ok) console.warn("[api/newsletter] welcome email failed:", r.error);
     });
 
-    return NextResponse.json({ ok: true, status: "subscribed" });
+    // `consentRecorded` is reported so an operator can see, from the
+    // response alone, whether the consent metadata actually landed. The
+    // subscriber's experience is identical either way.
+    return NextResponse.json({ ok: true, status: "subscribed", consentRecorded });
   } catch (err) {
     // Network / SDK-internal throw (rare for Resend; most are returned in
     // `result.error`). Log + 500.

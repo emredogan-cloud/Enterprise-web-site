@@ -22,9 +22,14 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 // ---- Resend mock ---------------------------------------------------------
 const created: Array<Record<string, unknown>> = [];
-let createResult: { data?: unknown; error?: { name: string } } = {
+let createResult: {
+  data?: unknown;
+  error?: { name: string; message?: string };
+} = {
   data: { id: "contact_1" },
 };
+/** Queued results, consumed in order — lets a test model the retry. */
+let createResults: Array<typeof createResult> = [];
 let createThrows = false;
 
 vi.mock("resend", () => ({
@@ -33,7 +38,7 @@ vi.mock("resend", () => ({
       create: async (payload: Record<string, unknown>) => {
         if (createThrows) throw new Error("network down");
         created.push(payload);
-        return createResult;
+        return createResults.length ? createResults.shift()! : createResult;
       },
     };
   },
@@ -54,6 +59,7 @@ describe("POST /api/newsletter", () => {
   beforeEach(() => {
     created.length = 0;
     createResult = { data: { id: "contact_1" } };
+    createResults = [];
     createThrows = false;
     vi.stubEnv("RESEND_API_KEY", "re_test_key");
     vi.stubEnv("RESEND_AUDIENCE_ID", "aud_test");
@@ -174,10 +180,64 @@ describe("POST /api/newsletter", () => {
     expect(created).toHaveLength(0);
   });
 
-  it("maps a provider validation_error back to invalid-email", async () => {
-    createResult = { error: { name: "validation_error" } };
+  it("reports invalid-email only when the provider faults the ADDRESS", async () => {
+    createResult = {
+      error: { name: "validation_error", message: "Invalid `email` field." },
+    };
     const res = await post({ email: "a@b.co" });
     expect(res.status).toBe(400);
+    await expect(res.json()).resolves.toEqual({
+      ok: false,
+      error: "invalid-email",
+    });
+  });
+
+  it("does NOT blame the address for a validation error that is not about it", async () => {
+    // The regression this pins: every `validation_error` used to map to
+    // `invalid-email`. A misconfigured audience therefore told people with
+    // perfectly good addresses that their address was malformed — which
+    // they cannot act on and will not report, because they assume it is
+    // their own typo.
+    createResult = {
+      error: { name: "validation_error", message: "Something else entirely." },
+    };
+    const res = await post({ email: "a@b.co" });
+    expect(res.status).toBe(500);
+    await expect(res.json()).resolves.toEqual({
+      ok: false,
+      error: "internal-error",
+    });
+  });
+
+  it("still subscribes when the audience has no consent properties declared", async () => {
+    // Resend rejects the whole create with 422 when a contact carries a
+    // property the audience does not declare, and there is no API to
+    // declare one. Losing the consent metadata is bad; losing the
+    // subscription of someone who asked for it is worse.
+    createResults = [
+      {
+        error: {
+          name: "validation_error",
+          message: "One or more properties do not exist",
+        },
+      },
+      { data: { id: "contact_1" } },
+    ];
+    const res = await post({ email: "a@b.co", source: "home" });
+
+    expect(res.status).toBe(200);
+    await expect(res.json()).resolves.toEqual({
+      ok: true,
+      status: "subscribed",
+      consentRecorded: false,
+    });
+
+    // First attempt carries the consent record; the retry drops it and
+    // nothing else.
+    expect(created).toHaveLength(2);
+    expect(created[0].properties).toMatchObject({ source: "home" });
+    expect(created[1]).not.toHaveProperty("properties");
+    expect(created[1]).toMatchObject({ email: "a@b.co", unsubscribed: false });
   });
 
   it("returns 500 on an unexpected provider throw", async () => {
