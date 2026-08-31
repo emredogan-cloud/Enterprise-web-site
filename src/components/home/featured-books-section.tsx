@@ -1,8 +1,7 @@
 import Link from "next/link";
-import { Star } from "lucide-react";
 
 import type { BookCardData } from "@/components/book-card";
-import { formatPrice } from "@/lib/format";
+import { formatCatalogPrice } from "@/lib/format";
 
 import { RevealOnScroll } from "./reveal-on-scroll";
 
@@ -14,13 +13,20 @@ import { RevealOnScroll } from "./reveal-on-scroll";
  * actual `/books/{slug}` instead of the catalog root, and authors come
  * from the DB join.
  *
- * Falls back to a curated demo set when the DB is empty so the homepage
- * never looks abandoned. The demo entries are kept identical to the
- * pre-2.G shape — same gradient palette, ratings, prices — for visual
- * continuity.
+ * Two things this section used to do, and no longer does.
  *
- * Rating values are decorative for now (no per-book aggregate is exposed
- * on the catalog API yet). When that lands, swap to the real aggregate.
+ * It fell back to six curated bestsellers when the database returned
+ * nothing — Atomic Habits, The Psychology of Money, The Silent Patient and
+ * three more, real books by real named authors, with invented prices, on
+ * the front page of a publisher that has no right to sell any of them.
+ * An empty catalog now renders nothing; the homepage has other sections.
+ *
+ * And it stamped every card with a 4.8-star rating. Not a real aggregate —
+ * a constant, chosen because it "reads as well-reviewed". Every book in
+ * this catalog has zero reviews, so that star was the only review any of
+ * them had, and it was invented. Ratings are gone from this section until
+ * there are ratings; the book page already renders the real aggregate, and
+ * renders nothing when the count is zero.
  */
 
 interface BookProps {
@@ -28,7 +34,6 @@ interface BookProps {
   title: string;
   author: string;
   price: string;
-  rating: number;
   coverGradient: string;
   coverAccent: string;
   darkText?: boolean;
@@ -65,90 +70,24 @@ const REAL_BOOK_PALETTE: Array<Pick<BookProps, "coverGradient" | "coverAccent">>
   },
 ];
 
-const DEMO_FALLBACK: BookProps[] = [
-  {
-    slug: "",
-    title: "Atomic Habits",
-    author: "James Clear",
-    price: "$19",
-    rating: 4.9,
-    coverGradient: "linear-gradient(160deg, #c9701a 0%, #5d2f08 100%)",
-    coverAccent: "#ffce63",
-    badge: { label: "Bestseller", color: "#ff9d4d" },
-  },
-  {
-    slug: "",
-    title: "The Psychology of Money",
-    author: "Morgan Housel",
-    price: "$22",
-    rating: 4.8,
-    coverGradient: "linear-gradient(160deg, #1a2c1f 0%, #0a1610 100%)",
-    coverAccent: "#33f0aa",
-  },
-  {
-    slug: "",
-    title: "Anil Mary",
-    author: "Anand Patel",
-    price: "$15",
-    rating: 4.7,
-    coverGradient: "linear-gradient(160deg, #c84a4a 0%, #6b1818 100%)",
-    coverAccent: "#ffd0d0",
-    badge: { label: "Popular", color: "#7ab6ff" },
-  },
-  {
-    slug: "",
-    title: "The Silent Patient",
-    author: "Alex Michaelides",
-    price: "$18",
-    rating: 4.6,
-    coverGradient: "linear-gradient(160deg, #16386b 0%, #051426 100%)",
-    coverAccent: "#7ab6ff",
-  },
-  {
-    slug: "",
-    title: "Fast Slow",
-    author: "Daniel Kahneman",
-    price: "$24",
-    rating: 4.9,
-    coverGradient: "linear-gradient(160deg, #d8d4cb 0%, #84807a 100%)",
-    coverAccent: "#2a261f",
-    darkText: true,
-  },
-  {
-    slug: "",
-    title: "The Subtle Art of Not Giving a F*ck",
-    author: "Mark Manson",
-    price: "$17",
-    rating: 4.5,
-    coverGradient: "linear-gradient(160deg, #f4f2ed 0%, #d4d1ca 100%)",
-    coverAccent: "#ff6b35",
-    darkText: true,
-  },
-];
 
 export function FeaturedBooksSection({
   books = [],
 }: {
-  /** Real DB books from `getFeaturedBooks(6)`. Empty array → demo fallback. */
+  /** Real DB books from `getFeaturedBooks(6)`. Empty → section hidden. */
   books?: BookCardData[];
 }) {
-  const cards: BookProps[] =
-    books.length > 0
-      ? books.slice(0, 6).map((b, i) => ({
-          slug: b.slug,
-          title: b.title,
-          author: b.authors[0]?.name ?? "—",
-          price: formatPrice(b.priceCents, b.currency),
-          // Rating is decorative until the catalog API exposes per-book
-          // aggregates. 4.8 reads as "well-reviewed" without claiming a
-          // specific number.
-          rating: 4.8,
-          coverGradient:
-            REAL_BOOK_PALETTE[i % REAL_BOOK_PALETTE.length].coverGradient,
-          coverAccent:
-            REAL_BOOK_PALETTE[i % REAL_BOOK_PALETTE.length].coverAccent,
-        }))
-      : DEMO_FALLBACK;
+  const cards: BookProps[] = books.slice(0, 6).map((b, i) => ({
+    slug: b.slug,
+    title: b.title,
+    author: b.authors[0]?.name ?? "—",
+    price: formatCatalogPrice(b.priceCents, b.currency),
+    coverGradient:
+      REAL_BOOK_PALETTE[i % REAL_BOOK_PALETTE.length].coverGradient,
+    coverAccent: REAL_BOOK_PALETTE[i % REAL_BOOK_PALETTE.length].coverAccent,
+  }));
+
+  if (cards.length === 0) return null;
 
   return (
     <section className="relative px-6 py-24 sm:py-28">
@@ -264,14 +203,7 @@ function BookCard(book: BookProps) {
           {book.title}
         </h3>
         <p className="mt-1 text-xs text-fg-soft">{book.author}</p>
-        <div className="mt-2 flex items-center justify-between">
-          <div className="flex items-center gap-1 text-xs text-fg-mid">
-            <Star
-              aria-hidden
-              className="h-3 w-3 fill-[#33f0aa] text-emerald-bright"
-            />
-            {book.rating.toFixed(1)}
-          </div>
+        <div className="mt-2 flex items-center justify-end">
           <span className="text-sm font-semibold text-fg-hi">
             {book.price}
           </span>

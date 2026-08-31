@@ -419,16 +419,19 @@ function ListRow({ book }: { book: CatalogItem }) {
         <span className="text-base font-semibold tabular-nums text-fg-hi">
           {formatCatalogPrice(book.priceCents, "USD")}
         </span>
-        <span className="flex items-center gap-1 text-xs text-fg-mid">
-          <svg
-            aria-hidden
-            viewBox="0 0 12 12"
-            className="h-3 w-3 fill-[#f4c44b]"
-          >
-            <path d="M6 1l1.6 3.3 3.4.5-2.5 2.4.6 3.4L6 9 2.9 10.6l.6-3.4L1 4.8l3.4-.5z" />
-          </svg>
-          <span className="tabular-nums">{book.rating.toFixed(1)}</span>
-        </span>
+        {/* Hidden entirely with no reviews — see <CatalogBookCard>. */}
+        {book.rating > 0 && (
+          <span className="flex items-center gap-1 text-xs text-fg-mid">
+            <svg
+              aria-hidden
+              viewBox="0 0 12 12"
+              className="h-3 w-3 fill-[#f4c44b]"
+            >
+              <path d="M6 1l1.6 3.3 3.4.5-2.5 2.4.6 3.4L6 9 2.9 10.6l.6-3.4L1 4.8l3.4-.5z" />
+            </svg>
+            <span className="tabular-nums">{book.rating.toFixed(1)}</span>
+          </span>
+        )}
       </div>
     </div>
   );

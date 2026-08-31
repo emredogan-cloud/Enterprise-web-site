@@ -141,13 +141,20 @@ export function CatalogBookCard({ book }: { book: CatalogItem }) {
         <p className="text-xs text-fg-soft">{book.author}</p>
 
         <div className="mt-auto flex items-center justify-between pt-3">
-          <div className="flex items-center gap-1 text-xs text-fg-mid">
-            <Star
-              aria-hidden
-              className="h-3 w-3 fill-[#f4c44b] text-[#f4c44b]"
-            />
-            <span className="tabular-nums">{book.rating.toFixed(1)}</span>
-          </div>
+          {/* No reviews yet renders as nothing. `rating` is 0 for every
+              book in this catalog, and a zero-star badge makes a book that
+              nobody has reviewed look like a book everybody disliked. */}
+          {book.rating > 0 ? (
+            <div className="flex items-center gap-1 text-xs text-fg-mid">
+              <Star
+                aria-hidden
+                className="h-3 w-3 fill-[#f4c44b] text-[#f4c44b]"
+              />
+              <span className="tabular-nums">{book.rating.toFixed(1)}</span>
+            </div>
+          ) : (
+            <span />
+          )}
           <span className="font-semibold tabular-nums text-fg-hi">
             {priceLabel}
           </span>

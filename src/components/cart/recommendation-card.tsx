@@ -106,13 +106,18 @@ export function RecommendationCard({ book }: { book: CatalogItem }) {
           Per the brief: flex space-between + items-end alignment. */}
       <div className="flex items-end justify-between px-0.5">
         <div className="flex flex-col gap-1">
-          <div className="flex items-center gap-1 text-xs text-fg-mid">
-            <Star
-              aria-hidden
-              className="h-3 w-3 fill-[#f4c44b] text-[#f4c44b]"
-            />
-            <span className="tabular-nums">{book.rating.toFixed(1)}</span>
-          </div>
+          {/* No invented stars — see <CatalogBookCard>. */}
+          {book.rating > 0 ? (
+            <div className="flex items-center gap-1 text-xs text-fg-mid">
+              <Star
+                aria-hidden
+                className="h-3 w-3 fill-[#f4c44b] text-[#f4c44b]"
+              />
+              <span className="tabular-nums">{book.rating.toFixed(1)}</span>
+            </div>
+          ) : (
+            <span />
+          )}
           <span className="text-sm font-semibold tabular-nums text-fg-hi">
             {formatCatalogPrice(book.priceCents, "USD")}
           </span>
