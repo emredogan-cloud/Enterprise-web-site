@@ -32,6 +32,19 @@ let createResult: {
 let createResults: Array<typeof createResult> = [];
 let createThrows = false;
 
+// `after()` needs a live request context, which a unit test has no way to
+// provide. Run the callback inline instead: the welcome-email send is still
+// exercised, just synchronously with the handler rather than after it.
+vi.mock("next/server", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("next/server")>();
+  return {
+    ...actual,
+    after: (fn: () => unknown) => {
+      void fn();
+    },
+  };
+});
+
 vi.mock("resend", () => ({
   Resend: class {
     contacts = {

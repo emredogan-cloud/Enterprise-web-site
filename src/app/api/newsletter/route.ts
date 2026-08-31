@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { Resend } from "resend";
 
 import { sendWelcomeEmail } from "@/lib/email";
@@ -215,15 +215,24 @@ export async function POST(req: Request) {
       );
     }
 
-    // Welcome email — fire and forget. A failed send must not turn a
-    // successful subscription into an error response: the person is on the
-    // list either way, and telling them otherwise would be false. Resend
-    // de-duplicates on the address, so a resubmission cannot double-send.
-    void sendWelcomeEmail({
-      to: email,
-      source: (source || null) as NewsletterSource | null,
-    }).then((r) => {
-      if (!r.ok) console.warn("[api/newsletter] welcome email failed:", r.error);
+    // Welcome email — after the response, but NOT merely fire-and-forget.
+    //
+    // A bare `void promise` here does not survive: the handler returns, the
+    // serverless instance is frozen, and the pending send is discarded. That
+    // is exactly what was happening — signups succeeded, no welcome email was
+    // ever delivered, and nothing logged a failure because the promise never
+    // settled at all. `after()` registers the work with the runtime, which
+    // keeps the invocation alive until it finishes.
+    //
+    // Still off the response path on purpose: a failed send must not turn a
+    // successful subscription into an error, because the person IS on the
+    // list either way and telling them otherwise would be false.
+    after(async () => {
+      const r = await sendWelcomeEmail({
+        to: email,
+        source: (source || null) as NewsletterSource | null,
+      });
+      if (!r.ok) console.error("[api/newsletter] welcome email failed:", r.error);
     });
 
     // `consentRecorded` is reported so an operator can see, from the
