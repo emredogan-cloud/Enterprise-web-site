@@ -45,16 +45,45 @@ export async function POST(request: NextRequest) {
     return new Response("Empty body", { status: 400 });
   }
 
-  let event;
+  // Verify the signature as its own step, BEFORE unmarshalling.
+  //
+  // `unmarshal()` both verifies and parses, and the previous version wrapped
+  // the whole thing in one catch that reported everything as "Invalid
+  // signature" with a 401. So a correctly-signed request whose body the SDK
+  // could not parse was reported as a signature failure — which sends anyone
+  // debugging it to rotate a secret that was never wrong. Splitting the two
+  // costs one extra HMAC and makes the log say which of the two actually
+  // happened.
+  const paddle = getPaddleClient();
+  let signatureValid = false;
   try {
-    event = await getPaddleClient().webhooks.unmarshal(
+    signatureValid = await paddle.webhooks.isSignatureValid(
       rawBody,
       webhookSecret,
       signature,
     );
   } catch (err) {
-    logger.error("[paddle-webhook] signature verification failed", err);
+    logger.error("[paddle-webhook] signature check threw", err);
     return new Response("Invalid signature", { status: 401 });
+  }
+  if (!signatureValid) {
+    logger.error(
+      "[paddle-webhook] signature verification FAILED — check that " +
+        "PADDLE_WEBHOOK_SECRET holds the signing secret (pdl_ntfset_…), not " +
+        "the notification-setting id (ntfset_…)",
+    );
+    return new Response("Invalid signature", { status: 401 });
+  }
+
+  let event;
+  try {
+    event = await paddle.webhooks.unmarshal(rawBody, webhookSecret, signature);
+  } catch (err) {
+    // Signature was good, so this is Paddle sending a shape this SDK version
+    // does not understand. 400, not 401: retrying will not help, and a 500
+    // would make Paddle retry a payload that can never parse.
+    logger.error("[paddle-webhook] signature OK but payload did not parse", err);
+    return new Response("Unparseable payload", { status: 400 });
   }
 
   try {

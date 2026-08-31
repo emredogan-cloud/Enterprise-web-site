@@ -57,9 +57,10 @@ const NAV_ITEMS: { key: ActiveNavSection; label: string; href: string }[] = [
   // `/authors` is the cinematic discovery page (SUB-PR — authors redesign).
   // Previously fell through to /books because no index existed.
   { key: "authors", label: "Authors", href: "/authors" },
-  // `/genres` is the cinematic discovery page (SUB-PR — genres redesign).
+  // Was `/genres`, a page of eight hard-coded genres with invented book
+  // counts. Removed; `/categories` is the real, database-backed shelf list.
   // Previously fell through to /books because no index existed.
-  { key: "genres", label: "Genres", href: "/genres" },
+  { key: "genres", label: "Categories", href: "/categories" },
   { key: "blog", label: "Blog", href: "/blog" },
   // `/account/library` is the cinematic personal library (SUB-PR — library
   // redesign). Auth-gated server-side; the link itself is always visible.

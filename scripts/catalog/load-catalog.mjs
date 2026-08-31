@@ -182,13 +182,21 @@ for (const b of BOOKS) {
     ebook?.fulfillment === "direct" && ebook.availability === "available";
   const canonicalPrice = sellsDirect ? ebook.priceCents : 0;
 
+  // The fulfillment worker reads `books.master_file_key`, NOT the per-format
+  // one — it is handed a bookId and has no format in scope. Writing only the
+  // format row leaves the book unfulfillable: the purchase completes, the
+  // entitlement is created, and the watermark step then fails with "book has
+  // no masterFileKey" while the buyer's entitlement sits at `pending`
+  // forever. Both are written from the one source of truth.
+  const masterFileKey = sellsDirect ? ebook.masterFileKey : null;
+
   const [book] = await sql`
     insert into books (slug, title, subtitle, description, language,
                        price_cents, currency, page_count, status,
-                       paddle_price_id)
+                       paddle_price_id, master_file_key)
     values (${b.slug}, ${b.title}, ${b.subtitle}, ${b.description}, ${b.language},
             ${canonicalPrice}, 'USD', ${b.pageCount}, ${b.websiteStatus},
-            ${b.paddlePriceId ?? null})
+            ${b.paddlePriceId ?? null}, ${masterFileKey})
     on conflict (slug) do update set
       title           = excluded.title,
       subtitle        = excluded.subtitle,
@@ -202,6 +210,7 @@ for (const b of BOOKS) {
       -- has become the thing that lets production drift away from source.
       status          = excluded.status,
       paddle_price_id = excluded.paddle_price_id,
+      master_file_key = excluded.master_file_key,
       updated_at      = now()
     returning id, status`;
 

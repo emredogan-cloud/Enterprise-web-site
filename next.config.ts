@@ -126,6 +126,21 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        // `/genres` was a discovery page built on eight hard-coded genres
+        // with invented book counts (~44,000 titles against a catalog of
+        // eight). It has been removed rather than rebuilt, because
+        // `/categories` already lists the real, database-backed shelves and
+        // two browse-by-subject pages was one too many. Permanent, so the
+        // link equity and any existing bookmark land on the real page.
+        source: "/genres",
+        destination: "/categories",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 /**

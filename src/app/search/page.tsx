@@ -10,7 +10,12 @@ import { SearchHero } from "@/components/search/search-hero";
 import { SearchResults } from "@/components/search/search-results";
 import { TrackEvent } from "@/components/analytics/track-event";
 import { SuggestionPills } from "@/components/search/suggestion-pills";
-import { listPublishedBooks, searchBooks } from "@/lib/db/queries/catalog";
+import {
+  listAllAuthors,
+  listAllCategories,
+  listPublishedBooks,
+  searchBooks,
+} from "@/lib/db/queries/catalog";
 import { toCatalogItems } from "@/components/catalog/catalog-item";
 
 /**
@@ -56,6 +61,19 @@ export default async function SearchPage({
   // every row leads somewhere real. Empty catalog → the panel hides itself.
   const popularPicks = toCatalogItems((await listPublishedBooks()).slice(0, 5));
 
+  // Suggestions built from what the catalog actually contains: the real
+  // category names and the real author. Each one is a term the search index
+  // can match, so no pill leads to an empty result page. The previous
+  // hard-coded list had a 0% hit rate against this catalog.
+  const [categories, authors] = await Promise.all([
+    listAllCategories(),
+    listAllAuthors(),
+  ]);
+  const suggestions = [
+    ...categories.filter((c) => c.bookCount > 0).map((c) => c.name),
+    ...authors.map((a) => a.name),
+  ].slice(0, 6);
+
   return (
     <div className="cinematic-root">
       <CinematicHeader />
@@ -77,12 +95,12 @@ export default async function SearchPage({
           </>
         ) : (
           <>
-            <SuggestionPills />
+            <SuggestionPills suggestions={suggestions} />
 
             {/* Two-panel discovery — 50/50 on lg, stacked below */}
             <section className="mx-auto mt-14 grid max-w-7xl gap-5 px-6 lg:grid-cols-2 lg:gap-6">
               <PopularSearchesPanel picks={popularPicks} />
-              <CategoryDiscoveryPanel />
+              <CategoryDiscoveryPanel categories={categories} />
             </section>
 
             <EmptySearchCard />

@@ -4,23 +4,27 @@ import { Search, Sparkles } from "lucide-react";
 /**
  * "Try searching for" suggestion strip beneath the main input.
  *
- * Each pill is a real link to `/search?q=<suggestion>` — clicking
- * actually performs that search. Pure Server Component; the per-pill
- * hover lift + glow runs via CSS classes.
+ * Each pill is a real link to `/search?q=<suggestion>` — clicking actually
+ * performs that search. Pure Server Component; the per-pill hover lift +
+ * glow runs via CSS classes.
  *
- * Suggestions are pre-curated picks that exist in our demo data so
- * they return real results when the FTS query runs (or, when no real
- * catalog entries match, surface the demo placeholder still gracefully).
+ * Suggestions come from the live catalog, and that is the whole point. They
+ * used to be a hard-coded list — "Atomic Habits", "George Orwell", "Science
+ * Fiction", "Mindset" — written against demo data that no longer exists.
+ * Every one of the six returned nothing, so the one component whose job is
+ * to show a new visitor what this store has was teaching them it has
+ * nothing, and the first pill advertised a bestseller Valice Press has no
+ * right to sell.
+ *
+ * A suggestion that returns no results is worse than no suggestion, so an
+ * empty catalog renders nothing at all.
  */
-export function SuggestionPills() {
-  const suggestions = [
-    "Atomic Habits",
-    "George Orwell",
-    "Science Fiction",
-    "Personal Growth",
-    "Mindset",
-    "History",
-  ];
+export function SuggestionPills({
+  suggestions,
+}: {
+  suggestions: readonly string[];
+}) {
+  if (suggestions.length === 0) return null;
 
   return (
     <div className="mx-auto mt-6 max-w-3xl px-6 text-center">

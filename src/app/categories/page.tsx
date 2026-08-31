@@ -4,10 +4,7 @@ import { CategoriesBackground } from "@/components/categories/categories-backgro
 import { buildPageMetadata } from "@/lib/metadata";
 import type { CategoryCardData } from "@/components/categories/category-card";
 import { CategoryEmptyNotice } from "@/components/categories/category-empty-notice";
-import {
-  DEMO_CATEGORIES,
-  resolveCategoryArtwork,
-} from "@/components/categories/demo-categories";
+import { resolveCategoryArtwork } from "@/components/categories/demo-categories";
 import { DiscoveryStrip } from "@/components/categories/discovery-strip";
 import { GenreGrid } from "@/components/categories/genre-grid";
 import { CinematicHero } from "@/components/cinematic/cinematic-hero";
@@ -54,39 +51,34 @@ export const revalidate = 3600;
 export const metadata: Metadata = buildPageMetadata({
   title: "Browse by category",
   description:
-    "Step into every literary world — fantasy, science fiction, mystery, romance and more. Browse the Valice Press catalog by category.",
+    "Myth and folklore, puzzles, traditional games, books for young readers, language workbooks and public-domain classics — the Valice Press catalog, by category.",
   path: "/categories",
   ogTitle: "Browse by category — Valice Press",
   ogDescription:
-    "Step into every literary world — fantasy, science fiction, mystery, romance and more.",
+    "Myth and folklore, puzzles, games, young readers, language and classics.",
 });
 
 export default async function CategoriesIndexPage() {
   const categories = await listAllCategories();
   const hasReal = categories.length > 0;
 
-  // Real categories route to their SSG detail pages; the empty-state demo
-  // worlds route to a real search so every card goes somewhere real.
+  // Real categories only. The `hasReal` false branch used to render eight
+  // invented "worlds" so the page never looked empty; a category gallery
+  // that invents categories is the specific thing this page must not do.
   const items: CategoryCardData[] = hasReal
     ? categories.map((cat, i) => {
         const { icon, artwork } = resolveCategoryArtwork(cat.name, i);
         return {
           key: cat.slug,
           name: cat.name,
-          tagline: "Explore this collection.",
+          tagline:
+            cat.bookCount === 1 ? "1 book" : `${cat.bookCount} books`,
           href: `/categories/${cat.slug}`,
           icon,
           artwork,
         };
       })
-    : DEMO_CATEGORIES.map((c) => ({
-        key: c.slug,
-        name: c.name,
-        tagline: c.tagline,
-        href: `/search?q=${encodeURIComponent(c.name)}`,
-        icon: c.icon,
-        artwork: c.artwork,
-      }));
+    : [];
 
   return (
     <div className="cinematic-root">

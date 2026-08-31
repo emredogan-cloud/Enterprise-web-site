@@ -590,12 +590,14 @@ export async function listCategorySlugs(): Promise<Array<{ slug: string }>> {
  * Phase 2.D — every category with its name and slug, ordered by name.
  * Powers the `/categories` index page (the new browse-by-category hub).
  *
- * Currently returns just slug + name; a future enhancement can add
- * book-count or featured cover via a sub-query.
+ * `bookCount` counts PUBLISHED books only, because it is shown to readers
+ * as the size of a shelf they are about to open. Counting drafts would put
+ * a number on the card that the category page then contradicts.
  */
 export interface CategorySummary {
   slug: string;
   name: string;
+  bookCount: number;
 }
 
 export async function listAllCategories(): Promise<CategorySummary[]> {
@@ -604,9 +606,21 @@ export async function listAllCategories(): Promise<CategorySummary[]> {
     async () => {
       const rows = await db.query.categories.findMany({
         columns: { slug: true, name: true },
+        with: {
+          bookCategories: {
+            columns: {},
+            with: { book: { columns: { status: true } } },
+          },
+        },
         orderBy: (c, { asc }) => asc(c.name),
       });
-      return rows;
+      return rows.map((c) => ({
+        slug: c.slug,
+        name: c.name,
+        bookCount: c.bookCategories.filter(
+          (bc) => bc.book.status === "published",
+        ).length,
+      }));
     },
     [],
   );

@@ -5,10 +5,8 @@ import { buildPageMetadata } from "@/lib/metadata";
 import { buildBreadcrumbJsonLd, getBaseUrl } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 
-import { DEMO_CATEGORIES } from "@/components/categories/demo-categories";
 import { CinematicBookTile } from "@/components/cinematic/cinematic-book-tile";
 import { CinematicHero } from "@/components/cinematic/cinematic-hero";
-import { DEMO_GENRES } from "@/components/genres/demo-genres";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
 import {
@@ -57,15 +55,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const category = await getCategoryPageBySlug(slug);
-  const name = category?.name ?? resolveDemoCategoryName(slug);
-  if (!name) return { title: "Category not found" };
+  if (!category) return { title: "Category not found" };
+  const name = category.name;
   const description = `Browse ${name} on Valice Press.`;
   const url = `/categories/${slug}`;
   return buildPageMetadata({
     title: name,
     description,
     path: url,
-    robots: category ? undefined : { index: false, follow: true },
   });
 }
 
@@ -77,14 +74,15 @@ export default async function CategoryPage({
   const { slug } = await params;
   const category = await getCategoryPageBySlug(slug);
 
-  // Issue 6 — a genre/category card must never 404. When the live DB has no
-  // matching category, resolve the name from the demo genre/category sets and
-  // render the page with its (already-cinematic) empty state.
-  const demoName = category ? null : resolveDemoCategoryName(slug);
-  if (!category && !demoName) notFound();
+  // A slug with no category row is not a category. The previous version
+  // resolved unknown slugs against two hard-coded demo sets so that a
+  // fabricated genre card would never 404 — which meant the fabrication had
+  // to keep existing to stop the links it created from breaking. The cards
+  // are gone, so the fallback goes with them.
+  if (!category) notFound();
 
-  const name = category?.name ?? demoName!;
-  const books = category?.books ?? [];
+  const name = category.name;
+  const books = category.books;
 
   const { head, tail } = splitNameForAccent(name);
 
@@ -200,15 +198,3 @@ function splitNameForAccent(name: string): { head: string; tail: string } {
   };
 }
 
-/**
- * Resolve a demo genre/category display name from a slug (Issue 6). Both the
- * `/genres` discovery cards and the `/categories` gallery point here, so we
- * check both demo sets. Returns null for genuinely unknown slugs (→ 404).
- */
-function resolveDemoCategoryName(slug: string): string | null {
-  return (
-    DEMO_GENRES.find((g) => g.slug === slug)?.name ??
-    DEMO_CATEGORIES.find((c) => c.slug === slug)?.name ??
-    null
-  );
-}
