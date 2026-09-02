@@ -35,7 +35,12 @@ function loadEnvFile(path) {
   if (!path || !existsSync(path)) return env;
   for (const line of readFileSync(path, "utf8").split("\n")) {
     const m = line.match(/^([A-Z0-9_]+)\s*=\s*(.*)$/);
-    if (m) env[m[1]] = m[2].trim().replace(/^["']|["']$/g, "");
+    if (!m) continue;
+    const value = m[2].trim().replace(/^["']|["']$/g, "");
+    // `vercel env pull` writes variables marked *sensitive* as a placeholder;
+    // dropping them lets the Paddle/R2 checks report SKIPPED instead of a TypeError.
+    if (value === "[SENSITIVE]") continue;
+    env[m[1]] = value;
   }
   return env;
 }

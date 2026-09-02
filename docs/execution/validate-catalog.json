@@ -1,12 +1,12 @@
 {
   "tool": "validate-catalog",
   "target": "https://valicepress.com",
-  "startedAt": "2026-09-02T07:21:34.345Z",
-  "finishedAt": "2026-09-02T07:22:02.447Z",
+  "startedAt": "2026-09-02T07:49:58.580Z",
+  "finishedAt": "2026-09-02T07:50:22.529Z",
   "ok": true,
   "counts": {
     "pass": 18,
-    "warn": 2,
+    "warn": 0,
     "error": 0,
     "skipped": 0
   },
@@ -54,21 +54,9 @@
       "where": null
     },
     {
-      "level": "warn",
-      "check": "sitemap",
-      "message": "missing /ebooks (deployed after the sitemap change?)",
-      "where": null
-    },
-    {
-      "level": "warn",
-      "check": "sitemap",
-      "message": "missing /companion/hangul (deployed after the sitemap change?)",
-      "where": null
-    },
-    {
       "level": "pass",
       "check": "sitemap",
-      "message": "23 URLs",
+      "message": "28 URLs",
       "where": null
     },
     {

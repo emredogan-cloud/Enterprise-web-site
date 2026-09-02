@@ -32,7 +32,7 @@ Labels: **VERIFIED** (measured against the live system today) · **OBSERVED** (r
 | `https://valicepress.com/sitemap.xml`, `/robots.txt` | 308 | **200** |
 | `POST https://valicepress.com/api/webhooks/paddle` (unsigned) | **308** (Paddle would retry 60× then drop) | **401** (reaches the handler; signature check) |
 | `POST https://www.valicepress.com/api/webhooks/paddle` | 401 | 308 → apex (Paddle target is the apex) |
-| `https://enterprise-web-site.vercel.app/` | 200, indexable | 200 until the next production deploy; code redirect committed (`src/lib/canonical-host.ts`) |
+| `https://enterprise-web-site.vercel.app/` | 200, indexable | **308 → `https://valicepress.com/…`** (path and query preserved; measured 2026-09-02 07:38 UTC after `7f8e27d` was promoted) |
 | `valicepress-book-site-…vercel.app` | 302 → Vercel SSO (protected) | unchanged |
 | Canonical on the home page | `https://valicepress.com` (now consistent with the served host) | consistent |
 | `dig TXT valicepress.com` | SPF + **google-site-verification token present** (Founder added overnight) | — |
@@ -55,7 +55,7 @@ Labels: **VERIFIED** (measured against the live system today) · **OBSERVED** (r
 | Roadmap “no DMARC” | DMARC present |
 | Roadmap “Web Analytics not enabled” | enabled |
 | Roadmap “`begin_checkout` never fires” | fires from the checkout button |
-| Roadmap “sitemap missing /ebooks, /companion, /about…; lastmod = build clock” | fixed in code; live after deploy |
+| Roadmap “sitemap missing /ebooks, /companion, /about…; lastmod = build clock” | live: 28 URLs including `/ebooks`, `/about`, `/companion/hangul`; `lastmod` deterministic (measured 07:38 UTC) |
 | Catalog inventory “Codex Bestiarium listing says 120” | still says 120 on Amazon — Founder U2 |
 | Book repos “Field Book PDF untitled/anonymous” | confirmed by `preflight.py` today |
 | Book repos “Enigmatica fonts not embedded” (the August rejection) | **fixed in the shipped interiors**: preflight shows all fonts embedded in all 7 interiors |
@@ -63,12 +63,12 @@ Labels: **VERIFIED** (measured against the live system today) · **OBSERVED** (r
 ## D. Problems found
 
 1. Apex→www redirect broke Paddle webhooks and made every canonical self-contradictory (P0). **Fixed.**
-2. Retired production alias served the whole catalogue with a 200 (duplicate index). **Fixed in code; live on next deploy.**
+2. Retired production alias served the whole catalogue with a 200 (duplicate index). **Fixed and live — `enterprise-web-site.vercel.app/books/codex-bestiarium?x=1` → 308 to the apex with the query intact.**
 3. No traffic measurement at all. **Fixed (Web Analytics enabled).**
 4. `begin_checkout` declared but never fired. **Fixed.**
 5. Sitemap incomplete and non-deterministic. **Fixed.**
 6. Search Console property unverified; no sitemap submitted. **Fixed.**
-7. Companion page code existed only as untracked files (404 in production). **Committed; live on next deploy.**
+7. Companion page code existed only as untracked files (404 in production). **Committed and live — `/companion/hangul` 200, `practice-grid.pdf` 200 `application/pdf`.**
 8. Hangul book in KDP review with CC BY-SA / CC BY-NC sources. **BLOCKED — Founder U1.**
 9. Bestiarium listings claim 120 creatures. **BLOCKED — Founder U2.**
 10. Resend `send.` records differ from Resend's documented pattern; API key is a sensitive env var. **BLOCKED — Founder U3.**
@@ -86,10 +86,10 @@ Labels: **VERIFIED** (measured against the live system today) · **OBSERVED** (r
 | Search Console | browser: property verified (TXT in DNS); Sitemaps → `https://valicepress.com/sitemap.xml` submitted | Sitemaps page lists it (2 Sep 2026) |
 | `*.vercel.app` → 308 canonical | `src/lib/canonical-host.ts` + `src/proxy.ts` (production only, `.vercel.app` hosts only, never www) | 7 unit tests |
 | `begin_checkout` | `src/components/cart/cart-summary.tsx` | code + lint |
-| Sitemap | `src/app/sitemap.ts`: +/ebooks, /categories, /authors, /about, /companion/*; `lastModified` from the newest book row or a hand-bumped revision date | build output lists `/sitemap.xml`; validate-catalog after deploy |
+| Sitemap | `src/app/sitemap.ts`: +/ebooks, /categories, /authors, /about, /companion/*; `lastModified` from the newest book row or a hand-bumped revision date | live sitemap 28 URLs (was 23); validate-catalog sitemap check 0 warn |
 | README brand | title + summary | grep |
 | Companion feature committed | commit `f09e648` | git log |
-| Catalogue validation | `scripts/catalog/validate-catalog.mjs` run against production with Paddle + R2 | 18 pass, 2 warn (sitemap routes not yet deployed), 0 error |
+| Catalogue validation | `scripts/catalog/validate-catalog.mjs` run against production with Paddle + R2 | post-deploy re-run 2026-09-02 07:49 UTC: **18 pass, 0 warn, 0 error, 0 skipped**. Note: 15 production variables (all `R2_*`, Resend, Inngest, webhook secret…) are marked *sensitive* in Vercel and come out of `vercel env pull` as `[SENSITIVE]` placeholders; the R2 check therefore uses the R2 keys from the local `.env`, merged into an ignored `scripts/tmp/.env.validate` |
 
 Commits: `9f0d332` archive moves · `f09e648` companion · `0cb968d` phase0 fixes · `b51c6a2` roadmap docs.
 
@@ -128,7 +128,7 @@ U1 Hangul rights decision · U2 Bestiarium 120 → 112 · U3 Resend confirmation
 | Prices | equal to Paddle (direct) and to the live Amazon list (read 2026-08-31) | VERIFIED / OBSERVED |
 | Covers | 8 webp in `public/images/books/` | VERIFIED |
 | Previews | 7 × 4 real pages | VERIFIED |
-| Companions | 1 registry entry (hangul) — live after deploy; Enigmatica verification page live (`no-match` → 200) | VERIFIED |
+| Companions | 1 registry entry (hangul) — live (200); Enigmatica verification page live (`no-match` → 200) | VERIFIED |
 | Orders / entitlements / reviews | 0 / 0 / 0 | VERIFIED |
 | Fabricated data found | none (no fake titles/authors/ASINs/ISBNs; “Digital Bookstore” only in README title, fixed) | VERIFIED |
 
@@ -152,7 +152,7 @@ Digital editions (150 DPI) exist in R2 for the five direct titles; masters are t
 | Integration | State | Label |
 |---|---|---|
 | Namecheap DNS | A 216.198.79.1 (Vercel), www CNAME to vercel-dns, SPF (Namecheap forwarding), GSC TXT, DMARC, Resend DKIM, `send.` CNAME/MX/SPF (rmta.net) | VERIFIED |
-| Vercel | project `valicepress-book-site`, apex primary, www 308, `NEXT_PUBLIC_APP_URL=https://valicepress.com`, Web Analytics on, latest production deploy `3d3a022` (redeploy 2026-09-01 21:38 UTC) | VERIFIED |
+| Vercel | project `valicepress-book-site`, apex primary, www 308, `NEXT_PUBLIC_APP_URL=https://valicepress.com`, Web Analytics on, latest production deploy `7f8e27d` (git build promoted 2026-09-02 07:37 UTC). **Production branch on Vercel is `main`; a push to `feat/production-readiness` builds a preview only — production ships by `vercel promote <deployment-url>` or a merge to `main`** | VERIFIED |
 | Paddle | live; webhook `ntfset_01m1br7x…` → apex, 4 events, active; prices verified | VERIFIED |
 | Resend | signup + consent OK; sender domain status unconfirmed | VERIFIED / BLOCKED |
 | Inngest | registered at apex | VERIFIED |

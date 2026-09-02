@@ -118,6 +118,12 @@ result · dependency · how to verify.
 - **Action:** on the 5th of each month, KDP Reports → download the previous month's CSV (all marketplaces) into `data/kdp/YYYY-MM.csv` in the repository (folder created by the Phase 2 import script).
 - **Why:** the only source of Amazon sales data; nothing has ever been exported.
 
+### O5 · Decide how production is deployed: merge to `main`, or make `feat/production-readiness` the production branch
+- **Action:** choose one. (a) Open and merge a pull request `feat/production-readiness` → `main` in GitHub `emredogan-cloud/Enterprise-web-site`; from then on every merge to `main` deploys production automatically. (b) Vercel → project `valicepress-book-site` → Settings → Git → Production Branch → `feat/production-readiness`.
+- **Why:** Vercel's production branch is `main`, but all work since August lives on `feat/production-readiness`. A push to that branch only builds a preview; production has been shipped by hand each time (redeploys, and today `vercel promote` of the `7f8e27d` build). Until you decide, the agent will keep promoting verified builds explicitly and recording the deployment id in the phase report.
+- **Current state:** production = `7f8e27d` (promoted 2026-09-02 07:37 UTC); `main` is 20+ commits behind.
+- **Verify:** `git log origin/main..origin/feat/production-readiness --oneline` is empty after (a); or the Vercel deployment list shows `target: production` for the next push after (b).
+
 ---
 
 ## Done by the agent today (for the record — no action needed)
