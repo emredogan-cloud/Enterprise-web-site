@@ -27,10 +27,11 @@ If you read nothing else:
 2. `VALICE_PRESS_MASTER_PUBLISHING_STRATEGY_TR.md` — the business model
 3. `CATALOG_ECONOMICS_FINAL.md` — what each title actually earns
 4. `CLAUDE.md` — how agents must work in this repo
-5. `docs/execution/phase-3/PHASE_3_REPORT.md` — what currently exists, what is
+5. `docs/execution/phase-4/PHASE_4_REPORT.md` — what currently exists, what is
    live, and what is measured. Supersedes `PHASE_4_COMPLETION_REPORT_TR.md` as
-   the state-of-the-system document; that one describes the May–June build and
-   is still accurate about the codebase, not about the commerce.
+   the state-of-the-system document (that one describes the May–June build and
+   is still accurate about the codebase, not about the commerce), and supersedes
+   `phase-3/PHASE_3_REPORT.md` on every number it restates.
 6. `docs/execution/FOUNDER_ACTIONS.md` — the only list of what a person still
    has to do
 
@@ -75,6 +76,16 @@ If you read nothing else:
 | `docs/execution/phase-3/PHASE_3_REPORT.md` | ACTIVE | — | Commercial activation: what is live, what was broken, what is blocked. The current baseline for what exists. | None |
 | `docs/execution/phase-3/SEO_REPORT.md` | ACTIVE | — | Search Console baseline: zero indexed. Technical state and the four pages worth writing. | None |
 | `docs/execution/phase-3/WORLD_GAMES_REPORT.md` | ACTIVE | — | Live format state and why the ad plan changed. | None |
+| `docs/execution/phase-4/ADS_REPORT.md` | ACTIVE | — | Campaign spec on the paperback, corrected break-even ACOS, stop rules. No ad has run. | None |
+| `docs/execution/phase-4/COMMERCIAL_RESULTS.md` | ACTIVE | — | Measured commercial position after Dudeney went on sale. | None |
+| `docs/execution/phase-4/DUDENEY_REPORT.md` | ACTIVE | — | All twelve gates with evidence; what a buyer receives; the AI declaration conflict. | None |
+| `docs/execution/phase-4/EMAIL_REPORT.md` | ACTIVE | — | Consent recording closed; what to send when there is a first customer. | None |
+| `docs/execution/phase-4/HANGUL_REPORT.md` | ACTIVE | — | Live state and the one upload that should carry two fixes. | None |
+| `docs/execution/phase-4/KDP_VALICE_LINKAGE_MATRIX.csv` | ACTIVE | — | Per-edition linkage data with the update decision. Regenerate with kdp-linkage-matrix.mjs. | None |
+| `docs/execution/phase-4/KDP_VALICE_LINKAGE_REPORT.md` | ACTIVE | — | Which printed books send readers to Valice Press, which do not, and the exact URL each should print. The phase's flagship deliverable. | None |
+| `docs/execution/phase-4/PHASE_4_REPORT.md` | ACTIVE | — | First revenue phase: Dudeney live, two-artifact delivery, the KDP linkage audit. The current baseline for what exists. | None |
+| `docs/execution/phase-4/SEO_REPORT.md` | ACTIVE | — | Four utility pages live, still zero indexed, and what to do about it. | None |
+| `docs/execution/phase-4/WORLD_GAMES_REPORT.md` | ACTIVE | — | Companion back matter, the invented biography, and the corrected trim economics. | None |
 | `docs/execution/PHASE-REPORT/README.md` | ACTIVE | — | Pointer only. Replaced stale duplicate copies of the Phase 0/1 reports and an out-of-date handbook. | None |
 | `docs/KURULUM_VE_ENV_REHBERI.md` | ACTIVE | — | Environment setup guide. | None |
 | `docs/VALICE_PRESS_MASTER_PUBLISHING_STRATEGY_TR.html` | ACTIVE | — | Founder-facing edition of the master strategy. | None |

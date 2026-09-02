@@ -1,11 +1,11 @@
 {
   "tool": "validate-catalog",
   "target": "https://valicepress.com",
-  "startedAt": "2026-09-02T16:43:05.938Z",
-  "finishedAt": "2026-09-02T16:43:28.225Z",
+  "startedAt": "2026-09-02T18:06:30.099Z",
+  "finishedAt": "2026-09-02T18:06:56.294Z",
   "ok": true,
   "counts": {
-    "pass": 14,
+    "pass": 16,
     "warn": 0,
     "error": 0,
     "skipped": 1
@@ -56,13 +56,19 @@
     {
       "level": "pass",
       "check": "page",
+      "message": "https://valicepress.com/books/the-puzzles-of-henry-dudeney 200, canonical ok, JSON-LD parses",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "page",
       "message": "https://valicepress.com/books/codex-enigmatica 200, canonical ok, JSON-LD parses",
       "where": null
     },
     {
       "level": "pass",
       "check": "sitemap",
-      "message": "32 URLs",
+      "message": "37 URLs",
       "where": null
     },
     {
@@ -80,13 +86,19 @@
     {
       "level": "pass",
       "check": "paddle",
-      "message": "pri_01m1btjddes1p637hd78zsvczx active, 499 USD",
+      "message": "pri_01m1hjdhhvq98v2pdxxenh8q1z active, 699 USD",
       "where": null
     },
     {
       "level": "pass",
       "check": "paddle",
       "message": "pri_01m1btjcqgabh6v8rsxg85frxr active, 1199 USD",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "paddle",
+      "message": "pri_01m1ha3tdx5bbyfqhe8k6qrep4 active, 999 USD",
       "where": null
     },
     {
