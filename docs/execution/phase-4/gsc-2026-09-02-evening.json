@@ -1,0 +1,66 @@
+{
+  "takenAt": "2026-09-02T17:58:13.896Z",
+  "site": "sc-domain:valicepress.com",
+  "window": {
+    "start": "2026-08-03",
+    "end": "2026-08-31"
+  },
+  "totals": {
+    "clicks": 0,
+    "impressions": 0,
+    "ctr": 0,
+    "position": 0
+  },
+  "page": [],
+  "query": [],
+  "country": [],
+  "sitemaps": [
+    {
+      "path": "https://valicepress.com/sitemap.xml",
+      "lastSubmitted": "2026-09-02T07:10:10.471Z",
+      "isPending": false,
+      "isSitemapsIndex": false,
+      "type": "sitemap",
+      "lastDownloaded": "2026-09-02T07:10:12.706Z",
+      "warnings": "0",
+      "errors": "0",
+      "contents": [
+        {
+          "type": "web",
+          "submitted": "23",
+          "indexed": "0"
+        }
+      ]
+    }
+  ],
+  "inspection": [
+    {
+      "url": "https://valicepress.com/",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+      "sitemap": [
+        "https://valicepress.com/sitemap.xml"
+      ],
+      "crawledAs": "CRAWLING_USER_AGENT_UNSPECIFIED"
+    },
+    {
+      "url": "https://valicepress.com/books/the-puzzles-of-henry-dudeney",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED"
+    },
+    {
+      "url": "https://valicepress.com/blog/board-game-origin-myths",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED"
+    }
+  ]
+}
