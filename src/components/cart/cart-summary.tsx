@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 
 import { clearCart, createCheckoutSession } from "@/app/cart/actions";
+import { trackEvent } from "@/lib/analytics";
 import { formatPrice } from "@/lib/format";
 
 /**
@@ -30,6 +31,11 @@ export function CartSummary({
 
   const onCheckout = () => {
     setError(null);
+    // `begin_checkout` was declared in the analytics union since WS-D but
+    // never fired anywhere, so the intent → checkout step of the funnel was
+    // unmeasured. Fire it at the click, before the session request: a
+    // failed session is still an attempt to buy. PII-free by construction.
+    trackEvent("begin_checkout", { itemCount, totalCents, currency });
     startCheckout(async () => {
       const result = await createCheckoutSession();
       if (result.ok) {

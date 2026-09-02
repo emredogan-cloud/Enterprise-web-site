@@ -1,5 +1,7 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
+import { canonicalRedirectTarget } from "@/lib/canonical-host";
 import { checkRateLimit } from "@/lib/rate-limit";
 
 /*
@@ -42,6 +44,14 @@ function isClerkConfigured(): boolean {
 }
 
 export default clerkMiddleware(async (auth, req) => {
+  // ---- 0. Canonical host --------------------------------------------------
+  // The retired `*.vercel.app` production aliases still answer 200 and are
+  // indexable. Send them permanently to the canonical origin (path + query
+  // preserved). Only fires on the production deployment and only for
+  // `.vercel.app` hosts — see `src/lib/canonical-host.ts` for the loop guard.
+  const canonicalTarget = canonicalRedirectTarget(req.url);
+  if (canonicalTarget) return NextResponse.redirect(canonicalTarget, 308);
+
   // ---- 1. Perimeter rate limit ------------------------------------------
   // `checkRateLimit` returns:
   //   - null            → allowed (Upstash absent OR within limit OR errored)

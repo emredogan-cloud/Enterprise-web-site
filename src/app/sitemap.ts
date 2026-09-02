@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { getAllCategories, getAllPosts } from "@/lib/blog";
+import { listCompanions } from "@/lib/companions";
 import {
   getBookSitemapEntries,
   listAuthorSlugs,
@@ -25,6 +26,12 @@ import { getBaseUrl } from "@/lib/seo";
  */
 export const revalidate = 3600;
 
+/**
+ * Revision date of the hand-authored pages (/about, companions, legal). Bump
+ * this when their copy changes; it is intentionally not the build time.
+ */
+const STATIC_PAGES_REVISION = new Date("2026-09-02T00:00:00.000Z");
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = getBaseUrl();
   const [books, categories, authors, blogPosts, blogCategories] =
@@ -36,13 +43,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       getAllCategories(),
     ]);
 
-  const generatedAt = new Date();
+  // Deterministic freshness (Phase 0, 2026-09-02). `new Date()` here made
+  // every ISR regeneration claim that every hub had just changed, which is
+  // the one thing Google says it ignores `lastmod` for ("if it's
+  // consistently and verifiably accurate"). Hubs are digests of the
+  // catalogue, so they change when the newest book row changed; pages whose
+  // copy is hand-authored carry a revision date that is bumped by hand.
+  const newestBookDate = books.reduce<Date | null>((max, b) => {
+    const d = b.lastModified instanceof Date ? b.lastModified : new Date(b.lastModified);
+    return !max || d > max ? d : max;
+  }, null);
+  const catalogLastMod = newestBookDate ?? STATIC_PAGES_REVISION;
 
   // Blog-index + blog-category lastModified track the most recent post —
   // those surfaces are effectively the digest of all posts beneath them,
   // so crawlers should re-fetch them when new content lands.
   const newestPostDate =
-    blogPosts.length > 0 ? new Date(blogPosts[0].date) : generatedAt;
+    blogPosts.length > 0 ? new Date(blogPosts[0].date) : STATIC_PAGES_REVISION;
 
   const blogCategoryLastMod = new Map<string, Date>();
   for (const p of blogPosts) {
@@ -54,16 +71,51 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     {
       url: `${baseUrl}/`,
-      lastModified: generatedAt,
+      lastModified: catalogLastMod,
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
       url: `${baseUrl}/books`,
-      lastModified: generatedAt,
+      lastModified: catalogLastMod,
       changeFrequency: "daily",
       priority: 0.9,
     },
+    // The only shelf a reader can buy from — it was missing from the sitemap
+    // entirely until 2026-09-02.
+    {
+      url: `${baseUrl}/ebooks`,
+      lastModified: catalogLastMod,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/categories`,
+      lastModified: catalogLastMod,
+      changeFrequency: "weekly",
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/authors`,
+      lastModified: catalogLastMod,
+      changeFrequency: "weekly",
+      priority: 0.4,
+    },
+    {
+      url: `${baseUrl}/about`,
+      lastModified: STATIC_PAGES_REVISION,
+      changeFrequency: "monthly",
+      priority: 0.4,
+    },
+    // Free companions to printed books. Indexable on purpose: each is a real
+    // long-tail surface ("hangul practice sheet pdf"), rendered from a
+    // constant, and the printed QR code inside the book points here.
+    ...listCompanions().map((c) => ({
+      url: `${baseUrl}/companion/${c.slug}`,
+      lastModified: STATIC_PAGES_REVISION,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
     ...books.map((b) => ({
       url: `${baseUrl}/books/${b.slug}`,
       lastModified: b.lastModified,
@@ -72,13 +124,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     ...categories.map(({ slug }) => ({
       url: `${baseUrl}/categories/${slug}`,
-      lastModified: generatedAt,
+      lastModified: catalogLastMod,
       changeFrequency: "weekly" as const,
       priority: 0.6,
     })),
     ...authors.map(({ slug }) => ({
       url: `${baseUrl}/authors/${slug}`,
-      lastModified: generatedAt,
+      lastModified: catalogLastMod,
       changeFrequency: "weekly" as const,
       priority: 0.6,
     })),
@@ -99,7 +151,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Blog category hubs
     ...blogCategories.map((c) => ({
       url: `${baseUrl}/blog/category/${c.slug}`,
-      lastModified: blogCategoryLastMod.get(c.slug) ?? generatedAt,
+      lastModified: blogCategoryLastMod.get(c.slug) ?? STATIC_PAGES_REVISION,
       changeFrequency: "weekly" as const,
       priority: 0.5,
     })),

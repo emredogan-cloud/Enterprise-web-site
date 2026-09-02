@@ -1,4 +1,4 @@
-# Digital Bookstore
+# Valice Press — storefront (formerly "Digital Bookstore")
 
 > A first-party, B2C digital bookstore with Social DRM.
 > Buy a book once, download a watermarked PDF, and read it anywhere — yours to keep.
@@ -15,7 +15,7 @@
 
 ## Executive summary
 
-Digital Bookstore is a production-ready storefront for selling DRM-free
+Valice Press is a first-party publisher; this repository is its production storefront for selling DRM-free
 PDFs of books we own or license. It is deliberately **first-party** (no
 multi-vendor marketplace), **one-time purchase** (no subscription), and
 **Social-DRM-protected** (per-buyer watermark stamped into every download,
