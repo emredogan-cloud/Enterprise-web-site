@@ -1,13 +1,13 @@
 {
   "tool": "validate-catalog",
   "target": "https://valicepress.com",
-  "startedAt": "2026-09-02T07:49:58.580Z",
-  "finishedAt": "2026-09-02T07:50:22.529Z",
-  "ok": true,
+  "startedAt": "2026-09-02T14:13:07.992Z",
+  "finishedAt": "2026-09-02T14:13:33.607Z",
+  "ok": false,
   "counts": {
-    "pass": 18,
+    "pass": 13,
     "warn": 0,
-    "error": 0,
+    "error": 5,
     "skipped": 0
   },
   "findings": [
@@ -90,34 +90,34 @@
       "where": null
     },
     {
-      "level": "pass",
+      "level": "error",
       "check": "r2",
-      "message": "books/meditations/master/v1/master.pdf 0.37 MB",
-      "where": null
+      "message": "books/meditations/master/v1/master.pdf: NotFound",
+      "where": "meditations"
     },
     {
-      "level": "pass",
+      "level": "error",
       "check": "r2",
-      "message": "books/codex-bestiarium/master/v1/master.pdf 4.62 MB",
-      "where": null
+      "message": "books/codex-bestiarium/master/v1/master.pdf: NotFound",
+      "where": "codex-bestiarium"
     },
     {
-      "level": "pass",
+      "level": "error",
       "check": "r2",
-      "message": "books/the-great-book-of-world-myths/master/v1/master.pdf 3.72 MB",
-      "where": null
+      "message": "books/the-great-book-of-world-myths/master/v1/master.pdf: NotFound",
+      "where": "the-great-book-of-world-myths"
     },
     {
-      "level": "pass",
+      "level": "error",
       "check": "r2",
-      "message": "books/the-great-book-of-world-games/master/v1/master.pdf 0.58 MB",
-      "where": null
+      "message": "books/the-great-book-of-world-games/master/v1/master.pdf: NotFound",
+      "where": "the-great-book-of-world-games"
     },
     {
-      "level": "pass",
+      "level": "error",
       "check": "r2",
-      "message": "books/codex-enigmatica/master/v1/master.pdf 8.39 MB",
-      "where": null
+      "message": "books/codex-enigmatica/master/v1/master.pdf: NotFound",
+      "where": "codex-enigmatica"
     }
   ]
 }
