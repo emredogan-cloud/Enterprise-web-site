@@ -47,9 +47,17 @@ export type DownloadResult =
  * trail in `download_logs` is the data source a future SUB-PR's
  * limiter will consume.
  */
-export async function downloadBook(bookId: string): Promise<DownloadResult> {
+export type DownloadFormat = "pdf" | "epub";
+
+export async function downloadBook(
+  bookId: string,
+  format: DownloadFormat = "pdf",
+): Promise<DownloadResult> {
   if (!bookId) {
     return { ok: false, error: "Missing book reference." };
+  }
+  if (format !== "pdf" && format !== "epub") {
+    return { ok: false, error: "Unknown format." };
   }
 
   // 1. AuthN
@@ -84,6 +92,19 @@ export async function downloadBook(bookId: string): Promise<DownloadResult> {
   }
   const entitlement = access.entitlement;
 
+  // One purchase, more than one file. The entitlement is the permission; the
+  // format is which of the files that permission covers. `ready` is decided by
+  // the PDF, so an order whose EPUB step failed still downloads its PDF — and
+  // asking for the EPUB says so plainly instead of handing over a PDF the
+  // reader did not ask for.
+  const artifactKey = format === "epub" ? access.epubKey : access.artifactKey;
+  if (!artifactKey) {
+    return {
+      ok: false,
+      error: "This edition has no EPUB. The PDF is ready to download.",
+    };
+  }
+
   // 4. Audit log — insert BEFORE returning the URL so the request appears
   //    in the velocity trail even if the client never actually clicks
   //    through. Best-effort: a log failure must not block a legitimate
@@ -110,7 +131,7 @@ export async function downloadBook(bookId: string): Promise<DownloadResult> {
   try {
     const url = await generateSignedDownloadUrl({
       bucket: ARTIFACTS_BUCKET,
-      key: access.artifactKey,
+      key: artifactKey,
       // Default TTL = 600s; the storage module's hard ceiling is 900s.
     });
 

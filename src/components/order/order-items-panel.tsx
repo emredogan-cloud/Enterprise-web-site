@@ -115,7 +115,16 @@ function OrderItemRow({
         <ItemStatusPill status={item.status} />
 
         {item.status === "ready" && (
-          <DownloadButton bookId={item.bookId} size="sm" />
+          <DownloadButton bookId={item.bookId} size="sm" label="PDF" />
+        )}
+        {item.status === "ready" && item.epubKey && (
+          <DownloadButton
+            bookId={item.bookId}
+            size="sm"
+            variant="secondary"
+            label="EPUB"
+            format="epub"
+          />
         )}
       </div>
     </div>

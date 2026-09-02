@@ -42,6 +42,7 @@ export interface OrderEntitlement {
   bookId: string;
   status: EntitlementStatus;
   watermarkedKey: string | null;
+  epubKey: string | null;
   /**
    * Per-book price paid at purchase time (cents). Pulled from
    * `order_items.priceCentsAtPurchase` so it is **historically accurate**
@@ -70,6 +71,7 @@ export interface LibraryEntry {
   bookId: string;
   status: EntitlementStatus;
   watermarkedKey: string | null;
+  epubKey: string | null;
   /** Phase 2.B — independent reading lifecycle (default not_started). */
   readStatus: ReadStatus;
   /** Phase 2.B — set on every successful `downloadBook` call; null until
@@ -112,7 +114,7 @@ export async function getOrderForUser(args: {
         },
         with: {
           entitlements: {
-            columns: { bookId: true, status: true, watermarkedKey: true },
+            columns: { bookId: true, status: true, watermarkedKey: true, epubKey: true },
             with: {
               book: {
                 columns: {
@@ -154,6 +156,7 @@ export async function getOrderForUser(args: {
           bookId: e.bookId,
           status: e.status,
           watermarkedKey: e.watermarkedKey,
+          epubKey: e.epubKey,
           priceCentsAtPurchase: priceByBookId.get(e.bookId) ?? null,
           book: e.book,
         })),
@@ -251,6 +254,7 @@ export async function getUserLibrary(userId: string): Promise<LibraryEntry[]> {
           bookId: true,
           status: true,
           watermarkedKey: true,
+          epubKey: true,
           readStatus: true,
           lastDownloadedAt: true,
           createdAt: true,
@@ -271,6 +275,7 @@ export async function getUserLibrary(userId: string): Promise<LibraryEntry[]> {
         bookId: r.bookId,
         status: r.status,
         watermarkedKey: r.watermarkedKey,
+        epubKey: r.epubKey,
         readStatus: r.readStatus,
         lastDownloadedAt: r.lastDownloadedAt,
         createdAt: r.createdAt,

@@ -46,9 +46,17 @@ export const DIGITAL_EDITION_SOURCES = [
     // small (scan-resolution figures), so the /ebook pass mostly normalises.
     slug: "the-puzzles-of-henry-dudeney",
     printInterior: `${ROOT}/THE-PUZZLES-OF-HENRY-DUDENEY/OUTPUT/interior-main.pdf`,
+    // The second delivered artifact. One purchase, both files: the worker
+    // watermarks the PDF page by page and the EPUB by appending a licence
+    // leaf and writing the same line into the package metadata.
+    epub: `${ROOT}/THE-PUZZLES-OF-HENRY-DUDENEY/OUTPUT/the-puzzles-of-henry-dudeney-main.epub`,
   },
 ];
 
 /** R2 masters key for a slug. Versioned so a re-cut edition never overwrites. */
 export const masterKey = (slug, version = "v1") =>
   `books/${slug}/master/${version}/master.pdf`;
+
+/** R2 masters key for the EPUB of a slug. Same version folder as the PDF. */
+export const epubMasterKey = (slug, version = "v1") =>
+  `books/${slug}/master/${version}/master.epub`;

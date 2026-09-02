@@ -7,11 +7,13 @@ import { CinematicReviewsList } from "@/components/book-detail/cinematic-reviews
 import { BookPreviewPages } from "@/components/book-detail/book-preview-pages";
 import { CinematicStarRating } from "@/components/book-detail/cinematic-star-rating";
 import { ExploreStrip } from "@/components/book-detail/explore-strip";
+import { DirectEditionPanel } from "@/components/book-detail/direct-edition-panel";
 import { FormatTable } from "@/components/book-detail/format-table";
 import { RelatedBooksShelf } from "@/components/book-detail/related-books-shelf";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
 import { resolveAsset } from "@/lib/assets";
+import { getCompanionForBook } from "@/lib/companions";
 import {
   getPublishedBookBySlug,
   listPublishedBooks,
@@ -214,6 +216,23 @@ export default async function BookDetailPage({
         <div className="mx-auto max-w-[900px] px-6">
           <FormatTable formats={book.formats} />
         </div>
+
+        {/* Only for a book we actually sell here. A reader whose only route is
+            Amazon does not need to be told what our library would have given
+            them. */}
+        {book.formats.some(
+          (f) =>
+            f.format === "ebook" &&
+            f.fulfillment === "direct" &&
+            f.availability === "available",
+        ) && (
+          <DirectEditionPanel
+            title={book.title}
+            pageCount={book.pageCount}
+            hasEpub={book.hasEpub}
+            companionSlug={getCompanionForBook(slug)?.slug ?? null}
+          />
+        )}
 
         <BookPreviewPages slug={slug} title={book.title} />
         <TrackEvent event="sample_read" onView props={{ slug }} />

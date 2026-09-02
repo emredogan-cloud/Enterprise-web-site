@@ -189,14 +189,18 @@ for (const b of BOOKS) {
   // no masterFileKey" while the buyer's entitlement sits at `pending`
   // forever. Both are written from the one source of truth.
   const masterFileKey = sellsDirect ? ebook.masterFileKey : null;
+  // The second delivered artifact, same rule. Null unless the edition is
+  // actually sold here AND actually has an EPUB — the worker branches on this
+  // column, and the storefront must never advertise a format it names as null.
+  const epubFileKey = sellsDirect ? (ebook.epubFileKey ?? null) : null;
 
   const [book] = await sql`
     insert into books (slug, title, subtitle, description, language,
                        price_cents, currency, page_count, status,
-                       paddle_price_id, master_file_key)
+                       paddle_price_id, master_file_key, epub_file_key)
     values (${b.slug}, ${b.title}, ${b.subtitle}, ${b.description}, ${b.language},
             ${canonicalPrice}, 'USD', ${b.pageCount}, ${b.websiteStatus},
-            ${b.paddlePriceId ?? null}, ${masterFileKey})
+            ${b.paddlePriceId ?? null}, ${masterFileKey}, ${epubFileKey})
     on conflict (slug) do update set
       title           = excluded.title,
       subtitle        = excluded.subtitle,
@@ -211,6 +215,7 @@ for (const b of BOOKS) {
       status          = excluded.status,
       paddle_price_id = excluded.paddle_price_id,
       master_file_key = excluded.master_file_key,
+      epub_file_key   = excluded.epub_file_key,
       updated_at      = now()
     returning id, status`;
 

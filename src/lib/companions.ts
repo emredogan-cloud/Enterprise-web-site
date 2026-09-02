@@ -313,6 +313,11 @@ export function getCompanion(slug: string): Companion | undefined {
   return COMPANIONS.find((c) => c.slug === slug);
 }
 
+/** The companion for a book, if it has one. Keyed on the BOOK's slug. */
+export function getCompanionForBook(bookSlug: string): Companion | undefined {
+  return COMPANIONS.find((c) => c.bookSlug === bookSlug);
+}
+
 export function getCompanionAsset(
   companionSlug: string,
   assetId: string,

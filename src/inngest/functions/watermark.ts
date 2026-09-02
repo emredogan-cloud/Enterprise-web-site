@@ -3,6 +3,7 @@ import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 
 import { db } from "@/lib/db";
 import { entitlements, watermarkJobs } from "@/lib/db/schema";
+import { watermarkEpub } from "@/lib/epub-watermark";
 import { sendOrderReadyEmail } from "@/lib/email";
 import {
   FULFILLMENT_EVENT,
@@ -161,7 +162,14 @@ export async function watermarkOneBook(
     where: (e, { eq: _eq, and: _and }) =>
       _and(_eq(e.userId, userId), _eq(e.bookId, bookId)),
     with: {
-      book: { columns: { id: true, title: true, masterFileKey: true } },
+      book: {
+        columns: {
+          id: true,
+          title: true,
+          masterFileKey: true,
+          epubFileKey: true,
+        },
+      },
     },
   });
   if (!entitlement) {
@@ -237,6 +245,44 @@ export async function watermarkOneBook(
       metadata: { orderId, userId, bookId },
     });
 
+    // 4b. The EPUB, when the edition has one. Deliberately best-effort and
+    //     deliberately after the PDF: `ready` is decided by the PDF, so a
+    //     malformed or missing EPUB costs the buyer a second format, never the
+    //     book they paid for. The failure is logged and visible; it does not
+    //     throw, because throwing here would send Inngest round the retry loop
+    //     and re-stamp a PDF that is already correct.
+    let epubKey: string | null = null;
+    if (entitlement.book.epubFileKey) {
+      try {
+        const epubMaster = await getObject({
+          bucket: MASTERS_BUCKET,
+          key: entitlement.book.epubFileKey,
+        });
+        const stamped = watermarkEpub(epubMaster.body, {
+          buyerName,
+          orderId,
+          bookId,
+          bookTitle: entitlement.book.title,
+        });
+        epubKey = buildArtifactKey({ orderId, bookId, extension: "epub" });
+        await putObject({
+          bucket: ARTIFACTS_BUCKET,
+          key: epubKey,
+          body: Buffer.from(stamped),
+          contentType: "application/epub+zip",
+          cacheControl: "private, max-age=0, no-store",
+          metadata: { orderId, userId, bookId },
+        });
+      } catch (err) {
+        epubKey = null;
+        logger.error(
+          "[watermark] EPUB step failed — the PDF is unaffected and the order still completes",
+          err,
+          { orderId, bookId, epubFileKey: entitlement.book.epubFileKey },
+        );
+      }
+    }
+
     // 5. Commit entitlement→ready AND job→succeeded in one transaction so the
     //    fulfillment state and its audit row can never disagree (e.g. a crash
     //    between the two writes can't leave a `ready` book with a `running`
@@ -245,7 +291,7 @@ export async function watermarkOneBook(
     await db.transaction(async (tx) => {
       await tx
         .update(entitlements)
-        .set({ status: "ready", watermarkedKey: artifactKey })
+        .set({ status: "ready", watermarkedKey: artifactKey, epubKey })
         .where(
           and(eq(entitlements.userId, userId), eq(entitlements.bookId, bookId)),
         );
@@ -332,8 +378,12 @@ async function markWatermarkJobFailed(
 // Helpers
 // ---------------------------------------------------------------------------
 
-function buildArtifactKey(args: { orderId: string; bookId: string }): string {
-  return `${args.orderId}/${args.bookId}.pdf`;
+function buildArtifactKey(args: {
+  orderId: string;
+  bookId: string;
+  extension?: "pdf" | "epub";
+}): string {
+  return `${args.orderId}/${args.bookId}.${args.extension ?? "pdf"}`;
 }
 
 export function buildWatermarkText(args: {

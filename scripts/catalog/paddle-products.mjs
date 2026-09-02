@@ -59,19 +59,21 @@ export const DIRECT_SALE_EBOOKS = [
     name: "The Great Book of World Myths",
     description:
       "The complete 234-page collection as a DRM-free, watermarked PDF. 45 myths from 22 traditions retold for readers aged 8–12, with a world map, culture cards and a sourced pronunciation guide.",
-    priceCents: 499, // Kindle list price, verified on KDP 2026-08-31
+    // $4.99 → $6.99 on 2026-09-02, following the Kindle edition after the
+    // Founder raised it. A Paddle price is immutable in amount, so this makes
+    // a NEW price and archives the old one — see provision-paddle.mjs.
+    priceCents: 699,
   },
   {
     slug: "the-puzzles-of-henry-dudeney",
     name: "The Puzzles of Henry Dudeney — Annotated",
     description:
-      // No EPUB in this description, though the edition has one and it is
-      // epubcheck-clean. Fulfillment delivers exactly one file — the
-      // watermarked PDF built from `books.master_file_key` — so an EPUB
-      // promised here would be a feature the buyer cannot find in their
-      // library. Advertise it on the day the second artifact ships, not
-      // before.
-      "110 classic problems from Amusements in Mathematics and The Canterbury Puzzles in Dudeney's own words and with his own solutions, with a difficulty mark and a hint for every puzzle, a glossary of old money, a chronology and a concordance. 144-page DRM-free, watermarked PDF.",
+      // The EPUB is back in this sentence, and this time it is true. Phase 4
+      // added `books.epub_file_key`, the worker's EPUB step and
+      // `entitlements.epub_key`; a buyer gets both files from one purchase.
+      // The rule stands: this sentence may only name a file the fulfillment
+      // worker actually produces.
+      "110 classic problems from Amusements in Mathematics and The Canterbury Puzzles in Dudeney's own words and with his own solutions, with a difficulty mark and a hint for every puzzle, a glossary of old money, a chronology and a concordance. 144 pages as a DRM-free watermarked PDF and a reflowable EPUB — both included, plus the online reader and a permanent library.",
     // price-engine.mjs 2026-09-02, direct ebook: $9.99 nets $8.99 after
     // Paddle (90%). Series bible range for Valice Classics is $7.99–9.99;
     // this edition carries a 28% original apparatus, so the top of it.

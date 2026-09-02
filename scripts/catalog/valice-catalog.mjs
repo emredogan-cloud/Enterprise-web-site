@@ -140,6 +140,9 @@ export const AUTHORS = [
  * @property {string|null} amazonUrl    Derived from a verified ASIN only.
  * @property {'live'|'in_review'|'not_created'|'not_applicable'} kdp
  * @property {string|null} masterFileKey
+ * @property {string|null} [epubFileKey]  R2 key of the EPUB master, when the
+ *   edition ships one. Absent or null means the buyer gets the PDF only, and
+ *   the storefront must then say nothing about EPUB.
  * @property {string} priceBasis  Why this number is what it is.
  */
 
@@ -209,11 +212,17 @@ export const BOOKS = [
     // The exclusivity that decides this book's digital channel.
     kdpSelect: true,
     directSale: false,
+    // Now a dated blocker rather than an open-ended one. The KDP promotion
+    // manager, read 2026-09-02, states the term exactly: enrolled, started
+    // 6 August 2026, **ends 3 November 2026**, auto-renew already unticked by
+    // the Founder. Cancelling auto-renew does not end the current term — the
+    // exclusivity runs to the end date and not a day earlier. So this is not
+    // waiting on anybody; it is waiting on a calendar.
     directSaleBlockedBy:
-      "KDP Select exclusivity on the Kindle edition (verified 2026-08-31). " +
-      "The digital edition may not be sold outside Amazon while enrolled. " +
-      "Enrolment renews automatically — to sell it here, turn off auto-renew " +
-      "in KDP and wait out the current 90-day term.",
+      "KDP Select exclusivity on the Kindle edition. Term 2026-08-06 → " +
+      "2026-11-03 (KDP promotion manager, read 2026-09-02); auto-renew is off, " +
+      "so it lapses on that date and does not repeat. The digital edition may " +
+      "not be sold outside Amazon before 2026-11-03. Nothing to do until then.",
     paddlePriceId: null,
     onelinePromise:
       "Seventy-six myths from nineteen civilizations, told at full length and left unsoftened.",
@@ -229,13 +238,14 @@ export const BOOKS = [
         // link to it rather than "not yet available" about a book that is.
         availability: "available",
         fulfillment: "amazon",
-        priceCents: usd(4.99),
+        priceCents: usd(6.99),
         pageCount: 329,
         amazonAsin: "B0HD8121RR",
         amazonUrl: amazon("B0HD8121RR"),
         kdp: "live",
         masterFileKey: null,
-        priceBasis: "Live Kindle list price, read from the KDP bookshelf 2026-08-31.",
+        priceBasis:
+          "$4.99 → $6.99, the Founder's change of 2026-09-02. Confirmed twice: the KDP bookshelf shows $6.99 USD, and the live format strip on the Amazon page now reads $6.99 (verify-amazon.mjs, 2026-09-02 evening). It read $4.99 that afternoon — KDP price changes take up to 72 hours to propagate, and the catalogue follows the shelf, not the dashboard.",
       },
       {
         format: "paperback",
@@ -380,7 +390,10 @@ export const BOOKS = [
     kdpSelect: false,
     directSale: true,
     directSaleBlockedBy: null,
-    paddlePriceId: "pri_01m1btjddes1p637hd78zsvczx",
+    // Replaced 2026-09-02 when the price moved $4.99 → $6.99. The old id
+    // pri_01m1btjddes1p637hd78zsvczx is archived in Paddle, not deleted:
+    // existing transactions must keep resolving to what was actually paid.
+    paddlePriceId: "pri_01m1hjdhhvq98v2pdxxenh8q1z",
     onelinePromise:
       "Forty-five myths for ages 8–12, from twenty-two traditions — and no more than three of them Greek.",
     description:
@@ -392,14 +405,14 @@ export const BOOKS = [
         format: "ebook",
         availability: "available",
         fulfillment: "direct",
-        priceCents: usd(4.99),
+        priceCents: usd(6.99),
         pageCount: 234,
         amazonAsin: "B0HDQRPKST",
         amazonUrl: amazon("B0HDQRPKST"),
         kdp: "live",
         masterFileKey: "books/the-great-book-of-world-myths/master/v1/master.pdf",
         priceBasis:
-          "Matched to the live Kindle list price ($4.99, KDP 2026-08-31). Not in KDP Select.",
+          "$4.99 → $6.99 on 2026-09-02, following the Kindle edition. The Founder moved the Kindle list to $6.99 (KDP bookshelf, and the live format strip agrees); the house rule is that a direct price matches the Kindle list to the cent, so the direct price follows. This is the Phase 3 'scenario C' outcome arriving for free: $6.99 direct nets $6.14 against $4.24 at $4.99 — 45% more per copy — while staying at parity with Amazon, so it invites no price-matching and raises no question about why the publisher's own shop costs more.",
       },
       {
         format: "paperback",
@@ -713,11 +726,16 @@ export const BOOKS = [
     authors: ["henry-dudeney", "emre-dogan"],
     bisac: ["GAM007000", "MAT025000"],
     series: { name: "Valice Classics", volume: 2 },
-    websiteStatus: "draft",
+    // PUBLISHED 2026-09-02 on the Founder's written approval: Gates 2 (rights),
+    // 5 (facts), 8 (price) and 12 (publication) signed, prices $9.99 direct /
+    // $14.99 paperback confirmed, AI declaration given. Gates 1, 3, 4, 6, 7, 9,
+    // 10 and 11 were already passed. All twelve are recorded in the book
+    // project's gates.json with their evidence.
+    websiteStatus: "published",
     kdpSelect: false,
     directSale: true,
     directSaleBlockedBy: null,
-    paddlePriceId: null,
+    paddlePriceId: "pri_01m1ha3tdx5bbyfqhe8k6qrep4",
     onelinePromise:
       "Dudeney's best puzzles in his own words, with a hint for every one, a difficulty mark, and the old money explained.",
     description:
@@ -727,9 +745,10 @@ export const BOOKS = [
     formats: [
       {
         format: "ebook",
-        // Flipped to "available" by the Founder at Gate 12; the Paddle price
-        // id is pasted here from provision-paddle.mjs at the same time.
-        availability: "coming_soon",
+        // ON SALE 2026-09-02. Gate 12 signed; the Paddle price below is the
+        // live one provision-paddle.mjs created and verified against the live
+        // account (active, 999 USD, one-time, quantity 1–1).
+        availability: "available",
         fulfillment: "direct",
         priceCents: usd(9.99),
         pageCount: 144,
@@ -737,6 +756,11 @@ export const BOOKS = [
         amazonUrl: null,
         kdp: "not_created",
         masterFileKey: "books/the-puzzles-of-henry-dudeney/master/v1/master.pdf",
+        // The first Valice edition to deliver two files. One purchase, both:
+        // the worker stamps the PDF page by page and appends a licence leaf to
+        // the EPUB. Written here only because the object is actually in the
+        // bucket and the worker actually reads it — see PHASE_4_REPORT §EPUB.
+        epubFileKey: "books/the-puzzles-of-henry-dudeney/master/v1/master.epub",
         priceBasis:
           "price-engine.mjs 2026-09-02, direct ebook: $9.99 nets $8.99 after Paddle (90%); the Valice Classics bible allows $7.99–9.99 and this edition carries a 28% original apparatus (QA/interior-main.json editorShare 0.279).",
       },
@@ -755,10 +779,10 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "Founder Gate 2: rights ledger RL-0024–RL-0026 (work public domain; Gutenberg transcriptions; original apparatus) awaits signature.",
-      "Founder Gate 8/12: list prices and the switch to published. The direct ebook is fully staged; paperback upload to KDP is a Founder action.",
-      "CLAIMS.jsonl C-014 (the 2014 Frame–Stewart proof) is UNVERIFIED and must be confirmed or cut before Gate 5.",
-      "No Kindle edition planned for launch: public-domain titles are capped at 35% on KDP and the Kindle catalogue already carries free Dudeney texts.",
+      "The paperback is built and preflight-clean but has never been uploaded to KDP — that is a Founder action, and it needs a physical proof copy first. The catalogue keeps it coming_soon with no ASIN until it is live.",
+      "Before that upload, the KDP AI declaration must be re-decided. The Founder declared no AI use; the project records that the editorial apparatus — 28.1% of the words — was agent-drafted, which is 'AI-generated' under Amazon's own definition. It does not affect the direct ebook, which makes no declaration to anyone. See project_config.json → compliance.aiDisclosure.textConflict.",
+      "The direct edition ships the watermarked PDF only. The EPUB is built and epubcheck-clean; nothing delivers it yet, so nothing advertises it.",
+      "No Kindle edition planned: public-domain titles are capped at the 35% royalty on KDP and the Kindle store already carries the same text for free at BSR #193.",
     ],
   },
 

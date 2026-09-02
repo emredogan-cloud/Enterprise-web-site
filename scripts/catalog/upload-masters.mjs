@@ -18,7 +18,11 @@
  */
 import { readFileSync, statSync } from "node:fs";
 import { HeadObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
-import { DIGITAL_EDITION_SOURCES, masterKey } from "./digital-edition-sources.mjs";
+import {
+  DIGITAL_EDITION_SOURCES,
+  epubMasterKey,
+  masterKey,
+} from "./digital-edition-sources.mjs";
 
 const commit = process.argv.includes("--commit");
 const flag = process.argv.indexOf("--env");
@@ -54,18 +58,21 @@ const client = new S3Client({
 
 const mb = (n) => (n / 1024 / 1024).toFixed(2) + " MB";
 
-for (const src of DIGITAL_EDITION_SOURCES) {
-  if (only.size && !only.has(src.slug)) continue;
-  const file = `scripts/tmp/digital-editions/${src.slug}.pdf`;
-  const key = masterKey(src.slug);
-
+/**
+ * Upload one file, skipping it when an object of the same size is already
+ * there. Same-size-means-same is a deliberate approximation: it is cheap, it
+ * catches every real re-cut (a rebuilt PDF is never byte-identical in size),
+ * and the alternative — overwriting a master a buyer may already have been
+ * served from — is the failure worth avoiding.
+ */
+async function upload({ file, key, contentType, missingHint }) {
   let size;
   try {
     size = statSync(file).size;
   } catch {
-    console.error(`MISSING  ${file} — run build-digital-editions.mjs first`);
+    console.error(`MISSING  ${file} — ${missingHint}`);
     process.exitCode = 1;
-    continue;
+    return;
   }
 
   let existing = null;
@@ -77,16 +84,16 @@ for (const src of DIGITAL_EDITION_SOURCES) {
   }
 
   if (existing === size) {
-    console.log(`SAME  ${key.padEnd(48)} ${mb(size).padStart(9)}  (already present, same size — skipped)`);
-    continue;
+    console.log(`SAME  ${key.padEnd(52)} ${mb(size).padStart(9)}  (already present, same size — skipped)`);
+    return;
   }
 
   if (!commit) {
     console.log(
-      `WOULD PUT  ${key.padEnd(48)} ${mb(size).padStart(9)}` +
+      `WOULD PUT  ${key.padEnd(52)} ${mb(size).padStart(9)}` +
         (existing !== null ? `  (overwrites ${mb(existing)})` : "  (new)"),
     );
-    continue;
+    return;
   }
 
   await client.send(
@@ -94,13 +101,36 @@ for (const src of DIGITAL_EDITION_SOURCES) {
       Bucket: bucket,
       Key: key,
       Body: readFileSync(file),
-      ContentType: "application/pdf",
+      ContentType: contentType,
       // Belt and braces: the bucket is private, and nothing should ever cache
       // a master anywhere it could be reached without a signature.
       CacheControl: "private, no-store",
     }),
   );
-  console.log(`PUT  ${key.padEnd(48)} ${mb(size).padStart(9)}`);
+  console.log(`PUT  ${key.padEnd(52)} ${mb(size).padStart(9)}`);
+}
+
+for (const src of DIGITAL_EDITION_SOURCES) {
+  if (only.size && !only.has(src.slug)) continue;
+
+  await upload({
+    file: `scripts/tmp/digital-editions/${src.slug}.pdf`,
+    key: masterKey(src.slug),
+    contentType: "application/pdf",
+    missingHint: "run build-digital-editions.mjs first",
+  });
+
+  // The EPUB is uploaded straight from the book project, not from the
+  // digital-editions staging folder: there is nothing to re-typeset, and the
+  // file the reader gets should be the one epubcheck validated.
+  if (src.epub) {
+    await upload({
+      file: src.epub,
+      key: epubMasterKey(src.slug),
+      contentType: "application/epub+zip",
+      missingHint: "the book project has not built its EPUB",
+    });
+  }
 }
 
 if (!commit) console.log("\ndry run complete — re-run with --commit to upload.");

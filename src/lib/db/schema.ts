@@ -168,6 +168,17 @@ export const books = pgTable(
     coverKey: text("cover_key"),
     sampleKey: text("sample_key"),
     masterFileKey: text("master_file_key"),
+    /**
+     * Private R2 key of the EPUB master, when the edition has one.
+     *
+     * A second delivered artifact, not a second product: one purchase entitles
+     * the buyer to every file this column and `master_file_key` name. NULL
+     * means the edition has no EPUB, and the storefront must then say nothing
+     * about EPUB — the Dudeney Paddle description once promised one the
+     * fulfillment worker had no way to deliver, which is the defect this
+     * column exists to make impossible.
+     */
+    epubFileKey: text("epub_file_key"),
     pageCount: integer("page_count"),
     isbn: varchar("isbn", { length: 32 }),
     /**
@@ -383,6 +394,16 @@ export const entitlements = pgTable(
       .references(() => orders.id, { onDelete: "restrict" }),
     status: entitlementStatusEnum("status").notNull().default("pending"),
     watermarkedKey: text("watermarked_key"),
+    /**
+     * Per-order watermarked EPUB, when the book has an EPUB master.
+     *
+     * Deliberately separate from `status`: the entitlement becomes `ready` on
+     * the PDF alone. An EPUB that failed to build must not hold a paid book
+     * hostage — the buyer gets the PDF and the EPUB button simply does not
+     * appear, which is a smaller failure than a library that says "still
+     * preparing" forever.
+     */
+    epubKey: text("epub_key"),
     // Phase 2.B — independent reading lifecycle. Defaults to
     // "not_started" so existing entitlements are non-destructively
     // backfilled by the migration.

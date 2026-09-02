@@ -149,6 +149,7 @@ const priceBySlug = bySlug(prices);
 
 const resolved = [];
 const taxFallbacks = [];
+const priceChanges = [];
 
 /**
  * Create a product, preferring Paddle's `ebooks` tax category.
@@ -192,11 +193,16 @@ for (const book of DIRECT_SALE_EBOOKS) {
   const stale =
     product &&
     (product.name !== book.name || product.description !== book.description);
+  const drift =
+    price && price.unit_price.amount !== String(book.priceCents)
+      ? `$${(Number(price.unit_price.amount) / 100).toFixed(2)} → $${(book.priceCents / 100).toFixed(2)}`
+      : null;
 
   if (!commit) {
     console.log(
       `  ${book.slug.padEnd(32)} product=${product?.id ?? "WOULD CREATE"}  ` +
         `price=${price?.id ?? "WOULD CREATE"}  $${(book.priceCents / 100).toFixed(2)}` +
+        (drift ? `  ← WOULD REPRICE ${drift} (new price, old one archived)` : "") +
         (stale ? "  ← name/description WOULD UPDATE" : ""),
     );
     continue;
@@ -229,13 +235,33 @@ for (const book of DIRECT_SALE_EBOOKS) {
     });
     console.log(`  created price    ${price.id}  $${(book.priceCents / 100).toFixed(2)}`);
   } else if (price.unit_price.amount !== String(book.priceCents)) {
-    // A Paddle price is immutable in amount. Changing what a book costs
-    // means a new price and archiving the old one — never an in-place edit,
-    // because existing transactions reference it.
+    // A Paddle price is immutable in amount. Changing what a book costs means
+    // creating a new price and archiving the old one — never an in-place edit,
+    // because existing transactions reference the old id and must keep
+    // resolving to what the customer actually paid.
+    //
+    // This used to print "do it manually", which meant a price change was a
+    // three-step dance across two systems with a hand-copied id in the middle
+    // — the exact shape of the mistake that put `pri_test_meditations_999`
+    // into production. Order matters: create first, archive second. A crash
+    // between them leaves two active prices, which is visible and fixable; the
+    // reverse leaves the book unbuyable.
+    const old = price;
+    price = await paddle("POST", "/prices", {
+      product_id: product.id,
+      description: `${book.name} — DRM-free watermarked PDF`,
+      unit_price: { amount: String(book.priceCents), currency_code: "USD" },
+      quantity: { minimum: 1, maximum: 1 },
+      custom_data: { valice_slug: book.slug },
+    });
     console.log(
-      `  PRICE DRIFT      ${book.slug}: Paddle has ${price.unit_price.amount}, ` +
-        `catalog says ${book.priceCents}. Create a new price and archive the old one manually.`,
+      `  price changed    ${book.slug}: $${(Number(old.unit_price.amount) / 100).toFixed(2)} → ` +
+        `$${(book.priceCents / 100).toFixed(2)}\n` +
+        `                   new ${price.id}`,
     );
+    await paddle("PATCH", `/prices/${old.id}`, { status: "archived" });
+    console.log(`                   archived ${old.id}`);
+    priceChanges.push({ slug: book.slug, from: old.id, to: price.id });
   }
 
   resolved.push({ slug: book.slug, productId: product.id, priceId: price.id });
@@ -244,6 +270,15 @@ for (const book of DIRECT_SALE_EBOOKS) {
 if (commit) {
   console.log("\n── price ids (write these into valice-catalog.mjs) ─────");
   for (const r of resolved) console.log(`  ${r.slug.padEnd(32)} ${r.priceId}`);
+
+  if (priceChanges.length) {
+    console.log(
+      "\n⚠  PRICE IDS CHANGED — paste these into valice-catalog.mjs before the\n" +
+        "   next load-catalog run, or the storefront will still quote the archived\n" +
+        "   price id at checkout:\n" +
+        priceChanges.map((c) => `     ${c.slug.padEnd(32)} ${c.from} → ${c.to}`).join("\n"),
+    );
+  }
 
   if (taxFallbacks.length) {
     console.log(

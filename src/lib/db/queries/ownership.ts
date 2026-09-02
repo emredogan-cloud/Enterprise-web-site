@@ -30,6 +30,7 @@ export interface AccessEntitlement {
   id: string;
   status: EntitlementStatus;
   watermarkedKey: string | null;
+  epubKey: string | null;
   book: { id: string; slug: string; title: string };
 }
 
@@ -42,7 +43,13 @@ export interface AccessEntitlement {
 export type EntitlementAccess =
   | { state: "not-owned" }
   | { state: "not-ready"; entitlement: AccessEntitlement }
-  | { state: "ready"; entitlement: AccessEntitlement; artifactKey: string };
+  | {
+      state: "ready";
+      entitlement: AccessEntitlement;
+      artifactKey: string;
+      /** The watermarked EPUB, when this order produced one. */
+      epubKey: string | null;
+    };
 
 export async function resolveEntitlementAccess(
   userId: string,
@@ -50,7 +57,7 @@ export async function resolveEntitlementAccess(
 ): Promise<EntitlementAccess> {
   const entitlement = await db.query.entitlements.findFirst({
     where: (e, { and, eq }) => and(eq(e.userId, userId), eq(e.bookId, bookId)),
-    columns: { id: true, status: true, watermarkedKey: true },
+    columns: { id: true, status: true, watermarkedKey: true, epubKey: true },
     with: {
       book: { columns: { id: true, slug: true, title: true } },
     },
@@ -68,5 +75,10 @@ export async function resolveEntitlementAccess(
     // Narrowed to a non-null string by the guard above — callers can pass it
     // straight to `generateSignedDownloadUrl` without re-checking.
     artifactKey: entitlement.watermarkedKey,
+    // The EPUB is optional by design. `ready` is decided by the PDF alone, so
+    // this is null both for books that have no EPUB and for the rare order
+    // whose EPUB step failed — in either case the caller offers one format
+    // instead of two rather than refusing the download.
+    epubKey: entitlement.epubKey,
   };
 }

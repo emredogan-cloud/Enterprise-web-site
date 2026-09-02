@@ -302,6 +302,15 @@ export interface BookDetail extends BookCardData {
   isbn: string | null;
   publishedAt: Date | null;
   formats: BookFormat[];
+  /**
+   * True when this edition ships an EPUB alongside the watermarked PDF.
+   *
+   * Read from `books.epub_file_key` — the same column the fulfillment worker
+   * branches on — so the storefront cannot promise a format the worker will
+   * not produce. That is not hypothetical: the Dudeney Paddle description
+   * once advertised an EPUB nothing delivered.
+   */
+  hasEpub: boolean;
 }
 
 /** Display order: what we sell ourselves first, then print by weight. */
@@ -334,6 +343,7 @@ export async function getPublishedBookBySlug(
           language: true,
           isbn: true,
           publishedAt: true,
+          epubFileKey: true,
         },
         with: {
           bookAuthors: {
@@ -359,6 +369,7 @@ export async function getPublishedBookBySlug(
         language: book.language,
         isbn: book.isbn,
         publishedAt: book.publishedAt,
+        hasEpub: Boolean(book.epubFileKey),
         authors: book.bookAuthors.map((ba) => ba.author),
         // `unavailable` formats are dropped rather than rendered as a
         // struck-through row: a format the press decided not to produce is

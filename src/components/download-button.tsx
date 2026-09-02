@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from "react";
 
-import { downloadBook } from "@/app/account/library/actions";
+import { downloadBook, type DownloadFormat } from "@/app/account/library/actions";
 
 /**
  * Download button — calls the `downloadBook` Server Action, which does
@@ -29,11 +29,18 @@ export function DownloadButton({
   variant = "default",
   size = "lg",
   label = "Download",
+  format = "pdf",
 }: {
   bookId: string;
   variant?: "default" | "secondary";
   size?: "default" | "sm" | "lg";
   label?: string;
+  /**
+   * Which of the entitled files to fetch. One purchase covers every file the
+   * edition ships; the button chooses between them rather than representing a
+   * separate right.
+   */
+  format?: DownloadFormat;
 }) {
   const [pending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
@@ -41,7 +48,7 @@ export function DownloadButton({
   const handleClick = () => {
     setError(null);
     startTransition(async () => {
-      const result = await downloadBook(bookId);
+      const result = await downloadBook(bookId, format);
       if (result.ok) {
         window.location.href = result.url;
       } else {

@@ -199,7 +199,18 @@ function LibraryTile({
               >
                 Read
               </Link>
-              <DownloadButton bookId={entry.bookId} variant="secondary" />
+              <DownloadButton bookId={entry.bookId} variant="secondary" label="Download PDF" />
+              {/* Shown only when this order actually produced an EPUB. A
+                  format button that appears before the file exists is the
+                  defect this whole column was added to prevent. */}
+              {entry.epubKey && (
+                <DownloadButton
+                  bookId={entry.bookId}
+                  variant="secondary"
+                  label="Download EPUB"
+                  format="epub"
+                />
+              )}
             </div>
           ) : entry.status === "pending" ? (
             <p className="inline-flex items-center gap-2 text-xs text-fg-mid">
@@ -285,7 +296,16 @@ function LibraryListRow({
             >
               Read
             </Link>
-            <DownloadButton bookId={entry.bookId} size="sm" variant="secondary" />
+            <DownloadButton bookId={entry.bookId} size="sm" variant="secondary" label="PDF" />
+            {entry.epubKey && (
+              <DownloadButton
+                bookId={entry.bookId}
+                size="sm"
+                variant="secondary"
+                label="EPUB"
+                format="epub"
+              />
+            )}
           </div>
         ) : entry.status === "pending" ? (
           <span className="inline-flex items-center gap-1.5 text-xs text-fg-mid">
