@@ -70,7 +70,13 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
  * silently, because a bad tag is not the subscriber's problem and must
  * not cost them their subscription.
  */
-const SOURCES = new Set(["home", "article", "category", "codex-verify"]);
+const SOURCES = new Set([
+  "home",
+  "article",
+  "category",
+  "codex-verify",
+  "hangul-companion",
+]);
 
 /**
  * The consent sentence, stored verbatim on every subscriber record.

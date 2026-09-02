@@ -28,7 +28,13 @@ export type NewsletterSource =
   | "home"
   | "article"
   | "category"
-  | "codex-verify";
+  | "codex-verify"
+  // A reader who scanned the QR code inside the printed Hangul workbook.
+  // The most commercially interesting tag we have: it identifies someone who
+  // already bought a physical book on Amazon, which is the one thing Amazon
+  // never tells us. Keep it distinct from every other source for exactly
+  // that reason.
+  | "hangul-companion";
 
 export type NewsletterErrorCode =
   | "invalid-email"
