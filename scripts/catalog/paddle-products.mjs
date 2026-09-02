@@ -65,7 +65,13 @@ export const DIRECT_SALE_EBOOKS = [
     slug: "the-puzzles-of-henry-dudeney",
     name: "The Puzzles of Henry Dudeney — Annotated",
     description:
-      "110 classic problems from Amusements in Mathematics and The Canterbury Puzzles in Dudeney's own words and with his own solutions, with a difficulty mark and a hint for every puzzle, a glossary of old money, a chronology and a concordance. 144-page DRM-free, watermarked PDF; the EPUB is included in the library.",
+      // No EPUB in this description, though the edition has one and it is
+      // epubcheck-clean. Fulfillment delivers exactly one file — the
+      // watermarked PDF built from `books.master_file_key` — so an EPUB
+      // promised here would be a feature the buyer cannot find in their
+      // library. Advertise it on the day the second artifact ships, not
+      // before.
+      "110 classic problems from Amusements in Mathematics and The Canterbury Puzzles in Dudeney's own words and with his own solutions, with a difficulty mark and a hint for every puzzle, a glossary of old money, a chronology and a concordance. 144-page DRM-free, watermarked PDF.",
     // price-engine.mjs 2026-09-02, direct ebook: $9.99 nets $8.99 after
     // Paddle (90%). Series bible range for Valice Classics is $7.99–9.99;
     // this edition carries a 28% original apparatus, so the top of it.

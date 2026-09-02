@@ -336,7 +336,7 @@ function buildArtifactKey(args: { orderId: string; bookId: string }): string {
   return `${args.orderId}/${args.bookId}.pdf`;
 }
 
-function buildWatermarkText(args: {
+export function buildWatermarkText(args: {
   buyerName: string | null;
   orderId: string;
 }): string {
@@ -358,7 +358,7 @@ function buildWatermarkText(args: {
  * pinned to the page footer. Social DRM is about *trace and deter*, not
  * about defacing the book.
  */
-async function stampPdfWithWatermark(
+export async function stampPdfWithWatermark(
   masterBytes: Uint8Array,
   watermarkText: string,
   forensic: { bookId: string; orderId: string },

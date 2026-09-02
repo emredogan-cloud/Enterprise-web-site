@@ -475,7 +475,21 @@ kova** vardır:
 
 ### 6.3. Kovaların Oluşturulması
 
-Production için tipik şema:
+> **2026-09-02 — GERÇEK DURUM.** Aşağıdaki `-prod` kova adları bu kılavuzun
+> önerdiği şemadır; **hiçbir zaman oluşturulmadılar.** Üretim bugün
+> `bookstore-masters-dev` ve `bookstore-artifacts-dev` kovalarını kullanıyor.
+> Bu tahmin değil, ölçüm: `GET /api/admin/storage-check` çalışan üretim
+> fonksiyonuna kendi `R2_BUCKET_MASTERS` değerini sordu, beş master'ın
+> tamamını okudu ve artifacts kovasına yaz-oku-sil turu yaptı (hepsi başarılı).
+> `R2_BUCKET_MASTERS` Vercel'de *sensitive* olduğu için değeri dışarıdan
+> okunamıyordu; iki faz boyunca açık kalan soru bu şekilde kapandı.
+>
+> Kovaları yeniden adlandırmayın. Ad kozmetik; veri taşımak gerçek bir risk.
+> Ayrı bir üretim kovası gerçekten istenirse, sıra şudur: kovayı oluştur →
+> altı master'ı kopyala → `/api/admin/storage-check` ile doğrula → ancak o
+> zaman `R2_BUCKET_MASTERS`'ı değiştir.
+
+Production için tipik şema (öneri — kullanılmadı):
 
 ```
 bookstore-masters-prod

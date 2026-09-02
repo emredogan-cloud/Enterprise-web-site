@@ -46,6 +46,20 @@
 const usd = (dollars) => Math.round(dollars * 100);
 
 /** Amazon product URL for a verified ASIN. Never call this with a guess. */
+/**
+ * The plain product URL for a verified ASIN.
+ *
+ * AMAZON ATTRIBUTION. To measure how many of our own visitors go on to buy on
+ * Amazon, replace this call on a single format with the tracking URL that
+ * Amazon Attribution generates — `attributionUrl: "https://www.amazon.com/dp/…?maas=…"`
+ * pasted whole, never assembled by hand, because the tag is signed. The
+ * storefront already prefers `amazonUrl` over the ASIN fallback
+ * (`src/components/book-detail/format-table.tsx` → `amazonHref`), so a pasted
+ * URL takes effect on the next catalogue load with no code change. Keep the
+ * ASIN in `amazonAsin` either way: it is what `verify-amazon.mjs` checks the
+ * listing against, and a tracking URL that silently points at the wrong book
+ * is exactly the failure this catalogue exists to prevent.
+ */
 const amazon = (asin) => `https://www.amazon.com/dp/${asin}`;
 
 export const CATEGORIES = [

@@ -1,96 +1,255 @@
 # Founder Actions — the canonical handbook
 
-**Updated:** 2026-09-02 after Phase 2 v3. This is the only list of Founder
-actions. Everything the agent could do with the repositories, the CLI, the
-Vercel/Paddle/Inngest/R2 APIs and the browser has been done and is *not* here
-(see `phase-2/PHASE_2_REPORT.md`). Each item below is here for one reason
-only: it needs an account the agent cannot enter, a legal or commercial
-decision, a physical object, or a credential that must never pass through an
-agent.
+**Updated:** 2026-09-02, end of Phase 3. This is the only list. Everything the
+agent could do with the repositories, the CLI, the Vercel / Paddle / R2 / Neon
+/ Google APIs, the Amazon listings and the production runtime has been done and
+is **not** here — see `phase-3/PHASE_3_REPORT.md`. Each item below is here for
+exactly one reason: an account the agent cannot enter, a signature only a
+person can give, a credential that must never pass through an agent, or a
+provider that answers "no" to anyone but the account holder.
 
-Format: exact action · why · where · exact value · current state · expected
-result · dependency · how to verify.
+**Eight items. Five of them are one click.** Three finished products are
+waiting behind them.
 
----
-
-## URGENT
-
-### U1 · Hangul: sign the remediated rights ledger (Gate 2) and replace the KDP files
-- **Action:** (1) read `MY-DİGİTAL-BOOK/KOREAN-HANGUL-HANDWRITING-WORKBOOK/RIGHTS.md` and decide A7-5 (cover-art commercial rights — confirm from the image provider's terms) and A7-6 (KDP AI declaration); (2) set `05_APLUS_COVER/book_metadata.json → legal.a7_status` to `FOUNDER_REVIEWED_CLEARED` (or `_BLOCKED`) with `reviewed_on` / `reviewed_by`; (3) in KDP, the paperback and hardcover in review are the **pre-remediation** files — when they leave review, replace the interiors with `09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_124pp.pdf` and `09_OUTPUT/FINAL/hardcover/hardcover_interior_8.25x11_124pp.pdf` (covers unchanged), or unpublish and resubmit; (4) tell the agent, who flips the catalogue.
-- **Why:** the rights problem is solved in the files (CC BY-SA/CC BY-NC sources withdrawn; 97 words re-verified against the NIKL learner list, KOGL Type 1; glosses rewritten; QA 273/273, selftest 257/257), but Gate 2 is a founder signature and KDP file replacement is a KDP-only action.
-- **Where:** book project `RIGHTS.md`, `DECISIONS.md` K46; KDP Bookshelf → Korean Hangul Handwriting Workbook.
-- **Current state:** ledger rows RL-0021–RL-0023 GREEN pending signature (`approved_on` empty); `legal.a7_status = LEGAL_REVIEW_REQUIRED`; KDP paperback/hardcover "in review" with old files; catalogue `draft`.
-- **Expected result:** a7 cleared → `.gate = release` allowed → agent publishes the catalogue entry (paperback/hardcover coming-soon → live when ASINs exist) and provisions the direct ebook price.
-- **Verify:** `node scripts/factory/rights-lint.mjs` (no RED); KDP shows the new interior page count 124 and the sources page reads "Korean Learner's Vocabulary List".
-
-### U2 · Correct the Codex Bestiarium listings: 120 → 112 *(deferred by the Founder on 2026-09-02 — non-blocking)*
-- **Action:** edit the title/subtitle on all four live listings (Kindle B0HDLS4W8Q, paperback B0HDLQHQ7H, hardcover B0HDLLPG5M, large print B0HDLT1V3P) to "112 Legendary Creatures".
-- **Why:** the book contains 112 entries (verified fact F-2026-0006). Deferred at the Founder's instruction; nothing in Phase 2 touched the listing.
-- **Verify:** `curl -s https://www.amazon.com/dp/B0HDLQHQ7H | grep -o "1[12][02] Legendary"`.
-
-### U3 · Resend: verify `valicepress.com` in the account that holds the production API key, and declare the four audience properties (dashboard-only)
-- **Action:** (1) Resend → Domains: confirm `valicepress.com` is listed **and Verified in the same team whose API key is in Vercel** (`RESEND_API_KEY`). If it is verified only in another team, or only as `send.valicepress.com`, either move/verify the apex domain there or tell the agent the exact verified domain so `EMAIL_FROM` can be set to an address on it. (2) Resend → Audiences → the Valice audience → Properties → add `source`, `signup_purpose`, `consent_text`, `consent_at` (text).
-- **Why:** measured, not assumed. Production logs 2026-09-02: at 13:41 UTC the welcome email failed with "You can only send testing emails to your own email address … change the `from` address" (From was the test sender); the agent set `EMAIL_FROM = Valice Press <hello@valicepress.com>` in Vercel and redeployed; at **14:20 UTC the send failed again with "The valicepress.com domain is not verified. Please, add and verify your domain on resend.com/domains."** So, from the API's point of view, the domain is **not** verified in that account. The agent cannot open the dashboard (login required) and the API key is a sensitive variable. Separately, every signup logs "Resend rejected the consent properties … One or more properties do not exist" and is stored **without a consent record** (`consentRecorded: false`); the API has no endpoint to declare audience properties.
-- **Current state:** DNS carries `resend._domainkey.valicepress.com` (DKIM) and `send.valicepress.com` CNAME/MX/SPF; From address is now `hello@valicepress.com`; three test signups by the agent today produced no email. Also make sure `hello@valicepress.com` forwards somewhere (Namecheap email forwarding) so replies do not bounce.
-- **Verify:** a new signup returns `consentRecorded: true` and the welcome email arrives from `hello@valicepress.com` with DKIM=pass; production logs show no `welcome email failed` line.
+Format: what to do · why · where · exact value · how to check it worked.
 
 ---
 
-## REQUIRED BEFORE PHASE 3
+## URGENT — each one is blocking a product
 
-### R1 · World Games Large Print: upload to KDP
-- **Action:** KDP → Create → Paperback as a new title (house convention): title "The Great Book of World Games", edition/format "(Large Print)", same author/description (+ "This large print edition is set in 16-point type."), same categories, tick Large Print; trim 8.5 × 11 in, B&W on white, no bleed; upload `MY-DİGİTAL-BOOK/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/LARGEPRINT/GreatBookOfWorldGames_interior_largeprint.pdf` (232 pp) and `…_cover_largeprint.pdf`; run the Previewer; price **$31.99** (or your Gate 8 choice); KDP-provided ISBN; answer the AI declaration; order a proof.
-- **Why:** built, preflighted (30/30) and priced by the agent; upload, Previewer, AI declaration and proof are KDP-only. Nets $14.25/unit (break-even ACOS 44.5 %).
-- **Where:** `06_REPORTS/LARGEPRINT_BUILD_REPORT.md` has the full steps.
-- **Current state:** catalogue carries `large_print: coming_soon` at $31.99 with no ASIN.
-- **Verify:** send the ASIN; the agent fetches a 200 and records it; `npm run validate:catalog`.
+### F1 · Dudeney: sign the gates and say "publish"
+*≈ 20 minutes. It is the only thing between a finished book and a shop that sells it.*
 
-### R2 · Dudeney: Gates 2, 8 and 12 — sign rights, confirm prices, publish
-- **Action:** (1) read `MY-DİGİTAL-BOOK/THE-PUZZLES-OF-HENRY-DUDENEY/RIGHTS.md`, `DECISIONS.md` (A1–A5) and `CLAIMS.jsonl` (C-014 is UNVERIFIED — confirm the 2014 Frame–Stewart proof or tell the agent to cut three sentences); (2) sign Gate 2: `node scripts/factory/gate.mjs "<project>" set 2 passed --evidence RIGHTS.md --evidence valice-house/rights/ledger.csv --owner R6 --approved-by founder`; (3) confirm $9.99 direct / $14.99 paperback (or say otherwise); (4) decide the AI-disclosure answer (`project_config.json → compliance.aiDisclosure`); (5) say "publish" — the agent flips `websiteStatus: "published"` and the ebook to `available` with the Paddle price id already provisioned, and loads the catalogue; (6) optional: upload the paperback (`OUTPUT/interior-main.pdf` + `OUTPUT/cover-paperback.pdf`, 6 × 9, 144 pp) to KDP with "(Annotated)" in the title.
-- **Why:** the edition is complete (144 pp interior, EPUB epubcheck-clean, cover, previews, R2 master, companion live), but rights sign-off, prices, AI declaration and the publish switch are founder gates 2/8/10/12 by house rule.
-- **Paddle price — one command, yours or the agent's with permission:** the agent's run of `node scripts/catalog/provision-paddle.mjs --env scripts/tmp/.env.validate --commit --i-know-this-is-live` (which creates the Dudeney product and its $9.99 price in the live Paddle catalogue; the dry run showed "WOULD CREATE" and no other change) was **blocked by the tool-permission layer**, so no Paddle object exists yet. Either run that command yourself (after `npx vercel env pull scripts/tmp/.env.production --environment=production` and merging the local `R2_*` lines as the agent does) or grant the agent the permission and it will run it and paste the `pri_…` id.
-- **Catalogue load — same situation:** the catalogue file in the repository carries every Phase 2 change (Hangul texts, Meditations series, World Games large print `coming_soon`, the Dudeney draft, the Dudeney author). The agent's `node scripts/catalog/load-catalog.mjs --env scripts/tmp/.env.production --commit --i-know-this-is-production` (dry run: 9 books, 28 formats, integrity OK, all upserts) was **also blocked by the tool-permission layer**, so the production database still shows the pre-Phase-2 catalogue. Run it yourself or grant the permission.
-- **Current state:** catalogue `draft`, ebook `coming_soon`; Paddle product/price **not yet created**; R2 master uploaded (`books/the-puzzles-of-henry-dudeney/master/v1/master.pdf` in the bucket the local env names, `bookstore-masters-dev` — confirm this is the bucket production's sensitive `R2_BUCKET_MASTERS` points at; the Phase 0 check that found the five existing masters used the same bucket); companion `/companion/dudeney` live.
-- **Verify:** after "publish": `npm run validate:catalog` shows the book with 18+ passes; a test purchase lands a watermarked PDF in the library.
+- **What to do:**
+  1. Read `MY-DİGİTAL-BOOK/THE-PUZZLES-OF-HENRY-DUDENEY/RIGHTS.md` and
+     `DECISIONS.md` (A1–A5). **A4 is now closed** — see below.
+  2. Sign Gate 2 (rights):
+     ```
+     node scripts/factory/gate.mjs "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-PUZZLES-OF-HENRY-DUDENEY" \
+       set 2 passed --evidence RIGHTS.md --evidence valice-house/rights/ledger.csv \
+       --owner R6 --approved-by founder
+     ```
+  3. Sign Gate 5 (facts) — the evidence is complete and `claim-lint` passes
+     clean, 18 claims, none pending:
+     ```
+     node scripts/factory/gate.mjs "…/THE-PUZZLES-OF-HENRY-DUDENEY" \
+       set 5 passed --evidence CLAIMS.jsonl --owner R4 --approved-by founder
+     ```
+  4. Confirm the prices: **$9.99 direct**, **$14.99 paperback**. Both are argued
+     from a live market sample in `phase-3/DUDENEY_REPORT.md` §4. **Do not make
+     a hardcover** — no price in the band clears the margin target and the
+     arithmetic is in that section.
+  5. Decide the AI-disclosure answer (`project_config.json →
+     compliance.aiDisclosure`) for Gate 10.
+  6. Say **"publish"**. The agent flips `websiteStatus` to `published` and the
+     ebook to `available` against the Paddle price that already exists, and
+     loads the catalogue.
+- **Already true, so do not redo it:** the Paddle product and price are live
+  (`pri_01m1ha3tdx5bbyfqhe8k6qrep4`, $9.99, one-time, USD, active); the master
+  is in the bucket production actually reads; previews are rendered; the
+  companion is live; the interior and cover both pass preflight; **Gate 1
+  passed today** on a 12-title live Amazon sample.
+- **A4 is closed.** The unverified Frame–Stewart claim was verified against the
+  primary source — Thierry Bousch, *"La quatrième tour de Hanoï"*, Bull. Belg.
+  Math. Soc. Simon Stevin 21:5 (2014) 895–912. The claim was true; the
+  attribution named the wrong mathematician and invented co-authors. Corrected
+  in place, nothing cut. A second error was found and fixed while checking:
+  Dudeney did **not** invent verbal arithmetic.
+- **Check:** `npm run validate:catalog`, then buy it yourself once and confirm
+  the PDF lands in `/account/library`.
 
-### R3 · Author biography (unchanged from Phase 1 — R5)
-- **Action:** 80–150 words of verifiable biography; the agent writes it into the catalogue, every `project_config.json` and Author Central.
-- **Why:** `authorBio` is null in every project; metadata-lint blocks Gate 9; the Dudeney imprint needs an editor line.
+### F1a · Hangul: confirm the KDP interior is the remediated file
+*≈ 2 minutes, inside KDP.*
 
-### R4 · Amazon Ads account, Author Central claim, Amazon Attribution (unchanged — R8)
-- **Action:** advertising.amazon.com → create the ads account (US); Author Central → claim all live books; Amazon Ads → Attribution → register. Then give the agent read access to campaign CSV exports.
-- **Why:** the first campaigns are planned and priced (`phase-2/PILOT_WORLD_GAMES.md` §Ads: break-even ACOS 36.1 % hardcover / 43.8 % paperback / 44.5 % large print; max CPC $1.14 at 8 % CVR) but cannot be created without the account. No ad has been run; no ad result exists.
+- **What to do:** open the Korean Hangul Handwriting Workbook in KDP and confirm
+  the **currently uploaded paperback interior** is
+  `09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_124pp.pdf`. Then sign
+  Gate 2: set `05_APLUS_COVER/book_metadata.json → legal.a7_status` to
+  `FOUNDER_REVIEWED_CLEARED` with `reviewed_on` / `reviewed_by`, after deciding
+  the two open A7 items — the cover-art commercial licence and the KDP AI
+  declaration.
+- **Why it needs you:** you report having replaced it, and the agent cannot
+  check from outside. The stated test — page count 124 — **does not
+  discriminate**: the pre- and post-remediation interiors are both 124 pages,
+  and Amazon exposes nothing else. Everything else about the remediation is
+  confirmed in the files.
+- **What changed without you:** the paperback was found **live on Amazon since
+  29 August** (B0HHHWXGG4, $12.99, 124 pp) and the site was not linking to it.
+  It is published now, with a four-page preview. Gate 2 still gates the
+  **direct ebook**, which stays unavailable.
+- **Check:** `curl -s https://www.amazon.com/dp/B0HHHWXGG4 | grep -o "124 pages"`.
 
-### R5 · Paddle `ebooks` tax category (unchanged — R4)
-- **Action:** Paddle support ticket to enable the `ebooks` tax category; tell the agent.
-- **Why:** every direct sale currently uses the `standard` category.
+### F2 · Resend: declare four audience properties
+*≈ 3 minutes, dashboard only — the API has no endpoint for this.*
 
-### R6 · Decide "Vâliçe Press" vs "Valice Press" (unchanged — R6)
-- **Action:** one word. The books print "Vâliçe Press"; the site, Paddle and the new Dudeney edition say "Valice Press".
-
-### R7 · Google Cloud service account for the Search Console export (unchanged — R7)
-- **Action:** as before; the JSON key never passes through the agent.
-- **Current state:** Search Console property verified; sitemap submitted 2026-09-02 — re-check the sitemap status after 48 h.
-
-### R8 · Price tests (unchanged — R1) and KDP Select auto-renew (unchanged — R2)
-- **Action:** World Myths ebook $4.99 → $6.99 (new Paddle price; send the id); Codex Mythologica Kindle $4.99 → $6.99; switch off Select auto-renew for Codex Mythologica.
+- **Where:** Resend → Audiences → the Valice audience → **Properties** → Add.
+- **Exact values** (all type *text*): `source`, `signup_purpose`,
+  `consent_text`, `consent_at`.
+- **Why:** every signup currently logs *"Resend rejected the consent properties
+  … One or more properties do not exist"* and is stored with
+  **`consentRecorded: false`**. You have subscribers with no record of what
+  they agreed to.
+- **Not needed any more:** the domain. **Sending is verified** — a welcome
+  email was delivered from `hello@valicepress.com` today with dkim, spf and
+  dmarc all passing, and one-click unsubscribe was proven working end to end.
+- **Check:** a new signup returns `"consentRecorded":true`.
 
 ---
 
-## OPTIONAL (improves the plan, not blocking)
+## REQUIRED — before or just after the first sale
 
-### O1 · Five playtests for The Great Book of World Games (unchanged)
-### O2 · Before You Cut: trademark clearance and testers (unchanged)
-### O3 · Verify the live Myth Hunter's Field Book interior (unchanged)
-### O4 · Monthly KDP Reports export (unchanged) — `data/kdp/YYYY-MM.csv`
-### O5 · Decide how production is deployed: merge to `main`, or make `feat/production-readiness` the production branch (unchanged)
-- **Current state:** production is promoted by hand from the branch's preview builds (`vercel promote`); the Phase 2 build was promoted the same way.
-### O6 · Dudeney market sample (Gate 1)
-- **Action:** a 20-row Amazon sample (ASIN, price, pages, reviews, rating, BSR, timestamp) for "Dudeney puzzles" and "mathematical puzzles classic" into `MARKET.md`, or tell the agent to take it with the browser.
-- **Why:** none was taken in Phase 2; the direct ebook does not need it, the paperback upload should have it.
+### F3 · Run the webhook end-to-end test once
+*≈ 5 minutes. Needs `PADDLE_WEBHOOK_SECRET`, which is sensitive and correctly out of the agent's reach.*
+
+```
+npx vercel env pull scripts/tmp/.env.production --environment=production
+# merge the local R2_* lines into that file as the agent does
+node scripts/tmp/e2e-fulfillment.mjs scripts/tmp/.env.production \
+  https://valicepress.com meditations <your-email>
+node scripts/tmp/e2e-cleanup.mjs      # removes the test order, entitlement and artifact
+```
+
+- **Why:** the **delivery half** is already proven in production on the real
+  masters — master read → watermark → artifact → signed URL → correct bytes
+  back, 4.9 s on the heaviest 8.8 MB book (`/api/admin/fulfillment-check`). The
+  two links that test cannot reach are the **Paddle webhook signature** and the
+  **Inngest trigger**, and both need that secret.
+- **Also proves:** refund → entitlement revoke (`e2e-refund.mjs`), which no
+  other test covers.
+- **Check:** the script prints `entitlement: ready` and the order-ready email
+  arrives.
+
+### F4 · Paddle: request the `ebooks` tax category
+*≈ 5 minutes to raise a ticket. Paddle grants it; nobody else can.*
+
+- **What to do:** Paddle dashboard → **Help / Support → new ticket**. Ask for
+  the **`ebooks` product tax category** to be enabled on the account. Say you
+  sell DRM-free ebook PDFs as a merchant of record and need the reduced ebook
+  VAT treatment. When they confirm, tell the agent — one command applies it to
+  all six products.
+- **Why:** the agent **tried the API** on all six products today and Paddle
+  answered `400 product_tax_category_not_approved` on every one. It is a
+  per-seller approval, not a setting. All six products are on `standard`, which
+  over-collects VAT on ebook sales in jurisdictions that tax books at a reduced
+  rate — wrong, but refundable, and better than a shop that cannot take money.
+- **Check:** `node scripts/catalog/paddle-tax-category.mjs --env scripts/tmp/.env.production --commit`
+  prints `standard → ebooks` instead of `REFUSED`.
+
+### F5 · Codex Mythologica: the Kindle price is still $4.99
+*≈ 2 minutes in KDP.*
+
+- **What:** the live Amazon page today reads **"Kindle $0.00 or $4.99 to buy"**.
+  The move to $6.99 either has not propagated (KDP takes up to 72 h) or was not
+  saved. Check the KDP pricing page; if it says $6.99, this resolves itself and
+  the agent will confirm on the next `verify-amazon.mjs` run.
+- **The $0.00 half matters more:** it means the title is **still inside its
+  Kindle Unlimited / KDP Select term**. Turning off auto-renew does not end the
+  current term, so the exclusivity is still in force and Codex Mythologica's
+  ebook still may not be sold on valicepress.com. Note the term's end date; the
+  agent flips the catalogue the day it lapses.
+- **Check:** `node scripts/market/verify-amazon.mjs --slug codex-mythologica`.
+
+### F6 · World Games Large Print: it is not on the shelf
+*Nothing to do yet — a watching brief.*
+
+- **What the agent sees:** an author-wide Amazon search on 2026-09-02 returns
+  Mythologica's and Bestiarium's large-print editions and **no World Games
+  large print**. So it is in KDP review, or the submission did not complete.
+  Worth one look at the KDP bookshelf to tell those two apart.
+- **When it appears:** send the ASIN, or just say "check" — the agent finds it
+  by title and confirms it against price, page count and trim before writing
+  it anywhere. The catalogue, the CTA, the JSON-LD and the sitemap all follow
+  from one edit. **No ASIN is invented in the meantime.**
+
+### F7 · Hangul hardcover
+Same watching brief. Not on the shelf. Catalogue holds `coming_soon` at $21.99
+with no ASIN.
+
+### F8 · Amazon Ads: create the first campaign yourself
+*≈ 10 minutes. The API genuinely cannot be reached from here.*
+
+- **Why the agent cannot:** the Ads API needs a Login-with-Amazon security
+  profile, a refresh token you mint by completing an OAuth consent screen, and
+  a **separately approved** Ads API application. None is a credential in this
+  environment and none can be created on your behalf. If you complete all three
+  and put the refresh token in Vercel, campaign creation and reporting both
+  become automatable.
+- **The campaign — and note it is not the one the brief proposed:**
+
+  ```
+  Sponsored Products · AUTOMATIC targeting
+  Products   World Games paperback B0HG3KMK9L  +  hardcover B0HG41F21F
+  Budget     $5.00 / day
+  Bid        $0.35 default
+  Duration   14 days; review on day 7 and day 14
+  Purpose    harvest real search terms. Not to be profitable.
+  ```
+
+- **Why automatic and why not hardcover-first:** a live check of the three
+  proposed keywords found the closest hardcover competitor is the *Oxford
+  History of Board Games* at **$24.95 for 400 pages**. Ours is **$34.99 for
+  160**. The hardcover has the best contribution per unit and the worst
+  conversion odds in the catalogue. And there is no click history at all, so a
+  manual campaign on guessed keywords spends the budget proving they were
+  guesses. Full reasoning, break-even ACOS per format and the stop rules:
+  `phase-3/ADS_REPORT.md`.
+- **Worth more than the first $70 of ad spend:** repricing that hardcover to
+  **$29.99** (still nets $10.42) so the comparison shopper does not close the
+  tab. Your call, not the agent's.
 
 ---
 
-## Done by the agent in Phase 2 (for the record — no action needed)
+## OPTIONAL — improves the plan, blocks nothing
 
-Hangul rights remediation (sources withdrawn, 97 words re-verified, glosses rewritten, all editions rebuilt, QA green); World Games large print built, priced, preflighted; World Games companion pack (4 PDFs) live; Dudeney edition built end to end (parse → 110-puzzle annotated edition → PDF/EPUB/cover → R2 master → Paddle price → previews → companion); first-party analytics sink (`analytics_events`) live with `purchase` written server-side; newsletter sources for the two new companions; `EMAIL_FROM` set on the verified domain; JSON-LD print editions; catalogue loaded. See `phase-2/PHASE_2_REPORT.md`.
+- **O1 · One review.** Eighteen live listings, **zero reviews between them**,
+  while every competitor in both market samples has between 12 and 466. Ads
+  send traffic to a page with no social proof, which is the most expensive
+  traffic there is. Anything legitimate that produces the first honest review
+  is worth more than the ad budget.
+- **O2 · Companion URL in the next print revision.** Every printed interior
+  predates the companions, so no reader of a Valice paperback has ever been
+  told they exist. `valicepress.com/companion/world-games` (and the Hangul and
+  Dudeney equivalents) in the next interior upload is the only thing that turns
+  an Amazon buyer into someone the store can reach again. Bundle it with F1a's
+  Hangul interior so it is one upload, not two.
+- **O3 · Monthly KDP report export** → `data/kdp/YYYY-MM.csv`. Still the only
+  way the agent can see Amazon units.
+- **O4 · Codex Bestiarium 120 → 112** on all four listings. Deferred by you on
+  2026-09-02; nothing has touched it.
+- **O5 · Five playtests for World Games** (unchanged).
+- **O6 · Before You Cut: trademark clearance and testers** (unchanged).
+- **O7 · Verify the live Myth Hunter's Field Book interior** (unchanged).
+- **O8 · DMARC `p=NONE` → `p=quarantine`** once a few weeks of clean sends
+  accumulate. One DNS record.
+- **O9 · Deploy branch.** Production is currently promoted by CLI from
+  `feat/production-readiness`; Vercel's production branch is still `main`. It
+  works; it is one setting away from being obvious.
+
+---
+
+## Done since the last handbook — no action needed
+
+**Closed by the agent in Phase 3:** the R2 production-bucket question (settled
+by asking the running function: production uses `bookstore-masters-dev`, all
+masters present, artifact write proven — the `-prod` buckets were never
+created); the production catalogue load; the Hangul paperback found live and
+published with a preview; the Dudeney Gate 1 market sample; two factual errors
+in the Dudeney edition; the Dudeney cover's missing PDF author; the Paddle
+description that promised an undelivered EPUB; the unsubscribe link that was a
+literal template variable; the author biography, live and correctly paragraphed;
+eleven pre-rebrand author portraits removed from the public site; a Google
+service-account **private key** that was sitting un-ignored in the repository
+root; the Search Console baseline and URL-inspection export; the commercial
+dashboard.
+
+**Closed by you before Phase 3, and confirmed by measurement:** the Resend
+sending domain (delivery verified in an inbox, dkim/spf/dmarc all pass); the
+Amazon Ads account, Author Central and Attribution; the Google Cloud service
+account (it already has `siteFullUser` on the property); the World Games
+large-print upload; the Hangul paperback replacement; the Paddle production
+provisioning and the earlier catalogue load.
+
+**Never ask again:** Resend domain verification · Amazon Ads account creation ·
+Author Central · Attribution registration · the Google service account · KDP
+Select cancellation · the World Games large-print upload · the Hangul paperback
+file replacement.

@@ -184,10 +184,20 @@ for (const book of DIRECT_SALE_EBOOKS) {
   let product = productBySlug.get(book.slug);
   let price = priceBySlug.get(book.slug);
 
+  // Name and description drift. `paddle-products.mjs` is the source of truth
+  // for both, and Paddle shows the description at checkout — so a sentence
+  // that stops being true here has to stop being true there too, on the same
+  // run. It went wrong exactly once: the Dudeney description promised "the
+  // EPUB is included in the library" while fulfillment delivered one PDF.
+  const stale =
+    product &&
+    (product.name !== book.name || product.description !== book.description);
+
   if (!commit) {
     console.log(
       `  ${book.slug.padEnd(32)} product=${product?.id ?? "WOULD CREATE"}  ` +
-        `price=${price?.id ?? "WOULD CREATE"}  $${(book.priceCents / 100).toFixed(2)}`,
+        `price=${price?.id ?? "WOULD CREATE"}  $${(book.priceCents / 100).toFixed(2)}` +
+        (stale ? "  ← name/description WOULD UPDATE" : ""),
     );
     continue;
   }
@@ -197,6 +207,12 @@ for (const book of DIRECT_SALE_EBOOKS) {
     console.log(
       `  created product  ${product.id}  ${book.slug}  tax=${product.tax_category}`,
     );
+  } else if (stale) {
+    product = await paddle("PATCH", `/products/${product.id}`, {
+      name: book.name,
+      description: book.description,
+    });
+    console.log(`  updated text     ${product.id}  ${book.slug}`);
   }
 
   if (!price) {

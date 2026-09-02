@@ -1,0 +1,445 @@
+{
+  "takenAt": "2026-09-02T16:29:53.767Z",
+  "queries": [
+    "board games history book",
+    "ancient board games",
+    "traditional games book"
+  ],
+  "rows": [
+    {
+      "asin": "0486238555",
+      "title": "Board and Table Games from Many Civilizations",
+      "priceCents": 999,
+      "otherFormatPricesCents": [
+        1595
+      ],
+      "rating": 4.6,
+      "reviewCount": 64,
+      "format": "kindle",
+      "sponsored": false,
+      "queries": [
+        "board games history book",
+        "ancient board games"
+      ],
+      "bestRank": 2,
+      "pageCount": 464,
+      "ranks": [
+        {
+          "rank": 1037337,
+          "category": "Books"
+        },
+        {
+          "rank": 763,
+          "category": "Card Games"
+        },
+        {
+          "rank": 987,
+          "category": "Board Games"
+        }
+      ],
+      "publicationDate": "January 1, 1979",
+      "editions": {
+        "kindle": {
+          "kindleUnlimited": false,
+          "priceCents": 999
+        },
+        "paperback": {
+          "kindleUnlimited": false,
+          "priceCents": 744
+        },
+        "hardcover": {
+          "kindleUnlimited": false,
+          "priceCents": 13572
+        }
+      }
+    },
+    {
+      "asin": "B0885QC59Y",
+      "title": "Board Games in 100 Moves",
+      "priceCents": 899,
+      "otherFormatPricesCents": [],
+      "rating": 4.3,
+      "reviewCount": 64,
+      "format": "kindle",
+      "sponsored": false,
+      "queries": [
+        "board games history book",
+        "ancient board games"
+      ],
+      "bestRank": 8,
+      "pageCount": null,
+      "ranks": [
+        {
+          "rank": 1689275,
+          "category": "Kindle Store"
+        },
+        {
+          "rank": 1142,
+          "category": "Board Games"
+        },
+        {
+          "rank": 1482,
+          "category": "Board Games"
+        },
+        {
+          "rank": 2638,
+          "category": "Popular Culture Customer Reviews"
+        }
+      ],
+      "publicationDate": "September 17, 2019",
+      "editions": {
+        "kindle": {
+          "kindleUnlimited": false,
+          "priceCents": 899
+        },
+        "hardcover": {
+          "kindleUnlimited": false,
+          "priceCents": 848
+        }
+      }
+    },
+    {
+      "asin": "1635617952",
+      "title": "Oxford History of Board Games",
+      "priceCents": 2495,
+      "otherFormatPricesCents": [
+        3129,
+        3295
+      ],
+      "rating": 4.4,
+      "reviewCount": 65,
+      "format": "hardcover",
+      "sponsored": false,
+      "queries": [
+        "board games history book"
+      ],
+      "bestRank": 1,
+      "pageCount": 400,
+      "ranks": [
+        {
+          "rank": 1421158,
+          "category": "Books"
+        },
+        {
+          "rank": 61838,
+          "category": "Crafts & Hobbies"
+        }
+      ],
+      "publicationDate": "November 7, 2018",
+      "editions": {
+        "paperback": {
+          "kindleUnlimited": false,
+          "priceCents": 2495
+        },
+        "hardcover": {
+          "kindleUnlimited": false,
+          "priceCents": 3129
+        }
+      }
+    },
+    {
+      "asin": "B0FVF6Y1XC",
+      "title": "The Story of Fun and Games: A Journey Through Time: From Ancient Egypt to Modern Board Games — The Complete History of Play, Dice, Cards, and ... of Civilization — A Journey Through Time)",
+      "priceCents": null,
+      "otherFormatPricesCents": [],
+      "rating": null,
+      "reviewCount": null,
+      "format": "paperback",
+      "sponsored": false,
+      "queries": [
+        "ancient board games"
+      ],
+      "bestRank": 1,
+      "pageCount": 146,
+      "ranks": [
+        {
+          "rank": 1432308,
+          "category": "Books"
+        },
+        {
+          "rank": 593,
+          "category": "Egyptian History"
+        },
+        {
+          "rank": 2337,
+          "category": "History of Civilization & Culture"
+        },
+        {
+          "rank": 5174,
+          "category": "Popular Culture in Social Sciences"
+        }
+      ],
+      "publicationDate": "October 7, 2025",
+      "editions": {
+        "paperback": {
+          "kindleUnlimited": false,
+          "priceCents": 1649
+        }
+      }
+    },
+    {
+      "asin": "0141037873",
+      "title": "The Penguin Book of Card Games: Everything You Need to Know to Play Over 250 Games",
+      "priceCents": 1299,
+      "otherFormatPricesCents": [
+        1800
+      ],
+      "rating": 4.5,
+      "reviewCount": 466,
+      "format": "kindle",
+      "sponsored": false,
+      "queries": [
+        "traditional games book"
+      ],
+      "bestRank": 1,
+      "pageCount": 658,
+      "ranks": [
+        {
+          "rank": 62819,
+          "category": "Books"
+        },
+        {
+          "rank": 64,
+          "category": "Card Games"
+        },
+        {
+          "rank": 87,
+          "category": "Puzzle & Game Reference"
+        },
+        {
+          "rank": 6139,
+          "category": "Reference"
+        }
+      ],
+      "publicationDate": "April 28, 2009",
+      "editions": {
+        "kindle": {
+          "kindleUnlimited": false,
+          "priceCents": 1299
+        },
+        "paperback": {
+          "kindleUnlimited": false,
+          "priceCents": 845
+        }
+      }
+    },
+    {
+      "asin": "1250292050",
+      "title": "It&#x27;s All a Game: The History of Board Games from Monopoly to Settlers of Catan",
+      "priceCents": 1234,
+      "otherFormatPricesCents": [
+        1999,
+        3655,
+        1499
+      ],
+      "rating": 4.4,
+      "reviewCount": 271,
+      "format": "kindle",
+      "sponsored": false,
+      "queries": [
+        "board games history book"
+      ],
+      "bestRank": 2,
+      "pageCount": 304,
+      "ranks": [
+        {
+          "rank": 126806,
+          "category": "Books"
+        },
+        {
+          "rank": 25,
+          "category": "Game Theory"
+        },
+        {
+          "rank": 104,
+          "category": "Board Games"
+        },
+        {
+          "rank": 1191,
+          "category": "Historical Study"
+        }
+      ],
+      "publicationDate": "May 30, 2017",
+      "editions": {
+        "kindle": {
+          "kindleUnlimited": false,
+          "priceCents": 1234
+        },
+        "paperback": {
+          "kindleUnlimited": false,
+          "priceCents": 1400
+        },
+        "hardcover": {
+          "kindleUnlimited": false,
+          "priceCents": 3655
+        }
+      }
+    },
+    {
+      "asin": "1950601005",
+      "title": "What Am I?: A Collection of Traditional Word Riddles – Deluxe Edition",
+      "priceCents": null,
+      "otherFormatPricesCents": [],
+      "rating": 4.5,
+      "reviewCount": 346,
+      "format": "paperback",
+      "sponsored": false,
+      "queries": [
+        "traditional games book"
+      ],
+      "bestRank": 2,
+      "pageCount": 133,
+      "ranks": [
+        {
+          "rank": 544189,
+          "category": "Books"
+        },
+        {
+          "rank": 93,
+          "category": "Children's Party Games Books"
+        },
+        {
+          "rank": 481,
+          "category": "Jokes & Riddles"
+        },
+        {
+          "rank": 515,
+          "category": "Children's Joke & Riddle Books"
+        }
+      ],
+      "publicationDate": "June 22, 2019",
+      "editions": {
+        "paperback": {
+          "kindleUnlimited": false,
+          "priceCents": 899
+        }
+      }
+    },
+    {
+      "asin": "0262047837",
+      "title": "Playing Place: Board Games, Popular Culture, Space",
+      "priceCents": 1999,
+      "otherFormatPricesCents": [
+        3995,
+        2399,
+        3995
+      ],
+      "rating": 4.7,
+      "reviewCount": 4,
+      "format": "kindle",
+      "sponsored": false,
+      "queries": [
+        "board games history book"
+      ],
+      "bestRank": 3,
+      "pageCount": 272,
+      "ranks": [
+        {
+          "rank": 797290,
+          "category": "Books"
+        },
+        {
+          "rank": 420,
+          "category": "Design History & Criticism"
+        },
+        {
+          "rank": 766,
+          "category": "Board Games"
+        },
+        {
+          "rank": 3025,
+          "category": "Popular Culture in Social Sciences Customer Reviews"
+        }
+      ],
+      "publicationDate": "August 15, 2023",
+      "editions": {
+        "kindle": {
+          "kindleUnlimited": false,
+          "priceCents": 2399
+        },
+        "hardcover": {
+          "kindleUnlimited": false,
+          "priceCents": 1999
+        }
+      }
+    },
+    {
+      "asin": "0486264106",
+      "title": "Favorite Board Games You Can Make and Play",
+      "priceCents": 1361,
+      "otherFormatPricesCents": [
+        1595
+      ],
+      "rating": 3.8,
+      "reviewCount": 12,
+      "format": "paperback",
+      "sponsored": false,
+      "queries": [
+        "ancient board games"
+      ],
+      "bestRank": 3,
+      "pageCount": 256,
+      "ranks": [
+        {
+          "rank": 792231,
+          "category": "Books"
+        },
+        {
+          "rank": 767,
+          "category": "Board Games"
+        },
+        {
+          "rank": 4377,
+          "category": "Puzzles"
+        }
+      ],
+      "publicationDate": "November 2, 2011",
+      "editions": {
+        "paperback": {
+          "kindleUnlimited": false,
+          "priceCents": 1361
+        }
+      }
+    },
+    {
+      "asin": "B0H14LGCJ1",
+      "title": "FUKUWARAI GAME BOOK ：Japanese Traditional Game",
+      "priceCents": 580,
+      "otherFormatPricesCents": [],
+      "rating": 3,
+      "reviewCount": 1,
+      "format": "paperback",
+      "sponsored": false,
+      "queries": [
+        "traditional games book"
+      ],
+      "bestRank": 3,
+      "pageCount": 54,
+      "ranks": [
+        {
+          "rank": 5629157,
+          "category": "Books"
+        },
+        {
+          "rank": 662,
+          "category": "Children's Sculpture Books"
+        },
+        {
+          "rank": 1296,
+          "category": "Children's Art Techniques"
+        },
+        {
+          "rank": 3433,
+          "category": "Children's Painting Books"
+        }
+      ],
+      "publicationDate": "May 8, 2026",
+      "editions": {
+        "paperback": {
+          "kindleUnlimited": false,
+          "priceCents": 580
+        }
+      }
+    }
+  ]
+}

@@ -67,6 +67,20 @@ const DOCS = [
   { path: "docs/execution/phase-0/PHASE_0_REPORT.md", status: "ACTIVE", reason: "Verified current-state baseline (2026-09-02) and the fixes applied." },
   { path: "docs/execution/phase-1/PHASE_1_REPORT.md", status: "ACTIVE", reason: "Factory foundation: what was built, tested, and what remains for Phase 2." },
   { path: "docs/execution/phase-1/FACTORY_IMPLEMENTATION.md", status: "ACTIVE", reason: "Operator manual for valice-house/ and scripts/factory/." },
+  { path: "docs/execution/phase-2/PHASE_2_REPORT.md", status: "ACTIVE", reason: "First commercial production: Hangul remediation, World Games large print, the Dudeney edition, the analytics sink." },
+  { path: "docs/execution/phase-2/COMMERCIAL_RESULTS.md", status: "ACTIVE", reason: "Phase 2 commercial position — superseded numerically by phase-3, kept as the before-picture." },
+  { path: "docs/execution/phase-2/PILOT_HANGUL.md", status: "ACTIVE", reason: "How the Hangul rights remediation was carried out. Evidence, not a rule." },
+  { path: "docs/execution/phase-2/PILOT_WORLD_GAMES.md", status: "ACTIVE", reason: "Large-print build and companion pack record." },
+  { path: "docs/execution/phase-2/PILOT_DUDENEY.md", status: "ACTIVE", reason: "How the Dudeney edition was built end to end." },
+  { path: "docs/execution/phase-3/PHASE_3_REPORT.md", status: "ACTIVE", reason: "Commercial activation: what is live, what was broken, what is blocked. The current baseline for what exists." },
+  { path: "docs/execution/phase-3/COMMERCIAL_RESULTS.md", status: "ACTIVE", reason: "Measured commercial position — orders, funnel, index, reviews. Re-runnable via commercial-dashboard.mjs." },
+  { path: "docs/execution/phase-3/DUDENEY_REPORT.md", status: "ACTIVE", reason: "Gate 1 market sample, the two factual corrections, and the price and format decisions." },
+  { path: "docs/execution/phase-3/HANGUL_REPORT.md", status: "ACTIVE", reason: "Live paperback state and what Gate 2 still gates." },
+  { path: "docs/execution/phase-3/WORLD_GAMES_REPORT.md", status: "ACTIVE", reason: "Live format state and why the ad plan changed." },
+  { path: "docs/execution/phase-3/ADS_REPORT.md", status: "ACTIVE", reason: "Campaign spec, break-even ACOS per format, stop rules. No ad has run." },
+  { path: "docs/execution/phase-3/EMAIL_REPORT.md", status: "ACTIVE", reason: "Delivery proven in an inbox; the unsubscribe defect and its fix." },
+  { path: "docs/execution/phase-3/SEO_REPORT.md", status: "ACTIVE", reason: "Search Console baseline: zero indexed. Technical state and the four pages worth writing." },
+  { path: "docs/execution/PHASE-REPORT/README.md", status: "ACTIVE", reason: "Pointer only. Replaced stale duplicate copies of the Phase 0/1 reports and an out-of-date handbook." },
   { path: "valice-house/README.md", status: "ACTIVE", reason: "Factory standing context and memory — entry point for every agent role." },
 
   { path: "CATALOG_MASTER_INVENTORY_FINAL.md", status: "ACTIVE", reason: "Current catalogue inventory (2026-08-31)." },
@@ -260,7 +274,7 @@ Last generated: ${new Date().toISOString().slice(0, 10)}
 Nothing is ever deleted. Archived documents keep their original filenames
 under \`archive/\`, and \`git mv\` preserves their history.
 
-## The five documents that are actually in force
+## The six documents that are actually in force
 
 If you read nothing else:
 
@@ -268,7 +282,12 @@ If you read nothing else:
 2. \`VALICE_PRESS_MASTER_PUBLISHING_STRATEGY_TR.md\` — the business model
 3. \`CATALOG_ECONOMICS_FINAL.md\` — what each title actually earns
 4. \`CLAUDE.md\` — how agents must work in this repo
-5. \`PHASE_4_COMPLETION_REPORT_TR.md\` — what currently exists in the system
+5. \`docs/execution/phase-3/PHASE_3_REPORT.md\` — what currently exists, what is
+   live, and what is measured. Supersedes \`PHASE_4_COMPLETION_REPORT_TR.md\` as
+   the state-of-the-system document; that one describes the May–June build and
+   is still accurate about the codebase, not about the commerce.
+6. \`docs/execution/FOUNDER_ACTIONS.md\` — the only list of what a person still
+   has to do
 
 ## Index
 
