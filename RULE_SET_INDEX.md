@@ -53,6 +53,10 @@ If you read nothing else:
 | `CATALOG_MASTER_INVENTORY_FINAL.md` | ACTIVE | — | Current catalogue inventory (2026-08-31). | None |
 | `CLAUDE_AGENT_SDK_MASTERCLASS_TR.md` | ACTIVE | — | Technical reference, not a business rule. Independent of strategy. | None |
 | `CLAUDE.md` | ACTIVE | — | Agent operating instructions. Authoritative. | None |
+| `docs/execution/FOUNDER_ACTIONS.md` | ACTIVE | — | The single canonical Founder handbook: only actions the agent cannot perform. | None |
+| `docs/execution/phase-0/PHASE_0_REPORT.md` | ACTIVE | — | Verified current-state baseline (2026-09-02) and the fixes applied. | None |
+| `docs/execution/phase-1/FACTORY_IMPLEMENTATION.md` | ACTIVE | — | Operator manual for valice-house/ and scripts/factory/. | None |
+| `docs/execution/phase-1/PHASE_1_REPORT.md` | ACTIVE | — | Factory foundation: what was built, tested, and what remains for Phase 2. | None |
 | `docs/KURULUM_VE_ENV_REHBERI.md` | ACTIVE | — | Environment setup guide. | None |
 | `docs/VALICE_PRESS_MASTER_PUBLISHING_STRATEGY_TR.html` | ACTIVE | — | Founder-facing edition of the master strategy. | None |
 | `EBOOK_STORE_FINAL.md` | ACTIVE | — | Current ebook store state. | None |
@@ -78,6 +82,7 @@ If you read nothing else:
 | `VALICE_PRESS_MASTER_PUBLISHING_STRATEGY_TR.md` | ACTIVE | — | Current master business strategy (2026-08-31). | None |
 | `VALICE_PRESS_MASTER_ROADMAP_TR.html` | ACTIVE | — | Founder-facing edition of the master roadmap (2026-09-02). | None |
 | `VALICE_PRESS_MASTER_ROADMAP_TR.md` | ACTIVE | — | Master publishing roadmap (2026-09-02): phases 0-41, first 5/20/50 books, 12/24/36-month plan, founder checklist. Working version. | None |
+| `valice-house/README.md` | ACTIVE | — | Factory standing context and memory — entry point for every agent role. | None |
 | `archive/strategy/STRATEJI_VE_KITAP_FIKIRLERI.md` | CONFLICTING | `VALICE_PRESS_MASTER_PUBLISHING_STRATEGY_TR.md` | Prescribes 1-2 premium titles/year in engineering + executive niches and 'stop at 5-6 titles'. The master strategy reaches the opposite conclusion: too slow for a main income, and those two niches rank last of 30 on Valice asset fit. Two contradictory strategy documents in one repo usually means neither is executed. | None required — the master strategy is in force. Read the archived copy only for its pricing and launch-sequencing sections, which remain useful for Lane B flagship titles. |
 | `archive/reports/CATALOG_MASTER_INVENTORY.md` | SUPERSEDED | `CATALOG_MASTER_INVENTORY_FINAL.md` | Earlier inventory (08-29) replaced by the FINAL revision (08-31). | None |
 | `archive/strategy/FINAL_VALICE_PRESS_BUSINESS_PLAN.html` | SUPERSEDED | `docs/VALICE_PRESS_MASTER_PUBLISHING_STRATEGY_TR.html` | Earlier business plan (08-29) replaced by the master publishing strategy (08-31). | None |

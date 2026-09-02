@@ -62,6 +62,13 @@ const DOCS = [
   { path: "AMAZON_TO_VALICE_CUSTOMER_BRIDGE_TR.md", status: "ACTIVE", reason: "Companion templates, QR/URL rules, email flows, direct value proposition." },
   { path: "CATALOG_LIFECYCLE_AND_MAINTENANCE_TR.md", status: "ACTIVE", reason: "Lifecycle classes, maintenance automation thresholds, rights system, QA, launch checklist." },
 
+  // ── Execution phase (2026-09-02) — reports live under docs/execution/, never in the root ──
+  { path: "docs/execution/FOUNDER_ACTIONS.md", status: "ACTIVE", reason: "The single canonical Founder handbook: only actions the agent cannot perform." },
+  { path: "docs/execution/phase-0/PHASE_0_REPORT.md", status: "ACTIVE", reason: "Verified current-state baseline (2026-09-02) and the fixes applied." },
+  { path: "docs/execution/phase-1/PHASE_1_REPORT.md", status: "ACTIVE", reason: "Factory foundation: what was built, tested, and what remains for Phase 2." },
+  { path: "docs/execution/phase-1/FACTORY_IMPLEMENTATION.md", status: "ACTIVE", reason: "Operator manual for valice-house/ and scripts/factory/." },
+  { path: "valice-house/README.md", status: "ACTIVE", reason: "Factory standing context and memory — entry point for every agent role." },
+
   { path: "CATALOG_MASTER_INVENTORY_FINAL.md", status: "ACTIVE", reason: "Current catalogue inventory (2026-08-31)." },
   { path: "EBOOK_STORE_FINAL.md", status: "ACTIVE", reason: "Current ebook store state." },
   { path: "EMAIL_SYSTEM_FINAL.md", status: "ACTIVE", reason: "Current email system state." },

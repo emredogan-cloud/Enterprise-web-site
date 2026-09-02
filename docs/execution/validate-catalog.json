@@ -1,0 +1,135 @@
+{
+  "tool": "validate-catalog",
+  "target": "https://valicepress.com",
+  "startedAt": "2026-09-02T07:21:34.345Z",
+  "finishedAt": "2026-09-02T07:22:02.447Z",
+  "ok": true,
+  "counts": {
+    "pass": 18,
+    "warn": 2,
+    "error": 0,
+    "skipped": 0
+  },
+  "findings": [
+    {
+      "level": "pass",
+      "check": "page",
+      "message": "https://valicepress.com/books/meditations 200, canonical ok, JSON-LD parses",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "page",
+      "message": "https://valicepress.com/books/codex-mythologica 200, canonical ok, JSON-LD parses",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "page",
+      "message": "https://valicepress.com/books/codex-bestiarium 200, canonical ok, JSON-LD parses",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "page",
+      "message": "https://valicepress.com/books/the-great-book-of-world-myths 200, canonical ok, JSON-LD parses",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "page",
+      "message": "https://valicepress.com/books/the-great-book-of-world-games 200, canonical ok, JSON-LD parses",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "page",
+      "message": "https://valicepress.com/books/the-myth-hunters-field-book 200, canonical ok, JSON-LD parses",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "page",
+      "message": "https://valicepress.com/books/codex-enigmatica 200, canonical ok, JSON-LD parses",
+      "where": null
+    },
+    {
+      "level": "warn",
+      "check": "sitemap",
+      "message": "missing /ebooks (deployed after the sitemap change?)",
+      "where": null
+    },
+    {
+      "level": "warn",
+      "check": "sitemap",
+      "message": "missing /companion/hangul (deployed after the sitemap change?)",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "sitemap",
+      "message": "23 URLs",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "paddle",
+      "message": "pri_01m1btwjzqvest52bwde6mqqam active, 999 USD",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "paddle",
+      "message": "pri_01m1btjb037st1aew8mt990htv active, 1299 USD",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "paddle",
+      "message": "pri_01m1btjddes1p637hd78zsvczx active, 499 USD",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "paddle",
+      "message": "pri_01m1btjcqgabh6v8rsxg85frxr active, 1199 USD",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "paddle",
+      "message": "pri_01m1btjc0bp4phgs7vrqhq4g18 active, 999 USD",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "r2",
+      "message": "books/meditations/master/v1/master.pdf 0.37 MB",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "r2",
+      "message": "books/codex-bestiarium/master/v1/master.pdf 4.62 MB",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "r2",
+      "message": "books/the-great-book-of-world-myths/master/v1/master.pdf 3.72 MB",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "r2",
+      "message": "books/the-great-book-of-world-games/master/v1/master.pdf 0.58 MB",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "r2",
+      "message": "books/codex-enigmatica/master/v1/master.pdf 8.39 MB",
+      "where": null
+    }
+  ]
+}
