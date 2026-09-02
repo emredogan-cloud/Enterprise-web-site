@@ -1,0 +1,51 @@
+/**
+ * Where each printed edition's built interior actually lives.
+ *
+ * The book projects grew at different times and none of them agree on a
+ * layout — `04_PRINT/`, `08_OUTPUT/`, `09_OUTPUT/FINAL/`, `OUTPUT/`, with
+ * three different capitalisations of "paperback". Rather than teach every tool
+ * to guess, the paths are written down once, here, and checked by
+ * `kdp-linkage-lint.mjs`, which fails loudly when one stops existing.
+ *
+ * A missing entry is not an omission to be filled in with a plausible path: it
+ * means no interior for that format has been built, and the lint says so.
+ */
+
+const ROOT = "/home/emre/Downloads/MY-DİGİTAL-BOOK";
+
+export const PRINT_INTERIORS = {
+  "codex-mythologica": {
+    paperback: `${ROOT}/CODEX_MYTHOLOGICA/04_PRINT/PAPERBACK/CODEX_MYTHOLOGICA_INTERIOR_PAPERBACK.pdf`,
+    hardcover: `${ROOT}/CODEX_MYTHOLOGICA/04_PRINT/HARDCOVER/CODEX_MYTHOLOGICA_INTERIOR_HARDCOVER.pdf`,
+    large_print: `${ROOT}/CODEX_MYTHOLOGICA/04_PRINT/LARGEPRINT/CODEX_MYTHOLOGICA_INTERIOR_LARGEPRINT.pdf`,
+  },
+  "codex-bestiarium": {
+    paperback: `${ROOT}/CODEX_BESTIARIUM/04_PRINT/PAPERBACK/CODEX_BESTIARIUM_INTERIOR_PAPERBACK.pdf`,
+    hardcover: `${ROOT}/CODEX_BESTIARIUM/04_PRINT/HARDCOVER/CODEX_BESTIARIUM_INTERIOR_HARDCOVER.pdf`,
+    large_print: `${ROOT}/CODEX_BESTIARIUM/04_PRINT/LARGEPRINT/CODEX_BESTIARIUM_INTERIOR_LARGEPRINT.pdf`,
+  },
+  "codex-enigmatica": {
+    paperback: `${ROOT}/CODEX-ENIGMATICA/08_OUTPUT/PAPERBACK/interior.pdf`,
+    hardcover: `${ROOT}/CODEX-ENIGMATICA/08_OUTPUT/HARDCOVER/interior.pdf`,
+  },
+  "the-great-book-of-world-games": {
+    paperback: `${ROOT}/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/PAPERBACK/GreatBookOfWorldGames_interior_paperback.pdf`,
+    hardcover: `${ROOT}/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/HARDCOVER/GreatBookOfWorldGames_interior_hardcover.pdf`,
+    large_print: `${ROOT}/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/LARGEPRINT/GreatBookOfWorldGames_interior_largeprint.pdf`,
+  },
+  "the-great-book-of-world-myths": {
+    paperback: `${ROOT}/THE-GREAT-BOOK-OF-WORLD-MYTHS/08_OUTPUT/paperback/interior.pdf`,
+    hardcover: `${ROOT}/THE-GREAT-BOOK-OF-WORLD-MYTHS/08_OUTPUT/hardcover/interior.pdf`,
+  },
+  "the-myth-hunters-field-book": {
+    paperback: `${ROOT}/THE-MYTH-HUNTERS-FIELD-BOOK/08_OUTPUT/PAPERBACK/interior.pdf`,
+  },
+  "korean-hangul-handwriting-workbook": {
+    // The REMEDIATED interiors of 2026-09-02, not the earlier build.
+    paperback: `${ROOT}/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_124pp.pdf`,
+    hardcover: `${ROOT}/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/hardcover/hardcover_interior_8.25x11_124pp.pdf`,
+  },
+  "the-puzzles-of-henry-dudeney": {
+    paperback: `${ROOT}/THE-PUZZLES-OF-HENRY-DUDENEY/OUTPUT/interior-main.pdf`,
+  },
+};
