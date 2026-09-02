@@ -1,0 +1,26 @@
+{
+ "book": "The Puzzles of Henry Dudeney",
+ "footer": "valicepress.com/companion/dudeney \u00b7 The Puzzles of Henry Dudeney",
+ "files": [
+  {
+   "id": "puzzle-sheets",
+   "file": "puzzle-sheets.pdf",
+   "title": "Twelve puzzle sheets",
+   "description": "Twelve of the book\u2019s puzzles, one to a Letter page in Dudeney\u2019s own words with the original figure and room to work. No answers on the sheet.",
+   "pageCount": 13,
+   "sizeBytes": 311155,
+   "sha256": "d4404f7fc193410b97b8caa8a7e2cf9a7f1265d6cb6d7940c08a7735cb1ef543",
+   "meta": "PDF \u00b7 US Letter \u00b7 13 pages"
+  },
+  {
+   "id": "hints",
+   "file": "hints.pdf",
+   "title": "Hints booklet",
+   "description": "One hint for every one of the 110 puzzles, numbered as in the book. A hint says where to look and never gives the answer.",
+   "pageCount": 7,
+   "sizeBytes": 83820,
+   "sha256": "642d20e99f6c8a09ce5f1b991ede6a533697c9801c99bb74233cafa1f2ef4628",
+   "meta": "PDF \u00b7 US Letter \u00b7 7 pages"
+  }
+ ]
+}

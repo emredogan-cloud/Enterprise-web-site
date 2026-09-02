@@ -61,4 +61,14 @@ export const DIRECT_SALE_EBOOKS = [
       "The complete 234-page collection as a DRM-free, watermarked PDF. 45 myths from 22 traditions retold for readers aged 8–12, with a world map, culture cards and a sourced pronunciation guide.",
     priceCents: 499, // Kindle list price, verified on KDP 2026-08-31
   },
+  {
+    slug: "the-puzzles-of-henry-dudeney",
+    name: "The Puzzles of Henry Dudeney — Annotated",
+    description:
+      "110 classic problems from Amusements in Mathematics and The Canterbury Puzzles in Dudeney's own words and with his own solutions, with a difficulty mark and a hint for every puzzle, a glossary of old money, a chronology and a concordance. 144-page DRM-free, watermarked PDF; the EPUB is included in the library.",
+    // price-engine.mjs 2026-09-02, direct ebook: $9.99 nets $8.99 after
+    // Paddle (90%). Series bible range for Valice Classics is $7.99–9.99;
+    // this edition carries a 28% original apparatus, so the top of it.
+    priceCents: 999,
+  },
 ];

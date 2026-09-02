@@ -105,6 +105,13 @@ export const AUTHORS = [
     name: "Marcus Aurelius",
     bio: "Roman emperor from 161 to 180 and a Stoic. The twelve books collected as Meditations were written in Greek, for himself, and were never intended to be read by anyone else.",
   },
+  {
+    slug: "henry-dudeney",
+    name: "Henry E. Dudeney",
+    // Facts from the MacTutor biography (University of St Andrews), read
+    // 2026-09-02; see the book project's CLAIMS.jsonl C-001…C-011.
+    bio: "English puzzle-maker (1857–1930). A Civil Service clerk from the age of thirteen, he wrote puzzles for The Strand Magazine for more than thirty years and published The Canterbury Puzzles (1907) and Amusements in Mathematics (1917). The Haberdasher's four-piece triangle and the spider and the fly are his.",
+  },
 ];
 
 /**
@@ -136,7 +143,10 @@ export const BOOKS = [
     categories: ["classics-and-philosophy"],
     authors: ["marcus-aurelius"],
     bisac: ["PHI011000"],
-    series: null,
+    // Valice Classics is the public-domain, direct-first series described in
+    // valice-house/series-bibles/valice-classics.md; Meditations was its
+    // first edition and Dudeney (2026-09-02) its second.
+    series: { name: "Valice Classics", volume: 1 },
     websiteStatus: "published",
     kdpSelect: false,
     directSale: true,
@@ -481,6 +491,22 @@ export const BOOKS = [
         masterFileKey: null,
         priceBasis: "Live Amazon list price 2026-08-31 — matches the modelled figure.",
       },
+      {
+        // Built 2026-09-02 (Phase 2 v3 pilot): 16 pt body, 232 pp, KDP
+        // preflight green — 08_OUTPUT/LARGEPRINT in the book project. Not
+        // uploaded; the Founder uploads and the ASIN lands here when live.
+        format: "large_print",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(31.99),
+        pageCount: 232,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-02 — 232 pp large trim B&W prints at $4.94; $31.99 nets $14.25 (44.5%), $3 under the hardcover. Founder may move it at Gate 8. See 06_REPORTS/LARGEPRINT_BUILD_REPORT.md.",
+      },
     ],
     blockers: [
       "The subtitle promises 'Ready to Play Tonight' and `01_SOURCE/playtests/` is empty — no game in this book has been played by a human from the book's text alone. The book is nonetheless live on Amazon and selling; the claim is the founder's to stand behind. Running even a handful of playtests is the single highest-value thing that could be done for this title.",
@@ -571,21 +597,28 @@ export const BOOKS = [
     authors: ["emre-dogan"],
     bisac: [],
     series: null,
-    // The one title still held back from the storefront. Not a formatting
-    // gap — an unresolved right to sell.
+    // Held back from the storefront until the Founder signs Gate 2 on the
+    // remediated rights ledger. The rights problem itself was fixed on
+    // 2026-09-02 (book project RIGHTS.md, decision K46): the CC BY-SA
+    // dictionaries and the CC BY-NC phonetic chart were withdrawn, every word
+    // re-verified against the National Institute of Korean Language's
+    // learner vocabulary list (KOGL Type 1), every gloss rewritten, and the
+    // paperback, hardcover and Kindle files rebuilt (09_OUTPUT/FINAL).
     websiteStatus: "draft",
     kdpSelect: false,
     directSale: false,
     directSaleBlockedBy:
-      "LEGAL, UNRESOLVED: a CC BY-NC licensed dictionary source (A7/S-0019) is " +
-      "used in a commercial book. Non-commercial licensing is incompatible " +
-      "with selling this title in ANY channel until the source is cleared or " +
-      "replaced. This blocks direct sale exactly as much as it blocks Amazon.",
+      "GATE 2 PENDING: the rights remediation of 2026-09-02 (RIGHTS.md, K46) " +
+      "replaced the CC BY-SA / CC BY-NC sources with a KOGL Type 1 word list " +
+      "and a public-domain phonetics source; the Founder has not yet signed " +
+      "the ledger (book_metadata.json → legal.a7_status is still " +
+      "LEGAL_REVIEW_REQUIRED, now only for cover-art rights and the KDP AI " +
+      "declaration). No direct sale until that signature.",
     paddlePriceId: null,
     onelinePromise:
       "Thirty lessons that take an adult beginner from nothing to writing all 40 Hangul letters in the correct stroke order.",
     description:
-      "A 124-page handwriting workbook for adult English-speaking learners starting Korean from the script up. Thirty lessons cover all 40 letters plus 16 single batchim through 122 numbered stroke-order diagrams, moving trace → dot-start → empty box, then into syllable-block mechanics and 97 dictionary-verified words with Revised Romanization. A provenance page states plainly that 28 of the 40 stroke sequences were transcribed from published diagrams and 12 derived from a rule.",
+      "A 124-page handwriting workbook for adult English-speaking learners starting Korean from the script up. Thirty lessons cover all 40 letters plus 16 single batchim through 122 numbered stroke-order diagrams, moving trace → dot-start → empty box, then into syllable-block mechanics and 97 practice words with Revised Romanization, every one checked against the National Institute of Korean Language's learner vocabulary list. A provenance page states plainly that 28 of the 40 stroke sequences were transcribed from published diagrams and 12 derived from a rule.",
     idealReader:
       "An adult beginner who wants to learn to write Hangul by hand before learning to speak, and who would rather know where a stroke order came from than be told to trust it.",
     formats: [
@@ -627,15 +660,81 @@ export const BOOKS = [
         kdp: "not_created",
         masterFileKey: null,
         priceBasis:
-          "Not for sale in any channel while the CC BY-NC question is open. Fixed-layout EPUB 3 is built (13.26 MB) and waiting on that answer, not on production.",
+          "Not priced until the Founder signs Gate 2 (2026-09-02 remediation). The fixed-layout EPUB 3 was rebuilt on 2026-09-02 (13.4 MB) from the remediated content; it is a reference edition, not a reflowable one.",
       },
     ],
     blockers: [
-      "LEGAL — UNRESOLVED AND NOW URGENT: the CC BY-NC source blocks sale everywhere, and the paperback and hardcover are IN REVIEW at KDP right now. If they pass review they go on sale with the question still open. Resolve it or withdraw the submissions.",
-      "Further A7 items: ownership terms of AI-generated cover art, and the KDP AI declaration.",
+      "GATE 2 — the rights remediation of 2026-09-02 (book project RIGHTS.md, DECISIONS.md K46) withdrew the CC BY-SA dictionaries and the CC BY-NC phonetic chart and re-verified all 97 words against the National Institute of Korean Language's learner list (KOGL Type 1). The Founder must sign the ledger (legal.a7_status) before any sale.",
+      "KDP — the paperback and hardcover IN REVIEW at KDP are the pre-remediation files. The rebuilt interiors are in 09_OUTPUT/FINAL; the Founder must replace the files (or withdraw and resubmit) before the listings go live.",
+      "Remaining A7 items (Founder): ownership terms of the AI-generated cover art, and the KDP AI declaration.",
       "Cover art measures ~83 DPI true resolution; no higher-resolution source exists anywhere in the project.",
       "No real human usability test: the Phase 4 pilot used an AI proxy and returned REVISE; closed by founder override.",
       "No BISAC code assigned.",
+    ],
+  },
+
+  {
+    // Valice Classics 2 — built 2026-09-02 (Phase 2 v3 pilot). Everything a
+    // direct sale needs is staged (Paddle price, R2 master, previews, cover,
+    // companion); the switch to "published" is the Founder's Gate 12 call
+    // after Gate 2 (rights) and Gate 8 (price) sign-off. Facts below come
+    // from the book project's QA/interior-main.json and CLAIMS.jsonl.
+    slug: "the-puzzles-of-henry-dudeney",
+    title: "The Puzzles of Henry Dudeney",
+    subtitle:
+      "110 Classic Problems from Amusements in Mathematics and The Canterbury Puzzles — Annotated, with Hints, a Glossary of Old Money and a Chronology",
+    language: "en",
+    pageCount: 144,
+    categories: ["puzzle-and-challenge", "classics-and-philosophy"],
+    authors: ["henry-dudeney", "emre-dogan"],
+    bisac: ["GAM007000", "MAT025000"],
+    series: { name: "Valice Classics", volume: 2 },
+    websiteStatus: "draft",
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: null,
+    paddlePriceId: null,
+    onelinePromise:
+      "Dudeney's best puzzles in his own words, with a hint for every one, a difficulty mark, and the old money explained.",
+    description:
+      "One hundred and ten puzzles chosen from the five hundred and forty-four in Dudeney's two great books, arranged in seven parts by kind — money and markets, ages and clocks, digits and magic squares, cutting and fitting, counters and routes, combinations and the chessboard, and the tales of the Canterbury pilgrims. Every statement and every solution is Dudeney's own text from the 1907 and 1917 editions, with the original figures. Added: a 2,000-word introduction, an editor's hint for every puzzle that says where to look without giving the answer, a difficulty mark, editor's notes on the famous ones, a glossary of pounds, shillings and pence, a chronology of Dudeney's life, and a concordance back to the original numbering. 144 pages, 6 × 9 in.",
+    idealReader:
+      "Someone who has met the Haberdasher's puzzle or the spider and the fly and wants the rest, with enough help to finish and enough honesty to know what is Dudeney's and what is ours.",
+    formats: [
+      {
+        format: "ebook",
+        // Flipped to "available" by the Founder at Gate 12; the Paddle price
+        // id is pasted here from provision-paddle.mjs at the same time.
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(9.99),
+        pageCount: 144,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: "books/the-puzzles-of-henry-dudeney/master/v1/master.pdf",
+        priceBasis:
+          "price-engine.mjs 2026-09-02, direct ebook: $9.99 nets $8.99 after Paddle (90%); the Valice Classics bible allows $7.99–9.99 and this edition carries a 28% original apparatus (QA/interior-main.json editorShare 0.279).",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(14.99),
+        pageCount: 144,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-02, 144 pp 6×9 B&W public domain: prints at $2.73; $12.99 nets $5.07 (39%), $14.99 nets $6.27 (41.8%), $16.99 nets $7.47. $14.99 proposed for a 144-page annotated edition; Founder decides at Gate 8. Interior and full-wrap cover are built (OUTPUT/interior-main.pdf, OUTPUT/cover-paperback.pdf).",
+      },
+    ],
+    blockers: [
+      "Founder Gate 2: rights ledger RL-0024–RL-0026 (work public domain; Gutenberg transcriptions; original apparatus) awaits signature.",
+      "Founder Gate 8/12: list prices and the switch to published. The direct ebook is fully staged; paperback upload to KDP is a Founder action.",
+      "CLAIMS.jsonl C-014 (the 2014 Frame–Stewart proof) is UNVERIFIED and must be confirmed or cut before Gate 5.",
+      "No Kindle edition planned for launch: public-domain titles are capped at 35% on KDP and the Kindle catalogue already carries free Dudeney texts.",
     ],
   },
 

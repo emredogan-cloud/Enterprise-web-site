@@ -85,7 +85,33 @@ interface BookJsonLdArgs {
    * `aggregateRating` field off both Book and Product entities entirely.
    */
   aggregateRating?: AggregateRatingInput | null;
+  /**
+   * Print editions that are actually live on Amazon with a verified ASIN.
+   * Emitted as `workExample` Book nodes (bookFormat + url) under the main
+   * Book — a statement that the edition exists and where it is, never an
+   * Offer: Amazon sells those, not this store.
+   */
+  printEditions?: ReadonlyArray<{
+    format: "paperback" | "hardcover" | "large_print";
+    url: string;
+    pageCount?: number | null;
+  }>;
 }
+
+const PRINT_FORMAT_SCHEMA = {
+  paperback: {
+    bookFormat: "https://schema.org/Paperback",
+    label: "Paperback",
+  },
+  hardcover: {
+    bookFormat: "https://schema.org/Hardcover",
+    label: "Hardcover",
+  },
+  large_print: {
+    bookFormat: "https://schema.org/Paperback",
+    label: "Large print paperback",
+  },
+} as const;
 
 /**
  * Build the JSON-LD `AggregateRating` literal once and reuse it across
@@ -176,6 +202,17 @@ export function buildBookJsonLd(args: BookJsonLdArgs): Graph {
         ...(cover ? { image: cover } : {}),
         ...(aggregateRatingBlock
           ? { aggregateRating: aggregateRatingBlock }
+          : {}),
+        ...(args.printEditions && args.printEditions.length > 0
+          ? {
+              workExample: args.printEditions.map((e) => ({
+                "@type": "Book" as const,
+                name: `${args.title} (${PRINT_FORMAT_SCHEMA[e.format].label})`,
+                bookFormat: PRINT_FORMAT_SCHEMA[e.format].bookFormat,
+                url: e.url,
+                ...(e.pageCount ? { numberOfPages: e.pageCount } : {}),
+              })),
+            }
           : {}),
       },
       {

@@ -6,6 +6,7 @@ import {
   orderItems,
   orders,
   watermarkJobs,
+  analyticsEvents,
 } from "@/lib/db/schema";
 import { upsertLocalUser } from "@/lib/db/users";
 import {
@@ -175,6 +176,31 @@ export async function processCompletedTransaction(
     orderId: createdOrderId,
     reason: `order paid — ${books.length} item(s), ${totalCents} ${currency}`,
   });
+
+  // First-party `purchase` funnel event, written server-side because the
+  // buyer's browser never reliably sees a "completed" moment (Paddle's
+  // overlay closes; the webhook is the truth). PII-free by construction:
+  // slugs, counts and cents only. Best-effort — never blocks fulfillment.
+  try {
+    await db.insert(analyticsEvents).values({
+      event: "purchase",
+      props: {
+        itemCount: books.length,
+        totalCents,
+        currency,
+        // Catalogue ids, not people: a book uuid identifies a product.
+        bookIds: books.map((b) => b.id).join(","),
+      },
+      path: "/api/webhooks/paddle",
+      bookSlug: null,
+      source: "server",
+    });
+  } catch (err) {
+    console.error(
+      "[fulfillment] analytics purchase event failed (non-fatal):",
+      err instanceof Error ? err.message : err,
+    );
+  }
 
   // Enqueue the watermark job. Order rows are already committed, so even
   // if the send fails (Inngest env unset, network blip) the canonical

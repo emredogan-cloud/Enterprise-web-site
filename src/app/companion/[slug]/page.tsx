@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { buildPageMetadata } from "@/lib/metadata";
 import { getCompanion, listCompanions } from "@/lib/companions";
 import { CompanionSignup } from "@/components/companion/companion-signup";
+import { CompanionDownloadLink } from "@/components/companion/companion-download-link";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
 
@@ -90,9 +91,23 @@ export default async function CompanionPage({
           </div>
         )}
 
+        {/* When the book IS on sale, one calm link to its page — the page
+            carries the real format cards and prices; nothing is duplicated
+            here that could go stale under a printed QR code. */}
+        {bookIsBuyable && (
+          <p className="mt-6 text-sm text-fg-mid">
+            <Link
+              href={`/books/${companion.bookSlug}`}
+              className="text-emerald-bright hover:underline"
+            >
+              See the book, its formats and where to buy it
+            </Link>
+          </p>
+        )}
+
         <section className="mt-12" aria-labelledby="downloads">
           <h2 id="downloads" className="font-serif text-2xl text-fg-hi">
-            Practice material
+            {companion.assetsHeading ?? "Practice material"}
           </h2>
           <p className="mt-2 text-sm text-fg-low">
             Free, no sign-up, reprint as often as you like.
@@ -113,13 +128,11 @@ export default async function CompanionPage({
                 <p className="mt-2 max-w-prose text-sm leading-relaxed text-fg-mid">
                   {asset.description}
                 </p>
-                <a
+                <CompanionDownloadLink
+                  companionSlug={companion.slug}
+                  assetId={asset.id}
                   href={asset.href}
-                  className="mt-4 inline-flex items-center gap-2 rounded-xl border border-emerald-bright/40 px-4 py-2 text-sm font-medium text-emerald-bright transition hover:bg-emerald-bright/10"
-                >
-                  Open PDF
-                  <span aria-hidden>↓</span>
-                </a>
+                />
               </li>
             ))}
           </ul>

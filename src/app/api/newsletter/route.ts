@@ -76,6 +76,8 @@ const SOURCES = new Set([
   "category",
   "codex-verify",
   "hangul-companion",
+  "world-games-companion",
+  "dudeney-companion",
 ]);
 
 /**

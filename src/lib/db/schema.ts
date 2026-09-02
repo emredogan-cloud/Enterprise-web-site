@@ -21,6 +21,7 @@ import { relations, sql } from "drizzle-orm";
 import {
   customType,
   index,
+  jsonb,
   integer,
   pgEnum,
   pgTable,
@@ -548,6 +549,43 @@ export const commerceEvents = pgTable(
     index("commerce_events_order_idx").on(t.orderId),
     index("commerce_events_ref_idx").on(t.morOrderRef),
     index("commerce_events_type_created_idx").on(t.type, t.createdAt),
+  ],
+);
+
+// -----------------------------------------------------------------------------
+// analytics_events — first-party, PII-free funnel events.
+//
+// WHY THIS EXISTS: the project runs on Vercel's Hobby plan, where Web
+// Analytics custom events (`track()` in src/lib/analytics.ts) are silently
+// dropped. Every `view_item`, `add_to_cart`, `begin_checkout`, `sample_read`
+// and `purchase` fired since launch was recorded nowhere. This table is the
+// sink: the client beacons to /api/events, the fulfillment worker writes
+// `purchase` server-side, and the admin reads counts per event per day.
+//
+// What it never holds: user ids, emails, IPs, user agents, full URLs with
+// query strings, or raw search text. `props` is a small JSON of slugs,
+// counts, cents and currency codes, validated at the API boundary.
+// -----------------------------------------------------------------------------
+export const analyticsEvents = pgTable(
+  "analytics_events",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    event: text("event").notNull(),
+    props: jsonb("props").$type<Record<string, string | number | boolean | null>>(),
+    /** Path only, no query string. */
+    path: text("path"),
+    /** Referrer host only, never the full referrer. */
+    referrerHost: text("referrer_host"),
+    bookSlug: text("book_slug"),
+    /** "client" (beacon) or "server" (fulfillment). */
+    source: text("source").notNull().default("client"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (t) => [
+    index("analytics_events_event_created_idx").on(t.event, t.createdAt),
+    index("analytics_events_book_idx").on(t.bookSlug),
   ],
 );
 

@@ -65,6 +65,14 @@ export const PREVIEW_PAGES = [
     note: "A complete game entry: provenance, rules and the board diagram you play from.",
   },
   {
+    slug: "the-puzzles-of-henry-dudeney",
+    source: `${BUILT}/the-puzzles-of-henry-dudeney.pdf`,
+    // Part IV opens on the Haberdasher's puzzle with its figure; the next
+    // page carries two more dissections. Statements only — no solutions.
+    pages: [29, 30],
+    note: "The Haberdasher's puzzle and two more dissections, in Dudeney's words with the original figures — puzzles only, no solutions.",
+  },
+  {
     slug: "the-great-book-of-world-myths",
     source: `${BUILT}/the-great-book-of-world-myths.pdf`,
     pages: [22, 25],

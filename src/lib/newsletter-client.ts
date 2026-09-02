@@ -34,7 +34,18 @@ export type NewsletterSource =
   // already bought a physical book on Amazon, which is the one thing Amazon
   // never tells us. Keep it distinct from every other source for exactly
   // that reason.
-  | "hangul-companion";
+  | "hangul-companion"
+  // Same idea, one tag per printed book: the QR/URL inside The Great Book
+  // of World Games and inside the Dudeney edition. Never merged, because
+  // the segment is the whole point.
+  | "world-games-companion"
+  | "dudeney-companion";
+
+/** The subset of sources a printed-book companion page may carry. */
+export type CompanionNewsletterSource = Extract<
+  NewsletterSource,
+  `${string}-companion`
+>;
 
 export type NewsletterErrorCode =
   | "invalid-email"

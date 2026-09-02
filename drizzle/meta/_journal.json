@@ -43,6 +43,13 @@
       "when": 1788019477953,
       "tag": "0005_soft_glorian",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1788357812503,
+      "tag": "0006_lazy_random",
+      "breakpoints": true
     }
   ]
 }

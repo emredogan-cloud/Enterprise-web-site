@@ -154,6 +154,17 @@ export default async function BookDetailPage({
     authors: book.authors,
     coverImageUrl,
     aggregateRating: aggregateRatingForJsonLd,
+    // Live Amazon print editions only: a verified ASIN behind a real URL.
+    printEditions: book.formats.flatMap((f) =>
+      (f.format === "paperback" ||
+        f.format === "hardcover" ||
+        f.format === "large_print") &&
+      f.fulfillment === "amazon" &&
+      f.availability === "available" &&
+      f.amazonUrl
+        ? [{ format: f.format, url: f.amazonUrl, pageCount: f.pageCount }]
+        : [],
+    ),
   });
 
   return (

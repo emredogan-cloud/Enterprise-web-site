@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02T07:23:22.326Z",
+  "generatedAt": "2026-09-02T14:14:39.599Z",
   "root": "/home/emre/Downloads/MY-DİGİTAL-BOOK",
   "projects": [
     {
@@ -15,6 +15,21 @@
       "blocked_reason": "",
       "founder_action": "",
       "updated_at": "2026-09-02T07:23:22.098Z",
+      "kind": "factory"
+    },
+    {
+      "project": "the-puzzles-of-henry-dudeney",
+      "title": "The Puzzles of Henry Dudeney",
+      "series": "valice-classics",
+      "lane": "C",
+      "stage": "RESEARCH",
+      "gate": "1 Market fit",
+      "gates_passed": "4/12",
+      "owner": "R1",
+      "status": "in_progress",
+      "blocked_reason": "",
+      "founder_action": "",
+      "updated_at": "2026-09-02T14:14:39.558Z",
       "kind": "factory"
     },
     {

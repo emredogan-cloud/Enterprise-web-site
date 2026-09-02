@@ -41,6 +41,12 @@ export const DIGITAL_EDITION_SOURCES = [
     slug: "the-great-book-of-world-myths",
     printInterior: `${ROOT}/THE-GREAT-BOOK-OF-WORLD-MYTHS/08_OUTPUT/paperback/interior.pdf`,
   },
+  {
+    // Valice Classics 2 (2026-09-02). The 6 × 9 print interior is already
+    // small (scan-resolution figures), so the /ebook pass mostly normalises.
+    slug: "the-puzzles-of-henry-dudeney",
+    printInterior: `${ROOT}/THE-PUZZLES-OF-HENRY-DUDENEY/OUTPUT/interior-main.pdf`,
+  },
 ];
 
 /** R2 masters key for a slug. Versioned so a re-cut edition never overwrites. */

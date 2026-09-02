@@ -23,6 +23,11 @@ import { DIGITAL_EDITION_SOURCES, masterKey } from "./digital-edition-sources.mj
 const commit = process.argv.includes("--commit");
 const flag = process.argv.indexOf("--env");
 const envFile = flag !== -1 ? process.argv[flag + 1] : ".env";
+// Optional slug filter: `upload-masters.mjs --env f --commit the-puzzles-of-henry-dudeney`.
+// Without it every source is considered — but an object that already exists
+// with the same byte size is left alone, so a re-run never silently
+// overwrites a master a buyer may already have been served from.
+const only = new Set(process.argv.slice(2).filter((a) => !a.startsWith("--") && a !== envFile));
 
 for (const line of readFileSync(envFile, "utf8").split("\n")) {
   const m = line.match(/^([A-Z0-9_]+)=(.*)$/);
@@ -50,6 +55,7 @@ const client = new S3Client({
 const mb = (n) => (n / 1024 / 1024).toFixed(2) + " MB";
 
 for (const src of DIGITAL_EDITION_SOURCES) {
+  if (only.size && !only.has(src.slug)) continue;
   const file = `scripts/tmp/digital-editions/${src.slug}.pdf`;
   const key = masterKey(src.slug);
 
@@ -68,6 +74,11 @@ for (const src of DIGITAL_EDITION_SOURCES) {
     existing = head.ContentLength;
   } catch {
     /* not present — first upload */
+  }
+
+  if (existing === size) {
+    console.log(`SAME  ${key.padEnd(48)} ${mb(size).padStart(9)}  (already present, same size — skipped)`);
+    continue;
   }
 
   if (!commit) {
