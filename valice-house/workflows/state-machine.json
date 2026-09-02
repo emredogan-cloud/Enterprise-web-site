@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "note": "Book (content project) states and the gates each transition requires. scripts/factory/state.mjs enforces this file; it is the single source of truth. Format records (ebook/paperback/hardcover/large_print/kindle/companion) have their own readiness in project_config.json → formats[].status and never skip the project's gates.",
+  "states": [
+    "IDEA", "RESEARCH", "MARKET_VALIDATED", "RIGHTS_PENDING", "RIGHTS_APPROVED",
+    "SPEC_READY", "DRAFTING", "VERIFYING", "EDITING", "DESIGNING", "FORMATTING",
+    "QA", "FOUNDER_REVIEW", "APPROVED", "PUBLISHED", "OPTIMIZE", "ARCHIVE", "BLOCKED", "KILLED"
+  ],
+  "initial": "IDEA",
+  "transitions": [
+    { "from": "IDEA",             "to": "RESEARCH",         "requiresGates": [] },
+    { "from": "RESEARCH",         "to": "MARKET_VALIDATED", "requiresGates": [1] },
+    { "from": "MARKET_VALIDATED", "to": "RIGHTS_PENDING",   "requiresGates": [1] },
+    { "from": "RIGHTS_PENDING",   "to": "RIGHTS_APPROVED",  "requiresGates": [2], "founderOnly": true },
+    { "from": "RIGHTS_APPROVED",  "to": "SPEC_READY",       "requiresGates": [2] },
+    { "from": "SPEC_READY",       "to": "DRAFTING",         "requiresGates": [2] },
+    { "from": "DRAFTING",         "to": "VERIFYING",        "requiresGates": [3, 4] },
+    { "from": "VERIFYING",        "to": "EDITING",          "requiresGates": [5], "founderOnly": true },
+    { "from": "EDITING",          "to": "DESIGNING",        "requiresGates": [6] },
+    { "from": "DESIGNING",        "to": "FORMATTING",       "requiresGates": [7], "founderOnly": true },
+    { "from": "FORMATTING",       "to": "QA",               "requiresGates": [8] },
+    { "from": "QA",               "to": "FOUNDER_REVIEW",   "requiresGates": [9, 10, 11] },
+    { "from": "FOUNDER_REVIEW",   "to": "APPROVED",         "requiresGates": [12], "founderOnly": true },
+    { "from": "APPROVED",         "to": "PUBLISHED",        "requiresGates": [12] },
+    { "from": "PUBLISHED",        "to": "OPTIMIZE",         "requiresGates": [] },
+    { "from": "OPTIMIZE",         "to": "ARCHIVE",          "requiresGates": [], "founderOnly": true },
+    { "from": "*",                "to": "BLOCKED",          "requiresGates": [], "requiresReason": true },
+    { "from": "BLOCKED",          "to": "*previous",        "requiresGates": [], "requiresReason": true },
+    { "from": "*",                "to": "KILLED",           "requiresGates": [], "requiresReason": true, "founderOnly": true }
+  ],
+  "neverSkip": [2, 5, 10, 12]
+}

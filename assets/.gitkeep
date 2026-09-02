@@ -1,0 +1,1 @@
+# Founder drop folder: assets/<slug>/cover/front-v<n>.png → node scripts/covers/ingest-covers.mjs --slug <slug> --commit

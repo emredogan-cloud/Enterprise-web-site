@@ -13,7 +13,14 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "validate:catalog": "node scripts/catalog/validate-catalog.mjs",
+    "factory:status": "node scripts/factory/status.mjs",
+    "factory:new": "node scripts/factory/new-project.mjs",
+    "factory:gate": "node scripts/factory/gate.mjs",
+    "factory:state": "node scripts/factory/state.mjs",
+    "covers:ingest": "node scripts/covers/ingest-covers.mjs",
+    "covers:generate": "node scripts/covers/generate-cover.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1055.0",

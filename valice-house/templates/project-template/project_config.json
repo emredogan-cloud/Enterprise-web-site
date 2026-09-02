@@ -1,0 +1,101 @@
+{
+  "$comment": [
+    "Single source of truth for this book. Same convention as the existing Valice book repositories:",
+    "constants live here, never hard-coded in build scripts. Every field that is not yet decided is null,",
+    "and null renders as absent — never as a guess. Counts under `measured` are written by build/QA",
+    "scripts from the manuscript, never by hand."
+  ],
+  "project": {
+    "slug": "{{slug}}",
+    "dirName": "{{dirName}}",
+    "title": "{{title}}",
+    "subtitle": null,
+    "series": "{{series}}",
+    "seriesName": "{{seriesName}}",
+    "seriesVolume": null,
+    "lane": "{{lane}}",
+    "created": "{{date}}",
+    "template": "valice-house/templates/project-template@1"
+  },
+  "founder": {
+    "author": "Emre Doğan",
+    "publisher": "Valice Press",
+    "authorBio": null,
+    "authorBio$comment": "null blocks Gate 9: KDP rejected a placeholder bio as template text (World Myths, 2026-08-12)."
+  },
+  "audience": {
+    "readerAge": null,
+    "readingLevel": null,
+    "idealReader": null
+  },
+  "scope": {
+    "unit": null,
+    "targetCount": null,
+    "wordBudget": { "min": null, "max": null },
+    "pageTarget": null
+  },
+  "measured": {
+    "$comment": "Written by scripts only (draft-lint, preflight). A subtitle may only quote a number that appears here.",
+    "unitCount": null,
+    "words": null,
+    "pages": { "paperback": null, "hardcover": null, "largePrint": null }
+  },
+  "production": {
+    "trimPaperback": { "w": null, "h": null, "trimClass": null },
+    "trimHardcover": { "w": null, "h": null, "trimClass": null },
+    "ink": null,
+    "paper": null,
+    "$comment": "ink: black | standard-color | premium-color. premium-color nets ~$0.99/unit on a $24.99 book — Gate 10 warns."
+  },
+  "formats": [
+    { "format": "paperback",   "status": "not_planned", "listUsd": null, "priceBasis": null, "asin": null, "kdp": "not_created" },
+    { "format": "hardcover",   "status": "not_planned", "listUsd": null, "priceBasis": null, "asin": null, "kdp": "not_created" },
+    { "format": "large_print", "status": "not_planned", "listUsd": null, "priceBasis": null, "asin": null, "kdp": "not_created" },
+    { "format": "kindle",      "status": "not_planned", "listUsd": null, "priceBasis": null, "asin": null, "kdp": "not_created" },
+    { "format": "ebook",       "status": "not_planned", "listUsd": null, "priceBasis": null, "paddlePriceId": null, "masterFileKey": null },
+    { "format": "companion",   "status": "not_planned", "slug": null, "newsletterSource": null }
+  ],
+  "formats$comment": "status: not_planned | planned | built | preflight_ok | uploaded | in_review | live | withdrawn. A format may be `uploaded` only when the project state is APPROVED or later (state.json).",
+  "rights": {
+    "publicDomain": false,
+    "differentiation": null,
+    "differentiation$comment": "For public-domain editions: translated | annotated | illustrated (KDP rule). null otherwise.",
+    "sources": [],
+    "sources$comment": "One entry per source: { id, title, kind: text|image|data|font, license, ledgerRow }. Every id must have a row in valice-house/rights/ledger.csv."
+  },
+  "metadata": {
+    "title": "{{title}}",
+    "subtitle": null,
+    "keywords": [],
+    "categories": [],
+    "bisac": [],
+    "description": null,
+    "seriesLinked": false,
+    "seriesLinked$comment": "KDP series metadata opens only when volume 2 is real (Hangul decision)."
+  },
+  "compliance": {
+    "aiDisclosure": {
+      "text": null,
+      "images": null,
+      "translation": null,
+      "decidedBy": null,
+      "decidedAt": null,
+      "$comment": "Each value: generated | assisted | none. `generated` must be declared at every KDP upload. Only the founder decides."
+    },
+    "kdpSelect": false,
+    "directSale": null,
+    "bonusContentSharePct": 0,
+    "backMatterLinks": [],
+    "backMatterLinks$comment": "Each link: { url, purpose }. purpose may not be a form that collects customer information (KDP hyperlink rule).",
+    "velocityWeek": null
+  },
+  "companion": {
+    "slug": null,
+    "assets": [],
+    "printedUrl": null,
+    "printedUrl$comment": "The address printed inside the book. Permanent. Only `valicepress.com/companion/<slug>`."
+  },
+  "cost": {
+    "ledger": "valice-house/cost/ledger.jsonl"
+  }
+}

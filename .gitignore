@@ -72,3 +72,9 @@ scripts/tmp/
 # interiors and a personal profile photo, so they stay out of the repo.
 /e-book/
 /resend.png
+
+# Factory asset drop folder (covers, wraps, interiors are large binaries; the
+# storefront webp derived from them IS committed under public/images/books/)
+/assets/*
+!/assets/.gitkeep
+/assets/.image-ledger.json
