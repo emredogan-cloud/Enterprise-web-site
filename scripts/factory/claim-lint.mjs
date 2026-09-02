@@ -21,6 +21,40 @@ import { HOUSE_ROOT, loadProject, parseArgs } from "./lib/project.mjs";
 
 const VERDICTS = ["PENDING", "VERIFIED", "WRONG", "UNVERIFIABLE"];
 
+/**
+ * Read a claims ledger written before the schema settled.
+ *
+ * The Dudeney pilot wrote `{claim, where, source, status, note}` where the
+ * house schema says `{text, location, author, verdict, verifier, evidence}`,
+ * and the lint answered with ninety identical errors that said nothing about
+ * the actual state of the ledger. Mapping the old names costs six lines and
+ * turns that into one warning plus real findings.
+ *
+ * Deliberately conservative about `verdict`: only a legacy status that is
+ * exactly "verified" becomes VERIFIED. Every hedge ("partly verified",
+ * "verified (proxy: a regex …)") becomes PENDING, because a hedge is what a
+ * ledger says when the verification is not finished, and Gate 5 should see it.
+ */
+export function adaptLegacyClaim(c) {
+  if (c.__parseError || c.text || c.verdict) return { claim: c, legacy: false };
+  const status = String(c.status ?? "").trim().toLowerCase();
+  return {
+    legacy: true,
+    claim: {
+      ...c,
+      text: c.claim ?? c.text,
+      location: c.where ?? c.location,
+      author: c.author ?? "unrecorded author (legacy ledger)",
+      verdict: status === "verified" ? "VERIFIED" : status.startsWith("wrong") ? "WRONG" : "PENDING",
+      // Left undefined on purpose. A legacy row records no verifier, and the
+      // independence rule should say "a verdict needs a verifier" rather than
+      // invent one and then accuse it of verifying its own claim.
+      verifier: c.verifier,
+      evidence: c.evidence ?? (c.source ? [c.source] : []),
+    },
+  };
+}
+
 export function lintClaims(claims, { facts = [], rejected = [] } = {}, report = new Report("claim-lint", "claims")) {
   const factIds = new Set(facts.map((f) => f.fact_id));
   const rejectedTexts = new Set(rejected.map((r) => normalizeText(r.statement)));
@@ -28,6 +62,18 @@ export function lintClaims(claims, { facts = [], rejected = [] } = {}, report = 
   let pending = 0;
   let wrong = 0;
   if (!claims.length) report.warn("empty", "CLAIMS.jsonl has no claims yet");
+  let legacyRows = 0;
+  claims = claims.map((c) => {
+    const { claim, legacy } = adaptLegacyClaim(c);
+    if (legacy) legacyRows++;
+    return claim;
+  });
+  if (legacyRows)
+    report.warn(
+      "legacy-schema",
+      `${legacyRows} claim(s) use the pre-schema field names (claim/where/status). ` +
+        "They were read through the adapter; rewrite the file with text/location/author/verdict/verifier/evidence.",
+    );
   claims.forEach((c, i) => {
     const where = c.id ?? `line ${i + 1}`;
     if (c.__parseError) {

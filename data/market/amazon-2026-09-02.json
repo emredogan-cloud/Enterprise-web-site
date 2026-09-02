@@ -1,0 +1,769 @@
+{
+  "takenAt": "2026-09-02T15:41:37.789Z",
+  "results": [
+    {
+      "slug": "codex-mythologica",
+      "format": "ebook",
+      "catalogue": {
+        "priceCents": 499,
+        "pageCount": 329,
+        "availability": "available"
+      },
+      "live": {
+        "asin": "B0HD8121RR",
+        "fetchedAt": "2026-09-02T15:40:27.139Z",
+        "title": "Codex Mythologica: 76 Myths from 19 Civilizations — Greek, Norse, Egyptian, Hindu, Aztec, Turkic, Inuit and Beyond (The Codex Series Book 1)",
+        "priceText": "$4.99",
+        "priceCents": 499,
+        "pageCount": null,
+        "publisher": null,
+        "publicationDate": "August 6, 2026",
+        "isbn13": null,
+        "dimensions": null,
+        "asinOnPage": "B0HD8121RR",
+        "rating": null,
+        "reviewCount": null,
+        "ranks": [],
+        "editions": {
+          "kindle": {
+            "kindleUnlimited": true,
+            "priceCents": 499
+          },
+          "paperback": {
+            "kindleUnlimited": false,
+            "priceCents": 2199
+          },
+          "hardcover": {
+            "kindleUnlimited": false,
+            "priceCents": 3299
+          }
+        },
+        "formatSwatches": "id=\"tmmSwatchesList\" class=\"a-unordered-list a-nostyle a-vertical\"> Kindle $0.00 or $4.99 to buy Hardcover $32.99 Paperback $21.99 Other New from $21.99 Hardcover from $32.99 Paperback from $21.99 <div id=\"Kibbo-KINDLE_UNLIMITED_UPSELL-Desktop\" class=\"celwidg",
+        "live": true
+      },
+      "issues": [],
+      "notes": [
+        "Kindle shows $0.00 with Kindle Unlimited — the title is still inside a KDP Select exclusivity term"
+      ]
+    },
+    {
+      "slug": "codex-mythologica",
+      "format": "paperback",
+      "catalogue": {
+        "priceCents": 2199,
+        "pageCount": 329,
+        "availability": "available"
+      },
+      "live": {
+        "asin": "B0HCY8KY3X",
+        "fetchedAt": "2026-09-02T15:40:31.341Z",
+        "title": "Codex Mythologica: 76 Myths from 19 Civilizations — Greek, Norse, Egyptian, Hindu, Aztec, Turkic, Inuit and Beyond (The Codex Series)",
+        "priceText": "$21.99",
+        "priceCents": 2199,
+        "pageCount": 329,
+        "publisher": null,
+        "publicationDate": "August 5, 2026",
+        "isbn13": "979-8190712773",
+        "dimensions": "6 x 0.83 x 9 inches",
+        "asinOnPage": "B0HCY8KY3X",
+        "rating": null,
+        "reviewCount": null,
+        "ranks": [],
+        "editions": {
+          "kindle": {
+            "kindleUnlimited": true,
+            "priceCents": 499
+          },
+          "paperback": {
+            "kindleUnlimited": false,
+            "priceCents": 2199
+          },
+          "hardcover": {
+            "kindleUnlimited": false,
+            "priceCents": 3299
+          }
+        },
+        "formatSwatches": "id=\"tmmSwatchesList\" class=\"a-unordered-list a-nostyle a-vertical\"> Kindle $0.00 or $4.99 to buy Hardcover $32.99 Paperback $21.99 Other New from $21.99 Paperback from $21.99 Hardcover from $32.99 <input type=\"hidden\" name=\"items[0.base][customerVisiblePrice][currencyCode]\" value=\"USD\" id=\"items[0.b",
+        "live": true
+      },
+      "issues": [],
+      "notes": [
+        "Kindle shows $0.00 with Kindle Unlimited — the title is still inside a KDP Select exclusivity term"
+      ]
+    },
+    {
+      "slug": "codex-mythologica",
+      "format": "hardcover",
+      "catalogue": {
+        "priceCents": 3299,
+        "pageCount": 329,
+        "availability": "available"
+      },
+      "live": {
+        "asin": "B0HDBFZRQ4",
+        "fetchedAt": "2026-09-02T15:40:35.416Z",
+        "title": "Codex Mythologica: 76 Myths from 19 Civilizations — Greek, Norse, Egyptian, Hindu, Aztec, Turkic, Inuit and Beyond (The Codex Series)",
+        "priceText": "$32.99",
+        "priceCents": 3299,
+        "pageCount": 329,
+        "publisher": null,
+        "publicationDate": "August 7, 2026",
+        "isbn13": "979-8191248714",
+        "dimensions": "6.24 x 1.02 x 9.24 inches",
+        "asinOnPage": "B0HDBFZRQ4",
+        "rating": null,
+        "reviewCount": null,
+        "ranks": [],
+        "editions": {
+          "kindle": {
+            "kindleUnlimited": true,
+            "priceCents": 499
+          },
+          "paperback": {
+            "kindleUnlimited": false,
+            "priceCents": 2199
+          },
+          "hardcover": {
+            "kindleUnlimited": false,
+            "priceCents": 3299
+          }
+        },
+        "formatSwatches": "id=\"tmmSwatchesList\" class=\"a-unordered-list a-nostyle a-vertical\"> Kindle $0.00 or $4.99 to buy Hardcover $32.99 Paperback $21.99 Other New from $21.99 Hardcover from $32.99 Paperback from $21.99 <input type=\"hidden\" name=\"items[0.base][customerVisiblePrice][currencyCode]\" value=\"USD\" id=\"items[0.b",
+        "live": true
+      },
+      "issues": [],
+      "notes": [
+        "Kindle shows $0.00 with Kindle Unlimited — the title is still inside a KDP Select exclusivity term"
+      ]
+    },
+    {
+      "slug": "codex-mythologica",
+      "format": "large_print",
+      "catalogue": {
+        "priceCents": 2799,
+        "pageCount": 578,
+        "availability": "available"
+      },
+      "live": {
+        "asin": "B0HDDR84MF",
+        "fetchedAt": "2026-09-02T15:40:39.671Z",
+        "title": "Codex Mythologica: 76 Myths from 19 Civilizations (Large Print Edition) (The Codex Series)",
+        "priceText": "$27.99",
+        "priceCents": 2799,
+        "pageCount": 578,
+        "publisher": null,
+        "publicationDate": "August 7, 2026",
+        "isbn13": "979-8191243528",
+        "dimensions": "6 x 1.45 x 9 inches",
+        "asinOnPage": "B0HDDR84MF",
+        "rating": null,
+        "reviewCount": null,
+        "ranks": [],
+        "editions": {
+          "paperback": {
+            "kindleUnlimited": false,
+            "priceCents": 2799
+          }
+        },
+        "formatSwatches": "id=\"tmmSwatchesList\" class=\"a-unordered-list a-nostyle a-vertical\"> Paperback $27.99 Other New from $27.99 Paperback from $27.99 <div class=\"a-section a-spacing-none a-padding-none",
+        "live": true
+      },
+      "issues": [],
+      "notes": []
+    },
+    {
+      "slug": "codex-bestiarium",
+      "format": "ebook",
+      "catalogue": {
+        "priceCents": 1299,
+        "pageCount": 435,
+        "availability": "available"
+      },
+      "live": {
+        "asin": "B0HDLS4W8Q",
+        "fetchedAt": "2026-09-02T15:40:43.861Z",
+        "title": "Codex Bestiarium: A World Bestiary: 120 Legendary Creatures from 40 Traditions — Beasts, Spirits, and Guardians of World Folklore (The Codex Series Book 2)",
+        "priceText": "$24.99",
+        "priceCents": 2499,
+        "pageCount": null,
+        "publisher": null,
+        "publicationDate": "August 9, 2026",
+        "isbn13": null,
+        "dimensions": null,
+        "asinOnPage": "B0HDLS4W8Q",
+        "rating": null,
+        "reviewCount": null,
+        "ranks": [],
+        "editions": {
+          "kindle": {
+            "kindleUnlimited": false,
+            "priceCents": 1299
+          },
+          "paperback": {
+            "kindleUnlimited": false,
+            "priceCents": 2499
+          },
+          "hardcover": {
+            "kindleUnlimited": false,
+            "priceCents": 3799
+          }
+        },
+        "formatSwatches": "id=\"tmmSwatchesList\" class=\"a-unordered-list a-nostyle a-vertical\"> Kindle $12.99 Available instantly Hardcover $37.99 Paperback $24.99 Other New from $24.99 Hardcover from $37.99 Paperback from $24.99 <div id=\"Books-Buybox\" class=\"celwidget\" data-feature-name=\"Books-Buybox\" da",
+        "live": true
+      },
+      "issues": [],
+      "notes": []
+    },
+    {
+      "slug": "codex-bestiarium",
+      "format": "paperback",
+      "catalogue": {
+        "priceCents": 2499,
+        "pageCount": 435,
+        "availability": "available"
+      },
+      "live": {
+        "asin": "B0HDLQHQ7H",
+        "fetchedAt": "2026-09-02T15:40:48.119Z",
+        "title": "Codex Bestiarium: A World Bestiary: 120 Legendary Creatures from 40 Traditions — Beasts, Spirits, and Guardians of World Folklore (The Codex Series)",
+        "priceText": "$24.99",
+        "priceCents": 2499,
+        "pageCount": 435,
+        "publisher": null,
+        "publicationDate": "August 9, 2026",
+        "isbn13": "979-8191703688",
+        "dimensions": "6 x 1.09 x 9 inches",
+        "asinOnPage": "B0HDLQHQ7H",
+        "rating": null,
+        "reviewCount": null,
+        "ranks": [],
+        "editions": {
+          "kindle": {
+            "kindleUnlimited": false,
+            "priceCents": 1299
+          },
+          "paperback": {
+            "kindleUnlimited": false,
+            "priceCents": 2499
+          },
+          "hardcover": {
+            "kindleUnlimited": false,
+            "priceCents": 3799
+          }
+        },
+        "formatSwatches": "id=\"tmmSwatchesList\" class=\"a-unordered-list a-nostyle a-vertical\"> Kindle $12.99 Available instantly Hardcover $37.99 Paperback $24.99 Other New from $24.99 Paperback from $24.99 Hardcover from $37.99 <div id=\"Books-Buybox\" class=\"celwidget\" data-feature-name=\"Books-Buybox\"",
+        "live": true
+      },
+      "issues": [],
+      "notes": []
+    },
+    {
+      "slug": "codex-bestiarium",
+      "format": "hardcover",
+      "catalogue": {
+        "priceCents": 3799,
+        "pageCount": 435,
+        "availability": "available"
+      },
+      "live": {
+        "asin": "B0HDLLPG5M",
+        "fetchedAt": "2026-09-02T15:40:52.205Z",
+        "title": "Codex Bestiarium: A World Bestiary: 120 Legendary Creatures from 40 Traditions — Beasts, Spirits, and Guardians of World Folklore (The Codex Series)",
+        "priceText": "$37.99",
+        "priceCents": 3799,
+        "pageCount": 435,
+        "publisher": null,
+        "publicationDate": "August 9, 2026",
+        "isbn13": "979-8191706177",
+        "dimensions": "6.24 x 1.28 x 9.24 inches",
+        "asinOnPage": "B0HDLLPG5M",
+        "rating": null,
+        "reviewCount": null,
+        "ranks": [],
+        "editions": {
+          "kindle": {
+            "kindleUnlimited": false,
+            "priceCents": 1299
+          },
+          "paperback": {
+            "kindleUnlimited": false,
+            "priceCents": 2499
+          },
+          "hardcover": {
+            "kindleUnlimited": false,
+            "priceCents": 3799
+          }
+        },
+        "formatSwatches": "id=\"tmmSwatchesList\" class=\"a-unordered-list a-nostyle a-vertical\"> Kindle $12.99 Available instantly Hardcover $37.99 Paperback $24.99 Other New from $24.99 Hardcover from $37.99 Paperback from $24.99 <div id=\"Books-Buybox\" class=\"celwidget\" data-feature-name=\"Books-Buybox\"",
+        "live": true
+      },
+      "issues": [],
+      "notes": []
+    },
+    {
+      "slug": "codex-bestiarium",
+      "format": "large_print",
+      "catalogue": {
+        "priceCents": 2999,
+        "pageCount": 599,
+        "availability": "available"
+      },
+      "live": {
+        "asin": "B0HDLT1V3P",
+        "fetchedAt": "2026-09-02T15:40:56.370Z",
+        "title": "Codex Bestiarium: A World Bestiary: 120 Legendary Creatures from 40 Traditions — Large Print Edition (The Codex Series)",
+        "priceText": "$29.99",
+        "priceCents": 2999,
+        "pageCount": 599,
+        "publisher": null,
+        "publicationDate": "August 9, 2026",
+        "isbn13": "979-8191723020",
+        "dimensions": "6 x 1.5 x 9 inches",
+        "asinOnPage": "B0HDLT1V3P",
+        "rating": null,
+        "reviewCount": null,
+        "ranks": [],
+        "editions": {
+          "paperback": {
+            "kindleUnlimited": false,
+            "priceCents": 2999
+          }
+        },
+        "formatSwatches": "id=\"tmmSwatchesList\" class=\"a-unordered-list a-nostyle a-vertical\"> Paperback $29.99 Other New from $29.99 Paperback from $29.99 <div class=\"a-section a-spacing-none a-padding-",
+        "live": true
+      },
+      "issues": [],
+      "notes": []
+    },
+    {
+      "slug": "the-great-book-of-world-myths",
+      "format": "ebook",
+      "catalogue": {
+        "priceCents": 499,
+        "pageCount": 234,
+        "availability": "available"
+      },
+      "live": {
+        "asin": "B0HDQRPKST",
+        "fetchedAt": "2026-09-02T15:41:00.528Z",
+        "title": "The Great Book of World Myths: 45 Stories of Gods, Heroes, and Monsters from 22 Cultures — Retold for Young Readers (The Great Book of… 1)",
+        "priceText": "$14.99",
+        "priceCents": 1499,
+        "pageCount": null,
+        "publisher": null,
+        "publicationDate": "August 10, 2026",
+        "isbn13": null,
+        "dimensions": null,
+        "asinOnPage": "B0HDQRPKST",
+        "rating": null,
+        "reviewCount": null,
+        "ranks": [],
+        "editions": {
+          "kindle": {
+            "kindleUnlimited": false,
+            "priceCents": 499
+          },
+          "paperback": {
+            "kindleUnlimited": false,
+            "priceCents": 1499
+          },
+          "hardcover": {
+            "kindleUnlimited": false,
+            "priceCents": 2699
+          }
+        },
+        "formatSwatches": "id=\"tmmSwatchesList\" class=\"a-unordered-list a-nostyle a-vertical\"> Kindle $4.99 Available instantly Hardcover from $26.99 Paperback from $14.99 Other New from $14.99 Hardcover from $26.99 Paperback from $14.99 <div id=\"Books-Buybox\" class=\"celwidget\" data-feature-name=\"Books-Buybox\" data-csa-c-type",
+        "live": true
+      },
+      "issues": [],
+      "notes": []
+    },
+    {
+      "slug": "the-great-book-of-world-myths",
+      "format": "paperback",
+      "catalogue": {
+        "priceCents": 1499,
+        "pageCount": 234,
+        "availability": "available"
+      },
+      "live": {
+        "asin": "B0HDTL5V2H",
+        "fetchedAt": "2026-09-02T15:41:04.773Z",
+        "title": "The Great Book of World Myths: 45 Stories of Gods, Heroes, and Monsters from 22 Cultures — Retold for Young Readers",
+        "priceText": "$12.99",
+        "priceCents": 1299,
+        "pageCount": 234,
+        "publisher": null,
+        "publicationDate": "August 11, 2026",
+        "isbn13": "979-8191977737",
+        "dimensions": "6 x 0.59 x 9 inches",
+        "asinOnPage": "B0HDTL5V2H",
+        "rating": null,
+        "reviewCount": null,
+        "ranks": [],
+        "editions": {
+          "kindle": {
+            "kindleUnlimited": false,
+            "priceCents": 499
+          },
+          "paperback": {
+            "kindleUnlimited": false,
+            "priceCents": 1499
+          },
+          "hardcover": {
+            "kindleUnlimited": false,
+            "priceCents": 2699
+          }
+        },
+        "formatSwatches": "id=\"tmmSwatchesList\" class=\"a-unordered-list a-nostyle a-vertical\"> Kindle $4.99 Available instantly Hardcover from $26.99 Paperback from $14.99 Other New from $14.99 Paperback from $14.99 Hardcover from $26.99 <div id=\"Books-Buybox\" class=\"celwidget\" data-feature-name=\"Books-Buybox\" data-csa-c-type",
+        "live": true
+      },
+      "issues": [],
+      "notes": [
+        "Amazon is discounting: buy box $12.99 against a $14.99 list (-13%)"
+      ]
+    },
+    {
+      "slug": "the-great-book-of-world-myths",
+      "format": "hardcover",
+      "catalogue": {
+        "priceCents": 2699,
+        "pageCount": 234,
+        "availability": "available"
+      },
+      "live": {
+        "asin": "B0HDZJ4PHQ",
+        "fetchedAt": "2026-09-02T15:41:08.953Z",
+        "title": "The Great Book of World Myths: 45 Stories of Gods, Heroes, and Monsters from 22 Cultures — Retold for Young Readers",
+        "priceText": "$12.99",
+        "priceCents": 1299,
+        "pageCount": 234,
+        "publisher": null,
+        "publicationDate": "August 11, 2026",
+        "isbn13": "979-8192043813",
+        "dimensions": "6.24 x 0.78 x 9.24 inches",
+        "asinOnPage": "B0HDZJ4PHQ",
+        "rating": null,
+        "reviewCount": null,
+        "ranks": [],
+        "editions": {
+          "kindle": {
+            "kindleUnlimited": false,
+            "priceCents": 499
+          },
+          "paperback": {
+            "kindleUnlimited": false,
+            "priceCents": 1499
+          },
+          "hardcover": {
+            "kindleUnlimited": false,
+            "priceCents": 2699
+          }
+        },
+        "formatSwatches": "id=\"tmmSwatchesList\" class=\"a-unordered-list a-nostyle a-vertical\"> Kindle $4.99 Available instantly Hardcover from $26.99 Paperback from $14.99 Other New from $14.99 Hardcover from $26.99 Paperback from $14.99 <div id=\"Books-Buybox\" class=\"celwidget\" data-feature-name=\"Books-Buybox\" data-csa-c-type",
+        "live": true
+      },
+      "issues": [],
+      "notes": [
+        "Amazon is discounting: buy box $12.99 against a $26.99 list (-52%)"
+      ]
+    },
+    {
+      "slug": "the-great-book-of-world-games",
+      "format": "ebook",
+      "catalogue": {
+        "priceCents": 1199,
+        "pageCount": 160,
+        "availability": "available"
+      },
+      "live": {
+        "asin": "B0HG44FH1B",
+        "fetchedAt": "2026-09-02T15:41:12.990Z",
+        "title": "The Great Book of World Games: 56 Games from 4,600 Years of Human Play — Rules, Boards and Stories from 39 Cultures, Ready to Play Tonight",
+        "priceText": null,
+        "priceCents": null,
+        "pageCount": null,
+        "publisher": null,
+        "publicationDate": "August 22, 2026",
+        "isbn13": null,
+        "dimensions": null,
+        "asinOnPage": "B0HG44FH1B",
+        "rating": null,
+        "reviewCount": null,
+        "ranks": [],
+        "editions": {
+          "kindle": {
+            "kindleUnlimited": false,
+            "priceCents": 1199
+          },
+          "paperback": {
+            "kindleUnlimited": false,
+            "priceCents": 2299
+          },
+          "hardcover": {
+            "kindleUnlimited": false,
+            "priceCents": 3499
+          }
+        },
+        "formatSwatches": "id=\"tmmSwatchesList\" class=\"a-unordered-list a-nostyle a-vertical\"> Kindle $11.99 Available instantly Hardcover $34.99 Paperback $22.99 Other New from $22.99 Hardcover from $34.99 Paperback from $22.99 <div id=\"Books-Buybox\" class=\"celwidget\" data-feature-name=\"Books-Buybox\" data-csa-c-type=\"widget\"",
+        "live": true
+      },
+      "issues": [],
+      "notes": []
+    },
+    {
+      "slug": "the-great-book-of-world-games",
+      "format": "paperback",
+      "catalogue": {
+        "priceCents": 2299,
+        "pageCount": 160,
+        "availability": "available"
+      },
+      "live": {
+        "asin": "B0HG3KMK9L",
+        "fetchedAt": "2026-09-02T15:41:17.097Z",
+        "title": "The Great Book of World Games: 56 Games from 4,600 Years of Human Play — Rules, Boards and Stories from 39 Cultures, Ready to Play Tonight",
+        "priceText": "$22.99",
+        "priceCents": 2299,
+        "pageCount": 160,
+        "publisher": null,
+        "publicationDate": "August 21, 2026",
+        "isbn13": "979-8194063468",
+        "dimensions": "8.5 x 0.37 x 11 inches",
+        "asinOnPage": "B0HG3KMK9L",
+        "rating": null,
+        "reviewCount": null,
+        "ranks": [],
+        "editions": {
+          "kindle": {
+            "kindleUnlimited": false,
+            "priceCents": 1199
+          },
+          "paperback": {
+            "kindleUnlimited": false,
+            "priceCents": 2299
+          },
+          "hardcover": {
+            "kindleUnlimited": false,
+            "priceCents": 3499
+          }
+        },
+        "formatSwatches": "id=\"tmmSwatchesList\" class=\"a-unordered-list a-nostyle a-vertical\"> Kindle $11.99 Available instantly Hardcover $34.99 Paperback $22.99 Other New from $22.99 Paperback from $22.99 Hardcover from $34.99 <div id=\"Books-Buybox\" class=\"celwidget\" data-feature-name=\"Books-Buybox\" data-csa-c-type=\"widget\"",
+        "live": true
+      },
+      "issues": [],
+      "notes": []
+    },
+    {
+      "slug": "the-great-book-of-world-games",
+      "format": "hardcover",
+      "catalogue": {
+        "priceCents": 3499,
+        "pageCount": 160,
+        "availability": "available"
+      },
+      "live": {
+        "asin": "B0HG41F21F",
+        "fetchedAt": "2026-09-02T15:41:21.328Z",
+        "title": "The Great Book of World Games: 56 Games from 4,600 Years of Human Play — Rules, Boards and Stories from 39 Cultures, Ready to Play Tonight",
+        "priceText": "$34.99",
+        "priceCents": 3499,
+        "pageCount": 160,
+        "publisher": null,
+        "publicationDate": "August 22, 2026",
+        "isbn13": "979-8194081950",
+        "dimensions": "8.49 x 0.55 x 11.24 inches",
+        "asinOnPage": "B0HG41F21F",
+        "rating": null,
+        "reviewCount": null,
+        "ranks": [],
+        "editions": {
+          "kindle": {
+            "kindleUnlimited": false,
+            "priceCents": 1199
+          },
+          "paperback": {
+            "kindleUnlimited": false,
+            "priceCents": 2299
+          },
+          "hardcover": {
+            "kindleUnlimited": false,
+            "priceCents": 3499
+          }
+        },
+        "formatSwatches": "id=\"tmmSwatchesList\" class=\"a-unordered-list a-nostyle a-vertical\"> Kindle $11.99 Available instantly Hardcover $34.99 Paperback $22.99 Other New from $22.99 Hardcover from $34.99 Paperback from $22.99 <div id=\"Books-Buybox\" class=\"celwidget\" data-feature-name=\"Books-Buybox\" data-csa-c-type=\"widget\"",
+        "live": true
+      },
+      "issues": [],
+      "notes": []
+    },
+    {
+      "slug": "the-myth-hunters-field-book",
+      "format": "paperback",
+      "catalogue": {
+        "priceCents": 1499,
+        "pageCount": 156,
+        "availability": "available"
+      },
+      "live": {
+        "asin": "B0HFP4KYX5",
+        "fetchedAt": "2026-09-02T15:41:25.504Z",
+        "title": "The Myth Hunter's Field Book: A Screen-Free Quest Through 22 Cultures — 120 Puzzles, Maps, Codes and Challenges for Ages 8–12",
+        "priceText": "$13.91",
+        "priceCents": 1391,
+        "pageCount": 156,
+        "publisher": null,
+        "publicationDate": "August 18, 2026",
+        "isbn13": "979-8193475859",
+        "dimensions": "8.5 x 0.36 x 11 inches",
+        "asinOnPage": "B0HFP4KYX5",
+        "rating": null,
+        "reviewCount": null,
+        "ranks": [],
+        "editions": {
+          "paperback": {
+            "kindleUnlimited": false,
+            "priceCents": 1499
+          }
+        },
+        "formatSwatches": "id=\"tmmSwatchesList\" class=\"a-unordered-list a-nostyle a-vertical\"> Paperback from $14.99 Other New from $14.99 Paperback from $14.99 This item cannot be shipped to your selected delivery location. Please choose a different delivery location. Deliver to Turkey <div id=\"add-to-wishlist-button-group\" ",
+        "live": true
+      },
+      "issues": [],
+      "notes": [
+        "Amazon is discounting: buy box $13.91 against a $14.99 list (-7%)"
+      ]
+    },
+    {
+      "slug": "codex-enigmatica",
+      "format": "ebook",
+      "catalogue": {
+        "priceCents": 999,
+        "pageCount": 274,
+        "availability": "available"
+      },
+      "live": {
+        "asin": "B0HGRZ3BRC",
+        "fetchedAt": "2026-09-02T15:41:29.515Z",
+        "title": "Codex Enigmatica: One Hundred Engraved Enigmas and a Single Unbroken Mystery (The Codex Series Book 3)",
+        "priceText": "$4.99",
+        "priceCents": 499,
+        "pageCount": null,
+        "publisher": null,
+        "publicationDate": "August 27, 2026",
+        "isbn13": null,
+        "dimensions": null,
+        "asinOnPage": "B0HGRZ3BRC",
+        "rating": null,
+        "reviewCount": null,
+        "ranks": [],
+        "editions": {
+          "kindle": {
+            "kindleUnlimited": false,
+            "priceCents": 999
+          },
+          "paperback": {
+            "kindleUnlimited": false,
+            "priceCents": 1999
+          },
+          "hardcover": {
+            "kindleUnlimited": false,
+            "priceCents": 2999
+          }
+        },
+        "formatSwatches": "id=\"tmmSwatchesList\" class=\"a-unordered-list a-nostyle a-vertical\"> Kindle $9.99 Available instantly Hardcover $29.99 Paperback $19.99 Other New from $19.99 Hardcover from $29.99 Paperback from $19.99 <div id=\"Books-Buybox\" class=\"celwidget\" data-feature-name=\"Books-Buybox\" data-csa-c-typ",
+        "live": true
+      },
+      "issues": [],
+      "notes": []
+    },
+    {
+      "slug": "codex-enigmatica",
+      "format": "paperback",
+      "catalogue": {
+        "priceCents": 1999,
+        "pageCount": 274,
+        "availability": "available"
+      },
+      "live": {
+        "asin": "B0HGSVF15Q",
+        "fetchedAt": "2026-09-02T15:41:33.644Z",
+        "title": "Codex Enigmatica: One Hundred Engraved Enigmas and a Single Unbroken Mystery (The Codex Series)",
+        "priceText": "$19.99",
+        "priceCents": 1999,
+        "pageCount": 274,
+        "publisher": null,
+        "publicationDate": "August 27, 2026",
+        "isbn13": "979-8170191178",
+        "dimensions": "6 x 0.69 x 9 inches",
+        "asinOnPage": "B0HGSVF15Q",
+        "rating": null,
+        "reviewCount": null,
+        "ranks": [],
+        "editions": {
+          "kindle": {
+            "kindleUnlimited": false,
+            "priceCents": 999
+          },
+          "paperback": {
+            "kindleUnlimited": false,
+            "priceCents": 1999
+          },
+          "hardcover": {
+            "kindleUnlimited": false,
+            "priceCents": 2999
+          }
+        },
+        "formatSwatches": "id=\"tmmSwatchesList\" class=\"a-unordered-list a-nostyle a-vertical\"> Kindle $9.99 Available instantly Hardcover $29.99 Paperback $19.99 Other New from $19.99 Paperback from $19.99 Hardcover from $29.99 <div id=\"Books-Buybox\" class=\"celwidget\" data-feature-name=\"Books-Buybox\" data-csa-",
+        "live": true
+      },
+      "issues": [],
+      "notes": []
+    },
+    {
+      "slug": "codex-enigmatica",
+      "format": "hardcover",
+      "catalogue": {
+        "priceCents": 2999,
+        "pageCount": 274,
+        "availability": "available"
+      },
+      "live": {
+        "asin": "B0HH3B4HQ7",
+        "fetchedAt": "2026-09-02T15:41:37.784Z",
+        "title": "Codex Enigmatica: One Hundred Engraved Enigmas and a Single Unbroken Mystery (The Codex Series)",
+        "priceText": "$29.99",
+        "priceCents": 2999,
+        "pageCount": 276,
+        "publisher": null,
+        "publicationDate": "August 27, 2026",
+        "isbn13": "979-8170244751",
+        "dimensions": "6.24 x 0.82 x 9.24 inches",
+        "asinOnPage": "B0HH3B4HQ7",
+        "rating": null,
+        "reviewCount": null,
+        "ranks": [],
+        "editions": {
+          "kindle": {
+            "kindleUnlimited": false,
+            "priceCents": 999
+          },
+          "paperback": {
+            "kindleUnlimited": false,
+            "priceCents": 1999
+          },
+          "hardcover": {
+            "kindleUnlimited": false,
+            "priceCents": 2999
+          }
+        },
+        "formatSwatches": "id=\"tmmSwatchesList\" class=\"a-unordered-list a-nostyle a-vertical\"> Kindle $9.99 Available instantly Hardcover $29.99 Paperback $19.99 Other New from $19.99 Hardcover from $29.99 Paperback from $19.99 <div id=\"Books-Buybox\" class=\"celwidget\" data-feature-name=\"Books-Buybox\" data-csa-",
+        "live": true
+      },
+      "issues": [
+        "page count live 276 ≠ catalogue 274"
+      ],
+      "notes": []
+    }
+  ]
+}

@@ -138,6 +138,27 @@
       }
     ]
   },
+  "korean-hangul-handwriting-workbook": {
+    "note": "Lesson 4 in full: where each letter goes inside the syllable block, six real words built from it, and the trace-then-write practice pages.",
+    "pages": [
+      {
+        "src": "/images/previews/korean-hangul-handwriting-workbook/p13.webp",
+        "page": 13
+      },
+      {
+        "src": "/images/previews/korean-hangul-handwriting-workbook/p14.webp",
+        "page": 14
+      },
+      {
+        "src": "/images/previews/korean-hangul-handwriting-workbook/p15.webp",
+        "page": 15
+      },
+      {
+        "src": "/images/previews/korean-hangul-handwriting-workbook/p16.webp",
+        "page": 16
+      }
+    ]
+  },
   "the-myth-hunters-field-book": {
     "note": "Two puzzle spreads as they are printed — deliberately without the answer key.",
     "pages": [

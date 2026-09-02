@@ -53,8 +53,14 @@ export async function generateMetadata({
   const author = await getAuthorPageBySlug(slug);
   if (!author) return { title: "Author not found" };
 
-  const description = author.bio
-    ? `${author.bio.slice(0, 157).trim()}…`
+  // A bio is stored with its paragraph breaks; a meta description is one
+  // line. Collapse first, then trim — otherwise the newline survives into
+  // the <meta> tag and the snippet reads as a fragment.
+  const oneLine = author.bio?.replace(/\s+/g, " ").trim();
+  const description = oneLine
+    ? oneLine.length > 157
+      ? `${oneLine.slice(0, 157).trim()}…`
+      : oneLine
     : `Books by ${author.name} on Valice Press.`;
 
   return buildPageMetadata({
@@ -118,7 +124,17 @@ export default async function AuthorPage({
           headlineTail={tail}
           subtitle={
             bio ? (
-              <p>{bio}</p>
+              // The bio is authored as paragraphs. Rendering it as one <p>
+              // silently glued four of them into a single block.
+              <>
+                {bio
+                  .split(/\n{2,}/)
+                  .map((para) => para.trim())
+                  .filter(Boolean)
+                  .map((para) => (
+                    <p key={para.slice(0, 32)}>{para}</p>
+                  ))}
+              </>
             ) : (
               <p>Books by {name} on Valice Press.</p>
             )

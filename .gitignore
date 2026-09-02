@@ -78,3 +78,14 @@ scripts/tmp/
 /assets/*
 !/assets/.gitkeep
 /assets/.image-ledger.json
+
+# Google Cloud service-account keys (Search Console export, ADR: SEO tooling).
+# A private key must never enter the repository — the file is supplied by the
+# Founder and read from disk by scripts/seo/*.
+/valice-press-*.json
+/*-service-account*.json
+gcp-*.json
+
+# Founder-supplied dashboard screenshots dropped in the root (Search Console,
+# Analytics). Same rule as resend.png: evidence, not source.
+/seo.png

@@ -16,7 +16,10 @@
  */
 
 import {
+  DeleteObjectCommand,
   GetObjectCommand,
+  HeadObjectCommand,
+  ListObjectsV2Command,
   PutObjectCommand,
   S3Client,
   type PutObjectCommandInput,
@@ -80,6 +83,23 @@ function resolveBucketName(bucket: BucketKey): string {
     throw new Error(`Bucket env var ${envKey} is not set.`);
   }
   return name;
+}
+
+/**
+ * The bucket name this runtime will actually use for `bucket`.
+ *
+ * Exists for one reason: the deployed environment is the only thing that
+ * knows. `R2_BUCKET_MASTERS` is a sensitive Vercel variable, so `vercel env
+ * pull` returns the literal string `[SENSITIVE]` and nothing outside the
+ * running function can read it. For two phases the repository could not
+ * answer "does production point at the bucket that holds the masters, or at
+ * an empty one nobody created" — which decides whether the first direct sale
+ * delivers a book or an error. Asking the runtime settles it.
+ *
+ * Exported for the admin diagnostic route only.
+ */
+export function resolveBucketNameForDiagnostics(bucket: BucketKey): string {
+  return resolveBucketName(bucket);
 }
 
 // -----------------------------------------------------------------------------
@@ -226,4 +246,81 @@ export async function getObject({
     contentType: response.ContentType,
     contentLength: response.ContentLength,
   };
+}
+
+export interface HeadObjectResult {
+  exists: boolean;
+  contentLength?: number;
+  contentType?: string;
+  lastModified?: string;
+  /** The S3 error name when the object could not be read (e.g. NoSuchKey, AccessDenied). */
+  error?: string;
+}
+
+/**
+ * Does this key exist in this bucket, and how big is it?
+ *
+ * Returns rather than throws for the "not there" case: the caller is a
+ * diagnostic that wants to report every key's state, not stop at the first
+ * missing one. A genuine credential or network failure still surfaces —
+ * as `error`, distinguishable from a plain 404 by its name.
+ */
+export async function headObject({
+  bucket,
+  key,
+}: GetObjectArgs): Promise<HeadObjectResult> {
+  try {
+    const res = await getClient().send(
+      new HeadObjectCommand({ Bucket: resolveBucketName(bucket), Key: key }),
+    );
+    return {
+      exists: true,
+      contentLength: res.ContentLength,
+      contentType: res.ContentType,
+      lastModified: res.LastModified?.toISOString(),
+    };
+  } catch (err) {
+    const name = err instanceof Error ? err.name : String(err);
+    if (name === "NotFound" || name === "NoSuchKey") return { exists: false };
+    return { exists: false, error: name };
+  }
+}
+
+export interface ListObjectsArgs {
+  bucket: BucketKey;
+  prefix?: string;
+  maxKeys?: number;
+}
+
+export interface ListedObject {
+  key: string;
+  size?: number;
+  lastModified?: string;
+}
+
+/** A page of keys in a private bucket. Diagnostic and admin use only. */
+export async function listObjects({
+  bucket,
+  prefix,
+  maxKeys = 200,
+}: ListObjectsArgs): Promise<ListedObject[]> {
+  const res = await getClient().send(
+    new ListObjectsV2Command({
+      Bucket: resolveBucketName(bucket),
+      Prefix: prefix,
+      MaxKeys: maxKeys,
+    }),
+  );
+  return (res.Contents ?? []).map((o) => ({
+    key: o.Key ?? "",
+    size: o.Size,
+    lastModified: o.LastModified?.toISOString(),
+  }));
+}
+
+/** Remove an object. Used by the write round-trip in the storage diagnostic. */
+export async function deleteObject({ bucket, key }: GetObjectArgs): Promise<void> {
+  await getClient().send(
+    new DeleteObjectCommand({ Bucket: resolveBucketName(bucket), Key: key }),
+  );
 }

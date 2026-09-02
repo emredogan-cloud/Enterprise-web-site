@@ -79,6 +79,18 @@ export const PREVIEW_PAGES = [
     note: "A full myth with its illustration, at the length a 9-year-old actually reads.",
   },
   {
+    slug: "korean-hangul-handwriting-workbook",
+    // The REMEDIATED interior of 2026-09-02, not the earlier build: this is
+    // the file whose sources page reads "Korean Learner's Vocabulary List".
+    source: `${ROOT}/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_124pp.pdf`,
+    // Lesson 4 entire: the rule for where a letter goes inside the square,
+    // the six words built from it, and both practice pages. It is the step
+    // the book exists for, and the one a buyer wants to see done well before
+    // paying for 124 pages of ruled boxes.
+    pages: [13, 16],
+    note: "Lesson 4 in full: where each letter goes inside the syllable block, six real words built from it, and the trace-then-write practice pages.",
+  },
+  {
     slug: "the-myth-hunters-field-book",
     source: `${ROOT}/THE-MYTH-HUNTERS-FIELD-BOOK/08_OUTPUT/PAPERBACK/interior.pdf`,
     pages: [14, 17],

@@ -93,12 +93,13 @@ export const AUTHORS = [
   {
     slug: "emre-dogan",
     name: "Emre Doğan",
-    // Deliberately null. The founder's author bio is an outstanding item in
-    // the book projects themselves (KDP rejected a placeholder bio on one
-    // submission), and inventing credentials for a real person is exactly
-    // the failure this catalog exists to avoid. The author page renders
-    // name and books until a real bio is written.
-    bio: null,
+    // Supplied verbatim by the Founder on 2026-09-02 and canonical from that
+    // date. It is the only biography of him this repository may print: it
+    // stays word-for-word wherever the full text fits, and where a provider
+    // caps the field (Amazon Author Central, KDP), the shortened variant that
+    // was actually used is recorded in docs/execution/phase-3/AUTHOR_BIO.md
+    // rather than improvised at the point of use. Do not add credentials.
+    bio: "Emre Doğan writes about the stories that cultures tell themselves in order to keep going.\n\nTrained as a software engineer, he came to mythology the way most people do — through a single story that would not leave him alone — and stayed for the pattern underneath. CODEX MYTHOLOGICA, his first book, gathers seventy-six myths from nineteen traditions and retells each one in full.\n\nHe reads in several languages, badly, and is grateful daily to the translators and ethnographers whose patient work made a book like this possible for someone who is neither.\n\nHe lives in Turkey.",
   },
   {
     slug: "marcus-aurelius",
@@ -597,14 +598,17 @@ export const BOOKS = [
     authors: ["emre-dogan"],
     bisac: [],
     series: null,
-    // Held back from the storefront until the Founder signs Gate 2 on the
-    // remediated rights ledger. The rights problem itself was fixed on
-    // 2026-09-02 (book project RIGHTS.md, decision K46): the CC BY-SA
-    // dictionaries and the CC BY-NC phonetic chart were withdrawn, every word
-    // re-verified against the National Institute of Korean Language's
-    // learner vocabulary list (KOGL Type 1), every gloss rewritten, and the
-    // paperback, hardcover and Kindle files rebuilt (09_OUTPUT/FINAL).
-    websiteStatus: "draft",
+    // Published on 2026-09-02, after the paperback was found LIVE on Amazon
+    // (B0HHHWXGG4, $12.99, 124 pp). The page links to a listing that already
+    // sells to the public; withholding our own page does not withhold the
+    // book, it only costs the sale. The rights remediation is complete in the
+    // files (book project RIGHTS.md, decision K46): the CC BY-SA dictionaries
+    // and the CC BY-NC phonetic chart were withdrawn, every word re-verified
+    // against the National Institute of Korean Language's learner vocabulary
+    // list (KOGL Type 1), every gloss rewritten, and the paperback, hardcover
+    // and Kindle files rebuilt (09_OUTPUT/FINAL). What Gate 2 still gates is
+    // the DIRECT sale — see directSaleBlockedBy; the ebook stays unavailable.
+    websiteStatus: "published",
     kdpSelect: false,
     directSale: false,
     directSaleBlockedBy:
@@ -624,21 +628,27 @@ export const BOOKS = [
     formats: [
       {
         format: "paperback",
-        availability: "coming_soon",
+        // LIVE. Read from the listing itself on 2026-09-02 with
+        // scripts/market/verify-amazon.mjs: $12.99, 124 pages, 8.5 × 11 in,
+        // ISBN 979-8170602360, published 29 August 2026. Nobody supplied this
+        // ASIN — it was found by searching Amazon for the title and confirmed
+        // against four catalogue facts before being written here.
+        availability: "available",
         fulfillment: "amazon",
         priceCents: usd(12.99),
         pageCount: 124,
-        amazonAsin: null,
-        amazonUrl: null,
-        // Submitted to KDP and awaiting review as of 2026-08-31. No ASIN is
-        // issued until a title goes live, so there is nothing to link to.
-        kdp: "in_review",
+        amazonAsin: "B0HHHWXGG4",
+        amazonUrl: amazon("B0HHHWXGG4"),
+        kdp: "live",
         masterFileKey: null,
         priceBasis:
-          "FOUNDER-APPROVED (decision K43, 2026-08-29) and submitted to KDP at this price.",
+          "FOUNDER-APPROVED (decision K43, 2026-08-29); the live listing charges exactly this.",
       },
       {
         format: "hardcover",
+        // Not on the shelf: an author-wide Amazon search on 2026-09-02
+        // returned the paperback and no hardcover. Still in KDP review, or
+        // never submitted. No ASIN is invented while that is true.
         availability: "coming_soon",
         fulfillment: "amazon",
         priceCents: usd(21.99),
@@ -665,7 +675,7 @@ export const BOOKS = [
     ],
     blockers: [
       "GATE 2 — the rights remediation of 2026-09-02 (book project RIGHTS.md, DECISIONS.md K46) withdrew the CC BY-SA dictionaries and the CC BY-NC phonetic chart and re-verified all 97 words against the National Institute of Korean Language's learner list (KOGL Type 1). The Founder must sign the ledger (legal.a7_status) before any sale.",
-      "KDP — the paperback and hardcover IN REVIEW at KDP are the pre-remediation files. The rebuilt interiors are in 09_OUTPUT/FINAL; the Founder must replace the files (or withdraw and resubmit) before the listings go live.",
+      "KDP — the paperback went live as B0HHHWXGG4 on 29 August 2026, before the remediation. The Founder reports having replaced the interior with 09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_124pp.pdf; that cannot be confirmed from outside Amazon, because the pre- and post-remediation interiors are both 124 pages. Confirm inside KDP that the current interior is the remediated file. The hardcover is not on the shelf yet.",
       "Remaining A7 items (Founder): ownership terms of the AI-generated cover art, and the KDP AI declaration.",
       "Cover art measures ~83 DPI true resolution; no higher-resolution source exists anywhere in the project.",
       "No real human usability test: the Phase 4 pilot used an AI proxy and returned REVISE; closed by founder override.",
@@ -791,7 +801,10 @@ export const BOOKS = [
         availability: "available",
         fulfillment: "amazon",
         priceCents: usd(29.99),
-        pageCount: 274,
+        // 276, not 274: the live listing says so (verify-amazon.mjs,
+        // 2026-09-02). The case binding adds two pages to the paperback's
+        // 274; the catalogue had copied the paperback's count.
+        pageCount: 276,
         amazonAsin: "B0HH3B4HQ7",
         amazonUrl: amazon("B0HH3B4HQ7"),
         kdp: "live",

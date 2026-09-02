@@ -20,6 +20,7 @@ import { OrderReadyEmail } from "@/emails/order-ready";
 import { WelcomeEmail } from "@/emails/welcome";
 import type { NewsletterSource } from "@/lib/newsletter-client";
 import { getSiteUrl } from "@/lib/site-url";
+import { unsubscribeUrl } from "@/lib/unsubscribe";
 
 // ---------------------------------------------------------------------------
 // Client init — memoized; one-shot warn when unconfigured.
@@ -191,6 +192,14 @@ export async function sendWelcomeEmail(
 
   const base = getAppBaseUrl();
 
+  // Our own signed link, not `{{{RESEND_UNSUBSCRIBE_URL}}}`.
+  //
+  // That token is expanded only for sends bound to an audience contact — a
+  // Broadcast. This is a plain `emails.send`, so on 2026-09-02 the token was
+  // delivered to a real inbox *literally*: the reader's unsubscribe link was
+  // the string `{{{RESEND_UNSUBSCRIBE_URL}}}`. See src/lib/unsubscribe.ts.
+  const unsub = unsubscribeUrl(args.to);
+
   try {
     const result = await resend.emails.send(
       {
@@ -200,18 +209,19 @@ export async function sendWelcomeEmail(
         react: WelcomeEmail({
           source: args.source,
           catalogUrl: `${base}/books`,
-          // Resend expands this token to the per-recipient unsubscribe URL
-          // for the audience. Hard-coding a link here would produce an
-          // unsubscribe button that unsubscribes nobody.
-          unsubscribeUrl: "{{{RESEND_UNSUBSCRIBE_URL}}}",
+          unsubscribeUrl: unsub ?? `${base}/unsubscribe`,
         }),
-        headers: {
-          // One-click unsubscribe (RFC 8058). Gmail and Yahoo require this
-          // on bulk mail, and it is the difference between a reader
-          // unsubscribing and a reader marking the message as spam.
-          "List-Unsubscribe": "<{{{RESEND_UNSUBSCRIBE_URL}}}>",
-          "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
-        },
+        headers: unsub
+          ? {
+              // One-click unsubscribe (RFC 8058). Gmail and Yahoo require it
+              // on bulk mail, and it is the difference between a reader
+              // unsubscribing and a reader marking the message as spam.
+              "List-Unsubscribe": `<${unsub}>`,
+              "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+            }
+          : // No key means no signable link. An advertised one-click header
+            // that 400s is worse than no header at all.
+            undefined,
       },
       { idempotencyKey: `welcome:${args.to.toLowerCase()}` },
     );
