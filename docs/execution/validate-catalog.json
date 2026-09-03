@@ -1,11 +1,11 @@
 {
   "tool": "validate-catalog",
   "target": "https://valicepress.com",
-  "startedAt": "2026-09-02T18:06:30.099Z",
-  "finishedAt": "2026-09-02T18:06:56.294Z",
+  "startedAt": "2026-09-03T02:39:03.481Z",
+  "finishedAt": "2026-09-03T02:39:47.830Z",
   "ok": true,
   "counts": {
-    "pass": 16,
+    "pass": 34,
     "warn": 0,
     "error": 0,
     "skipped": 1
@@ -68,7 +68,115 @@
     {
       "level": "pass",
       "check": "sitemap",
-      "message": "37 URLs",
+      "message": "41 URLs",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "cover-route",
+      "message": "same cover on every surface",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "cover-route",
+      "message": "same cover on every surface",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "cover-route",
+      "message": "same cover on every surface",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "cover-route",
+      "message": "same cover on every surface",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "cover-route",
+      "message": "same cover on every surface",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "cover-route",
+      "message": "same cover on every surface",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "cover-route",
+      "message": "same cover on every surface",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "cover-route",
+      "message": "same cover on every surface",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "cover-route",
+      "message": "same cover on every surface",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "companion",
+      "message": "/companion/hangul 200",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "companion",
+      "message": "/companion/world-games 200",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "companion",
+      "message": "/companion/dudeney 200",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "companion",
+      "message": "/companion/world-myths 200",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "companion",
+      "message": "/companion/codex-bestiarium 200",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "companion",
+      "message": "/companion/codex-mythologica 200",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "companion",
+      "message": "/companion/myth-hunters-field-book 200",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "companion-asset",
+      "message": "22 companion assets answer 200",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "fabrication",
+      "message": "9 public pages carry no invented figure, rating, biography or portrait",
       "where": null
     },
     {
