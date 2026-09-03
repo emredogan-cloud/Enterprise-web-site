@@ -1,0 +1,97 @@
+{
+  "generatedAt": "2026-09-03",
+  "book": "codex-bestiarium",
+  "format": "hardcover",
+  "title": "Codex Bestiarium",
+  "asin": "B0HDLLPG5M",
+  "kdpState": "live",
+  "interior": {
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_BESTIARIUM/04_PRINT/HARDCOVER/CODEX_BESTIARIUM_INTERIOR_HARDCOVER.pdf",
+    "sha256": "32f5b5a8ea4f46977aa634aa641f25bebb2a646998e2f1fbdf291f3e8d2207b5",
+    "bytes": 108961076,
+    "pagesBefore": 435,
+    "pagesAfter": 436,
+    "companionPage": 436,
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_BESTIARIUM/04_PRINT/HARDCOVER/CODEX_BESTIARIUM_INTERIOR_HARDCOVER.pre-companion.pdf"
+  },
+  "companion": {
+    "printedUrl": "valicepress.com/companion/codex-bestiarium",
+    "qrUrl": "https://valicepress.com/companion/codex-bestiarium",
+    "qr": {
+      "note": "geometry not re-measured on this run"
+    },
+    "dedicatedPage": true,
+    "emailWall": false
+  },
+  "spine": {
+    "pagesBefore": 435,
+    "pagesAfter": 436,
+    "paper": "cream",
+    "binding": "hardcover",
+    "trim": "6×9 in",
+    "before": {
+      "spineWidthIn": 1.0875,
+      "wrapWidthIn": 13.3375,
+      "wrapHeightIn": 9.25,
+      "spineTextAllowed": true
+    },
+    "after": {
+      "spineWidthIn": 1.09,
+      "wrapWidthIn": 13.34,
+      "wrapHeightIn": 9.25,
+      "spineTextAllowed": true
+    },
+    "deltaSpineIn": 0.0025,
+    "deltaWrapWidthIn": 0.0025,
+    "withinKdpTolerance": true,
+    "coverRebuildRequired": false,
+    "coverRebuildCorrect": true,
+    "hardcoverGeometryMustBeRead": true,
+    "barcodeZoneAffected": false,
+    "verdict": "wrap width moves 0.0025 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.0025 in and the house rule is that each edition's cover reads its own page count"
+  },
+  "cover": {
+    "built": true,
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_BESTIARIUM/03_COVER/HARDCOVER/exports/",
+    "pageCount": 436,
+    "spineIn": null,
+    "wrapIn": "14.8508 × 10.4167 (cream) · 14.7427 × 10.4167 (white)",
+    "note": "this project carries a calibrated hardcover profile with a measured board allowance, so its wrap IS derivable and was rebuilt"
+  },
+  "coverAction": "REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block",
+  "uploadRequired": true,
+  "hold": "Four live listings whose 'Legendary Creatures' count still reads 120 and must read 112 (handbook O4). That correction needs a KDP visit for every edition anyway; this interior and its rebuilt cover ride along with it, one review cycle instead of two.",
+  "proofRecommended": true,
+  "verification": [
+    {
+      "name": "page-count",
+      "pass": true,
+      "detail": "436 pages (expected 436)"
+    },
+    {
+      "name": "printed-url",
+      "pass": true,
+      "detail": "valicepress.com/companion/codex-bestiarium"
+    },
+    {
+      "name": "canonical-host",
+      "pass": true,
+      "detail": "no forbidden host on the page"
+    },
+    {
+      "name": "eyebrow",
+      "pass": true,
+      "detail": "CONTINUE WITH VÂLIÇE PRESS"
+    },
+    {
+      "name": "fonts-embedded",
+      "pass": true,
+      "detail": "4 faces: AAAAAA+Cinzel500, AAAAAA+Cinzel400, AAAAAA+Garamonditalic400, AAAAAA+Garamond400"
+    },
+    {
+      "name": "pdf-metadata",
+      "pass": true,
+      "detail": "title=\"Codex Bestiarium: A World Bestiary: 112 Legendary Creatures from 40 Traditions — Beasts, Spirits, and Guardians of World Folklore\" author=\"Emre Doğan\""
+    }
+  ]
+}

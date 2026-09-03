@@ -170,6 +170,40 @@ async function urlStatus(url) {
   }
 }
 
+/**
+ * The house standard for a companion page, as it can be read back off print.
+ *
+ * Every page rendered by `companion-page.py` opens with the standing line
+ * CONTINUE WITH <IMPRINT>, and nothing else in any of these books uses that
+ * phrase. Finding it on the same page as the printed address is what
+ * distinguishes a dedicated destination from an address mentioned in passing —
+ * which is what four of these books used to carry.
+ */
+const HOUSE_EYEBROW = /CONTINUE\s+WITH\s+V[ÂA]LI[ÇC]E\s+PRESS/i;
+/**
+ * The house floor is 25 % of the usable page height. `measure-qr.py` finds the
+ * code from its finder patterns, and that method reads the side about 5–10 %
+ * high (the finder centroids carry a little slop) while reading the module
+ * pitch exactly. So the floor is checked at 0.24 of the FULL page height,
+ * which is the conservative reading of the same rule, and the module pitch —
+ * the number that actually decides whether a phone can read it — is checked
+ * exactly against the 0.5 mm print floor.
+ */
+// Expressed against the FULL page height, because that is what the raster
+// gives. The house floor is 25 % of the USABLE height, and these books carry
+// 0.62–0.8 in margins, so 25 % of usable is 20.5–21 % of the page. 0.20 is
+// that same rule, read off the only surface a measurement can reach.
+const QR_FRACTION_FLOOR = 0.20;
+const QR_MODULE_FLOOR_MM = 0.5;
+
+function measureQr(file, page) {
+  const py = "./.venv-factory/bin/python";
+  if (!existsSync(py)) return { found: null, note: "no .venv-factory — run `python3 -m venv .venv-factory && .venv-factory/bin/pip install pypdf pikepdf segno reportlab fonttools Pillow`" };
+  const out = run(py, ["scripts/factory/measure-qr.py", file, String(page)]);
+  if (typeof out !== "string") return { found: null, note: out.error };
+  try { return JSON.parse(out.trim().split("\n").pop()); } catch { return { found: null, note: "unreadable measurement" }; }
+}
+
 /** Every URL-ish token in the text, any host. */
 function urlsIn(flat) {
   return [...new Set([...flat.matchAll(/(?:https?:\/\/)?(?:www\.)?[a-z0-9][a-z0-9-]*(?:\.[a-z0-9-]+)*\.(?:com|net|org|io|app|dev|kr|uk|edu|gov)(?:\/[^\s,)"'<>]*)?/gi)]
@@ -231,6 +265,7 @@ export async function auditEdition(book, spec, file, companion, opts = {}) {
     return row;
   }
   const flat = text.replace(/\s+/g, " ");
+  const pages = text.split("\f");
   row.pages = info.pages;
   row.pdfTitle = info.title;
   row.pdfAuthor = info.author;
@@ -245,10 +280,28 @@ export async function auditEdition(book, spec, file, companion, opts = {}) {
   row.forbiddenHosts = FORBIDDEN.flatMap((re) => flat.match(re) ?? []);
   row.dataWallUrls = siteUrls.filter((u) => DATA_WALL.test(u));
   row.otherStoreUrls = allUrls.filter((u) => OTHER_STORES.test(u));
-  // A QR code is vector or an image; pdftotext sees neither. The interiors
-  // that carry one print "Scan, or type the address" beside it, so that
-  // sentence is the honest proxy — reported as "yes" only on that evidence.
-  row.qrPresent = /scan,? or type the address|scan the (qr )?code/i.test(flat) ? "yes" : "no";
+  // Where the address is printed, and whether that page is a destination or a
+  // mention. `companionPage` is 1-based, as a reader would say it.
+  const wanted = companion ? `/companion/${companion.slug}` : "valicepress.com";
+  // Look for the DEDICATED page first. Several of these books mention the
+  // address a second time where it is natural — Dudeney on its imprint page,
+  // Hangul at the foot of its closing note — and the first page carrying the
+  // address is usually that quieter mention, not the destination.
+  const dedicatedIndex = pages.findIndex((p) => HOUSE_EYEBROW.test(p) && p.includes(wanted));
+  const anyIndex = pages.findIndex((p) => p.includes(wanted));
+  row.dedicatedPage = dedicatedIndex !== -1;
+  row.companionPage = (dedicatedIndex !== -1 ? dedicatedIndex : anyIndex) + 1 || null;
+  // Where else the address appears. A second, quieter mention is deliberate;
+  // it is only a defect when it is the ONLY mention.
+  row.otherMentionPages = pages
+    .map((p, i) => (p.includes(wanted) ? i + 1 : null))
+    .filter((n) => n && n !== row.companionPage);
+
+  // The code itself, found and measured on the page rather than inferred from
+  // a caption. `qrPresent` stays in the row for the matrix's sake, but it is
+  // now an answer from the raster, not from the text layer.
+  row.qr = row.companionPage && !opts.skipQr ? measureQr(file, row.companionPage) : { found: null, note: "not measured" };
+  row.qrPresent = row.qr.found === true ? "yes" : row.qr.found === false ? "no" : "unmeasured";
   row.valiceMention = /Valice|Vâliçe/i.test(flat);
   // The store, not the river or its people: "Amazons" and "Amazonia" occur in
   // two of these books and are not references to the retailer.
@@ -287,6 +340,11 @@ export async function auditEdition(book, spec, file, companion, opts = {}) {
     }
   }
   if (row.bioStatus === "non-canonical") f.push({ level: "warn", check: "bio", message: "the printed biography is not the approved text", fix: "replace with the Founder's approved biography at the next revision (no false claim found)" });
+  if (companion && row.hasCompanionUrl && !row.dedicatedPage) f.push({ level: "warn", check: "dedicated-page", message: `the address is printed on p.${row.companionPage}, which is not a house companion page (no "CONTINUE WITH …" heading)`, fix: "rebuild the page with scripts/factory/build-companion-pages.mjs — a mention inside other copy is not noticed by a reader" });
+  if (row.qr.found === false) f.push({ level: "warn", check: "qr-missing", message: `no QR code found on p.${row.companionPage}`, fix: "a printed address without a code costs the reader a typing session; rebuild the page" });
+  if (row.qr.found === true && row.qr.fractionOfPageHeight < QR_FRACTION_FLOOR) f.push({ level: "warn", check: "qr-small", message: `the QR is ${(row.qr.fractionOfPageHeight * 100).toFixed(1)} % of page height (floor ${(QR_FRACTION_FLOOR * 100).toFixed(0)} % of page height, which is the house's 25 % of usable height)`, fix: "enlarge it — a code that reads as a footnote is not scanned" });
+  if (row.qr.found === true && row.qr.moduleMm < QR_MODULE_FLOOR_MM) f.push({ level: "error", check: "qr-module", message: `QR modules print at ${row.qr.moduleMm} mm (floor ${QR_MODULE_FLOOR_MM} mm)`, fix: "enlarge the code or shorten the URL; below half a millimetre the modules bleed together on uncoated stock" });
+  if (opts.catalogPages && row.pages && opts.catalogPages !== row.pages) f.push({ level: "warn", check: "page-count", message: `the built interior is ${row.pages} pages; the catalogue records ${opts.catalogPages}${opts.catalogPagesArePending ? " as this format's pending count" : ""}`, fix: opts.catalogPagesArePending ? "the pending count and the built file disagree — one of them is wrong" : "record the new count as `pendingPageCount` in valice-catalog.mjs; `pageCount` keeps describing the edition a buyer can actually buy until the file is uploaded" });
   if (companion && !row.hasCompanionUrl) f.push({ level: "warn", check: "companion", message: row.hasSiteUrl ? `names ${CANONICAL} but not ${row.companionUrl}` : `a companion exists at ${row.companionUrl} and the interior does not mention it`, fix: `print ${row.companionUrl} in the back matter` });
   if (!companion && !row.hasSiteUrl) f.push({ level: "warn", check: "route-home", message: `no ${CANONICAL} anywhere in the interior, and this book has no companion`, fix: `build a companion for ${book.slug}, then print its URL at the next revision` });
 
@@ -315,7 +373,7 @@ export async function auditEdition(book, spec, file, companion, opts = {}) {
   return row;
 }
 
-export async function runLinkageAudit({ slug = null, checkUrls: doCheck = false } = {}) {
+export async function runLinkageAudit({ slug = null, checkUrls: doCheck = false, skipQr = false } = {}) {
   const companions = companionsByBook();
   const rows = [];
   for (const book of BOOKS) {
@@ -325,14 +383,15 @@ export async function runLinkageAudit({ slug = null, checkUrls: doCheck = false 
     for (const format of ["paperback", "hardcover", "large_print"]) {
       const spec = book.formats.find((x) => x.format === format);
       if (!spec || spec.availability === "unavailable") continue;
-      rows.push(await auditEdition(book, spec, interiors[format] ?? null, companion, { checkUrls: doCheck }));
+      rows.push(await auditEdition(book, spec, interiors[format] ?? null, companion, { checkUrls: doCheck, catalogPages: spec.pendingPageCount ?? spec.pageCount ?? null,
+        catalogPagesArePending: Boolean(spec.pendingPageCount), skipQr }));
     }
   }
   return rows;
 }
 
 if (process.argv[1] && process.argv[1].endsWith("kdp-linkage-lint.mjs")) {
-  const rows = await runLinkageAudit({ slug: only, checkUrls });
+  const rows = await runLinkageAudit({ slug: only, checkUrls, skipQr: args.includes("--skip-qr") });
   if (asJson) {
     console.log(JSON.stringify({ takenAt: new Date().toISOString(), origin, rows }, null, 2));
   } else {
@@ -342,7 +401,7 @@ if (process.argv[1] && process.argv[1].endsWith("kdp-linkage-lint.mjs")) {
       const live = r.live ? "live" : r.amazonState === "in_review" ? "in review" : "not live";
       console.log(`${r.status.padEnd(15)} ${r.book.slice(0, 30).padEnd(31)} ${r.format.padEnd(12)} ${live.padEnd(10)} ${r.asin ?? "—"}`);
       console.log(`                ${r.detail}`);
-      if (r.pages) console.log(`                ${r.pages} pp · bio: ${r.bioStatus} · metadata: ${r.metadataOk ? "ok" : "MISSING"} · QR: ${r.qrPresent}${r.otherUrls?.length ? ` · other URLs: ${r.otherUrls.join(", ")}` : ""}`);
+      if (r.pages) console.log(`                ${r.pages} pp · bio: ${r.bioStatus} · metadata: ${r.metadataOk ? "ok" : "MISSING"} · page ${r.companionPage ?? "—"}${r.dedicatedPage ? " (dedicated)" : ""} · QR: ${r.qr?.found ? `${(r.qr.fractionOfPageHeight * 100).toFixed(0)}% of page, ${r.qr.moduleMm} mm/module` : r.qrPresent}${r.otherUrls?.length ? ` · other URLs: ${r.otherUrls.join(", ")}` : ""}`);
       if (r.action && r.action !== "none") console.log(`                → ${r.action}`);
     }
     console.log(`\n${Object.entries(counts).map(([k, v]) => `${k}: ${v}`).join("  ·  ")}`);

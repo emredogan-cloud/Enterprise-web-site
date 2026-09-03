@@ -1,0 +1,97 @@
+{
+  "generatedAt": "2026-09-03",
+  "book": "codex-mythologica",
+  "format": "large_print",
+  "title": "Codex Mythologica",
+  "asin": "B0HDDR84MF",
+  "kdpState": "live",
+  "interior": {
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_MYTHOLOGICA/04_PRINT/LARGEPRINT/CODEX_MYTHOLOGICA_INTERIOR_LARGEPRINT.pdf",
+    "sha256": "bf6c8f9a34875bc99574d037bd08727f5aac5cadd8e5877447b8a9346e7f05b6",
+    "bytes": 1114694,
+    "pagesBefore": 578,
+    "pagesAfter": 579,
+    "companionPage": 579,
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_MYTHOLOGICA/04_PRINT/LARGEPRINT/CODEX_MYTHOLOGICA_INTERIOR_LARGEPRINT.pre-companion.pdf"
+  },
+  "companion": {
+    "printedUrl": "valicepress.com/companion/codex-mythologica",
+    "qrUrl": "https://valicepress.com/companion/codex-mythologica",
+    "qr": {
+      "note": "geometry not re-measured on this run"
+    },
+    "dedicatedPage": true,
+    "emailWall": false
+  },
+  "spine": {
+    "pagesBefore": 578,
+    "pagesAfter": 579,
+    "paper": "cream",
+    "binding": "paperback",
+    "trim": "6×9 in",
+    "before": {
+      "spineWidthIn": 1.445,
+      "wrapWidthIn": 13.695,
+      "wrapHeightIn": 9.25,
+      "spineTextAllowed": true
+    },
+    "after": {
+      "spineWidthIn": 1.4475,
+      "wrapWidthIn": 13.6975,
+      "wrapHeightIn": 9.25,
+      "spineTextAllowed": true
+    },
+    "deltaSpineIn": 0.0025,
+    "deltaWrapWidthIn": 0.0025,
+    "withinKdpTolerance": true,
+    "coverRebuildRequired": false,
+    "coverRebuildCorrect": true,
+    "hardcoverGeometryMustBeRead": false,
+    "barcodeZoneAffected": false,
+    "verdict": "wrap width moves 0.0025 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.0025 in and the house rule is that each edition's cover reads its own page count"
+  },
+  "cover": {
+    "built": true,
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_MYTHOLOGICA/03_COVER/LARGEPRINT/exports/",
+    "pageCount": 579,
+    "spineIn": 1.4475,
+    "wrapIn": "13.6975 × 9.2500 (cream)",
+    "note": "cream only"
+  },
+  "coverAction": "REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block",
+  "uploadRequired": true,
+  "hold": "KDP Select runs to 2026-11-03 (handbook O5). On that date the interiors are reopened anyway so the ebook can be sold here; these files go up in the same pass. Pulling three live editions before then buys nothing.",
+  "proofRecommended": true,
+  "verification": [
+    {
+      "name": "page-count",
+      "pass": true,
+      "detail": "579 pages (expected 579)"
+    },
+    {
+      "name": "printed-url",
+      "pass": true,
+      "detail": "valicepress.com/companion/codex-mythologica"
+    },
+    {
+      "name": "canonical-host",
+      "pass": true,
+      "detail": "no forbidden host on the page"
+    },
+    {
+      "name": "eyebrow",
+      "pass": true,
+      "detail": "CONTINUE WITH VÂLIÇE PRESS"
+    },
+    {
+      "name": "fonts-embedded",
+      "pass": true,
+      "detail": "4 faces: AAAAAA+Cinzel500, AAAAAA+Cinzel400, AAAAAA+Garamonditalic400, AAAAAA+Garamond400"
+    },
+    {
+      "name": "pdf-metadata",
+      "pass": true,
+      "detail": "title=\"Codex Mythologica: 76 Myths from 19 Civilizations\" author=\"Emre Doğan\""
+    }
+  ]
+}

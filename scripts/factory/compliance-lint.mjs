@@ -85,6 +85,12 @@ export function lintCompliance(config, report = new Report("compliance-lint", "c
  * Gate 10's other half: what the built interior actually says. Reads the
  * registered PDFs for the project's catalogue slug through kdp-linkage-lint;
  * the sheet can be clean while the book prints a dead address.
+ *
+ * Since 2026-09-03 it also enforces the COMPANION-LINKAGE REVIEW: an address
+ * in the book is not enough. The page carrying it must be a dedicated
+ * companion page, it must carry a code a phone can actually read, and the
+ * companion it points at must exist. Four editions passed the old check while
+ * printing a bridge no reader would have noticed.
  */
 export async function lintBuiltInterior(slug, report) {
   if (!slug || !PRINT_INTERIORS[slug]) {
@@ -101,6 +107,30 @@ export async function lintBuiltInterior(slug, report) {
     else if (r.status === "IN_REVIEW") report.warn("linkage", `at KDP in review; ${r.detail}`, where);
     else report.pass("linkage", `${r.detail}${r.bioStatus === "approved" ? " · approved biography" : ""}`, where);
     if (r.bioStatus === "non-canonical") report.warn("linkage", "printed biography is not the approved text", where);
+
+    // ── The companion-linkage review (house rule, 2026-09-03) ─────────────
+    // No new physical edition leaves this gate with a bridge a reader would
+    // not notice. The audit reports these as warnings, because a live book
+    // that predates the standard is a scheduling question; a book going
+    // through the factory now is not. An edition already at KDP in review is
+    // exempt — its file cannot be replaced.
+    if (r.companionExists && r.status !== "IN_REVIEW" && r.status !== "BLOCKED") {
+      if (!r.dedicatedPage) {
+        report.error("companion-page", `the address is printed on p.${r.companionPage ?? "?"} but that page is not a dedicated companion page — build one with scripts/factory/build-companion-pages.mjs`, where);
+      }
+      if (r.qr?.found === false) {
+        report.error("companion-page", `no QR code was found on p.${r.companionPage ?? "?"}; a printed address with no code is a typing exercise`, where);
+      }
+      if (r.qr?.found === true && r.qr.moduleMm < 0.5) {
+        report.error("companion-page", `the QR prints at ${r.qr.moduleMm} mm per module, under the 0.5 mm floor for uncoated stock`, where);
+      }
+      if (r.qr?.found === true && r.qr.fractionOfPageHeight < 0.20) {
+        report.error("companion-page", `the QR is ${(r.qr.fractionOfPageHeight * 100).toFixed(1)} % of the page height; the house floor is a quarter of the usable height`, where);
+      }
+      if (r.qr?.found === null) {
+        report.skipped("companion-page", `the QR could not be measured (${r.qr.note ?? "no reason given"})`, where);
+      }
+    }
   }
   return report;
 }

@@ -1,0 +1,123 @@
+{
+  "generatedAt": "2026-09-03",
+  "book": "the-myth-hunters-field-book",
+  "format": "paperback",
+  "title": "The Myth Hunter's Field Book",
+  "asin": "B0HFP4KYX5",
+  "kdpState": "live",
+  "interior": {
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-MYTH-HUNTERS-FIELD-BOOK/08_OUTPUT/PAPERBACK/interior.pdf",
+    "sha256": "47cb2b965c55dc19e54ae63ee9b7b2945ca23ceacc699d39d22ec543c9be3429",
+    "bytes": 33184153,
+    "pagesBefore": 156,
+    "pagesAfter": 156,
+    "companionPage": 156,
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-MYTH-HUNTERS-FIELD-BOOK/08_OUTPUT/PAPERBACK/interior.pre-companion.pdf"
+  },
+  "companion": {
+    "printedUrl": "valicepress.com/companion/myth-hunters-field-book",
+    "qrUrl": "https://valicepress.com/companion/myth-hunters-field-book",
+    "qr": {
+      "modules": 33,
+      "module_pt": 6.283636363636364,
+      "module_mm": 2.216727272727273,
+      "version": 4,
+      "error": "M",
+      "side_pt": 207.36,
+      "fraction_of_usable_height": 0.3,
+      "x_pt": 202.32,
+      "y_pt": 343.0748057142857
+    },
+    "dedicatedPage": true,
+    "emailWall": false
+  },
+  "spine": {
+    "pagesBefore": 156,
+    "pagesAfter": 156,
+    "paper": "white",
+    "binding": "paperback",
+    "trim": "8.5×11 in",
+    "before": {
+      "spineWidthIn": 0.351312,
+      "wrapWidthIn": 17.601312,
+      "wrapHeightIn": 11.25,
+      "spineTextAllowed": true
+    },
+    "after": {
+      "spineWidthIn": 0.351312,
+      "wrapWidthIn": 17.601312,
+      "wrapHeightIn": 11.25,
+      "spineTextAllowed": true
+    },
+    "deltaSpineIn": 0,
+    "deltaWrapWidthIn": 0,
+    "withinKdpTolerance": true,
+    "coverRebuildRequired": false,
+    "coverRebuildCorrect": false,
+    "hardcoverGeometryMustBeRead": false,
+    "barcodeZoneAffected": false,
+    "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
+  },
+  "cover": null,
+  "coverAction": "NONE — page count unchanged; the cover at KDP stays valid",
+  "uploadRequired": true,
+  "hold": null,
+  "proofRecommended": false,
+  "verification": [
+    {
+      "name": "page-count",
+      "pass": true,
+      "detail": "156 pages (expected 156)"
+    },
+    {
+      "name": "printed-url",
+      "pass": true,
+      "detail": "valicepress.com/companion/myth-hunters-field-book"
+    },
+    {
+      "name": "canonical-host",
+      "pass": true,
+      "detail": "no forbidden host on the page"
+    },
+    {
+      "name": "no-email-wall",
+      "pass": true,
+      "detail": "the page asks for nothing"
+    },
+    {
+      "name": "headline",
+      "pass": true,
+      "detail": "headline present"
+    },
+    {
+      "name": "eyebrow",
+      "pass": true,
+      "detail": "CONTINUE WITH VÂLIÇE PRESS"
+    },
+    {
+      "name": "fonts-embedded",
+      "pass": true,
+      "detail": "3 faces: AAAAAA+DejaVuSans-Bold, AAAAAA+DejaVuSans-Oblique, AAAAAA+DejaVuSans"
+    },
+    {
+      "name": "qr-floor",
+      "pass": true,
+      "detail": "30.0% of usable height"
+    },
+    {
+      "name": "qr-module-size",
+      "pass": true,
+      "detail": "2.22 mm per module"
+    },
+    {
+      "name": "pdf-metadata",
+      "pass": true,
+      "detail": "title=\"The Myth Hunter's Field Book: A Screen-Free Quest Through 22 Cultures — 120 Puzzles, Maps, Codes and Challenges for Ages 8–12\" author=\"Emre Doğan\""
+    },
+    {
+      "name": "qr-matches-url",
+      "pass": true,
+      "detail": "33×33 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/myth-hunters-field-book"
+    }
+  ]
+}

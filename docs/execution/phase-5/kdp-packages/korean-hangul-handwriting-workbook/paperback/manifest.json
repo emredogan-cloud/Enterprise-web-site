@@ -1,0 +1,97 @@
+{
+  "generatedAt": "2026-09-03",
+  "book": "korean-hangul-handwriting-workbook",
+  "format": "paperback",
+  "title": "Korean Hangul Handwriting Workbook",
+  "asin": "B0HHHWXGG4",
+  "kdpState": "live",
+  "interior": {
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_126pp.pdf",
+    "sha256": "791ef3bdbc4cbf8d20d65f257ea768c96990bbb993ca65d8ddc11b4752b9e35b",
+    "bytes": 767355,
+    "pagesBefore": 124,
+    "pagesAfter": 126,
+    "companionPage": 125,
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_126pp.pre-companion.pdf"
+  },
+  "companion": {
+    "printedUrl": "valicepress.com/companion/hangul",
+    "qrUrl": "https://valicepress.com/companion/hangul",
+    "qr": {
+      "note": "geometry not re-measured on this run"
+    },
+    "dedicatedPage": true,
+    "emailWall": false
+  },
+  "spine": {
+    "pagesBefore": 124,
+    "pagesAfter": 126,
+    "paper": "white",
+    "binding": "paperback",
+    "trim": "8.5×11 in",
+    "before": {
+      "spineWidthIn": 0.279248,
+      "wrapWidthIn": 17.529248,
+      "wrapHeightIn": 11.25,
+      "spineTextAllowed": true
+    },
+    "after": {
+      "spineWidthIn": 0.283752,
+      "wrapWidthIn": 17.533752,
+      "wrapHeightIn": 11.25,
+      "spineTextAllowed": true
+    },
+    "deltaSpineIn": 0.004504,
+    "deltaWrapWidthIn": 0.004504,
+    "withinKdpTolerance": true,
+    "coverRebuildRequired": false,
+    "coverRebuildCorrect": true,
+    "hardcoverGeometryMustBeRead": false,
+    "barcodeZoneAffected": false,
+    "verdict": "wrap width moves 0.004504 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.004504 in and the house rule is that each edition's cover reads its own page count"
+  },
+  "cover": {
+    "built": true,
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/KOREAN-HANGUL-HANDWRITING-WORKBOOK/05_APLUS_COVER/exports/paperback_cover.pdf",
+    "pageCount": 126,
+    "spineIn": 0.283752,
+    "wrapIn": "17.5338 × 11.2500",
+    "note": "internal KDP formula, white paper — the same arithmetic spine-check.mjs runs, and the two agree"
+  },
+  "coverAction": "REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block",
+  "uploadRequired": true,
+  "hold": null,
+  "proofRecommended": true,
+  "verification": [
+    {
+      "name": "page-count",
+      "pass": true,
+      "detail": "126 pages (expected 126)"
+    },
+    {
+      "name": "printed-url",
+      "pass": true,
+      "detail": "valicepress.com/companion/hangul"
+    },
+    {
+      "name": "canonical-host",
+      "pass": true,
+      "detail": "no forbidden host on the page"
+    },
+    {
+      "name": "eyebrow",
+      "pass": true,
+      "detail": "CONTINUE WITH VÂLIÇE PRESS"
+    },
+    {
+      "name": "fonts-embedded",
+      "pass": true,
+      "detail": "2 faces: AAAAAA+NotoSansKR-Bold, AAAAAA+NotoSansKR-Regular"
+    },
+    {
+      "name": "pdf-metadata",
+      "pass": true,
+      "detail": "title=\"Korean Hangul Handwriting Workbook: Learn to write all 40 letters with correct stroke order, build syllable blocks, and read your first 97 Korean words\" author=\"Emre Doğan\""
+    }
+  ]
+}

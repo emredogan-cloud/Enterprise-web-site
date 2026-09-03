@@ -1,0 +1,45 @@
+/**
+ * Covers rebuilt on 2026-09-03 because the block changed thickness.
+ *
+ * A cover is listed here only when it was actually produced and its wrap width
+ * was checked against `spine-check.mjs`. Where an edition's wrap could NOT be
+ * rebuilt from this machine, the entry says so and why, because "no file" and
+ * "file not needed" are different answers and a package that confuses them is
+ * how a book ships with a spine that does not fit its block.
+ */
+const BOOKS = "/home/emre/Downloads/MY-DİGİTAL-BOOK";
+
+export const REBUILT_COVERS = {
+  "korean-hangul-handwriting-workbook": {
+    paperback: {
+      built: true,
+      path: `${BOOKS}/KOREAN-HANGUL-HANDWRITING-WORKBOOK/05_APLUS_COVER/exports/paperback_cover.pdf`,
+      pageCount: 126, spineIn: 0.283752, wrapIn: "17.5338 × 11.2500",
+      note: "internal KDP formula, white paper — the same arithmetic spine-check.mjs runs, and the two agree",
+    },
+    hardcover: {
+      built: false,
+      reason: "this project pins the hardcover wrap to a value the Founder read out of KDP's Cover Calculator, and that value is page-count independent — re-running the builder at 126 pp reproduces the 124 pp wrap. The house standard forbids deriving a hardcover wrap. Founder action: run the calculator at 126 pp / 8.25 × 11 / white, paste the three numbers into project_config.json → formats.hardcover.kdp_calculator, re-run 06_BUILD/build_cover.py --format hardcover.",
+    },
+  },
+  "codex-bestiarium": {
+    paperback: { built: true, path: `${BOOKS}/CODEX_BESTIARIUM/03_COVER/PAPERBACK/exports/`, pageCount: 436, spineIn: 1.09, wrapIn: "13.3400 × 9.2500 (cream) · 13.2319 × 9.2500 (white)", note: "both paper stocks built; take the one the listing uses" },
+    hardcover: { built: true, path: `${BOOKS}/CODEX_BESTIARIUM/03_COVER/HARDCOVER/exports/`, pageCount: 436, spineIn: null, wrapIn: "14.8508 × 10.4167 (cream) · 14.7427 × 10.4167 (white)", note: "this project carries a calibrated hardcover profile with a measured board allowance, so its wrap IS derivable and was rebuilt" },
+    large_print: { built: true, path: `${BOOKS}/CODEX_BESTIARIUM/03_COVER/LARGEPRINT/exports/`, pageCount: 600, spineIn: 1.5, wrapIn: "13.7500 × 9.2500 (cream)", note: "cream only, as the large print is printed" },
+  },
+  "codex-mythologica": {
+    paperback: { built: true, path: `${BOOKS}/CODEX_MYTHOLOGICA/03_COVER/PAPERBACK/exports/`, pageCount: 330, spineIn: 0.825, wrapIn: "13.0750 × 9.2500 (cream) · 12.9932 × 9.2500 (white)", note: "both paper stocks built" },
+    hardcover: { built: true, path: `${BOOKS}/CODEX_MYTHOLOGICA/03_COVER/HARDCOVER/exports/`, pageCount: 330, spineIn: null, wrapIn: "14.5858 × 10.4167 (cream) · 14.5040 × 10.4167 (white)", note: "calibrated hardcover profile" },
+    large_print: { built: true, path: `${BOOKS}/CODEX_MYTHOLOGICA/03_COVER/LARGEPRINT/exports/`, pageCount: 579, spineIn: 1.4475, wrapIn: "13.6975 × 9.2500 (cream)", note: "cream only" },
+  },
+  "the-great-book-of-world-games": {
+    large_print: {
+      built: false,
+      reason: "the block moved 232 → 233 pp, so the wrap needs a new spine, but this project's covers.py takes the page count from 06_REPORTS/interior-largeprint.json, which has recorded 234 pages since before this phase while the built block was 232. Only re-running 04_BUILD/interior.py regenerates that report and its pagemap. Do it at the first revision after this edition leaves KDP review, then run covers.py.",
+    },
+  },
+};
+
+export function coverFor(bookSlug, format) {
+  return REBUILT_COVERS[bookSlug]?.[format] ?? null;
+}

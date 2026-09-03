@@ -1,0 +1,123 @@
+{
+  "generatedAt": "2026-09-03",
+  "book": "the-great-book-of-world-myths",
+  "format": "hardcover",
+  "title": "The Great Book of World Myths",
+  "asin": "B0HDZJ4PHQ",
+  "kdpState": "live",
+  "interior": {
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-GREAT-BOOK-OF-WORLD-MYTHS/08_OUTPUT/hardcover/interior.pdf",
+    "sha256": "2d7052223b28710dc4ddc3fad56919795d51e3581d38edde14c84fdd42428244",
+    "bytes": 97534323,
+    "pagesBefore": 234,
+    "pagesAfter": 234,
+    "companionPage": 233,
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-GREAT-BOOK-OF-WORLD-MYTHS/08_OUTPUT/hardcover/interior.pre-companion.pdf"
+  },
+  "companion": {
+    "printedUrl": "valicepress.com/companion/world-myths",
+    "qrUrl": "https://valicepress.com/companion/world-myths",
+    "qr": {
+      "modules": 33,
+      "module_pt": 4.511454545454546,
+      "module_mm": 1.5915409090909092,
+      "version": 4,
+      "error": "M",
+      "side_pt": 148.87800000000001,
+      "fraction_of_usable_height": 0.2757,
+      "x_pt": 141.561,
+      "y_pt": 306.1866089714284
+    },
+    "dedicatedPage": true,
+    "emailWall": false
+  },
+  "spine": {
+    "pagesBefore": 234,
+    "pagesAfter": 234,
+    "paper": "cream",
+    "binding": "hardcover",
+    "trim": "6×9 in",
+    "before": {
+      "spineWidthIn": 0.585,
+      "wrapWidthIn": 12.835,
+      "wrapHeightIn": 9.25,
+      "spineTextAllowed": true
+    },
+    "after": {
+      "spineWidthIn": 0.585,
+      "wrapWidthIn": 12.835,
+      "wrapHeightIn": 9.25,
+      "spineTextAllowed": true
+    },
+    "deltaSpineIn": 0,
+    "deltaWrapWidthIn": 0,
+    "withinKdpTolerance": true,
+    "coverRebuildRequired": false,
+    "coverRebuildCorrect": false,
+    "hardcoverGeometryMustBeRead": false,
+    "barcodeZoneAffected": false,
+    "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
+  },
+  "cover": null,
+  "coverAction": "NONE — page count unchanged; the cover at KDP stays valid",
+  "uploadRequired": true,
+  "hold": null,
+  "proofRecommended": false,
+  "verification": [
+    {
+      "name": "page-count",
+      "pass": true,
+      "detail": "234 pages (expected 234)"
+    },
+    {
+      "name": "printed-url",
+      "pass": true,
+      "detail": "valicepress.com/companion/world-myths"
+    },
+    {
+      "name": "canonical-host",
+      "pass": true,
+      "detail": "no forbidden host on the page"
+    },
+    {
+      "name": "no-email-wall",
+      "pass": true,
+      "detail": "the page asks for nothing"
+    },
+    {
+      "name": "headline",
+      "pass": true,
+      "detail": "headline present"
+    },
+    {
+      "name": "eyebrow",
+      "pass": true,
+      "detail": "CONTINUE WITH VÂLIÇE PRESS"
+    },
+    {
+      "name": "fonts-embedded",
+      "pass": true,
+      "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
+    },
+    {
+      "name": "qr-floor",
+      "pass": true,
+      "detail": "27.6% of usable height"
+    },
+    {
+      "name": "qr-module-size",
+      "pass": true,
+      "detail": "1.59 mm per module"
+    },
+    {
+      "name": "pdf-metadata",
+      "pass": true,
+      "detail": "title=\"The Great Book of World Myths: 45 Stories of Gods, Heroes, and Monsters from 22 Cultures — Retold for Young Readers (Ages 8–12)\" author=\"Emre Doğan\""
+    },
+    {
+      "name": "qr-matches-url",
+      "pass": true,
+      "detail": "33×33 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/world-myths"
+    }
+  ]
+}

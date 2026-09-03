@@ -40,8 +40,42 @@ describe("kdp-linkage-lint on built PDFs", () => {
     const row = await auditEdition(book, live, file, companion);
     expect(row.status).toBe("COMPLETE");
     expect(row.hasCompanionUrl).toBe(true);
-    expect(row.qrPresent).toBe("yes");
     expect(row.metadataOk).toBe(true);
+  });
+
+  it("does not accept a caption as evidence that a code was printed", async () => {
+    // Until 2026-09-03 the audit answered "is there a QR?" by looking for the
+    // words "Scan, or type the address" — so a page that printed the caption
+    // and lost the code passed. The code is now found in the raster or not at
+    // all, and this page has no code on it.
+    const file = await pdfWith(["Free material at valicepress.com/companion/test", "Scan, or type the address."]);
+    const row = await auditEdition(book, live, file, companion);
+    expect(row.qrPresent).toBe("no");
+    expect(row.findings.some((f) => f.check === "qr-missing")).toBe(true);
+  });
+
+  it("does not mistake a passing mention for a dedicated companion page", async () => {
+    // What the Dudeney paperback carried until this pass: one line inside the
+    // imprint on p.4, and nothing else anywhere in 144 pages.
+    const file = await pdfWith([
+      "Copyright 2026. Set in Liberation Serif. Printed on demand.",
+      "valicepress.com/companion/test — hints and printable sheets, free.",
+    ]);
+    const row = await auditEdition(book, live, file, companion);
+    expect(row.dedicatedPage).toBe(false);
+    expect(row.findings.some((f) => f.check === "dedicated-page")).toBe(true);
+  });
+
+  it("recognises a house companion page by its standing line", async () => {
+    const file = await pdfWith([
+      "CONTINUE WITH VÂLIÇE PRESS",
+      "Scan the code, or type the address:",
+      "valicepress.com/companion/test",
+    ]);
+    const row = await auditEdition(book, live, file, companion);
+    expect(row.dedicatedPage).toBe(true);
+    expect(row.companionPage).toBe(1);
+    expect(row.findings.some((f) => f.check === "dedicated-page")).toBe(false);
   });
 
   it("is MISSING when a companion exists but the interior never names it", async () => {

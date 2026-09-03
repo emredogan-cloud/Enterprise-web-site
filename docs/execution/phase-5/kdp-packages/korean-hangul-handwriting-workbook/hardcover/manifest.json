@@ -1,0 +1,93 @@
+{
+  "generatedAt": "2026-09-03",
+  "book": "korean-hangul-handwriting-workbook",
+  "format": "hardcover",
+  "title": "Korean Hangul Handwriting Workbook",
+  "asin": null,
+  "kdpState": "in_review",
+  "interior": {
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/hardcover/hardcover_interior_8.25x11_126pp.pdf",
+    "sha256": "849c152c7621bb7ea701ddd58a075d746b4978024345a44d47b17566176b141d",
+    "bytes": 767181,
+    "pagesBefore": 124,
+    "pagesAfter": 126,
+    "companionPage": 125,
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/hardcover/hardcover_interior_8.25x11_126pp.pre-companion.pdf"
+  },
+  "companion": {
+    "printedUrl": "valicepress.com/companion/hangul",
+    "qrUrl": "https://valicepress.com/companion/hangul",
+    "qr": {
+      "note": "geometry not re-measured on this run"
+    },
+    "dedicatedPage": true,
+    "emailWall": false
+  },
+  "spine": {
+    "pagesBefore": 124,
+    "pagesAfter": 126,
+    "paper": "white",
+    "binding": "hardcover",
+    "trim": "8.25×11 in",
+    "before": {
+      "spineWidthIn": 0.279248,
+      "wrapWidthIn": 17.029248,
+      "wrapHeightIn": 11.25,
+      "spineTextAllowed": true
+    },
+    "after": {
+      "spineWidthIn": 0.283752,
+      "wrapWidthIn": 17.033752,
+      "wrapHeightIn": 11.25,
+      "spineTextAllowed": true
+    },
+    "deltaSpineIn": 0.004504,
+    "deltaWrapWidthIn": 0.004504,
+    "withinKdpTolerance": true,
+    "coverRebuildRequired": false,
+    "coverRebuildCorrect": true,
+    "hardcoverGeometryMustBeRead": true,
+    "barcodeZoneAffected": false,
+    "verdict": "wrap width moves 0.004504 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.004504 in and the house rule is that each edition's cover reads its own page count"
+  },
+  "cover": {
+    "built": false,
+    "reason": "this project pins the hardcover wrap to a value the Founder read out of KDP's Cover Calculator, and that value is page-count independent — re-running the builder at 126 pp reproduces the 124 pp wrap. The house standard forbids deriving a hardcover wrap. Founder action: run the calculator at 126 pp / 8.25 × 11 / white, paste the three numbers into project_config.json → formats.hardcover.kdp_calculator, re-run 06_BUILD/build_cover.py --format hardcover."
+  },
+  "coverAction": "REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block",
+  "uploadRequired": true,
+  "hold": "In KDP review, and its wrap geometry is not derivable here. This project records the hardcover wrap as a value the Founder read out of KDP's own Cover Calculator (`project_config.json → formats.hardcover.kdp_calculator`), pinned and independent of page count — so re-running the builder at 126 pages reproduces the 124-page wrap rather than a new one. The house standard says a hardcover wrap is read from the calculator and never derived, so this one needs five minutes in the calculator at 126 pp / 8.25 × 11 / white before it can be rebuilt. The paperback has no such dependency and its cover was rebuilt.",
+  "proofRecommended": true,
+  "verification": [
+    {
+      "name": "page-count",
+      "pass": true,
+      "detail": "126 pages (expected 126)"
+    },
+    {
+      "name": "printed-url",
+      "pass": true,
+      "detail": "valicepress.com/companion/hangul"
+    },
+    {
+      "name": "canonical-host",
+      "pass": true,
+      "detail": "no forbidden host on the page"
+    },
+    {
+      "name": "eyebrow",
+      "pass": true,
+      "detail": "CONTINUE WITH VÂLIÇE PRESS"
+    },
+    {
+      "name": "fonts-embedded",
+      "pass": true,
+      "detail": "2 faces: AAAAAA+NotoSansKR-Bold, AAAAAA+NotoSansKR-Regular"
+    },
+    {
+      "name": "pdf-metadata",
+      "pass": true,
+      "detail": "title=\"Korean Hangul Handwriting Workbook: Learn to write all 40 letters with correct stroke order, build syllable blocks, and read your first 97 Korean words\" author=\"Emre Doğan\""
+    }
+  ]
+}

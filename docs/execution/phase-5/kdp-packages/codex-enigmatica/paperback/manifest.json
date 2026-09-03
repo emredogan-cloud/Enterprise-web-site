@@ -1,0 +1,123 @@
+{
+  "generatedAt": "2026-09-03",
+  "book": "codex-enigmatica",
+  "format": "paperback",
+  "title": "Codex Enigmatica",
+  "asin": "B0HGSVF15Q",
+  "kdpState": "live",
+  "interior": {
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX-ENIGMATICA/08_OUTPUT/PAPERBACK/interior.pdf",
+    "sha256": "b37a5921cf4ccabc493563083b75cb4d07e42ff691ec970fbc702d58c8ae36fa",
+    "bytes": 70772599,
+    "pagesBefore": 274,
+    "pagesAfter": 274,
+    "companionPage": 274,
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX-ENIGMATICA/08_OUTPUT/PAPERBACK/interior.pre-companion.pdf"
+  },
+  "companion": {
+    "printedUrl": "valicepress.com/codex-enigmatica/verify",
+    "qrUrl": "https://valicepress.com/codex-enigmatica/verify",
+    "qr": {
+      "modules": 33,
+      "module_pt": 4.538487272727272,
+      "module_mm": 1.601077454545454,
+      "version": 4,
+      "error": "M",
+      "side_pt": 149.77007999999998,
+      "fraction_of_usable_height": 0.28109999999999996,
+      "x_pt": 141.11496,
+      "y_pt": 322.3769977599999
+    },
+    "dedicatedPage": true,
+    "emailWall": false
+  },
+  "spine": {
+    "pagesBefore": 274,
+    "pagesAfter": 274,
+    "paper": "cream",
+    "binding": "paperback",
+    "trim": "6×9 in",
+    "before": {
+      "spineWidthIn": 0.685,
+      "wrapWidthIn": 12.935,
+      "wrapHeightIn": 9.25,
+      "spineTextAllowed": true
+    },
+    "after": {
+      "spineWidthIn": 0.685,
+      "wrapWidthIn": 12.935,
+      "wrapHeightIn": 9.25,
+      "spineTextAllowed": true
+    },
+    "deltaSpineIn": 0,
+    "deltaWrapWidthIn": 0,
+    "withinKdpTolerance": true,
+    "coverRebuildRequired": false,
+    "coverRebuildCorrect": false,
+    "hardcoverGeometryMustBeRead": false,
+    "barcodeZoneAffected": false,
+    "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
+  },
+  "cover": null,
+  "coverAction": "NONE — page count unchanged; the cover at KDP stays valid",
+  "uploadRequired": true,
+  "hold": null,
+  "proofRecommended": false,
+  "verification": [
+    {
+      "name": "page-count",
+      "pass": true,
+      "detail": "274 pages (expected 274)"
+    },
+    {
+      "name": "printed-url",
+      "pass": true,
+      "detail": "valicepress.com/codex-enigmatica/verify"
+    },
+    {
+      "name": "canonical-host",
+      "pass": true,
+      "detail": "no forbidden host on the page"
+    },
+    {
+      "name": "no-email-wall",
+      "pass": true,
+      "detail": "the page asks for nothing"
+    },
+    {
+      "name": "headline",
+      "pass": true,
+      "detail": "headline present"
+    },
+    {
+      "name": "eyebrow",
+      "pass": true,
+      "detail": "CONTINUE WITH VÂLIÇE PRESS"
+    },
+    {
+      "name": "fonts-embedded",
+      "pass": true,
+      "detail": "3 faces: AAAAAA+DejaVuSerif-Bold, AAAAAA+DejaVuSerif-Italic, AAAAAA+DejaVuSerif"
+    },
+    {
+      "name": "qr-floor",
+      "pass": true,
+      "detail": "28.1% of usable height"
+    },
+    {
+      "name": "qr-module-size",
+      "pass": true,
+      "detail": "1.60 mm per module"
+    },
+    {
+      "name": "pdf-metadata",
+      "pass": true,
+      "detail": "title=\"Codex Enigmatica: One Hundred Engraved Enigmas and a Single Unbroken Mystery — A Puzzle Book Bound as a Grimoire\" author=\"Emre Doğan\""
+    },
+    {
+      "name": "qr-matches-url",
+      "pass": true,
+      "detail": "33×33 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/codex-enigmatica/verify"
+    }
+  ]
+}

@@ -211,7 +211,7 @@ export const BOOKS = [
     websiteStatus: "published",
     // KDP → Valice Press linkage: what to do with the print interiors and why.
     // Read by scripts/factory/kdp-linkage-matrix.mjs; the audit itself is measured.
-    linkageDecision: { decision: "next_revision", why: "Three live print editions and the widest audience. The companion (reading companion + theme index) is live as of 2026-09-03; the interiors have no blank final page, so printing the URL adds a leaf and changes the spine. Do it on 2026-11-03 when the KDP Select term lapses and the interior is reopened for the direct edition anyway \u2014 one revision, two reasons." },
+    linkageDecision: { decision: "rebuild_at_next_kdp_revision", why: "All three editions now carry a dedicated companion page (p. 330 / p. 330 / p. 579), and all three covers were rebuilt for the new page counts on 2026-09-03 — the files are finished and verified. They are held, not unfinished: KDP Select runs to 2026-11-03, and on that date the interiors are reopened anyway so the ebook can be sold here. Pulling three live editions through a review cycle before then buys nothing. Packages: docs/execution/phase-5/kdp-packages/codex-mythologica/." },
     // The exclusivity that decides this book's digital channel.
     kdpSelect: true,
     directSale: false,
@@ -256,6 +256,8 @@ export const BOOKS = [
         fulfillment: "amazon",
         priceCents: usd(21.99),
         pageCount: 329,
+        pendingPageCount: 330,
+        pendingPageCountReason: "the companion page of 2026-09-03; `pageCount` stays at what the listing sells until the file is uploaded",
         amazonAsin: "B0HCY8KY3X",
         amazonUrl: amazon("B0HCY8KY3X"),
         kdp: "live",
@@ -269,6 +271,8 @@ export const BOOKS = [
         fulfillment: "amazon",
         priceCents: usd(32.99),
         pageCount: 329,
+        pendingPageCount: 330,
+        pendingPageCountReason: "the companion page of 2026-09-03; `pageCount` stays at what the listing sells until the file is uploaded",
         amazonAsin: "B0HDBFZRQ4",
         amazonUrl: amazon("B0HDBFZRQ4"),
         kdp: "live",
@@ -281,6 +285,8 @@ export const BOOKS = [
         fulfillment: "amazon",
         priceCents: usd(27.99),
         pageCount: 578,
+        pendingPageCount: 579,
+        pendingPageCountReason: "the companion page of 2026-09-03; `pageCount` stays at what the listing sells until the file is uploaded",
         // Amazon carries the large print run as its own title, not as a
         // format of the main one. One ASIN, its own listing.
         amazonAsin: "B0HDDR84MF",
@@ -311,7 +317,7 @@ export const BOOKS = [
     websiteStatus: "published",
     // KDP → Valice Press linkage: what to do with the print interiors and why.
     // Read by scripts/factory/kdp-linkage-matrix.mjs; the audit itself is measured.
-    linkageDecision: { decision: "next_revision", why: "The companion (motif, creature, kin and traditions indexes) is live as of 2026-09-03. The 435-page interiors end on a full sources page with no blank leaf; adding the URL adds a page and a new cover. Bundle with the '120 \u2192 112' listing correction (handbook O4), which needs a KDP visit anyway." },
+    linkageDecision: { decision: "rebuild_at_next_kdp_revision", why: "All three editions now carry a dedicated companion page (p. 436 / p. 436 / p. 600) and all three covers were rebuilt for the new page counts on 2026-09-03. Held for one reason: the four listings still claim '120 Legendary Creatures' where the book has 112 (handbook O4), and that correction needs a KDP visit for every edition. One review cycle, both jobs. Packages: docs/execution/phase-5/kdp-packages/codex-bestiarium/." },
     kdpSelect: false,
     directSale: true,
     directSaleBlockedBy: null,
@@ -342,6 +348,8 @@ export const BOOKS = [
         fulfillment: "amazon",
         priceCents: usd(24.99),
         pageCount: 435,
+        pendingPageCount: 436,
+        pendingPageCountReason: "the companion page of 2026-09-03; `pageCount` stays at what the listing sells until the file is uploaded",
         amazonAsin: "B0HDLQHQ7H",
         amazonUrl: amazon("B0HDLQHQ7H"),
         kdp: "live",
@@ -354,6 +362,8 @@ export const BOOKS = [
         fulfillment: "amazon",
         priceCents: usd(37.99),
         pageCount: 435,
+        pendingPageCount: 436,
+        pendingPageCountReason: "the companion page of 2026-09-03; `pageCount` stays at what the listing sells until the file is uploaded",
         amazonAsin: "B0HDLLPG5M",
         amazonUrl: amazon("B0HDLLPG5M"),
         kdp: "live",
@@ -366,6 +376,8 @@ export const BOOKS = [
         fulfillment: "amazon",
         priceCents: usd(29.99),
         pageCount: 599,
+        pendingPageCount: 600,
+        pendingPageCountReason: "the companion page of 2026-09-03; `pageCount` stays at what the listing sells until the file is uploaded",
         amazonAsin: "B0HDLT1V3P",
         amazonUrl: amazon("B0HDLT1V3P"),
         kdp: "live",
@@ -395,7 +407,7 @@ export const BOOKS = [
     websiteStatus: "published",
     // KDP → Valice Press linkage: what to do with the print interiors and why.
     // Read by scripts/factory/kdp-linkage-matrix.mjs; the audit itself is measured.
-    linkageDecision: { decision: "update_now", why: "The strongest companion case in the catalogue, and the cheapest interior: the map-note page (p. 233) was half empty and p. 234 blank, so the companion block and QR fit with the book still at 234 pages \u2014 interior swap only, covers untouched. The approved biography rides along on p. 231." },
+    linkageDecision: { decision: "rebuild_now", why: "Rebuilt 2026-09-03: the half-page 'THE MAP, FULL SIZE' note on p. 233 — a one-inch code low on the page with a caption beside it — is now a dedicated companion page carrying a 2.1-inch code at 24 % of the page height. Still 234 pages, so the covers at KDP stay exactly valid. Interior swap only, both formats." },
     kdpSelect: false,
     directSale: true,
     directSaleBlockedBy: null,
@@ -482,7 +494,7 @@ export const BOOKS = [
     websiteStatus: "published",
     // KDP → Valice Press linkage: what to do with the print interiors and why.
     // Read by scripts/factory/kdp-linkage-matrix.mjs; the audit itself is measured.
-    linkageDecision: { decision: "update_now", why: "Paperback and hardcover rebuilt 2026-09-02 with the companion page on the blank final leaf, still 160 pages; waiting on the Founder's upload (handbook U1). The large print is in KDP review and is not touched until it is live." },
+    linkageDecision: { decision: "rebuild_now", why: "Rebuilt 2026-09-03: the weak note of 09-02 — a text block at the top of an otherwise empty p. 160, with no code at all — is now a dedicated companion page with a 2.9-inch code. Still 160 pages, covers untouched. The large print is in KDP review; its invented author biography was corrected on p. 4 (page-neutral) and its companion page is built, but its cover cannot be rebuilt here — see the hold in companion-page-spec.mjs." },
     kdpSelect: false,
     directSale: true,
     directSaleBlockedBy: null,
@@ -542,6 +554,8 @@ export const BOOKS = [
         fulfillment: "amazon",
         priceCents: usd(31.99),
         pageCount: 232,
+        pendingPageCount: 233,
+        pendingPageCountReason: "the companion page of 2026-09-03; `pageCount` stays at what the listing sells until the file is uploaded",
         amazonAsin: null,
         amazonUrl: null,
         kdp: "in_review",
@@ -571,7 +585,7 @@ export const BOOKS = [
     websiteStatus: "published",
     // KDP → Valice Press linkage: what to do with the print interiors and why.
     // Read by scripts/factory/kdp-linkage-matrix.mjs; the audit itself is measured.
-    linkageDecision: { decision: "next_revision", why: "The companion (quest log, culture cards, spare certificate) is live as of 2026-09-03. The interior also carries broken PDF metadata (untitled / anonymous) and two ruled Field Notes pages; the URL can sit on the first Field Notes page header without changing the count, so the next build fixes both. Not started: the Field Book pipeline has not been run this phase and a 156-page illustrated rebuild is a proof-level change." },
+    linkageDecision: { decision: "rebuild_now", why: "Rebuilt 2026-09-03. The interior ended on two identical ruled 'Field Notes' pages; the second is now the companion page, so the reader keeps a notes page and gains a destination — 156 pages before, 156 after, cover untouched. The same pass set the PDF title and author, which had shipped as 'untitled / anonymous'." },
     kdpSelect: false,
     directSale: false,
     directSaleBlockedBy:
@@ -655,7 +669,7 @@ export const BOOKS = [
     websiteStatus: "published",
     // KDP → Valice Press linkage: what to do with the print interiors and why.
     // Read by scripts/factory/kdp-linkage-matrix.mjs; the audit itself is measured.
-    linkageDecision: { decision: "update_now", why: "The companion is live and the interior is already being reopened for the Founder's confirmation (handbook U2). A callout on the closing-notes page (p. 122) carries the URL with the book still at 124 pages \u2014 no spine change." },
+    linkageDecision: { decision: "rebuild_now", why: "Rebuilt 2026-09-03. The companion was a grey box at the foot of p. 122, the fourth thing on that page; it is now a dedicated page 125 with a 2.85-inch code. This is the one book where the page count had to move — 124 → 126 — because nothing on the closing pages could be given up. The paperback cover was rebuilt for the new spine (0.2792 → 0.2838 in); the hardcover wrap is a KDP-Cover-Calculator value only the account holder can re-run." },
     kdpSelect: false,
     directSale: false,
     directSaleBlockedBy:
@@ -684,6 +698,8 @@ export const BOOKS = [
         fulfillment: "amazon",
         priceCents: usd(12.99),
         pageCount: 124,
+        pendingPageCount: 126,
+        pendingPageCountReason: "the companion page of 2026-09-03; `pageCount` stays at what the listing sells until the file is uploaded",
         amazonAsin: "B0HHHWXGG4",
         amazonUrl: amazon("B0HHHWXGG4"),
         kdp: "live",
@@ -700,6 +716,8 @@ export const BOOKS = [
         fulfillment: "amazon",
         priceCents: usd(21.99),
         pageCount: 124,
+        pendingPageCount: 126,
+        pendingPageCountReason: "the companion page of 2026-09-03; `pageCount` stays at what the listing sells until the file is uploaded",
         amazonAsin: null,
         amazonUrl: null,
         kdp: "in_review",
@@ -754,7 +772,7 @@ export const BOOKS = [
     websiteStatus: "published",
     // KDP → Valice Press linkage: what to do with the print interiors and why.
     // Read by scripts/factory/kdp-linkage-matrix.mjs; the audit itself is measured.
-    linkageDecision: { decision: "already_done", why: "Typeset after the companion existed and prints its URL. The template for the rest." },
+    linkageDecision: { decision: "rebuild_now", why: "Rebuilt 2026-09-03. The book's only companion mention had been one line inside the imprint on p. 4; p. 144 was an empty page carrying a running head. That page is now the companion page. 144 before, 144 after — and this edition has not been uploaded yet, so nothing at KDP is affected." },
     kdpSelect: false,
     directSale: true,
     directSaleBlockedBy: null,
@@ -823,7 +841,7 @@ export const BOOKS = [
     websiteStatus: "published",
     // KDP → Valice Press linkage: what to do with the print interiors and why.
     // Read by scripts/factory/kdp-linkage-matrix.mjs; the audit itself is measured.
-    linkageDecision: { decision: "already_done", why: "Prints valicepress.com/codex-enigmatica/verify \u2014 the page that checks the book's single hidden word. Reader utility first, no email, no data wall. The pattern every other title copies." },
+    linkageDecision: { decision: "rebuild_now", why: "Rebuilt 2026-09-03. The verification page already existed and already printed its address — it simply had no code and no presence. The paperback's p. 274 is now the house design with a 2.1-inch code; the hardcover's blank final leaf, p. 276, carries the same page while its original p. 275 stays as it is. No page count moved." },
     kdpSelect: false,
     directSale: true,
     directSaleBlockedBy: null,

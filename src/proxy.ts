@@ -2,6 +2,7 @@ import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 import { canonicalRedirectTarget } from "@/lib/canonical-host";
+import { printedAddressRedirect } from "@/lib/printed-address";
 import { checkRateLimit } from "@/lib/rate-limit";
 
 /*
@@ -51,6 +52,15 @@ export default clerkMiddleware(async (auth, req) => {
   // `.vercel.app` hosts — see `src/lib/canonical-host.ts` for the loop guard.
   const canonicalTarget = canonicalRedirectTarget(req.url);
   if (canonicalTarget) return NextResponse.redirect(canonicalTarget, 308);
+
+  // ---- 0b. Printed addresses, typed with the wrong case -------------------
+  // Every companion address is printed inside a physical book and typed by
+  // hand; two of those books are set in a face whose lowercase glyphs are
+  // small caps, so a reader copying what they see types the path in capitals.
+  // Paths are case-sensitive in Next.js and a 404 there costs far more than a
+  // redirect. Narrow by design — only printed paths, see printed-address.ts.
+  const printedTarget = printedAddressRedirect(req.url);
+  if (printedTarget) return NextResponse.redirect(printedTarget, 308);
 
   // ---- 1. Perimeter rate limit ------------------------------------------
   // `checkRateLimit` returns:

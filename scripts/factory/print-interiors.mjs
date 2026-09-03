@@ -41,9 +41,12 @@ export const PRINT_INTERIORS = {
     paperback: `${ROOT}/THE-MYTH-HUNTERS-FIELD-BOOK/08_OUTPUT/PAPERBACK/interior.pdf`,
   },
   "korean-hangul-handwriting-workbook": {
-    // The REMEDIATED interiors of 2026-09-02, not the earlier build.
-    paperback: `${ROOT}/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_124pp.pdf`,
-    hardcover: `${ROOT}/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/hardcover/hardcover_interior_8.25x11_124pp.pdf`,
+    // The REMEDIATED interiors of 2026-09-02, rebuilt on 2026-09-03 with the
+    // companion page on p.125. The filename carries the page count and was
+    // renamed from _124pp when the count changed — a file whose name states a
+    // page count it no longer has is how the wrong interior gets uploaded.
+    paperback: `${ROOT}/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_126pp.pdf`,
+    hardcover: `${ROOT}/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/hardcover/hardcover_interior_8.25x11_126pp.pdf`,
   },
   "the-puzzles-of-henry-dudeney": {
     paperback: `${ROOT}/THE-PUZZLES-OF-HENRY-DUDENEY/OUTPUT/interior-main.pdf`,

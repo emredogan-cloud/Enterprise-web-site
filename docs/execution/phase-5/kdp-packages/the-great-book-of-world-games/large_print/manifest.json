@@ -1,0 +1,93 @@
+{
+  "generatedAt": "2026-09-03",
+  "book": "the-great-book-of-world-games",
+  "format": "large_print",
+  "title": "The Great Book of World Games",
+  "asin": null,
+  "kdpState": "in_review",
+  "interior": {
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/LARGEPRINT/GreatBookOfWorldGames_interior_largeprint.pdf",
+    "sha256": "5a73f4b9d8660a4f1f039e5904bb12e705ba22b0a3742fdbbe1e7157769e29a0",
+    "bytes": 994068,
+    "pagesBefore": 232,
+    "pagesAfter": 233,
+    "companionPage": 233,
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/LARGEPRINT/GreatBookOfWorldGames_interior_largeprint.pre-companion.pdf"
+  },
+  "companion": {
+    "printedUrl": "valicepress.com/companion/world-games",
+    "qrUrl": "https://valicepress.com/companion/world-games",
+    "qr": {
+      "note": "geometry not re-measured on this run"
+    },
+    "dedicatedPage": true,
+    "emailWall": false
+  },
+  "spine": {
+    "pagesBefore": 232,
+    "pagesAfter": 233,
+    "paper": "white",
+    "binding": "paperback",
+    "trim": "8.5×11 in",
+    "before": {
+      "spineWidthIn": 0.522464,
+      "wrapWidthIn": 17.772464,
+      "wrapHeightIn": 11.25,
+      "spineTextAllowed": true
+    },
+    "after": {
+      "spineWidthIn": 0.524716,
+      "wrapWidthIn": 17.774716,
+      "wrapHeightIn": 11.25,
+      "spineTextAllowed": true
+    },
+    "deltaSpineIn": 0.002252,
+    "deltaWrapWidthIn": 0.002252,
+    "withinKdpTolerance": true,
+    "coverRebuildRequired": false,
+    "coverRebuildCorrect": true,
+    "hardcoverGeometryMustBeRead": false,
+    "barcodeZoneAffected": false,
+    "verdict": "wrap width moves 0.002252 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.002252 in and the house rule is that each edition's cover reads its own page count"
+  },
+  "cover": {
+    "built": false,
+    "reason": "the block moved 232 → 233 pp, so the wrap needs a new spine, but this project's covers.py takes the page count from 06_REPORTS/interior-largeprint.json, which has recorded 234 pages since before this phase while the built block was 232. Only re-running 04_BUILD/interior.py regenerates that report and its pagemap. Do it at the first revision after this edition leaves KDP review, then run covers.py."
+  },
+  "coverAction": "REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block",
+  "uploadRequired": true,
+  "hold": "IN KDP REVIEW since 2026-09-02, and the cover cannot be rebuilt from here. The block moves 232 → 233 pages, so the wrap needs a new spine — but this project's cover pipeline reads `06_REPORTS/interior-largeprint.json`, which has recorded 234 pages since before this phase while the built block was 232 (a pre-existing divergence, reported as a finding). Only re-running `04_BUILD/interior.py` regenerates that report and its pagemap. So: at the first revision after this edition goes live, run interior.py → covers.py, and take the companion page through the pipeline's own companion block rather than as a splice. The invented biography, which was the other defect, is already fixed and is page-neutral.",
+  "proofRecommended": true,
+  "verification": [
+    {
+      "name": "page-count",
+      "pass": true,
+      "detail": "233 pages (expected 233)"
+    },
+    {
+      "name": "printed-url",
+      "pass": true,
+      "detail": "valicepress.com/companion/world-games"
+    },
+    {
+      "name": "canonical-host",
+      "pass": true,
+      "detail": "no forbidden host on the page"
+    },
+    {
+      "name": "eyebrow",
+      "pass": true,
+      "detail": "CONTINUE WITH VÂLIÇE PRESS"
+    },
+    {
+      "name": "fonts-embedded",
+      "pass": true,
+      "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
+    },
+    {
+      "name": "pdf-metadata",
+      "pass": true,
+      "detail": "title=\"The Great Book of World Games: 56 Games from 4,600 Years of Human Play — Rules, Boards and Stories from 39 Cultures, Ready to Play Tonight\" author=\"Emre Doğan\""
+    }
+  ]
+}
