@@ -209,6 +209,9 @@ export const BOOKS = [
     bisac: ["FIC010000", "SOC011000", "LIT004290"],
     series: { name: "Codex", volume: 1 },
     websiteStatus: "published",
+    // KDP → Valice Press linkage: what to do with the print interiors and why.
+    // Read by scripts/factory/kdp-linkage-matrix.mjs; the audit itself is measured.
+    linkageDecision: { decision: "next_revision", why: "Three live print editions and the widest audience. The companion (reading companion + theme index) is live as of 2026-09-03; the interiors have no blank final page, so printing the URL adds a leaf and changes the spine. Do it on 2026-11-03 when the KDP Select term lapses and the interior is reopened for the direct edition anyway \u2014 one revision, two reasons." },
     // The exclusivity that decides this book's digital channel.
     kdpSelect: true,
     directSale: false,
@@ -306,6 +309,9 @@ export const BOOKS = [
     bisac: ["SOC011000", "REF000000", "FIC010000"],
     series: { name: "Codex", volume: 2 },
     websiteStatus: "published",
+    // KDP → Valice Press linkage: what to do with the print interiors and why.
+    // Read by scripts/factory/kdp-linkage-matrix.mjs; the audit itself is measured.
+    linkageDecision: { decision: "next_revision", why: "The companion (motif, creature, kin and traditions indexes) is live as of 2026-09-03. The 435-page interiors end on a full sources page with no blank leaf; adding the URL adds a page and a new cover. Bundle with the '120 \u2192 112' listing correction (handbook O4), which needs a KDP visit anyway." },
     kdpSelect: false,
     directSale: true,
     directSaleBlockedBy: null,
@@ -387,6 +393,9 @@ export const BOOKS = [
     bisac: ["JUV033010"],
     series: { name: "The Great Book of…", volume: 1 },
     websiteStatus: "published",
+    // KDP → Valice Press linkage: what to do with the print interiors and why.
+    // Read by scripts/factory/kdp-linkage-matrix.mjs; the audit itself is measured.
+    linkageDecision: { decision: "update_now", why: "The strongest companion case in the catalogue, and the cheapest interior: the map-note page (p. 233) was half empty and p. 234 blank, so the companion block and QR fit with the book still at 234 pages \u2014 interior swap only, covers untouched. The approved biography rides along on p. 231." },
     kdpSelect: false,
     directSale: true,
     directSaleBlockedBy: null,
@@ -471,6 +480,9 @@ export const BOOKS = [
     bisac: ["GAM002000", "REF000000", "HIS000000"],
     series: { name: "The Great Book of…", volume: 2 },
     websiteStatus: "published",
+    // KDP → Valice Press linkage: what to do with the print interiors and why.
+    // Read by scripts/factory/kdp-linkage-matrix.mjs; the audit itself is measured.
+    linkageDecision: { decision: "update_now", why: "Paperback and hardcover rebuilt 2026-09-02 with the companion page on the blank final leaf, still 160 pages; waiting on the Founder's upload (handbook U1). The large print is in KDP review and is not touched until it is live." },
     kdpSelect: false,
     directSale: true,
     directSaleBlockedBy: null,
@@ -521,8 +533,10 @@ export const BOOKS = [
       },
       {
         // Built 2026-09-02 (Phase 2 v3 pilot): 16 pt body, 232 pp, KDP
-        // preflight green — 08_OUTPUT/LARGEPRINT in the book project. Not
-        // uploaded; the Founder uploads and the ASIN lands here when live.
+        // preflight green — 08_OUTPUT/LARGEPRINT in the book project.
+        // Uploaded by the Founder on 2026-09-02 and in KDP review since; not
+        // on the shelf as of 2026-09-03 (author-wide Amazon search). The ASIN
+        // lands here only when the listing is live, never before.
         format: "large_print",
         availability: "coming_soon",
         fulfillment: "amazon",
@@ -530,7 +544,7 @@ export const BOOKS = [
         pageCount: 232,
         amazonAsin: null,
         amazonUrl: null,
-        kdp: "not_created",
+        kdp: "in_review",
         masterFileKey: null,
         priceBasis:
           "price-engine.mjs 2026-09-02 — 232 pp large trim B&W prints at $4.94; $31.99 nets $14.25 (44.5%), $3 under the hardcover. Founder may move it at Gate 8. See 06_REPORTS/LARGEPRINT_BUILD_REPORT.md.",
@@ -555,6 +569,9 @@ export const BOOKS = [
     bisac: ["JNF001000", "JUV045000", "JNF025000"],
     series: null,
     websiteStatus: "published",
+    // KDP → Valice Press linkage: what to do with the print interiors and why.
+    // Read by scripts/factory/kdp-linkage-matrix.mjs; the audit itself is measured.
+    linkageDecision: { decision: "next_revision", why: "The companion (quest log, culture cards, spare certificate) is live as of 2026-09-03. The interior also carries broken PDF metadata (untitled / anonymous) and two ruled Field Notes pages; the URL can sit on the first Field Notes page header without changing the count, so the next build fixes both. Not started: the Field Book pipeline has not been run this phase and a 156-page illustrated rebuild is a proof-level change." },
     kdpSelect: false,
     directSale: false,
     directSaleBlockedBy:
@@ -636,6 +653,9 @@ export const BOOKS = [
     // and Kindle files rebuilt (09_OUTPUT/FINAL). What Gate 2 still gates is
     // the DIRECT sale — see directSaleBlockedBy; the ebook stays unavailable.
     websiteStatus: "published",
+    // KDP → Valice Press linkage: what to do with the print interiors and why.
+    // Read by scripts/factory/kdp-linkage-matrix.mjs; the audit itself is measured.
+    linkageDecision: { decision: "update_now", why: "The companion is live and the interior is already being reopened for the Founder's confirmation (handbook U2). A callout on the closing-notes page (p. 122) carries the URL with the book still at 124 pages \u2014 no spine change." },
     kdpSelect: false,
     directSale: false,
     directSaleBlockedBy:
@@ -732,6 +752,9 @@ export const BOOKS = [
     // 10 and 11 were already passed. All twelve are recorded in the book
     // project's gates.json with their evidence.
     websiteStatus: "published",
+    // KDP → Valice Press linkage: what to do with the print interiors and why.
+    // Read by scripts/factory/kdp-linkage-matrix.mjs; the audit itself is measured.
+    linkageDecision: { decision: "already_done", why: "Typeset after the companion existed and prints its URL. The template for the rest." },
     kdpSelect: false,
     directSale: true,
     directSaleBlockedBy: null,
@@ -798,6 +821,9 @@ export const BOOKS = [
     bisac: ["GAM014000"],
     series: { name: "Codex", volume: 3 },
     websiteStatus: "published",
+    // KDP → Valice Press linkage: what to do with the print interiors and why.
+    // Read by scripts/factory/kdp-linkage-matrix.mjs; the audit itself is measured.
+    linkageDecision: { decision: "already_done", why: "Prints valicepress.com/codex-enigmatica/verify \u2014 the page that checks the book's single hidden word. Reader utility first, no email, no data wall. The pattern every other title copies." },
     kdpSelect: false,
     directSale: true,
     directSaleBlockedBy: null,

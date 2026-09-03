@@ -39,7 +39,12 @@ export type NewsletterSource =
   // of World Games and inside the Dudeney edition. Never merged, because
   // the segment is the whole point.
   | "world-games-companion"
-  | "dudeney-companion";
+  | "dudeney-companion"
+  // Phase 4 finalization: one tag per printed book, same rule.
+  | "world-myths-companion"
+  | "codex-bestiarium-companion"
+  | "codex-mythologica-companion"
+  | "myth-hunters-companion";
 
 /** The subset of sources a printed-book companion page may carry. */
 export type CompanionNewsletterSource = Extract<

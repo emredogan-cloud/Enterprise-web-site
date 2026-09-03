@@ -3,17 +3,113 @@
   "version": 1,
   "note": "The twelve quality gates of the Valice publishing factory. A gate is 'passed' only with evidence (a file path, URL or measurement) and an owner; scripts/factory/gate.mjs refuses anything else. Founder-owned gates cannot be passed by an agent.",
   "gates": [
-    { "id": 1,  "key": "market",       "name": "Market fit",                 "owner": "R1",      "founderSignoff": false, "evidence": "MARKET.md with a top-20 BSR sample (>=20 timestamped rows) and a go/no-go", "killCriterion": "no competitor gap, or no measurable demand" },
-    { "id": 2,  "key": "rights",       "name": "Rights",                     "owner": "R6",      "founderSignoff": true,  "evidence": "RIGHTS.md + a row per source in valice-house/rights/ledger.csv with status GREEN and evidence URLs", "killCriterion": "any RED, or a YELLOW without a written mitigation" },
-    { "id": 3,  "key": "originality",  "name": "Originality / similarity",   "owner": "R8",      "founderSignoff": false, "evidence": "QA/similarity.json from scripts/factory/similarity.mjs, overlap below threshold", "killCriterion": "8-gram overlap above the configured threshold with any Valice manuscript" },
-    { "id": 4,  "key": "content",      "name": "Content quality",            "owner": "R3",      "founderSignoff": false, "evidence": "QA/draft-lint.json clean; usability pilot recorded for workbooks/puzzles", "killCriterion": "below SPEC.md word/section budget; placeholder tokens; missing pilot" },
-    { "id": 5,  "key": "facts",        "name": "Factual verification",       "owner": "R4",      "founderSignoff": true,  "evidence": "CLAIMS.jsonl with a verdict per claim from a verifier who is not the author; no WRONG remaining", "killCriterion": "a load-bearing claim WRONG or UNVERIFIABLE and not cut" },
-    { "id": 6,  "key": "editorial",    "name": "Editorial",                  "owner": "R5",      "founderSignoff": false, "evidence": "QA/style-lint.json clean", "killCriterion": "house-style violations; a cut claim re-introduced" },
-    { "id": 7,  "key": "cover",        "name": "Cover",                      "owner": "R7",      "founderSignoff": true,  "evidence": "QA/cover-check.json clean for every cover slot in ASSETS/cover/", "killCriterion": "thumbnail unreadable; wrong spine; <300 DPI; rights issue" },
-    { "id": 8,  "key": "interior",     "name": "Interior / proof",           "owner": "R7",      "founderSignoff": true,  "evidence": "QA/preflight.json clean; KDP Previewer pass recorded; proof order id for a new trim/template", "killCriterion": "fonts not embedded; missing glyphs; page count outside range; Previewer rejection" },
-    { "id": 9,  "key": "metadata",     "name": "Metadata",                   "owner": "R8",      "founderSignoff": false, "evidence": "QA/metadata-lint.json clean (subtitle counts equal measured counts; keyword rules)", "killCriterion": "a claim in metadata that is not true of the book" },
-    { "id": 10, "key": "compliance",   "name": "KDP compliance",             "owner": "R8",      "founderSignoff": true,  "evidence": "QA/compliance-lint.json clean; AI disclosure answered in project_config.json", "killCriterion": "undisclosed AI content; undifferentiated public domain; Select conflict; wrong ink" },
-    { "id": 11, "key": "website",      "name": "Website product QA",         "owner": "R9",      "founderSignoff": false, "evidence": "validate:catalog output clean for the slug", "killCriterion": "missing cover/master/price/preview; JSON-LD invalid" },
-    { "id": 12, "key": "publish",      "name": "Founder publication approval","owner": "founder", "founderSignoff": true,  "evidence": "the reviewed diff that sets websiteStatus: \"published\" (commit hash) and/or the KDP submission id", "killCriterion": "-" }
+    {
+      "id": 1,
+      "key": "market",
+      "name": "Market fit",
+      "owner": "R1",
+      "founderSignoff": false,
+      "evidence": "MARKET.md with a top-20 BSR sample (>=20 timestamped rows) and a go/no-go",
+      "killCriterion": "no competitor gap, or no measurable demand"
+    },
+    {
+      "id": 2,
+      "key": "rights",
+      "name": "Rights",
+      "owner": "R6",
+      "founderSignoff": true,
+      "evidence": "RIGHTS.md + a row per source in valice-house/rights/ledger.csv with status GREEN and evidence URLs",
+      "killCriterion": "any RED, or a YELLOW without a written mitigation"
+    },
+    {
+      "id": 3,
+      "key": "originality",
+      "name": "Originality / similarity",
+      "owner": "R8",
+      "founderSignoff": false,
+      "evidence": "QA/similarity.json from scripts/factory/similarity.mjs, overlap below threshold",
+      "killCriterion": "8-gram overlap above the configured threshold with any Valice manuscript"
+    },
+    {
+      "id": 4,
+      "key": "content",
+      "name": "Content quality",
+      "owner": "R3",
+      "founderSignoff": false,
+      "evidence": "QA/draft-lint.json clean; usability pilot recorded for workbooks/puzzles",
+      "killCriterion": "below SPEC.md word/section budget; placeholder tokens; missing pilot"
+    },
+    {
+      "id": 5,
+      "key": "facts",
+      "name": "Factual verification",
+      "owner": "R4",
+      "founderSignoff": true,
+      "evidence": "CLAIMS.jsonl with a verdict per claim from a verifier who is not the author; no WRONG remaining",
+      "killCriterion": "a load-bearing claim WRONG or UNVERIFIABLE and not cut"
+    },
+    {
+      "id": 6,
+      "key": "editorial",
+      "name": "Editorial",
+      "owner": "R5",
+      "founderSignoff": false,
+      "evidence": "QA/style-lint.json clean",
+      "killCriterion": "house-style violations; a cut claim re-introduced"
+    },
+    {
+      "id": 7,
+      "key": "cover",
+      "name": "Cover",
+      "owner": "R7",
+      "founderSignoff": true,
+      "evidence": "QA/cover-check.json clean for every cover slot in ASSETS/cover/",
+      "killCriterion": "thumbnail unreadable; wrong spine; <300 DPI; rights issue"
+    },
+    {
+      "id": 8,
+      "key": "interior",
+      "name": "Interior / proof",
+      "owner": "R7",
+      "founderSignoff": true,
+      "evidence": "QA/preflight.json clean; KDP Previewer pass recorded; proof order id for a new trim/template",
+      "killCriterion": "fonts not embedded; missing glyphs; page count outside range; Previewer rejection"
+    },
+    {
+      "id": 9,
+      "key": "metadata",
+      "name": "Metadata",
+      "owner": "R8",
+      "founderSignoff": false,
+      "evidence": "QA/metadata-lint.json clean (subtitle counts equal measured counts; keyword rules)",
+      "killCriterion": "a claim in metadata that is not true of the book"
+    },
+    {
+      "id": 10,
+      "key": "compliance",
+      "name": "KDP compliance",
+      "owner": "R8",
+      "founderSignoff": true,
+      "evidence": "QA/compliance-lint.json clean — the sheet AND the built interior: kdp-linkage-lint on the registered PDFs finds no non-canonical host, no data-wall URL, no unauthorised biography, no broken PDF metadata, no false listing claim, and prints the companion URL when a companion exists; AI disclosure answered in project_config.json",
+      "killCriterion": "undisclosed AI content; undifferentiated public domain; Select conflict; wrong ink; a printed address that is not valicepress.com; a companion that exists but is not printed"
+    },
+    {
+      "id": 11,
+      "key": "website",
+      "name": "Website product QA",
+      "owner": "R9",
+      "founderSignoff": false,
+      "evidence": "validate:catalog output clean for the slug",
+      "killCriterion": "missing cover/master/price/preview; JSON-LD invalid"
+    },
+    {
+      "id": 12,
+      "key": "publish",
+      "name": "Founder publication approval",
+      "owner": "founder",
+      "founderSignoff": true,
+      "evidence": "the reviewed diff that sets websiteStatus: \"published\" (commit hash) and/or the KDP submission id",
+      "killCriterion": "-"
+    }
   ]
 }

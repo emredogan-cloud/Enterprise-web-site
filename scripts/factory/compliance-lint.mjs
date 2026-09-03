@@ -19,12 +19,21 @@
  *   - back-matter links: none whose purpose is a form collecting customer data;
  *     companion printedUrl must be on valicepress.com
  *   - velocity: ≤ 5 new titles per format per week (planning value)
+ *   - THE BUILT INTERIOR (when the project's slug has editions registered in
+ *     print-interiors.mjs): kdp-linkage-lint runs on the actual PDFs. A
+ *     non-canonical host, a data-wall URL, the invented biography, broken
+ *     PDF metadata or a false listing claim is an error; a companion that
+ *     exists but is not printed is an error too — no new print book is
+ *     final without its route home. Pass --no-interior to skip (planning
+ *     runs on a project that has not been typeset yet).
  */
 
 import { join } from "node:path";
 
 import { Report, finish } from "./lib/lint.mjs";
 import { loadProject, parseArgs } from "./lib/project.mjs";
+import { runLinkageAudit } from "./kdp-linkage-lint.mjs";
+import { PRINT_INTERIORS } from "./print-interiors.mjs";
 
 const DISCLOSURE = ["generated", "assisted", "none"];
 const INKS = ["black", "standard-color", "premium-color"];
@@ -72,15 +81,43 @@ export function lintCompliance(config, report = new Report("compliance-lint", "c
   return report;
 }
 
-function main() {
+/**
+ * Gate 10's other half: what the built interior actually says. Reads the
+ * registered PDFs for the project's catalogue slug through kdp-linkage-lint;
+ * the sheet can be clean while the book prints a dead address.
+ */
+export async function lintBuiltInterior(slug, report) {
+  if (!slug || !PRINT_INTERIORS[slug]) {
+    report.skipped("linkage", `no built interior registered for ${slug ?? "(no slug)"} in print-interiors.mjs`);
+    return report;
+  }
+  const rows = await runLinkageAudit({ slug });
+  for (const r of rows) {
+    const where = `${r.book}/${r.format}`;
+    if (r.status === "BLOCKED") report.error("linkage", r.detail, where);
+    else if (r.status === "NEEDS_REVISION") report.error("linkage", `${r.detail} → ${r.action}`, where);
+    else if (r.status === "MISSING" && r.companionExists) report.error("linkage", `${r.detail} → ${r.action}`, where);
+    else if (r.status === "MISSING") report.warn("linkage", `${r.detail} → ${r.action}`, where);
+    else if (r.status === "IN_REVIEW") report.warn("linkage", `at KDP in review; ${r.detail}`, where);
+    else report.pass("linkage", `${r.detail}${r.bioStatus === "approved" ? " · approved biography" : ""}`, where);
+    if (r.bioStatus === "non-canonical") report.warn("linkage", "printed biography is not the approved text", where);
+  }
+  return report;
+}
+
+async function main() {
   const args = parseArgs(process.argv.slice(2));
   if (!args.project) {
-    console.error("usage: compliance-lint.mjs --project <dir> [--json]");
+    console.error("usage: compliance-lint.mjs --project <dir> [--json] [--no-interior]");
     process.exit(2);
   }
   const project = loadProject(args.project);
   const report = new Report("compliance-lint", join(project.root, "project_config.json"));
   lintCompliance(project.config, report);
+  if (!args["no-interior"]) {
+    const slug = project.config.project?.slug ?? project.config.slug ?? null;
+    await lintBuiltInterior(slug, report);
+  }
   finish(report, { projectRoot: project.root, json: Boolean(args.json) });
 }
 

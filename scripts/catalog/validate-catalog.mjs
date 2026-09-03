@@ -19,6 +19,18 @@
  *   7. Paddle: every direct price id exists and is active (needs PADDLE_API_KEY
  *      in --env; otherwise SKIPPED)
  *   8. R2: every direct master key exists (needs R2_* in --env; otherwise SKIPPED)
+ *   9. ONE COVER EVERYWHERE (network): the production homepage, /ebooks,
+ *      /books and each book page reference the book's canonical cover file
+ *      (/images/books/<slug>.webp, through next/image) — the same file on
+ *      every route. A gradient stand-in on a surface where the cover exists
+ *      is the Phase 4 defect this check exists to catch.
+ *  10. COMPANIONS (network): every companion in src/lib/companions.ts answers
+ *      200 on production and every static asset it lists answers 200 — a
+ *      printed QR code must never land on a 404.
+ *  11. NO FABRICATION ON PRODUCTION (network): the public pages carry none of
+ *      the strings that were once invented — the "10K+ authors" stats strip,
+ *      the "Apply Now" link, the constant 4.7-star rating, the unauthorised
+ *      biography — and /authors/<founder> prints the approved biography.
  * A check that cannot run is SKIPPED and listed — it never counts as passed.
  */
 
@@ -55,7 +67,9 @@ function imageHeight(path) {
 
 async function fetchStatus(url, init = {}) {
   try {
-    const res = await fetch(url, { redirect: "manual", ...init });
+    // Every probe is marked internal so it never lands in the analytics sink.
+    const headers = { "x-valice-internal": "1", ...(init.headers ?? {}) };
+    const res = await fetch(url, { redirect: "manual", ...init, headers });
     return { status: res.status, location: res.headers.get("location"), text: init.wantBody ? await res.text() : null };
   } catch (e) {
     return { status: 0, error: e.message };
@@ -117,12 +131,85 @@ export async function networkChecks(book, origin, report) {
   if (!report.errors.some((e) => e.where === slug)) report.pass("page", `${origin}/books/${slug} 200, canonical ok, JSON-LD parses`, slug);
 }
 
+/** Every companion page and asset must answer 200 — a printed address cannot be patched. */
+async function companionCheck(origin, report) {
+  const src = readFileSync(join(REPO_ROOT, "src", "lib", "companions.ts"), "utf8");
+  const slugs = [...src.matchAll(/^\s+slug:\s*"([a-z0-9-]+)",$/gm)].map((m) => m[1]);
+  const hrefs = [...src.matchAll(/href:\s*"(\/companion\/[^"]+)"/g)].map((m) => m[1]);
+  for (const slug of slugs) {
+    const r = await fetchStatus(`${origin}/companion/${slug}`);
+    if (r.status !== 200) report.error("companion", `${origin}/companion/${slug} → ${r.status}`, slug);
+    else report.pass("companion", `/companion/${slug} 200`, slug);
+  }
+  let bad = 0;
+  for (const href of hrefs) {
+    const r = await fetchStatus(`${origin}${href}`, { method: "HEAD" });
+    if (r.status !== 200) { bad++; report.error("companion-asset", `${href} → ${r.status}`); }
+  }
+  if (!bad) report.pass("companion-asset", `${hrefs.length} companion assets answer 200`);
+}
+
+/**
+ * The same cover on every route. Each surface is fetched and must reference
+ * the canonical cover file for every book it lists; a real cover that one
+ * route shows and another hides is a data defect, not a style choice.
+ */
+async function coverConsistencyCheck(origin, published, report) {
+  const surfaces = ["/", "/ebooks", "/books"];
+  const html = {};
+  for (const path of surfaces) {
+    const r = await fetchStatus(`${origin}${path}`, { wantBody: true });
+    if (r.status !== 200) { report.error("cover-route", `${path} → ${r.status}`); continue; }
+    html[path] = r.text;
+  }
+  const direct = new Set(published.filter((b) => b.formats.some((f) => f.fulfillment === "direct" && f.availability === "available")).map((b) => b.slug));
+  for (const b of published) {
+    const needle = encodeURIComponent(`/images/books/${b.slug}.webp`);
+    const plain = `/images/books/${b.slug}.webp`;
+    const shows = (path) => html[path] && (html[path].includes(needle) || html[path].includes(plain));
+    // The homepage features the six newest; a book absent from it is not a
+    // defect, but a book present WITHOUT its cover is.
+    const onHome = html["/"] && html["/"].includes(`/books/${b.slug}`);
+    if (onHome && !shows("/")) report.error("cover-route", `listed on / without its cover`, b.slug);
+    if (html["/books"] && !shows("/books")) report.error("cover-route", `listed on /books without its cover`, b.slug);
+    if (direct.has(b.slug) && html["/ebooks"] && !shows("/ebooks")) report.error("cover-route", `listed on /ebooks without its cover`, b.slug);
+    const page = await fetchStatus(`${origin}/books/${b.slug}`, { wantBody: true });
+    if (page.status === 200 && !(page.text.includes(needle) || page.text.includes(plain))) report.error("cover-route", `/books/${b.slug} does not reference its cover`, b.slug);
+    if (!report.errors.some((e) => e.check === "cover-route" && e.where === b.slug)) report.pass("cover-route", "same cover on every surface", b.slug);
+  }
+}
+
+/** Strings that were once invented must not reappear on production. */
+const FABRICATED = [
+  { re: /10K\+|50K\+|2M\+|120\+ *(<[^>]+>)*\s*Countries/i, what: "the invented authors/books/readers/countries stats" },
+  { re: /Apply Now/i, what: "the dead 'Apply Now' author call" },
+  { re: /puzzle designer, mythologist/i, what: "the unauthorised biography" },
+  { re: /Atomic Habits|The Midnight Library|Psychology of Money/i, what: "other publishers' bestsellers as demo inventory" },
+  { re: /founder_portrait\.webp/i, what: "the AI-generated founder portrait" },
+];
+
+async function fabricationCheck(origin, report) {
+  const pages = ["/", "/authors", "/categories", "/blog", "/books", "/ebooks", "/cart", "/search?q=myth", "/about"];
+  for (const path of pages) {
+    const r = await fetchStatus(`${origin}${path}`, { wantBody: true });
+    if (r.status !== 200) { report.warn("fabrication", `${path} → ${r.status} (not checked)`); continue; }
+    for (const f of FABRICATED) if (f.re.test(r.text)) report.error("fabrication", `${path} carries ${f.what}`);
+    if (path === "/search?q=myth" && /tabular-nums">4\.7</.test(r.text)) report.error("fabrication", "/search prints the constant 4.7 rating");
+  }
+  const founder = await fetchStatus(`${origin}/authors/emre-dogan`, { wantBody: true });
+  if (founder.status === 200) {
+    const ok = /stories that cultures tell themselves/.test(founder.text) && /He lives in Turkey/.test(founder.text);
+    if (!ok) report.error("fabrication", "/authors/emre-dogan does not print the approved biography");
+  } else report.warn("fabrication", `/authors/emre-dogan → ${founder.status}`);
+  if (!report.errors.some((e) => e.check === "fabrication")) report.pass("fabrication", `${pages.length} public pages carry no invented figure, rating, biography or portrait`);
+}
+
 async function sitemapCheck(origin, published, report) {
   const r = await fetchStatus(`${origin}/sitemap.xml`, { wantBody: true });
   if (r.status !== 200) return report.error("sitemap", `${origin}/sitemap.xml → ${r.status}`);
   const locs = [...r.text.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
   for (const b of published) if (!locs.includes(`${origin}/books/${b.slug}`)) report.error("sitemap", `missing /books/${b.slug}`);
-  for (const path of ["/ebooks", "/companion/hangul"]) if (!locs.includes(`${origin}${path}`)) report.warn("sitemap", `missing ${path} (deployed after the sitemap change?)`);
+  for (const path of ["/ebooks", "/companion/hangul", "/companion/world-games", "/companion/dudeney", "/companion/world-myths", "/companion/codex-bestiarium", "/companion/codex-mythologica", "/companion/myth-hunters-field-book"]) if (!locs.includes(`${origin}${path}`)) report.warn("sitemap", `missing ${path} (deployed after the sitemap change?)`);
   if (!report.errors.some((e) => e.check === "sitemap")) report.pass("sitemap", `${locs.length} URLs`);
 }
 
@@ -174,6 +261,9 @@ async function main() {
   else {
     for (const b of published) await networkChecks(b, origin, report);
     await sitemapCheck(origin, published, report);
+    await coverConsistencyCheck(origin, published, report);
+    await companionCheck(origin, report);
+    await fabricationCheck(origin, report);
     await paddleCheck(env, published, report);
     await r2Check(env, published, report);
   }
