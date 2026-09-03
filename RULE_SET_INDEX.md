@@ -27,7 +27,7 @@ If you read nothing else:
 2. `VALICE_PRESS_MASTER_PUBLISHING_STRATEGY_TR.md` — the business model
 3. `CATALOG_ECONOMICS_FINAL.md` — what each title actually earns
 4. `CLAUDE.md` — how agents must work in this repo
-5. `docs/execution/phase-4/PHASE_4_FINALIZATION_REPORT.md` — what currently exists, what is
+5. `docs/execution/phase-5/PHASE_5_REPORT.md` — what currently exists, what is
    live, and what is measured. Supersedes `PHASE_4_COMPLETION_REPORT_TR.md` as
    the state-of-the-system document (that one describes the May–June build and
    is still accurate about the codebase, not about the commerce), and supersedes
@@ -86,17 +86,23 @@ If you read nothing else:
 | `docs/execution/phase-4/HANGUL_REPORT.md` | ACTIVE | — | Live state and the one upload that should carry two fixes. | None |
 | `docs/execution/phase-4/KDP_VALICE_LINKAGE_MATRIX.csv` | ACTIVE | — | Per-edition linkage data with the update decision. Regenerate with kdp-linkage-matrix.mjs. | None |
 | `docs/execution/phase-4/KDP_VALICE_LINKAGE_REPORT.md` | ACTIVE | — | Which printed books send readers to Valice Press, which do not, and the exact URL each should print. The phase's flagship deliverable. | None |
-| `docs/execution/phase-4/PHASE_4_FINALIZATION_REPORT.md` | ACTIVE | — | Phase 4 finalization (2026-09-03): KDP linkage matrix, seven companions, real assets everywhere, analytics exclusion. Supersedes PHASE_4_REPORT.md as the state-of-the-system document. | None |
+| `docs/execution/phase-4/PHASE_4_FINALIZATION_REPORT.md` | ACTIVE | — | Phase 4 finalization (2026-09-03 morning): the linkage matrix, seven companions, real assets everywhere, analytics exclusion. Superseded as the state-of-the-system document by phase-5/PHASE_5_REPORT.md, which rebuilt the bridge those companions were reached through; still the record of how the companions and the asset map were built. | None |
 | `docs/execution/phase-4/PHASE_4_REPORT.md` | ACTIVE | — | First revenue phase: Dudeney live, two-artifact delivery, the KDP linkage audit. The current baseline for what exists. | None |
 | `docs/execution/phase-4/SEO_REPORT.md` | ACTIVE | — | Four utility pages live, still zero indexed, and what to do about it. | None |
 | `docs/execution/phase-4/WORLD_GAMES_REPORT.md` | ACTIVE | — | Companion back matter, the invented biography, and the corrected trim economics. | None |
-| `docs/execution/phase-5/ADS_RESULTS.md` | ACTIVE | — | Ads ledger; no campaign exists. | None |
+| `docs/execution/phase-5/ADS_RESULTS.md` | ACTIVE | — | Ads ledger; no campaign exists. Stop rules, and why the upload comes before the ad. | None |
+| `docs/execution/phase-5/AMAZON_ACCESS_AND_API_SETUP_2026.md` | ACTIVE | — | Amazon Ads API and Attribution access, from Amazon's own documentation read 2026-09-03: the six Founder steps, what needs Amazon's approval, what the agent can do once a credential exists. | None |
 | `docs/execution/phase-5/CATALOG_RESULTS.md` | ACTIVE | — | Every listing and edition, verified 2026-09-03. | None |
 | `docs/execution/phase-5/COMMERCIAL_RESULTS.md` | ACTIVE | — | Per-pilot orders, revenue, contribution (measured zeros). | None |
-| `docs/execution/phase-5/COMPANION_RESULTS.md` | ACTIVE | — | Companion visits and downloads per book; which interiors carry the URL. | None |
+| `docs/execution/phase-5/COMPANION_RESULTS.md` | ACTIVE | — | Companion visits and downloads per book, and the measured size of the code printed in each interior. | None |
 | `docs/execution/phase-5/EMAIL_RESULTS.md` | ACTIVE | — | Subscribers by source; zero real. | None |
-| `docs/execution/phase-5/PHASE_5_REPORT.md` | ACTIVE | — | Traction engine: the three pilots, the six firsts, observation windows and the decision framework. No result yet. | None |
+| `docs/execution/phase-5/KDP_UPDATE_PACKAGE.md` | ACTIVE | — | What to upload to KDP, in what order, and what not to touch. Eight interiors need no cover work; nine moved a page count. Per-edition files under kdp-packages/. | None |
+| `docs/execution/phase-5/KDP_VALICE_LINKAGE_MATRIX.csv` | ACTIVE | — | Per-edition linkage with the companion page, the measured QR, old and new page counts, spines and cover decisions. Regenerate with kdp-linkage-matrix.mjs. | None |
+| `docs/execution/phase-5/PHASE_5_REPORT.md` | ACTIVE | — | Phase 5 (2026-09-03): the companion page rebuilt to a dedicated-page standard in seventeen editions, spines and covers recalculated, the Amazon access path mapped, the storefront's placeholder loading state fixed. Supersedes phase-4/PHASE_4_FINALIZATION_REPORT.md as the state-of-the-system document. | None |
+| `docs/execution/phase-5/REFERENCE_ASSET_INVENTORY.csv` | ACTIVE | — | Every reference image and production screenshot, measured, with the route each one refers to. | None |
+| `docs/execution/phase-5/REFERENCE_ASSET_MAP.md` | ACTIVE | — | The Founder's reference images against production, route by route: what matches, what is deliberately different and why, what is genuinely missing. | None |
 | `docs/execution/phase-5/SEO_RESULTS.md` | ACTIVE | — | Search Console per page; sitemap re-submitted 2026-09-03. | None |
+| `docs/execution/phase-5/VALICE_PRESS_REFERENCE_ASSET_PROMPTS.html` | ACTIVE | — | Founder production sheet: copyable prompts, exact filenames and destinations for the three assets the storefront still wants. | None |
 | `docs/execution/PHASE-REPORT/README.md` | ACTIVE | — | Pointer only. Replaced stale duplicate copies of the Phase 0/1 reports and an out-of-date handbook. | None |
 | `docs/KURULUM_VE_ENV_REHBERI.md` | ACTIVE | — | Environment setup guide. | None |
 | `docs/VALICE_PRESS_MASTER_PUBLISHING_STRATEGY_TR.html` | ACTIVE | — | Founder-facing edition of the master strategy. | None |

@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Valice Press — image production sheet</title>
+<style>
+  :root{
+    --ink:#12140f; --ink-2:#3f453a; --ink-3:#6b7263;
+    --paper:#faf8f3; --panel:#ffffff; --line:#e2ddd2;
+    --accent:#1f6b4a; --accent-soft:#e8f2ec;
+    --warn:#8a4b1f; --warn-soft:#fbf0e6;
+    --stop:#8f2d2d; --stop-soft:#fbeaea;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ink:#eceade; --ink-2:#b3b3a6; --ink-3:#87897c;
+      --paper:#101210; --panel:#171a16; --line:#2a2e28;
+      --accent:#5fd6a0; --accent-soft:#11241b;
+      --warn:#e0a86a; --warn-soft:#2a2016;
+      --stop:#e88a8a; --stop-soft:#2c1717;
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.62 var(--sans)}
+  .wrap{max-width:860px;margin:0 auto;padding:56px 24px 96px}
+  header.masthead{border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:36px}
+  .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+  h1{font:400 40px/1.12 var(--serif);margin:0 0 12px;letter-spacing:-.01em}
+  .lede{font-size:17px;color:var(--ink-2);margin:0;max-width:60ch}
+  .meta{margin-top:18px;font:500 13px/1.5 var(--mono);color:var(--ink-3)}
+  h2{font:400 26px/1.2 var(--serif);margin:52px 0 8px;letter-spacing:-.01em}
+  h3{font:600 13px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin:32px 0 10px}
+  p{margin:0 0 14px;max-width:66ch}
+  a{color:var(--accent)}
+  code{font:500 13.5px/1.4 var(--mono);background:var(--accent-soft);color:var(--ink);padding:1px 5px;border-radius:4px}
+
+  .callout{border-left:3px solid var(--stop);background:var(--stop-soft);padding:18px 20px;border-radius:0 8px 8px 0;margin:0 0 32px}
+  .callout.rule{border-left-color:var(--warn);background:var(--warn-soft)}
+  .callout p:last-child{margin-bottom:0}
+  .callout strong{font-weight:650}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:0;margin:0 0 30px;overflow:hidden}
+  .card > header{padding:20px 22px 16px;border-bottom:1px solid var(--line);display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+  .id{font:700 12px/1 var(--mono);letter-spacing:.06em;color:#fff;background:var(--accent);padding:6px 9px;border-radius:5px}
+  .card h4{font:400 22px/1.25 var(--serif);margin:0;flex:1 1 240px}
+  .pill{font:600 10.5px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:5px 9px;border-radius:20px;border:1px solid var(--line);color:var(--ink-3)}
+  .pill.req{color:var(--warn);border-color:var(--warn)}
+  .card .body{padding:20px 22px 22px}
+
+  dl.spec{display:grid;grid-template-columns:170px 1fr;gap:0;margin:0 0 20px;border-top:1px solid var(--line)}
+  dl.spec dt{font:600 11.5px/1.5 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);padding:9px 0;border-bottom:1px solid var(--line)}
+  dl.spec dd{margin:0;padding:9px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+  dl.spec dd code{font-size:13px}
+  @media (max-width:620px){
+    dl.spec{grid-template-columns:1fr}
+    dl.spec dt{padding-bottom:0;border-bottom:0}
+    dl.spec dd{padding-top:2px}
+  }
+
+  .promptbox{position:relative;margin:6px 0 0}
+  textarea{
+    width:100%;min-height:230px;resize:vertical;
+    font:13.5px/1.6 var(--mono);color:var(--ink);
+    background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:16px 16px 16px;
+  }
+  textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
+  .hint{font-size:12.5px;color:var(--ink-3);margin:8px 0 0}
+
+  ul.no{margin:14px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:6px 16px}
+  ul.no li{font-size:13.5px;color:var(--ink-2);padding-left:20px;position:relative}
+  ul.no li::before{content:"✕";position:absolute;left:0;color:var(--stop);font-size:12px;top:2px}
+
+  ol.steps{margin:14px 0 0;padding-left:22px}
+  ol.steps li{margin-bottom:8px}
+  footer.end{margin-top:64px;padding-top:22px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink-3)}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0 0}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font:600 11px/1.4 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+  .scroll{overflow-x:auto}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <p class="eyebrow">Valice Press · Phase 5</p>
+  <h1>Image production sheet</h1>
+  <p class="lede">Every image the storefront still wants, with the prompt that makes it, the exact filename it must be saved under, and the folder it goes in. Drop the file in the folder and the site picks it up — no code is edited.</p>
+  <p class="meta">2026-09-03 · three assets, seven prompts · $0.00 spent generating (no OPENAI_API_KEY in this environment)</p>
+</header>
+
+<div class="callout">
+  <p><strong>Read this before generating anything.</strong> The fifteen reference images in <code>images/</code> are an AI mockup of a fictional shop called “Digital Bookstore”. They carry other publishers' covers, synthetic portraits of real living authors, and invented numbers — 50K+ books, 2M+ readers, 4.8&nbsp;★ on titles with no reviews. <strong>They are a reference for layout only.</strong> Nothing below asks for a book, a face, a rating or a count, because this press has nine books, one living author and zero reviews, and the storefront says so.</p>
+</div>
+
+<div class="callout rule">
+  <p><strong>The one image on this list that must not be generated</strong> is a photograph of you. A synthetic portrait of a real person, presented as that person, is exactly what was removed from this site in Phase 4. If you want a face on <code>/authors</code> and <code>/about</code>, take or supply a real photograph: <code>public/images/authors/emre-dogan.webp</code>, 3:4, at least 900&nbsp;px tall. Until then the designed <strong>ED</strong> monogram stands, and it is honest.</p>
+</div>
+
+<h2>How to use this sheet</h2>
+<ol class="steps">
+  <li>Copy a prompt out of its box.</li>
+  <li>Generate the image at the stated pixel size. Any generator; the prompts are written to be model-agnostic.</li>
+  <li>Save it under the <strong>exact filename</strong> given. The site resolves images by convention — a different name resolves to nothing.</li>
+  <li>Put it in the <strong>exact folder</strong> given.</li>
+  <li>Run <code>node scripts/assets/asset-manifest.mjs --write</code> and commit. <code>npm test</code> fails if you forget this step, which is the point.</li>
+</ol>
+<p class="hint">Save as WebP if your tool offers it. If it only gives PNG or JPEG, convert: <code>cwebp -q 82 in.png -o out.webp</code>.</p>
+
+<h2>The three assets</h2>
+<div class="scroll">
+<table>
+  <thead><tr><th>ID</th><th>What</th><th>Why</th><th>Priority</th></tr></thead>
+  <tbody>
+    <tr><td><code>A-01</code></td><td>Authors hero, bleed-left</td><td>the live hero is a centred glow that sits behind the sub-heading and hurts legibility</td><td>worth doing</td></tr>
+    <tr><td><code>A-02</code></td><td>Companion share card</td><td>seven companion pages are printed inside physical books and will be shared; every share currently renders as a bare link</td><td>worth doing</td></tr>
+    <tr><td><code>A-03</code></td><td>Category grounds ×5</td><td>optional. The cards already fan the shelf's real covers, which is honest and clear. Only do this if you find them plain</td><td>optional</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ─────────────────────────────────────────────────────────── A-01 -->
+<section class="card">
+  <header>
+    <span class="id">A-01</span>
+    <h4>Authors hero — a reading room, bled off the left edge</h4>
+    <span class="pill req">Recommended</span>
+  </header>
+  <div class="body">
+    <dl class="spec">
+      <dt>Filename</dt><dd><code>authors_hero_bleed.webp</code></dd>
+      <dt>Folder</dt><dd><code>public/images/authors/</code></dd>
+      <dt>Dimensions</dt><dd>2560 × 1100 px</dd>
+      <dt>Aspect</dt><dd>2.33 : 1 (wide letterbox)</dd>
+      <dt>Route</dt><dd><code>/authors</code></dd>
+      <dt>Component</dt><dd><code>src/components/authors/</code> hero band</dd>
+      <dt>Reference</dt><dd><code>images/authors_sekmesi_referans_image.png</code>, the scene bleeding off the left edge behind “Voices that inspire”</dd>
+      <dt>Replaces</dt><dd><code>authors_hero_atmosphere.webp</code> — a centred arch-and-silhouette glow that sits directly behind the sub-heading</dd>
+      <dt>Purpose</dt><dd>Give the page a sense of place without competing with the words. Everything in the right two-thirds must be quiet enough to set 40&nbsp;px serif type over.</dd>
+    </dl>
+
+    <h3>Prompt</h3>
+    <div class="promptbox">
+<textarea readonly rows="16">A wide cinematic interior of a small private study at night, seen from across the room. The scene occupies the LEFT THIRD of the frame only: a tall arched window, a writing desk in silhouette, a single low lamp, the edge of a bookcase. A figure is implied at the desk — a dark silhouette, back to us, no face, no readable features. The remaining TWO THIRDS of the frame to the right dissolve into deep, almost black shadow with a faint atmospheric haze, so that text can be set over it.
+
+Colour: near-black warm charcoal ground (#0a0d0a to #12160f), with one cool emerald light source (#1f6b4a to #33f0aa) from the window, falling only on the left third. No other hue.
+
+Light: a single directional source through the window, low contrast, heavy falloff. Faint dust motes in the beam. No rim lights, no lens flare, no bloom.
+
+Composition: content weighted hard to the left edge and CROPPED by it — the window and bookcase run off frame. A clean horizontal gradient from lit left to unlit right. The right 60% of the image must be near-uniform darkness with no shapes, no highlights and no detail above 12% luminance.
+
+Texture: fine photographic grain, the softness of a long exposure. Nothing crisp or vector.
+
+Mood: quiet, nocturnal, scholarly, unhurried. A room someone reads in, not a set.
+
+Rendered as a photographic still, shallow depth of field, 35mm.</textarea>
+    </div>
+    <p class="hint">Check before you save: cover the left third with your thumb — what is left should look like an almost-empty dark rectangle. If anything is visible there, the headline will not read.</p>
+
+    <h3>Must not contain</h3>
+    <ul class="no">
+      <li>any text, letters or numerals</li>
+      <li>a legible face</li>
+      <li>a real person's likeness</li>
+      <li>readable book titles or spines</li>
+      <li>logos or watermarks</li>
+      <li>a second colour family</li>
+      <li>anything bright right of centre</li>
+      <li>a centred subject</li>
+      <li>hands or fingers in close-up</li>
+      <li>modern screens or devices</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────── A-02 -->
+<section class="card">
+  <header>
+    <span class="id">A-02</span>
+    <h4>Companion share card — the picture a scanned QR earns when someone passes it on</h4>
+    <span class="pill req">Recommended</span>
+  </header>
+  <div class="body">
+    <dl class="spec">
+      <dt>Filename</dt><dd><code>og-default.webp</code></dd>
+      <dt>Folder</dt><dd><code>public/images/companion/</code> (create it)</dd>
+      <dt>Dimensions</dt><dd>1200 × 630 px — the Open Graph size, exactly</dd>
+      <dt>Aspect</dt><dd>1.91 : 1</dd>
+      <dt>Routes</dt><dd><code>/companion/world-games</code>, <code>/world-myths</code>, <code>/hangul</code>, <code>/dudeney</code>, <code>/codex-bestiarium</code>, <code>/codex-mythologica</code>, <code>/myth-hunters-field-book</code></dd>
+      <dt>Component</dt><dd>the companion route's <code>generateMetadata</code> → <code>openGraph.images</code></dd>
+      <dt>Reference</dt><dd>none — this slot does not exist in the mockup</dd>
+      <dt>Purpose</dt><dd>These seven addresses are printed inside physical books. A reader who scans the code and sends the link to someone currently sends a bare grey rectangle. One card, shared by all seven, is the cheapest fix; per-book cards can follow if any of them ever earns the traffic.</dd>
+      <dt>Safe area</dt><dd>Keep the middle 60% quiet. The page title is composited over it at render time.</dd>
+    </dl>
+
+    <h3>Prompt</h3>
+    <div class="promptbox">
+<textarea readonly rows="17">A flat-lay photograph, shot straight down, of loose printed practice sheets fanned across a dark walnut desk: a blank grid sheet, a sheet of ruled boxes, a folded card. Cream uncoated paper, slightly imperfect edges, one sheet lifted at a corner. A pencil laid diagonally across them. Nothing else on the desk.
+
+Composition: the sheets enter from the LEFT edge and the BOTTOM edge and fan toward the upper right, leaving the CENTRE-RIGHT of the frame as clean, empty, unlit desk — a horizontal band of quiet negative space at least 55% of the width and 45% of the height, positioned centre to centre-right, where a headline will be set later.
+
+Colour: warm near-black wood (#12100d), cream paper (#f2ece0), one small emerald accent (#1f6b4a) — a single ribbon or a printed rule on one sheet. Nothing else.
+
+Light: soft, low, raking from the upper left. Long gentle shadows under the lifted corner. No specular hotspots, no gloss.
+
+Texture: visible paper tooth, faint wood grain. Photographic grain throughout.
+
+Mood: generous, practical, unbranded. Material somebody is about to use, not merchandise.
+
+The paper must be BLANK — grids, rules and boxes only. No words, no letterforms, no numerals, no glyphs of any writing system anywhere in the image.</textarea>
+    </div>
+    <p class="hint">The blank-paper instruction is the one that matters. Generators love to write on paper, and a companion card with invented words on it is a claim about material we did not make.</p>
+
+    <h3>Must not contain</h3>
+    <ul class="no">
+      <li>any text, letters or numerals</li>
+      <li>Hangul, Latin or any script</li>
+      <li>a QR code</li>
+      <li>book covers</li>
+      <li>hands or people</li>
+      <li>logos or watermarks</li>
+      <li>a laptop, phone or screen</li>
+      <li>a coffee cup or plant</li>
+      <li>a busy centre-right</li>
+      <li>saturated non-emerald colour</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────── A-03 -->
+<section class="card">
+  <header>
+    <span class="id">A-03</span>
+    <h4>Category grounds ×5 — texture behind the covers, never a picture of a genre</h4>
+    <span class="pill">Optional</span>
+  </header>
+  <div class="body">
+    <div class="callout rule" style="margin:0 0 20px">
+      <p><strong>Consider skipping this one.</strong> The five category cards currently fan the real covers of the books on that shelf, which is both prettier than a stock genre painting and true. Phase 4 deleted seventeen painted “genre worlds” for depicting categories this press does not have. These five prompts therefore ask for <em>abstract grounds</em> — paper, ink, weave — that sit <em>behind</em> the real covers and never depict a subject. If you generate anything representational here, do not ship it.</p>
+    </div>
+
+    <dl class="spec">
+      <dt>Filenames</dt><dd><code>myth-folklore.webp</code> · <code>classics-philosophy.webp</code> · <code>puzzle-challenge.webp</code> · <code>games-play.webp</code> · <code>language-learning.webp</code></dd>
+      <dt>Folder</dt><dd><code>public/images/categories/</code> (create it)</dd>
+      <dt>Dimensions</dt><dd>1200 × 1600 px each</dd>
+      <dt>Aspect</dt><dd>3 : 4 (portrait — the card is <code>aspect-[3/4]</code>)</dd>
+      <dt>Routes</dt><dd><code>/</code> category strip · <code>/categories</code> · <code>/categories/[slug]</code></dd>
+      <dt>Component</dt><dd><code>categoriesSection</code> → <code>categoryArtSrc(slug)</code>; present ⇒ used, absent ⇒ the cover fan</dd>
+      <dt>Crop</dt><dd>The bottom 45% is covered by a dark scrim carrying the label. Keep detail in the <strong>top 55%</strong>.</dd>
+      <dt>Reference</dt><dd><code>images/ana-sayfa-referans-image.png</code>, the six-card strip — <em>its composition, not its subjects</em></dd>
+    </dl>
+
+    <h3>Shared preamble — paste this above each of the five below</h3>
+    <div class="promptbox">
+<textarea readonly rows="9">An abstract vertical texture panel. NOT an illustration, NOT a scene, NOT an object — a surface. Extremely low contrast, almost monochrome, as if photographed in a dark room.
+
+Ground: near-black (#080b08 to #141810). One accent hue only, at low saturation, never covering more than a fifth of the frame.
+
+The BOTTOM 45% must fall away into near-uniform darkness — a label is set over it.
+The TOP 55% carries what little detail there is.
+
+Fine photographic grain. No hard edges. No vector shapes. No focal point.
+Absolutely no text, letters, numerals, glyphs, logos, figures, faces, animals, buildings or landscapes.</textarea>
+    </div>
+
+    <h3>1 · Myth &amp; Folklore — <code>myth-folklore.webp</code></h3>
+    <div class="promptbox">
+<textarea readonly rows="5">Subject: aged map paper — the fibre and fold-creases of an old chart, raking light across it, no coastlines and no cartography, only the material.
+Accent: dull indigo (#2b3a5c), in the upper third only.
+Feeling: something folded and refolded for a long time.</textarea>
+    </div>
+
+    <h3>2 · Classics &amp; Philosophy — <code>classics-philosophy.webp</code></h3>
+    <div class="promptbox">
+<textarea readonly rows="5">Subject: weathered pale marble — veining, a chipped edge, the grain of stone, no carving and no figure.
+Accent: cool bone white (#cfc9ba), in the upper third only.
+Feeling: cold, quiet, older than the room.</textarea>
+    </div>
+
+    <h3>3 · Puzzle &amp; Challenge — <code>puzzle-challenge.webp</code></h3>
+    <div class="promptbox">
+<textarea readonly rows="5">Subject: faint graph-paper ruling on cream stock, seen at a raking angle so the lines fade in and out — grid only, no drawing, no diagram, no solution.
+Accent: muted emerald (#1f6b4a), in the upper third only.
+Feeling: a working page before anything has been worked out on it.</textarea>
+    </div>
+
+    <h3>4 · Games &amp; Play — <code>games-play.webp</code></h3>
+    <div class="promptbox">
+<textarea readonly rows="5">Subject: coarse linen weave in low raking light — the thread structure of a rolled game cloth, no board, no markings, no pieces.
+Accent: dull ochre (#8a6b32), in the upper third only.
+Feeling: worn soft by handling.</textarea>
+    </div>
+
+    <h3>5 · Language &amp; Learning — <code>language-learning.webp</code></h3>
+    <div class="promptbox">
+<textarea readonly rows="6">Subject: the surface of handmade paper — deckle fibre, a faint watermark shadow, the tooth a pen would catch on. Blank.
+Accent: cool slate blue (#3d5a6c), in the upper third only.
+Feeling: about to be written on.
+CRITICAL: no Hangul, no Latin, no any script. Not one mark that could be read as a character.</textarea>
+    </div>
+
+    <h3>Must not contain — all five</h3>
+    <ul class="no">
+      <li>any script or letterform</li>
+      <li>a recognisable object</li>
+      <li>a landscape or building</li>
+      <li>a figure, face or animal</li>
+      <li>book covers or spines</li>
+      <li>a second accent hue</li>
+      <li>a bright bottom half</li>
+      <li>hard vector edges</li>
+      <li>a focal point</li>
+      <li>logos or watermarks</li>
+    </ul>
+  </div>
+</section>
+
+<h2>After you have the files</h2>
+<ol class="steps">
+  <li>Filenames exactly as printed above — the resolver matches on the name, not on the content.</li>
+  <li><code>node scripts/assets/asset-manifest.mjs --write</code></li>
+  <li><code>npm test</code> — the manifest check fails loudly if step 2 was skipped.</li>
+  <li><code>npm run build</code>, then look at <code>/</code>, <code>/authors</code> and <code>/categories</code>.</li>
+</ol>
+<p>If an image turns out wrong after it ships, delete the file and the site returns to the state it has now. Every one of these slots has a designed fallback; none of them 404s.</p>
+
+<footer class="end">
+  Valice Press · Phase 5 · written 2026-09-03. Findings and the route-by-route comparison behind these three assets: <code>docs/execution/phase-5/REFERENCE_ASSET_MAP.md</code>. Measured inventory of every reference image: <code>REFERENCE_ASSET_INVENTORY.csv</code>.
+</footer>
+
+</div>
+</body>
+</html>

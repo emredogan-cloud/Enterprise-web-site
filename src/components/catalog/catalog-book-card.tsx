@@ -19,7 +19,7 @@ import type { CatalogItem } from "./catalog-item";
  * No client interactivity inside the card itself — hover lift + glow are
  * pure CSS via `.home-card-hover` (reused from the homepage system).
  */
-export function CatalogBookCard({ book }: { book: CatalogItem }) {
+export function CatalogBookCard({ book, priority = false }: { book: CatalogItem; priority?: boolean }) {
   // A price of 0 is not a free book — it is a book this store does not sell,
   // whose editions are all fulfilled by Amazon (see `books.price_cents` and
   // <BookHero>). Printing "$0" on the card would advertise a giveaway that
@@ -41,21 +41,40 @@ export function CatalogBookCard({ book }: { book: CatalogItem }) {
 
       {/* Cover */}
       <div className="relative overflow-hidden rounded-[14px]">
+        {/* The ground under the cover.
+
+            When the book HAS real art this is a quiet, neutral frame — not
+            the per-book gradient. The image above it is lazy-loaded, so
+            whatever is painted here is what a visitor sees for the length of
+            the request, and on a slow connection that was a page of
+            saturated coloured rectangles that looked exactly like the
+            placeholder covers Phase 4 set out to remove. An empty dark frame
+            says "loading"; a coloured panel says "this is the cover", and one
+            of those is a lie.
+
+            When the book has NO art, the gradient and the typographic
+            stand-in below are the deliberate design for that state. */}
         <div
           className="relative flex aspect-[2/3] flex-col justify-between p-4"
-          style={{ background: book.cover.gradient }}
+          style={{
+            background: hasRealCover
+              ? "linear-gradient(160deg, #12140f 0%, #0a0b08 100%)"
+              : book.cover.gradient,
+          }}
         >
           {/* Corner glow */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -right-6 -top-6 h-20 w-20 rounded-full opacity-50"
-            style={{
-              background: `radial-gradient(circle, ${book.cover.accent}50 0%, transparent 70%)`,
-            }}
-          />
+          {!hasRealCover && (
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -right-6 -top-6 h-20 w-20 rounded-full opacity-50"
+              style={{
+                background: `radial-gradient(circle, ${book.cover.accent}50 0%, transparent 70%)`,
+              }}
+            />
+          )}
 
           {/* Subtle library lines pattern — only on dark covers */}
-          {!book.cover.darkText && (
+          {!hasRealCover && !book.cover.darkText && (
             <div
               aria-hidden
               className="pointer-events-none absolute inset-0 opacity-[0.06]"
@@ -118,6 +137,10 @@ export function CatalogBookCard({ book }: { book: CatalogItem }) {
             alt=""
             fill
             sizes="(min-width: 1024px) 22vw, 50vw"
+            // The first row is above the fold on every viewport this store is
+            // used at. Lazy-loading it is what produced the loading state
+            // described above; `priority` removes it entirely for those cards.
+            priority={priority}
             className={coverFit(book.coverSrc) === "contain" ? "object-contain" : "object-cover"}
           />
         )}

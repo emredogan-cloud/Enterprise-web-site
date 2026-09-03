@@ -80,15 +80,21 @@ const DOCS = [
   { path: "docs/execution/phase-3/ADS_REPORT.md", status: "ACTIVE", reason: "Campaign spec, break-even ACOS per format, stop rules. No ad has run." },
   { path: "docs/execution/phase-3/EMAIL_REPORT.md", status: "ACTIVE", reason: "Delivery proven in an inbox; the unsubscribe defect and its fix." },
   { path: "docs/execution/phase-3/SEO_REPORT.md", status: "ACTIVE", reason: "Search Console baseline: zero indexed. Technical state and the four pages worth writing." },
-  { path: "docs/execution/phase-4/PHASE_4_FINALIZATION_REPORT.md", status: "ACTIVE", reason: "Phase 4 finalization (2026-09-03): KDP linkage matrix, seven companions, real assets everywhere, analytics exclusion. Supersedes PHASE_4_REPORT.md as the state-of-the-system document." },
+  { path: "docs/execution/phase-4/PHASE_4_FINALIZATION_REPORT.md", status: "ACTIVE", reason: "Phase 4 finalization (2026-09-03 morning): the linkage matrix, seven companions, real assets everywhere, analytics exclusion. Superseded as the state-of-the-system document by phase-5/PHASE_5_REPORT.md, which rebuilt the bridge those companions were reached through; still the record of how the companions and the asset map were built." },
   { path: "docs/execution/phase-4/ASSET_MAP.md", status: "ACTIVE", reason: "The asset-to-entity map: what every surface shows and where it comes from; provenance of every real asset; what was removed and why." },
   { path: "docs/execution/phase-4/ASSET_INVENTORY.csv", status: "ACTIVE", reason: "Every file under public/images with slot, entity, size and referencing files. Regenerate with asset-manifest.mjs --inventory." },
   { path: "docs/execution/phase-4/ANALYTICS_EXCLUSION.md", status: "ACTIVE", reason: "How Founder and agent traffic is kept out of analytics, on the mechanism Vercel documents; activation steps and limits." },
-  { path: "docs/execution/phase-5/PHASE_5_REPORT.md", status: "ACTIVE", reason: "Traction engine: the three pilots, the six firsts, observation windows and the decision framework. No result yet." },
+  { path: "docs/execution/phase-5/PHASE_5_REPORT.md", status: "ACTIVE", reason: "Phase 5 (2026-09-03): the companion page rebuilt to a dedicated-page standard in seventeen editions, spines and covers recalculated, the Amazon access path mapped, the storefront's placeholder loading state fixed. Supersedes phase-4/PHASE_4_FINALIZATION_REPORT.md as the state-of-the-system document." },
+  { path: "docs/execution/phase-5/KDP_UPDATE_PACKAGE.md", status: "ACTIVE", reason: "What to upload to KDP, in what order, and what not to touch. Eight interiors need no cover work; nine moved a page count. Per-edition files under kdp-packages/." },
+  { path: "docs/execution/phase-5/KDP_VALICE_LINKAGE_MATRIX.csv", status: "ACTIVE", reason: "Per-edition linkage with the companion page, the measured QR, old and new page counts, spines and cover decisions. Regenerate with kdp-linkage-matrix.mjs." },
+  { path: "docs/execution/phase-5/AMAZON_ACCESS_AND_API_SETUP_2026.md", status: "ACTIVE", reason: "Amazon Ads API and Attribution access, from Amazon's own documentation read 2026-09-03: the six Founder steps, what needs Amazon's approval, what the agent can do once a credential exists." },
+  { path: "docs/execution/phase-5/REFERENCE_ASSET_MAP.md", status: "ACTIVE", reason: "The Founder's reference images against production, route by route: what matches, what is deliberately different and why, what is genuinely missing." },
+  { path: "docs/execution/phase-5/REFERENCE_ASSET_INVENTORY.csv", status: "ACTIVE", reason: "Every reference image and production screenshot, measured, with the route each one refers to." },
+  { path: "docs/execution/phase-5/VALICE_PRESS_REFERENCE_ASSET_PROMPTS.html", status: "ACTIVE", reason: "Founder production sheet: copyable prompts, exact filenames and destinations for the three assets the storefront still wants." },
   { path: "docs/execution/phase-5/COMMERCIAL_RESULTS.md", status: "ACTIVE", reason: "Per-pilot orders, revenue, contribution (measured zeros)." },
-  { path: "docs/execution/phase-5/ADS_RESULTS.md", status: "ACTIVE", reason: "Ads ledger; no campaign exists." },
+  { path: "docs/execution/phase-5/ADS_RESULTS.md", status: "ACTIVE", reason: "Ads ledger; no campaign exists. Stop rules, and why the upload comes before the ad." },
   { path: "docs/execution/phase-5/SEO_RESULTS.md", status: "ACTIVE", reason: "Search Console per page; sitemap re-submitted 2026-09-03." },
-  { path: "docs/execution/phase-5/COMPANION_RESULTS.md", status: "ACTIVE", reason: "Companion visits and downloads per book; which interiors carry the URL." },
+  { path: "docs/execution/phase-5/COMPANION_RESULTS.md", status: "ACTIVE", reason: "Companion visits and downloads per book, and the measured size of the code printed in each interior." },
   { path: "docs/execution/phase-5/EMAIL_RESULTS.md", status: "ACTIVE", reason: "Subscribers by source; zero real." },
   { path: "docs/execution/phase-5/CATALOG_RESULTS.md", status: "ACTIVE", reason: "Every listing and edition, verified 2026-09-03." },
   { path: "docs/execution/phase-4/PHASE_4_REPORT.md", status: "ACTIVE", reason: "First revenue phase: Dudeney live, two-artifact delivery, the KDP linkage audit. The current baseline for what exists." },
@@ -303,7 +309,7 @@ If you read nothing else:
 2. \`VALICE_PRESS_MASTER_PUBLISHING_STRATEGY_TR.md\` — the business model
 3. \`CATALOG_ECONOMICS_FINAL.md\` — what each title actually earns
 4. \`CLAUDE.md\` — how agents must work in this repo
-5. \`docs/execution/phase-4/PHASE_4_REPORT.md\` — what currently exists, what is
+5. \`docs/execution/phase-5/PHASE_5_REPORT.md\` — what currently exists, what is
    live, and what is measured. Supersedes \`PHASE_4_COMPLETION_REPORT_TR.md\` as
    the state-of-the-system document (that one describes the May–June build and
    is still accurate about the codebase, not about the commerce), and supersedes

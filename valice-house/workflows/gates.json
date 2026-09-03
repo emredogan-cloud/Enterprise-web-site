@@ -90,8 +90,8 @@
       "name": "KDP compliance",
       "owner": "R8",
       "founderSignoff": true,
-      "evidence": "QA/compliance-lint.json clean — the sheet AND the built interior: kdp-linkage-lint on the registered PDFs finds no non-canonical host, no data-wall URL, no unauthorised biography, no broken PDF metadata, no false listing claim, and prints the companion URL when a companion exists; AI disclosure answered in project_config.json",
-      "killCriterion": "undisclosed AI content; undifferentiated public domain; Select conflict; wrong ink; a printed address that is not valicepress.com; a companion that exists but is not printed"
+      "evidence": "QA/compliance-lint.json clean — the sheet AND the built interior. kdp-linkage-lint on the registered PDFs finds no non-canonical host, no data-wall URL, no unauthorised biography, no broken PDF metadata and no false listing claim; and the COMPANION-LINKAGE REVIEW (checklist row 16, added 2026-09-03) confirms the address stands on a dedicated companion page carrying a code that is actually found in the raster, is at least 20% of the page height and 0.5mm per module, and decodes to the address it is meant to carry; AI disclosure answered in project_config.json",
+      "killCriterion": "undisclosed AI content; undifferentiated public domain; Select conflict; wrong ink; a printed address that is not valicepress.com; a companion that exists but is not printed; a companion printed as a mention rather than on a page of its own; a code that cannot be found on the page, is too small to scan, or decodes to the wrong address"
     },
     {
       "id": 11,

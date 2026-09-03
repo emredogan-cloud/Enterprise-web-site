@@ -1,14 +1,14 @@
 {
   "tool": "validate-catalog",
   "target": "https://valicepress.com",
-  "startedAt": "2026-09-03T02:39:03.481Z",
-  "finishedAt": "2026-09-03T02:39:47.830Z",
+  "startedAt": "2026-09-03T11:11:10.782Z",
+  "finishedAt": "2026-09-03T11:11:51.143Z",
   "ok": true,
   "counts": {
-    "pass": 34,
+    "pass": 28,
     "warn": 0,
     "error": 0,
-    "skipped": 1
+    "skipped": 2
   },
   "findings": [
     {
@@ -180,39 +180,9 @@
       "where": null
     },
     {
-      "level": "pass",
+      "level": "skipped",
       "check": "paddle",
-      "message": "pri_01m1btwjzqvest52bwde6mqqam active, 999 USD",
-      "where": null
-    },
-    {
-      "level": "pass",
-      "check": "paddle",
-      "message": "pri_01m1btjb037st1aew8mt990htv active, 1299 USD",
-      "where": null
-    },
-    {
-      "level": "pass",
-      "check": "paddle",
-      "message": "pri_01m1hjdhhvq98v2pdxxenh8q1z active, 699 USD",
-      "where": null
-    },
-    {
-      "level": "pass",
-      "check": "paddle",
-      "message": "pri_01m1btjcqgabh6v8rsxg85frxr active, 1199 USD",
-      "where": null
-    },
-    {
-      "level": "pass",
-      "check": "paddle",
-      "message": "pri_01m1ha3tdx5bbyfqhe8k6qrep4 active, 999 USD",
-      "where": null
-    },
-    {
-      "level": "pass",
-      "check": "paddle",
-      "message": "pri_01m1btjc0bp4phgs7vrqhq4g18 active, 999 USD",
+      "message": "no PADDLE_API_KEY in --env file",
       "where": null
     },
     {

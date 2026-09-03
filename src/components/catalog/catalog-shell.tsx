@@ -342,9 +342,12 @@ export function CatalogShell({ books }: { books: CatalogItem[] }) {
           <EmptyResults onReset={onResetAll} />
         ) : state.viewMode === "grid" ? (
           <ul className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
-            {visible.map((book) => (
+            {visible.map((book, index) => (
               <li key={book.id}>
-                <CatalogBookCard book={book} />
+                {/* The first row is above the fold; those four covers are
+                    loaded eagerly so the catalogue never shows an empty
+                    frame where a cover exists. */}
+                <CatalogBookCard book={book} priority={index < 4} />
               </li>
             ))}
           </ul>
