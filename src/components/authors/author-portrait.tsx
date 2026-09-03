@@ -3,41 +3,44 @@ import Image from "next/image";
 import type { PortraitTheme } from "./author-card-data";
 
 /**
- * CSS-rendered author "portrait" — a stylized atmospheric silhouette
- * that stands in for a real photograph until an image pipeline lands.
+ * Author portrait slot.
  *
- * Composition (layered, all CSS/SVG):
- *   1. Background gradient (mood)
- *   2. Soft accent bloom in the top corner
- *   3. SVG silhouette (head + shoulders) — same shape across all authors
- *      so the cards feel like a series; the *atmosphere* (rim light,
- *      gradient, accent) is what differentiates each portrait
- *   4. Rim-light highlight on the silhouette edge
- *   5. Foreground vignette anchoring the figure to the frame
+ * Two states, and only two:
  *
- * Hover behavior (driven by the parent `.group` from `<AuthorCard>`):
- *   - The silhouette layer scales 1.06 on a 700ms cubic-bezier ease-out
+ *   1. A real likeness at `/images/authors/<slug>.webp` — either a verified
+ *      photograph the author supplied, or a public-domain image of a
+ *      historical author with its source recorded in
+ *      docs/execution/phase-4/ASSET_MAP.md. Rendered through next/image.
+ *
+ *   2. The designed identity mark: the author's initials set in the house
+ *      serif inside an emerald ring on the dark ground. It is unmistakably a
+ *      mark and not a photograph, which is the point. The site once carried
+ *      an AI-generated "portrait" of the Founder and an AI-rendered bust for
+ *      Marcus Aurelius; both were presented as likenesses and both were
+ *      invented. A generic silhouette replaced them, and this mark replaces
+ *      the silhouette — it is at least honest about being a design.
  */
 export function AuthorPortrait({
   theme,
   imageSrc,
+  name,
 }: {
   theme: PortraitTheme;
-  /** Optional real portrait (/images/authors/{slug}.webp). When present it
-   *  replaces the procedural silhouette; otherwise the silhouette renders. */
+  /** Real portrait path or null. */
   imageSrc?: string | null;
+  /** The author's display name — the mark is built from its initials. */
+  name: string;
 }) {
   if (imageSrc) {
     return (
       <div className="relative h-full w-full overflow-hidden">
         <Image
           src={imageSrc}
-          alt=""
+          alt={`Portrait of ${name}`}
           fill
           sizes="(min-width: 1024px) 16vw, 50vw"
           className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
         />
-        {/* Same anchoring vignette so it sits in the card like the silhouette */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0"
@@ -46,28 +49,42 @@ export function AuthorPortrait({
               "radial-gradient(ellipse 90% 70% at 50% 110%, rgba(0,0,0,0.55) 0%, transparent 65%)",
           }}
         />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-[42%]"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(0,0,0,0.4) 0%, transparent 100%)",
-          }}
-        />
       </div>
     );
   }
 
-  return (
-    <div className="relative h-full w-full overflow-hidden">
-      {/* Background gradient */}
-      <div
-        aria-hidden
-        className="absolute inset-0"
-        style={{ background: theme.background }}
-      />
+  return <AuthorIdentityMark theme={theme} name={name} />;
+}
 
-      {/* Top-corner accent bloom */}
+/** Initials: first letter of the first and last word ("Emre Doğan" → "ED"). */
+export function initialsOf(name: string): string {
+  const words = name
+    .replace(/\(.*?\)/g, "")
+    .split(/\s+/)
+    .map((w) => w.replace(/[^\p{L}]/gu, ""))
+    .filter(Boolean);
+  if (words.length === 0) return "?";
+  const first = words[0].charAt(0);
+  const last = words.length > 1 ? words[words.length - 1].charAt(0) : "";
+  return (first + last).toUpperCase();
+}
+
+export function AuthorIdentityMark({
+  theme,
+  name,
+}: {
+  theme: PortraitTheme;
+  name: string;
+}) {
+  const initials = initialsOf(name);
+  return (
+    <div
+      className="relative h-full w-full overflow-hidden"
+      role="img"
+      aria-label={`${name} — author mark`}
+      data-identity-mark=""
+    >
+      <div aria-hidden className="absolute inset-0" style={{ background: theme.background }} />
       <div
         aria-hidden
         className="absolute -right-8 -top-8 h-[140px] w-[140px] rounded-full"
@@ -75,57 +92,50 @@ export function AuthorPortrait({
           background: `radial-gradient(circle, ${theme.accent} 0%, transparent 70%)`,
         }}
       />
-
-      {/* Silhouette + rim light — scales on group hover */}
-      <div className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]">
-        {/* Silhouette */}
-        <svg
-          viewBox="0 0 100 100"
-          preserveAspectRatio="xMidYMax meet"
-          className="absolute inset-x-0 bottom-0 h-[95%] w-full"
-          aria-hidden
-        >
-          {/* Shoulders + chest — wide trapezoid */}
-          <path
-            d="M 12,100 C 12,72 28,62 30,60 L 30,58 L 70,58 L 70,60 C 72,62 88,72 88,100 Z"
-            fill={theme.silhouette}
-          />
-          {/* Head — circle merged with shoulders */}
-          <circle cx="50" cy="38" r="18" fill={theme.silhouette} />
+      {/* Fine rules — the emblem sits on a printed page, not a photo */}
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-[0.07]"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(0deg, transparent 0, transparent 22px, rgba(255,255,255,0.6) 22px, rgba(255,255,255,0.6) 23px)",
+          maskImage:
+            "radial-gradient(ellipse 70% 60% at 50% 50%, black 0%, transparent 100%)",
+        }}
+      />
+      <div className="absolute inset-0 flex items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]">
+        <svg viewBox="0 0 100 100" className="h-[58%] w-[58%]" aria-hidden>
+          <circle cx="50" cy="50" r="46" fill="none" stroke={theme.rimLight} strokeOpacity="0.55" strokeWidth="0.9" />
+          <circle cx="50" cy="50" r="40" fill="none" stroke={theme.rimLight} strokeOpacity="0.25" strokeWidth="0.5" strokeDasharray="1.5 2.5" />
+          <text
+            x="50"
+            y="50"
+            textAnchor="middle"
+            dominantBaseline="central"
+            fontFamily="var(--font-serif), Georgia, serif"
+            fontSize={initials.length > 1 ? 30 : 38}
+            fontWeight="500"
+            fill="#e9f7ef"
+            letterSpacing="1"
+          >
+            {initials}
+          </text>
         </svg>
-
-        {/* Rim light — narrow gradient stripe on the silhouette's right edge */}
-        <div
-          aria-hidden
-          className="absolute inset-x-0 bottom-0 h-[95%]"
-          style={{
-            background: `linear-gradient(95deg, transparent 55%, ${theme.rimLight} 75%, transparent 92%)`,
-            mixBlendMode: "screen",
-            maskImage:
-              "radial-gradient(ellipse 40% 50% at 50% 65%, black 0%, black 60%, transparent 90%)",
-            opacity: 0.55,
-          }}
-        />
       </div>
-
-      {/* Foreground vignette — anchors the figure to the bottom of the frame */}
+      <div
+        aria-hidden
+        className="absolute inset-x-0 bottom-0 flex justify-center pb-3"
+      >
+        <span className="text-[9px] font-semibold uppercase tracking-[0.28em] text-white/45">
+          Valice Press author
+        </span>
+      </div>
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 90% 70% at 50% 110%, rgba(0,0,0,0.55) 0%, transparent 65%)",
-        }}
-      />
-
-      {/* Top fade — keeps the figure-ground separation crisp where the
-          follower / featured chips sit */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[42%]"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(0,0,0,0.4) 0%, transparent 100%)",
+            "radial-gradient(ellipse 90% 70% at 50% 110%, rgba(0,0,0,0.5) 0%, transparent 65%)",
         }}
       />
     </div>

@@ -1,0 +1,485 @@
+{
+  "generatedBy": "scripts/assets/asset-manifest.mjs",
+  "assets": [
+    {
+      "path": "/images/about/about_hero_scene.webp",
+      "width": 1844,
+      "height": 853,
+      "bytes": 150490,
+      "slot": "page-atmosphere",
+      "entity": "about/about_hero_scene"
+    },
+    {
+      "path": "/images/authors/authors_hero_atmosphere.webp",
+      "width": 1915,
+      "height": 821,
+      "bytes": 171498,
+      "slot": "page-atmosphere",
+      "entity": "authors"
+    },
+    {
+      "path": "/images/authors/henry-dudeney.webp",
+      "width": 510,
+      "height": 680,
+      "bytes": 9320,
+      "slot": "author-portrait",
+      "entity": "henry-dudeney"
+    },
+    {
+      "path": "/images/authors/marcus-aurelius.webp",
+      "width": 900,
+      "height": 1200,
+      "bytes": 66294,
+      "slot": "author-portrait",
+      "entity": "marcus-aurelius"
+    },
+    {
+      "path": "/images/blog/board-game-origin-myths.webp",
+      "width": 1800,
+      "height": 1200,
+      "bytes": 13822,
+      "slot": "blog-image",
+      "entity": "board-game-origin-myths"
+    },
+    {
+      "path": "/images/blog/designing-for-readers-not-algorithms.webp",
+      "width": 1915,
+      "height": 821,
+      "bytes": 106626,
+      "slot": "blog-image",
+      "entity": "designing-for-readers-not-algorithms"
+    },
+    {
+      "path": "/images/blog/haberdashers-puzzle.webp",
+      "width": 1800,
+      "height": 1200,
+      "bytes": 32948,
+      "slot": "blog-image",
+      "entity": "haberdashers-puzzle"
+    },
+    {
+      "path": "/images/blog/hangul-stroke-order.webp",
+      "width": 1800,
+      "height": 1200,
+      "bytes": 16192,
+      "slot": "blog-image",
+      "entity": "hangul-stroke-order"
+    },
+    {
+      "path": "/images/blog/how-to-choose-your-next-book.webp",
+      "width": 1915,
+      "height": 821,
+      "bytes": 143844,
+      "slot": "blog-image",
+      "entity": "how-to-choose-your-next-book"
+    },
+    {
+      "path": "/images/blog/why-we-built-valice-press.webp",
+      "width": 1844,
+      "height": 853,
+      "bytes": 150490,
+      "slot": "blog-image",
+      "entity": "why-we-built-valice-press"
+    },
+    {
+      "path": "/images/blog/world-mythology-traditions.webp",
+      "width": 1800,
+      "height": 1200,
+      "bytes": 146068,
+      "slot": "blog-image",
+      "entity": "world-mythology-traditions"
+    },
+    {
+      "path": "/images/books/codex-bestiarium.webp",
+      "width": 1000,
+      "height": 1600,
+      "bytes": 229610,
+      "slot": "book-cover",
+      "entity": "codex-bestiarium"
+    },
+    {
+      "path": "/images/books/codex-enigmatica.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 146696,
+      "slot": "book-cover",
+      "entity": "codex-enigmatica"
+    },
+    {
+      "path": "/images/books/codex-mythologica.webp",
+      "width": 992,
+      "height": 1586,
+      "bytes": 324324,
+      "slot": "book-cover",
+      "entity": "codex-mythologica"
+    },
+    {
+      "path": "/images/books/korean-hangul-handwriting-workbook.webp",
+      "width": 1000,
+      "height": 1600,
+      "bytes": 111008,
+      "slot": "book-cover",
+      "entity": "korean-hangul-handwriting-workbook"
+    },
+    {
+      "path": "/images/books/meditations.webp",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 215192,
+      "slot": "book-cover",
+      "entity": "meditations"
+    },
+    {
+      "path": "/images/books/the-great-book-of-world-games.webp",
+      "width": 1000,
+      "height": 1600,
+      "bytes": 148422,
+      "slot": "book-cover",
+      "entity": "the-great-book-of-world-games"
+    },
+    {
+      "path": "/images/books/the-great-book-of-world-myths.webp",
+      "width": 1066,
+      "height": 1600,
+      "bytes": 195296,
+      "slot": "book-cover",
+      "entity": "the-great-book-of-world-myths"
+    },
+    {
+      "path": "/images/books/the-myth-hunters-field-book.webp",
+      "width": 925,
+      "height": 1214,
+      "bytes": 148438,
+      "slot": "book-cover",
+      "entity": "the-myth-hunters-field-book"
+    },
+    {
+      "path": "/images/books/the-puzzles-of-henry-dudeney.webp",
+      "width": 1000,
+      "height": 1600,
+      "bytes": 36124,
+      "slot": "book-cover",
+      "entity": "the-puzzles-of-henry-dudeney"
+    },
+    {
+      "path": "/images/homepage/homepage_hero_reading_room.webp",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 133844,
+      "slot": "page-atmosphere",
+      "entity": "homepage/homepage_hero_reading_room"
+    },
+    {
+      "path": "/images/library/library_atmosphere.webp",
+      "width": 1915,
+      "height": 821,
+      "bytes": 106626,
+      "slot": "page-atmosphere",
+      "entity": "library/library_atmosphere"
+    },
+    {
+      "path": "/images/library/library_empty_scene.webp",
+      "width": 1672,
+      "height": 941,
+      "bytes": 103588,
+      "slot": "page-atmosphere",
+      "entity": "library/library_empty_scene"
+    },
+    {
+      "path": "/images/order/order_lantern_scene.webp",
+      "width": 1915,
+      "height": 821,
+      "bytes": 192688,
+      "slot": "page-atmosphere",
+      "entity": "order/order_lantern_scene"
+    },
+    {
+      "path": "/images/previews/codex-bestiarium/p39.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 23904,
+      "slot": "book-preview",
+      "entity": "codex-bestiarium"
+    },
+    {
+      "path": "/images/previews/codex-bestiarium/p40.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 72384,
+      "slot": "book-preview",
+      "entity": "codex-bestiarium"
+    },
+    {
+      "path": "/images/previews/codex-bestiarium/p41.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 127904,
+      "slot": "book-preview",
+      "entity": "codex-bestiarium"
+    },
+    {
+      "path": "/images/previews/codex-bestiarium/p42.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 21826,
+      "slot": "book-preview",
+      "entity": "codex-bestiarium"
+    },
+    {
+      "path": "/images/previews/codex-enigmatica/p24.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 104200,
+      "slot": "book-preview",
+      "entity": "codex-enigmatica"
+    },
+    {
+      "path": "/images/previews/codex-enigmatica/p25.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 20766,
+      "slot": "book-preview",
+      "entity": "codex-enigmatica"
+    },
+    {
+      "path": "/images/previews/codex-enigmatica/p26.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 101486,
+      "slot": "book-preview",
+      "entity": "codex-enigmatica"
+    },
+    {
+      "path": "/images/previews/codex-enigmatica/p27.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 26928,
+      "slot": "book-preview",
+      "entity": "codex-enigmatica"
+    },
+    {
+      "path": "/images/previews/codex-mythologica/p24.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 98972,
+      "slot": "book-preview",
+      "entity": "codex-mythologica"
+    },
+    {
+      "path": "/images/previews/codex-mythologica/p25.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 91570,
+      "slot": "book-preview",
+      "entity": "codex-mythologica"
+    },
+    {
+      "path": "/images/previews/codex-mythologica/p26.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 113112,
+      "slot": "book-preview",
+      "entity": "codex-mythologica"
+    },
+    {
+      "path": "/images/previews/codex-mythologica/p27.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 103148,
+      "slot": "book-preview",
+      "entity": "codex-mythologica"
+    },
+    {
+      "path": "/images/previews/korean-hangul-handwriting-workbook/p13.webp",
+      "width": 1100,
+      "height": 1424,
+      "bytes": 67950,
+      "slot": "book-preview",
+      "entity": "korean-hangul-handwriting-workbook"
+    },
+    {
+      "path": "/images/previews/korean-hangul-handwriting-workbook/p14.webp",
+      "width": 1100,
+      "height": 1424,
+      "bytes": 48186,
+      "slot": "book-preview",
+      "entity": "korean-hangul-handwriting-workbook"
+    },
+    {
+      "path": "/images/previews/korean-hangul-handwriting-workbook/p15.webp",
+      "width": 1100,
+      "height": 1424,
+      "bytes": 30832,
+      "slot": "book-preview",
+      "entity": "korean-hangul-handwriting-workbook"
+    },
+    {
+      "path": "/images/previews/korean-hangul-handwriting-workbook/p16.webp",
+      "width": 1100,
+      "height": 1424,
+      "bytes": 27058,
+      "slot": "book-preview",
+      "entity": "korean-hangul-handwriting-workbook"
+    },
+    {
+      "path": "/images/previews/meditations/p21.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 97848,
+      "slot": "book-preview",
+      "entity": "meditations"
+    },
+    {
+      "path": "/images/previews/meditations/p22.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 122028,
+      "slot": "book-preview",
+      "entity": "meditations"
+    },
+    {
+      "path": "/images/previews/meditations/p23.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 122696,
+      "slot": "book-preview",
+      "entity": "meditations"
+    },
+    {
+      "path": "/images/previews/meditations/p24.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 122196,
+      "slot": "book-preview",
+      "entity": "meditations"
+    },
+    {
+      "path": "/images/previews/the-great-book-of-world-games/p16.webp",
+      "width": 1100,
+      "height": 1424,
+      "bytes": 109374,
+      "slot": "book-preview",
+      "entity": "the-great-book-of-world-games"
+    },
+    {
+      "path": "/images/previews/the-great-book-of-world-games/p17.webp",
+      "width": 1100,
+      "height": 1424,
+      "bytes": 126740,
+      "slot": "book-preview",
+      "entity": "the-great-book-of-world-games"
+    },
+    {
+      "path": "/images/previews/the-great-book-of-world-games/p18.webp",
+      "width": 1100,
+      "height": 1424,
+      "bytes": 80152,
+      "slot": "book-preview",
+      "entity": "the-great-book-of-world-games"
+    },
+    {
+      "path": "/images/previews/the-great-book-of-world-games/p19.webp",
+      "width": 1100,
+      "height": 1424,
+      "bytes": 113526,
+      "slot": "book-preview",
+      "entity": "the-great-book-of-world-games"
+    },
+    {
+      "path": "/images/previews/the-great-book-of-world-myths/p22.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 114710,
+      "slot": "book-preview",
+      "entity": "the-great-book-of-world-myths"
+    },
+    {
+      "path": "/images/previews/the-great-book-of-world-myths/p23.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 125168,
+      "slot": "book-preview",
+      "entity": "the-great-book-of-world-myths"
+    },
+    {
+      "path": "/images/previews/the-great-book-of-world-myths/p24.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 118330,
+      "slot": "book-preview",
+      "entity": "the-great-book-of-world-myths"
+    },
+    {
+      "path": "/images/previews/the-great-book-of-world-myths/p25.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 33298,
+      "slot": "book-preview",
+      "entity": "the-great-book-of-world-myths"
+    },
+    {
+      "path": "/images/previews/the-myth-hunters-field-book/p14.webp",
+      "width": 1100,
+      "height": 1424,
+      "bytes": 43470,
+      "slot": "book-preview",
+      "entity": "the-myth-hunters-field-book"
+    },
+    {
+      "path": "/images/previews/the-myth-hunters-field-book/p15.webp",
+      "width": 1100,
+      "height": 1424,
+      "bytes": 44534,
+      "slot": "book-preview",
+      "entity": "the-myth-hunters-field-book"
+    },
+    {
+      "path": "/images/previews/the-myth-hunters-field-book/p16.webp",
+      "width": 1100,
+      "height": 1424,
+      "bytes": 48218,
+      "slot": "book-preview",
+      "entity": "the-myth-hunters-field-book"
+    },
+    {
+      "path": "/images/previews/the-myth-hunters-field-book/p17.webp",
+      "width": 1100,
+      "height": 1424,
+      "bytes": 40400,
+      "slot": "book-preview",
+      "entity": "the-myth-hunters-field-book"
+    },
+    {
+      "path": "/images/previews/the-puzzles-of-henry-dudeney/p29.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 142336,
+      "slot": "book-preview",
+      "entity": "the-puzzles-of-henry-dudeney"
+    },
+    {
+      "path": "/images/previews/the-puzzles-of-henry-dudeney/p30.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 66170,
+      "slot": "book-preview",
+      "entity": "the-puzzles-of-henry-dudeney"
+    },
+    {
+      "path": "/images/settings/settings_desk_scene.webp",
+      "width": 1915,
+      "height": 821,
+      "bytes": 141684,
+      "slot": "page-atmosphere",
+      "entity": "settings/settings_desk_scene"
+    },
+    {
+      "path": "/images/settings/settings_export_chest.webp",
+      "width": 1448,
+      "height": 1086,
+      "bytes": 159130,
+      "slot": "page-atmosphere",
+      "entity": "settings/settings_export_chest"
+    }
+  ]
+}

@@ -3,6 +3,7 @@ import { eq } from "drizzle-orm";
 
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
+import { AnalyticsExclusionCard } from "@/components/settings/analytics-exclusion-card";
 import { DangerZoneCard } from "@/components/settings/danger-zone-card";
 import { ExportDataCard } from "@/components/settings/export-data-card";
 import { PrivacyOverviewCard } from "@/components/settings/privacy-overview-card";
@@ -108,6 +109,8 @@ export default async function SettingsPage() {
             />
 
             <PrivacyOverviewCard />
+
+            <AnalyticsExclusionCard />
 
             <ExportDataCard />
 

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useTransition } from "react";
 
 import { removeFromCart } from "@/app/cart/actions";
+import { CoverArt } from "@/components/cinematic/cover-art";
 import { formatPrice } from "@/lib/format";
 
 /**
@@ -13,6 +14,10 @@ import { formatPrice } from "@/lib/format";
  * Client Component because the remove control wraps a Server Action via
  * `useTransition` for pending state + dispatches the `cart-changed`
  * event the rest of the site listens for (header cart-count refresh).
+ *
+ * The mini cover is the book's real cover (`coverSrc`, attached by the
+ * catalog query from the asset manifest). It used to be a fixed emerald
+ * gradient for every line, whatever was in the cart.
  */
 export interface CartLineBook {
   id: string;
@@ -21,6 +26,7 @@ export interface CartLineBook {
   authors: ReadonlyArray<{ name: string }>;
   priceCents: number;
   currency: string;
+  coverSrc?: string | null;
 }
 
 export function CartLine({
@@ -43,46 +49,20 @@ export function CartLine({
   };
 
   return (
-    // Phase 1.I — `data-pending` attribute is now actually set, so the
-    // existing `data-[pending=true]:opacity-50` Tailwind selector fires
-    // while the remove-from-cart server action is in flight.
     <article
       data-pending={pending ? "true" : "false"}
       className="home-glass home-card-hover relative flex items-center gap-5 rounded-2xl p-4 transition-opacity duration-300 data-[pending=true]:opacity-50"
     >
-      {/* Mini cover — CSS-rendered placeholder (same primitive as catalog) */}
+      {/* Mini cover */}
       <Link
         href={`/books/${book.slug}`}
-        className="relative h-24 w-16 flex-shrink-0 overflow-hidden rounded-md shadow-[0_8px_16px_-6px_rgba(0,0,0,0.6)]"
+        className="relative h-24 w-16 flex-shrink-0 overflow-hidden rounded-md bg-[#0a1410] shadow-[0_8px_16px_-6px_rgba(0,0,0,0.6)]"
       >
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(160deg, #1a3326 0%, #0a1f14 60%, #07110b 100%)",
-          }}
-        />
-        <div
-          aria-hidden
-          className="absolute -right-3 -top-3 h-12 w-12 rounded-full"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(51, 240, 170, 0.35) 0%, transparent 70%)",
-          }}
-        />
-        <div className="relative flex h-full flex-col justify-end p-2">
-          <p className="font-serif text-[9px] font-medium leading-tight text-white line-clamp-2">
-            {book.title}
-          </p>
-        </div>
-        {/* Right edge highlight */}
-        <div
-          aria-hidden
-          className="absolute right-0 top-[2px] bottom-[2px] w-[1.5px]"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.14) 100%)",
-          }}
+        <CoverArt
+          src={book.coverSrc}
+          title={book.title}
+          sizes="64px"
+          titleClassName="font-serif text-[9px] font-medium leading-tight text-white line-clamp-3"
         />
       </Link>
 

@@ -6,7 +6,6 @@ import { CatalogShell } from "@/components/catalog/catalog-shell";
 import { toCatalogItems } from "@/components/catalog/catalog-item";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
-import { resolveAsset } from "@/lib/assets";
 import { listEbooks } from "@/lib/db/queries/catalog";
 import { buildPageMetadata } from "@/lib/metadata";
 
@@ -33,10 +32,7 @@ export const metadata: Metadata = buildPageMetadata({
  * time and `<CatalogShell>` is a hydrating client island.
  */
 export default async function EbooksPage() {
-  const ebooks = toCatalogItems(await listEbooks()).map((b) => ({
-    ...b,
-    coverSrc: resolveAsset(`/images/books/${b.slug}.webp`),
-  }));
+  const ebooks = toCatalogItems(await listEbooks());
 
   return (
     <div className="cinematic-root">

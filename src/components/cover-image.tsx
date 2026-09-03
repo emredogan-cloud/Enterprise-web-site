@@ -27,13 +27,16 @@ import { getCoverImageUrl } from "@/lib/seo";
 export function CoverImage({
   title,
   coverKey,
+  coverSrc,
   priority = false,
 }: {
   title: string;
   coverKey?: string | null;
+  /** Canonical public cover path from the asset manifest; wins over R2. */
+  coverSrc?: string | null;
   priority?: boolean;
 }) {
-  const src = getCoverImageUrl(coverKey);
+  const src = coverSrc ?? getCoverImageUrl(coverKey);
 
   if (src) {
     return (

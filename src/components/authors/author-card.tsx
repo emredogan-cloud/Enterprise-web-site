@@ -30,7 +30,7 @@ export function AuthorCard({ author }: { author: AuthorCardData }) {
       <article className="home-card-hover home-glass relative overflow-hidden rounded-[22px] border-white/[0.08]">
         {/* Portrait */}
         <div className="relative aspect-[3/4] w-full">
-          <AuthorPortrait theme={author.portrait} imageSrc={author.portraitSrc} />
+          <AuthorPortrait theme={author.portrait} imageSrc={author.portraitSrc} name={author.name} />
 
         </div>
 

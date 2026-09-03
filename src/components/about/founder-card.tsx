@@ -2,7 +2,6 @@ import { Mail, PenLine, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
 import { GitHubIcon, XIcon } from "@/components/brand-icons";
-import { AssetImage } from "@/components/cinematic/asset-image";
 
 /**
  * "Who built it" — the human, transparent half of the page.
@@ -13,8 +12,8 @@ import { AssetImage } from "@/components/cinematic/asset-image";
  *           (Paddle MoR, the Inngest + R2 watermarking pipeline → library).
  *           Two inline "documented in the open" links to the real blog
  *           categories.
- *   RIGHT — a glass founder / contact card with a soft emerald glow: a
- *           portrait placeholder (initials — no stock photo), name + role,
+ *   RIGHT — a glass founder / contact card with a soft emerald glow: the
+ *           initials mark (no photograph is presented), name + role,
  *           a real `mailto:` CTA, and the two real social surfaces.
  *
  * No fabricated team, history, or fake photography — authenticity is the
@@ -108,17 +107,15 @@ export function FounderCard() {
           <div className="flex items-center gap-4">
             <div className="relative">
               <span className="home-avatar-gradient relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl">
-                {/* Optional real founder portrait; else the initials. */}
-                <AssetImage
-                  src="/images/about/founder_portrait.webp"
-                  alt="Emre Doğan"
-                  fallback={
-                    <span className="font-serif text-xl font-medium text-[#032015]">
-                      ED
-                    </span>
-                  }
-                  sizes="64px"
-                />
+                {/* The initials, deliberately. An AI-generated "portrait" of
+                    the Founder used to render here with his name as its alt
+                    text — a fabricated photograph of a real person. If a real
+                    photograph is ever supplied, it belongs at
+                    /images/authors/emre-dogan.webp, where the author pages
+                    resolve it too; until then this card shows a mark. */}
+                <span className="font-serif text-xl font-medium text-[#032015]">
+                  ED
+                </span>
               </span>
               <span
                 aria-hidden

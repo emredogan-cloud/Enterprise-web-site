@@ -46,7 +46,7 @@ export function CategoryArticleCard({
 
         {/* LEFT — preview image, fade into card on the right edge */}
         <div className="relative aspect-[5/4] w-full overflow-hidden sm:aspect-auto sm:h-full">
-          <ArticleImage scene={sceneForSlug(post.slug)} />
+          <ArticleImage scene={sceneForSlug(post.slug)} imageSrc={post.image} />
           {/* Right-edge mask fade — softens the boundary into the content side */}
           <div
             aria-hidden

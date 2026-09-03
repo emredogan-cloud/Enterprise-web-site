@@ -6,6 +6,7 @@
  * DB envs degrade to an empty result instead of a 500.
  */
 
+import { bookCoverSrc } from "@/lib/asset-map";
 import { db } from "@/lib/db";
 
 async function safeQuery<T>(
@@ -34,6 +35,8 @@ interface EntitlementBookSummary {
   title: string;
   subtitle: string | null;
   coverKey: string | null;
+  /** Canonical cover path from the asset manifest, or null. */
+  coverSrc: string | null;
 }
 
 export type EntitlementStatus = "pending" | "ready" | "revoked";
@@ -158,7 +161,7 @@ export async function getOrderForUser(args: {
           watermarkedKey: e.watermarkedKey,
           epubKey: e.epubKey,
           priceCentsAtPurchase: priceByBookId.get(e.bookId) ?? null,
-          book: e.book,
+          book: { ...e.book, coverSrc: bookCoverSrc(e.book.slug) },
         })),
       };
     },
@@ -176,6 +179,8 @@ export interface UserOrderSummaryItem {
   bookId: string;
   bookTitle: string;
   bookSlug: string;
+  /** Canonical cover path from the asset manifest, or null. */
+  coverSrc?: string | null;
   priceCentsAtPurchase: number;
 }
 
@@ -231,6 +236,7 @@ export async function getUserOrders(userId: string): Promise<UserOrderSummary[]>
           bookId: i.bookId,
           bookTitle: i.book.title,
           bookSlug: i.book.slug,
+          coverSrc: bookCoverSrc(i.book.slug),
           priceCentsAtPurchase: i.priceCentsAtPurchase,
         })),
       }));
@@ -279,7 +285,7 @@ export async function getUserLibrary(userId: string): Promise<LibraryEntry[]> {
         readStatus: r.readStatus,
         lastDownloadedAt: r.lastDownloadedAt,
         createdAt: r.createdAt,
-        book: r.book,
+        book: { ...r.book, coverSrc: bookCoverSrc(r.book.slug) },
       }));
     },
     [],

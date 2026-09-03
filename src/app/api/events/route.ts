@@ -3,6 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { ANALYTICS_EVENTS, type AnalyticsEvent } from "@/lib/analytics";
 import { db } from "@/lib/db";
 import { analyticsEvents } from "@/lib/db/schema";
+import { isInternalRequest } from "@/lib/internal-traffic";
 
 /**
  * POST /api/events — first-party funnel event sink.
@@ -95,6 +96,9 @@ function referrerHost(req: NextRequest): string | null {
 }
 
 export async function POST(req: NextRequest) {
+  // Internal traffic is acknowledged and discarded. The Founder checking the
+  // storefront is not a customer, and neither is a verification script.
+  if (isInternalRequest(req.headers)) return new NextResponse(null, { status: 204 });
   const len = Number(req.headers.get("content-length") ?? "0");
   if (len > MAX_BODY_BYTES) {
     return new NextResponse(null, { status: 413 });

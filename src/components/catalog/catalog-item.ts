@@ -18,6 +18,8 @@
  * the catalog says so. See `<CatalogEmptyState>`.
  */
 
+import { bookCoverSrc } from "@/lib/asset-map";
+
 /**
  * One book as the catalog surfaces render it.
  *
@@ -130,6 +132,7 @@ export interface CatalogRow {
   currency: string;
   authors: ReadonlyArray<{ name: string }>;
   primaryCategory?: string | null;
+  coverSrc?: string | null;
 }
 
 /**
@@ -150,5 +153,8 @@ export function toCatalogItems(rows: readonly CatalogRow[]): CatalogItem[] {
     category: row.primaryCategory ?? "",
     formats: ["PDF"] as const,
     cover: COVER_PALETTE[i % COVER_PALETTE.length],
+    // The real cover, from the committed asset manifest. Resolved here — not
+    // per page — so the cart, the library and the catalog cannot disagree.
+    coverSrc: row.coverSrc ?? bookCoverSrc(row.slug),
   }));
 }

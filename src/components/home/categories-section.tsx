@@ -1,66 +1,35 @@
+import Image from "next/image";
 import Link from "next/link";
 
-import { AssetImage } from "@/components/cinematic/asset-image";
+import { CategoryCoverStack } from "@/components/categories/category-cover-stack";
+import { categoryLook } from "@/components/categories/category-icons";
+import { categoryArtSrc } from "@/lib/asset-map";
 import type { CategorySummary } from "@/lib/db/queries/catalog";
 
 import { RevealOnScroll } from "./reveal-on-scroll";
 
 /**
- * "Browse by category" — up to 5 horizontal category cards.
+ * "Browse by category" — up to five category cards on the homepage.
  *
- * Phase 2.G — accepts real `CategorySummary[]` from the homepage
- * (`listAllCategories()` at SSG time). Cards now link to the actual
- * cinematic `/categories/{slug}` instead of `/books`.
+ * Accepts real `CategorySummary[]` from the homepage (`listAllCategories()`
+ * at SSG time). Each card links to `/categories/{slug}` and shows the real
+ * covers filed in the category — the same composition as the `/categories`
+ * gallery, so the two pages cannot disagree about what a category looks like.
+ * A bespoke image at `/images/categories/<slug>.webp` takes over when present.
  *
- * The sahte "12.4K books" count is gone — there's no per-category book
- * count exposed yet, so the card just shows the category name with a
- * subtle eyebrow. Cleaner and honest.
- *
- * Demo fallback for when the DB returns empty — same brand surface even
- * before the catalog is populated.
+ * Until Phase 4 the cards were five gradients cycled by index with a lookup
+ * for artwork that never matched a real slug. The demo fallback of invented
+ * genres ("Fiction", "Sci-Fi", "Growth", "Business") is gone: an empty
+ * catalogue renders no section rather than a fictional one.
  */
-
-interface CategoryCardData {
-  name: string;
-  href: string;
-  gradient: string;
-  /** Slug key for the optional genre artwork at /images/genres/{imageKey}.webp */
-  imageKey: string;
-}
-
-// Deterministic gradient palette — 5 moods that cycle through the
-// category list by index. Same family as the rest of the brand palette.
-const CATEGORY_GRADIENTS = [
-  "linear-gradient(160deg, #1a3326 0%, #0a1f14 100%), radial-gradient(circle at 30% 20%, rgba(51,240,170,0.15) 0%, transparent 60%)",
-  "linear-gradient(160deg, #14292e 0%, #081116 100%), radial-gradient(circle at 70% 30%, rgba(99,180,255,0.16) 0%, transparent 60%)",
-  "linear-gradient(160deg, #2c2316 0%, #14110a 100%), radial-gradient(circle at 50% 30%, rgba(255,190,90,0.16) 0%, transparent 60%)",
-  "linear-gradient(160deg, #1a2336 0%, #0a0e16 100%), radial-gradient(circle at 30% 70%, rgba(160,160,255,0.14) 0%, transparent 60%)",
-  "linear-gradient(160deg, #2c1f1a 0%, #1a0f0a 100%), radial-gradient(circle at 50% 50%, rgba(220,150,90,0.14) 0%, transparent 60%)",
-];
-
-const DEMO_FALLBACK: CategoryCardData[] = [
-  { name: "Fiction", href: "/categories", gradient: CATEGORY_GRADIENTS[0], imageKey: "fiction" },
-  { name: "Sci-Fi", href: "/categories", gradient: CATEGORY_GRADIENTS[1], imageKey: "science-fiction" },
-  { name: "Growth", href: "/categories", gradient: CATEGORY_GRADIENTS[2], imageKey: "personal-growth" },
-  { name: "Business", href: "/categories", gradient: CATEGORY_GRADIENTS[3], imageKey: "business" },
-  { name: "History", href: "/categories", gradient: CATEGORY_GRADIENTS[4], imageKey: "history" },
-];
-
 export function CategoriesSection({
   categories = [],
 }: {
-  /** Real DB categories from `listAllCategories()`. Empty → demo fallback. */
+  /** Real DB categories from `listAllCategories()`. Empty → section hidden. */
   categories?: CategorySummary[];
 }) {
-  const cards: CategoryCardData[] =
-    categories.length > 0
-      ? categories.slice(0, 5).map((c, i) => ({
-          name: c.name,
-          href: `/categories/${c.slug}`,
-          gradient: CATEGORY_GRADIENTS[i % CATEGORY_GRADIENTS.length],
-          imageKey: c.slug,
-        }))
-      : DEMO_FALLBACK;
+  const cards = categories.slice(0, 5);
+  if (cards.length === 0) return null;
 
   return (
     <section className="relative px-6 py-24 sm:py-28">
@@ -88,51 +57,57 @@ export function CategoriesSection({
           stagger
           className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5"
         >
-          {cards.map((cat) => (
-            <Link
-              key={`${cat.name}-${cat.href}`}
-              href={cat.href}
-              className="home-card-hover group relative aspect-[3/4] overflow-hidden rounded-2xl border border-white/[0.06]"
-              style={{ background: cat.gradient }}
-            >
-              {/* Optional real genre artwork over the gradient base.
-                  Missing → fallback renders nothing → gradient shows. */}
-              <div aria-hidden className="absolute inset-0">
-                <AssetImage
-                  src={`/images/genres/${cat.imageKey}.webp`}
-                  alt=""
-                  fallback={null}
-                  sizes="(min-width: 1024px) 20vw, 50vw"
+          {cards.map((cat) => {
+            const look = categoryLook(cat.slug);
+            const art = categoryArtSrc(cat.slug);
+            return (
+              <Link
+                key={cat.slug}
+                href={`/categories/${cat.slug}`}
+                className="home-card-hover group relative aspect-[3/4] overflow-hidden rounded-2xl border border-white/[0.06] bg-[#07110b]"
+              >
+                <div className="absolute inset-0">
+                  {art ? (
+                    <Image
+                      src={art}
+                      alt=""
+                      fill
+                      sizes="(min-width: 1024px) 20vw, 50vw"
+                      className="object-cover"
+                    />
+                  ) : (
+                    <CategoryCoverStack
+                      coverSrcs={cat.coverSrcs}
+                      name={cat.name}
+                      tint={look.tint}
+                    />
+                  )}
+                </div>
+
+                <div
+                  aria-hidden
+                  className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/40 to-transparent"
                 />
-              </div>
+                <div
+                  aria-hidden
+                  className="absolute inset-x-0 bottom-0 h-3/5"
+                  style={{
+                    background:
+                      "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.35) 60%, transparent 100%)",
+                  }}
+                />
 
-              {/* Top emerald highlight */}
-              <div
-                aria-hidden
-                className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/40 to-transparent"
-              />
-
-              {/* Bottom dark gradient for text legibility */}
-              <div
-                aria-hidden
-                className="absolute inset-x-0 bottom-0 h-3/5"
-                style={{
-                  background:
-                    "linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 60%, transparent 100%)",
-                }}
-              />
-
-              {/* Content */}
-              <div className="relative z-10 flex h-full flex-col justify-end p-5">
-                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/55">
-                  Genre
-                </span>
-                <h3 className="mt-2 font-serif text-2xl font-medium text-fg-hi transition-colors group-hover:text-emerald-bright">
-                  {cat.name}
-                </h3>
-              </div>
-            </Link>
-          ))}
+                <div className="relative z-10 flex h-full flex-col justify-end p-5">
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/55">
+                    {cat.bookCount === 1 ? "1 book" : `${cat.bookCount} books`}
+                  </span>
+                  <h3 className="mt-2 font-serif text-2xl font-medium text-fg-hi transition-colors group-hover:text-emerald-bright">
+                    {cat.name}
+                  </h3>
+                </div>
+              </Link>
+            );
+          })}
         </RevealOnScroll>
       </div>
     </section>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { coverFit } from "@/lib/asset-map";
 import { getCoverImageUrl } from "@/lib/seo";
 
 /**
@@ -71,7 +72,7 @@ export function BookCover({
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             priority={priority}
-            className="object-cover"
+            className={coverFit(src) === "contain" ? "object-contain bg-[#0a1410]" : "object-cover"}
           />
         ) : (
           <CinematicCoverPlaceholder title={title} />

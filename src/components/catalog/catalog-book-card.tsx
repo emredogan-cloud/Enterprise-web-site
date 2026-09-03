@@ -2,6 +2,7 @@ import { Heart, Lock, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { coverFit } from "@/lib/asset-map";
 import { formatCatalogPrice } from "@/lib/format";
 
 import type { CatalogItem } from "./catalog-item";
@@ -117,7 +118,7 @@ export function CatalogBookCard({ book }: { book: CatalogItem }) {
             alt=""
             fill
             sizes="(min-width: 1024px) 22vw, 50vw"
-            className="object-cover"
+            className={coverFit(book.coverSrc) === "contain" ? "object-contain" : "object-cover"}
           />
         )}
 

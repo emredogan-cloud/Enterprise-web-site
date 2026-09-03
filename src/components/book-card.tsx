@@ -14,6 +14,13 @@ export interface BookCardData {
   title: string;
   subtitle: string | null;
   coverKey: string | null;
+  /**
+   * The book's real cover as a public path (`/images/books/<slug>.webp`),
+   * resolved by the query layer from the asset manifest (`@/lib/asset-map`).
+   * Null when no cover asset exists. Every surface draws THIS, so the same
+   * book cannot show a cover on one route and a gradient on another.
+   */
+  coverSrc?: string | null;
   priceCents: number;
   currency: string;
   authors: ReadonlyArray<{ slug: string; name: string }>;
@@ -32,7 +39,7 @@ export function BookCard({ book }: { book: BookCardData }) {
       href={`/books/${book.slug}`}
       className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 rounded-md"
     >
-      <CoverImage title={book.title} coverKey={book.coverKey} />
+      <CoverImage title={book.title} coverKey={book.coverKey} coverSrc={book.coverSrc} />
       <div className="mt-4">
         <h3 className="font-serif text-lg font-medium leading-snug text-foreground transition-colors group-hover:text-primary">
           {book.title}

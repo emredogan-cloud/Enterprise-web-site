@@ -3,6 +3,8 @@ import "server-only";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 
+import { assetExists } from "./asset-map";
+
 /**
  * Static-asset existence helpers for the optional `/public/images` art layer
  * (Görsel Asset Pipeline).
@@ -21,6 +23,11 @@ import { join } from "node:path";
 
 /** True when `/public<publicPath>` exists on disk. `publicPath` starts with "/". */
 export function publicAssetExists(publicPath: string): boolean {
+  // The committed manifest (src/lib/asset-manifest.json) is the record of
+  // what ships. It is identical at build time, in an ISR regeneration and in
+  // a serverless function — a filesystem probe is not, which is how the
+  // homepage and /ebooks came to disagree about whether a cover existed.
+  if (assetExists(publicPath)) return true;
   try {
     const rel = publicPath.replace(/^\/+/, "");
     return existsSync(join(process.cwd(), "public", rel));

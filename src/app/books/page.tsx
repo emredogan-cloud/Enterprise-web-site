@@ -11,7 +11,6 @@ import {
 } from "@/components/catalog/catalog-item";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
-import { resolveAsset } from "@/lib/assets";
 import { listPublishedBooks } from "@/lib/db/queries/catalog";
 
 // ISR — revalidate every hour (matches the existing classification: `○ Static + ISR 1h`).
@@ -45,14 +44,9 @@ export const metadata: Metadata = buildPageMetadata({
  * is honest; a full shelf of other publishers' books is not.
  */
 export default async function BooksCatalogPage() {
-  const realBooks = await listPublishedBooks();
-  const baseBooks: CatalogItem[] = toCatalogItems(realBooks);
-  // Resolve optional real covers (/images/books/{slug}.webp) server-side
-  // (the catalog shell is a client component). Missing → gradient cover.
-  const books: CatalogItem[] = baseBooks.map((b) => ({
-    ...b,
-    coverSrc: resolveAsset(`/images/books/${b.slug}.webp`),
-  }));
+  // `toCatalogItems` attaches each book's real cover from the asset
+  // manifest, so this page and every other shelf draw the same file.
+  const books: CatalogItem[] = toCatalogItems(await listPublishedBooks());
 
   return (
     <div className="cinematic-root">

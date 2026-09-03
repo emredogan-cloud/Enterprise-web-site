@@ -1,15 +1,12 @@
 import { ArrowUpRight, type LucideIcon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
-import { AssetImage } from "@/components/cinematic/asset-image";
-
-import type { CategoryArtwork } from "./demo-categories";
-import { CategoryScene } from "./category-scene";
+import { CategoryCoverStack } from "./category-cover-stack";
 
 /**
- * The shape one discovery card needs — assembled by the page from either a
- * real DB category (→ `/categories/[slug]`) or a demo world (→ `/search?q=`).
- * `href` is always a real, internal route — no dead cards.
+ * The shape one discovery card needs, assembled by the page from a real DB
+ * category. `href` is always a real internal route — no dead cards.
  */
 export interface CategoryCardData {
   key: string;
@@ -17,16 +14,18 @@ export interface CategoryCardData {
   tagline: string;
   href: string;
   icon: LucideIcon;
-  artwork: CategoryArtwork;
+  tint: string;
+  /** Real covers of the books in the category (asset manifest paths). */
+  coverSrcs: readonly string[];
+  /** Optional bespoke artwork at /images/categories/<slug>.webp. */
+  artSrc: string | null;
 }
 
 /**
- * Genre discovery card — vertical, full-bleed cinematic world (per the
- * reference): the atmospheric `<CategoryScene>` fills the card, a bottom
- * scrim keeps the overlaid title legible, and the info row (icon + name +
- * tagline + arrow) sits along the bottom. Reuses the shared `.home-glass`
- * frame + `.home-card-hover` lift; the scene zooms and the chrome blooms on
- * hover via the `.group`.
+ * Category discovery card. The artwork is either a bespoke image for the
+ * category or — the default — a fan of the real covers filed in it. A bottom
+ * scrim keeps the overlaid title legible; the info row (icon + name +
+ * tagline + arrow) sits along the bottom.
  */
 export function CategoryCard({ item }: { item: CategoryCardData }) {
   const Icon = item.icon;
@@ -37,20 +36,28 @@ export function CategoryCard({ item }: { item: CategoryCardData }) {
       className="group block rounded-[24px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/60"
     >
       <article className="home-card-hover home-glass relative aspect-[5/4] overflow-hidden rounded-[24px]">
-        {/* Top emerald edge line */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 z-20 h-px bg-gradient-to-r from-transparent via-emerald-bright/40 to-transparent"
         />
 
-        {/* Atmospheric scene — slow zoom on hover (light parallax feel) */}
+        {/* Artwork — slow zoom on hover */}
         <div className="absolute inset-0 transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]">
-          <AssetImage
-            src={`/images/genres/${item.key}.webp`}
-            alt=""
-            fallback={<CategoryScene artwork={item.artwork} />}
-            sizes="(min-width: 1024px) 20vw, 50vw"
-          />
+          {item.artSrc ? (
+            <Image
+              src={item.artSrc}
+              alt=""
+              fill
+              sizes="(min-width: 1024px) 20vw, 50vw"
+              className="object-cover"
+            />
+          ) : (
+            <CategoryCoverStack
+              coverSrcs={item.coverSrcs}
+              name={item.name}
+              tint={item.tint}
+            />
+          )}
         </div>
 
         {/* Bottom scrim — legibility for the overlaid title */}

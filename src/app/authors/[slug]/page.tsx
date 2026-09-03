@@ -15,7 +15,7 @@ import {
   getAuthorPageBySlug,
   listAuthorSlugs,
 } from "@/lib/db/queries/catalog";
-import { resolveAsset } from "@/lib/assets";
+import { authorPortraitSrc } from "@/lib/asset-map";
 
 /**
  * /authors/[slug] — Personality Detail page.
@@ -146,7 +146,8 @@ export default async function AuthorPage({
             <div className="group h-full w-full">
               <AuthorPortrait
                 theme={portrait}
-                imageSrc={resolveAsset(`/images/authors/${slug}.webp`)}
+                imageSrc={authorPortraitSrc(slug)}
+                name={name}
               />
             </div>
           }

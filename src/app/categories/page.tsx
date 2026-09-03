@@ -4,12 +4,13 @@ import { CategoriesBackground } from "@/components/categories/categories-backgro
 import { buildPageMetadata } from "@/lib/metadata";
 import type { CategoryCardData } from "@/components/categories/category-card";
 import { CategoryEmptyNotice } from "@/components/categories/category-empty-notice";
-import { resolveCategoryArtwork } from "@/components/categories/demo-categories";
+import { categoryLook } from "@/components/categories/category-icons";
 import { DiscoveryStrip } from "@/components/categories/discovery-strip";
 import { GenreGrid } from "@/components/categories/genre-grid";
 import { CinematicHero } from "@/components/cinematic/cinematic-hero";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
+import { categoryArtSrc } from "@/lib/asset-map";
 import { listAllCategories } from "@/lib/db/queries/catalog";
 
 /**
@@ -22,7 +23,7 @@ import { listAllCategories } from "@/lib/db/queries/catalog";
  *   ├─────────────────────────────────────────────────────────────────┤
  *   │  CinematicHero  ("Every genre", centered, drifting dust)        │
  *   │  CategoryEmptyNotice  (only when the catalog has no categories) │
- *   │  GenreGrid  (2×5 atmospheric worlds — each a CategoryScene)     │
+ *   │  GenreGrid  (one card per real category, its own covers)        │
  *   │  DiscoveryStrip  ("Can't find…? Browse all books")             │
  *   ├─────────────────────────────────────────────────────────────────┤
  *   │  HomeFooter                                                     │
@@ -34,8 +35,8 @@ import { listAllCategories } from "@/lib/db/queries/catalog";
  * Functional integrity (the redesign is presentation-only):
  *   - the real `listAllCategories()` query is unchanged;
  *   - when categories exist they render as cards routing to the existing
- *     SSG `/categories/[slug]` pages (artwork picked by name via
- *     `resolveCategoryArtwork`);
+ *     SSG `/categories/[slug]` pages, each showing the covers of the books
+ *     actually filed in it;
  *   - when the catalog is empty the gallery still exists (architecture-
  *     first) using the curated demo worlds, each routing to a real
  *     `/search?q=` — no dead cards, no 404s into non-existent slug pages;
@@ -65,9 +66,13 @@ export default async function CategoriesIndexPage() {
   // Real categories only. The `hasReal` false branch used to render eight
   // invented "worlds" so the page never looked empty; a category gallery
   // that invents categories is the specific thing this page must not do.
+  // Each card's artwork is the real covers filed in the category (or a
+  // bespoke image at /images/categories/<slug>.webp when one exists). The
+  // keyword-matched "genre world" scenes are gone: none matched a real
+  // category, so every card used to fall through to the same castle.
   const items: CategoryCardData[] = hasReal
-    ? categories.map((cat, i) => {
-        const { icon, artwork } = resolveCategoryArtwork(cat.name, i);
+    ? categories.map((cat) => {
+        const { icon, tint } = categoryLook(cat.slug);
         return {
           key: cat.slug,
           name: cat.name,
@@ -75,7 +80,9 @@ export default async function CategoriesIndexPage() {
             cat.bookCount === 1 ? "1 book" : `${cat.bookCount} books`,
           href: `/categories/${cat.slug}`,
           icon,
-          artwork,
+          tint,
+          coverSrcs: cat.coverSrcs,
+          artSrc: categoryArtSrc(cat.slug),
         };
       })
     : [];

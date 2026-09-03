@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { Star } from "lucide-react";
 
 import type { BookCardData } from "@/components/book-card";
-import { formatPrice } from "@/lib/format";
+import { CoverArt } from "@/components/cinematic/cover-art";
+import { formatCatalogPrice } from "@/lib/format";
 
 /**
  * Cinematic search-results grid — rendered when `?q=…` is present.
@@ -58,9 +58,9 @@ export function SearchResults({
         </div>
       ) : (
         <ul className="mt-10 grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          {results.map((book, i) => (
+          {results.map((book) => (
             <li key={book.id}>
-              <ResultCard book={book} themeIndex={i} />
+              <ResultCard book={book} />
             </li>
           ))}
         </ul>
@@ -70,56 +70,22 @@ export function SearchResults({
 }
 
 /* -------------------------------------------------------------------------- */
-/* Compact result card — CSS cover + title + author + price                   */
+/* Compact result card — real cover + title + author + price                  */
 /* -------------------------------------------------------------------------- */
 
-const COVER_PALETTE = [
-  { gradient: "linear-gradient(160deg, #1a3326 0%, #0a1f14 100%)", accent: "#33f0aa" },
-  { gradient: "linear-gradient(160deg, #1a2c4f 0%, #050a1e 100%)", accent: "#7ab6ff" },
-  { gradient: "linear-gradient(160deg, #c98341 0%, #4b1f0a 100%)", accent: "#ffce63" },
-  { gradient: "linear-gradient(160deg, #b41c1c 0%, #4a0808 100%)", accent: "#f4d4a8" },
-  { gradient: "linear-gradient(160deg, #2c1f1a 0%, #14110a 100%)", accent: "#d1a86a" },
-] as const;
-
-function ResultCard({
-  book,
-  themeIndex,
-}: {
-  book: BookCardData;
-  themeIndex: number;
-}) {
-  const palette = COVER_PALETTE[themeIndex % COVER_PALETTE.length];
+function ResultCard({ book }: { book: BookCardData }) {
   const author = book.authors[0]?.name ?? "—";
 
   return (
     <Link
       href={`/books/${book.slug}`}
-      className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/60 rounded-lg"
+      className="group block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/60"
     >
-      <div className="home-card-hover relative aspect-[2/3] overflow-hidden rounded-md border border-white/[0.08] shadow-[0_24px_48px_-20px_rgba(0,0,0,0.7)]">
-        <div
-          className="absolute inset-0"
-          style={{ background: palette.gradient }}
-        />
-        <div
-          aria-hidden
-          className="absolute -right-6 -top-6 h-20 w-20 rounded-full opacity-50"
-          style={{
-            background: `radial-gradient(circle, ${palette.accent}55 0%, transparent 70%)`,
-          }}
-        />
-        <div className="absolute inset-0 flex flex-col justify-end p-3">
-          <p className="font-serif text-base font-medium leading-tight text-white">
-            {book.title}
-          </p>
-        </div>
-        <div
-          aria-hidden
-          className="absolute right-0 top-[2px] bottom-[2px] w-[2px]"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.14) 100%)",
-          }}
+      <div className="home-card-hover relative aspect-[2/3] overflow-hidden rounded-md border border-white/[0.08] bg-[#0a1410] shadow-[0_24px_48px_-20px_rgba(0,0,0,0.7)]">
+        <CoverArt
+          src={book.coverSrc}
+          title={book.title}
+          sizes="(min-width: 1280px) 18vw, (min-width: 640px) 33vw, 50vw"
         />
       </div>
       <div className="mt-3 px-0.5">
@@ -127,13 +93,12 @@ function ResultCard({
           {book.title}
         </h3>
         <p className="mt-1 text-xs text-fg-soft">{author}</p>
-        <div className="mt-2 flex items-center justify-between">
-          <span className="flex items-center gap-1 text-xs text-fg-mid">
-            <Star aria-hidden className="h-3 w-3 fill-[#f4c44b] text-[#f4c44b]" />
-            <span className="tabular-nums">4.7</span>
-          </span>
+        {/* No rating: this card used to print a constant "4.7 ★" on every
+            result. Nothing in this catalog has a review, and an invented
+            score is a fabrication, not a placeholder. */}
+        <div className="mt-2 flex items-center justify-end">
           <span className="text-sm font-semibold text-fg-hi">
-            {formatPrice(book.priceCents, book.currency)}
+            {formatCatalogPrice(book.priceCents, book.currency)}
           </span>
         </div>
       </div>

@@ -35,7 +35,7 @@ export function ArticleRow({ post }: { post: BlogPostMeta }) {
       >
         {/* LEFT — cinematic preview image */}
         <div className="relative aspect-[4/3] w-full sm:aspect-[5/4]">
-          <ArticleImage scene={sceneForSlug(post.slug)} />
+          <ArticleImage scene={sceneForSlug(post.slug)} imageSrc={post.image} />
         </div>
 
         {/* RIGHT — editorial content */}

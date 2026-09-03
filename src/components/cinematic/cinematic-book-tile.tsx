@@ -31,7 +31,7 @@ export function CinematicBookTile({ book }: { book: BookCardData }) {
         className="pointer-events-none absolute inset-x-0 top-0 z-20 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/30 to-transparent"
       />
 
-      <BookCover title={book.title} coverKey={book.coverKey} />
+      <BookCover title={book.title} coverKey={book.coverKey} coverSrc={book.coverSrc} />
 
       <div className="mt-4 flex flex-1 flex-col gap-1 px-1 pb-1">
         <h3 className="line-clamp-2 font-serif text-[15px] font-medium leading-snug text-fg-hi transition-colors group-hover:text-emerald-bright">

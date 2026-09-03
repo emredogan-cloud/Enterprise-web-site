@@ -1,8 +1,14 @@
+import Image from "next/image";
+
 /**
- * Article preview "scene" — a CSS-rendered cinematic vignette per category.
+ * Article preview image.
  *
- * No photo asset pipeline yet, so each scene is composed from layered
- * gradients + geometric primitives to evoke the article's tone:
+ * Renders the post's real image (`post.image`, from the asset manifest) and
+ * falls back to a CSS-rendered vignette only for a post that has none. Every
+ * current post has an image, and each one is real material: the Nine Men's
+ * Morris board from the games book, a stroke-order plate from the workbook,
+ * Dudeney's own dissection figure, the Codex sigil wheel. The scenes below
+ * are kept for a future post that ships before its picture:
  *   - `warm-library` — open book on warm parchment, soft amber bloom
  *   - `emerald-portal` — glowing arched doorway flanked by shelves
  *   - `dark-shelf` — stacked book spines on a muted dark warm wall
@@ -22,7 +28,16 @@ export function sceneForSlug(slug: string): ArticleScene {
   return "dark-shelf";
 }
 
-export function ArticleImage({ scene }: { scene: ArticleScene }) {
+export function ArticleImage({
+  scene,
+  imageSrc,
+  alt = "",
+}: {
+  scene: ArticleScene;
+  /** The article's real image (`post.image`); the scene renders only when null. */
+  imageSrc?: string | null;
+  alt?: string;
+}) {
   return (
     <div className="relative h-full w-full overflow-hidden rounded-[22px] border border-white/[0.08] shadow-[0_24px_56px_-20px_rgba(0,0,0,0.7),0_0_0_1px_rgba(255,255,255,0.04)_inset]">
       {/* Emerald edge glow — subtle top-light wash */}
@@ -31,13 +46,26 @@ export function ArticleImage({ scene }: { scene: ArticleScene }) {
         className="pointer-events-none absolute inset-x-0 top-0 z-20 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/30 to-transparent"
       />
 
-      {/* The actual scene — wrapped in a parent group-hover zoom target */}
+      {/* The real image, or the procedural scene when the post has none —
+          wrapped in a parent group-hover zoom target */}
       <div
         className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
       >
-        {scene === "warm-library" && <WarmLibraryScene />}
-        {scene === "emerald-portal" && <EmeraldPortalScene />}
-        {scene === "dark-shelf" && <DarkShelfScene />}
+        {imageSrc ? (
+          <Image
+            src={imageSrc}
+            alt={alt}
+            fill
+            sizes="(min-width: 640px) 46vw, 100vw"
+            className="object-cover"
+          />
+        ) : (
+          <>
+            {scene === "warm-library" && <WarmLibraryScene />}
+            {scene === "emerald-portal" && <EmeraldPortalScene />}
+            {scene === "dark-shelf" && <DarkShelfScene />}
+          </>
+        )}
       </div>
 
       {/* Foreground vignette — anchors the scene + adds depth */}

@@ -18,6 +18,13 @@ import { getPaddleClient, isPaddleConfigured } from "@/lib/paddle";
  */
 export async function addToCart(bookId: string): Promise<void> {
   if (!bookId) return;
+  // Only a title this store actually sells may enter the cart. A book whose
+  // every edition is fulfilled by Amazon has `price_cents = 0` and no Paddle
+  // price; adding it produced a $0 line that checkout then refused. The
+  // shelves no longer offer the button for such a book, and this guard makes
+  // the rule hold even for a stale page or a hand-made request.
+  const [book] = await getCheckoutItems([bookId]);
+  if (!book || book.priceCents <= 0 || !book.paddlePriceId) return;
   const cart = await readCart();
   if (cart.items.some((i) => i.bookId === bookId)) return;
   cart.items.push({ bookId, addedAt: Date.now() });

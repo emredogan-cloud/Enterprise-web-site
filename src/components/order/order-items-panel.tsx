@@ -76,7 +76,7 @@ function OrderItemRow({
     <div className="flex items-center gap-5 p-3 transition-colors hover:bg-white/[0.02] sm:p-4">
       {/* Cover — w-16 keeps the row compact */}
       <div className="w-16 flex-shrink-0 sm:w-20">
-        <BookCover title={item.book.title} coverKey={item.book.coverKey} />
+        <BookCover title={item.book.title} coverKey={item.book.coverKey} coverSrc={item.book.coverSrc} />
       </div>
 
       {/* Title + subtitle */}

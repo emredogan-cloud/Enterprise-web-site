@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { FolderOpen } from "lucide-react";
 
-import { resolveCategoryArtwork } from "@/components/categories/demo-categories";
-import { CategoryScene } from "@/components/categories/category-scene";
+import { categoryLook } from "@/components/categories/category-icons";
 
 /**
  * Right panel — Browse by category.
@@ -43,16 +42,14 @@ export function CategoryDiscoveryPanel({
 
       {/* 2×4 grid */}
       <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
-        {categories.map((c, i) => (
+        {categories.map((c) => (
           <Link
             key={c.slug}
             href={`/categories/${c.slug}`}
             className="group flex flex-col items-center justify-start gap-3 rounded-2xl border border-white/[0.05] bg-white/[0.015] p-4 text-center transition-all hover:-translate-y-1 hover:border-emerald-bright/30 hover:bg-white/[0.04] hover:shadow-[0_18px_32px_-16px_rgba(0,0,0,0.6),0_0_22px_-8px_rgba(51,240,170,0.4)]"
           >
-            {/* Centered artwork (the brief is explicit on vertical stack) */}
-            <div className="h-16 w-16 overflow-hidden rounded-xl">
-              <CategoryScene artwork={resolveCategoryArtwork(c.name, i).artwork} />
-            </div>
+            {/* The category's own glyph — no invented "genre world" scene */}
+            <CategoryGlyph slug={c.slug} />
 
             {/* Title + count CENTERED below, generous gap above */}
             <div className="mt-1">
@@ -67,5 +64,17 @@ export function CategoryDiscoveryPanel({
         ))}
       </div>
     </div>
+  );
+}
+
+function CategoryGlyph({ slug }: { slug: string }) {
+  const { icon: Icon, tint } = categoryLook(slug);
+  return (
+    <span
+      className="flex h-16 w-16 items-center justify-center rounded-xl border border-white/[0.08] text-emerald-bright"
+      style={{ background: `radial-gradient(circle at 50% 35%, ${tint} 0%, rgba(7,17,11,0.9) 70%)` }}
+    >
+      <Icon aria-hidden className="h-7 w-7" strokeWidth={1.6} />
+    </span>
   );
 }

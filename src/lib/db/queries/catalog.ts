@@ -18,6 +18,7 @@ import { sql } from "drizzle-orm";
 import { unstable_cache } from "next/cache";
 
 import type { BookCardData } from "@/components/book-card";
+import { bookCoverSrc } from "@/lib/asset-map";
 
 import { db } from "@/lib/db";
 
@@ -110,6 +111,7 @@ export async function listPublishedBooks(): Promise<BookCardData[]> {
         title: b.title,
         subtitle: b.subtitle,
         coverKey: b.coverKey,
+        coverSrc: bookCoverSrc(b.slug),
         priceCents: b.priceCents,
         currency: b.currency,
         authors: b.bookAuthors.map((ba) => ba.author),
@@ -175,6 +177,7 @@ const _getFeaturedBooksFromDb = unstable_cache(
       title: b.title,
       subtitle: b.subtitle,
       coverKey: b.coverKey,
+      coverSrc: bookCoverSrc(b.slug),
       priceCents: b.priceCents,
       currency: b.currency,
       authors: b.bookAuthors.map((ba) => ba.author),
@@ -244,6 +247,7 @@ export async function listEbooks(): Promise<BookCardData[]> {
             title: b.title,
             subtitle: b.subtitle,
             coverKey: b.coverKey,
+            coverSrc: bookCoverSrc(b.slug),
             // Show the ebook's own price, not the book's canonical one —
             // this page is specifically about the ebook edition.
             priceCents: ebook?.priceCents ?? b.priceCents,
@@ -363,6 +367,7 @@ export async function getPublishedBookBySlug(
         subtitle: book.subtitle,
         description: book.description,
         coverKey: book.coverKey,
+        coverSrc: bookCoverSrc(book.slug),
         priceCents: book.priceCents,
         currency: book.currency,
         pageCount: book.pageCount,
@@ -452,6 +457,7 @@ export async function searchBooks(query: string): Promise<BookCardData[]> {
         title: b.title,
         subtitle: b.subtitle,
         coverKey: b.coverKey,
+        coverSrc: bookCoverSrc(b.slug),
         priceCents: b.priceCents,
         currency: b.currency,
         authors: b.bookAuthors.map((ba) => ba.author),
@@ -536,6 +542,7 @@ export async function getCartBooks(bookIds: string[]): Promise<BookCardData[]> {
         title: b.title,
         subtitle: b.subtitle,
         coverKey: b.coverKey,
+        coverSrc: bookCoverSrc(b.slug),
         priceCents: b.priceCents,
         currency: b.currency,
         authors: b.bookAuthors.map((ba) => ba.author),
@@ -609,6 +616,14 @@ export interface CategorySummary {
   slug: string;
   name: string;
   bookCount: number;
+  /**
+   * Covers of the published books actually filed in the category, newest
+   * first — up to three public paths from the asset manifest. The category
+   * cards compose these into their artwork, so a category looks like what is
+   * in it rather than like a stock "genre world". Empty when no book in the
+   * category has a cover asset.
+   */
+  coverSrcs: string[];
 }
 
 export async function listAllCategories(): Promise<CategorySummary[]> {
@@ -620,18 +635,29 @@ export async function listAllCategories(): Promise<CategorySummary[]> {
         with: {
           bookCategories: {
             columns: {},
-            with: { book: { columns: { status: true } } },
+            with: { book: { columns: { slug: true, status: true, publishedAt: true } } },
           },
         },
         orderBy: (c, { asc }) => asc(c.name),
       });
-      return rows.map((c) => ({
-        slug: c.slug,
-        name: c.name,
-        bookCount: c.bookCategories.filter(
-          (bc) => bc.book.status === "published",
-        ).length,
-      }));
+      return rows.map((c) => {
+        const published = c.bookCategories
+          .map((bc) => bc.book)
+          .filter((b) => b.status === "published")
+          .sort(
+            (a, b) =>
+              (b.publishedAt?.getTime() ?? 0) - (a.publishedAt?.getTime() ?? 0),
+          );
+        return {
+          slug: c.slug,
+          name: c.name,
+          bookCount: published.length,
+          coverSrcs: published
+            .map((b) => bookCoverSrc(b.slug))
+            .filter((src): src is string => Boolean(src))
+            .slice(0, 3),
+        };
+      });
     },
     [],
   );
@@ -696,6 +722,7 @@ export async function getCategoryPageBySlug(
           title: b.title,
           subtitle: b.subtitle,
           coverKey: b.coverKey,
+          coverSrc: bookCoverSrc(b.slug),
           priceCents: b.priceCents,
           currency: b.currency,
           authors: b.bookAuthors.map((ba) => ba.author),
@@ -832,6 +859,7 @@ export async function getAuthorPageBySlug(
           title: b.title,
           subtitle: b.subtitle,
           coverKey: b.coverKey,
+          coverSrc: bookCoverSrc(b.slug),
           priceCents: b.priceCents,
           currency: b.currency,
           authors: b.bookAuthors.map((ba) => ba.author),

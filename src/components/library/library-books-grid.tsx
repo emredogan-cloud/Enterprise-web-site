@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { CoverArt } from "@/components/cinematic/cover-art";
 import { DownloadButton } from "@/components/download-button";
 import { LibraryStatusMenu } from "@/components/library/library-status-menu";
 import type { LibraryView } from "@/components/library/library-filters";
@@ -23,33 +24,6 @@ import { type LibraryEntry } from "@/lib/db/queries/account";
  * Pure Server Component (the `<DownloadButton>` and
  * `<LibraryStatusMenu>` inside each entry are the only Client islands).
  */
-
-const COVER_PALETTE: Array<{ gradient: string; accent: string }> = [
-  {
-    gradient: "linear-gradient(160deg, #1a3326 0%, #0a1f14 100%)",
-    accent: "#33f0aa",
-  },
-  {
-    gradient: "linear-gradient(160deg, #1a2c4f 0%, #050a1e 100%)",
-    accent: "#7ab6ff",
-  },
-  {
-    gradient: "linear-gradient(160deg, #c98341 0%, #4b1f0a 100%)",
-    accent: "#ffce63",
-  },
-  {
-    gradient: "linear-gradient(160deg, #b41c1c 0%, #4a0808 100%)",
-    accent: "#f4d4a8",
-  },
-  {
-    gradient: "linear-gradient(160deg, #2c1f1a 0%, #14110a 100%)",
-    accent: "#d1a86a",
-  },
-  {
-    gradient: "linear-gradient(160deg, #3a2845 0%, #14081c 100%)",
-    accent: "#b18cff",
-  },
-];
 
 export function LibraryBooksGrid({
   library,
@@ -76,9 +50,9 @@ function LibraryGridView({ entries }: { entries: LibraryEntry[] }) {
   return (
     <section className="mx-auto mt-8 max-w-[1320px] px-4 sm:px-6">
       <ul className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {entries.map((entry, i) => (
+        {entries.map((entry) => (
           <li key={entry.bookId}>
-            <LibraryTile entry={entry} themeIndex={i} />
+            <LibraryTile entry={entry} />
           </li>
         ))}
       </ul>
@@ -94,12 +68,12 @@ function LibraryShelfView({ entries }: { entries: LibraryEntry[] }) {
   return (
     <section className="mx-auto mt-8 max-w-[1320px] px-4 sm:px-6">
       <ul className="cart-shelf-track -mx-1 flex snap-x snap-mandatory gap-5 overflow-x-auto px-1 pb-2">
-        {entries.map((entry, i) => (
+        {entries.map((entry) => (
           <li
             key={entry.bookId}
             className="w-[42vw] flex-shrink-0 snap-start sm:w-[260px]"
           >
-            <LibraryTile entry={entry} themeIndex={i} />
+            <LibraryTile entry={entry} />
           </li>
         ))}
       </ul>
@@ -115,9 +89,9 @@ function LibraryListView({ entries }: { entries: LibraryEntry[] }) {
   return (
     <section className="mx-auto mt-8 max-w-[1320px] px-4 sm:px-6">
       <ul className="space-y-3">
-        {entries.map((entry, i) => (
+        {entries.map((entry) => (
           <li key={entry.bookId}>
-            <LibraryListRow entry={entry} themeIndex={i} />
+            <LibraryListRow entry={entry} />
           </li>
         ))}
       </ul>
@@ -129,14 +103,7 @@ function LibraryListView({ entries }: { entries: LibraryEntry[] }) {
 // Shared primitives
 // ─────────────────────────────────────────────────────────────────────────
 
-function LibraryTile({
-  entry,
-  themeIndex,
-}: {
-  entry: LibraryEntry;
-  themeIndex: number;
-}) {
-  const palette = COVER_PALETTE[themeIndex % COVER_PALETTE.length];
+function LibraryTile({ entry }: { entry: LibraryEntry }) {
   return (
     <article className="home-glass home-card-hover group relative flex flex-col overflow-hidden rounded-[22px] p-3">
       {/* Status menu — top-right above the cover, doesn't compete with download */}
@@ -149,31 +116,13 @@ function LibraryTile({
 
       <Link
         href={`/books/${entry.book.slug}`}
-        className="relative block aspect-[2/3] overflow-hidden rounded-[14px] border border-white/[0.08] shadow-[0_18px_36px_-14px_rgba(0,0,0,0.7)]"
+        className="relative block aspect-[2/3] overflow-hidden rounded-[14px] border border-white/[0.08] bg-[#0a1410] shadow-[0_18px_36px_-14px_rgba(0,0,0,0.7)]"
       >
-        <div className="absolute inset-0" style={{ background: palette.gradient }} />
-        <div
-          aria-hidden
-          className="absolute -right-6 -top-6 h-20 w-20 rounded-full opacity-50"
-          style={{
-            background: `radial-gradient(circle, ${palette.accent}55 0%, transparent 70%)`,
-          }}
-        />
-        <div className="absolute inset-0 flex flex-col justify-between p-3">
-          <span className="text-[8px] font-semibold uppercase tracking-[0.2em] text-white/45">
-            Owned
-          </span>
-          <p className="font-serif text-[15px] font-medium leading-tight text-white">
-            {entry.book.title}
-          </p>
-        </div>
-        <div
-          aria-hidden
-          className="absolute right-0 top-[2px] bottom-[2px] w-[2px]"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.14) 100%)",
-          }}
+        <CoverArt
+          src={entry.book.coverSrc}
+          title={entry.book.title}
+          eyebrow="Owned"
+          sizes="(min-width: 1024px) 20vw, 42vw"
         />
       </Link>
 
@@ -229,14 +178,7 @@ function LibraryTile({
   );
 }
 
-function LibraryListRow({
-  entry,
-  themeIndex,
-}: {
-  entry: LibraryEntry;
-  themeIndex: number;
-}) {
-  const palette = COVER_PALETTE[themeIndex % COVER_PALETTE.length];
+function LibraryListRow({ entry }: { entry: LibraryEntry }) {
   return (
     <article className="home-glass relative flex items-center gap-4 overflow-hidden rounded-[16px] p-3 sm:gap-5 sm:p-4">
       <div
@@ -247,18 +189,13 @@ function LibraryListRow({
       {/* Mini cover — w-14 keeps it row-height friendly */}
       <Link
         href={`/books/${entry.book.slug}`}
-        className="relative h-20 w-14 flex-shrink-0 overflow-hidden rounded-md border border-white/[0.08]"
+        className="relative h-20 w-14 flex-shrink-0 overflow-hidden rounded-md border border-white/[0.08] bg-[#0a1410]"
       >
-        <div
-          className="absolute inset-0"
-          style={{ background: palette.gradient }}
-        />
-        <div
-          aria-hidden
-          className="absolute -right-3 -top-3 h-10 w-10 rounded-full opacity-50"
-          style={{
-            background: `radial-gradient(circle, ${palette.accent}55 0%, transparent 70%)`,
-          }}
+        <CoverArt
+          src={entry.book.coverSrc}
+          title={entry.book.title}
+          sizes="56px"
+          titleClassName="font-serif text-[8px] font-medium leading-tight text-white line-clamp-3"
         />
       </Link>
 

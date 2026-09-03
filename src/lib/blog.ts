@@ -28,6 +28,8 @@ import path from "node:path";
 import matter from "gray-matter";
 import { marked } from "marked";
 
+import { blogImageSrc } from "./asset-map";
+
 // -----------------------------------------------------------------------------
 // Paths + slugs
 // -----------------------------------------------------------------------------
@@ -91,6 +93,14 @@ export interface BlogPostMeta {
    * present — empty array when the post has no tags.
    */
   tags: ReadonlyArray<string>;
+  /**
+   * The article's image — `/images/blog/<slug>.webp` when the asset manifest
+   * has one, else null. Resolved once here so the index rows and the detail
+   * hero show the same picture. Where a real figure from the book exists
+   * (a board diagram, a stroke-order plate, Dudeney's own dissection) that
+   * is what the file is; the two house essays reuse existing scenes.
+   */
+  image: string | null;
 }
 
 export interface BlogPost extends BlogPostMeta {
@@ -200,6 +210,7 @@ async function loadAllPostsMeta(): Promise<BlogPostMeta[]> {
         categorySlug: slugifyCategory(data.category),
         excerpt: data.excerpt,
         tags: Array.isArray(data.tags) ? data.tags : [],
+        image: blogImageSrc(slug),
       };
       return meta;
     }),

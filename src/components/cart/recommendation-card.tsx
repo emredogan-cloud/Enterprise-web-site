@@ -1,35 +1,39 @@
 "use client";
 
-import { Check, Plus, Star } from "lucide-react";
+import { Check, ExternalLink, Plus, Star } from "lucide-react";
 import Link from "next/link";
-import { useTransition } from "react";
+import { useCallback, useState, useTransition } from "react";
 
 import { addToCart } from "@/app/cart/actions";
 import type { CatalogItem } from "@/components/catalog/catalog-item";
+import { CoverArt } from "@/components/cinematic/cover-art";
 import { formatCatalogPrice } from "@/lib/format";
 
 /**
- * Single recommendation card for the "You might like" shelf.
+ * Single recommendation card for the "You might like" shelves (cart, library).
  *
- * Visually identical DNA to the catalog book card (cover + meta), with
- * one critical difference: the bottom row uses Flexbox `justify-between`
- * + `items-end` so the rating/price block aligns LEFT and the small
- * circular `+` add button aligns RIGHT — exactly per the brief.
+ * Cover + meta, with the bottom row split: rating/price LEFT, action RIGHT.
  *
- * The `+` button calls `addToCart` directly (no shopping flow detour);
- * once added, it flips to a green ✓ check to confirm the addition. The
- * `cart-changed` event refreshes the header's cart-count indicator.
+ * Two honesty rules live here, both learned from the Founder's screenshots:
+ *
+ *  1. The cover is the book's real cover (`item.coverSrc`, from the asset
+ *     manifest). The gradient stand-in appears only for a book that has no
+ *     cover asset at all.
+ *  2. A title this store does not sell — `priceCents === 0`, every edition
+ *     fulfilled by Amazon — gets no add-to-cart button. It used to get one,
+ *     and pressing it put a $0 line in the cart for a book nobody could check
+ *     out. Such a card says "On Amazon" and links to the book page, where the
+ *     real Amazon editions are listed.
  */
 export function RecommendationCard({ book }: { book: CatalogItem }) {
   const [pending, startTransition] = useTransition();
-  // Local "added" flag — visible for 2 seconds, then resets.
-  // We use a stale `useState` ref pattern via a CSS data attribute so we
-  // don't trigger re-renders for the flash effect.
   const [added, setAdded] = useStateAdded();
+  const direct = book.priceCents > 0;
 
   const onAdd = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    if (!direct) return;
     startTransition(async () => {
       await addToCart(book.id);
       if (typeof window !== "undefined") {
@@ -42,55 +46,16 @@ export function RecommendationCard({ book }: { book: CatalogItem }) {
   return (
     <Link
       href={`/books/${book.slug}`}
-      className="group relative flex h-full flex-shrink-0 snap-start flex-col gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/60 rounded-lg"
+      className="group relative flex h-full flex-shrink-0 snap-start flex-col gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/60"
       style={{ width: "180px" }}
     >
       {/* Cover */}
-      <div className="home-card-hover relative aspect-[2/3] overflow-hidden rounded-[16px] border border-white/[0.08] shadow-[0_20px_40px_-16px_rgba(0,0,0,0.7)]">
-        <div
-          className="absolute inset-0"
-          style={{ background: book.cover.gradient }}
-        />
-
-        {/* Corner accent glow */}
-        <div
-          aria-hidden
-          className="absolute -right-6 -top-6 h-20 w-20 rounded-full opacity-50"
-          style={{
-            background: `radial-gradient(circle, ${book.cover.accent}55 0%, transparent 70%)`,
-          }}
-        />
-
-        {/* Title on cover */}
-        <div className="absolute inset-0 flex flex-col justify-between p-3">
-          <span
-            className="text-[8px] font-semibold uppercase tracking-[0.2em]"
-            style={{
-              color: book.cover.darkText
-                ? "rgba(0,0,0,0.5)"
-                : "rgba(255,255,255,0.5)",
-            }}
-          >
-            {book.category}
-          </span>
-          <p
-            className="font-serif text-[14px] font-medium leading-tight"
-            style={{
-              color: book.cover.darkText ? "#1a1612" : "#ffffff",
-            }}
-          >
-            {book.title}
-          </p>
-        </div>
-
-        {/* Right edge highlight */}
-        <div
-          aria-hidden
-          className="absolute right-0 top-[2px] bottom-[2px] w-[2px]"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.14) 100%)",
-          }}
+      <div className="home-card-hover relative aspect-[2/3] overflow-hidden rounded-[16px] border border-white/[0.08] bg-[#0a1410] shadow-[0_20px_40px_-16px_rgba(0,0,0,0.7)]">
+        <CoverArt
+          src={book.coverSrc}
+          title={book.title}
+          eyebrow={book.category}
+          sizes="180px"
         />
       </div>
 
@@ -102,8 +67,7 @@ export function RecommendationCard({ book }: { book: CatalogItem }) {
         <p className="text-xs text-fg-soft">{book.author}</p>
       </div>
 
-      {/* Bottom row — rating/price LEFT, + button RIGHT.
-          Per the brief: flex space-between + items-end alignment. */}
+      {/* Bottom row — rating/price LEFT, action RIGHT */}
       <div className="flex items-end justify-between px-0.5">
         <div className="flex flex-col gap-1">
           {/* No invented stars — see <CatalogBookCard>. */}
@@ -123,36 +87,40 @@ export function RecommendationCard({ book }: { book: CatalogItem }) {
           </span>
         </div>
 
-        <button
-          type="button"
-          onClick={onAdd}
-          disabled={pending}
-          aria-label={`Add ${book.title} to cart`}
-          aria-pressed={added}
-          className={`flex h-8 w-8 items-center justify-center rounded-full border transition-all disabled:cursor-not-allowed disabled:opacity-50 ${
-            added
-              ? "border-emerald-bright/60 bg-emerald-bright/15 text-emerald-bright shadow-[0_0_14px_rgba(51,240,170,0.45)]"
-              : "border-white/[0.1] bg-white/[0.03] text-fg-mid hover:scale-105 hover:border-emerald-bright/50 hover:bg-emerald-bright/10 hover:text-emerald-bright hover:shadow-[0_0_14px_rgba(51,240,170,0.4)]"
-          }`}
-        >
-          {added ? (
-            <Check aria-hidden className="h-4 w-4" />
-          ) : (
-            <Plus aria-hidden className="h-4 w-4" />
-          )}
-        </button>
+        {direct ? (
+          <button
+            type="button"
+            onClick={onAdd}
+            disabled={pending}
+            aria-label={`Add ${book.title} to cart`}
+            aria-pressed={added}
+            className={`flex h-8 w-8 items-center justify-center rounded-full border transition-all disabled:cursor-not-allowed disabled:opacity-50 ${
+              added
+                ? "border-emerald-bright/60 bg-emerald-bright/15 text-emerald-bright shadow-[0_0_14px_rgba(51,240,170,0.45)]"
+                : "border-white/[0.1] bg-white/[0.03] text-fg-mid hover:scale-105 hover:border-emerald-bright/50 hover:bg-emerald-bright/10 hover:text-emerald-bright hover:shadow-[0_0_14px_rgba(51,240,170,0.4)]"
+            }`}
+          >
+            {added ? (
+              <Check aria-hidden className="h-4 w-4" />
+            ) : (
+              <Plus aria-hidden className="h-4 w-4" />
+            )}
+          </button>
+        ) : (
+          <span
+            aria-hidden
+            title="Print editions on Amazon — see the book page"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.02] text-fg-fade"
+          >
+            <ExternalLink className="h-3.5 w-3.5" />
+          </span>
+        )}
       </div>
     </Link>
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/* Tiny local hook — temporary "added" flag that auto-clears after 2 sec.     */
-/* Kept local because no other component needs it.                            */
-/* -------------------------------------------------------------------------- */
-
-import { useCallback, useState } from "react";
-
+/** Temporary "added" flag that auto-clears after two seconds. */
 function useStateAdded(): [boolean, () => void] {
   const [added, setRawAdded] = useState(false);
   const set = useCallback(() => {

@@ -12,7 +12,6 @@ import { FormatTable } from "@/components/book-detail/format-table";
 import { RelatedBooksShelf } from "@/components/book-detail/related-books-shelf";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
-import { resolveAsset } from "@/lib/assets";
 import { getCompanionForBook } from "@/lib/companions";
 import {
   getPublishedBookBySlug,
@@ -67,6 +66,15 @@ export async function generateStaticParams(): Promise<Array<{ slug: string }>> {
   return slugs.map(({ slug }) => ({ slug }));
 }
 
+/**
+ * Absolute URL of the book's canonical cover for metadata and JSON-LD:
+ * the manifest asset on the site origin, else the R2 public URL, else null.
+ */
+function canonicalCoverUrl(book: { coverSrc?: string | null; coverKey: string | null }): string | null {
+  if (book.coverSrc) return `${getBaseUrl().replace(/\/$/, "")}${book.coverSrc}`;
+  return getCoverImageUrl(book.coverKey);
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -85,7 +93,7 @@ export async function generateMetadata({
       ? `${book.description.slice(0, 157).trim()}…`
       : `${book.title} — Valice Press`);
 
-  const coverImageUrl = getCoverImageUrl(book.coverKey);
+  const coverImageUrl = canonicalCoverUrl(book);
   const url = `/books/${slug}`;
 
   return buildPageMetadata({
@@ -136,12 +144,12 @@ export default async function BookDetailPage({
 
   // JSON-LD payload — identical shape to the pre-cinematic page.
   const baseUrl = getBaseUrl();
-  const coverImageUrl = getCoverImageUrl(book.coverKey);
-  // Hero cover priority: R2 `coverKey` URL → local public asset
-  // (`/images/books/{slug}.webp`) → typographic placeholder. This is what
-  // lets a slug-named cover render when `coverKey` is still null.
-  const coverSrc =
-    coverImageUrl ?? resolveAsset(`/images/books/${slug}.webp`);
+  // One cover everywhere: the manifest asset (`book.coverSrc`, attached by
+  // the query layer) is canonical; the R2 `coverKey` is the fallback; the
+  // typographic placeholder is last. JSON-LD and Open Graph carry the same
+  // file, absolutised, so a search result and the page cannot disagree.
+  const coverSrc = book.coverSrc ?? getCoverImageUrl(book.coverKey);
+  const coverImageUrl = canonicalCoverUrl(book);
   const jsonLd = buildBookJsonLd({
     baseUrl,
     slug,
