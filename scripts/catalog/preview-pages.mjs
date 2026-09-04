@@ -123,6 +123,14 @@ export const PREVIEW_PAGES = [
     note: "Two discourses with their head-notes — the apparatus and the text on the same page, which is what the edition is for.",
   },
   {
+    slug: "indian-myth-and-legend",
+    source: `${BUILT}/indian-myth-and-legend.pdf`,
+    // Inside chapter II, where the density of gods is highest and the editor's
+    // chapter introduction is doing the work the volume is bought for.
+    pages: [30, 33],
+    note: "The great Vedic deities, with the editor's chapter introduction above them \u2014 the apparatus and the text on the same spread.",
+  },
+  {
     slug: "myths-and-legends-of-china",
     source: `${BUILT}/myths-and-legends-of-china.pdf`,
     // The chapter that makes the book's argument: the Ministry of Thunder, with

@@ -75,4 +75,9 @@ export const PRINT_INTERIORS = {
     // so the appended companion leaf makes 108.
     paperback: `${ROOT}/MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pdf`,
   },
+  "indian-myth-and-legend": {
+    // Valice Classics 6 (2026-09-04). Volume one of four. Typeset ODD (93 pp)
+    // so the appended companion leaf makes 94.
+    paperback: `${ROOT}/INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf`,
+  },
 };

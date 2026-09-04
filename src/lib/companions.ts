@@ -791,16 +791,17 @@ const GREEK: Companion = {
     "recommends, with their provenance printed in the book.",
   assets: [
     {
-      id: "stroke-boxes",
-      title: "Stroke-order practice boxes \u2014 all 48 forms",
+      id: "stroke-sheets",
+      title: "Stroke-order practice sheets \u2014 all 53 forms",
       description:
-        "One page per letter, capital and small: the letter with its numbered " +
-        "stroke marks, the same letter built up one stroke at a time, and then " +
-        "rows of large boxes with only the start dots printed. This is the drill " +
+        "One page for every form the book teaches \u2014 24 letters in both cases " +
+        "and the five variants: the letter with its numbered stroke marks, the " +
+        "same letter again for each stroke with the marks building up in order, " +
+        "and then ruled lines carrying only the start dots. This is the drill " +
         "the book has room to do once and you will want to do twenty times.",
       kind: "static",
-      href: "/companion/greek/stroke-boxes.pdf",
-      meta: "PDF \u00b7 US Letter \u00b7 48 pages",
+      href: "/companion/greek/stroke-sheets.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 53 pages",
     },
     {
       id: "practice-grid",
@@ -911,6 +912,79 @@ const CHINA_GODS: Companion = {
   ],
 };
 
+const VEDIC_GODS: Companion = {
+  slug: "vedic-gods",
+  bookSlug: "indian-myth-and-legend",
+  bookTitle: "Indian Myth and Legend: Volume One, The Vedic Gods",
+  state: "book-not-yet-available",
+  stateNote:
+    "The Valice edition is built and validated but not yet on sale \u2014 the " +
+    "rights gate is signed by a person, not a script, and that signature is " +
+    "outstanding. Everything on this page is free and works today regardless.",
+  intro:
+    "Free material for Mackenzie's Indian Myth and Legend: which of his " +
+    "comparisons still stand, the thirty-two figures with the chapters they " +
+    "appear in, four ways into the book, and how to read the Sanskrit names.",
+  newsletterSource: "vedic-gods-companion",
+  assetsHeading: "Reading material",
+  rightsNote:
+    "Donald A. Mackenzie died in 1936, so his 1913 text is in the public " +
+    "domain in the United States and, since 1 January 2007, in the UK, the EU " +
+    "and T\u00fcrkiye (source: Project Gutenberg #47228). The register, the " +
+    "who's-who, the reading paths and the note on the names are Valice " +
+    "Press's own writing. None of the 1913 illustrations is reproduced: two of " +
+    "those in these chapters are paintings by Nandalal Bose, who died in 1966 " +
+    "and whose work is still in copyright, and the rest name no creator at all.",
+  assets: [
+    {
+      id: "comparisons",
+      title: "Which comparisons still stand",
+      description:
+        "Mackenzie compares Indra to Thor, Agni to Heimdal and half the " +
+        "pantheon to something Babylonian, in the same tone whether the " +
+        "parallel is a proven cognate or a theory nobody now defends. Four " +
+        "kinds, graded by how much weight each will bear.",
+      kind: "static",
+      href: "/companion/vedic-gods/comparisons.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "who-is-who",
+      title: "Who is who",
+      description:
+        "Thirty-two gods, demons and mortals \u2014 Indra, Agni, Varuna, Yama " +
+        "who was the first man, the dragon Vritra \u2014 each with the chapters " +
+        "they appear in and how often. Note that there are two Savitris: a " +
+        "solar deity and a princess, and they are not the same figure.",
+      kind: "static",
+      href: "/companion/vedic-gods/who-is-who.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 2 pages",
+    },
+    {
+      id: "reading-paths",
+      title: "Four ways in",
+      description:
+        "Where to start depending on why you picked the book up, with " +
+        "Mackenzie's own chapter numbers so it works with any edition of the " +
+        "1913 text, and how long each of the five chapters runs.",
+      kind: "static",
+      href: "/companion/vedic-gods/reading-paths.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "the-names",
+      title: "The names",
+      description:
+        "Sanskrit has three s-sounds, a set of long vowels Mackenzie usually " +
+        "does not mark, and a final -a that is pronounced. Four things worth " +
+        "knowing before several hundred proper names start arriving.",
+      kind: "static",
+      href: "/companion/vedic-gods/the-names.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+  ],
+};
+
 const COMPANIONS: readonly Companion[] = [
   HANGUL,
   WORLD_GAMES,
@@ -923,6 +997,7 @@ const COMPANIONS: readonly Companion[] = [
   SENECA,
   GREEK,
   CHINA_GODS,
+  VEDIC_GODS,
 ];
 
 export function listCompanions(): readonly Companion[] {

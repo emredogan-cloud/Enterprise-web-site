@@ -74,6 +74,9 @@ export const EDITION_GEOMETRY = {
   "myths-and-legends-of-china": {
     paperback: { trimWidthIn: 6, trimHeightIn: 9, binding: "paperback", paper: "white", paperVerified: "project" },
   },
+  "indian-myth-and-legend": {
+    paperback: { trimWidthIn: 6, trimHeightIn: 9, binding: "paperback", paper: "white", paperVerified: "project" },
+  },
 };
 
 /** Measured MediaBox of each edition's built interior, in points. */
@@ -89,4 +92,5 @@ export const MEASURED_MEDIABOX_PT = {
   "epictetus-discourses-and-enchiridion": { paperback: [432, 648] },
   "seneca-selected-dialogues": { paperback: [432, 648] },
   "myths-and-legends-of-china": { paperback: [432, 648] },
+  "indian-myth-and-legend": { paperback: [432, 648] },
 };

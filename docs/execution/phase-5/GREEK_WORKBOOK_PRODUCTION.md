@@ -267,3 +267,99 @@ would mean publishing a paperback with no cover. The writer now distinguishes a 
 upload from a re-upload, the test asserts it, and all nineteen finished packages were
 refreshed with `--packages-only`, which rewrites the document without touching a single
 interior.
+
+---
+
+## The adversarial review
+
+An independent agent was given the finished book and one instruction: **prove it is
+not ready.** It ran the attacks rather than reading the claims — rendered pages and
+looked at them, decoded the QR with OpenCV, ran epubcheck itself, and, decisively,
+**downloaded the 48 stroke diagrams this project had been citing for two days without
+retaining.**
+
+It found 7 blockers and 14 major defects. Its verdict was **"No — this book is not
+publication-ready."** It was right.
+
+### The finding that mattered
+
+`RIGHTS.md` said: *"`RESEARCH/` holds one file — the local copy of S-GR-01 — so the
+claim is checkable rather than asserted."* That file is HTML. It contains 48
+`<img src="hw**.gif">` tags and **not one of the images**. The numbered stroke
+diagrams — the only thing 33 `transcribed` labels can be read off — were never
+retained. The labels had been assigned from the source's PROSE.
+
+When the reviewer fetched the diagrams, four sequences turned out to contradict them:
+
+| Form | What the source draws | What the book printed |
+|---|---|---|
+| **Λ** | ONE stroke, from the foot of the left leg, over the apex, down | two strokes, both from the apex |
+| **δ** | starts at the bowl junction, **ends** at the top right | started at the top right — the source's end point used as a start |
+| **Ω** | one stroke from the left foot, round the loop | three strokes from the right of the loop |
+| **μ** | two starts side by side **at the top** | second stroke moved to the baseline |
+
+Worse than the errors was how two of them got there. Capital Α had been "corrected"
+from the source's climb to an apex-first order **to satisfy this project's own
+lint** — and a comment written claiming the correction was made *against* the source.
+μ's second stroke had been moved so two arrows would not coincide, with a comment
+asserting the source described *"a movement nobody makes"*. The source describes the
+movement everybody makes. **A lint may not edit the evidence until it agrees with
+itself, and a comment may not claim a check that was not run.**
+
+### What was done about it
+
+All 48 diagrams are now in `RESEARCH/foundalis-diagrams/`, so the claim `RIGHTS.md`
+makes is true. Every one of the 53 forms was re-audited against them — mechanically,
+by detecting the green start markers, not by eye — and the labels corrected: **35
+transcribed, 14 latin, 4 derived**. Α and ι moved from `latin` to `transcribed`
+(the source draws them). Α, Λ, Δ and Ω are recorded as the four letters this book
+teaches from the foot upward, each saying so in its own lesson, and `check()` holds
+them as named exceptions and refuses a fifth.
+
+μ was fixed by fixing the notation rather than the data: `S(…, at=…)` now moves an
+ARROW along its stroke while the dot stays where the pen goes down. Both of μ's dots
+are at the top, as the source draws them, and the second arrow sits down at the turn
+of the bowl where the two movements differ.
+
+### The other blockers, and what closed each
+
+| # | Finding | Closed by |
+|---|---|---|
+| B2 | The evidence the rights position rests on was never retained | 48 diagrams downloaded into `RESEARCH/foundalis-diagrams/` |
+| B3 | *"a strip of the same letter one stroke at a time"* — the strip shows the **whole** letter in every tile, and the caption *"the strokes already made are shown grey"* was printed 24 times | The claim is corrected in all six places it appeared, including the back cover; the strip now accumulates the previous strokes' **marks** in grey, which is what it can honestly show, and says so |
+| B4 | *"finishes on a real Greek word"* was true of 13 of 32 lessons; lessons 1–10 and 12 had none | Three words that unlock early were added (γη, ιδέα, θεά) so words start at Lesson 9; the eight vowel lessons that genuinely **cannot** carry one now say why — no Greek word is spelled from vowels alone — and every promise is qualified "from Lesson 9" |
+| B5 | `valicepress.com/companion/greek` returns **404** | Not closed. It is a deploy, and it is the Founder's call — see below |
+| B6 | The KDP barcode zone was **18.7 % solid colour**, while `QA/cover.json` asserted by hand that it was clear | The foot of the back panel is cleared, and `check_barcode_zone()` rasterises the wrap at 300 dpi and **measures both corners**; the build refuses to record a cover that fails. Both now read 0.0 |
+| B7 | Every arrow carried a 2.6× white halo that **cut the letterform**: the apex of Α a white gash, Θ's crossbar severed, Λ's apex destroyed in the lesson whose warning is *"Λ has no bar. Α does."* | An ink mask is rasterised from the font; each arrow slides along its own line until it is off the letter, and the halo thins when it cannot be. The exemplars are intact |
+
+### The majors
+
+Fixed: **`ληνοειδές` → `σεληνοειδές`** (the word is the moon's, σελήνη) · the names page
+claimed *"these are the classical forms"* of names printed monotonically without
+breathings, one of which (Δήμητρα) is the **modern** form — it now says what they are
+and prints the other form beside each · **Vox Graeca** was credited in print as *"the
+standard reference behind every classical value in this book"* and had never been
+opened; it is now named as further reading, with the page saying the values came from
+the Wikipedia article that follows it, and it has a ledger row (RL-0052) · the
+Foundalis URL was recorded in its **404 form** in `SOURCES.md`, `ledger.csv` and eight
+`CLAIMS.jsonl` rows · **C-014 and C-020 were VERIFIED and wrong** — C-020's evidence
+did not test what it claimed, and the code exempted the final sigma so ήλιος appeared
+nine lessons before ς was taught · six materially empty pages · the **EPUB had no
+cover image** and a `dc:title` used nowhere else · `DECISIONS.md` was cited for **K8
+and K9 that did not exist** while K5 said the opposite of what shipped · the catalogue
+row said page 97 and *"53 numbered stroke diagrams"* (33 are numbered; 20 forms are
+one stroke) · an interior cross-reference pointed at lesson 24, which is psi.
+
+Also fixed, unprompted, on the same pass: the back cover claimed *"No other workbook
+on this shelf will tell you that"* — a competitive claim with no competitor survey
+behind it. `MARKET.md` says the sample is empty. The sentence is gone.
+
+### What the review checked and found clean
+
+The interior's mechanics (100 pages, exact trim, 5 fonts all embedded and subset,
+full PDF metadata), the cover geometry, **epubcheck run independently** at 0/0/0, the
+QR (decoded to the right URL, 31 % of usable height, no email wall), that nothing is
+fabricated — no ASIN, no ISBN, no rating, no price without a basis — that
+`websiteStatus: "draft"` is correct, **the other 29 transcribed sequences**, all 30
+word glosses, the letter names, the modern and classical IPA values with their
+hedging, all five variant code points, and the lesson tracker and alphabet chart.

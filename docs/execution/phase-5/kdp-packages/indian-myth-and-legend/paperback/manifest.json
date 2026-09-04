@@ -1,0 +1,132 @@
+{
+  "generatedAt": "2026-09-04",
+  "book": "indian-myth-and-legend",
+  "format": "paperback",
+  "title": "Indian Myth and Legend",
+  "asin": null,
+  "kdpState": "not_created",
+  "interior": {
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf",
+    "sha256": "0ac86524968a8782cf4c9c7021084fff72ce3f48cc05af558f8cc7082d1d37d8",
+    "bytes": 342965,
+    "pagesBefore": 93,
+    "pagesAfter": 94,
+    "companionPage": 94,
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pre-companion.pdf",
+    "builtBy": "scripts/factory/companion-page.py (spliced)"
+  },
+  "companion": {
+    "printedUrl": "valicepress.com/companion/vedic-gods",
+    "qrUrl": "https://valicepress.com/companion/vedic-gods",
+    "qr": {
+      "modules": 33,
+      "module_pt": 4.896418909090911,
+      "module_mm": 1.7273477818181824,
+      "version": 4,
+      "error": "M",
+      "side_pt": 161.58182400000004,
+      "fraction_of_usable_height": 0.28920000000000007,
+      "x_pt": 135.20908799999998,
+      "y_pt": 294.89559633371414
+    },
+    "dedicatedPage": true,
+    "emailWall": false
+  },
+  "spine": {
+    "pagesBefore": 93,
+    "pagesAfter": 94,
+    "paper": "white",
+    "binding": "paperback",
+    "trim": "6×9 in",
+    "before": {
+      "spineWidthIn": 0.209436,
+      "wrapWidthIn": 12.459436,
+      "wrapHeightIn": 9.25,
+      "spineTextAllowed": true
+    },
+    "after": {
+      "spineWidthIn": 0.211688,
+      "wrapWidthIn": 12.461688,
+      "wrapHeightIn": 9.25,
+      "spineTextAllowed": true
+    },
+    "deltaSpineIn": 0.002252,
+    "deltaWrapWidthIn": 0.002252,
+    "withinKdpTolerance": true,
+    "coverRebuildRequired": false,
+    "coverRebuildCorrect": true,
+    "hardcoverGeometryMustBeRead": false,
+    "barcodeZoneAffected": false,
+    "verdict": "wrap width moves 0.002252 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.002252 in and the house rule is that each edition's cover reads its own page count"
+  },
+  "cover": {
+    "built": true,
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/INDIAN-MYTH-AND-LEGEND/ASSETS/cover/paperback-wrap-v1.pdf",
+    "pageCount": 94,
+    "spineIn": 0.2117,
+    "wrapIn": "12.4617 × 9.2500 (white)",
+    "note": "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 94 — after the companion leaf — so its spine agrees with this pipeline's arithmetic and nothing had to be rebuilt after the splice."
+  },
+  "coverAction": "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior",
+  "uploadRequired": true,
+  "hold": null,
+  "proofRecommended": true,
+  "proofWhy": "the block changed thickness, so the wrap is new and unproved",
+  "verification": [
+    {
+      "name": "page-count",
+      "pass": true,
+      "detail": "94 pages (expected 94)"
+    },
+    {
+      "name": "printed-url",
+      "pass": true,
+      "detail": "valicepress.com/companion/vedic-gods"
+    },
+    {
+      "name": "canonical-host",
+      "pass": true,
+      "detail": "no forbidden host on the page"
+    },
+    {
+      "name": "no-email-wall",
+      "pass": true,
+      "detail": "the page asks for nothing"
+    },
+    {
+      "name": "headline",
+      "pass": true,
+      "detail": "headline present"
+    },
+    {
+      "name": "eyebrow",
+      "pass": true,
+      "detail": "CONTINUE WITH VALICE PRESS"
+    },
+    {
+      "name": "fonts-embedded",
+      "pass": true,
+      "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
+    },
+    {
+      "name": "qr-floor",
+      "pass": true,
+      "detail": "28.9% of usable height"
+    },
+    {
+      "name": "qr-module-size",
+      "pass": true,
+      "detail": "1.73 mm per module"
+    },
+    {
+      "name": "pdf-metadata",
+      "pass": true,
+      "detail": "title=\"Indian Myth and Legend: Volume One: The Vedic Gods — 5 Chapters Complete in the 1913 Text, Annotated, with a Register Grading the Author's Comparisons and a Who's-Who of 32 Figures with Verified Chapter References\" author=\"Emre Doğan\""
+    },
+    {
+      "name": "qr-matches-url",
+      "pass": true,
+      "detail": "33×33 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/vedic-gods"
+    }
+  ]
+}

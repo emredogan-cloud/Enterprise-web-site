@@ -255,5 +255,26 @@
         "page": 43
       }
     ]
+  },
+  "indian-myth-and-legend": {
+    "note": "The great Vedic deities, with the editor's chapter introduction above them — the apparatus and the text on the same spread.",
+    "pages": [
+      {
+        "src": "/images/previews/indian-myth-and-legend/p30.webp",
+        "page": 30
+      },
+      {
+        "src": "/images/previews/indian-myth-and-legend/p31.webp",
+        "page": 31
+      },
+      {
+        "src": "/images/previews/indian-myth-and-legend/p32.webp",
+        "page": 32
+      },
+      {
+        "src": "/images/previews/indian-myth-and-legend/p33.webp",
+        "page": 33
+      }
+    ]
   }
 }

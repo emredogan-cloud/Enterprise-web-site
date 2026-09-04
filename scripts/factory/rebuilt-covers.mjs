@@ -52,6 +52,14 @@ export const REBUILT_COVERS = {
       note: "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 176 — that is, after the companion leaf. Its spine and wrap agree with this pipeline's own arithmetic to four decimal places (0.396352 / 12.646352), so nothing had to be rebuilt after the splice.",
     },
   },
+  "indian-myth-and-legend": {
+    paperback: {
+      built: true,
+      path: `${BOOKS}/INDIAN-MYTH-AND-LEGEND/ASSETS/cover/paperback-wrap-v1.pdf`,
+      pageCount: 94, spineIn: 0.2117, wrapIn: "12.4617 × 9.2500 (white)",
+      note: "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 94 — after the companion leaf — so its spine agrees with this pipeline's arithmetic and nothing had to be rebuilt after the splice.",
+    },
+  },
   "myths-and-legends-of-china": {
     paperback: {
       built: true,

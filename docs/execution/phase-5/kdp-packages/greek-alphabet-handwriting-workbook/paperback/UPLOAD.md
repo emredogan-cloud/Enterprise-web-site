@@ -16,8 +16,8 @@ This edition has never been uploaded. The file below is its first. A dedicated c
 
 ```
 /home/emre/Downloads/MY-DİGİTAL-BOOK/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/interior.pdf
-sha256 b127010251f0e701afba29ab9a6eb7107cb5d923462c65e263e27bcc158abe1f
-426,044 bytes · 100 pages
+sha256 2f963be76d95c25830990f66a2a836f4c30df5b2e645a20ee4295ddd3eb3b94d
+495,724 bytes · 100 pages
 ```
 
 Nothing was replaced: the companion leaf was set by `BUILD/backmatter.py — the book's own back-matter builder` when the book was typeset, so there is no earlier build.

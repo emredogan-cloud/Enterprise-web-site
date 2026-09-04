@@ -65,6 +65,12 @@ export const DIGITAL_EDITION_SOURCES = [
     epub: `${ROOT}/MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/myths-and-legends-of-china.epub`,
   },
   {
+    // Valice Classics 6 (2026-09-04). Volume one of four.
+    slug: "indian-myth-and-legend",
+    printInterior: `${ROOT}/INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf`,
+    epub: `${ROOT}/INDIAN-MYTH-AND-LEGEND/OUTPUT/indian-myth-and-legend.epub`,
+  },
+  {
     // Valice Script 2 (2026-09-04). The only workbook in this list, and the
     // reason it belongs here is the reason the Hangul workbook does not: a
     // PDF of a handwriting workbook is not a degraded copy of the paperback,

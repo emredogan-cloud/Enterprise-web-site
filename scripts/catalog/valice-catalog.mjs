@@ -678,7 +678,7 @@ export const BOOKS = [
     websiteStatus: "draft",
     linkageDecision: {
       decision: "rebuild_now",
-      why: "Built new on 2026-09-04 with the companion page in the typesetting rather than spliced on afterwards: page 97 is a dedicated leaf carrying a code at 30 % of the usable page height and valicepress.com/companion/greek beneath it. Nothing to retrofit.",
+      why: "Built new on 2026-09-04 with the companion page in the typesetting rather than spliced on afterwards: page 99 is a dedicated leaf carrying a code at 30 % of the usable page height and valicepress.com/companion/greek beneath it. Nothing to retrofit.",
     },
     kdpSelect: false,
     directSale: true,
@@ -687,7 +687,7 @@ export const BOOKS = [
     onelinePromise:
       "Thirty-two lessons that take an adult from nothing to writing all 24 Greek letters, in both the modern and the classical forms, with a sourced stroke order for each.",
     description:
-      "A 100-page handwriting workbook for adult English speakers learning to write Greek — the forms you will meet in Athens today and the ones you will meet in a Loeb. Thirty-two lessons cover all 24 letters in both cases, the final sigma, three variant letterforms a reader meets in print and the lunate sigma they meet on stone, and every accent in both the monotonic and the polytonic systems \u2014 53 numbered stroke diagrams in all. Each lesson is a spread: the left page shows the letter with a start dot and a numbered arrow for every stroke, then a strip of the same letter one stroke at a time; the right page is ruled practice that moves trace \u2192 dot-start \u2192 free and finishes on a real Greek word. Every letter also carries what it sounds like now and what it sounded like in the fifth century BC. A provenance page states plainly that Greek has no official stroke-order standard, cites the study of 756 schoolchildren that recorded up to thirty-one ways of writing one letter, and labels every sequence in the book with where it came from.",
+      "A 100-page handwriting workbook for adult English speakers learning to write Greek — the forms you will meet in Athens today and the ones you will meet in a Loeb. Thirty-two lessons cover all 24 letters in both cases, the final sigma, three variant letterforms a reader meets in print and the lunate sigma they meet on stone, and every accent in both the monotonic and the polytonic systems \u2014 53 stroke diagrams in all, 33 of them numbered. Each lesson is a spread: the left page shows the letter with a start dot and a numbered arrow for every stroke, then the same letter again for each stroke with the marks building up in order; the right page is ruled practice that moves trace \u2192 dot-start \u2192 free and, from Lesson 9 on, finishes on a real Greek word. Every letter also carries what it sounds like now and what it sounded like in the fifth century BC. A provenance page states plainly that Greek has no official stroke-order standard, cites the study of 756 schoolchildren that recorded up to thirty-one ways of writing one letter, and labels every sequence in the book with where it came from.",
     idealReader:
       "An adult beginner who wants to write Greek by hand before speaking it \u2014 for Modern Greek, for reading Attic or Koine, or because the names on the mythology shelf are worth reading in their own alphabet \u2014 and who would rather be told that a stroke order is recommended than be told to trust it.",
     formats: [
@@ -1170,6 +1170,76 @@ export const BOOKS = [
       "No Kindle edition planned at launch. KDP caps public-domain content at the 35% royalty tier and the Kindle store already carries free Werner editions; it is a discovery channel rather than a revenue one, and the decision is recorded rather than assumed.",
       "No hardcover and no large print. At 108 pages a hardcover is not offered by KDP below 75 pages but would compete with established mythology hardbacks at a price this edition has not earned; large print would roughly double the extent with no demand evidence. Both deferred with the reason recorded.",
       "Volume two (Kuan Yin, the Guardian of the Gate of Heaven, Monkey, Fox Legends \u2014 31,744 words) is scoped and unbuilt. The apparatus of this volume refers to it as forthcoming, which is a promise this house has to keep.",
+    ],
+  },
+
+  {
+    slug: "indian-myth-and-legend",
+    title: "Indian Myth and Legend",
+    subtitle:
+      "Volume One: The Vedic Gods \u2014 5 Chapters Complete in the 1913 Text, Annotated, with a Register Grading the Author's Comparisons and a Who's-Who of 32 Figures with Verified Chapter References",
+    language: "en",
+    pageCount: 94,
+    categories: ["myth-and-folklore", "classics-and-philosophy"],
+    authors: ["emre-dogan"],
+    bisac: ["SOC011000", "REL032000"],
+    series: { name: "Valice Classics", volume: 6 },
+    // The Werner lesson applied BEFORE writing rather than after: the selection
+    // was measured against the 20% floor at the outset. Mackenzie's 26 chapters
+    // are ~140,000 words; the five printed here are the Vedic gods themselves,
+    // and they measure 21.5%. The Mahabharata, Nala and Ramayana cycles are
+    // roughly 100,000 words and become later volumes.
+    // Draft for the same single reason as the other three: no Paddle price.
+    // FOUNDER F-004 — and that item is now a two-line .env fix, not a missing key.
+    websiteStatus: "draft",
+    linkageDecision: { decision: "house_pipeline", why: "The companion leaf is appended by scripts/factory/build-companion-pages.mjs. The interior is typeset deliberately ODD (93 pp) so the appended leaf makes 94, the even count KDP requires." },
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy:
+      "No Paddle price exists. See FOUNDER F-004: a malformed line in .env shadows the live Paddle key, so every provisioning call resolved to sandbox and returned 403.",
+    paddlePriceId: null,
+    onelinePromise:
+      "The Indian gods in their first form, before Hinduism demoted them \u2014 with a register telling you which of a 1913 author's comparisons still stand.",
+    description:
+      "The gods in this book lose. Indra opens it as king of heaven holding the thunderbolt, and Indian religion spends the next two thousand years demoting him; Varuna, the most morally serious god in the Vedic pantheon, all but disappears; and the two figures who get walk-on parts here \u2014 Vishnu, and Rudra who becomes Shiva \u2014 inherit everything. This is the pantheon in its first form, not its final one.\n\nDonald Mackenzie was a Scottish journalist rather than an orientalist, and this edition says so plainly: he worked from translations and from Macdonell, Oldenberg and Monier Williams, and what he supplied was arrangement and pace. Judged as that, it is very good. Five chapters are printed complete and unaltered \u2014 Indra; the great Vedic deities; Yama, the first man and king of the dead; the demons, giants and fairies; and the mysteries of creation, including the hymn that ends by allowing that possibly nobody knows how the world began.\n\nAround the text, and original to this edition: an introduction; an introduction to each chapter; a register grading Mackenzie's relentless comparisons \u2014 Indo-Iranian, wider Indo-European, Babylonian, decorative \u2014 by how much weight each still bears; a who's-who of 32 figures whose chapter references were produced by searching the text, which is how it was discovered that the book contains two different Savitris; a note on the Sanskrit names; a chronology; and an index of 34 subjects generated from the text.\n\nNone of the 1913 illustrations is reproduced. Two of those in these chapters are paintings by Nandalal Bose, who died in 1966 and whose work is in copyright until 2037; the rest name no creator. 94 pages, 6 \u00d7 9 in.",
+    idealReader:
+      "Someone who knows Greek or Norse myth, wants the Indian material, and would rather be told which parts of a hundred-year-old book have not aged well than have them quietly cut.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(9.99),
+        pageCount: 94,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: "books/indian-myth-and-legend/master/v1/master.pdf",
+        epubFileKey: "books/indian-myth-and-legend/master/v1/master.epub",
+        priceBasis:
+          "price-engine.mjs 2026-09-04, direct ebook: $9.99 nets $8.99 after Paddle (90%). 21.5% original matter (QA/differentiation.json) is above the 20% floor and short of the 35% premium tier, so the same $9.99 as the other Valice Classics.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(12.99),
+        pageCount: 94,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-04, 94 pp 6\u00d79 B&W public domain: prints at $2.30 (flat rate under 110 pp), KDP minimum list $3.84, recommended $9.99. Proposed at $12.99, which nets $5.49 (42.3%). A dollar under the Werner volume because it is fourteen pages shorter, on the same principle that put Werner below Epictetus. The Founder decides at Gate 8.",
+      },
+    ],
+    blockers: [
+      "No Paddle product or price exists, so the ebook is coming_soon and websiteStatus is draft. FOUNDER F-004.",
+      "Gates 7 (cover) and 8 (interior/proof) are unsigned: the paperback list price is proposed, not decided.",
+      "No Kindle edition planned at launch. KDP caps public-domain content at the 35% royalty tier and free Mackenzie editions already exist on Kindle.",
+      "No hardcover and no large print. At 94 pages neither is a serious proposition for an unproven title; both deferred with the reason recorded.",
+      "Volumes two to four (the Mahabharata cycle, the Nala romance and the Ramayana \u2014 roughly 100,000 words) are scoped and unbuilt. This volume's apparatus refers to them as forthcoming.",
+      "Warwick Goble's eight colour plates ARE public domain (he died in 1943) but none falls in these five chapters. They are available to the epic volumes and are a real asset for them.",
     ],
   },
 

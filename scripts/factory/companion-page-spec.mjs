@@ -183,6 +183,21 @@ export const COMPANION_PAGE_COPY = {
     ],
   },
 
+  "indian-myth-and-legend": {
+    companionSlug: "vedic-gods",
+    imprint: "Valice Press",
+    headline: "The gods in this book lose.\nHere is who they were first.",
+    promise:
+      "Everything in this book that is worth having on one page, free, for " +
+      "readers of this edition.",
+    listHeading: "WHAT IS WAITING FOR YOU",
+    bullets: [
+      { asset: "comparisons", term: "Which comparisons still stand", gloss: "four kinds, graded \u2014 from proven cognates to a theory nobody now defends" },
+      { asset: "who-is-who", term: "Who is who", gloss: "thirty-two figures with the chapters they appear in, every reference found by searching" },
+      { asset: "reading-paths", term: "Four ways in", gloss: "where to start, with Mackenzie's own chapter numbers" },
+      { asset: "the-names", term: "The names", gloss: "the three s-sounds, the unmarked long vowels, and the final -a that is pronounced" },
+    ],
+  },
   "myths-and-legends-of-china": {
     companionSlug: "china-gods",
     imprint: "Valice Press",
@@ -287,7 +302,7 @@ export const COMPANION_PAGE_COPY = {
     listHeading: "WHAT IS WAITING FOR YOU",
     bullets: [
       { asset: "practice-grid", term: "Practice grids", gloss: "the four-line rule from this book, blank, for any letter at any stage" },
-      { asset: "stroke-boxes", term: "Stroke-order boxes", gloss: "large boxes with the start dots printed, for drilling one letter" },
+      { asset: "stroke-sheets", term: "Stroke-order sheets", gloss: "one page for every form the book teaches, with the start dots printed" },
       { asset: "alphabet-chart", term: "The alphabet chart", gloss: "all 24 letters with their names, sounds and stroke counts, on one sheet" },
       { asset: "lesson-tracker", term: "Thirty-two-lesson tracker", gloss: "one page, three boxes a lesson — trace, dot-start, free" },
     ],
@@ -452,6 +467,16 @@ export const COMPANION_PAGE_PLAN = {
     },
   },
 
+  "indian-myth-and-legend": {
+    style: { fonts: TYPE.liberationSerif, marginIn: 0.62, rule: 0.7 },
+    editions: {
+      paperback: {
+        mode: "append", page: null, pagesBefore: 93, pagesAfter: 94, recto: true,
+        folio: { style: "centre", offset: 0, size: 8.6, baselineFromBottomPt: 28.8, outerMarginPt: 36 },
+        replacing: null,
+      },
+    },
+  },
   "myths-and-legends-of-china": {
     style: { fonts: TYPE.liberationSerif, marginIn: 0.62, rule: 0.7 },
     editions: {

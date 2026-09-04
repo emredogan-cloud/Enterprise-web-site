@@ -6,25 +6,25 @@
    "file": "practice-grid.pdf",
    "pages": 4,
    "bytes": 60033,
-   "sha256": "fa763333f3baa8b960bd8fc7a6db9ebaf480e057b831a92c1a0bb1743642e717"
+   "sha256": "2fb92fb24b5bf72c62b7be6dae96ef68d43e85f9e0f1155559b7ff2ad1cf1a11"
   },
   {
-   "file": "stroke-boxes.pdf",
-   "pages": 48,
-   "bytes": 622100,
-   "sha256": "c06818b651730842873bc8b7d325845c738943e08e4018826203e2e47c97efe2"
+   "file": "stroke-sheets.pdf",
+   "pages": 53,
+   "bytes": 924919,
+   "sha256": "ca3d1cfc252648fe902a5adf4ad6e3a1854a3c997ed9119a8d64d937cddf998a"
   },
   {
    "file": "alphabet-chart.pdf",
    "pages": 1,
-   "bytes": 82541,
-   "sha256": "343b153e3b0fcb31a39df6acd8d4d53f25b5a12f710d17ea0f14d7fa7f271de6"
+   "bytes": 82546,
+   "sha256": "234ea40238f2d6a1154121e26b00c90c7b41cf5282df336aaadb47e2a1f48b82"
   },
   {
    "file": "lesson-tracker.pdf",
    "pages": 1,
    "bytes": 62052,
-   "sha256": "1e69e75cec41af8bbfad3bb3a357bd7518e347fd3f08ac99c8b1f139611701f7"
+   "sha256": "d8ce9068b654f1a869554e730d2223dafe40a86845c99d9a24135702f8d3d968"
   }
  ],
  "generatedFrom": "BUILD/greek_data.py — the same data the book is typeset from"
