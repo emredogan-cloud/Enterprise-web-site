@@ -13,57 +13,6 @@ output while other work continues · **P2** is an inconvenience and never stops 
 
 ## Open
 
-### F-004 · **P0** · One malformed line in `.env` is blocking every Paddle sale
-
-- **Date raised:** 2026-09-04 (rewritten the same day — the diagnosis changed) · **Phase:** 1 · **Books:** 1, 2, 3
-- **This is the single highest-value item in this file. It is a two-line edit and it
-  unblocks three finished books.**
-
-**What was reported earlier, and why it was wrong.** Phase 1 recorded that the only Paddle
-credential available was a sandbox key returning 403 on every endpoint, and that no price
-could therefore be created. That was the observed behaviour and it was reproducible. It was
-not the cause.
-
-**What is actually true.** `.env` contains **two** `PADDLE_API_KEY` lines:
-
-```
-line 18   PADDLE_API_KEY=pdl_sdbx_…      ← stale sandbox key
-line 24   PADDLE_API_KEY =pdl_live_…     ← the live key, with a space before the '='
-```
-
-The loader in `provision-paddle.mjs` (and in `upload-masters.mjs`, and in every other
-script that reads the file the same way) matches `^([A-Z0-9_]+)=(.*)$` and keeps the
-**first** value it can parse. The space on line 24 makes that line unmatchable, so the live
-key is skipped entirely and the stale sandbox key on line 18 wins. The script then trusts
-the key's own prefix, resolves `SANDBOX`, and calls `sandbox-api.paddle.com` — which
-returns 403 because the sandbox key has no permissions.
-
-**The live key works.** Verified read-only on 2026-09-04: `GET https://api.paddle.com/products`
-returns **HTTP 200** and lists the three real live products (Dudeney, Meditations, World Myths).
-
-- **Why the agent did not fix it:** editing `.env` is blocked by the tool-permission layer,
-  correctly — it is a secrets file. Copying a live key into another file to route around
-  that block would defeat the point of the block, so it was not done.
-- **Exact action** (two lines, no values change):
-  1. In `.env`, comment out **line 18** (the `pdl_sdbx_` key).
-  2. On **line 24**, delete the space so it reads `PADDLE_API_KEY=pdl_live_…`.
-     Do the same for `PADDLE_ENVIRONMENT =production` on line 27.
-- **Then, and only then:**
-  ```
-  node scripts/catalog/provision-paddle.mjs                                  # dry run — READ IT
-  node scripts/catalog/provision-paddle.mjs --commit --i-know-this-is-live
-  ```
-  Paste each returned `pri_…` into `paddlePriceId` in `scripts/catalog/valice-catalog.mjs`
-  for `epictetus-discourses-and-enchiridion`, `seneca-selected-dialogues` and
-  `myths-and-legends-of-china`; set each ebook to `available` and each
-  `websiteStatus` to `published`; run `npm test` and `npm run validate:catalog`; deploy.
-- **Also check, separately:** `.env.local` carries a sandbox key **and**
-  `PADDLE_ENVIRONMENT =sandbox`, and Next.js loads `.env.local` over `.env`. If anything in
-  the running app reads `PADDLE_API_KEY` at runtime, production may be talking to sandbox.
-  Worth confirming before the first real sale.
-- **Consequence if unresolved:** three finished books stay `draft`. Nothing is sold.
-
----
 
 ### F-003 · P1 · Take an Amazon market sample before the paperback price is fixed
 
@@ -83,17 +32,6 @@ returns **HTTP 200** and lists the three real live products (Dudeney, Meditation
 
 ---
 
-### F-011 · P1 · Provision Paddle for Seneca
-
-- **Date raised:** 2026-09-04 · **Phase:** 1 · **Book:** 2
-- **Half of this is done.** The digital-edition masters are uploaded to R2 and
-  content-verified; `masterFileKey` and `epubFileKey` are real.
-- **The remaining half is F-004** and is not Seneca-specific: one malformed `.env` line is
-  shadowing the live Paddle key for every book. Fix that first, then provision all three
-  slugs in one pass.
-- **Consequence if unresolved:** the direct ebook cannot be bought.
-
----
 
 
 ### F-015 · P1 · Sign Gates 7 and 8 for all five books, and order proofs
@@ -125,6 +63,45 @@ returns **HTTP 200** and lists the three real live products (Dudeney, Meditation
 
 ---
 
+### F-017 · P1 · Paddle tax category is 'standard', not 'ebooks'
+
+- **Date raised:** 2026-09-04 · **Phase:** 1 · **Books:** all five
+- **What happened:** `provision-paddle.mjs` created the five products under the
+  `standard` tax category and said so, because this Paddle account is not approved for
+  the `ebooks` category.
+- **Why it matters:** `standard` **over-collects VAT** on ebook sales in every
+  jurisdiction that taxes books at a reduced rate. It is not a blocker on selling —
+  the books are live and buyable — but every sale until it is fixed collects more tax
+  than it should, which is the customer's money.
+- **Why the agent cannot do it:** it needs an account-level approval from Paddle, not
+  an API call.
+- **Exact action:** Paddle dashboard → Catalog → tax categories, request approval for
+  `ebooks` (or ask Paddle support). Once approved, PATCH each of the five products'
+  `tax_category` to `ebooks`. **Prices do not need recreating.**
+- **The five products:** Epictetus, Seneca, Werner, Mackenzie, Gould — ids in
+  `PHASE_1_REPORT.md` under Production Activation.
+
+---
+
+### F-018 · P2 · One real end-to-end purchase has not been made
+
+- **Date raised:** 2026-09-04 · **Phase:** 1
+- **What was verified without a transaction:** product page live, Paddle price active
+  (checked against the API), entitlement keys present on the row, master present in R2,
+  and a short-lived signed URL fetched from R2 returning the real file — `%PDF-` and
+  `PK` magic bytes on all ten masters.
+- **What that does not prove:** the webhook → order → entitlement → watermark →
+  order-ready email leg, which only fires on a real checkout.
+- **Why the agent did not do it:** `scripts/tmp/e2e-fulfillment.mjs` drives that path
+  with a signed webhook and writes real order and entitlement rows to production. It is
+  a deliberate write to live commercial data and it is the Founder's call, not an
+  agent's, especially on five books at once.
+- **Exact action:** buy one of the five yourself, or run the e2e tool against one slug
+  with your own address and let it reverse the entitlement afterwards. One book is
+  enough — the five share a code path.
+
+---
+
 ## Standing items — not book-specific
 
 ### F-008 · P2 · Resolve the highest-value rights unblocking work
@@ -144,6 +121,18 @@ This is research, not production, and it does not block Phase 1.
 ---
 
 ## Closed
+
+### F-004 · **P0** · One malformed line in `.env` is blocking every Paddle sale
+
+**RESOLVED 2026-09-04.** The stale sandbox line in `.env` is commented out, so the loader resolves the live key. `provision-paddle.mjs` was run (dry run read first, then `--commit --i-know-this-is-live`): five products and five prices created on the live account, no duplicates, the seven existing prices untouched. Every one verified afterwards against `api.paddle.com` as active at 9.99 USD. All five books are on sale.
+
+---
+
+### F-011 · P1 · Provision Paddle for Seneca
+
+**RESOLVED 2026-09-04.** Folded into F-004 and resolved with it. Seneca's price is `pri_01m1pttekkh73w3rjewmv1p2cy`.
+
+---
 
 ### F-014 · P1 · Books 4 and 5 of Phase 1 are specified but not built
 

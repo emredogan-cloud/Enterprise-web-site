@@ -204,3 +204,96 @@ resolve before one is.
 
 The highest-value next action is not agent work and takes about a minute: **FOUNDER F-004**,
 the two-line `.env` repair that lets three finished books be sold.
+
+---
+
+## 10. PRODUCTION ACTIVATION — 4 September 2026
+
+**All five books are on sale.** Deployment commit **`cbf4ec7`**, deployed to production
+from a clean worktree of that commit.
+
+### The blocker, and what it actually was
+
+Phase 1 reported Paddle as a hard external blocker: a sandbox-only key returning 403 on
+every endpoint. That was the observed behaviour and it was **not the cause**. `.env` held
+two `PADDLE_API_KEY` lines and the live one was written `PADDLE_API_KEY =…`, with a space
+before the `=`. Every loader in this repo matches `^([A-Z0-9_]+)=(.*)$` and keeps the
+**first** value it can parse, so the live line was unparseable, a stale sandbox key won,
+and the script — which correctly trusts the key's own prefix — resolved SANDBOX.
+
+A previous session had fixed the spacing but left the stale line first, so it still
+resolved sandbox. The stale line is now commented out with the reason beside it.
+
+### Paddle
+
+`provision-paddle.mjs` dry run read first, then `--commit --i-know-this-is-live`. Five
+products and five prices created on the live account; the seven existing prices untouched;
+no duplicates; the webhook already complete with all four events subscribed.
+
+| Book | Price id | Amount |
+|---|---|---|
+| Epictetus | `pri_01m1pttdvakbj8p0vb8tc86nj5` | $9.99 |
+| Seneca | `pri_01m1pttekkh73w3rjewmv1p2cy` | $9.99 |
+| Werner | `pri_01m1pttfb8fj469accf8znvjb7` | $9.99 |
+| Mackenzie | `pri_01m1pttg3r2nd796vhmh7t22j5` | $9.99 |
+| Gould | `pri_01m1pttgx4axvwt4tzkz73tz68` | $9.99 |
+
+Each verified afterwards against `api.paddle.com`: price active, 9.99 USD, product active.
+
+**Created under the `standard` tax category**, because the account is not approved for
+`ebooks`. That over-collects VAT where books are taxed at a reduced rate. FOUNDER **F-017**.
+
+### The database the site actually reads
+
+The first catalogue load went to the wrong database — and this is the second time that has
+happened on this project. `load-catalog.mjs` defaults to `.env.local`, whose `DATABASE_URL`
+is Neon **`bookstore`**. The site reads **`neondb`**: same host, same credentials, different
+database.
+
+It was caught by measurement rather than assumption. The five product routes returned 404
+with `x-nextjs-prerender: 1`, meaning the 404 had been baked at build time; the live sitemap
+listed ten books; and a local build produced **72** static pages against the same commit for
+which Vercel produced **67** — exactly five fewer. The catalogue was then loaded into
+`neondb` and the site redeployed.
+
+### Live verification
+
+| Check | Result |
+|---|---|
+| `validate-catalog --env .env` | **70 pass · 0 warn · 0 error · 0 skipped** |
+| Five product routes | all **200**, correct titles, canonical covers, correct companion links |
+| Five companion routes | all **200** |
+| `/books` | 15 books listed, all five present |
+| `/ebooks` | 12 buyable, all five present |
+| Sitemap | 15 book URLs |
+| Stale `.vercel.app` / `localhost` on product pages | **0** |
+| Paddle prices | 12 checked live, all active |
+| R2 masters | 12 checked live, all readable |
+
+### Fulfillment
+
+Verified **without** creating a transaction, one link at a time: product page live → Paddle
+price active against the API → entitlement keys present on the row → master present in R2 →
+**short-lived signed URL fetched and the real file returned**, `%PDF-` and `PK` magic bytes
+confirmed on all ten masters (PDF and EPUB for each of the five).
+
+The webhook → order → entitlement → watermark → email leg only fires on a real checkout and
+was not exercised. FOUNDER **F-018**.
+
+### Caught by the test suite
+
+Three of the five had no canonical 2:3 site cover, and `asset-map.test.ts` refused to call
+them published. Generated from each book's own `front-v1.png` at 1067×1600 and the asset
+manifest regenerated — one canonical asset per book read by every surface, not a per-route
+override.
+
+### What is still open
+
+- **F-003** — no Amazon market sample; every paperback price is a proposal.
+- **F-015** — Gates 7 and 8 unsigned; nothing has gone to KDP. Print proofs recommended.
+- **F-016** — nine further volumes scoped and unbuilt.
+- **F-017** — Paddle tax category.
+- **F-018** — one real end-to-end purchase.
+
+**Phase 1 is production activated.** The five books are built, verified, priced, published
+and buyable.
