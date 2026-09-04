@@ -1,0 +1,105 @@
+{
+  "generatedAt": "2026-09-04",
+  "book": "seneca-selected-dialogues",
+  "format": "paperback",
+  "title": "Seneca: Selected Dialogues",
+  "asin": null,
+  "kdpState": "not_created",
+  "interior": {
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pdf",
+    "sha256": "f06fea37a5d083f0a0ea7f89240b42dc8f38c870a85bc3c23f5aee24ea93fa8d",
+    "bytes": 575959,
+    "pagesBefore": 153,
+    "pagesAfter": 154,
+    "companionPage": 154,
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pre-companion.pdf"
+  },
+  "companion": {
+    "printedUrl": "valicepress.com/companion/seneca",
+    "qrUrl": "https://valicepress.com/companion/seneca",
+    "qr": {
+      "modules": 29,
+      "module_pt": 5.519768275862069,
+      "module_mm": 1.9472515862068966,
+      "version": 3,
+      "error": "M",
+      "side_pt": 160.07328,
+      "fraction_of_usable_height": 0.28650000000000003,
+      "x_pt": 135.96336,
+      "y_pt": 295.9780579885716
+    },
+    "dedicatedPage": true,
+    "emailWall": false
+  },
+  "spine": {
+    "pagesBefore": 153,
+    "pagesAfter": 154,
+    "paper": "white",
+    "binding": "paperback",
+    "trim": "6×9 in",
+    "before": {
+      "spineWidthIn": 0.344556,
+      "wrapWidthIn": 12.594556,
+      "wrapHeightIn": 9.25,
+      "spineTextAllowed": true
+    },
+    "after": {
+      "spineWidthIn": 0.346808,
+      "wrapWidthIn": 12.596808,
+      "wrapHeightIn": 9.25,
+      "spineTextAllowed": true
+    },
+    "deltaSpineIn": 0.002252,
+    "deltaWrapWidthIn": 0.002252,
+    "withinKdpTolerance": true,
+    "coverRebuildRequired": false,
+    "coverRebuildCorrect": true,
+    "hardcoverGeometryMustBeRead": false,
+    "barcodeZoneAffected": false,
+    "verdict": "wrap width moves 0.002252 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.002252 in and the house rule is that each edition's cover reads its own page count"
+  },
+  "cover": {
+    "built": true,
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/SENECA-SELECTED-DIALOGUES/ASSETS/cover/paperback-wrap-v1.pdf",
+    "pageCount": 154,
+    "spineIn": 0.3468,
+    "wrapIn": "12.5968 × 9.2500 (white)",
+    "note": "rebuilt 2026-09-04 at the final page count of 154, after the companion leaf. The count moved 156 -> 154 when a markdown-bold rendering defect was fixed and the text reflowed; the cover was rebuilt rather than reused."
+  },
+  "coverAction": "REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block",
+  "uploadRequired": true,
+  "hold": null,
+  "proofRecommended": true,
+  "verification": [
+    {
+      "name": "page-count",
+      "pass": true,
+      "detail": "154 pages (expected 154)"
+    },
+    {
+      "name": "printed-url",
+      "pass": true,
+      "detail": "valicepress.com/companion/seneca"
+    },
+    {
+      "name": "canonical-host",
+      "pass": true,
+      "detail": "no forbidden host on the page"
+    },
+    {
+      "name": "eyebrow",
+      "pass": true,
+      "detail": "CONTINUE WITH VALICE PRESS"
+    },
+    {
+      "name": "fonts-embedded",
+      "pass": true,
+      "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
+    },
+    {
+      "name": "pdf-metadata",
+      "pass": true,
+      "detail": "title=\"Seneca: Selected Dialogues: Five Dialogues Complete in Aubrey Stewart's Translation, Annotated — with an Argument Map of All 79 Chapters, a Glossary, a Biographical Index and a Chronology\" author=\"Emre Doğan\""
+    }
+  ]
+}

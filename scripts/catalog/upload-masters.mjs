@@ -16,6 +16,7 @@
  *   node scripts/catalog/upload-masters.mjs             # dry run
  *   node scripts/catalog/upload-masters.mjs --commit
  */
+import { createHash } from "node:crypto";
 import { readFileSync, statSync } from "node:fs";
 import { HeadObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import {
@@ -76,14 +77,28 @@ async function upload({ file, key, contentType, missingHint }) {
   }
 
   let existing = null;
+  let remoteEtag = null;
   try {
     const head = await client.send(new HeadObjectCommand({ Bucket: bucket, Key: key }));
     existing = head.ContentLength;
+    remoteEtag = (head.ETag ?? "").replace(/"/g, "");
   } catch {
     /* not present — first upload */
   }
 
-  if (existing === size) {
+  // Same size is NOT the same file. A re-cut edition can come out byte-different
+  // at an identical length — both Epictetus masters did on 2026-09-04 — and a
+  // size-only check silently left the stale object in the bucket under buyers who
+  // would then be watermarked a superseded text. Compare content, not length.
+  // R2 returns a plain MD5 ETag for single-part uploads, which is what these are.
+  if (existing === size && remoteEtag && !remoteEtag.includes("-")) {
+    const localMd5 = createHash("md5").update(readFileSync(file)).digest("hex");
+    if (localMd5 === remoteEtag) {
+      console.log(`SAME  ${key.padEnd(52)} ${mb(size).padStart(9)}  (already present, content identical — skipped)`);
+      return;
+    }
+    console.log(`DIFFERS  ${key.padEnd(49)} ${mb(size).padStart(9)}  (same size, different content — will replace)`);
+  } else if (existing === size) {
     console.log(`SAME  ${key.padEnd(52)} ${mb(size).padStart(9)}  (already present, same size — skipped)`);
     return;
   }

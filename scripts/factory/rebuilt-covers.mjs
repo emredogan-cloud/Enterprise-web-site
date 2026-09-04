@@ -32,6 +32,22 @@ export const REBUILT_COVERS = {
     hardcover: { built: true, path: `${BOOKS}/CODEX_MYTHOLOGICA/03_COVER/HARDCOVER/exports/`, pageCount: 330, spineIn: null, wrapIn: "14.5858 × 10.4167 (cream) · 14.5040 × 10.4167 (white)", note: "calibrated hardcover profile" },
     large_print: { built: true, path: `${BOOKS}/CODEX_MYTHOLOGICA/03_COVER/LARGEPRINT/exports/`, pageCount: 579, spineIn: 1.4475, wrapIn: "13.6975 × 9.2500 (cream)", note: "cream only" },
   },
+  "epictetus-discourses-and-enchiridion": {
+    paperback: {
+      built: true,
+      path: `${BOOKS}/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/ASSETS/cover/paperback-wrap-v1.pdf`,
+      pageCount: 176, spineIn: 0.3964, wrapIn: "12.6464 × 9.2500 (white)",
+      note: "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 176 — that is, after the companion leaf. Its spine and wrap agree with this pipeline's own arithmetic to four decimal places (0.396352 / 12.646352), so nothing had to be rebuilt after the splice.",
+    },
+  },
+  "seneca-selected-dialogues": {
+    paperback: {
+      built: true,
+      path: `${BOOKS}/SENECA-SELECTED-DIALOGUES/ASSETS/cover/paperback-wrap-v1.pdf`,
+      pageCount: 154, spineIn: 0.3468, wrapIn: "12.5968 × 9.2500 (white)",
+      note: "rebuilt 2026-09-04 at the final page count of 154, after the companion leaf. The count moved 156 -> 154 when a markdown-bold rendering defect was fixed and the text reflowed; the cover was rebuilt rather than reused.",
+    },
+  },
   "the-great-book-of-world-games": {
     large_print: {
       built: false,

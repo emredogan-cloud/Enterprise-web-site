@@ -138,24 +138,16 @@
       }
     ]
   },
-  "korean-hangul-handwriting-workbook": {
-    "note": "Lesson 4 in full: where each letter goes inside the syllable block, six real words built from it, and the trace-then-write practice pages.",
+  "greek-alphabet-handwriting-workbook": {
+    "note": "Lesson 8 as a full spread: beta taught stroke by stroke, then the trace-to-free practice page — with the provenance note that says where the stroke order came from.",
     "pages": [
       {
-        "src": "/images/previews/korean-hangul-handwriting-workbook/p13.webp",
-        "page": 13
+        "src": "/images/previews/greek-alphabet-handwriting-workbook/p30.webp",
+        "page": 30
       },
       {
-        "src": "/images/previews/korean-hangul-handwriting-workbook/p14.webp",
-        "page": 14
-      },
-      {
-        "src": "/images/previews/korean-hangul-handwriting-workbook/p15.webp",
-        "page": 15
-      },
-      {
-        "src": "/images/previews/korean-hangul-handwriting-workbook/p16.webp",
-        "page": 16
+        "src": "/images/previews/greek-alphabet-handwriting-workbook/p31.webp",
+        "page": 31
       }
     ]
   },
@@ -177,6 +169,69 @@
       {
         "src": "/images/previews/the-myth-hunters-field-book/p17.webp",
         "page": 17
+      }
+    ]
+  },
+  "korean-hangul-handwriting-workbook": {
+    "note": "Lesson 4 in full: where each letter goes inside the syllable block, six real words built from it, and the trace-then-write practice pages.",
+    "pages": [
+      {
+        "src": "/images/previews/korean-hangul-handwriting-workbook/p13.webp",
+        "page": 13
+      },
+      {
+        "src": "/images/previews/korean-hangul-handwriting-workbook/p14.webp",
+        "page": 14
+      },
+      {
+        "src": "/images/previews/korean-hangul-handwriting-workbook/p15.webp",
+        "page": 15
+      },
+      {
+        "src": "/images/previews/korean-hangul-handwriting-workbook/p16.webp",
+        "page": 16
+      }
+    ]
+  },
+  "epictetus-discourses-and-enchiridion": {
+    "note": "Two discourses with their head-notes — the apparatus and the text on the same page, which is what the edition is for.",
+    "pages": [
+      {
+        "src": "/images/previews/epictetus-discourses-and-enchiridion/p60.webp",
+        "page": 60
+      },
+      {
+        "src": "/images/previews/epictetus-discourses-and-enchiridion/p61.webp",
+        "page": 61
+      },
+      {
+        "src": "/images/previews/epictetus-discourses-and-enchiridion/p62.webp",
+        "page": 62
+      },
+      {
+        "src": "/images/previews/epictetus-discourses-and-enchiridion/p63.webp",
+        "page": 63
+      }
+    ]
+  },
+  "seneca-selected-dialogues": {
+    "note": "The opening of On Peace of Mind, with the argument map that gives every unnumbered chapter a description Seneca never supplied.",
+    "pages": [
+      {
+        "src": "/images/previews/seneca-selected-dialogues/p45.webp",
+        "page": 45
+      },
+      {
+        "src": "/images/previews/seneca-selected-dialogues/p46.webp",
+        "page": 46
+      },
+      {
+        "src": "/images/previews/seneca-selected-dialogues/p47.webp",
+        "page": 47
+      },
+      {
+        "src": "/images/previews/seneca-selected-dialogues/p48.webp",
+        "page": 48
       }
     ]
   }

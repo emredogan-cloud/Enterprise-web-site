@@ -1,0 +1,137 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phase 1 — Prompt Library</title>
+<style>
+:root{--ink:#16211e;--mut:#5d6b66;--line:#d5ded9;--grn:#0e3d33;--bg:#faf9f6;--card:#fff;--warn:#8a3b2f}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.62 Georgia,"Liberation Serif",serif;color:var(--ink);background:var(--bg)}
+.wrap{max-width:980px;margin:0 auto;padding:34px 22px 90px}
+h1{font-size:30px;margin:0 0 6px;color:var(--grn)}
+.sub{color:var(--mut);margin:0 0 26px;font-style:italic}
+h2{font-size:20px;margin:36px 0 10px;padding-bottom:7px;border-bottom:2px solid var(--grn);color:var(--grn)}
+h3{font-size:16px;margin:24px 0 6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:15px 17px;margin:14px 0}
+.warn{border-left:4px solid var(--warn);background:#fdf5f4}
+table{border-collapse:collapse;width:100%;margin:8px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:#eef2f0;font-family:system-ui,sans-serif;font-size:12.5px}
+code{font-family:"Liberation Mono",ui-monospace,monospace;font-size:12.6px}
+textarea{width:100%;min-height:150px;font-family:"Liberation Mono",ui-monospace,monospace;
+font-size:12.4px;line-height:1.5;padding:10px;border:1px solid var(--line);border-radius:7px;
+background:#12211d;color:#e8f0ec;resize:vertical}
+.k{font-family:system-ui,sans-serif;font-size:12.5px;color:var(--mut)}
+.big{font-size:17px;font-weight:700}
+ul{margin:7px 0 7px 20px;padding:0} li{margin:4px 0}
+</style></head><body><div class="wrap">
+
+<h1>Phase 1 — Prompt Library</h1>
+<p class="sub">Public-domain factory · generated visual assets · 4 September 2026</p>
+
+<div class="card warn">
+<p class="big" style="margin:.3em 0">No prompt in this library was used. Nothing here was generated.</p>
+<p><code>OPENAI_API_KEY</code> is <b>not present in this environment</b>, verified at the start of
+the phase. No image model was available and none was called. <b>Total image-generation spend for
+Phase 1: $0.00.</b></p>
+<p>Every cover and every visual element shipped in Phase 1 was <b>drawn by script</b> —
+typographic covers in the Valice Classics identity, with the engraved device built from vector
+primitives (circles, rules, radial strokes) rather than raster art. That is the series identity
+described in <code>valice-house/covers/COVER_STANDARDS.md</code>, not a fallback: <i>"emerald/black,
+Noto Serif Display, typographic + one fine engraved device (Meditations pattern)."</i></p>
+<p>This library exists for two reasons. It records, honestly, that the phase generated no AI
+imagery — which is what the KDP AI declaration must say. And it holds the briefs that would be
+used <b>if</b> a key is added later, so that a future phase does not start from nothing.</p>
+</div>
+
+<h2>What was actually produced, and how</h2>
+<div class="card">
+<table>
+<tr><th>Asset</th><th>Book</th><th>File</th><th>Spec</th><th>Made by</th></tr>
+<tr><td>Front cover</td><td>Epictetus</td><td><code>ASSETS/cover/front-v1.png</code></td><td>2400×3600 PNG, sRGB embedded, title 27.8% of height</td><td><code>BUILD/build_cover.py</code> — Pillow, type + vector device</td></tr>
+<tr><td>Kindle cover</td><td>Epictetus</td><td><code>ASSETS/cover/kindle-v1.jpg</code></td><td>1600×2560 JPEG q92</td><td>downsample of the front</td></tr>
+<tr><td>Paperback wrap</td><td>Epictetus</td><td><code>ASSETS/cover/paperback-wrap-v1.pdf</code></td><td>12.6464 × 9.2500 in, spine 0.3964 in at 176 pp, 300 DPI, 0.125 in bleed</td><td><code>BUILD/build_cover.py</code></td></tr>
+<tr><td>Front cover</td><td>Seneca</td><td><code>ASSETS/cover/front-v1.png</code></td><td>2400×3600 PNG, sRGB, title 25.5% of height</td><td><code>BUILD/build_cover.py</code></td></tr>
+<tr><td>Kindle cover</td><td>Seneca</td><td><code>ASSETS/cover/kindle-v1.jpg</code></td><td>1600×2560 JPEG q92</td><td>downsample of the front</td></tr>
+<tr><td>Paperback wrap</td><td>Seneca</td><td><code>ASSETS/cover/paperback-wrap-v1.pdf</code></td><td>12.6013 × 9.2500 in, spine 0.3513 in at 156 pp</td><td><code>BUILD/build_cover.py</code></td></tr>
+<tr><td>Storefront images</td><td>both</td><td><code>public/images/books/&lt;slug&gt;.webp</code></td><td>1067×1600, 37 KB / 45 KB</td><td><code>scripts/covers/ingest-covers.mjs</code></td></tr>
+<tr><td>Companion QR</td><td>both</td><td>rendered into the companion page</td><td>≥25% of usable page height; 1.696 and 1.947 mm per module against a 0.5 mm print floor</td><td><code>scripts/factory/build-companion-pages.mjs</code>, decoded module-by-module on read-back</td></tr>
+</table>
+<p class="k">Interior illustrations: <b>none</b>, in either book. Both are typographic editions.
+Werner's 1922 volume carried colour plates and <b>17 were dropped</b> from the selected chapters
+because the artist is not named anywhere and an unattributed plate cannot be cleared — ledger
+row RL-0041, status RED.</p>
+</div>
+
+<h2>Held briefs — for a future phase, if a key is added</h2>
+<p class="k">These are written to the house cover standards. Each names the asset id, the book,
+the exact filename and destination, the dimensions, and the constraints. <b>Rule 2 of the cover
+standards binds every one of them: all lettering is set in type, never rendered inside the
+image.</b> An image model that renders text produces broken glyphs, and the Hangul workbook
+already shipped a defect of that kind once.</p>
+
+<h3>A-01 · Valice Classics device — engraved ornament</h3>
+<div class="card">
+<table>
+<tr><th>Asset ID</th><td>A-01</td><th>Book</th><td>any Valice Classics volume</td></tr>
+<tr><th>Type</th><td>cover ornament</td><th>Filename</th><td><code>generated/device-v1.png</code></td></tr>
+<tr><th>Destination</th><td><code>ASSETS/cover/generated/</code> — never a slot file</td><th>Dimensions</th><td>2048×2048 PNG, transparent</td></tr>
+<tr><th>Use</th><td>replaces the vector device at ~10% of cover width</td><th>Status</th><td><b>not generated</b></td></tr>
+</table>
+<textarea readonly>A single engraved ornament in the manner of a 19th-century book device. Centred, symmetrical, on a transparent background. Fine line work only, as if cut on copperplate: no shading, no gradients, no texture, no colour beyond a single warm gold line weight. The motif is a plain circular frame enclosing a low horizon line and a small rayed sun. Nothing else inside the circle. Line weight even throughout. No text, no letters, no numerals, no signature, no border beyond the single circle. Flat, front-on, no perspective. Leave generous transparent margin on all four sides.</textarea>
+<p class="k"><b>Negative / constraints:</b> no text of any kind · no drop shadow · no 3D · no
+photographic texture · no watermark · no additional ornament outside the circle · not a logo ·
+not a coin or medal · no human or animal figures.</p>
+</div>
+
+<h3>A-02 · Valice Classics cover ground — abstract field</h3>
+<div class="card">
+<table>
+<tr><th>Asset ID</th><td>A-02</td><th>Book</th><td>any Valice Classics volume</td></tr>
+<tr><th>Type</th><td>cover background</td><th>Filename</th><td><code>generated/ground-v1.png</code></td></tr>
+<tr><th>Destination</th><td><code>ASSETS/cover/generated/</code></td><th>Dimensions</th><td>2400×3600 PNG, sRGB</td></tr>
+<tr><th>Use</th><td>ground beneath the typographic title block; type is always set separately</td><th>Status</th><td><b>not generated</b></td></tr>
+</table>
+<textarea readonly>A deep emerald-green field for a book cover, almost flat, with a very subtle vertical gradient darkening slightly towards the foot. The surface suggests fine bookcloth or laid paper at close range but reads as plain colour at thumbnail size. No pattern, no imagery, no objects, no illustration, no figures. Absolutely no text or lettering anywhere. Even, calm, unobtrusive: this is a ground for type to sit on, not a picture. Colour anchored near #0E3D33. Portrait orientation, 2:3.</textarea>
+<p class="k"><b>Negative / constraints:</b> no text · no title · no author name · no ornament ·
+no border · no vignette so strong it competes with type · no visible brush or canvas texture ·
+nothing in the central 60% that would reduce contrast against pale lettering.</p>
+</div>
+
+<h3>A-03 · Chapter ornament for a mythology volume</h3>
+<div class="card">
+<table>
+<tr><th>Asset ID</th><td>A-03</td><th>Book</th><td>Myths and Legends of China (Book 3, blocked)</td></tr>
+<tr><th>Type</th><td>interior ornament</td><th>Filename</th><td><code>generated/chapter-rule-v1.png</code></td></tr>
+<tr><th>Destination</th><td><code>ASSETS/interior/generated/</code></td><th>Dimensions</th><td>1800×300 PNG, transparent</td></tr>
+<tr><th>Use</th><td>a rule under each chapter opening, ~1.7 in wide in print</td><th>Status</th><td><b>not generated</b></td></tr>
+</table>
+<textarea readonly>A single horizontal ornamental rule for a book interior. Fine black line work on a transparent background, in the manner of a 19th-century engraved head-piece. A plain straight line with a small symmetrical flourish at the centre and a slight taper at each end. Extremely restrained: one line weight, no shading, no fill, no colour. No text, no letters, no numerals. No figures, no animals, no dragons, no clouds. Wide and shallow, centred, with transparent space above and below.</textarea>
+<p class="k"><b>Negative / constraints:</b> no text · no cultural motifs that would imply a claim
+about a specific tradition · no dragons or clouds (this book's plates were dropped for rights
+reasons and an invented substitute must not imply it reproduces them) · no colour · no shading.</p>
+<p class="k"><b>Rights note:</b> if this is ever generated it becomes AI-generated content and
+must be declared at KDP, and the US Copyright Office does not register purely AI output. Cover
+standards rule 7 and 12.</p>
+</div>
+
+<h2>If a key is added later — the rules that still apply</h2>
+<div class="card"><ul>
+<li>Generated files go to <code>generated/</code> and are <b>never</b> a slot file. Slots are
+<code>front-v&lt;n&gt;.png</code>, <code>kindle-v&lt;n&gt;.jpg</code>,
+<code>paperback-wrap-v&lt;n&gt;.pdf</code> and are composed by the build.</li>
+<li><b>All lettering is set in type.</b> Never ask a model for a title, an author name or a
+series line.</li>
+<li>Title must be ≥25% of cover height and legible at 150 px. Check the thumbnail render, not
+the full-size one.</li>
+<li>No QR code, URL or form on any cover — KDP disallows it. The companion address lives on the
+last leaf.</li>
+<li>Record every generated asset in the cost ledger
+(<code>node scripts/factory/cost-ledger.mjs</code>) and update
+<code>project_config.json → compliance.aiDisclosure.images</code> from <code>none</code> to
+<code>generated</code>. The KDP declaration must follow.</li>
+<li>Artwork resolution is recorded honestly. A cover that is 112 PPI at print size is written
+down as 112 PPI.</li>
+</ul></div>
+
+<p class="k" style="margin-top:34px">Phase 1 generated no images and spent nothing. This file is
+the record of that, and the starting point for a phase that does.</p>
+</div></body></html>

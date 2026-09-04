@@ -82,13 +82,54 @@ export const PREVIEW_PAGES = [
     slug: "korean-hangul-handwriting-workbook",
     // The REMEDIATED interior of 2026-09-02, not the earlier build: this is
     // the file whose sources page reads "Korean Learner's Vocabulary List".
-    source: `${ROOT}/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_124pp.pdf`,
+    //
+    // 126pp, not the 124pp file this line used to name. Phase 5 APPENDED the
+    // dedicated companion leaf, which renamed the old file to
+    // `…_124pp.pre-companion.pdf` and left this path dangling — and because
+    // build-previews.mjs used to drop a book from the manifest whenever its
+    // source was missing, that silently deleted a live book's preview on the
+    // next unrelated run. The path is corrected here and the builder now
+    // keeps an already-rendered preview instead of dropping it.
+    // The page range is unaffected: the leaf was appended after p.124.
+    source: `${ROOT}/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_126pp.pdf`,
     // Lesson 4 entire: the rule for where a letter goes inside the square,
     // the six words built from it, and both practice pages. It is the step
     // the book exists for, and the one a buyer wants to see done well before
     // paying for 124 pages of ruled boxes.
     pages: [13, 16],
     note: "Lesson 4 in full: where each letter goes inside the syllable block, six real words built from it, and the trace-then-write practice pages.",
+  },
+  {
+    slug: "greek-alphabet-handwriting-workbook",
+    source: `${ROOT}/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/interior.pdf`,
+    // Lesson 8, beta, as the spread is actually printed: teaching page on the
+    // verso, practice on the recto. Beta is the deliberate choice rather than
+    // the first letter — it is the letter the 1998 Travlos study found Greek
+    // schoolchildren writing twenty-eight different ways, so it is where this
+    // book's one real differentiator is visible: the stroke order is printed
+    // WITH the note saying where it came from and that it is recommended, not
+    // official. A buyer who is deciding between this and the other Greek
+    // workbooks needs to see exactly that page.
+    pages: [30, 31],
+    note: "Lesson 8 as a full spread: beta taught stroke by stroke, then the trace-to-free practice page — with the provenance note that says where the stroke order came from.",
+  },
+  {
+    slug: "epictetus-discourses-and-enchiridion",
+    source: `${BUILT}/epictetus-discourses-and-enchiridion.pdf`,
+    // Inside Part Two, where the head-notes are doing the work this edition is
+    // bought for: a chapter title Long ran into his own prose, an editor's
+    // orientation under it, and then Epictetus at full length.
+    pages: [60, 63],
+    note: "Two discourses with their head-notes — the apparatus and the text on the same page, which is what the edition is for.",
+  },
+  {
+    slug: "seneca-selected-dialogues",
+    source: `${BUILT}/seneca-selected-dialogues.pdf`,
+    // On Peace of Mind opens with Serenus diagnosing himself and Seneca
+    // answering; the argument-map lines sit under the chapter numbers Seneca
+    // never wrote.
+    pages: [45, 48],
+    note: "The opening of On Peace of Mind, with the argument map that gives every unnumbered chapter a description Seneca never supplied.",
   },
   {
     slug: "the-myth-hunters-field-book",

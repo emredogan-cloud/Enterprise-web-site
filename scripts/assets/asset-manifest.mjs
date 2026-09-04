@@ -67,7 +67,7 @@ export function slotFor(publicPath) {
     case "previews":
       return { slot: "book-preview", entity: rest.split("/")[0] };
     case "authors":
-      return base === "authors_hero_atmosphere"
+      return base === "authors_hero_atmosphere" || base === "authors_hero_bleed"
         ? { slot: "page-atmosphere", entity: "authors" }
         : { slot: "author-portrait", entity: base };
     case "categories":

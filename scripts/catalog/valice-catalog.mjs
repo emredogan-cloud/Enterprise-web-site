@@ -646,6 +646,136 @@ export const BOOKS = [
   },
 
   {
+    // ── THE GREEK ALPHABET HANDWRITING WORKBOOK ────────────────────────────
+    // Valice Script 2. Written, typeset, illustrated and validated on
+    // 2026-09-04 from an empty scaffold. Nothing here is a plan: every number
+    // below was measured off a built file on that date.
+    //
+    // The differentiator is the one thing every competing Greek alphabet
+    // workbook leaves out. Greek has NO official stroke-order standard — a
+    // 1998 study of 756 Greek schoolchildren recorded thirty-one different
+    // ways of writing capital Δ — so this book prints, letter by letter,
+    // whether its order was transcribed from a published Greek handwriting
+    // reference, taken from the Latin letter the reader already writes, or
+    // derived by a stated rule. That page is the product.
+    slug: "greek-alphabet-handwriting-workbook",
+    title: "The Greek Alphabet Handwriting Workbook",
+    subtitle:
+      "Write all 24 letters in the modern and the classical forms, with a sourced stroke order for every one",
+    language: "en",
+    pageCount: 100,
+    categories: ["language-and-learning"],
+    authors: ["emre-dogan"],
+    bisac: ["FOR010000"],
+    series: null,
+    // DRAFT, and the loader will keep it that way until one of two facts
+    // changes. A published page has to be a page a reader can act on: either
+    // the ebook is buyable here or an Amazon edition is live to link to.
+    // Neither is true yet \u2014 the paperback has not been uploaded, and the
+    // Paddle price cannot be created from this machine (see blockers). Both
+    // master files are already in R2 and the listing below is complete, so
+    // publishing is a one-word data change the moment either fact lands.
+    websiteStatus: "draft",
+    linkageDecision: {
+      decision: "rebuild_now",
+      why: "Built new on 2026-09-04 with the companion page in the typesetting rather than spliced on afterwards: page 97 is a dedicated leaf carrying a code at 30 % of the usable page height and valicepress.com/companion/greek beneath it. Nothing to retrofit.",
+    },
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: null,
+    paddlePriceId: null,
+    onelinePromise:
+      "Thirty lessons that take an adult from nothing to writing all 24 Greek letters, in both the modern and the classical forms, with a sourced stroke order for each.",
+    description:
+      "A 100-page handwriting workbook for adult English speakers learning to write Greek — the forms you will meet in Athens today and the ones you will meet in a Loeb. Thirty lessons cover all 24 letters in both cases, the final sigma, four historical variants and every accent in both the monotonic and the polytonic systems, through 53 numbered stroke diagrams. Each lesson is a spread: the left page shows the letter with a start dot and a numbered arrow for every stroke, then a strip of the same letter one stroke at a time; the right page is ruled practice that moves trace \u2192 dot-start \u2192 free and finishes on a real Greek word. Every letter also carries what it sounds like now and what it sounded like in the fifth century BC. A provenance page states plainly that Greek has no official stroke-order standard, cites the study of 756 schoolchildren that recorded up to thirty-one ways of writing one letter, and labels every sequence in the book with where it came from.",
+    idealReader:
+      "An adult beginner who wants to write Greek by hand before speaking it \u2014 for Modern Greek, for reading Attic or Koine, or because the names on the mythology shelf are worth reading in their own alphabet \u2014 and who would rather be told that a stroke order is recommended than be told to trust it.",
+    formats: [
+      {
+        format: "paperback",
+        // Built 2026-09-04 and preflighted; not yet uploaded. No ASIN is
+        // invented while that is true.
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(12.99),
+        pageCount: 100,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-04 at the MEASURED 100 pages, 8.5 \u00d7 11 large trim, B&W, white: printing $2.84, KDP minimum list $4.74. $12.99 nets $4.95 (38.1 %), inside the Valice Script band of $12.99\u201314.99 and matched to the Hangul volume so the series does not price two comparable workbooks differently.",
+      },
+      {
+        format: "hardcover",
+        // NOT PRODUCED. KDP hardcover requires 75 pages minimum, which this
+        // book clears at 100 \u2014 but the economics do not: see priceBasis.
+        availability: "unavailable",
+        fulfillment: "amazon",
+        priceCents: null,
+        pageCount: null,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: null,
+        priceBasis:
+          "NOT PRODUCED. price-engine.mjs at 100 pp hardcover: a $19.99 list nets about 21 %, under the 35 % house floor, and a workbook is a consumable a reader writes in and finishes \u2014 the format a buyer wants for it is the cheap one they can replace. Revisit only if the paperback proves an audience.",
+      },
+      {
+        format: "large_print",
+        availability: "unavailable",
+        fulfillment: "amazon",
+        priceCents: null,
+        pageCount: null,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: null,
+        priceBasis:
+          "NOT PRODUCED \u2014 DUPLICATIVE. The book is already an 8.5 \u00d7 11 large trim with 44-point exemplars and four-line rules; a large-print edition of it would be the same book at the same size. Series bible; DECISIONS.md K4.",
+      },
+      {
+        format: "ebook",
+        // Two files, one purchase, and neither of them is "the workbook as
+        // an ebook" \u2014 a workbook's value is the empty box, and an empty box
+        // cannot be written in on a screen. The PDF is the workbook you can
+        // reprint; the EPUB is the reference the screen is better at.
+        //
+        // COMING SOON, not available: there is no Paddle price to charge
+        // against yet, and a buy button with nothing behind it is precisely
+        // what `pri_test_meditations_999` was. Both masters are uploaded and
+        // read back from R2 (2026-09-04), so when a price exists this becomes
+        // `available` and nothing else about the row changes.
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(6.99),
+        pageCount: 100,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        // The print interior itself, screen-normalised \u2014 for a workbook that
+        // is not a degraded paperback but the format that lets a reader print
+        // page 31 again instead of writing in their only copy.
+        masterFileKey: "books/greek-alphabet-handwriting-workbook/master/v1/master.pdf",
+        // The second delivered file: the reflowable reference edition.
+        epubFileKey: "books/greek-alphabet-handwriting-workbook/master/v1/master.epub",
+        priceBasis:
+          "$6.99 direct, netting $6.14 after Paddle (5 % + $0.50) = 87.8 %. Comparison set inside this catalogue: World Myths $6.99, Dudeney $9.99, Enigmatica $9.99, World Games $11.99, Bestiarium $12.99. Not matched to a Kindle price, because there is no Kindle edition to match. Two files for the one price \u2014 the 100-page workbook as a printable PDF and a 36-chapter reflowable reference with 77 vector diagrams \u2014 set at the foot of the range because it sits beside a $12.99 print book and the pair should cost under $20. EPUBCheck 5.1.0 on the EPUB: 0 fatals, 0 errors, 0 warnings.",
+      },
+      { format: "kindle", availability: "unavailable", fulfillment: "amazon", priceCents: null,
+        pageCount: null, amazonAsin: null, amazonUrl: null, kdp: "not_created",
+        masterFileKey: null,
+        priceBasis: "Not planned for launch. The reference edition sells direct at 87.8 % net; the same file on Kindle would net 70 % at best and compete with the print workbook it exists to support." },
+    ],
+    blockers: [
+      "PADDLE PRICE \u2014 VERIFIED BLOCKED, not assumed. The PADDLE_API_KEY in this machine's .env is a sandbox key (pdl_sdbx_\u2026) and returns 403 forbidden on /products, /prices and /notification-settings alike (checked 2026-09-04). The live key exists only in the Vercel project environment. One command with it creates the product and writes the price id: `node scripts/catalog/provision-paddle.mjs --env <live> --commit --i-know-this-is-live`.",
+      "KDP UPLOAD \u2014 the paperback interior and cover are built, preflighted and packaged, but only the account holder can upload them. See OUTPUT/KDP/KDP_UPLOAD_GUIDE.html.",
+      "AI DECLARATION \u2014 the manuscript text and the diagrams were produced by an AI agent; the fact is recorded in project_config.json \u2192 compliance.aiDisclosure with its evidence. Only the account holder can enter that declaration on the KDP form.",
+      "ISBN \u2014 none assigned; the copyright page prints PENDING \u2014 KDP-PROVIDED ISBN until one is.",
+      "NO PHYSICAL PROOF \u2014 first print of this interior and this cover. A proof copy is recommended before publishing.",
+    ],
+  },
+  {
     slug: "korean-hangul-handwriting-workbook",
     title: "Korean Hangul Handwriting Workbook",
     subtitle:
@@ -824,6 +954,149 @@ export const BOOKS = [
       "Before that upload, the KDP AI declaration must be re-decided. The Founder declared no AI use; the project records that the editorial apparatus — 28.1% of the words — was agent-drafted, which is 'AI-generated' under Amazon's own definition. It does not affect the direct ebook, which makes no declaration to anyone. See project_config.json → compliance.aiDisclosure.textConflict.",
       "The direct edition ships the watermarked PDF only. The EPUB is built and epubcheck-clean; nothing delivers it yet, so nothing advertises it.",
       "No Kindle edition planned: public-domain titles are capped at the 35% royalty on KDP and the Kindle store already carries the same text for free at BSR #193.",
+    ],
+  },
+
+  {
+    slug: "epictetus-discourses-and-enchiridion",
+    title: "Epictetus: The Discourses and Enchiridion",
+    subtitle:
+      "The George Long Translation, Annotated — the Complete Enchiridion, 68 Discourses in Seven Thematic Parts, 120 Head-Notes, a Stoic Glossary and a Concordance to the Meditations",
+    language: "en",
+    pageCount: 176,
+    categories: ["classics-and-philosophy"],
+    authors: ["emre-dogan"],
+    bisac: ["PHI011000", "PHI002000"],
+    series: { name: "Valice Classics", volume: 3 },
+    // READY TO PUBLISH, HELD ON ONE DEPENDENCY. Gates 2 (rights) and 5 (facts)
+    // are signed, compliance-lint is clean with the AI disclosure decided under
+    // constitution Article 20, the R2 masters are uploaded and hash-verified,
+    // and the preview pages are rendered.
+    // It stays "draft" for one reason: no Paddle price exists, because the only
+    // Paddle key in this environment is a SANDBOX key with no permissions (403
+    // on every endpoint, including read-only listing). The catalogue's own test
+    // — "publishes nothing that cannot be either bought or linked" — refuses a
+    // published page for a book no reader can obtain, and it is right. Flipping
+    // this to "published" would put a page live with no way to buy from it.
+    // ONE LINE CHANGES WHEN A LIVE PADDLE KEY EXISTS: provision, paste the
+    // pri_ into paddlePriceId, set the ebook to "available", set this to
+    // "published". Everything else is done. FOUNDER F-004.
+    websiteStatus: "draft",
+    linkageDecision: { decision: "house_pipeline", why: "The dedicated companion page is built by scripts/factory/build-companion-pages.mjs — the house tool — not by this book\u2019s own typesetter. An earlier build authored the page natively; that was a parallel system with none of the house pipeline\u2019s verification, and it was removed. The pipeline appended the leaf (175 \u2192 176 pp), read the file back to confirm the page count and the printed address, and decoded the QR module-by-module against the URL it carries: p.176, QR 24% of page height, 1.696 mm per module against a 0.5 mm print floor. The wrap was already built at 176 pp and its spine agrees with the pipeline\u2019s arithmetic to four decimals, so no cover rebuild was needed." },
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy:
+      "No Paddle price exists. Rights (Gate 2) and facts (Gate 5) are signed and the R2 masters are uploaded and verified; the only thing between this book and a working Buy button is a live Paddle API key. FOUNDER F-004.",
+    paddlePriceId: null,
+    onelinePromise:
+      "The book Marcus Aurelius read, in the same translator's English, with a head-note on every chapter and the passages he reused marked.",
+    description:
+      "Epictetus was born a slave and taught that nobody could govern a man who wanted nothing they controlled. He wrote none of it down; his student Arrian did. This edition prints Arrian's handbook \u2014 the complete Enchiridion, all fifty-two chapters \u2014 first, as the shorter way in, then the sixty-eight Discourses George Long selected in 1877, arranged into seven thematic parts instead of the unbroken sequence Long printed. The text is Long's, unaltered. Around it: a 3,000-word introduction, an introduction to each part, a head-note on every one of the 120 chapters, a glossary of the eighteen terms Epictetus uses technically and English hides, a biographical index of the people he names without introducing, a chronology, an index of thirty-four subjects generated from the text, and a concordance to the Meditations listing the four passages Marcus Aurelius demonstrably read \u2014 and the two George Long cites that turned out not to be in this selection. 176 pages, 6 \u00d7 9 in.",
+    idealReader:
+      "Someone who read the Meditations, wanted the source, and would rather be told plainly which translation they are holding and what it leaves out.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(9.99),
+        pageCount: 176,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: "books/epictetus-discourses-and-enchiridion/master/v1/master.pdf",
+        epubFileKey: "books/epictetus-discourses-and-enchiridion/master/v1/master.epub",
+        priceBasis:
+          "price-engine.mjs 2026-09-04, direct ebook: $9.99 nets $8.99 after Paddle (90%). The Valice Classics bible allows $7.99\u20139.99 for the minimum apparatus standard and $12.99 for premium; this edition measures 20.0% original matter (QA/differentiation.json), which is the floor, not premium \u2014 so $9.99, the same as Meditations and Dudeney.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(16.99),
+        pageCount: 176,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-04, 176 pp 6\u00d79 B&W public domain: prints at $3.11, KDP minimum list $5.19. $16.99 nets $7.08 (41.7%); the engine's recommended list is $12.99 and the Valice Classics bible's band is $16.99\u201319.99 once an edition has proved itself. Proposed at $16.99; the Founder decides at Gate 8.",
+      },
+    ],
+    blockers: [
+      "Gate 2 is prepared and unsigned. RIGHTS.md is written and ledger rows RL-0028\u2013RL-0032 exist, all YELLOW pending the Founder's signature. Nothing about the rights is in doubt \u2014 Long died in 1879 and the work is ancient \u2014 but the signature is what clears the gate, and the book stays draft until it exists.",
+      "No Paddle product or price exists. provision-paddle.mjs has not been run for this slug; paddlePriceId is null and the ebook is coming_soon rather than available.",
+      "The digital edition master has not been uploaded to R2, so masterFileKey and epubFileKey are null. Nothing on the page claims a download.",
+      "No Kindle edition planned at launch: KDP caps public-domain content at the 35% royalty tier and the Kindle store already carries several free Epictetus editions. It is a discovery channel, not a revenue one, and the decision is recorded rather than assumed.",
+      "No hardcover and no large print. 176 pages qualifies for KDP hardcover (75\u2013550), but a hardcover on an unproven public-domain title competes with established hardback classics series at a price this edition has not earned. Large print would push 176 pages to roughly 330 and the list to about $22.99 with no evidence of demand. Both are deferred until the paperback has sold; the reasons are written down so the decision can be revisited rather than re-derived.",
+    ],
+  },
+
+  {
+    slug: "seneca-selected-dialogues",
+    title: "Seneca: Selected Dialogues",
+    subtitle:
+      "Five Dialogues Complete in Aubrey Stewart's Translation, Annotated — with an Argument Map of All 79 Chapters, a Glossary, a Biographical Index and a Chronology",
+    language: "en",
+    pageCount: 154,
+    categories: ["classics-and-philosophy"],
+    authors: ["emre-dogan"],
+    bisac: ["PHI011000", "PHI002000"],
+    series: { name: "Valice Classics", volume: 4 },
+    // READY TO PUBLISH, HELD ON ONE DEPENDENCY — identical position to volume 3.
+    // Gates 2 and 5 signed, compliance clean, masters uploaded and hash-verified,
+    // previews rendered. Held "draft" only because no live Paddle key exists in
+    // this environment, and the catalogue refuses to publish a page for a book
+    // that cannot be bought or linked. FOUNDER F-004.
+    websiteStatus: "draft",
+    linkageDecision: { decision: "house_pipeline", why: "Dedicated companion page built by scripts/factory/build-companion-pages.mjs and appended as a leaf (155 \u2192 156 pp). The interior builder pads to an ODD count on purpose, because the companion leaf is what makes the final count even. Verified by reading the file back: p.154, QR 25% of page height, 1.947 mm per module. The wrap was built at 156 pp and agrees with the pipeline\u2019s spine arithmetic." },
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy:
+      "No Paddle price exists. Rights and facts are signed and the R2 masters are uploaded and verified. FOUNDER F-004.",
+    paddlePriceId: null,
+    onelinePromise:
+      "Nero's tutor on how to live, with the life told honestly beside the essays \u2014 including the twelve chapters where he defends being rich.",
+    description:
+      "In the spring of 65, on the emperor's orders, the richest private citizen in Rome opened his veins and took a very long time to die. He had been Nero's tutor, then his minister, then the man who drafted the public justification for matricide \u2014 and he had written, while doing all of it, the most quotable defence of the simple life in Latin.\n\nThis edition prints five of Seneca's twelve dialogues, complete and unabridged, in Aubrey Stewart's 1889 translation: On the Shortness of Life, On Peace of Mind, On the Happy Life, On Providence and On Leisure. They are the five about how to live, and they argue with each other.\n\nAround them: a 3,000-word introduction that takes up George Long's refusal to discuss Seneca at all \u2014 Long, who translated the Meditations Valice publishes, said only that his writings and his life must be taken together \u2014 an introduction to each dialogue, an argument map giving a line to every one of the 79 chapters (Seneca wrote no headings; the numbers were added by later editors), a glossary of 14 working terms, a biographical index, a chronology that sets the essays beside Nero's reign, and an index of 30 subjects generated from the text.\n\nTwo of the five are incomplete in the manuscripts. The edition says which, and where, and does not supply endings that do not exist.\n\n154 pages, 6 \u00d7 9 in.",
+    idealReader:
+      "Someone who has met Seneca in quotation and wants the essays whole, with the life told honestly beside them.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(9.99),
+        pageCount: 154,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: "books/seneca-selected-dialogues/master/v1/master.pdf",
+        epubFileKey: "books/seneca-selected-dialogues/master/v1/master.epub",
+        priceBasis:
+          "price-engine.mjs 2026-09-04, direct ebook: $9.99 nets $8.99 after Paddle (90%). Measured 20.0% original apparatus (QA/differentiation.json) \u2014 the Valice Classics floor, not the premium tier \u2014 so $9.99, matching the other three Classics titles.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(15.99),
+        pageCount: 154,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-04, 154 pp 6\u00d79 B&W public domain: prints at $2.85, KDP minimum list $4.79. $15.99 nets $6.72 (42.0%); the engine's recommended list is $11.99. Set one dollar below the Epictetus paperback because the book is twenty pages shorter. Proposal \u2014 the Founder decides at Gate 8.",
+      },
+    ],
+    blockers: [
+      "Gate 2 is prepared and unsigned. Ledger rows RL-0033\u2013RL-0039 exist and rights-lint passes; the signature is what clears the gate.",
+      "No Paddle product or price exists. paddlePriceId is null and the ebook is coming_soon.",
+      "The digital-edition master has not been uploaded to R2, so masterFileKey and epubFileKey are null. Nothing on the page claims a download.",
+      "No Kindle edition planned at launch: KDP caps public-domain content at 35% and free Seneca editions already saturate the Kindle store.",
+      "No hardcover and no large print. 156 pages qualifies for KDP hardcover, but a hardcover on an unproven public-domain title competes with Penguin and Everyman hardbacks at a price this edition has not earned. Large print would take 156 pages to roughly 290 and the list to about $21.99 with no demand evidence. Both deferred, with the reasons recorded so the decision can be revisited.",
+      "Five of twelve claims are PENDING at Gate 5 \u2014 the Acts identification of Gallio, the Tacitus death scene, the Dio fortune figure, the Paul forgery, and the count of the tragedies. Each is hedged in the text and each has a written fallback.",
     ],
   },
 

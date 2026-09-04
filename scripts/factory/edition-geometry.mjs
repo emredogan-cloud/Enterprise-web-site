@@ -59,6 +59,12 @@ export const EDITION_GEOMETRY = {
   "the-puzzles-of-henry-dudeney": {
     paperback: { trimWidthIn: 6, trimHeightIn: 9, binding: "paperback", paper: "white", paperVerified: "project" },
   },
+  "epictetus-discourses-and-enchiridion": {
+    paperback: { trimWidthIn: 6, trimHeightIn: 9, binding: "paperback", paper: "white", paperVerified: "project" },
+  },
+  "seneca-selected-dialogues": {
+    paperback: { trimWidthIn: 6, trimHeightIn: 9, binding: "paperback", paper: "white", paperVerified: "project" },
+  },
 };
 
 /** Measured MediaBox of each edition's built interior, in points. */
@@ -71,4 +77,6 @@ export const MEASURED_MEDIABOX_PT = {
   "the-myth-hunters-field-book": { paperback: [612, 792] },
   "korean-hangul-handwriting-workbook": { paperback: [612, 792], hardcover: [594, 792] },
   "the-puzzles-of-henry-dudeney": { paperback: [432, 648] },
+  "epictetus-discourses-and-enchiridion": { paperback: [432, 648] },
+  "seneca-selected-dialogues": { paperback: [432, 648] },
 };

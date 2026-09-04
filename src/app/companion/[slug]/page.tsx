@@ -51,6 +51,17 @@ export async function generateMetadata({
     // Indexable: these pages are genuinely useful on their own and are a
     // legitimate long-tail search surface ("hangul practice sheet pdf"),
     // not a thin doorway page.
+    // One shared share-card (A-02) for all companion pages, replacing the
+    // sitewide default (/opengraph-image, "Find it. Own it…") with something
+    // on-topic for a QR code landed on from inside a physical book. Not a
+    // fix for a missing image — buildPageMetadata already falls back to a
+    // branded default — just a more specific one for this one route family.
+    image: {
+      url: "/images/companion/og-default.webp",
+      width: 1870,
+      height: 841,
+      alt: "Blank practice sheets and a pencil on a dark desk — the free companion material for this book.",
+    },
   });
 }
 

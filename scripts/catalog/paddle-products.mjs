@@ -79,4 +79,21 @@ export const DIRECT_SALE_EBOOKS = [
     // this edition carries a 28% original apparatus, so the top of it.
     priceCents: 999,
   },
+  {
+    slug: "greek-alphabet-handwriting-workbook",
+    name: "The Greek Alphabet Handwriting Workbook",
+    description:
+      // Both files, and the sentence names only what the worker actually
+      // produces: `master.pdf` from the print interior and `master.epub`
+      // from the reference edition, both uploaded under
+      // books/greek-alphabet-handwriting-workbook/master/v1/.
+      "All 24 Greek letters in both cases, the final sigma, four historical variants and every accent in both the monotonic and the polytonic systems, through 53 numbered stroke diagrams — with a sourced stroke order for every one and a provenance page that says where each came from. Two files from one purchase: the complete 100-page workbook as a DRM-free watermarked PDF, printable at home as often as you need a page again, and a reflowable EPUB reference edition for the screen.",
+    // NOT matched to a Kindle price, because there is no Kindle edition to
+    // match — see the note at the top of this file. price-engine.mjs
+    // 2026-09-04: $6.99 nets $6.14 after Paddle (87.8%). Sits at the foot of
+    // this catalogue's range (World Myths $6.99 → Bestiarium $12.99) because
+    // it is a focused reference beside a $12.99 print workbook, not a
+    // full-length book, and the pair should cost under $20.
+    priceCents: 699,
+  },
 ];

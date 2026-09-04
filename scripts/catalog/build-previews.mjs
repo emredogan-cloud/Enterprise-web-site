@@ -15,7 +15,15 @@
  * Usage: node scripts/catalog/build-previews.mjs
  */
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from "node:fs";
 import { PREVIEW_PAGES } from "./preview-pages.mjs";
 
 const OUT_ROOT = "public/images/previews";
@@ -56,12 +64,40 @@ function toWebp(png, webp) {
   );
 }
 
-const manifest = {};
+/**
+ * Start from what is already published rather than from nothing.
+ *
+ * The source PDFs live in the book production repositories, which are NOT in
+ * this repository and are not all present on every machine. Rebuilding the
+ * manifest from scratch therefore used to DELETE the preview of any book
+ * whose project happened to be absent or whose path had moved — which is
+ * exactly what happened when the Hangul interior was renamed by the Phase 5
+ * companion-page pass: a single unrelated run dropped a live book's preview
+ * from the storefront, and only the catalog test caught it.
+ *
+ * So a missing source is now a warning that KEEPS the existing entry, as
+ * long as the images it names are still on disk. The invariant the manifest
+ * exists to hold is "every listed page was really rendered", and rendered
+ * files on disk satisfy it just as well as a render performed this minute.
+ */
+const manifest = existsSync(MANIFEST) ? JSON.parse(readFileSync(MANIFEST, "utf8")) : {};
 let total = 0;
+
+/** True when every image an entry lists is still present in public/. */
+const entryIsIntact = (entry) =>
+  Boolean(entry?.pages?.length) &&
+  entry.pages.every((p) => existsSync(`public${p.src}`));
 
 for (const book of PREVIEW_PAGES) {
   if (!existsSync(book.source)) {
-    console.error(`MISSING SOURCE  ${book.slug}\n  ${book.source}`);
+    const kept = entryIsIntact(manifest[book.slug]);
+    console.error(
+      `MISSING SOURCE  ${book.slug}\n  ${book.source}\n  ` +
+        (kept
+          ? `keeping the ${manifest[book.slug].pages.length} image(s) already rendered`
+          : "and nothing rendered before — this book has NO preview"),
+    );
+    if (!kept) delete manifest[book.slug];
     process.exitCode = 1;
     continue;
   }
@@ -99,6 +135,16 @@ for (const book of PREVIEW_PAGES) {
   total += pages.length;
   const kb = (pages.reduce((n, p) => n + p.bytes, 0) / 1024).toFixed(0);
   console.log(`${book.slug.padEnd(32)} pages ${from}–${to}  ${pages.length} images  ${kb} KB`);
+}
+
+// A slug removed from PREVIEW_PAGES is a deliberate withdrawal, so it leaves
+// the manifest even though its images may still be on disk.
+const configured = new Set(PREVIEW_PAGES.map((b) => b.slug));
+for (const slug of Object.keys(manifest)) {
+  if (!configured.has(slug)) {
+    console.log(`dropped (no longer configured)  ${slug}`);
+    delete manifest[slug];
+  }
 }
 
 writeFileSync(MANIFEST, JSON.stringify(manifest, null, 2) + "\n");

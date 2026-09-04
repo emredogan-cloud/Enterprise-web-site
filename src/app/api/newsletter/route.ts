@@ -78,6 +78,18 @@ const SOURCES = new Set([
   "hangul-companion",
   "world-games-companion",
   "dudeney-companion",
+  // Added 2026-09-04. The four below were declared in
+  // CompanionNewsletterSource during Phase 4 but never added to this runtime
+  // set, so a signup from those four companion pages was rejected with
+  // "invalid-source" while the page showed a working form. Found while
+  // registering the Epictetus companion; fixed here rather than left next to
+  // a working sibling.
+  "world-myths-companion",
+  "codex-bestiarium-companion",
+  "codex-mythologica-companion",
+  "myth-hunters-companion",
+  "epictetus-companion",
+  "seneca-companion",
 ]);
 
 /**

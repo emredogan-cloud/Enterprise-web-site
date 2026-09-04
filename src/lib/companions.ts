@@ -585,6 +585,168 @@ const MYTH_HUNTERS: Companion = {
   ],
 };
 
+/**
+ * ── EPICTETUS: THE DISCOURSES AND ENCHIRIDION ─────────────────────────────
+ *
+ * Valice Classics 3, built 2026-09-04 as Book 1 of the public-domain factory's
+ * Phase 1. The book is NOT on sale: Gate 2 (rights) is prepared but unsigned
+ * and no Paddle product exists, so the state below is honest about that.
+ *
+ * The companion is deliberately independent of the book's sale state, which is
+ * the standing rule in this file: a QR printed in a paperback is permanent and
+ * must never 404. All four assets here are built from the same content files as
+ * the book and stand on their own — the Enchiridion is public domain in full,
+ * and the glossary, reading paths and concordance are Valice's own writing.
+ */
+const EPICTETUS: Companion = {
+  slug: "epictetus",
+  bookSlug: "epictetus-discourses-and-enchiridion",
+  bookTitle: "Epictetus: The Discourses and Enchiridion",
+  state: "book-not-yet-available",
+  stateNote:
+    "The Valice edition is built and validated but not yet on sale — the " +
+    "rights gate is signed by a person, not a script, and that signature is " +
+    "outstanding. Everything on this page is free and works today regardless.",
+  intro:
+    "Free material for Epictetus: the complete Enchiridion to print, the " +
+    "eighteen working terms on one sheet, four ways into the Discourses, and " +
+    "the passages Marcus Aurelius demonstrably read.",
+  newsletterSource: "epictetus-companion",
+  assetsHeading: "Reading material",
+  rightsNote:
+    "Epictetus died around 135 and George Long, whose translation this is, " +
+    "died in 1879, so the text on these sheets is in the public domain " +
+    "everywhere (source: Project Gutenberg #10661). The glossary, the reading " +
+    "paths and the concordance are Valice Press's own writing.",
+  assets: [
+    {
+      id: "enchiridion-card",
+      title: "The Enchiridion, complete",
+      description:
+        "All fifty-two chapters of Arrian's handbook in George Long's 1877 " +
+        "translation, set two columns to a page. The whole of Stoicism's " +
+        "best-known short text, free to print and keep.",
+      kind: "static",
+      href: "/companion/epictetus/enchiridion-card.pdf",
+      meta: "PDF · US Letter · 7 pages",
+    },
+    {
+      id: "glossary-sheet",
+      title: "The working terms",
+      description:
+        "The eighteen words Epictetus uses technically and English hides — " +
+        "will, appearance, assent, preconception, the ruling faculty — each " +
+        "with Long's own rendering and where to find it.",
+      kind: "static",
+      href: "/companion/epictetus/glossary-sheet.pdf",
+      meta: "PDF · US Letter · 1 page",
+    },
+    {
+      id: "reading-paths",
+      title: "Four ways in",
+      description:
+        "Where to start depending on why you picked the book up, with the " +
+        "chapter numbers so it works with any edition, and what is in each of " +
+        "the seven thematic parts.",
+      kind: "static",
+      href: "/companion/epictetus/reading-paths.pdf",
+      meta: "PDF · US Letter · 1 page",
+    },
+    {
+      id: "concordance",
+      title: "What Marcus Aurelius read",
+      description:
+        "Marcus thanks Junius Rusticus for lending him Epictetus. George Long " +
+        "translated both books and marked where they touch. Four passages " +
+        "verified present, and the two Long cites that are not in his own " +
+        "selection — listed, because a table that hides its gaps is worth less.",
+      kind: "static",
+      href: "/companion/epictetus/concordance.pdf",
+      meta: "PDF · US Letter · 1 page",
+    },
+  ],
+};
+
+/**
+ * ── SENECA: SELECTED DIALOGUES ────────────────────────────────────────────
+ *
+ * Valice Classics 4, built 2026-09-04 as Book 2 of the public-domain factory's
+ * Phase 1. Not on sale: Gate 2 prepared but unsigned, no Paddle product.
+ *
+ * This book exists because the 2026-09-03 research pass found that the source
+ * the previous candidate pool had chosen for Seneca — the Loeb/Gummere text —
+ * could not be cleared: the pool recorded "Gummere d.1919" where 1919 was the
+ * imprint year of one volume of a series whose next volume appeared in 1925.
+ * Aubrey Stewart (d. 1918) is the verified substitute, and this companion's
+ * material is drawn from his translation, which is clear everywhere.
+ */
+const SENECA: Companion = {
+  slug: "seneca",
+  bookSlug: "seneca-selected-dialogues",
+  bookTitle: "Seneca: Selected Dialogues",
+  state: "book-not-yet-available",
+  stateNote:
+    "The Valice edition is built and validated but not yet on sale — the " +
+    "rights gate is signed by a person, not a script, and that signature is " +
+    "outstanding. Everything on this page is free and works today regardless.",
+  intro:
+    "Free material for Seneca: On the Shortness of Life complete, a line on " +
+    "every one of the seventy-nine chapters, the working terms on one sheet, " +
+    "and four ways into the dialogues.",
+  newsletterSource: "seneca-companion",
+  assetsHeading: "Reading material",
+  rightsNote:
+    "Seneca died in 65 and Aubrey Stewart, whose translation this is, died in " +
+    "1918, so the text on these sheets is in the public domain everywhere " +
+    "(source: Project Gutenberg #64576). The argument map, the glossary and " +
+    "the reading paths are Valice Press's own writing.",
+  assets: [
+    {
+      id: "shortness-of-life",
+      title: "On the Shortness of Life",
+      description:
+        "Seneca's most famous essay, complete and unabridged, in Aubrey " +
+        "Stewart's 1889 translation. Twenty chapters on why life is not short " +
+        "and we are simply wasteful with it.",
+      kind: "static",
+      href: "/companion/seneca/shortness-of-life.pdf",
+      meta: "PDF · US Letter · 5 pages",
+    },
+    {
+      id: "argument-map",
+      title: "What is in every chapter",
+      description:
+        "Seneca wrote no headings; the chapter numbers were added by later " +
+        "editors and tell you nothing. A line for each of the seventy-nine, so " +
+        "you can find a passage again.",
+      kind: "static",
+      href: "/companion/seneca/argument-map.pdf",
+      meta: "PDF · US Letter · 3 pages",
+    },
+    {
+      id: "glossary-sheet",
+      title: "The working terms",
+      description:
+        "The fourteen words Seneca uses technically and plain English hides — " +
+        "happy, virtue, indifferent, leisure, the wise man — each with the " +
+        "Latin and where to find it.",
+      kind: "static",
+      href: "/companion/seneca/glossary-sheet.pdf",
+      meta: "PDF · US Letter · 1 page",
+    },
+    {
+      id: "reading-paths",
+      title: "Four ways in",
+      description:
+        "Where to start depending on why you picked Seneca up — including the " +
+        "one for readers who want to know whether he can be trusted.",
+      kind: "static",
+      href: "/companion/seneca/reading-paths.pdf",
+      meta: "PDF · US Letter · 1 page",
+    },
+  ],
+};
+
 const COMPANIONS: readonly Companion[] = [
   HANGUL,
   WORLD_GAMES,
@@ -593,6 +755,8 @@ const COMPANIONS: readonly Companion[] = [
   CODEX_BESTIARIUM,
   CODEX_MYTHOLOGICA,
   MYTH_HUNTERS,
+  EPICTETUS,
+  SENECA,
 ];
 
 export function listCompanions(): readonly Companion[] {

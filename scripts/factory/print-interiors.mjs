@@ -51,4 +51,15 @@ export const PRINT_INTERIORS = {
   "the-puzzles-of-henry-dudeney": {
     paperback: `${ROOT}/THE-PUZZLES-OF-HENRY-DUDENEY/OUTPUT/interior-main.pdf`,
   },
+  "epictetus-discourses-and-enchiridion": {
+    // Valice Classics 3 (2026-09-04). The companion page was designed into the
+    // interior from the first build rather than spliced in afterwards, so the
+    // page count is 176 before and after and there is no spine to recalculate.
+    paperback: `${ROOT}/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pdf`,
+  },
+  "seneca-selected-dialogues": {
+    // Valice Classics 4 (2026-09-04). 156 pp — an odd 155 was padded to an even
+    // count by the build, because KDP rejects an odd final page.
+    paperback: `${ROOT}/SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pdf`,
+  },
 };

@@ -18,6 +18,14 @@
       "entity": "authors"
     },
     {
+      "path": "/images/authors/authors_hero_bleed.webp",
+      "width": 1871,
+      "height": 841,
+      "bytes": 33302,
+      "slot": "page-atmosphere",
+      "entity": "authors"
+    },
+    {
       "path": "/images/authors/henry-dudeney.webp",
       "width": 510,
       "height": 680,
@@ -114,6 +122,14 @@
       "entity": "codex-mythologica"
     },
     {
+      "path": "/images/books/epictetus-discourses-and-enchiridion.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 37796,
+      "slot": "book-cover",
+      "entity": "epictetus-discourses-and-enchiridion"
+    },
+    {
       "path": "/images/books/korean-hangul-handwriting-workbook.webp",
       "width": 1000,
       "height": 1600,
@@ -160,6 +176,62 @@
       "bytes": 180358,
       "slot": "book-cover",
       "entity": "the-puzzles-of-henry-dudeney"
+    },
+    {
+      "path": "/images/categories/classics-and-philosophy.webp",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 146440,
+      "slot": "category-art",
+      "entity": "classics-and-philosophy"
+    },
+    {
+      "path": "/images/categories/games-and-play.webp",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 223392,
+      "slot": "category-art",
+      "entity": "games-and-play"
+    },
+    {
+      "path": "/images/categories/language-and-learning.webp",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 192202,
+      "slot": "category-art",
+      "entity": "language-and-learning"
+    },
+    {
+      "path": "/images/categories/myth-and-folklore.webp",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 101972,
+      "slot": "category-art",
+      "entity": "myth-and-folklore"
+    },
+    {
+      "path": "/images/categories/puzzle-and-challenge.webp",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 93888,
+      "slot": "category-art",
+      "entity": "puzzle-and-challenge"
+    },
+    {
+      "path": "/images/categories/young-explorers.webp",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 287364,
+      "slot": "category-art",
+      "entity": "young-explorers"
+    },
+    {
+      "path": "/images/companion/og-default.webp",
+      "width": 1870,
+      "height": 841,
+      "bytes": 152010,
+      "slot": "page-atmosphere",
+      "entity": "companion/og-default"
     },
     {
       "path": "/images/homepage/homepage_hero_reading_room.webp",

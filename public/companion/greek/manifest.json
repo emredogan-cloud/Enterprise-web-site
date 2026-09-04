@@ -1,0 +1,31 @@
+{
+ "generatedAt": "2026-09-04",
+ "url": "https://valicepress.com/companion/greek",
+ "assets": [
+  {
+   "file": "practice-grid.pdf",
+   "pages": 4,
+   "bytes": 60033,
+   "sha256": "fec833920f4ed6f87ceeae8bc4100640905f639a9cc12b1d14977b7dcff37653"
+  },
+  {
+   "file": "stroke-boxes.pdf",
+   "pages": 48,
+   "bytes": 638594,
+   "sha256": "b49223c7bbb9001e04b32950b40e6f152afea3ce22ba776f4f72a0d581e69d53"
+  },
+  {
+   "file": "alphabet-chart.pdf",
+   "pages": 1,
+   "bytes": 82541,
+   "sha256": "4176e506dcc9d2f26011c8ddc576f018d08e44a3faff897e11a41940b45fd7f8"
+  },
+  {
+   "file": "lesson-tracker.pdf",
+   "pages": 1,
+   "bytes": 61415,
+   "sha256": "0fe91c50562dc4d92c0138b9d25c5e62c5989be64ce5601c289c5c68121af6c0"
+  }
+ ],
+ "generatedFrom": "BUILD/greek_data.py — the same data the book is typeset from"
+}

@@ -51,6 +51,34 @@ export const DIGITAL_EDITION_SOURCES = [
     // leaf and writing the same line into the package metadata.
     epub: `${ROOT}/THE-PUZZLES-OF-HENRY-DUDENEY/OUTPUT/the-puzzles-of-henry-dudeney-main.epub`,
   },
+  {
+    // Valice Classics 3 (2026-09-04). Text-only 6 × 9 interior with no plates,
+    // so the /ebook pass is a normalising pass rather than a downsampling one.
+    slug: "epictetus-discourses-and-enchiridion",
+    printInterior: `${ROOT}/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pdf`,
+    epub: `${ROOT}/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/epictetus-discourses-and-enchiridion.epub`,
+  },
+  {
+    // Valice Script 2 (2026-09-04). The only workbook in this list, and the
+    // reason it belongs here is the reason the Hangul workbook does not: a
+    // PDF of a handwriting workbook is not a degraded copy of the paperback,
+    // it is the format that lets a reader print page 31 twenty times instead
+    // of once. The interior is vector at 0.4 MB, so the /ebook pass
+    // normalises rather than downsamples.
+    slug: "greek-alphabet-handwriting-workbook",
+    printInterior: `${ROOT}/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/interior.pdf`,
+    // Not the workbook as an ebook — a workbook's value is the empty box, and
+    // an empty box cannot be written in on a screen. This is the other half:
+    // a reflowable reference edition of the same material, 36 chapters with
+    // the stroke diagrams as scalable SVG. One purchase, both files.
+    epub: `${ROOT}/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/EBOOK/greek-alphabet-reference.epub`,
+  },
+  {
+    // Valice Classics 4 (2026-09-04).
+    slug: "seneca-selected-dialogues",
+    printInterior: `${ROOT}/SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pdf`,
+    epub: `${ROOT}/SENECA-SELECTED-DIALOGUES/OUTPUT/seneca-selected-dialogues.epub`,
+  },
 ];
 
 /** R2 masters key for a slug. Versioned so a re-cut edition never overwrites. */

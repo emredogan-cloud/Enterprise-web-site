@@ -183,6 +183,38 @@ export const COMPANION_PAGE_COPY = {
     ],
   },
 
+  "epictetus-discourses-and-enchiridion": {
+    companionSlug: "epictetus",
+    imprint: "Valice Press",
+    headline: "The Enchiridion to keep,\nand a line on every chapter",
+    promise:
+      "Everything in this book that is worth having on one page, free, for " +
+      "readers of this edition.",
+    listHeading: "WHAT IS WAITING FOR YOU",
+    bullets: [
+      { asset: "enchiridion-card", term: "The Enchiridion, complete", gloss: "all fifty-two chapters of Arrian's handbook, free to print and keep" },
+      { asset: "glossary-sheet", term: "The working terms", gloss: "the eighteen words Epictetus uses technically and English hides, with Long's own rendering" },
+      { asset: "reading-paths", term: "Four ways in", gloss: "where to start, with the chapter numbers, so it works with any edition" },
+      { asset: "concordance", term: "What Marcus Aurelius read", gloss: "the four passages he demonstrably read, and the two Long cites that are not in this selection" },
+    ],
+  },
+
+  "seneca-selected-dialogues": {
+    companionSlug: "seneca",
+    imprint: "Valice Press",
+    headline: "On the Shortness of Life to keep,\nand what is in every chapter",
+    promise:
+      "Seneca wrote no headings. These sheets give you the map he did not, " +
+      "and his most famous essay entire.",
+    listHeading: "WHAT IS WAITING FOR YOU",
+    bullets: [
+      { asset: "shortness-of-life", term: "On the Shortness of Life", gloss: "complete and unabridged, free to print, keep or give away" },
+      { asset: "argument-map", term: "What is in every chapter", gloss: "a line for each of the seventy-nine, so you can find a passage again" },
+      { asset: "glossary-sheet", term: "The working terms", gloss: "the fourteen words Seneca uses technically and plain English hides" },
+      { asset: "reading-paths", term: "Four ways in", gloss: "including the one for readers who want to know whether he can be trusted" },
+    ],
+  },
+
   "the-myth-hunters-field-book": {
     companionSlug: "myth-hunters-field-book",
     imprint: "Vâliçe Press",
@@ -335,6 +367,32 @@ export const COMPANION_PAGE_PLAN = {
         mode: "replace", page: 144, pagesBefore: 144, pagesAfter: 144, recto: false,
         folio: { style: "outer", offset: 0, size: 8.6, baselineFromBottomPt: 26.35, outerMarginPt: 39.6 },
         replacing: "an empty page carrying only a running head; the book's single companion mention was one line inside the imprint on p.4",
+      },
+    },
+  },
+
+  "epictetus-discourses-and-enchiridion": {
+    style: { fonts: TYPE.liberationSerif, marginIn: 0.62, rule: 0.7 },
+    editions: {
+      paperback: {
+        // The interior is typeset from source without a companion page; this
+        // pipeline appends the leaf and recalculates the spine.
+        mode: "append", page: null, pagesBefore: 175, pagesAfter: 176, recto: true,
+        folio: { style: "centre", offset: 0, size: 8.6, baselineFromBottomPt: 28.8, outerMarginPt: 36 },
+        replacing: null,
+      },
+    },
+  },
+
+  "seneca-selected-dialogues": {
+    style: { fonts: TYPE.liberationSerif, marginIn: 0.62, rule: 0.7 },
+    editions: {
+      paperback: {
+        // As above. The interior builder pads to an even count; this pipeline
+        // appends the companion leaf and recalculates.
+        mode: "append", page: null, pagesBefore: 153, pagesAfter: 154, recto: true,
+        folio: { style: "centre", offset: 0, size: 8.6, baselineFromBottomPt: 28.8, outerMarginPt: 36 },
+        replacing: null,
       },
     },
   },

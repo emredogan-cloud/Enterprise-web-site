@@ -1,0 +1,130 @@
+{
+  "generatedAt": "2026-09-04",
+  "book": "epictetus-discourses-and-enchiridion",
+  "format": "paperback",
+  "title": "Epictetus: The Discourses and Enchiridion",
+  "asin": null,
+  "kdpState": "not_created",
+  "interior": {
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pdf",
+    "sha256": "17d885aed6eaf7ed9425c62099089326ff3684b0b6aaefb7e1e5d77aa61b1068",
+    "bytes": 615771,
+    "pagesBefore": 175,
+    "pagesAfter": 176,
+    "companionPage": 176,
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pre-companion.pdf"
+  },
+  "companion": {
+    "printedUrl": "valicepress.com/companion/epictetus",
+    "qrUrl": "https://valicepress.com/companion/epictetus",
+    "qr": {
+      "modules": 33,
+      "module_pt": 4.804992,
+      "module_mm": 1.6950944,
+      "version": 4,
+      "error": "M",
+      "side_pt": 158.564736,
+      "fraction_of_usable_height": 0.2838,
+      "x_pt": 136.717632,
+      "y_pt": 307.9257393005712
+    },
+    "dedicatedPage": true,
+    "emailWall": false
+  },
+  "spine": {
+    "pagesBefore": 175,
+    "pagesAfter": 176,
+    "paper": "white",
+    "binding": "paperback",
+    "trim": "6×9 in",
+    "before": {
+      "spineWidthIn": 0.3941,
+      "wrapWidthIn": 12.6441,
+      "wrapHeightIn": 9.25,
+      "spineTextAllowed": true
+    },
+    "after": {
+      "spineWidthIn": 0.396352,
+      "wrapWidthIn": 12.646352,
+      "wrapHeightIn": 9.25,
+      "spineTextAllowed": true
+    },
+    "deltaSpineIn": 0.002252,
+    "deltaWrapWidthIn": 0.002252,
+    "withinKdpTolerance": true,
+    "coverRebuildRequired": false,
+    "coverRebuildCorrect": true,
+    "hardcoverGeometryMustBeRead": false,
+    "barcodeZoneAffected": false,
+    "verdict": "wrap width moves 0.002252 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.002252 in and the house rule is that each edition's cover reads its own page count"
+  },
+  "cover": {
+    "built": true,
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/ASSETS/cover/paperback-wrap-v1.pdf",
+    "pageCount": 176,
+    "spineIn": 0.3964,
+    "wrapIn": "12.6464 × 9.2500 (white)",
+    "note": "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 176 — that is, after the companion leaf. Its spine and wrap agree with this pipeline's own arithmetic to four decimal places (0.396352 / 12.646352), so nothing had to be rebuilt after the splice."
+  },
+  "coverAction": "REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block",
+  "uploadRequired": true,
+  "hold": null,
+  "proofRecommended": true,
+  "verification": [
+    {
+      "name": "page-count",
+      "pass": true,
+      "detail": "176 pages (expected 176)"
+    },
+    {
+      "name": "printed-url",
+      "pass": true,
+      "detail": "valicepress.com/companion/epictetus"
+    },
+    {
+      "name": "canonical-host",
+      "pass": true,
+      "detail": "no forbidden host on the page"
+    },
+    {
+      "name": "no-email-wall",
+      "pass": true,
+      "detail": "the page asks for nothing"
+    },
+    {
+      "name": "headline",
+      "pass": true,
+      "detail": "headline present"
+    },
+    {
+      "name": "eyebrow",
+      "pass": true,
+      "detail": "CONTINUE WITH VALICE PRESS"
+    },
+    {
+      "name": "fonts-embedded",
+      "pass": true,
+      "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
+    },
+    {
+      "name": "qr-floor",
+      "pass": true,
+      "detail": "28.4% of usable height"
+    },
+    {
+      "name": "qr-module-size",
+      "pass": true,
+      "detail": "1.70 mm per module"
+    },
+    {
+      "name": "pdf-metadata",
+      "pass": true,
+      "detail": "title=\"Epictetus: The Discourses and Enchiridion: The George Long Translation, Annotated — the Complete Enchiridion, 68 Discourses in Seven Thematic Parts, 120 Head-Notes, a Stoic Glossary and a Concordance to the Meditations\" author=\"Emre Doğan\""
+    },
+    {
+      "name": "qr-matches-url",
+      "pass": true,
+      "detail": "33×33 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/epictetus"
+    }
+  ]
+}
