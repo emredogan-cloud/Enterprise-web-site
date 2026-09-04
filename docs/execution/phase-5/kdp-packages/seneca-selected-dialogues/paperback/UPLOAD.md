@@ -15,12 +15,12 @@ This edition has never been uploaded. The file below is its first. A dedicated c
 ## The file
 
 ```
-/home/emre/Downloads/MY-DİGİTAL-BOOK/SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pdf
+/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pdf
 sha256 f06fea37a5d083f0a0ea7f89240b42dc8f38c870a85bc3c23f5aee24ea93fa8d
 575,959 bytes · 154 pages
 ```
 
-The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pre-companion.pdf` and is never deleted.
+The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pre-companion.pdf` and is never deleted.
 
 ## In KDP
 

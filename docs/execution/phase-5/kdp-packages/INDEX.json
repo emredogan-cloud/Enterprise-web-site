@@ -803,13 +803,13 @@
       "asin": null,
       "kdpState": "not_created",
       "interior": {
-        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pdf",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pdf",
         "sha256": "17d885aed6eaf7ed9425c62099089326ff3684b0b6aaefb7e1e5d77aa61b1068",
         "bytes": 615771,
         "pagesBefore": 175,
         "pagesAfter": 176,
         "companionPage": 176,
-        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pre-companion.pdf",
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pre-companion.pdf",
         "builtBy": "scripts/factory/companion-page.py (spliced)"
       },
       "companion": {
@@ -858,7 +858,7 @@
       },
       "cover": {
         "built": true,
-        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/ASSETS/cover/paperback-wrap-v1.pdf",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/ASSETS/cover/paperback-wrap-v1.pdf",
         "pageCount": 176,
         "spineIn": 0.3964,
         "wrapIn": "12.6464 × 9.2500 (white)",
@@ -1020,13 +1020,13 @@
       "asin": null,
       "kdpState": "not_created",
       "interior": {
-        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf",
         "sha256": "0ac86524968a8782cf4c9c7021084fff72ce3f48cc05af558f8cc7082d1d37d8",
         "bytes": 342965,
         "pagesBefore": 93,
         "pagesAfter": 94,
         "companionPage": 94,
-        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pre-companion.pdf",
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pre-companion.pdf",
         "builtBy": "scripts/factory/companion-page.py (spliced)"
       },
       "companion": {
@@ -1075,7 +1075,7 @@
       },
       "cover": {
         "built": true,
-        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/INDIAN-MYTH-AND-LEGEND/ASSETS/cover/paperback-wrap-v1.pdf",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/ASSETS/cover/paperback-wrap-v1.pdf",
         "pageCount": 94,
         "spineIn": 0.2117,
         "wrapIn": "12.4617 × 9.2500 (white)",
@@ -1346,13 +1346,13 @@
       "asin": null,
       "kdpState": "not_created",
       "interior": {
-        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHICAL-MONSTERS/OUTPUT/interior-main.pdf",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/05-MYTHICAL-MONSTERS/OUTPUT/interior-main.pdf",
         "sha256": "a97c3e4abbd3e7c11ca88c28b8fc933d4bb654fff55e6897a42eab6b26c5fc9c",
         "bytes": 306472,
         "pagesBefore": 73,
         "pagesAfter": 74,
         "companionPage": 74,
-        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHICAL-MONSTERS/OUTPUT/interior-main.pre-companion.pdf",
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/05-MYTHICAL-MONSTERS/OUTPUT/interior-main.pre-companion.pdf",
         "builtBy": "scripts/factory/companion-page.py (spliced)"
       },
       "companion": {
@@ -1401,7 +1401,7 @@
       },
       "cover": {
         "built": true,
-        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHICAL-MONSTERS/ASSETS/cover/paperback-wrap-v1.pdf",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/05-MYTHICAL-MONSTERS/ASSETS/cover/paperback-wrap-v1.pdf",
         "pageCount": 74,
         "spineIn": 0.1666,
         "wrapIn": "12.4166 × 9.2500 (white)",
@@ -1478,13 +1478,13 @@
       "asin": null,
       "kdpState": "not_created",
       "interior": {
-        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pdf",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pdf",
         "sha256": "f4738f2a4e0474bb73d16f7fbd9aeea4e92a34ccd17f110690829b9c4f5aa649",
         "bytes": 347293,
         "pagesBefore": 107,
         "pagesAfter": 108,
         "companionPage": 108,
-        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pre-companion.pdf",
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pre-companion.pdf",
         "builtBy": "scripts/factory/companion-page.py (spliced)"
       },
       "companion": {
@@ -1533,7 +1533,7 @@
       },
       "cover": {
         "built": true,
-        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHS-AND-LEGENDS-OF-CHINA/ASSETS/cover/paperback-wrap-v1.pdf",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/ASSETS/cover/paperback-wrap-v1.pdf",
         "pageCount": 108,
         "spineIn": 0.2432,
         "wrapIn": "12.4932 × 9.2500 (white)",
@@ -1585,13 +1585,13 @@
       "asin": null,
       "kdpState": "not_created",
       "interior": {
-        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pdf",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pdf",
         "sha256": "f06fea37a5d083f0a0ea7f89240b42dc8f38c870a85bc3c23f5aee24ea93fa8d",
         "bytes": 575959,
         "pagesBefore": 153,
         "pagesAfter": 154,
         "companionPage": 154,
-        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pre-companion.pdf",
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pre-companion.pdf",
         "builtBy": "scripts/factory/companion-page.py (spliced)"
       },
       "companion": {
@@ -1640,7 +1640,7 @@
       },
       "cover": {
         "built": true,
-        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/SENECA-SELECTED-DIALOGUES/ASSETS/cover/paperback-wrap-v1.pdf",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/ASSETS/cover/paperback-wrap-v1.pdf",
         "pageCount": 154,
         "spineIn": 0.3468,
         "wrapIn": "12.5968 × 9.2500 (white)",

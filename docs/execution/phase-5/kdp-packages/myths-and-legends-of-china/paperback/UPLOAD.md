@@ -15,12 +15,12 @@ This edition has never been uploaded. The file below is its first. A dedicated c
 ## The file
 
 ```
-/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pdf
+/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pdf
 sha256 f4738f2a4e0474bb73d16f7fbd9aeea4e92a34ccd17f110690829b9c4f5aa649
 347,293 bytes · 108 pages
 ```
 
-The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pre-companion.pdf` and is never deleted.
+The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pre-companion.pdf` and is never deleted.
 
 ## In KDP
 

@@ -63,26 +63,26 @@ export const PRINT_INTERIORS = {
     // pipeline's verification and it was removed. The interior is now typeset
     // deliberately ODD (175 pp) and build-companion-pages.mjs appends the leaf
     // to make 176, which is the even count KDP requires.
-    paperback: `${ROOT}/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pdf`,
+    paperback: `${ROOT}/PHASE-1-BOOK/01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pdf`,
   },
   "seneca-selected-dialogues": {
     // Valice Classics 4 (2026-09-04). 156 pp — an odd 155 was padded to an even
     // count by the build, because KDP rejects an odd final page.
-    paperback: `${ROOT}/SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pdf`,
+    paperback: `${ROOT}/PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pdf`,
   },
   "myths-and-legends-of-china": {
     // Valice Classics 5 (2026-09-04). Volume one of two. Typeset ODD (107 pp)
     // so the appended companion leaf makes 108.
-    paperback: `${ROOT}/MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pdf`,
+    paperback: `${ROOT}/PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pdf`,
   },
   "indian-myth-and-legend": {
     // Valice Classics 6 (2026-09-04). Volume one of four. Typeset ODD (93 pp)
     // so the appended companion leaf makes 94.
-    paperback: `${ROOT}/INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf`,
+    paperback: `${ROOT}/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf`,
   },
   "mythical-monsters": {
     // Valice Classics 7 (2026-09-04). Volume one of three. Typeset ODD (73 pp)
     // so the appended companion leaf makes 74.
-    paperback: `${ROOT}/MYTHICAL-MONSTERS/OUTPUT/interior-main.pdf`,
+    paperback: `${ROOT}/PHASE-1-BOOK/05-MYTHICAL-MONSTERS/OUTPUT/interior-main.pdf`,
   },
 };

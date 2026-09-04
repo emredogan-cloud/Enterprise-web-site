@@ -6,13 +6,13 @@
   "asin": null,
   "kdpState": "not_created",
   "interior": {
-    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pdf",
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pdf",
     "sha256": "f06fea37a5d083f0a0ea7f89240b42dc8f38c870a85bc3c23f5aee24ea93fa8d",
     "bytes": 575959,
     "pagesBefore": 153,
     "pagesAfter": 154,
     "companionPage": 154,
-    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pre-companion.pdf",
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pre-companion.pdf",
     "builtBy": "scripts/factory/companion-page.py (spliced)"
   },
   "companion": {
@@ -61,7 +61,7 @@
   },
   "cover": {
     "built": true,
-    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/SENECA-SELECTED-DIALOGUES/ASSETS/cover/paperback-wrap-v1.pdf",
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/ASSETS/cover/paperback-wrap-v1.pdf",
     "pageCount": 154,
     "spineIn": 0.3468,
     "wrapIn": "12.5968 × 9.2500 (white)",

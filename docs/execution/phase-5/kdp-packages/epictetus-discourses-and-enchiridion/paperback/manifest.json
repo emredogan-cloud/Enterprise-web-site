@@ -6,13 +6,13 @@
   "asin": null,
   "kdpState": "not_created",
   "interior": {
-    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pdf",
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pdf",
     "sha256": "17d885aed6eaf7ed9425c62099089326ff3684b0b6aaefb7e1e5d77aa61b1068",
     "bytes": 615771,
     "pagesBefore": 175,
     "pagesAfter": 176,
     "companionPage": 176,
-    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pre-companion.pdf",
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pre-companion.pdf",
     "builtBy": "scripts/factory/companion-page.py (spliced)"
   },
   "companion": {
@@ -61,7 +61,7 @@
   },
   "cover": {
     "built": true,
-    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/ASSETS/cover/paperback-wrap-v1.pdf",
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/ASSETS/cover/paperback-wrap-v1.pdf",
     "pageCount": 176,
     "spineIn": 0.3964,
     "wrapIn": "12.6464 × 9.2500 (white)",

@@ -6,13 +6,13 @@
   "asin": null,
   "kdpState": "not_created",
   "interior": {
-    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf",
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf",
     "sha256": "0ac86524968a8782cf4c9c7021084fff72ce3f48cc05af558f8cc7082d1d37d8",
     "bytes": 342965,
     "pagesBefore": 93,
     "pagesAfter": 94,
     "companionPage": 94,
-    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pre-companion.pdf",
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pre-companion.pdf",
     "builtBy": "scripts/factory/companion-page.py (spliced)"
   },
   "companion": {
@@ -61,7 +61,7 @@
   },
   "cover": {
     "built": true,
-    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/INDIAN-MYTH-AND-LEGEND/ASSETS/cover/paperback-wrap-v1.pdf",
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/ASSETS/cover/paperback-wrap-v1.pdf",
     "pageCount": 94,
     "spineIn": 0.2117,
     "wrapIn": "12.4617 × 9.2500 (white)",

@@ -15,12 +15,12 @@ This edition has never been uploaded. The file below is its first. A dedicated c
 ## The file
 
 ```
-/home/emre/Downloads/MY-DİGİTAL-BOOK/INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf
+/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf
 sha256 0ac86524968a8782cf4c9c7021084fff72ce3f48cc05af558f8cc7082d1d37d8
 342,965 bytes · 94 pages
 ```
 
-The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pre-companion.pdf` and is never deleted.
+The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pre-companion.pdf` and is never deleted.
 
 ## In KDP
 

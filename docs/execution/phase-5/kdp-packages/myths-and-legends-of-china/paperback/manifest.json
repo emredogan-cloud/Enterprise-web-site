@@ -6,13 +6,13 @@
   "asin": null,
   "kdpState": "not_created",
   "interior": {
-    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pdf",
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pdf",
     "sha256": "f4738f2a4e0474bb73d16f7fbd9aeea4e92a34ccd17f110690829b9c4f5aa649",
     "bytes": 347293,
     "pagesBefore": 107,
     "pagesAfter": 108,
     "companionPage": 108,
-    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pre-companion.pdf",
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pre-companion.pdf",
     "builtBy": "scripts/factory/companion-page.py (spliced)"
   },
   "companion": {
@@ -61,7 +61,7 @@
   },
   "cover": {
     "built": true,
-    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHS-AND-LEGENDS-OF-CHINA/ASSETS/cover/paperback-wrap-v1.pdf",
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/ASSETS/cover/paperback-wrap-v1.pdf",
     "pageCount": 108,
     "spineIn": 0.2432,
     "wrapIn": "12.4932 × 9.2500 (white)",

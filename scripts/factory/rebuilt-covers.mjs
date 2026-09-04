@@ -47,7 +47,7 @@ export const REBUILT_COVERS = {
   "epictetus-discourses-and-enchiridion": {
     paperback: {
       built: true,
-      path: `${BOOKS}/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/ASSETS/cover/paperback-wrap-v1.pdf`,
+      path: `${BOOKS}/PHASE-1-BOOK/01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/ASSETS/cover/paperback-wrap-v1.pdf`,
       pageCount: 176, spineIn: 0.3964, wrapIn: "12.6464 × 9.2500 (white)",
       note: "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 176 — that is, after the companion leaf. Its spine and wrap agree with this pipeline's own arithmetic to four decimal places (0.396352 / 12.646352), so nothing had to be rebuilt after the splice.",
     },
@@ -55,7 +55,7 @@ export const REBUILT_COVERS = {
   "mythical-monsters": {
     paperback: {
       built: true,
-      path: `${BOOKS}/MYTHICAL-MONSTERS/ASSETS/cover/paperback-wrap-v1.pdf`,
+      path: `${BOOKS}/PHASE-1-BOOK/05-MYTHICAL-MONSTERS/ASSETS/cover/paperback-wrap-v1.pdf`,
       pageCount: 74, spineIn: 0.1666, wrapIn: "12.4166 × 9.2500 (white)",
       note: "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 74 — after the companion leaf — so its spine agrees with this pipeline's arithmetic.",
     },
@@ -63,7 +63,7 @@ export const REBUILT_COVERS = {
   "indian-myth-and-legend": {
     paperback: {
       built: true,
-      path: `${BOOKS}/INDIAN-MYTH-AND-LEGEND/ASSETS/cover/paperback-wrap-v1.pdf`,
+      path: `${BOOKS}/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/ASSETS/cover/paperback-wrap-v1.pdf`,
       pageCount: 94, spineIn: 0.2117, wrapIn: "12.4617 × 9.2500 (white)",
       note: "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 94 — after the companion leaf — so its spine agrees with this pipeline's arithmetic and nothing had to be rebuilt after the splice.",
     },
@@ -71,7 +71,7 @@ export const REBUILT_COVERS = {
   "myths-and-legends-of-china": {
     paperback: {
       built: true,
-      path: `${BOOKS}/MYTHS-AND-LEGENDS-OF-CHINA/ASSETS/cover/paperback-wrap-v1.pdf`,
+      path: `${BOOKS}/PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/ASSETS/cover/paperback-wrap-v1.pdf`,
       pageCount: 108, spineIn: 0.2432, wrapIn: "12.4932 × 9.2500 (white)",
       note: "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 108 — that is, after the companion leaf. Its spine and wrap agree with this pipeline's own arithmetic to four decimal places (0.243216 / 12.493216), so nothing had to be rebuilt after the splice.",
     },
@@ -79,7 +79,7 @@ export const REBUILT_COVERS = {
   "seneca-selected-dialogues": {
     paperback: {
       built: true,
-      path: `${BOOKS}/SENECA-SELECTED-DIALOGUES/ASSETS/cover/paperback-wrap-v1.pdf`,
+      path: `${BOOKS}/PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/ASSETS/cover/paperback-wrap-v1.pdf`,
       pageCount: 154, spineIn: 0.3468, wrapIn: "12.5968 × 9.2500 (white)",
       note: "rebuilt 2026-09-04 at the final page count of 154, after the companion leaf. The count moved 156 -> 154 when a markdown-bold rendering defect was fixed and the text reflowed; the cover was rebuilt rather than reused.",
     },

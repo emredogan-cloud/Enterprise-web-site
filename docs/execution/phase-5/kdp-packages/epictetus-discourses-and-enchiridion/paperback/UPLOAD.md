@@ -15,12 +15,12 @@ This edition has never been uploaded. The file below is its first. A dedicated c
 ## The file
 
 ```
-/home/emre/Downloads/MY-DİGİTAL-BOOK/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pdf
+/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pdf
 sha256 17d885aed6eaf7ed9425c62099089326ff3684b0b6aaefb7e1e5d77aa61b1068
 615,771 bytes · 176 pages
 ```
 
-The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pre-companion.pdf` and is never deleted.
+The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pre-companion.pdf` and is never deleted.
 
 ## In KDP
 

@@ -55,26 +55,26 @@ export const DIGITAL_EDITION_SOURCES = [
     // Valice Classics 3 (2026-09-04). Text-only 6 × 9 interior with no plates,
     // so the /ebook pass is a normalising pass rather than a downsampling one.
     slug: "epictetus-discourses-and-enchiridion",
-    printInterior: `${ROOT}/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pdf`,
-    epub: `${ROOT}/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/epictetus-discourses-and-enchiridion.epub`,
+    printInterior: `${ROOT}/PHASE-1-BOOK/01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pdf`,
+    epub: `${ROOT}/PHASE-1-BOOK/01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/epictetus-discourses-and-enchiridion.epub`,
   },
   {
     // Valice Classics 5 (2026-09-04). Volume one of two.
     slug: "myths-and-legends-of-china",
-    printInterior: `${ROOT}/MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pdf`,
-    epub: `${ROOT}/MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/myths-and-legends-of-china.epub`,
+    printInterior: `${ROOT}/PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pdf`,
+    epub: `${ROOT}/PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/myths-and-legends-of-china.epub`,
   },
   {
     // Valice Classics 6 (2026-09-04). Volume one of four.
     slug: "indian-myth-and-legend",
-    printInterior: `${ROOT}/INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf`,
-    epub: `${ROOT}/INDIAN-MYTH-AND-LEGEND/OUTPUT/indian-myth-and-legend.epub`,
+    printInterior: `${ROOT}/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf`,
+    epub: `${ROOT}/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/indian-myth-and-legend.epub`,
   },
   {
     // Valice Classics 7 (2026-09-04). Volume one of three.
     slug: "mythical-monsters",
-    printInterior: `${ROOT}/MYTHICAL-MONSTERS/OUTPUT/interior-main.pdf`,
-    epub: `${ROOT}/MYTHICAL-MONSTERS/OUTPUT/mythical-monsters.epub`,
+    printInterior: `${ROOT}/PHASE-1-BOOK/05-MYTHICAL-MONSTERS/OUTPUT/interior-main.pdf`,
+    epub: `${ROOT}/PHASE-1-BOOK/05-MYTHICAL-MONSTERS/OUTPUT/mythical-monsters.epub`,
   },
   {
     // Valice Script 2 (2026-09-04). The only workbook in this list, and the
@@ -94,8 +94,8 @@ export const DIGITAL_EDITION_SOURCES = [
   {
     // Valice Classics 4 (2026-09-04).
     slug: "seneca-selected-dialogues",
-    printInterior: `${ROOT}/SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pdf`,
-    epub: `${ROOT}/SENECA-SELECTED-DIALOGUES/OUTPUT/seneca-selected-dialogues.epub`,
+    printInterior: `${ROOT}/PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pdf`,
+    epub: `${ROOT}/PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/OUTPUT/seneca-selected-dialogues.epub`,
   },
 ];
 

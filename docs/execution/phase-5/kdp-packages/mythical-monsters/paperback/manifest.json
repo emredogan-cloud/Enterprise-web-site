@@ -6,13 +6,13 @@
   "asin": null,
   "kdpState": "not_created",
   "interior": {
-    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHICAL-MONSTERS/OUTPUT/interior-main.pdf",
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/05-MYTHICAL-MONSTERS/OUTPUT/interior-main.pdf",
     "sha256": "a97c3e4abbd3e7c11ca88c28b8fc933d4bb654fff55e6897a42eab6b26c5fc9c",
     "bytes": 306472,
     "pagesBefore": 73,
     "pagesAfter": 74,
     "companionPage": 74,
-    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHICAL-MONSTERS/OUTPUT/interior-main.pre-companion.pdf",
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/05-MYTHICAL-MONSTERS/OUTPUT/interior-main.pre-companion.pdf",
     "builtBy": "scripts/factory/companion-page.py (spliced)"
   },
   "companion": {
@@ -61,7 +61,7 @@
   },
   "cover": {
     "built": true,
-    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHICAL-MONSTERS/ASSETS/cover/paperback-wrap-v1.pdf",
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/05-MYTHICAL-MONSTERS/ASSETS/cover/paperback-wrap-v1.pdf",
     "pageCount": 74,
     "spineIn": 0.1666,
     "wrapIn": "12.4166 × 9.2500 (white)",

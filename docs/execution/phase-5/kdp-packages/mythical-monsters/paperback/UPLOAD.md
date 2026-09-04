@@ -15,12 +15,12 @@ This edition has never been uploaded. The file below is its first. A dedicated c
 ## The file
 
 ```
-/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHICAL-MONSTERS/OUTPUT/interior-main.pdf
+/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/05-MYTHICAL-MONSTERS/OUTPUT/interior-main.pdf
 sha256 a97c3e4abbd3e7c11ca88c28b8fc933d4bb654fff55e6897a42eab6b26c5fc9c
 306,472 bytes · 74 pages
 ```
 
-The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHICAL-MONSTERS/OUTPUT/interior-main.pre-companion.pdf` and is never deleted.
+The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/05-MYTHICAL-MONSTERS/OUTPUT/interior-main.pre-companion.pdf` and is never deleted.
 
 ## In KDP
 
