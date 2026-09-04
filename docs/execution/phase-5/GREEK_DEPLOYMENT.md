@@ -153,5 +153,42 @@ was included.
 
 ## Deployment
 
-`817ad4d` pushed to both `feat/production-readiness` and `main`; Vercel built and
-aliased it to `valicepress.com` (`dpl_71WRCSp9iV5Sz7vhhPxpQE7c5X1B`, READY).
+`817ad4d` and `1887f37` pushed to both `feat/production-readiness` and `main`;
+Vercel built and aliased to `valicepress.com`.
+
+### The database the site actually reads
+
+The first catalogue load went to the wrong database and cost two deployments.
+`load-catalog.mjs --env .env` writes to the `DATABASE_URL` in `.env`, which is
+Neon **`bookstore`**. The site reads the one in Vercel's production environment:
+**`neondb`** — same host, same credentials, different database.
+
+It was hard to see because `bookstore` is not stale rubbish: it holds the same
+books and agreed with production on everything except the rows this task
+touched. "World Myths is $6.99 on the live site" looked like proof the write had
+landed; it was only proof that both databases had been given that price at
+different times.
+
+What settled it: `/search` is the one route rendered on demand rather than from
+the ISR cache, and an uncached request for a term only the Greek row carries
+came back empty while `.env` insisted the row was published. `vercel env pull`
+then put the two database names side by side.
+
+### Live verification
+
+| Check | Result |
+|---|---|
+| `/books/greek-alphabet-handwriting-workbook` | **200** — cover, $6.99, Add to cart, companion link, 4 preview images |
+| `/companion/greek` | **200**, and all four sheets 200 as `application/pdf` |
+| QR target | decodes to `https://valicepress.com/companion/greek`, which is 200 |
+| `/ebooks`, `/books`, `/categories/language-and-learning`, `/sitemap.xml` | all list the book |
+| `/images/books/greek-alphabet-handwriting-workbook.webp` | 200, `image/webp`, 30,232 bytes |
+| Production DB | `published`, $6.99, live price id, both master keys, 100 pages |
+
+**Not verified:** the delivery half of a purchase. `/api/admin/fulfillment-check`
+would prove master → watermark → signed URL → bytes on the real runtime, but it
+needs `OPS_DIAG_TOKEN`, which Vercel marks sensitive and does not return through
+`env pull`. The parts that could be checked were: the master downloads from R2
+and hashes equal to the local file, the DB row carries both master keys, the
+Paddle price is active and maps to this slug, and the webhook is subscribed to
+all four events with none missing.
