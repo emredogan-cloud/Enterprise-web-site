@@ -816,7 +816,7 @@ export const BOOKS = [
         kdp: "not_created",
         masterFileKey: null,
         priceBasis:
-          "price-engine.mjs 2026-09-02, 144 pp 6×9 B&W public domain: prints at $2.73; $12.99 nets $5.07 (39%), $14.99 nets $6.27 (41.8%), $16.99 nets $7.47. $14.99 proposed for a 144-page annotated edition; Founder decides at Gate 8. Interior and full-wrap cover are built (OUTPUT/interior-main.pdf, OUTPUT/cover-paperback.pdf).",
+          "price-engine.mjs 2026-09-02, 144 pp 6×9 B&W public domain: prints at $2.73; $12.99 nets $5.07 (39%), $14.99 nets $6.27 (41.8%), $16.99 nets $7.47. $14.99 proposed for a 144-page annotated edition; Founder decides at Gate 8. Interior and full-wrap cover are built (OUTPUT/interior-main.pdf, OUTPUT/KDP/PAPERBACK/cover.pdf \u2014 the cover was rebuilt from the Founder's artwork on 2026-09-04; the typographic one it replaced is in 09_ARCHIVE/covers-superseded-2026-09-04/).",
       },
     ],
     blockers: [

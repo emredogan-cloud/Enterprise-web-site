@@ -155,9 +155,9 @@
     },
     {
       "path": "/images/books/the-puzzles-of-henry-dudeney.webp",
-      "width": 1000,
+      "width": 1001,
       "height": 1600,
-      "bytes": 36124,
+      "bytes": 180358,
       "slot": "book-cover",
       "entity": "the-puzzles-of-henry-dudeney"
     },

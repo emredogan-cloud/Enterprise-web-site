@@ -1,6 +1,6 @@
 # Founder Actions — the canonical handbook
 
-**Updated:** 2026-09-03, end of the Phase 5 bridge pass. This is the only list. Everything the agent could do with the repositories, the CLI, the Vercel / Paddle / R2 / Neon / Google APIs, the Amazon listings, the book build pipelines and the production runtime has been done and is **not** here — see `phase-5/PHASE_5_REPORT.md`.
+**Updated:** 2026-09-04, after the Dudeney cover pass. (Previous revision: 2026-09-03, the Phase 5 bridge pass.) This is the only list. Everything the agent could do with the repositories, the CLI, the Vercel / Paddle / R2 / Neon / Google APIs, the Amazon listings, the book build pipelines and the production runtime has been done and is **not** here — see `phase-5/PHASE_5_REPORT.md`.
 
 Each item is here for one reason: an account the agent cannot enter, a signature only a person can give, a **physical object**, a credential that must never pass through an agent, or a provider that answers "no" to anyone but the account holder.
 
@@ -46,8 +46,28 @@ All paths are under `MY-DİGİTAL-BOOK/`. (A8, the Dudeney paperback, is rebuilt
 ### F1 · Dudeney: settle the KDP AI declaration before the paperback is uploaded *(unchanged)*
 Your wording "Yapay zeka kullanılmadı" is preserved verbatim; the repository records the editorial apparatus (28.1 % of the words) as agent-drafted, which is "AI-generated" under Amazon's definition. Decide the KDP form wording. Nothing about the direct sale depends on it.
 
-### F2 · Dudeney paperback: order a proof, then upload *(unchanged)*
-`OUTPUT/interior-main.pdf` (**144 pp**, 6 × 9) + `OUTPUT/cover-paperback.pdf`, $14.99. No hardcover (the arithmetic refuses it). Depends on F1. The interior now ends on a proper companion page at p. 144 — its only previous mention was one line inside the imprint on p. 4.
+### F2 · Dudeney paperback: the whole upload — **new cover, new handbook**
+*≈ 30 minutes, plus a proof if you want one. Depends on F1.*
+
+Your artwork of 2026-09-03 is now the production cover. Everything is prepared and checked:
+
+| | |
+|---|---|
+| Interior | `OUTPUT/interior-main.pdf` — 144 pp, 6 × 9, white, ends on the companion page at p. 144 |
+| Cover | `OUTPUT/KDP/PAPERBACK/cover.pdf` — **12.5743 × 9.2500 in, spine 0.3243 in**, built from your art |
+| Price | $14.99 (nets $6.27, 41.8 %) |
+| Hardcover | none — the arithmetic refuses it, and no hardcover art was supplied |
+
+**Open it and follow it: `OUTPUT/KDP/KDP_UPLOAD_GUIDE.html`.** Turkish, step by step, with checkboxes that remember where you stopped, every checksum, every field to paste, and a list of six files that must **not** be uploaded (including the two PNGs you sent — those are the source art, not a print file).
+
+Three decisions inside it are yours alone:
+- **the AI declaration** (F1 — this is the real blocker);
+- **the ISBN** — take KDP's free one, or tell me first if you want to use your own, because the copyright page has to be re-set;
+- **the back cover.** Its last line reads *"Emre Doğan is a puzzle designer and archivist; this is the second Valice Classic."* That is your own cover copy — it has been in the build script since 2026-09-02 — and it differs from the approved biography in `founder.authorBio`. It was left exactly as you supplied it. Read it in the previewer and decide; nothing needs doing if you are happy with it.
+
+**A proof is recommended, not required.** This is the first print of this artwork and it places at 113.8 PPI — above the 83–116 PPI this press has already accepted and written down for Hangul, Bestiarium and Mythologica, but worth seeing on paper once.
+
+**One thing to notice:** the printed front is **cream**; the ebook and storefront front is **dark green**. Both are your files. A buyer sees green online and receives cream. If that is deliberate, nothing to do; if not, say so and it is one rebuild.
 
 ### F3 · Run the webhook end-to-end test once *(unchanged)*
 Needs `PADDLE_WEBHOOK_SECRET`, which is correctly out of the agent's reach:
@@ -87,6 +107,21 @@ Sign in → `https://valicepress.com/account/settings` → **Analytics** → **E
 
 This is the only exclusion Vercel supports — a `beforeSend` opt-out held in the browser. There is no IP setting to flip and the agent cannot press the button in your browser. **Thirteen first-party events are recorded and almost all of them are you**, which is why the number the reports watch is `begin_checkout` (0), not page views. It has a bonus: when the agent drives your Chrome, it inherits the same exclusion.
 
+### F8 · The Greek Alphabet Handwriting Workbook — three questions, and it has not started
+*≈ 15 minutes for the first one.*
+
+**There is no Greek book yet.** The project is the empty scaffold created on 2026-09-02 as a template proof: no manuscript, no interior, no cover, no companion, no listing. `CONTENT/` and `OUTPUT/` hold nothing but a `.gitkeep`. Full picture: `phase-5/GREEK_WORKBOOK_STATE.md`.
+
+What was written this pass so you have something to approve: **`SPEC.md`** and **`OUTLINE.md`** — the promise, the reader, thirty lessons across four parts, all twenty-four letters plus the final and classical forms, the budgets as targets, and the format table. They had read *NOT STARTED* since the day the project was created.
+
+| | | Blocks |
+|---|---|---|
+| **A1** | Read `SPEC.md` and `OUTLINE.md`. Approve, change or reject. | Gate 1 — everything |
+| **A2** | **The one that matters: where the stroke orders come from.** The series bible forbids unverified stroke orders; this book needs a sourced sequence for about forty-eight glyph forms. `rights.sources[0]` still says *"to be chosen"*. Want a candidate list prepared? Say so — it is a bounded job and it was deliberately not started this pass. | Gate 2 — the manuscript |
+| **A3** | The AI-disclosure answer for text / images / translation. | Gate 10 — any upload |
+
+Three things were decided rather than left open, and are recorded with reasons: **no large print** (the book is already a large trim), **no ebook or EPUB for sale** (a write-in workbook's value is the empty box; the free companion is what a digital buyer actually wants), and **the companion is built with the book, never before it**. Overturning the ebook decision is a series-level override, not a per-book one — say so if you want it.
+
 ### F7 · Two watching briefs
 - **World Games large print** — in KDP review since 2026-09-02. When it appears on the shelf, say "check". Its invented biography **is now fixed** and that fix is page-neutral. Its companion page is built but adds a leaf (232 → 233), and its cover cannot be rebuilt here — see B9 in `phase-5/KDP_UPDATE_PACKAGE.md`; the right move is one pipeline run at its first revision, and the agent will do it.
 - **Hangul hardcover** — in review. When it is live: it needs **five minutes in KDP's Cover Calculator** at 126 pp / 8.25 × 11 / white. This project pins the hardcover wrap to a calculator value you supplied, and that value does not vary with page count, so nobody can derive the new one — the house standard forbids guessing it. Paste the three numbers into `project_config.json → formats.hardcover.kdp_calculator`, tell the agent, and the wrap rebuilds itself.
@@ -100,6 +135,7 @@ This is the only exclusion Vercel supports — a `beforeSend` opt-out held in th
 - **O3 · Monthly KDP report export** → `data/kdp/YYYY-MM.csv`. Still the only way the agent can see Amazon units — **the Ads API does not change this.** It reports advertising, not sales; KDP's own reports have no public API.
 - **O4 · Codex Bestiarium 120 → 112** on all four listings. **When you do it, three finished interiors and three rebuilt covers ride along** — the companion pages are built and verified and are waiting only for this trip. `phase-5/kdp-packages/codex-bestiarium/`.
 - **O5 · Codex Mythologica, 3 November 2026.** Select ends; the ebook becomes sellable here; **three finished interiors and three rebuilt covers go up in the same pass.** One calendar entry, three jobs.
+- **O6b · Dudeney's two front covers.** The paperback prints a cream front; the ebook and storefront show a dark green one. Both are yours; flagged in case only one was intended.
 - **O6 · A photograph of you.** No real portrait has ever been supplied. Drop a real photo at `public/images/authors/emre-dogan.webp` (3:4, ≥ 900 px tall) and every author surface uses it. Without one the designed **ED** monogram stays, which is honest. **This is the one image on the site that must not be generated** — a synthetic portrait of a real person, presented as that person, is exactly what was removed in Phase 4.
 - **O7 · Three images, if you want them.** `docs/execution/phase-5/VALICE_PRESS_REFERENCE_ASSET_PROMPTS.html` — open it in a browser, copy a prompt, generate, save under the exact filename, run `node scripts/assets/asset-manifest.mjs --write`. No code changes. One is recommended (the `/authors` hero), one is useful (a share card for the seven companion pages, which currently share as bare links), and five are optional and deliberately abstract.
 - **O8 · Five playtests for World Games** *(unchanged)*.
@@ -112,7 +148,9 @@ This is the only exclusion Vercel supports — a `beforeSend` opt-out held in th
 
 ## Closed since the last handbook — do not ask again
 
-**By the agent this pass:** the companion page rebuilt to a dedicated-page standard in **seventeen editions** (a QR at a quarter to a third of the usable page height, the address in display type beneath it, a true list of what is there); nine editions' spines recalculated and **six covers rebuilt** for their new page counts; the **invented author biography removed** from the World Games large print on a page re-set to 0.001 pt of the original; the Field Book's *untitled / anonymous* PDF metadata fixed; the catalogue's placeholder-cover loading state fixed; printed addresses made case-insensitive; the Amazon Ads and Attribution access path researched from Amazon's own documentation and written out; the fifteen reference images audited against production route by route; the analytics exclusion verified end to end with its one gap named; seventeen KDP upload packages generated with hashes and per-edition instructions; the linkage lint taught to **find and measure the code on the page** instead of trusting a caption; Gate 10 taught to fail a new edition whose bridge is a mention rather than a page.
+**By the agent on 2026-09-04:** the Dudeney covers replaced with your artwork, placed into real KDP geometry (three regions, nothing stretched, spine set in type, frame moved back inside the trim after the first build put it 0.110 in outside); the old typographic covers and the raw PNGs archived out of the production path; the storefront cover regenerated; a Dudeney KDP handbook written on the Enigmatica pattern; the Greek workbook's true state established and its specification and outline written.
+
+**By the agent on 2026-09-03:** the companion page rebuilt to a dedicated-page standard in **seventeen editions** (a QR at a quarter to a third of the usable page height, the address in display type beneath it, a true list of what is there); nine editions' spines recalculated and **six covers rebuilt** for their new page counts; the **invented author biography removed** from the World Games large print on a page re-set to 0.001 pt of the original; the Field Book's *untitled / anonymous* PDF metadata fixed; the catalogue's placeholder-cover loading state fixed; printed addresses made case-insensitive; the Amazon Ads and Attribution access path researched from Amazon's own documentation and written out; the fifteen reference images audited against production route by route; the analytics exclusion verified end to end with its one gap named; seventeen KDP upload packages generated with hashes and per-edition instructions; the linkage lint taught to **find and measure the code on the page** instead of trusting a caption; Gate 10 taught to fail a new edition whose bridge is a mention rather than a page.
 
 **Superseded:** the old **U1 / U2 / U3** are now **A1–A5 and B1** — the files are different files (rebuilt today), so upload the ones named above, not the ones the previous handbook named.
 
