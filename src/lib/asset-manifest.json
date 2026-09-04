@@ -130,6 +130,14 @@
       "entity": "epictetus-discourses-and-enchiridion"
     },
     {
+      "path": "/images/books/greek-alphabet-handwriting-workbook.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 30232,
+      "slot": "book-cover",
+      "entity": "greek-alphabet-handwriting-workbook"
+    },
+    {
       "path": "/images/books/korean-hangul-handwriting-workbook.webp",
       "width": 1000,
       "height": 1600,
@@ -144,6 +152,14 @@
       "bytes": 215192,
       "slot": "book-cover",
       "entity": "meditations"
+    },
+    {
+      "path": "/images/books/seneca-selected-dialogues.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 46032,
+      "slot": "book-cover",
+      "entity": "seneca-selected-dialogues"
     },
     {
       "path": "/images/books/the-great-book-of-world-games.webp",
@@ -362,6 +378,86 @@
       "entity": "codex-mythologica"
     },
     {
+      "path": "/images/previews/epictetus-discourses-and-enchiridion/p60.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 163368,
+      "slot": "book-preview",
+      "entity": "epictetus-discourses-and-enchiridion"
+    },
+    {
+      "path": "/images/previews/epictetus-discourses-and-enchiridion/p61.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 130378,
+      "slot": "book-preview",
+      "entity": "epictetus-discourses-and-enchiridion"
+    },
+    {
+      "path": "/images/previews/epictetus-discourses-and-enchiridion/p62.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 150146,
+      "slot": "book-preview",
+      "entity": "epictetus-discourses-and-enchiridion"
+    },
+    {
+      "path": "/images/previews/epictetus-discourses-and-enchiridion/p63.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 165060,
+      "slot": "book-preview",
+      "entity": "epictetus-discourses-and-enchiridion"
+    },
+    {
+      "path": "/images/previews/greek-alphabet-handwriting-workbook/p30.webp",
+      "width": 1100,
+      "height": 1424,
+      "bytes": 46584,
+      "slot": "book-preview",
+      "entity": "greek-alphabet-handwriting-workbook"
+    },
+    {
+      "path": "/images/previews/greek-alphabet-handwriting-workbook/p31.webp",
+      "width": 1100,
+      "height": 1424,
+      "bytes": 52948,
+      "slot": "book-preview",
+      "entity": "greek-alphabet-handwriting-workbook"
+    },
+    {
+      "path": "/images/previews/indian-myth-and-legend/p30.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 150710,
+      "slot": "book-preview",
+      "entity": "indian-myth-and-legend"
+    },
+    {
+      "path": "/images/previews/indian-myth-and-legend/p31.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 154666,
+      "slot": "book-preview",
+      "entity": "indian-myth-and-legend"
+    },
+    {
+      "path": "/images/previews/indian-myth-and-legend/p32.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 151350,
+      "slot": "book-preview",
+      "entity": "indian-myth-and-legend"
+    },
+    {
+      "path": "/images/previews/indian-myth-and-legend/p33.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 109542,
+      "slot": "book-preview",
+      "entity": "indian-myth-and-legend"
+    },
+    {
       "path": "/images/previews/korean-hangul-handwriting-workbook/p13.webp",
       "width": 1100,
       "height": 1424,
@@ -424,6 +520,94 @@
       "bytes": 122196,
       "slot": "book-preview",
       "entity": "meditations"
+    },
+    {
+      "path": "/images/previews/mythical-monsters/p55.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 162090,
+      "slot": "book-preview",
+      "entity": "mythical-monsters"
+    },
+    {
+      "path": "/images/previews/mythical-monsters/p56.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 167090,
+      "slot": "book-preview",
+      "entity": "mythical-monsters"
+    },
+    {
+      "path": "/images/previews/mythical-monsters/p57.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 78840,
+      "slot": "book-preview",
+      "entity": "mythical-monsters"
+    },
+    {
+      "path": "/images/previews/myths-and-legends-of-china/p40.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 65814,
+      "slot": "book-preview",
+      "entity": "myths-and-legends-of-china"
+    },
+    {
+      "path": "/images/previews/myths-and-legends-of-china/p41.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 161068,
+      "slot": "book-preview",
+      "entity": "myths-and-legends-of-china"
+    },
+    {
+      "path": "/images/previews/myths-and-legends-of-china/p42.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 84700,
+      "slot": "book-preview",
+      "entity": "myths-and-legends-of-china"
+    },
+    {
+      "path": "/images/previews/myths-and-legends-of-china/p43.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 149820,
+      "slot": "book-preview",
+      "entity": "myths-and-legends-of-china"
+    },
+    {
+      "path": "/images/previews/seneca-selected-dialogues/p45.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 114254,
+      "slot": "book-preview",
+      "entity": "seneca-selected-dialogues"
+    },
+    {
+      "path": "/images/previews/seneca-selected-dialogues/p46.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 161802,
+      "slot": "book-preview",
+      "entity": "seneca-selected-dialogues"
+    },
+    {
+      "path": "/images/previews/seneca-selected-dialogues/p47.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 170412,
+      "slot": "book-preview",
+      "entity": "seneca-selected-dialogues"
+    },
+    {
+      "path": "/images/previews/seneca-selected-dialogues/p48.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 146166,
+      "slot": "book-preview",
+      "entity": "seneca-selected-dialogues"
     },
     {
       "path": "/images/previews/the-great-book-of-world-games/p16.webp",

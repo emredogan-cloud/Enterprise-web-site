@@ -668,14 +668,16 @@ export const BOOKS = [
     authors: ["emre-dogan"],
     bisac: ["FOR010000"],
     series: null,
-    // DRAFT, and the loader will keep it that way until one of two facts
-    // changes. A published page has to be a page a reader can act on: either
-    // the ebook is buyable here or an Amazon edition is live to link to.
-    // Neither is true yet \u2014 the paperback has not been uploaded, and the
-    // Paddle price cannot be created from this machine (see blockers). Both
-    // master files are already in R2 and the listing below is complete, so
-    // publishing is a one-word data change the moment either fact lands.
-    websiteStatus: "draft",
+    // PUBLISHED 2026-09-04. The condition was that a published page must be a
+    // page a reader can act on, and it now is: the direct ebook is buyable
+    // here against a live Paddle price, with both master files in R2.
+    //
+    // The earlier note said the price "cannot be created from this machine".
+    // That was the observed behaviour and the wrong diagnosis: `.env` carries
+    // TWO PADDLE_API_KEY lines and the second, live one is written with a
+    // space before the `=`, so every loader's ^([A-Z0-9_]+)=(.*)$ skipped it
+    // and a stale sandbox key won. The live key works.
+    websiteStatus: "published",
     linkageDecision: {
       decision: "rebuild_now",
       why: "Built new on 2026-09-04 with the companion page in the typesetting rather than spliced on afterwards: page 99 is a dedicated leaf carrying a code at 30 % of the usable page height and valicepress.com/companion/greek beneath it. Nothing to retrofit.",
@@ -683,7 +685,10 @@ export const BOOKS = [
     kdpSelect: false,
     directSale: true,
     directSaleBlockedBy: null,
-    paddlePriceId: null,
+    // Created against the LIVE Paddle account on 2026-09-04 by
+    // provision-paddle.mjs and read back from the API: active, one-time,
+    // 699 USD, custom_data.valice_slug matching this row.
+    paddlePriceId: "pri_01m1pmtds9p93zm735432kv98x",
     onelinePromise:
       "Thirty-two lessons that take an adult from nothing to writing all 24 Greek letters, in both the modern and the classical forms, with a sourced stroke order for each.",
     description:
@@ -741,12 +746,9 @@ export const BOOKS = [
         // cannot be written in on a screen. The PDF is the workbook you can
         // reprint; the EPUB is the reference the screen is better at.
         //
-        // COMING SOON, not available: there is no Paddle price to charge
-        // against yet, and a buy button with nothing behind it is precisely
-        // what `pri_test_meditations_999` was. Both masters are uploaded and
-        // read back from R2 (2026-09-04), so when a price exists this becomes
-        // `available` and nothing else about the row changes.
-        availability: "coming_soon",
+        // AVAILABLE 2026-09-04: the price exists, is active, and was read back
+        // from api.paddle.com before this line was changed.
+        availability: "available",
         fulfillment: "direct",
         priceCents: usd(6.99),
         pageCount: 100,
@@ -762,13 +764,18 @@ export const BOOKS = [
         priceBasis:
           "$6.99 direct, netting $6.14 after Paddle (5 % + $0.50) = 87.8 %. Comparison set inside this catalogue: World Myths $6.99, Dudeney $9.99, Enigmatica $9.99, World Games $11.99, Bestiarium $12.99. Not matched to a Kindle price, because there is no Kindle edition to match. Two files for the one price \u2014 the 100-page workbook as a printable PDF and a 36-chapter reflowable reference with 77 vector diagrams \u2014 set at the foot of the range because it sits beside a $12.99 print book and the pair should cost under $20. EPUBCheck 5.1.0 on the EPUB: 0 fatals, 0 errors, 0 warnings.",
       },
-      { format: "kindle", availability: "unavailable", fulfillment: "amazon", priceCents: null,
-        pageCount: null, amazonAsin: null, amazonUrl: null, kdp: "not_created",
-        masterFileKey: null,
-        priceBasis: "Not planned for launch. The reference edition sells direct at 87.8 % net; the same file on Kindle would net 70 % at best and compete with the print workbook it exists to support." },
+      // NO `kindle` ROW. The decision not to make one is real and is recorded
+      // in the project's DECISIONS.md (K5, K9) and project_config.json, which
+      // is where a decision belongs. It was briefly written here as a format
+      // row with availability "unavailable", and that broke the production
+      // loader: `book_format` is a Postgres enum of ebook | paperback |
+      // hardcover | large_print, so even the DELETE the loader runs for an
+      // unavailable edition failed its enum cast. A catalogue format row is
+      // for an edition the storefront reasons about, not for a note.
     ],
     blockers: [
-      "PADDLE PRICE \u2014 VERIFIED BLOCKED, not assumed. The PADDLE_API_KEY in this machine's .env is a sandbox key (pdl_sdbx_\u2026) and returns 403 forbidden on /products, /prices and /notification-settings alike (checked 2026-09-04). The live key exists only in the Vercel project environment. One command with it creates the product and writes the price id: `node scripts/catalog/provision-paddle.mjs --env <live> --commit --i-know-this-is-live`.",
+      "COVER \u2014 the Founder supplied new artwork on 2026-09-04 and it is HELD, not live: its scroll prints a Greek alphabet with wrong letterforms (row 3 reads \u039d \u0395 \u039f \u03a0 \u03a1 \u03a3 for \u039d \u039e \u039f \u03a0 \u03a1 \u03a3, and \u0394 is an open \u039b with a detached bar). The artwork is upscaled, placed, preflighted and waiting at ASSETS/cover/front-ART-PENDING-GREEK-FIX.png; the vector cover stays canonical until corrected art arrives. See ASSETS/cover/README-COVERS.md.",
+      "PADDLE TAX CATEGORY \u2014 the product was created as `standard` because this Paddle account is not approved for the `ebooks` category. That over-collects VAT where books are taxed at a reduced rate. Same pending request as the other six products.",
       "KDP UPLOAD \u2014 the paperback interior and cover are built, preflighted and packaged, but only the account holder can upload them. See OUTPUT/KDP/KDP_UPLOAD_GUIDE.html.",
       "AI DECLARATION \u2014 the manuscript text and the diagrams were produced by an AI agent; the fact is recorded in project_config.json \u2192 compliance.aiDisclosure with its evidence. Only the account holder can enter that declaration on the KDP form.",
       "ISBN \u2014 none assigned; the copyright page prints PENDING \u2014 KDP-PROVIDED ISBN until one is.",
