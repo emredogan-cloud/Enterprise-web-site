@@ -98,7 +98,7 @@ export function VerifyForm() {
           spellCheck={false}
           placeholder="Your answer"
           aria-describedby="codex-answer-help"
-          className="h-12 flex-1 rounded-full border border-white/[0.08] bg-white/[0.03] px-5 text-sm tracking-[0.15em] text-fg-hi placeholder:tracking-normal placeholder:text-fg-fade focus:border-emerald-bright/40 focus:outline-none focus:ring-2 focus:ring-emerald-bright/20 disabled:cursor-not-allowed disabled:opacity-60"
+          className="h-12 w-full sm:flex-1 rounded-full border border-white/[0.08] bg-white/[0.03] px-5 text-sm tracking-[0.15em] text-fg-hi placeholder:tracking-normal placeholder:text-fg-fade focus:border-emerald-bright/40 focus:outline-none focus:ring-2 focus:ring-emerald-bright/20 disabled:cursor-not-allowed disabled:opacity-60"
         />
         <button
           type="submit"
@@ -242,7 +242,7 @@ function VerifiedPanel() {
               value={email}
               onChange={(e) => setEmail(e.currentTarget.value)}
               disabled={sub.kind === "loading"}
-              className="h-11 flex-1 rounded-full border border-white/[0.08] bg-white/[0.03] px-5 text-sm text-fg-hi placeholder:text-fg-fade focus:border-emerald-bright/40 focus:outline-none focus:ring-2 focus:ring-emerald-bright/20 disabled:cursor-not-allowed disabled:opacity-60"
+              className="h-11 w-full sm:flex-1 rounded-full border border-white/[0.08] bg-white/[0.03] px-5 text-sm text-fg-hi placeholder:text-fg-fade focus:border-emerald-bright/40 focus:outline-none focus:ring-2 focus:ring-emerald-bright/20 disabled:cursor-not-allowed disabled:opacity-60"
             />
             <button
               type="submit"

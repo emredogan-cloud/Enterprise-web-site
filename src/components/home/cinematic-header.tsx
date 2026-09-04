@@ -4,6 +4,8 @@ import { SignInButton, UserButton, useAuth } from "@clerk/nextjs";
 import { Search, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+
+import { MobileNav } from "@/components/home/mobile-nav";
 import { useEffect, useState } from "react";
 
 /**
@@ -65,6 +67,16 @@ const NAV_ITEMS: { key: ActiveNavSection; label: string; href: string }[] = [
   // `/account/library` is the cinematic personal library (SUB-PR — library
   // redesign). Auth-gated server-side; the link itself is always visible.
   { key: "library", label: "Library", href: "/account/library" },
+];
+
+/**
+ * What the phone drawer offers. `About` is rendered as its own <Link> in the
+ * desktop nav below (it postdates NAV_ITEMS), so it is appended here rather
+ * than folded in — the desktop markup stays exactly as it was.
+ */
+const MOBILE_NAV_ITEMS: { key: ActiveNavSection; label: string; href: string }[] = [
+  ...NAV_ITEMS,
+  { key: "about", label: "About", href: "/about" },
 ];
 
 export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
@@ -182,6 +194,10 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
               in, and falls back to the legacy avatar link when no Clerk
               provider is mounted (e.g. unprovisioned local dev). */}
           <AccountSlot />
+
+          {/* Phase 1 — the phone-width navigation. `md:hidden` inside the
+              component, so the desktop cluster is unchanged. */}
+          <MobileNav items={MOBILE_NAV_ITEMS} active={active} />
         </div>
       </div>
     </header>

@@ -39,6 +39,57 @@ function optimise(pngPath, webpPath, targetWidth) {
   } catch { return false; }   // ImageMagick missing — keep the PNG
 }
 
+/**
+ * Wait until the fold is actually stable.
+ *
+ * Captures were NOT reproducible before this: diffing two runs of identical
+ * code showed 11 of 26 desktop images differing, because RevealOnScroll fades
+ * sections in over 800ms with per-child stagger and images decode at their own
+ * pace. A regression gate that fails on its own noise is worse than no gate.
+ *
+ * `prefers-reduced-motion: reduce` is emulated for the whole capture run — the
+ * app honours it (globals.css neutralises transitions, and reveal-on-scroll
+ * skips its observer entirely), so every element lands in its final state
+ * immediately.
+ */
+async function settleForCapture(cdp) {
+  const deadline = Date.now() + 10000;
+  let lastHeight = -1, stable = 0;
+  while (Date.now() < deadline) {
+    const ready = await cdp.eval(`(() => {
+      const imgs = Array.from(document.images);
+      return {
+        pending: imgs.filter((i) => !i.complete).length,
+        hidden: document.querySelectorAll('[data-reveal]:not([data-reveal="visible"])').length,
+        h: document.documentElement.scrollHeight,
+      };
+    })()`).catch(() => null);
+    if (!ready) { await sleep(250); continue; }
+    // Height must also stop moving: a late image changes the document height,
+    // which shifts every fold boundary and made the same page render a few
+    // pixels apart between runs.
+    if (ready.h === lastHeight) stable++; else { stable = 0; lastHeight = ready.h; }
+    if (ready.pending === 0 && ready.hidden === 0 && stable >= 2) break;
+    await sleep(250);
+  }
+  await sleep(300);
+}
+
+/** Scroll to an exact offset and confirm we landed there. */
+async function scrollToExact(cdp, y) {
+  for (let attempt = 0; attempt < 4; attempt++) {
+    await cdp.eval(`(() => {
+      const el = document.scrollingElement || document.documentElement;
+      el.scrollTop = ${y};
+      return el.scrollTop;
+    })()`);
+    await sleep(200);
+    const at = await cdp.eval(`Math.round((document.scrollingElement || document.documentElement).scrollTop)`);
+    if (Math.abs(at - y) <= 1) return at;
+  }
+  return null;
+}
+
 async function main() {
   const outDir = resolve(process.cwd(), DIR);
   mkdirSync(outDir, { recursive: true });
@@ -52,6 +103,11 @@ async function main() {
     cdp = await connectDevice();
     console.log(`\n▸ Device capture — ${cdp.meta.browser}`);
   }
+
+  // Deterministic renders: no fades, no staggered reveals, no half-decoded art.
+  await cdp.send("Emulation.setEmulatedMedia", {
+    features: [{ name: "prefers-reduced-motion", value: "reduce" }],
+  });
 
   const routes = DESKTOP
     ? ROUTES.filter((r) => DESKTOP_BASELINE.includes(r.path))
@@ -67,14 +123,28 @@ async function main() {
       await navigateAndSettle(cdp, url);
       await assertRendered(cdp, route, url);
 
+      /* Pre-warm: scroll the whole page once so every lazy image starts (and
+       * finishes) loading, then return to the top. Without this, an image
+       * straddling a fold boundary can still be decoding when that fold is
+       * captured — the last source of nondeterminism after reduced motion,
+       * worth ~9k differing pixels on one homepage fold. */
+      const first = await cdp.eval(
+        `({ h: document.documentElement.scrollHeight, vh: innerHeight })`);
+      for (let y = 0; y < first.h; y += Math.round(first.vh * 0.8)) {
+        await cdp.eval(`window.scrollTo(0, ${y}); 0`);
+        await sleep(180);
+      }
+      await cdp.eval(`window.scrollTo(0, 0); 0`);
+      await settleForCapture(cdp);
+
       const dims = await cdp.eval(
         `({ h: document.documentElement.scrollHeight, vh: innerHeight, vw: innerWidth })`,
       );
       const folds = Math.min(MAX_FOLDS, Math.max(1, Math.ceil(dims.h / dims.vh)));
 
       for (let i = 0; i < folds; i++) {
-        await cdp.eval(`window.scrollTo(0, ${i * dims.vh}); 0`);
-        await sleep(850);                               // lazy images + reveal-on-scroll
+        await scrollToExact(cdp, i * dims.vh);
+        await settleForCapture(cdp);
         const shot = await cdp.send("Page.captureScreenshot", { format: "png" });
         if (!shot?.data) throw new Error(`empty screenshot at fold ${i + 1}`);
         const png = `${outDir}/${route.name}-fold${i + 1}.png`;
