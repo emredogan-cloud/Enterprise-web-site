@@ -51,7 +51,8 @@ export type NewsletterSource =
   // Valice Script 2 (2026-09-04).
   | "greek-companion"
   | "china-gods-companion"
-  | "vedic-gods-companion";
+  | "vedic-gods-companion"
+  | "the-dragon-companion";
 
 /** The subset of sources a printed-book companion page may carry. */
 export type CompanionNewsletterSource = Extract<

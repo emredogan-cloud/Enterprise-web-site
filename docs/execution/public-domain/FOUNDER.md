@@ -95,53 +95,33 @@ returns **HTTP 200** and lists the three real live products (Dudeney, Meditation
 
 ---
 
-### F-014 · P1 · Books 4 and 5 of Phase 1 are specified but not built
+
+### F-015 · P1 · Sign Gates 7 and 8 for all five books, and order proofs
+
+- **Date raised:** 2026-09-04 · **Phase:** 1 · **Books:** all five
+- **Blocker:** Every paperback list price in the catalogue is a **proposal** until you sign.
+  The prices step down with extent, deliberately: Epictetus $16.99 (176 pp), Seneca $15.99
+  (154 pp), Werner $13.99 (108 pp), Mackenzie $12.99 (94 pp), Gould $11.99 (74 pp).
+- **A physical proof is recommended for each.** Every block changed thickness when the
+  companion leaf was appended, so every wrap is new and unproved. The packages record this
+  as `proofRecommended: true`.
+- **Read first:** the five `KDP_UPLOAD_HANDBOOK.html` files under `PHASE-1-REPORT/`.
+- **Consequence if unresolved:** nothing can go to KDP.
+
+---
+
+### F-016 · P2 · Nine further volumes are scoped and unbuilt
 
 - **Date raised:** 2026-09-04 · **Phase:** 1
-- **State:** The roadmap assigns Mackenzie's *Indian Myth and Legend* and Gould's *Mythical
-  Monsters* as Books 4 and 5. Neither has been started.
-- **Why:** Phase 1 was scoped as five books and delivered two complete ones plus a third that
-  hit a real scoping decision. The brief for this factory is explicit that the requirement is
-  **one book complete, then the next** — never five half-finished. Starting two more books
-  while a third waits on your decision would have produced exactly that.
-- **What makes them cheaper now:** the pipeline is proven end to end on two books. Source
-  parser, interior typesetter with the KDP parity rule, EPUB builder, typographic cover builder,
-  subject-index generator, differentiation measurement, the house companion pipeline, and a
-  reusable KDP handbook generator all exist and all pass. A book that clears the apparatus
-  question is now roughly a day's work rather than a week's.
-- **The one thing to check first:** Mackenzie's *Indian Myth and Legend* is 90,000+ words in the
-  source. It will meet the same ratio question Werner did, and the answer should be decided at
-  selection time rather than discovered at measurement time. Gould's *Mythical Monsters* is
-  about 100,000 and has the same shape.
-- **Consequence if unresolved:** Phase 1 is 2 of 5 complete. Phase 2 stays locked either way.
-
----
-
-### F-015 · P1 · Sign Gates 7 and 8 for Werner, and order a proof
-
-- **Date raised:** 2026-09-04 · **Phase:** 1 · **Book:** 3
-- **Blocker:** The paperback list price is a proposal until you sign. $13.99 is proposed —
-  deliberately below the $16.99 proposed for Epictetus, because this is a 108-page book
-  against a 176-page one and pricing them level charges the same for less.
-- **A physical proof is recommended.** The block changed thickness when the companion leaf
-  was appended, so the wrap is new and unproved. The package records this as
-  `proofRecommended: true`.
-- **Read first:** `PHASE-1-REPORT/03-myths-and-legends-of-china/KDP_UPLOAD_HANDBOOK.html`
-
----
-
-### F-016 · P2 · Volume two of Werner is scoped and unbuilt
-
-- **Date raised:** 2026-09-04 · **Phase:** 1 · **Book:** 3
-- **State:** Chapters X, XII, XIV and XV — the Goddess of Mercy, the Guardian of the Gate of
-  Heaven, How the Monkey Became a God, and Fox Legends — 31,744 words. Parsed and measured;
-  no apparatus written.
-- **Why it matters:** volume one's introduction and source note tell the reader, on the first
-  page, that these four chapters are coming in a second volume. That is a promise the house
-  has made in print. It should not sit unbuilt for long.
-- **What it needs:** its own apparatus at the 20% floor (roughly 7,900 words), which for a
-  book of four sustained narratives means something different from a ministries register —
-  the obvious candidate is a note on each cycle's sources and its afterlife.
+- **State:** Three of the five books are volume one of a set, and each says so in print.
+  - **Werner** — the four legend cycles (Kuan Yin, the Guardian, Monkey, Fox Legends), 31,744 words.
+  - **Mackenzie** — the Mahabharata cycle, the Nala romance and the Ramayana, roughly 100,000 words. **Warwick Goble's eight colour plates are cleared and all belong to these volumes** — a real asset already paid for in research.
+  - **Gould** — the sea-serpent (25,000 words), and the unicorn with the Chinese phoenix.
+- **Why it matters:** the apparatus of each published volume tells the reader the rest is
+  coming. That is a promise the house has made in print, and it should not sit unbuilt long.
+- **What makes them cheap:** the parser, typesetter, EPUB builder, cover builder, name
+  locator and companion pipeline all exist for each project. A second volume is mostly
+  apparatus.
 
 ---
 
@@ -164,6 +144,12 @@ This is research, not production, and it does not block Phase 1.
 ---
 
 ## Closed
+
+### F-014 · P1 · Books 4 and 5 of Phase 1 are specified but not built
+
+**RESOLVED 2026-09-04.** Both are built. *Indian Myth and Legend, Volume One: The Vedic Gods* (94 pp, 21.5%) and *Mythical Monsters, Volume One: The Dragon* (74 pp, 22.0%). Each was scoped against the apparatus floor before its apparatus was written — the Werner lesson applied in the right order. See `PHASE-1-REPORT/04-…` and `05-…`.
+
+---
 
 ### F-001 · P0 · Sign Gate 2 for Epictetus
 

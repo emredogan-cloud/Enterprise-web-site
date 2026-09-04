@@ -80,4 +80,9 @@ export const PRINT_INTERIORS = {
     // so the appended companion leaf makes 94.
     paperback: `${ROOT}/INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf`,
   },
+  "mythical-monsters": {
+    // Valice Classics 7 (2026-09-04). Volume one of three. Typeset ODD (73 pp)
+    // so the appended companion leaf makes 74.
+    paperback: `${ROOT}/MYTHICAL-MONSTERS/OUTPUT/interior-main.pdf`,
+  },
 };

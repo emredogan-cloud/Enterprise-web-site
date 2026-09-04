@@ -1244,6 +1244,77 @@ export const BOOKS = [
   },
 
   {
+    slug: "mythical-monsters",
+    title: "Mythical Monsters",
+    subtitle:
+      "Volume One: The Dragon \u2014 3 Chapters Complete in the 1886 Text, Annotated, with a Register Setting Six of the Author's Claims Against What Is Established and His Sources Graded",
+    language: "en",
+    pageCount: 74,
+    categories: ["myth-and-folklore", "classics-and-philosophy"],
+    authors: ["emre-dogan"],
+    bisac: ["SOC011000", "NAT017000"],
+    series: { name: "Valice Classics", volume: 7 },
+    // The one book in Phase 1 whose central thesis is FALSE, and the apparatus
+    // is built around saying so. Gould \u2014 first Government Geologist of
+    // Tasmania \u2014 argued that dragons were real animals remembered. The
+    // Register of Claims sets six assertions against what is established and
+    // marks which is which, because publishing the thesis silently would be
+    // dishonest and dropping it would remove half the interest.
+    // Draft for the same single reason as the other four: no Paddle price.
+    // FOUNDER F-004.
+    websiteStatus: "draft",
+    linkageDecision: { decision: "house_pipeline", why: "The companion leaf is appended by scripts/factory/build-companion-pages.mjs. The interior is typeset deliberately ODD (73 pp) so the appended leaf makes 74." },
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy:
+      "No Paddle price exists. See FOUNDER F-004: a malformed line in .env shadows the live Paddle key.",
+    paddlePriceId: null,
+    onelinePromise:
+      "A trained geologist argues that dragons were real animals \u2014 carefully, from true premises, to a false conclusion. With a register saying exactly where it fails.",
+    description:
+      "Charles Gould believed that dragons were real animals: large reptiles that lived alongside early humans, were accurately described by them, and became extinct within historical memory. He was wrong.\n\nHe was also the first Government Geologist of Tasmania, trained at the Royal School of Mines, a veteran of the Geological Survey of Great Britain, and the son of John Gould the ornithologist. This is not a crank's book. It is a trained scientist applying a real method to a false hypothesis, and in 1886 nobody could yet tell him that the gap he needed to close was sixty-six million years wide.\n\nThree chapters are printed complete and unaltered \u2014 the dragon, the Chinese dragon, the Japanese dragon \u2014 which together are Gould's whole treatment of one creature. The Chinese chapter is the reason the book survives its own thesis: he reads the Shan Hai King, the Yih King and the 'Rh Ya as sources with dates and reliability, which almost no English writer on myth was doing then, and he reports \u2014 against his own case \u2014 that in the older and more credible layer, dragons are infrequent.\n\nAround the text, original to this edition: a Register of Claims setting six of his assertions beside what is actually established, with an editorial reading of each; a graded list of his sources, from the Chinese classics down to the Victorian newspapers he treats as comparable testimony; a glossary of eighteen dragon terms with chapter references produced by searching the text; a chronology whose first two rows are the whole answer to his thesis; and an index.\n\nNone of the 1886 figures is reproduced: the book names no illustrator, so they cannot be cleared. 74 pages, 6 \u00d7 9 in.",
+    idealReader:
+      "Someone who enjoys watching a careful argument fail, and would rather be shown where it fails than have the failure quietly edited out.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(9.99),
+        pageCount: 74,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: "books/mythical-monsters/master/v1/master.pdf",
+        epubFileKey: "books/mythical-monsters/master/v1/master.epub",
+        priceBasis:
+          "price-engine.mjs 2026-09-04, direct ebook: $9.99 nets $8.99 after Paddle (90%). 22.0% original matter (QA/differentiation.json), above the 20% floor and short of the 35% premium tier, so the same $9.99 as the other Valice Classics.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(11.99),
+        pageCount: 74,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-04, 74 pp 6\u00d79 B&W public domain: prints at $2.30 (flat rate under 110 pp), KDP minimum list $3.84. Proposed at $11.99, which nets $4.89 (40.8%). A dollar under the Mackenzie volume because it is twenty pages shorter, on the same principle applied down the series. The Founder decides at Gate 8.",
+      },
+    ],
+    blockers: [
+      "No Paddle product or price exists, so the ebook is coming_soon and websiteStatus is draft. FOUNDER F-004.",
+      "Gates 7 (cover) and 8 (interior/proof) are unsigned: the paperback list price is proposed, not decided.",
+      "No Kindle edition planned at launch. KDP caps public-domain content at the 35% royalty tier and free Gould editions already exist.",
+      "No hardcover and no large print. At 74 pages neither is a serious proposition; both deferred with the reason recorded.",
+      "Volume two (the sea-serpent, 25,000 words) and volume three (the unicorn and the Chinese phoenix) are scoped and unbuilt.",
+      "Chapters I to V \u2014 Gould's geological argument \u2014 are not printed in any planned volume. The apparatus supplies what a reader needs of them, which is a deliberate choice and is recorded as one.",
+    ],
+  },
+
+  {
     slug: "codex-enigmatica",
     title: "Codex Enigmatica",
     subtitle:

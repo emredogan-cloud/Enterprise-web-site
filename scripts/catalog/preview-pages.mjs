@@ -123,6 +123,16 @@ export const PREVIEW_PAGES = [
     note: "Two discourses with their head-notes — the apparatus and the text on the same page, which is what the edition is for.",
   },
   {
+    slug: "mythical-monsters",
+    source: `${BUILT}/mythical-monsters.pdf`,
+    // The Register of Claims, which is the apparatus this volume exists for:
+    // Gould's assertion, what is established, and an editorial reading.
+    // Three pages, not four: at 74 pages this is the shortest book in the
+    // series and the catalogue test caps a preview at 5% of the whole.
+    pages: [55, 57],
+    note: "The Register of Claims \u2014 six of Gould's assertions set beside what is actually established, with an editorial reading of each.",
+  },
+  {
     slug: "indian-myth-and-legend",
     source: `${BUILT}/indian-myth-and-legend.pdf`,
     // Inside chapter II, where the density of gods is highest and the editor's

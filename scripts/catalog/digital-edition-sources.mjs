@@ -71,6 +71,12 @@ export const DIGITAL_EDITION_SOURCES = [
     epub: `${ROOT}/INDIAN-MYTH-AND-LEGEND/OUTPUT/indian-myth-and-legend.epub`,
   },
   {
+    // Valice Classics 7 (2026-09-04). Volume one of three.
+    slug: "mythical-monsters",
+    printInterior: `${ROOT}/MYTHICAL-MONSTERS/OUTPUT/interior-main.pdf`,
+    epub: `${ROOT}/MYTHICAL-MONSTERS/OUTPUT/mythical-monsters.epub`,
+  },
+  {
     // Valice Script 2 (2026-09-04). The only workbook in this list, and the
     // reason it belongs here is the reason the Hangul workbook does not: a
     // PDF of a handwriting workbook is not a degraded copy of the paperback,

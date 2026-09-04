@@ -47,8 +47,13 @@ export function lintMetadata(config, standards, report = new Report("metadata-li
   if (!m.title) report.error("title", "missing");
   if (m.subtitle && m.subtitle.length > 200) report.error("subtitle", `${m.subtitle.length} characters (max 200)`);
   const counts = measuredCounts(config.measured);
+  // A four-digit year is not a count. The window used to start at 1900, which
+  // was fine while every title was 20th-century and wrong the moment a public
+  // domain house started publishing 1886 and 1877 editions — the year in
+  // "Complete in the 1886 Text" is not a claim about a quantity.
+  const YEAR_MIN = 1400, YEAR_MAX = 2100;
   for (const n of [...numbersIn(m.title), ...numbersIn(m.subtitle)]) {
-    if (n < 1900 || n > 2100) {
+    if (n < YEAR_MIN || n > YEAR_MAX) {
       if (!counts.has(n)) report.error("measured-count", `"${n}" appears in the title/subtitle but is not a measured count in project_config.json → measured`);
     }
   }

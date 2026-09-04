@@ -1,0 +1,132 @@
+{
+  "generatedAt": "2026-09-04",
+  "book": "mythical-monsters",
+  "format": "paperback",
+  "title": "Mythical Monsters",
+  "asin": null,
+  "kdpState": "not_created",
+  "interior": {
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHICAL-MONSTERS/OUTPUT/interior-main.pdf",
+    "sha256": "a97c3e4abbd3e7c11ca88c28b8fc933d4bb654fff55e6897a42eab6b26c5fc9c",
+    "bytes": 306472,
+    "pagesBefore": 73,
+    "pagesAfter": 74,
+    "companionPage": 74,
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHICAL-MONSTERS/OUTPUT/interior-main.pre-companion.pdf",
+    "builtBy": "scripts/factory/companion-page.py (spliced)"
+  },
+  "companion": {
+    "printedUrl": "valicepress.com/companion/the-dragon",
+    "qrUrl": "https://valicepress.com/companion/the-dragon",
+    "qr": {
+      "modules": 33,
+      "module_pt": 4.896418909090911,
+      "module_mm": 1.7273477818181824,
+      "version": 4,
+      "error": "M",
+      "side_pt": 161.58182400000004,
+      "fraction_of_usable_height": 0.28920000000000007,
+      "x_pt": 135.20908799999998,
+      "y_pt": 294.89559633371414
+    },
+    "dedicatedPage": true,
+    "emailWall": false
+  },
+  "spine": {
+    "pagesBefore": 73,
+    "pagesAfter": 74,
+    "paper": "white",
+    "binding": "paperback",
+    "trim": "6×9 in",
+    "before": {
+      "spineWidthIn": 0.164396,
+      "wrapWidthIn": 12.414396,
+      "wrapHeightIn": 9.25,
+      "spineTextAllowed": false
+    },
+    "after": {
+      "spineWidthIn": 0.166648,
+      "wrapWidthIn": 12.416648,
+      "wrapHeightIn": 9.25,
+      "spineTextAllowed": false
+    },
+    "deltaSpineIn": 0.002252,
+    "deltaWrapWidthIn": 0.002252,
+    "withinKdpTolerance": true,
+    "coverRebuildRequired": false,
+    "coverRebuildCorrect": true,
+    "hardcoverGeometryMustBeRead": false,
+    "barcodeZoneAffected": false,
+    "verdict": "wrap width moves 0.002252 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.002252 in and the house rule is that each edition's cover reads its own page count"
+  },
+  "cover": {
+    "built": true,
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHICAL-MONSTERS/ASSETS/cover/paperback-wrap-v1.pdf",
+    "pageCount": 74,
+    "spineIn": 0.1666,
+    "wrapIn": "12.4166 × 9.2500 (white)",
+    "note": "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 74 — after the companion leaf — so its spine agrees with this pipeline's arithmetic."
+  },
+  "coverAction": "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior",
+  "uploadRequired": true,
+  "hold": null,
+  "proofRecommended": true,
+  "proofWhy": "the block changed thickness, so the wrap is new and unproved",
+  "verification": [
+    {
+      "name": "page-count",
+      "pass": true,
+      "detail": "74 pages (expected 74)"
+    },
+    {
+      "name": "printed-url",
+      "pass": true,
+      "detail": "valicepress.com/companion/the-dragon"
+    },
+    {
+      "name": "canonical-host",
+      "pass": true,
+      "detail": "no forbidden host on the page"
+    },
+    {
+      "name": "no-email-wall",
+      "pass": true,
+      "detail": "the page asks for nothing"
+    },
+    {
+      "name": "headline",
+      "pass": true,
+      "detail": "headline present"
+    },
+    {
+      "name": "eyebrow",
+      "pass": true,
+      "detail": "CONTINUE WITH VALICE PRESS"
+    },
+    {
+      "name": "fonts-embedded",
+      "pass": true,
+      "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
+    },
+    {
+      "name": "qr-floor",
+      "pass": true,
+      "detail": "28.9% of usable height"
+    },
+    {
+      "name": "qr-module-size",
+      "pass": true,
+      "detail": "1.73 mm per module"
+    },
+    {
+      "name": "pdf-metadata",
+      "pass": true,
+      "detail": "title=\"Mythical Monsters: Volume One: The Dragon — 3 Chapters Complete in the 1886 Text, Annotated, with a Register Setting Six of the Author's Claims Against What Is Established and His Sources Graded\" author=\"Emre Doğan\""
+    },
+    {
+      "name": "qr-matches-url",
+      "pass": true,
+      "detail": "33×33 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/the-dragon"
+    }
+  ]
+}

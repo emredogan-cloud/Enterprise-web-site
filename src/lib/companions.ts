@@ -985,6 +985,79 @@ const VEDIC_GODS: Companion = {
   ],
 };
 
+const THE_DRAGON: Companion = {
+  slug: "the-dragon",
+  bookSlug: "mythical-monsters",
+  bookTitle: "Mythical Monsters: Volume One, The Dragon",
+  state: "book-not-yet-available",
+  stateNote:
+    "The Valice edition is built and validated but not yet on sale \u2014 the " +
+    "rights gate is signed by a person, not a script, and that signature is " +
+    "outstanding. Everything on this page is free and works today regardless.",
+  intro:
+    "Free material for Gould's Mythical Monsters: six of his claims set " +
+    "against what is actually established, his sources graded from the Shan " +
+    "Hai King to the Straits Times, the dragon vocabulary, and three ways in.",
+  newsletterSource: "the-dragon-companion",
+  assetsHeading: "Reading material",
+  rightsNote:
+    "Charles Gould died in 1893, so his 1886 text has been in the public " +
+    "domain everywhere Valice sells since 1 January 1964 (source: Project " +
+    "Gutenberg #40972). The register of claims, the graded source list, the " +
+    "glossary and the reading paths are Valice Press's own writing. None of " +
+    "the 1886 figures is reproduced: the book names no illustrator, so they " +
+    "cannot be cleared.",
+  assets: [
+    {
+      id: "claims",
+      title: "Six claims, and what is actually known",
+      description:
+        "Gould believed dragons were real animals. His prose is equally " +
+        "confident whether he is reporting a text, reporting a fact, or " +
+        "drawing a conclusion, and he never marks the transitions. This sheet " +
+        "sets six of his claims beside what is established, and says which is " +
+        "which.",
+      kind: "static",
+      href: "/companion/the-dragon/claims.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "sources",
+      title: "His sources, graded",
+      description:
+        "The Chinese classics, which are genuinely old and honestly used; the " +
+        "classical authors, mostly quoting one another; the Renaissance " +
+        "naturalists, compiling from those; and the Victorian newspapers, " +
+        "which are not evidence of anything.",
+      kind: "static",
+      href: "/companion/the-dragon/sources.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "vocabulary",
+      title: "The dragon vocabulary",
+      description:
+        "Eighteen terms \u2014 lung and ying-lung, the Shan Hai King and the " +
+        "Yih King, the real gliding lizard Draco that Gould presses into " +
+        "service \u2014 each with the chapters it appears in.",
+      kind: "static",
+      href: "/companion/the-dragon/vocabulary.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "reading-paths",
+      title: "Three ways in",
+      description:
+        "Where to start, with Gould's own chapter numbers so it works with any " +
+        "edition of the 1886 text \u2014 including the twenty-minute route for " +
+        "readers who want the measure of the book before committing to it.",
+      kind: "static",
+      href: "/companion/the-dragon/reading-paths.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+  ],
+};
+
 const COMPANIONS: readonly Companion[] = [
   HANGUL,
   WORLD_GAMES,
@@ -998,6 +1071,7 @@ const COMPANIONS: readonly Companion[] = [
   GREEK,
   CHINA_GODS,
   VEDIC_GODS,
+  THE_DRAGON,
 ];
 
 export function listCompanions(): readonly Companion[] {

@@ -6,7 +6,7 @@
 
 ## Status in one paragraph
 
-Phase 1 was scoped as five books. **Three are complete builds. Two were not started.** The
+Phase 1 was scoped as five books. **All five are complete builds.** The
 roadmap and the constitution are written and in force. Nothing is published yet: all three
 books are `websiteStatus: "draft"`, and the reason is now understood precisely — a single
 malformed line in `.env` has been shadowing the live Paddle key, so every Paddle call was
@@ -28,35 +28,40 @@ in production today.
 | **Book 1 — Epictetus: The Discourses and Enchiridion** | **COMPLETE.** 176 pp · apparatus **20.1%** |
 | **Book 2 — Seneca: Selected Dialogues** | **COMPLETE.** 154 pp · apparatus **20.0%** |
 | **Book 3 — Myths and Legends of China, Vol. One** | **COMPLETE.** 108 pp · apparatus **22.4%** |
-| Books 4 and 5 | **Not started.** Specified in the roadmap. FOUNDER F-014. |
-| `FOUNDER.md` | **Done.** 6 open items, 9 closed, severity-ranked. |
-| Per-book reports and KDP handbooks | **Done** for all three books. |
+| **Book 4 — Indian Myth and Legend, Vol. One** | **COMPLETE.** 94 pp · apparatus **21.5%** |
+| **Book 5 — Mythical Monsters, Vol. One** | **COMPLETE.** 74 pp · apparatus **22.0%** |
+| `FOUNDER.md` | **Done.** 5 open items, 10 closed, severity-ranked. |
+| Per-book reports and KDP handbooks | **Done** for all five books. |
 | Production deploy | **Done.** `main` fast-forwarded to the deployed commit after 36 commits of drift. |
 
 ---
 
-## 2. The three complete books
+## 2. The five complete books
 
-| | Epictetus | Seneca | Werner, Vol. One |
-|---|---|---|---|
-| Series | Valice Classics 3 | Valice Classics 4 | Valice Classics 5 |
-| Source | PG 10661, Long 1877 | PG 64576, Stewart 1889 | PG 15250, Werner 1922 |
-| Creator's death | **1879** | **1918** | **1954** |
-| Source words | 61,343 | 47,858 | 31,716 |
-| Original editorial matter | 15,381 | 12,026 | 9,133 |
-| **Editor share** | **20.1%** | **20.0%** | **22.4%** |
-| Pages | 176 | 154 | 108 |
-| Preflight | ok | ok | ok |
-| EPUB | **0 / 0 / 0** | **0 / 0 / 0** | **0 / 0 / 0** |
-| Companion QR | 24% of page | 25% of page | 29% of page |
-| Claims | 23 — **all verified** | 12 — **all verified** | 30 — **all verified** |
-| Gates passed | 2, 4, 5, 9 | 2, 4, 5, 9 | 2, 4, 5, 9 |
-| R2 masters | uploaded, **hash-verified** | uploaded, **hash-verified** | uploaded, **hash-verified** |
+| | Epictetus | Seneca | Werner | Mackenzie | Gould |
+|---|---|---|---|---|---|
+| Valice Classics | 3 | 4 | 5 | 6 | 7 |
+| Source | PG 10661 | PG 64576 | PG 15250 | PG 47228 | PG 40972 |
+| Creator's death | 1879 | 1918 | 1954 | 1936 | 1893 |
+| Source words | 61,343 | 47,858 | 31,716 | 28,117 | 22,570 |
+| Editorial matter | 15,381 | 12,026 | 9,133 | 7,705 | 6,371 |
+| **Editor share** | **20.1%** | **20.0%** | **22.4%** | **21.5%** | **22.0%** |
+| Pages | 176 | 154 | 108 | 94 | 74 |
+| EPUB | 0/0/0 | 0/0/0 | 0/0/0 | 0/0/0 | 0/0/0 |
+| Claims | 23 — **all verified** | 12 — **all verified** | 30 — **all verified** | 29 — **all verified** | 16 — **all verified** |
+| Gates passed | 2, 4, 5, 9 | 2, 4, 5, 9 | 2, 4, 5, 9 | 2, 4, 5, 9 | 2, 4, 5, 9 |
+| R2 masters | verified | verified | verified | verified | verified |
 
-None of the three uses a single illustration. None cost anything to produce — no image model
+**110 claims across five books, every one verified by an actual check** — a quotation
+located in the source file by search, a measurement read from the build's own QA output, or
+a record fetched and read. None was verified by assertion.
+
+Not one of the five uses an illustration, and none cost anything to produce: no image model
 is available in this environment and none was used.
 
----
+Each of the last three volumes is the first of a set. Werner's four legend cycles,
+Mackenzie's three epics and Gould's sea-serpent are scoped, measured and unbuilt, and the
+apparatus of each published volume tells the reader they are coming.
 
 ## 3. Book 3 was blocked. What actually unblocked it
 
@@ -189,13 +194,11 @@ workbook's companion code is uncommitted, from a parallel session. No Greek edit
 printed (0 in the KDP package index), so no printed QR points at it — but it will need to
 resolve before one is.
 
-**Books 4 and 5 do not exist.** Not started, not drafted, not parsed.
-
 ---
 
 ## 9. Phase completion
 
-**Phase 1 is NOT complete.** Three of five books are complete builds; two were not started.
+**All five books are complete builds.** Nothing is published, because nothing can be bought.
 
 **Phases 2–10 remain LOCKED.**
 

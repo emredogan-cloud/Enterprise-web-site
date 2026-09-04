@@ -183,6 +183,21 @@ export const COMPANION_PAGE_COPY = {
     ],
   },
 
+  "mythical-monsters": {
+    companionSlug: "the-dragon",
+    imprint: "Valice Press",
+    headline: "He thought dragons were real.\nHere is where the argument fails.",
+    promise:
+      "Everything in this book that is worth having on one page, free, for " +
+      "readers of this edition.",
+    listHeading: "WHAT IS WAITING FOR YOU",
+    bullets: [
+      { asset: "claims", term: "Six claims, and what is actually known", gloss: "his assertions set beside the evidence, with an editorial reading of each" },
+      { asset: "sources", term: "His sources, graded", gloss: "from the Shan Hai King, which is genuinely old, to the Straits Times, which is not evidence" },
+      { asset: "vocabulary", term: "The dragon vocabulary", gloss: "eighteen terms with the chapters they appear in, every reference found by searching" },
+      { asset: "reading-paths", term: "Three ways in", gloss: "including the twenty-minute route for the measure of the book" },
+    ],
+  },
   "indian-myth-and-legend": {
     companionSlug: "vedic-gods",
     imprint: "Valice Press",
@@ -467,6 +482,16 @@ export const COMPANION_PAGE_PLAN = {
     },
   },
 
+  "mythical-monsters": {
+    style: { fonts: TYPE.liberationSerif, marginIn: 0.62, rule: 0.7 },
+    editions: {
+      paperback: {
+        mode: "append", page: null, pagesBefore: 73, pagesAfter: 74, recto: true,
+        folio: { style: "centre", offset: 0, size: 8.6, baselineFromBottomPt: 28.8, outerMarginPt: 36 },
+        replacing: null,
+      },
+    },
+  },
   "indian-myth-and-legend": {
     style: { fonts: TYPE.liberationSerif, marginIn: 0.62, rule: 0.7 },
     editions: {

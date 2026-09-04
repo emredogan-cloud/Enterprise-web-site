@@ -276,5 +276,22 @@
         "page": 33
       }
     ]
+  },
+  "mythical-monsters": {
+    "note": "The Register of Claims — six of Gould's assertions set beside what is actually established, with an editorial reading of each.",
+    "pages": [
+      {
+        "src": "/images/previews/mythical-monsters/p55.webp",
+        "page": 55
+      },
+      {
+        "src": "/images/previews/mythical-monsters/p56.webp",
+        "page": 56
+      },
+      {
+        "src": "/images/previews/mythical-monsters/p57.webp",
+        "page": 57
+      }
+    ]
   }
 }
