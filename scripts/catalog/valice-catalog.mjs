@@ -979,22 +979,15 @@ export const BOOKS = [
     // are signed, compliance-lint is clean with the AI disclosure decided under
     // constitution Article 20, the R2 masters are uploaded and hash-verified,
     // and the preview pages are rendered.
-    // It stays "draft" for one reason: no Paddle price exists, because the only
-    // Paddle key in this environment is a SANDBOX key with no permissions (403
-    // on every endpoint, including read-only listing). The catalogue's own test
-    // — "publishes nothing that cannot be either bought or linked" — refuses a
-    // published page for a book no reader can obtain, and it is right. Flipping
-    // this to "published" would put a page live with no way to buy from it.
-    // ONE LINE CHANGES WHEN A LIVE PADDLE KEY EXISTS: provision, paste the
-    // pri_ into paddlePriceId, set the ebook to "available", set this to
-    // "published". Everything else is done. FOUNDER F-004.
-    websiteStatus: "draft",
+    // ON SALE 2026-09-04. Paddle price provisioned live, R2 masters uploaded and
+    // content-verified, fulfillment mapping in place. The blocker that held all five
+    // was one malformed line in .env shadowing the live key; FOUNDER F-004 is closed.
+    websiteStatus: "published",
     linkageDecision: { decision: "house_pipeline", why: "The dedicated companion page is built by scripts/factory/build-companion-pages.mjs — the house tool — not by this book\u2019s own typesetter. An earlier build authored the page natively; that was a parallel system with none of the house pipeline\u2019s verification, and it was removed. The pipeline appended the leaf (175 \u2192 176 pp), read the file back to confirm the page count and the printed address, and decoded the QR module-by-module against the URL it carries: p.176, QR 24% of page height, 1.696 mm per module against a 0.5 mm print floor. The wrap was already built at 176 pp and its spine agrees with the pipeline\u2019s arithmetic to four decimals, so no cover rebuild was needed." },
     kdpSelect: false,
     directSale: true,
-    directSaleBlockedBy:
-      "No Paddle price exists. Rights (Gate 2) and facts (Gate 5) are signed and the R2 masters are uploaded and verified; the only thing between this book and a working Buy button is a live Paddle API key. FOUNDER F-004.",
-    paddlePriceId: null,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m1pttdvakbj8p0vb8tc86nj5",
     onelinePromise:
       "The book Marcus Aurelius read, in the same translator's English, with a head-note on every chapter and the passages he reused marked.",
     description:
@@ -1004,7 +997,7 @@ export const BOOKS = [
     formats: [
       {
         format: "ebook",
-        availability: "coming_soon",
+        availability: "available",
         fulfillment: "direct",
         priceCents: usd(9.99),
         pageCount: 176,
@@ -1031,8 +1024,9 @@ export const BOOKS = [
       },
     ],
     blockers: [
+      "Not on KDP. These editions are built and packaged, and the print upload is a Founder action \u2014 see the KDP upload handbook in PHASE-1-REPORT. The direct ebook is on sale here regardless.",
       "Gates 7 (cover) and 8 (interior/proof) are unsigned, so the paperback list price is proposed rather than decided. Gates 2 (rights), 4 (content), 5 (facts) and 9 (metadata) are signed.",
-      "No Paddle product or price exists. provision-paddle.mjs has not been run for this slug; paddlePriceId is null and the ebook is coming_soon rather than available.",
+
       "No Kindle edition and no hardcover or large print are planned at launch; each decision is recorded below rather than assumed.",
       "No Kindle edition planned at launch: KDP caps public-domain content at the 35% royalty tier and the Kindle store already carries several free Epictetus editions. It is a discovery channel, not a revenue one, and the decision is recorded rather than assumed.",
       "No hardcover and no large print. 176 pages qualifies for KDP hardcover (75\u2013550), but a hardcover on an unproven public-domain title competes with established hardback classics series at a price this edition has not earned. Large print would push 176 pages to roughly 330 and the list to about $22.99 with no evidence of demand. Both are deferred until the paperback has sold; the reasons are written down so the decision can be revisited rather than re-derived.",
@@ -1055,13 +1049,15 @@ export const BOOKS = [
     // previews rendered. Held "draft" only because no live Paddle key exists in
     // this environment, and the catalogue refuses to publish a page for a book
     // that cannot be bought or linked. FOUNDER F-004.
-    websiteStatus: "draft",
+    // ON SALE 2026-09-04. Paddle price provisioned live, R2 masters uploaded and
+    // content-verified, fulfillment mapping in place. The blocker that held all five
+    // was one malformed line in .env shadowing the live key; FOUNDER F-004 is closed.
+    websiteStatus: "published",
     linkageDecision: { decision: "house_pipeline", why: "Dedicated companion page built by scripts/factory/build-companion-pages.mjs and appended as a leaf (155 \u2192 156 pp). The interior builder pads to an ODD count on purpose, because the companion leaf is what makes the final count even. Verified by reading the file back: p.154, QR 25% of page height, 1.947 mm per module. The wrap was built at 156 pp and agrees with the pipeline\u2019s spine arithmetic." },
     kdpSelect: false,
     directSale: true,
-    directSaleBlockedBy:
-      "No Paddle price exists. Rights and facts are signed and the R2 masters are uploaded and verified. FOUNDER F-004.",
-    paddlePriceId: null,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m1pttekkh73w3rjewmv1p2cy",
     onelinePromise:
       "Nero's tutor on how to live, with the life told honestly beside the essays \u2014 including the twelve chapters where he defends being rich.",
     description:
@@ -1071,7 +1067,7 @@ export const BOOKS = [
     formats: [
       {
         format: "ebook",
-        availability: "coming_soon",
+        availability: "available",
         fulfillment: "direct",
         priceCents: usd(9.99),
         pageCount: 154,
@@ -1098,8 +1094,9 @@ export const BOOKS = [
       },
     ],
     blockers: [
+      "Not on KDP. These editions are built and packaged, and the print upload is a Founder action \u2014 see the KDP upload handbook in PHASE-1-REPORT. The direct ebook is on sale here regardless.",
       "Gates 7 (cover) and 8 (interior/proof) are unsigned, so the paperback list price is proposed rather than decided. Gates 2 (rights), 4 (content), 5 (facts) and 9 (metadata) are signed.",
-      "No Paddle product or price exists. paddlePriceId is null and the ebook is coming_soon.",
+
       "Volume-mate note: this edition and the Epictetus volume share a translator-era and a price band; neither has market evidence yet, so Gate 1 is open for both.",
       "No Kindle edition planned at launch: KDP caps public-domain content at 35% and free Seneca editions already saturate the Kindle store.",
       "No hardcover and no large print. 154 pages qualifies for KDP hardcover, but a hardcover on an unproven public-domain title competes with Penguin and Everyman hardbacks at a price this edition has not earned. Large print would take 154 pages to roughly 285 and the list to about $21.99 with no demand evidence. Both deferred, with the reasons recorded so the decision can be revisited.",
@@ -1126,16 +1123,15 @@ export const BOOKS = [
     // the fox-spirits) are 31,744 words and become volume two. This volume
     // measures 22.1%, above the floor with real margin and without a padded
     // sentence in it.
-    // It stays "draft" for the same single reason as Epictetus and Seneca: no
-    // Paddle price exists, because the only Paddle key in this environment is a
-    // SANDBOX key that returns 403 on every endpoint. FOUNDER F-004.
-    websiteStatus: "draft",
+    // ON SALE 2026-09-04. Paddle price provisioned live, R2 masters uploaded and
+    // content-verified, fulfillment mapping in place. The blocker that held all five
+    // was one malformed line in .env shadowing the live key; FOUNDER F-004 is closed.
+    websiteStatus: "published",
     linkageDecision: { decision: "house_pipeline", why: "The companion leaf is appended by scripts/factory/build-companion-pages.mjs \u2014 the house tool \u2014 not by this book\u2019s typesetter. The interior is built deliberately ODD (107 pp) so the appended leaf makes the final count even, as KDP requires." },
     kdpSelect: false,
     directSale: true,
-    directSaleBlockedBy:
-      "No Paddle price exists. The only Paddle key in this environment is a sandbox key returning 403 on every endpoint, including read-only listing, so no product or price can be created. FOUNDER F-004.",
-    paddlePriceId: null,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m1pttfb8fj469accf8znvjb7",
     onelinePromise:
       "The Chinese gods do not rule \u2014 they are posted, promoted and demoted. Eight chapters of Werner\u2019s 1922 classic, with the celestial civil service mapped from his own text.",
     description:
@@ -1145,7 +1141,7 @@ export const BOOKS = [
     formats: [
       {
         format: "ebook",
-        availability: "coming_soon",
+        availability: "available",
         fulfillment: "direct",
         priceCents: usd(9.99),
         pageCount: 108,
@@ -1172,7 +1168,8 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "No Paddle product or price exists, so the ebook is coming_soon rather than available and websiteStatus is draft. This is the one dependency between this book and a working Buy button.",
+      "Not on KDP. These editions are built and packaged, and the print upload is a Founder action \u2014 see the KDP upload handbook in PHASE-1-REPORT. The direct ebook is on sale here regardless.",
+
       "Gate 8 (interior) and Gate 7 (cover) are unsigned: the paperback list price is proposed, not decided, and the Founder signs the price.",
       "No Kindle edition planned at launch. KDP caps public-domain content at the 35% royalty tier and the Kindle store already carries free Werner editions; it is a discovery channel rather than a revenue one, and the decision is recorded rather than assumed.",
       "No hardcover and no large print. At 108 pages a hardcover is not offered by KDP below 75 pages but would compete with established mythology hardbacks at a price this edition has not earned; large print would roughly double the extent with no demand evidence. Both deferred with the reason recorded.",
@@ -1196,15 +1193,15 @@ export const BOOKS = [
     // are ~140,000 words; the five printed here are the Vedic gods themselves,
     // and they measure 21.5%. The Mahabharata, Nala and Ramayana cycles are
     // roughly 100,000 words and become later volumes.
-    // Draft for the same single reason as the other three: no Paddle price.
-    // FOUNDER F-004 — and that item is now a two-line .env fix, not a missing key.
-    websiteStatus: "draft",
+    // ON SALE 2026-09-04. Paddle price provisioned live, R2 masters uploaded and
+    // content-verified, fulfillment mapping in place. The blocker that held all five
+    // was one malformed line in .env shadowing the live key; FOUNDER F-004 is closed.
+    websiteStatus: "published",
     linkageDecision: { decision: "house_pipeline", why: "The companion leaf is appended by scripts/factory/build-companion-pages.mjs. The interior is typeset deliberately ODD (93 pp) so the appended leaf makes 94, the even count KDP requires." },
     kdpSelect: false,
     directSale: true,
-    directSaleBlockedBy:
-      "No Paddle price exists. See FOUNDER F-004: a malformed line in .env shadows the live Paddle key, so every provisioning call resolved to sandbox and returned 403.",
-    paddlePriceId: null,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m1pttg3r2nd796vhmh7t22j5",
     onelinePromise:
       "The Indian gods in their first form, before Hinduism demoted them \u2014 with a register telling you which of a 1913 author's comparisons still stand.",
     description:
@@ -1214,7 +1211,7 @@ export const BOOKS = [
     formats: [
       {
         format: "ebook",
-        availability: "coming_soon",
+        availability: "available",
         fulfillment: "direct",
         priceCents: usd(9.99),
         pageCount: 94,
@@ -1241,7 +1238,8 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "No Paddle product or price exists, so the ebook is coming_soon and websiteStatus is draft. FOUNDER F-004.",
+      "Not on KDP. These editions are built and packaged, and the print upload is a Founder action \u2014 see the KDP upload handbook in PHASE-1-REPORT. The direct ebook is on sale here regardless.",
+
       "Gates 7 (cover) and 8 (interior/proof) are unsigned: the paperback list price is proposed, not decided.",
       "No Kindle edition planned at launch. KDP caps public-domain content at the 35% royalty tier and free Mackenzie editions already exist on Kindle.",
       "No hardcover and no large print. At 94 pages neither is a serious proposition for an unproven title; both deferred with the reason recorded.",
@@ -1267,15 +1265,15 @@ export const BOOKS = [
     // Register of Claims sets six assertions against what is established and
     // marks which is which, because publishing the thesis silently would be
     // dishonest and dropping it would remove half the interest.
-    // Draft for the same single reason as the other four: no Paddle price.
-    // FOUNDER F-004.
-    websiteStatus: "draft",
+    // ON SALE 2026-09-04. Paddle price provisioned live, R2 masters uploaded and
+    // content-verified, fulfillment mapping in place. The blocker that held all five
+    // was one malformed line in .env shadowing the live key; FOUNDER F-004 is closed.
+    websiteStatus: "published",
     linkageDecision: { decision: "house_pipeline", why: "The companion leaf is appended by scripts/factory/build-companion-pages.mjs. The interior is typeset deliberately ODD (73 pp) so the appended leaf makes 74." },
     kdpSelect: false,
     directSale: true,
-    directSaleBlockedBy:
-      "No Paddle price exists. See FOUNDER F-004: a malformed line in .env shadows the live Paddle key.",
-    paddlePriceId: null,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m1pttgx4axvwt4tzkz73tz68",
     onelinePromise:
       "A trained geologist argues that dragons were real animals \u2014 carefully, from true premises, to a false conclusion. With a register saying exactly where it fails.",
     description:
@@ -1285,7 +1283,7 @@ export const BOOKS = [
     formats: [
       {
         format: "ebook",
-        availability: "coming_soon",
+        availability: "available",
         fulfillment: "direct",
         priceCents: usd(9.99),
         pageCount: 74,
@@ -1312,7 +1310,8 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "No Paddle product or price exists, so the ebook is coming_soon and websiteStatus is draft. FOUNDER F-004.",
+      "Not on KDP. These editions are built and packaged, and the print upload is a Founder action \u2014 see the KDP upload handbook in PHASE-1-REPORT. The direct ebook is on sale here regardless.",
+
       "Gates 7 (cover) and 8 (interior/proof) are unsigned: the paperback list price is proposed, not decided.",
       "No Kindle edition planned at launch. KDP caps public-domain content at the 35% royalty tier and free Gould editions already exist.",
       "No hardcover and no large print. At 74 pages neither is a serious proposition; both deferred with the reason recorded.",

@@ -9,6 +9,15 @@
  * Codex Mythologica, whose Kindle edition IS in Select and therefore may not
  * be sold anywhere but Amazon while that enrolment stands.
  *
+ * SIX TITLES BELOW ARE NOT ON AMAZON AT ALL
+ * The Greek workbook and the five Valice Classics public-domain editions
+ * (Epictetus, Seneca, Werner, Mackenzie, Gould) have no Kindle edition to
+ * match and no KDP listing yet, so no Select exclusivity can apply to any of
+ * them. Their prices come from `price-engine.mjs` rather than from a Kindle
+ * list price, and each carries its measured apparatus share as the
+ * justification — which is the only thing that distinguishes a Valice edition
+ * of a free text from the free text.
+ *
  * PRICING
  * Each price matches the book's own Kindle list price to the cent. That is a
  * deliberate choice rather than an oversight: undercutting Amazon on a title
@@ -95,5 +104,57 @@ export const DIRECT_SALE_EBOOKS = [
     // it is a focused reference beside a $12.99 print workbook, not a
     // full-length book, and the pair should cost under $20.
     priceCents: 699,
+  },
+  {
+    slug: "epictetus-discourses-and-enchiridion",
+    name: "Epictetus: The Discourses and Enchiridion (Annotated)",
+    description:
+      // Both files, and the sentence names only what the fulfillment worker
+      // actually produces: `master.pdf` from the print interior and
+      // `master.epub`, both uploaded and content-verified under
+      // books/epictetus-discourses-and-enchiridion/master/v1/.
+      "Arrian's complete Enchiridion — all fifty-two chapters — followed by the sixty-eight Discourses George Long selected in 1877, arranged into seven thematic parts. Around them, original to this edition: an introduction, a head-note on every one of the 120 chapters, a glossary of the eighteen terms Epictetus uses technically, a biographical index, a chronology, an index of subjects, and a concordance listing the four passages Marcus Aurelius demonstrably read — and the two Long cites that are not in this selection. 176 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included.",
+    // price-engine.mjs 2026-09-04: $9.99 nets $8.99 after Paddle (90%). The
+    // Valice Classics band is $7.99–9.99 for the minimum apparatus standard;
+    // this edition measures 20.1% original matter, which is the floor rather
+    // than premium, so the same $9.99 as Meditations and Dudeney.
+    priceCents: 999,
+  },
+  {
+    slug: "seneca-selected-dialogues",
+    name: "Seneca: Selected Dialogues (Annotated)",
+    description:
+      "Five dialogues complete in Aubrey Stewart's 1889 translation — including On the Shortness of Life and On Anger — with an argument map of all seventy-nine chapters, a glossary of the working terms, a biographical index and a chronology. 154 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included.",
+    // price-engine.mjs 2026-09-04: $9.99 nets $8.99. 20.0% original matter,
+    // the floor, so the same as the other Classics at this standard.
+    priceCents: 999,
+  },
+  {
+    slug: "myths-and-legends-of-china",
+    name: "Myths and Legends of China: Volume One, The Gods (Annotated)",
+    description:
+      "Thunder is a ministry. So are the waters, fire, epidemics and exorcism, each with a president and a jurisdiction. Eight chapters of E. T. C. Werner's 1922 classic — the creation of the world from P'an Ku's body, the archer who shot down nine of the ten suns, the ministries of the natural world, the Eight Immortals and a war in heaven — complete and unaltered, with a register of the nine celestial ministries assembled from the printed text, a glossary of twenty-five figures whose chapter references were produced by searching, a note on the Wade-Giles names, a chronology and an index. 108 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included.",
+    // price-engine.mjs 2026-09-04: $9.99 nets $8.99. 22.4% original matter —
+    // above the 20% floor and short of the 35% premium tier — so the same
+    // $9.99 as the other Valice Classics.
+    priceCents: 999,
+  },
+  {
+    slug: "indian-myth-and-legend",
+    name: "Indian Myth and Legend: Volume One, The Vedic Gods (Annotated)",
+    description:
+      "The gods in this book lose: Indra opens it as king of heaven, and Indian religion spends the next two thousand years demoting him. Five chapters of Donald Mackenzie's 1913 classic — Indra, the great Vedic deities, Yama who was the first man and therefore rules the dead, the demons and fairies, and the mysteries of creation — complete and unaltered, with a register grading his relentless comparisons by how much weight each still bears, a who's-who of thirty-two figures with references verified by search, a note on the Sanskrit names, a chronology and an index. 94 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included.",
+    // price-engine.mjs 2026-09-04: $9.99 nets $8.99. 21.5% original matter,
+    // above the floor and short of premium.
+    priceCents: 999,
+  },
+  {
+    slug: "mythical-monsters",
+    name: "Mythical Monsters: Volume One, The Dragon (Annotated)",
+    description:
+      "Charles Gould, the first Government Geologist of Tasmania, believed dragons were real animals remembered. He was wrong, and the argument is worth following. Three chapters of his 1886 book — the dragon, the Chinese dragon, the Japanese dragon — complete and unaltered, with a register setting six of his claims against what is actually established, a graded list of his sources from the Shan Hai King to the Straits Times, a glossary of eighteen dragon terms with verified chapter references, a chronology and an index. 74 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included.",
+    // price-engine.mjs 2026-09-04: $9.99 nets $8.99. 22.0% original matter,
+    // above the floor and short of premium.
+    priceCents: 999,
   },
 ];

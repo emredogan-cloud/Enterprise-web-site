@@ -138,6 +138,14 @@
       "entity": "greek-alphabet-handwriting-workbook"
     },
     {
+      "path": "/images/books/indian-myth-and-legend.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 58582,
+      "slot": "book-cover",
+      "entity": "indian-myth-and-legend"
+    },
+    {
       "path": "/images/books/korean-hangul-handwriting-workbook.webp",
       "width": 1000,
       "height": 1600,
@@ -152,6 +160,22 @@
       "bytes": 215192,
       "slot": "book-cover",
       "entity": "meditations"
+    },
+    {
+      "path": "/images/books/mythical-monsters.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 60652,
+      "slot": "book-cover",
+      "entity": "mythical-monsters"
+    },
+    {
+      "path": "/images/books/myths-and-legends-of-china.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 58180,
+      "slot": "book-cover",
+      "entity": "myths-and-legends-of-china"
     },
     {
       "path": "/images/books/seneca-selected-dialogues.webp",
