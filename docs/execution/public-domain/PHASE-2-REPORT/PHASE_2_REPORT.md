@@ -15,7 +15,7 @@ Taken from `PUBLIC_DOMAIN_MASTER_ROADMAP.md` without substitution.
 
 | # | Book | Author | Pub. | Source | State |
 |---|---|---|---|---|---|
-| 1 | Games Ancient and Oriental, and How to Play Them | Edward Falkener | 1892 | IA `gamesancientorie00falkuoft` — **scan, OCR** | **ingested, scoped** |
+| 1 | Games Ancient and Oriental, and How to Play Them | Edward Falkener | 1892 | IA `gamesancientorie00falkuoft` — **scan, OCR** | **OCR corrected, text extracted** |
 | 2 | Korean Games | Stewart Culin | 1895 | IA `koreangameswith00culigoog` — **scan, OCR** | not started |
 | 3 | Chess and Playing Cards | Stewart Culin | 1898 | IA `chessplayingcard00culi` — **scan, OCR** | not started |
 | 4 | Mancala, the National Game of Africa | Stewart Culin | 1896 | PG 66220 — proof-read HTML | not started |
@@ -110,10 +110,80 @@ later volumes.
 
 ---
 
+## 2a. Book 1 — OCR corrected and text extracted
+
+### The scope boundary turned out to be the book's own
+
+The first estimate treated the selection as two blocks, "Egyptian + Roman". Reading the
+section markers off the scan showed something better: the book divides itself into
+numbered sections, and **sections I–VI end at scan 108**, with section VII opening the
+Greek *Hiera Gramme* at scan 109. The chosen scope lands exactly on that seam.
+
+| | Section | Scan | Words |
+|---|---|---|---|
+| I | Introduction | 11–18 | 1,796 |
+| II | The Games of the Ancient Egyptians | 19–31 | 3,231 |
+| III | Ancient Royal Egyptian Relics at the Manchester Exhibition | 32–50 | 3,873 |
+| IV | The Game of Tau, or the Game of Robbers | 51–80 | 6,208 |
+| V | The Game of Senat | 81–100 | 3,856 |
+| VI | Hab em Han, the Game of the Bowl | 101–108 | 1,681 |
+| | **Total** | | **20,645** |
+
+**The Roman game is not a bolted-on second block.** Falkener's argument in section IV is
+that the Roman *ludus latrunculorum* **is** the Egyptian game of Tau, which is why the
+running head over those thirty pages alternates between the two names. Splitting them
+would cut his case in half.
+
+Section VI's heading is a line of hieroglyphs the OCR read as `i n a o / vt\ o`; the
+title was read off the page image — **HAB EM HAN**, the Game of the Bowl. The book sets
+hieroglyphs as headings throughout, which no OCR can recover and which will need original
+redrawing alongside the boards.
+
+### Corrections — verified on the page, never from the dictionary alone
+
+81 candidates fell inside the scope, 32 distinct. **Twelve were corrected. Twenty were
+not.** Every one of the twelve was cropped out of the scan at 400 dpi around the OCR's
+own coordinates and read before being changed:
+
+`Eoman→Roman` · `Eomans→Romans` · `Koman→Roman` · `Eobbers→Robbers` · `Eitual→Ritual` ·
+`Eoyal→Royal` · `EOYAL→ROYAL` · `EELICS→RELICS` · `Eed→Red` · `Eome→Rome` ·
+`Kelative→Relative` · `Tlie→The`
+
+**The most frequent candidate was rejected.** `Tau → Tan` was proposed 37 times. The page
+image (scan 51) reads **TAU** — the Egyptian game the chapter is about. Applying that
+substitution blindly would have corrupted the book's central game name thirty-seven
+times, and it is the clearest possible argument for the rule that a token is only
+corrected once the printed page has been looked at.
+
+The other nineteen rejections are Latin, French and proper nouns the English word list
+does not carry. Their OCR readings stand unchanged, with the reason recorded per token
+in `CONTENT/corrections.json`.
+
+22 corrections were applied across the extracted text; **zero R-confusions remain**.
+
+### Provenance kept
+
+Every paragraph carries the scan page it came from and the folio printed on that leaf.
+Running heads are stripped — they are the worst-OCR'd lines in the book
+(`LDDUS LATRUNCULORDM`, `THE GAME OF TIIK BOWL`) and are page furniture, not text.
+Compositor's hyphens across line breaks are rejoined. The source XML's SHA-256 and the
+Archive URL are in `QA/parse-report.json`.
+
+**A new reusable tool:** `scripts/factory/ocr/crop.py` puts a suspect token in front of a
+human, cropped from its own page at the OCR's coordinates. It is what made per-token
+verification practical, and Books 2 and 3 will use it.
+
+### Still to do on Book 1
+
+Apparatus (~5,800 words at the 22% floor), original diagrams for the boards and
+hieroglyphs, manuscript, EPUB, cover, companion, catalogue, Paddle, R2, KDP package and
+handbook, adversarial review, final QA.
+
+---
+
 ## 3. What is not done
 
-Book 1 has not been corrected, apparatus has not been written, and nothing has been
-typeset. Books 2–5 have not been started. No Phase 2 product exists on the website and
+Book 1's apparatus has not been written and nothing has been typeset. Books 2–5 have not been started. No Phase 2 product exists on the website and
 none will be published from this branch.
 
 ---
