@@ -174,9 +174,12 @@ export function MobileNav({
             aria-labelledby="mobile-nav-heading"
             className="fixed inset-y-0 right-0 z-[70] flex w-[86%] max-w-sm flex-col border-l border-white/[0.08] bg-[#0a1410] shadow-[0_0_60px_-10px_rgba(0,0,0,0.9)] motion-safe:animate-in motion-safe:slide-in-from-right motion-safe:duration-300"
             style={{
-              // Ready for Phase 2's viewport-fit=cover; resolves to 0 until then.
+              // Phase 2 turned on `viewport-fit=cover`, so these are live.
+              // The panel is flush to the right edge, hence the right inset;
+              // the bottom one clears the gesture bar.
               paddingTop: "env(safe-area-inset-top)",
               paddingBottom: "env(safe-area-inset-bottom)",
+              paddingRight: "env(safe-area-inset-right)",
             }}
           >
             {/* Emerald hairline, matching the house card treatment */}

@@ -175,6 +175,29 @@
     font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+
+    /*
+     * Phase 2 — the dark theme is a document theme, not just a scoped div.
+     *
+     * `background-color`: `html` was transparent, so Chrome propagated BODY's
+     * near-white `--background` to the canvas and the overscroll/rubber-band
+     * at either end of every dark page flashed white. Painting the canvas with
+     * the cinematic ground fixes that. Body keeps its own token; the body box
+     * is covered by `.cinematic-root` on every route, so nothing else moves.
+     *
+     * `color-scheme`: was `normal`, so native controls rendered light — the
+     * sort <select> on /books, the filter selects on /authors and
+     * /account/orders all opened as light popups over a near-black page, and
+     * scrollbars were light too. There is no theme toggle in this codebase and
+     * `.dark` is never applied: every one of the 26 route files renders inside
+     * `.cinematic-root`. Declaring the document dark states what is true.
+     *
+     * This is the one deliberately document-level change in the mobile
+     * roadmap; it is visible on desktop as well and is signed off as such in
+     * PHASE_2_REPORT.md.
+     */
+    background-color: #050705;
+    color-scheme: dark;
   }
   body {
     @apply bg-background text-foreground;

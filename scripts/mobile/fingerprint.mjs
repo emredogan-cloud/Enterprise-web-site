@@ -104,14 +104,30 @@ const FINGERPRINT = String.raw`(() => {
     scrollWidth: de.scrollWidth, scrollHeight: de.scrollHeight,
     clientWidth: de.clientWidth, clientHeight: de.clientHeight,
   };
+  /*
+   * Path must be stable across runs. Indexing among ALL siblings is not:
+   * React streams a varying number of <script> tags into <body>, so the app
+   * root's index moved (div[35] → div[34]) and every descendant path with it,
+   * reporting 261 "changed" elements for a page that had not moved a pixel.
+   * Count only siblings that render, which excludes script/template/style and
+   * anything display:none.
+   */
+  const renderedIndex = (el) => {
+    const parent = el.parentElement;
+    if (!parent) return 0;
+    let i = 0;
+    for (const sib of parent.children) {
+      if (sib === el) return i;
+      if (sib.getClientRects().length > 0) i++;
+    }
+    return i;
+  };
   const path = (el) => {
     const parts = [];
     let n = el, depth = 0;
     while (n && n !== document.body && depth < 12) {
-      const parent = n.parentElement;
-      const idx = parent ? Array.prototype.indexOf.call(parent.children, n) : 0;
-      parts.unshift(n.tagName.toLowerCase() + "[" + idx + "]");
-      n = parent; depth++;
+      parts.unshift(n.tagName.toLowerCase() + "[" + renderedIndex(n) + "]");
+      n = n.parentElement; depth++;
     }
     return parts.join(">");
   };

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 
@@ -29,6 +29,36 @@ const fraunces = Fraunces({
 // `generateMetadata` (canonicals, OG images, Twitter images, …). The origin
 // comes from the single, validated, empty-safe resolver in `@/lib/site-url`
 // (WS-A) — no ad-hoc `??`/`||` here, so an empty env can never `new URL("")`.
+/**
+ * Viewport + browser-chrome integration (Phase 2).
+ *
+ * Next's default is `width=device-width, initial-scale=1` and nothing else,
+ * which left three things wrong on a phone, all measured on the Redmi:
+ *
+ *   - `env(safe-area-inset-*)` resolved to 0px everywhere, because the insets
+ *     are inert without `viewport-fit=cover`. Any notch or gesture-bar padding
+ *     was therefore a no-op.
+ *   - No `theme-color`, so Chrome's address bar stayed light above a near-black
+ *     page.
+ *   - See globals.css for the third (`color-scheme`) and for the document
+ *     background that fixes white overscroll.
+ *
+ * `#050705` is `--home-bg`, the cinematic ground the whole site sits on. Every
+ * route renders inside `.cinematic-root`, so there is no light variant to
+ * switch between and a single value is correct.
+ *
+ * `maximumScale` and `userScalable` are deliberately NOT set. Suppressing
+ * pinch-zoom fails WCAG 2.2 SC 1.4.4; one of the reference sites surveyed for
+ * this roadmap ships `maximum-scale=1` and it is the one thing from it we
+ * explicitly do not copy.
+ */
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#050705",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   // Google Search Console verification (WS-D). Set `GSC_VERIFICATION` in the

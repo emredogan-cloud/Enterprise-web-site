@@ -97,7 +97,11 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-[#07110b]/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center gap-6 px-6">
+      {/* Phase 2 — safe-area gutters. `viewport-fit=cover` makes the insets
+          live; max() keeps the existing 1.5rem where there is no cutout, so
+          this is a no-op on desktop and on phones without one. Landscape on a
+          notched device is where it earns its keep. */}
+      <div className="mx-auto flex h-16 max-w-7xl items-center gap-6 pl-[max(1.5rem,env(safe-area-inset-left))] pr-[max(1.5rem,env(safe-area-inset-right))]">
         {/* Logo */}
         <Link
           href="/"

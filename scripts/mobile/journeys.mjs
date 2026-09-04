@@ -19,7 +19,7 @@ import {
   BASE_URL, assertServerHealthy, connectDevice, navigateAndSettle,
   assertRendered, sleep,
 } from "./device.mjs";
-import { byName } from "./routes.mjs";
+import { byName, ROUTES } from "./routes.mjs";
 
 const argv = process.argv.slice(2);
 const arg = (n, d) => { const i = argv.indexOf(`--${n}`); return i >= 0 && argv[i + 1] ? argv[i + 1] : d; };
@@ -83,6 +83,28 @@ async function touchDrag(cdp, x1, y1, x2, y2, steps = 8) {
   await sleep(600);
 }
 
+/**
+ * Tap, then wait for the page to actually reach `condition`; retry a bounded
+ * number of times.
+ *
+ * The trigger lives in a client component, so a tap that lands before React has
+ * hydrated does nothing at all. That is invisible when a route is warm and
+ * showed up as "panel opens: false" on exactly the routes `next dev` was
+ * compiling for the first time. Retrying is what a reader would do, and it
+ * keeps the check honest — three failed taps is still a failure.
+ */
+async function tapUntil(cdp, selector, conditionExpr, { attempts = 3 } = {}) {
+  for (let i = 0; i < attempts; i++) {
+    await tapSelector(cdp, selector);
+    for (let poll = 0; poll < 8; poll++) {
+      const ok = await cdp.eval(conditionExpr).catch(() => false);
+      if (ok) return { ok: true, attempts: i + 1 };
+      await sleep(250);
+    }
+  }
+  return { ok: false, attempts };
+}
+
 async function pressKey(cdp, key, code, keyCode) {
   await cdp.send("Input.dispatchKeyEvent", { type: "rawKeyDown", key, code, windowsVirtualKeyCode: keyCode });
   await cdp.send("Input.dispatchKeyEvent", { type: "keyUp", key, code, windowsVirtualKeyCode: keyCode });
@@ -117,7 +139,7 @@ async function navChecks(cdp) {
       trigger.label === "Menu" && trigger.expanded === "false" && trigger.controls === "mobile-nav-panel", trigger);
 
     // ── open ────────────────────────────────────────────────────────────
-    await tapSelector(cdp, MENU);
+    await tapUntil(cdp, MENU, `!!document.querySelector(${JSON.stringify(PANEL)})`);
     const opened = await cdp.eval(`(() => {
       const p = document.querySelector(${JSON.stringify(PANEL)});
       if (!p) return { open: false };
@@ -188,7 +210,7 @@ async function navChecks(cdp) {
       `body=${afterEsc.bodyOverflow} html=${afterEsc.htmlOverflow}`);
 
     // ── backdrop tap closes ─────────────────────────────────────────────
-    await tapSelector(cdp, MENU);
+    await tapUntil(cdp, MENU, `!!document.querySelector(${JSON.stringify(PANEL)})`);
     await sleep(300);
     await tapAt(cdp, 20, 300);   // far left, over the backdrop not the panel
     const afterBackdrop = await cdp.eval(
@@ -197,7 +219,7 @@ async function navChecks(cdp) {
 
     // ── aria-current on the active destination ──────────────────────────
     if (routeName === "catalog") {
-      await tapSelector(cdp, MENU);
+      await tapUntil(cdp, MENU, `!!document.querySelector(${JSON.stringify(PANEL)})`);
       await sleep(300);
       const cur = await cdp.eval(`(() => {
         const p = document.querySelector(${JSON.stringify(PANEL)});
@@ -211,7 +233,7 @@ async function navChecks(cdp) {
 
   // ── navigating from the drawer actually goes there and closes it ──────
   await goto(cdp, "home");
-  await tapSelector(cdp, MENU);
+  await tapUntil(cdp, MENU, `!!document.querySelector(${JSON.stringify(PANEL)})`);
   await sleep(300);
   const navBox = await cdp.eval(`(() => {
     const p = document.querySelector(${JSON.stringify(PANEL)});
@@ -268,12 +290,78 @@ async function inputChecks(cdp) {
   return out;
 }
 
+/* ────────────────────── theme / browser-chrome contract ────────────────── */
+
+async function themeChecks(cdp) {
+  const out = [];
+  const add = (name, pass, detail) => out.push({ name, pass, detail });
+
+  for (const routeName of ["home", "catalog", "legal-terms"]) {
+    await goto(cdp, routeName);
+    const t = await cdp.eval(`(() => {
+      const de = document.documentElement;
+      const h = getComputedStyle(de), b = getComputedStyle(document.body);
+      const probe = document.createElement("div");
+      probe.style.cssText =
+        "position:fixed;top:0;left:0;visibility:hidden;padding-top:env(safe-area-inset-top);" +
+        "padding-bottom:env(safe-area-inset-bottom);padding-left:env(safe-area-inset-left);" +
+        "padding-right:env(safe-area-inset-right)";
+      document.body.appendChild(probe);
+      const p = getComputedStyle(probe);
+      const safe = { top: p.paddingTop, bottom: p.paddingBottom, left: p.paddingLeft, right: p.paddingRight };
+      probe.remove();
+      // Does env() actually resolve, i.e. is the mechanism live? A page without
+      // viewport-fit=cover leaves the vars undefined and max() falls back.
+      const live = document.createElement("div");
+      live.style.cssText = "position:fixed;visibility:hidden;width:max(10px,env(safe-area-inset-left,0px))";
+      document.body.appendChild(live);
+      const liveW = getComputedStyle(live).width;
+      live.remove();
+      return {
+        themeColor: (document.querySelector('meta[name="theme-color"]') || {}).content || null,
+        viewportMeta: (document.querySelector('meta[name="viewport"]') || {}).content || null,
+        colorScheme: h.colorScheme,
+        htmlBg: h.backgroundColor,
+        bodyBg: b.backgroundColor,
+        safe, liveW,
+        headerPadL: (() => {
+          const hdr = Array.from(document.querySelectorAll("header")).find((e) => e.getClientRects().length);
+          const inner = hdr && hdr.firstElementChild;
+          return inner ? getComputedStyle(inner).paddingLeft : null;
+        })(),
+      };
+    })()`);
+
+    add(`${routeName}: theme-color is the cinematic ground`, t.themeColor === "#050705", t.themeColor);
+    add(`${routeName}: viewport-fit=cover`, /viewport-fit=cover/.test(t.viewportMeta || ""), t.viewportMeta);
+    add(`${routeName}: no zoom suppression (WCAG 1.4.4)`,
+      !/maximum-scale|user-scalable\s*=\s*no/.test(t.viewportMeta || ""), t.viewportMeta);
+    add(`${routeName}: color-scheme is dark`, t.colorScheme === "dark", t.colorScheme);
+    add(`${routeName}: document canvas is dark (no white overscroll)`,
+      t.htmlBg === "rgb(5, 7, 5)", t.htmlBg);
+    add(`${routeName}: safe-area gutter applied to header`,
+      t.headerPadL === "24px" || parseFloat(t.headerPadL) >= 24, t.headerPadL);
+    // Recorded, not asserted: this device reports 0 insets in portrait.
+    add(`${routeName}: safe-area insets readable`, typeof t.safe.top === "string",
+      JSON.stringify(t.safe));
+  }
+  return out;
+}
+
 /* ─────────────────────────────── runner ─────────────────────────────── */
 
-const GROUPS = { nav: navChecks, inputs: inputChecks };
+const GROUPS = { nav: navChecks, inputs: inputChecks, theme: themeChecks };
 
 async function main() {
   const names = ONLY ? [ONLY] : Object.keys(GROUPS);
+
+  // `next dev` compiles a route on first request; a tap that lands during that
+  // window hits an unhydrated page. Warm everything first.
+  for (const r of ROUTES.filter((x) => x.device)) {
+    try { await fetch(new URL(r.path, BASE_URL).href, { signal: AbortSignal.timeout(60000) }); }
+    catch { /* the health assertion will catch a genuinely dead server */ }
+  }
+
   const cdp = await connectDevice();
   console.log(`\n▸ Interaction checks on ${cdp.meta.browser}\n`);
 
