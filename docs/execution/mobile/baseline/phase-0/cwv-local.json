@@ -1,0 +1,274 @@
+{
+  "generatedAt": "2026-09-04T21:01:58.681Z",
+  "target": "http://localhost:3100",
+  "device": {
+    "kind": "device",
+    "browser": "Chrome/152.0.7977.75",
+    "androidPackage": "com.android.chrome"
+  },
+  "conditions": {
+    "cacheDisabled": true,
+    "throttled": true,
+    "downKbps": 1600,
+    "latencyMs": 70,
+    "hardware": "Redmi Note 8 (2021)",
+    "repeats": 3,
+    "statistic": "median"
+  },
+  "caveat": "Lab measurements on one device over an emulated link. Not field data, not a 75th percentile. inpProxyMs is the worst scripted-interaction latency across a fixed tap set, not true INP. Values are the median of `repeats` runs; per-run spread is in lcpSamples/inpSamples. Measuring a REMOTE origin stacks CDP throttling on live network jitter and is much noisier than measuring the local server over adb — prefer local for phase-to-phase comparison.",
+  "thresholds": {
+    "lcpGoodMs": 2500,
+    "clsGood": 0.1,
+    "inpGoodMs": 200
+  },
+  "results": [
+    {
+      "path": "/",
+      "url": "http://localhost:3100/",
+      "ttfbMs": 2529,
+      "fcpMs": 3920,
+      "lcp": {
+        "t": 3920,
+        "size": 33163,
+        "el": "SPAN.block",
+        "text": "Read it anywhere.",
+        "url": null
+      },
+      "cls": 0.0341,
+      "topShifts": [
+        {
+          "v": 0.0114,
+          "node": "DIV.mt-9 flex flex-wrap items-center gap-3"
+        },
+        {
+          "v": 0.0114,
+          "node": "DIV.mt-9 flex flex-wrap items-center gap-3"
+        },
+        {
+          "v": 0.0114,
+          "node": "DIV.mt-9 flex flex-wrap items-center gap-3"
+        }
+      ],
+      "inpProxyMs": 160,
+      "slowestInteractions": [
+        {
+          "name": "gotpointercapture",
+          "dur": 160,
+          "target": "A.home-cta-primary inline-flex h"
+        },
+        {
+          "name": "pointerup",
+          "dur": 160,
+          "target": "A.home-cta-primary inline-flex h"
+        },
+        {
+          "name": "lostpointercapture",
+          "dur": 160,
+          "target": "A.home-cta-primary inline-flex h"
+        },
+        {
+          "name": "pointerout",
+          "dur": 160,
+          "target": "A.home-cta-primary inline-flex h"
+        },
+        {
+          "name": "pointerleave",
+          "dur": 160,
+          "target": null
+        }
+      ],
+      "interactionCount": 561,
+      "longTasks": 9,
+      "longTaskMs": 1254,
+      "requests": 39,
+      "jsKB": 900,
+      "jsCount": 27,
+      "cssKB": 27,
+      "cssCount": 1,
+      "fontKB": 104,
+      "fontCount": 4,
+      "imgKB": 148,
+      "imgCount": 4,
+      "totalKB": 1190,
+      "domNodes": 427,
+      "interactionsDriven": 6,
+      "lcpMedianMs": 3920,
+      "lcpSamples": [
+        5528,
+        2028,
+        3920
+      ],
+      "fcpMedianMs": 3920,
+      "clsMax": 0.0341,
+      "inpProxyMedianMs": 272,
+      "inpSamples": [
+        272,
+        272,
+        160
+      ],
+      "totalKBMedian": 1190,
+      "samples": 3
+    },
+    {
+      "path": "/books",
+      "url": "http://localhost:3100/books",
+      "ttfbMs": 736,
+      "fcpMs": 2212,
+      "lcp": {
+        "t": 2212,
+        "size": 13240,
+        "el": "H1.mt-7 font-serif text-[52px] font-medium ",
+        "text": "All books",
+        "url": null
+      },
+      "cls": 0.0008,
+      "topShifts": [
+        {
+          "v": 0.0001,
+          "node": "undefined."
+        },
+        {
+          "v": 0.0001,
+          "node": "undefined."
+        },
+        {
+          "v": 0.0001,
+          "node": "undefined."
+        }
+      ],
+      "inpProxyMs": 224,
+      "slowestInteractions": [
+        {
+          "name": "gotpointercapture",
+          "dur": 224,
+          "target": "INPUT.block h-9 w-full rounded-lg bo"
+        },
+        {
+          "name": "pointerup",
+          "dur": 224,
+          "target": "INPUT.block h-9 w-full rounded-lg bo"
+        },
+        {
+          "name": "lostpointercapture",
+          "dur": 224,
+          "target": "INPUT.block h-9 w-full rounded-lg bo"
+        },
+        {
+          "name": "pointerout",
+          "dur": 224,
+          "target": "INPUT.block h-9 w-full rounded-lg bo"
+        },
+        {
+          "name": "pointerleave",
+          "dur": 224,
+          "target": null
+        }
+      ],
+      "interactionCount": 1416,
+      "longTasks": 24,
+      "longTaskMs": 1722,
+      "requests": 44,
+      "jsKB": 914,
+      "jsCount": 27,
+      "cssKB": 27,
+      "cssCount": 1,
+      "fontKB": 132,
+      "fontCount": 5,
+      "imgKB": 198,
+      "imgCount": 6,
+      "totalKB": 1290,
+      "domNodes": 562,
+      "interactionsDriven": 8,
+      "lcpMedianMs": 2212,
+      "lcpSamples": [
+        2244,
+        1916,
+        2212
+      ],
+      "fcpMedianMs": 2212,
+      "clsMax": 0.0008,
+      "inpProxyMedianMs": 248,
+      "inpSamples": [
+        256,
+        248,
+        224
+      ],
+      "totalKBMedian": 1290,
+      "samples": 3
+    },
+    {
+      "path": "/books/meditations",
+      "url": "http://localhost:3100/books/meditations",
+      "ttfbMs": 1095,
+      "fcpMs": 2456,
+      "lcp": {
+        "t": 4040,
+        "size": 193876,
+        "el": "IMG.object-cover",
+        "text": "",
+        "url": "http://localhost:3100/_next/image?url=%2Fimages%2Fbooks%2Fmeditations.webp&w=1200&q=75"
+      },
+      "cls": 0,
+      "topShifts": [],
+      "inpProxyMs": 72,
+      "slowestInteractions": [
+        {
+          "name": "pointerover",
+          "dur": 72,
+          "target": "svg.[object SVGAnimatedString]"
+        },
+        {
+          "name": "pointerenter",
+          "dur": 72,
+          "target": null
+        },
+        {
+          "name": "pointerenter",
+          "dur": 72,
+          "target": null
+        },
+        {
+          "name": "pointerenter",
+          "dur": 72,
+          "target": null
+        },
+        {
+          "name": "pointerenter",
+          "dur": 72,
+          "target": null
+        }
+      ],
+      "interactionCount": 1089,
+      "longTasks": 27,
+      "longTaskMs": 3501,
+      "requests": 38,
+      "jsKB": 922,
+      "jsCount": 27,
+      "cssKB": 27,
+      "cssCount": 1,
+      "fontKB": 104,
+      "fontCount": 4,
+      "imgKB": 92,
+      "imgCount": 1,
+      "totalKB": 1156,
+      "domNodes": 434,
+      "interactionsDriven": 4,
+      "lcpMedianMs": 4040,
+      "lcpSamples": [
+        4736,
+        3844,
+        4040
+      ],
+      "fcpMedianMs": 2456,
+      "clsMax": 0,
+      "inpProxyMedianMs": 72,
+      "inpSamples": [
+        80,
+        72,
+        72
+      ],
+      "totalKBMedian": 1156,
+      "samples": 3
+    }
+  ]
+}
