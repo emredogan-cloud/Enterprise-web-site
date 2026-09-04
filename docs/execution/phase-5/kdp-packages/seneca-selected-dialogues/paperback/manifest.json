@@ -12,7 +12,8 @@
     "pagesBefore": 153,
     "pagesAfter": 154,
     "companionPage": 154,
-    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pre-companion.pdf"
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pre-companion.pdf",
+    "builtBy": "scripts/factory/companion-page.py (spliced)"
   },
   "companion": {
     "printedUrl": "valicepress.com/companion/seneca",
@@ -66,10 +67,11 @@
     "wrapIn": "12.5968 × 9.2500 (white)",
     "note": "rebuilt 2026-09-04 at the final page count of 154, after the companion leaf. The count moved 156 -> 154 when a markdown-bold rendering defect was fixed and the text reflowed; the cover was rebuilt rather than reused."
   },
-  "coverAction": "REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block",
+  "coverAction": "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior",
   "uploadRequired": true,
   "hold": null,
   "proofRecommended": true,
+  "proofWhy": "the block changed thickness, so the wrap is new and unproved",
   "verification": [
     {
       "name": "page-count",

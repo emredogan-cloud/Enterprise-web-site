@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03",
+  "generatedAt": "2026-09-04",
   "book": "the-great-book-of-world-games",
   "format": "large_print",
   "title": "The Great Book of World Games",
@@ -12,7 +12,8 @@
     "pagesBefore": 232,
     "pagesAfter": 233,
     "companionPage": 233,
-    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/LARGEPRINT/GreatBookOfWorldGames_interior_largeprint.pre-companion.pdf"
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/LARGEPRINT/GreatBookOfWorldGames_interior_largeprint.pre-companion.pdf",
+    "builtBy": "scripts/factory/companion-page.py (spliced)"
   },
   "companion": {
     "printedUrl": "valicepress.com/companion/world-games",
@@ -58,6 +59,7 @@
   "uploadRequired": true,
   "hold": "IN KDP REVIEW since 2026-09-02, and the cover cannot be rebuilt from here. The block moves 232 → 233 pages, so the wrap needs a new spine — but this project's cover pipeline reads `06_REPORTS/interior-largeprint.json`, which has recorded 234 pages since before this phase while the built block was 232 (a pre-existing divergence, reported as a finding). Only re-running `04_BUILD/interior.py` regenerates that report and its pagemap. So: at the first revision after this edition goes live, run interior.py → covers.py, and take the companion page through the pipeline's own companion block rather than as a splice. The invented biography, which was the other defect, is already fixed and is page-neutral.",
   "proofRecommended": true,
+  "proofWhy": "the block changed thickness, so the wrap is new and unproved",
   "verification": [
     {
       "name": "page-count",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03",
+  "generatedAt": "2026-09-04",
   "book": "codex-mythologica",
   "format": "large_print",
   "title": "Codex Mythologica",
@@ -12,7 +12,8 @@
     "pagesBefore": 578,
     "pagesAfter": 579,
     "companionPage": 579,
-    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_MYTHOLOGICA/04_PRINT/LARGEPRINT/CODEX_MYTHOLOGICA_INTERIOR_LARGEPRINT.pre-companion.pdf"
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_MYTHOLOGICA/04_PRINT/LARGEPRINT/CODEX_MYTHOLOGICA_INTERIOR_LARGEPRINT.pre-companion.pdf",
+    "builtBy": "scripts/factory/companion-page.py (spliced)"
   },
   "companion": {
     "printedUrl": "valicepress.com/companion/codex-mythologica",
@@ -62,6 +63,7 @@
   "uploadRequired": true,
   "hold": "KDP Select runs to 2026-11-03 (handbook O5). On that date the interiors are reopened anyway so the ebook can be sold here; these files go up in the same pass. Pulling three live editions before then buys nothing.",
   "proofRecommended": true,
+  "proofWhy": "the block changed thickness, so the wrap is new and unproved",
   "verification": [
     {
       "name": "page-count",

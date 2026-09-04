@@ -1,0 +1,110 @@
+{
+  "generatedAt": "2026-09-04",
+  "book": "greek-alphabet-handwriting-workbook",
+  "format": "paperback",
+  "title": "The Greek Alphabet Handwriting Workbook",
+  "asin": null,
+  "kdpState": "not_created",
+  "interior": {
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/interior.pdf",
+    "sha256": "b127010251f0e701afba29ab9a6eb7107cb5d923462c65e263e27bcc158abe1f",
+    "bytes": 426044,
+    "pagesBefore": 100,
+    "pagesAfter": 100,
+    "companionPage": 99,
+    "previousBuildKept": null,
+    "builtBy": "BUILD/backmatter.py — the book's own back-matter builder"
+  },
+  "companion": {
+    "printedUrl": "valicepress.com/companion/greek",
+    "qrUrl": "https://valicepress.com/companion/greek",
+    "qr": {
+      "measuredOffThePage": true,
+      "found": true,
+      "dpi": 200,
+      "finders": 3,
+      "sidePt": 213.96,
+      "sideIn": 2.972,
+      "modulePx": 20.48,
+      "moduleMm": 2.6,
+      "modules": 29,
+      "pageWidthPt": 612,
+      "pageHeightPt": 792,
+      "fractionOfPageHeight": 0.2702
+    },
+    "dedicatedPage": true,
+    "emailWall": false
+  },
+  "spine": {
+    "pagesBefore": 100,
+    "pagesAfter": 100,
+    "paper": "white",
+    "binding": "paperback",
+    "trim": "8.5×11 in",
+    "before": {
+      "spineWidthIn": 0.2252,
+      "wrapWidthIn": 17.4752,
+      "wrapHeightIn": 11.25,
+      "spineTextAllowed": true
+    },
+    "after": {
+      "spineWidthIn": 0.2252,
+      "wrapWidthIn": 17.4752,
+      "wrapHeightIn": 11.25,
+      "spineTextAllowed": true
+    },
+    "deltaSpineIn": 0,
+    "deltaWrapWidthIn": 0,
+    "withinKdpTolerance": true,
+    "coverRebuildRequired": false,
+    "coverRebuildCorrect": false,
+    "hardcoverGeometryMustBeRead": false,
+    "barcodeZoneAffected": false,
+    "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
+  },
+  "cover": {
+    "built": true,
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/cover.pdf",
+    "pageCount": 100,
+    "spineIn": 0.2252,
+    "wrapIn": "17.4752 × 11.2500 (white)",
+    "note": "Not rebuilt — built once, at the final page count, by the project's own BUILD/build_cover.py. Nothing was spliced into this book, so the block never changed thickness. It is listed here because this is where the packaging pipeline looks for a wrap, and an edition that has never been uploaded needs its cover NAMED rather than left null: `coverAction` says the Founder must upload one, and this is the file. Spine and wrap agree with spine-check.mjs to four decimal places, and `preflight.py --kind cover` passes 6/6. No spine text: 0.2252 in leaves a 0.100 in safe zone, which cannot carry legible type on a perfect-bound book."
+  },
+  "coverAction": "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior",
+  "uploadRequired": true,
+  "hold": null,
+  "proofRecommended": true,
+  "proofWhy": "this edition has never been printed — first proof of this interior and this cover",
+  "verification": [
+    {
+      "name": "page-count",
+      "pass": true,
+      "detail": "100 pages (expected 100)"
+    },
+    {
+      "name": "printed-url",
+      "pass": true,
+      "detail": "valicepress.com/companion/greek"
+    },
+    {
+      "name": "canonical-host",
+      "pass": true,
+      "detail": "no forbidden host on the page"
+    },
+    {
+      "name": "eyebrow",
+      "pass": true,
+      "detail": "CONTINUE WITH VÂLIÇE PRESS"
+    },
+    {
+      "name": "fonts-embedded",
+      "pass": true,
+      "detail": "5 faces: AAAAAA+Lato-Light, AAAAAA+DejaVuSans, AAAAAA+Lato-Bold, AAAAAA+Lato-Italic, AAAAAA+Lato-Regular"
+    },
+    {
+      "name": "pdf-metadata",
+      "pass": true,
+      "detail": "title=\"The Greek Alphabet Handwriting Workbook: Write all 24 letters in the modern and the classical forms, with a sourced stroke order for every one\" author=\"Emre Doğan\""
+    }
+  ]
+}

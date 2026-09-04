@@ -10,6 +10,18 @@
 const BOOKS = "/home/emre/Downloads/MY-DİGİTAL-BOOK";
 
 export const REBUILT_COVERS = {
+  "greek-alphabet-handwriting-workbook": {
+    paperback: {
+      built: true,
+      path: `${BOOKS}/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/cover.pdf`,
+      pageCount: 100, spineIn: 0.2252, wrapIn: "17.4752 × 11.2500 (white)",
+      note: "Not rebuilt — built once, at the final page count, by the project's own BUILD/build_cover.py. Nothing was spliced into this book, so the block never changed thickness. It is listed here because this is where the packaging pipeline looks for a wrap, and an edition that has never been uploaded needs its cover NAMED rather than left null: `coverAction` says the Founder must upload one, and this is the file. Spine and wrap agree with spine-check.mjs to four decimal places, and `preflight.py --kind cover` passes 6/6. No spine text: 0.2252 in leaves a 0.100 in safe zone, which cannot carry legible type on a perfect-bound book.",
+    },
+    hardcover: {
+      built: false,
+      reason: "NOT PRODUCED, and not a gap. A $19.99 hardcover at 100 pages nets about 21 %, under the 35 % house floor, and a workbook is a consumable a reader writes in and finishes — the format a buyer wants for it is the cheap one they can replace. DECISIONS.md K8.",
+    },
+  },
   "korean-hangul-handwriting-workbook": {
     paperback: {
       built: true,
@@ -38,6 +50,14 @@ export const REBUILT_COVERS = {
       path: `${BOOKS}/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/ASSETS/cover/paperback-wrap-v1.pdf`,
       pageCount: 176, spineIn: 0.3964, wrapIn: "12.6464 × 9.2500 (white)",
       note: "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 176 — that is, after the companion leaf. Its spine and wrap agree with this pipeline's own arithmetic to four decimal places (0.396352 / 12.646352), so nothing had to be rebuilt after the splice.",
+    },
+  },
+  "myths-and-legends-of-china": {
+    paperback: {
+      built: true,
+      path: `${BOOKS}/MYTHS-AND-LEGENDS-OF-CHINA/ASSETS/cover/paperback-wrap-v1.pdf`,
+      pageCount: 108, spineIn: 0.2432, wrapIn: "12.4932 × 9.2500 (white)",
+      note: "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 108 — that is, after the companion leaf. Its spine and wrap agree with this pipeline's own arithmetic to four decimal places (0.243216 / 12.493216), so nothing had to be rebuilt after the splice.",
     },
   },
   "seneca-selected-dialogues": {

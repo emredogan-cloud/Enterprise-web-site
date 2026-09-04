@@ -1,6 +1,6 @@
 # Codex Mythologica — paperback — KDP upload package
 
-**Generated:** 2026-09-03 · **ASIN:** B0HCY8KY3X · **KDP state:** live
+**Generated:** 2026-09-04 · **ASIN:** B0HCY8KY3X · **KDP state:** live
 
 ## HOLD — do not upload yet
 
@@ -10,13 +10,13 @@ The file below is finished and verified. It waits on the calendar, not on work.
 
 ## What changed
 
-A dedicated companion page now stands on page **330**: a QR occupying NaN % of the usable page height, the address `valicepress.com/companion/codex-mythologica` printed beneath it in display type, and a named list of what is waiting there. It is a new leaf; nothing was removed.
+A dedicated companion page now stands on page **330**: a QR occupying a measured share of the page, the address `valicepress.com/companion/codex-mythologica` printed beneath it in display type, and a named list of what is waiting there. It is a new leaf; nothing was removed.
 
 - **Pages:** 329 → **330**
 - **Spine:** 0.8225 in → **0.8250 in** (cream paper, 6×9 in)
 - **Wrap width:** 13.0725 in → **13.0750 in**
 - **Cover:** REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block
-- **Proof:** recommended — the block changed thickness
+- **Proof:** recommended — the block changed thickness, so the wrap is new and unproved
 
 ## The file
 

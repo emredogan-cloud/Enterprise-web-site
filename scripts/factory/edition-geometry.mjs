@@ -23,6 +23,12 @@
  */
 
 export const EDITION_GEOMETRY = {
+  "greek-alphabet-handwriting-workbook": {
+    // Measured off OUTPUT/KDP/PAPERBACK/interior.pdf and confirmed against the
+    // wrap the cover builder produced for 100 pages: white paper, 0.002252 in
+    // per page, spine 0.2252 in.
+    paperback: { trimWidthIn: 8.5, trimHeightIn: 11, binding: "paperback", paper: "white", paperVerified: true },
+  },
   "codex-mythologica": {
     paperback: { trimWidthIn: 6, trimHeightIn: 9, binding: "paperback", paper: "cream", paperVerified: false },
     hardcover: { trimWidthIn: 6, trimHeightIn: 9, binding: "hardcover", paper: "cream", paperVerified: false },
@@ -65,6 +71,9 @@ export const EDITION_GEOMETRY = {
   "seneca-selected-dialogues": {
     paperback: { trimWidthIn: 6, trimHeightIn: 9, binding: "paperback", paper: "white", paperVerified: "project" },
   },
+  "myths-and-legends-of-china": {
+    paperback: { trimWidthIn: 6, trimHeightIn: 9, binding: "paperback", paper: "white", paperVerified: "project" },
+  },
 };
 
 /** Measured MediaBox of each edition's built interior, in points. */
@@ -79,4 +88,5 @@ export const MEASURED_MEDIABOX_PT = {
   "the-puzzles-of-henry-dudeney": { paperback: [432, 648] },
   "epictetus-discourses-and-enchiridion": { paperback: [432, 648] },
   "seneca-selected-dialogues": { paperback: [432, 648] },
+  "myths-and-legends-of-china": { paperback: [432, 648] },
 };

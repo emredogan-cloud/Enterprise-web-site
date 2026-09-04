@@ -52,6 +52,9 @@ const argv = process.argv.slice(2);
 const has = (f) => argv.includes(`--${f}`);
 const val = (f) => { const i = argv.indexOf(`--${f}`); return i === -1 ? undefined : argv[i + 1]; };
 const COMMIT = has("commit");
+// Rewrite the upload packages from the interiors already on disk, without
+// splicing anything. Implies --commit for the package files only.
+const PACKAGES_ONLY = has("packages-only");
 const ONLY = val("slug");
 
 /** The standing line every Valice companion page carries, per book imprint. */
@@ -113,7 +116,34 @@ function buildSpec(bookSlug, format, edition, book, { skipDoneCheck = false } = 
   // the address is finished; anything else at an unexpected length means the
   // book was rebuilt underneath us and the plan is what needs fixing.
   const info = pdfinfo(interior);
-  const target = edition.mode === "replace" ? edition.page : edition.pagesBefore + 1;
+  const target = edition.mode === "native" || edition.mode === "replace"
+    ? edition.page
+    : edition.pagesBefore + 1;
+  // `--packages-only` rewrites the upload package from the file already on
+  // disk and touches no interior. It exists because UPLOAD.md is a document a
+  // person acts on and its wording gets corrected from time to time — four of
+  // them were telling the Founder "do not touch the cover" for editions that
+  // have no cover at KDP at all — and refreshing that text must never be a
+  // reason to re-splice a finished book.
+  if (PACKAGES_ONLY && !skipDoneCheck) {
+    if (!pageText(interior, target).includes(printedUrl(bookSlug))) {
+      throw new Error(`${bookSlug}/${format}: page ${target} does not print ${printedUrl(bookSlug)} — nothing to package`);
+    }
+    return { alreadyDone: true, interior, companionPage: target, pages: info.pages };
+  }
+  // A `native` edition was typeset with its companion leaf in place, so there
+  // is nothing to splice and pagesBefore === pagesAfter. It still goes through
+  // the read-back checks and still gets an upload package: what those verify
+  // is the printed page, and the page does not care who drew it.
+  if (edition.mode === "native") {
+    if (info.pages !== edition.pagesAfter) {
+      throw new Error(`${bookSlug}/${format}: interior is ${info.pages} pages, plan says ${edition.pagesAfter} — fix the plan, not the file`);
+    }
+    if (!pageText(interior, target).includes(printedUrl(bookSlug))) {
+      throw new Error(`${bookSlug}/${format}: page ${target} is declared native but does not print ${printedUrl(bookSlug)}`);
+    }
+    if (!skipDoneCheck) return { alreadyDone: true, interior, companionPage: target, pages: info.pages };
+  }
   if (!skipDoneCheck && info.pages === edition.pagesAfter && info.pages !== edition.pagesBefore) {
     const printed = pageText(interior, target).includes(printedUrl(bookSlug));
     if (printed) return { alreadyDone: true, interior, companionPage: target, pages: info.pages };
@@ -125,7 +155,9 @@ function buildSpec(bookSlug, format, edition, book, { skipDoneCheck = false } = 
   const folio = edition.folio
     ? {
         ...edition.folio,
-        number: (edition.mode === "replace" ? edition.page : edition.pagesBefore + 1) + edition.folio.offset,
+        number: (edition.mode === "native" || edition.mode === "replace"
+          ? edition.page
+          : edition.pagesBefore + 1) + edition.folio.offset,
       }
     : null;
 
@@ -231,7 +263,11 @@ function writePackage(bookSlug, format, edition, spec, result, verification, spi
       pagesBefore: edition.pagesBefore,
       pagesAfter: verification.info.pages,
       companionPage: result.companionPage,
-      previousBuildKept: previousPath,
+      // A native edition replaced nothing, so there is no earlier build to
+      // keep. Naming a `.pre-companion.pdf` that does not exist would send the
+      // Founder looking for a file, which is worse than saying so.
+      previousBuildKept: edition.mode === "native" ? null : previousPath,
+      builtBy: edition.builtBy ?? "scripts/factory/companion-page.py (spliced)",
     },
     companion: {
       printedUrl: spec.copy.printedUrl,
@@ -242,14 +278,25 @@ function writePackage(bookSlug, format, edition, spec, result, verification, spi
     },
     spine,
     cover: coverFor(bookSlug, format),
-    coverAction: spine.coverRebuildRequired
+    coverAction: fmt?.kdp === "not_created"
+      ? "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior"
+      : spine.coverRebuildRequired
       ? "REBUILD REQUIRED — the wrap is outside KDP tolerance"
       : spine.coverRebuildCorrect
         ? "REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block"
         : "NONE — page count unchanged; the cover at KDP stays valid",
     uploadRequired: true,
     hold: edition.hold ?? null,
-    proofRecommended: spine.coverRebuildCorrect,
+    // A proof is recommended when the block changed thickness OR when nobody
+    // has ever held this interior. The second case is the one that used to
+    // slip through: a brand-new book whose page count has not "changed" reads
+    // as "no proof needed", which is exactly backwards.
+    proofRecommended: spine.coverRebuildCorrect || fmt?.kdp === "not_created",
+    proofWhy: spine.coverRebuildCorrect
+      ? "the block changed thickness, so the wrap is new and unproved"
+      : fmt?.kdp === "not_created"
+        ? "this edition has never been printed — first proof of this interior and this cover"
+        : "the interior is a swap into an edition already in print",
     verification: verification.checks,
   };
   writeFileSync(join(dir, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);
@@ -271,15 +318,36 @@ function uploadInstructions(m, edition) {
     lines.push("The file below is finished and verified. It waits on the calendar, not on work.");
     lines.push("");
   }
-  lines.push("## What changed");
+  // The QR fraction arrives under two names: the renderer reports it against
+  // the USABLE height it drew into, `measure-qr.py` against the page. Taking
+  // whichever is present beats printing "NaN %" in a document a person acts on.
+  const qrPct = (() => {
+    const q = m.companion.qr ?? {};
+    const f = q.fraction_of_usable_height ?? q.fractionOfPageHeight;
+    return typeof f === "number" ? `${(f * 100).toFixed(0)} % of the ${q.fraction_of_usable_height != null ? "usable page height" : "page height"}` : "a measured share of the page";
+  })();
+  const firstUpload = m.kdpState === "not_created";
+  lines.push(firstUpload ? "## What this is" : "## What changed");
   lines.push("");
-  lines.push(`A dedicated companion page now stands on page **${m.interior.companionPage}**: a QR occupying ${(m.companion.qr.fraction_of_usable_height * 100).toFixed(0)} % of the usable page height, the address \`${m.companion.printedUrl}\` printed beneath it in display type, and a named list of what is waiting there. ${edition.replacing ? `It replaces ${edition.replacing}.` : "It is a new leaf; nothing was removed."}`);
+  lines.push(firstUpload
+    // Two first-upload cases, and they are not the same sentence: a book
+    // typeset with its companion leaf in place, and a book that had the leaf
+    // spliced in before it ever reached KDP. Saying "not spliced in
+    // afterwards" about the second one is simply untrue.
+    ? `This edition has never been uploaded. The file below is its first. A dedicated companion page stands on page **${m.interior.companionPage}**: a QR occupying ${qrPct}, the address \`${m.companion.printedUrl}\` printed beneath it in display type, and a named list of what is waiting there${m.interior.previousBuildKept ? `. ${edition.replacing ? `It replaces ${edition.replacing}.` : "It is a new leaf; nothing was removed."}` : " — set by the book's own builder when it was typeset, not spliced in afterwards."}`
+    : `A dedicated companion page now stands on page **${m.interior.companionPage}**: a QR occupying ${qrPct}, the address \`${m.companion.printedUrl}\` printed beneath it in display type, and a named list of what is waiting there. ${edition.replacing ? `It replaces ${edition.replacing}.` : "It is a new leaf; nothing was removed."}`);
   lines.push("");
-  lines.push(`- **Pages:** ${m.interior.pagesBefore} → **${m.interior.pagesAfter}**`);
-  lines.push(`- **Spine:** ${m.spine.before.spineWidthIn.toFixed(4)} in → **${m.spine.after.spineWidthIn.toFixed(4)} in** (${m.spine.paper} paper, ${m.spine.trim})`);
-  lines.push(`- **Wrap width:** ${m.spine.before.wrapWidthIn.toFixed(4)} in → **${m.spine.after.wrapWidthIn.toFixed(4)} in**`);
+  lines.push(firstUpload
+    ? `- **Pages:** **${m.interior.pagesAfter}**`
+    : `- **Pages:** ${m.interior.pagesBefore} → **${m.interior.pagesAfter}**`);
+  lines.push(firstUpload
+    ? `- **Spine:** **${m.spine.after.spineWidthIn.toFixed(4)} in** (${m.spine.paper} paper, ${m.spine.trim})`
+    : `- **Spine:** ${m.spine.before.spineWidthIn.toFixed(4)} in → **${m.spine.after.spineWidthIn.toFixed(4)} in** (${m.spine.paper} paper, ${m.spine.trim})`);
+  lines.push(firstUpload
+    ? `- **Wrap width:** **${m.spine.after.wrapWidthIn.toFixed(4)} in**`
+    : `- **Wrap width:** ${m.spine.before.wrapWidthIn.toFixed(4)} in → **${m.spine.after.wrapWidthIn.toFixed(4)} in**`);
   lines.push(`- **Cover:** ${m.coverAction}`);
-  lines.push(`- **Proof:** ${m.proofRecommended ? "recommended — the block changed thickness" : "not required — interior swap only"}`);
+  lines.push(`- **Proof:** ${m.proofRecommended ? `recommended — ${m.proofWhy}` : `not required — ${m.proofWhy}`}`);
   lines.push("");
   lines.push("## The file");
   lines.push("");
@@ -289,10 +357,26 @@ function uploadInstructions(m, edition) {
   lines.push(`${m.interior.bytes.toLocaleString("en-US")} bytes · ${m.interior.pagesAfter} pages`);
   lines.push("```");
   lines.push("");
-  lines.push(`The build it replaces is kept at \`${m.interior.previousBuildKept}\` and is never deleted.`);
+  lines.push(m.interior.previousBuildKept
+    ? `The build it replaces is kept at \`${m.interior.previousBuildKept}\` and is never deleted.`
+    : `Nothing was replaced: the companion leaf was set by \`${m.interior.builtBy}\` when the book was typeset, so there is no earlier build.`);
   lines.push("");
   lines.push("## In KDP");
   lines.push("");
+  if (firstUpload) {
+    lines.push(`1. KDP → **Create** → **Paperback**. This book is not on the bookshelf; there is nothing to edit.`);
+    lines.push(`2. Upload the interior above, and the cover built for **${m.interior.pagesAfter} pages** — see the book's own \`OUTPUT/KDP/KDP_UPLOAD_GUIDE.html\` for the trim, paper and bleed settings, which must match or the file is rejected.`);
+    lines.push(`3. **Do not use Cover Creator.** The wrap was computed for this page count; Cover Creator regenerates it and the spine moves.`);
+    lines.push(`4. Open the previewer and confirm page ${m.interior.companionPage} shows the code and the address. Scan the code with a phone before you publish — it cannot be changed once it is printed.`);
+    lines.push("");
+    lines.push("## How this file was checked");
+    lines.push("");
+    for (const c of m.verification) lines.push(`- ${c.pass ? "PASS" : "FAIL"} · **${c.name}** — ${c.detail}`);
+    lines.push("");
+    lines.push(`Regenerate with \`node scripts/factory/build-companion-pages.mjs --commit --slug ${m.book}\`.`);
+    lines.push("");
+    return lines.join("\n");
+  }
   lines.push(`1. Bookshelf → **${m.title}** → ${m.format} → *Edit print manuscript*.`);
   lines.push(`2. Upload the interior above.`);
   if (m.spine.coverRebuildCorrect) {
@@ -354,6 +438,25 @@ function recheck(interior, page, spec) {
 }
 
 /** The QR geometry of a page already drawn, recovered by re-solving it. */
+/**
+ * The QR geometry of a page that is already printed, measured off the page.
+ *
+ * `measure-qr.py` finds the code by its finder patterns and reports its size
+ * in points, its module pitch in millimetres and what fraction of the page it
+ * occupies — which is the only honest way to answer "is the code big enough"
+ * for a leaf this pipeline did not draw.
+ */
+function measuredQrFromFile(interior, page) {
+  try {
+    const out = execFileSync(PY, [join("scripts/factory", "measure-qr.py"), interior, String(page)], { encoding: "utf8" });
+    const r = JSON.parse(out.trim().split("\n").pop());
+    if (!r.found) return { note: "no QR finder patterns detected on the page" };
+    return { measuredOffThePage: true, ...r };
+  } catch (err) {
+    return { note: `could not measure: ${err.message.split("\n")[0]}` };
+  }
+}
+
 function measuredQr(spec) {
   const specPath = join(TMP, `${spec.id.replace("/", "-")}.json`);
   if (!existsSync(specPath)) return { note: "geometry not re-measured on this run" };
@@ -387,7 +490,10 @@ for (const [bookSlug, book] of Object.entries(COMPANION_PAGE_PLAN)) {
             continue;
           }
           const m = writePackage(bookSlug, format, edition, full,
-            { companionPage: spec.companionPage, qr: measuredQr(full) },
+            { companionPage: spec.companionPage,
+              qr: edition.mode === "native"
+                ? measuredQrFromFile(spec.interior, spec.companionPage)
+                : measuredQr(full) },
             v, spineDone, spec.interior, spec.interior.replace(/\.pdf$/, ".pre-companion.pdf"));
           results.push({ label, manifest: m });
         } else {
@@ -451,7 +557,24 @@ for (const [bookSlug, book] of Object.entries(COMPANION_PAGE_PLAN)) {
 if (COMMIT) {
   const index = join(PACKAGES, "INDEX.json");
   mkdirSync(dirname(index), { recursive: true });
-  writeFileSync(index, `${JSON.stringify({ generatedAt: new Date().toISOString().slice(0, 10), editions: results.map((r) => r.manifest).filter(Boolean) }, null, 2)}\n`);
+  // MERGE, never replace. A --slug run processes one edition, and writing only
+  // that one used to delete every other edition in the index: 19 editions
+  // became 1, twice, from two different sessions. Entries this run rebuilt win;
+  // everything else is carried through untouched.
+  const key = (m) => `${m?.book}/${m?.format}`;
+  const kept = new Map();
+  if (existsSync(index)) {
+    try {
+      const prev = JSON.parse(readFileSync(index, "utf8"));
+      for (const m of prev.editions ?? []) if (m?.book && m?.format) kept.set(key(m), m);
+    } catch (err) {
+      console.error(`WARN  ${index} is unreadable (${err.message}); it will be rewritten from this run alone.`);
+    }
+  }
+  for (const r of results) if (r.manifest) kept.set(key(r.manifest), r.manifest);
+  const editions = [...kept.values()].sort((a, b) =>
+    a.book === b.book ? a.format.localeCompare(b.format) : a.book.localeCompare(b.book));
+  writeFileSync(index, `${JSON.stringify({ generatedAt: new Date().toISOString().slice(0, 10), editions }, null, 2)}\n`);
 }
 console.log(`\n${results.length} edition(s) processed, ${failures} failure(s).`);
 process.exit(failures ? 1 : 0);

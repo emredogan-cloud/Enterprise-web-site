@@ -1,6 +1,6 @@
 # The Great Book of World Games — large_print — KDP upload package
 
-**Generated:** 2026-09-03 · **ASIN:** — (not listed) · **KDP state:** in_review
+**Generated:** 2026-09-04 · **ASIN:** — (not listed) · **KDP state:** in_review
 
 ## HOLD — do not upload yet
 
@@ -10,13 +10,13 @@ The file below is finished and verified. It waits on the calendar, not on work.
 
 ## What changed
 
-A dedicated companion page now stands on page **233**: a QR occupying NaN % of the usable page height, the address `valicepress.com/companion/world-games` printed beneath it in display type, and a named list of what is waiting there. It is a new leaf; nothing was removed.
+A dedicated companion page now stands on page **233**: a QR occupying a measured share of the page, the address `valicepress.com/companion/world-games` printed beneath it in display type, and a named list of what is waiting there. It is a new leaf; nothing was removed.
 
 - **Pages:** 232 → **233**
 - **Spine:** 0.5225 in → **0.5247 in** (white paper, 8.5×11 in)
 - **Wrap width:** 17.7725 in → **17.7747 in**
 - **Cover:** REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block
-- **Proof:** recommended — the block changed thickness
+- **Proof:** recommended — the block changed thickness, so the wrap is new and unproved
 
 ## The file
 

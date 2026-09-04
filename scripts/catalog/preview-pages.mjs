@@ -123,6 +123,15 @@ export const PREVIEW_PAGES = [
     note: "Two discourses with their head-notes — the apparatus and the text on the same page, which is what the edition is for.",
   },
   {
+    slug: "myths-and-legends-of-china",
+    source: `${BUILT}/myths-and-legends-of-china.pdf`,
+    // The chapter that makes the book's argument: the Ministry of Thunder, with
+    // the editor's chapter introduction above it saying what to watch for, and
+    // then Werner at full length.
+    pages: [40, 43],
+    note: "The Ministry of Thunder, opening with the editor's chapter introduction — the apparatus and the text on the same spread, which is what the edition is for.",
+  },
+  {
     slug: "seneca-selected-dialogues",
     source: `${BUILT}/seneca-selected-dialogues.pdf`,
     // On Peace of Mind opens with Serenus diagnosing himself and Seneca

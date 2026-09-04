@@ -47,7 +47,10 @@ export type NewsletterSource =
   | "myth-hunters-companion"
   // Phase 1 of the public-domain factory (2026-09-04).
   | "epictetus-companion"
-  | "seneca-companion";
+  | "seneca-companion"
+  // Valice Script 2 (2026-09-04).
+  | "greek-companion"
+  | "china-gods-companion";
 
 /** The subset of sources a printed-book companion page may carry. */
 export type CompanionNewsletterSource = Extract<

@@ -685,9 +685,9 @@ export const BOOKS = [
     directSaleBlockedBy: null,
     paddlePriceId: null,
     onelinePromise:
-      "Thirty lessons that take an adult from nothing to writing all 24 Greek letters, in both the modern and the classical forms, with a sourced stroke order for each.",
+      "Thirty-two lessons that take an adult from nothing to writing all 24 Greek letters, in both the modern and the classical forms, with a sourced stroke order for each.",
     description:
-      "A 100-page handwriting workbook for adult English speakers learning to write Greek — the forms you will meet in Athens today and the ones you will meet in a Loeb. Thirty lessons cover all 24 letters in both cases, the final sigma, four historical variants and every accent in both the monotonic and the polytonic systems, through 53 numbered stroke diagrams. Each lesson is a spread: the left page shows the letter with a start dot and a numbered arrow for every stroke, then a strip of the same letter one stroke at a time; the right page is ruled practice that moves trace \u2192 dot-start \u2192 free and finishes on a real Greek word. Every letter also carries what it sounds like now and what it sounded like in the fifth century BC. A provenance page states plainly that Greek has no official stroke-order standard, cites the study of 756 schoolchildren that recorded up to thirty-one ways of writing one letter, and labels every sequence in the book with where it came from.",
+      "A 100-page handwriting workbook for adult English speakers learning to write Greek — the forms you will meet in Athens today and the ones you will meet in a Loeb. Thirty-two lessons cover all 24 letters in both cases, the final sigma, three variant letterforms a reader meets in print and the lunate sigma they meet on stone, and every accent in both the monotonic and the polytonic systems \u2014 53 numbered stroke diagrams in all. Each lesson is a spread: the left page shows the letter with a start dot and a numbered arrow for every stroke, then a strip of the same letter one stroke at a time; the right page is ruled practice that moves trace \u2192 dot-start \u2192 free and finishes on a real Greek word. Every letter also carries what it sounds like now and what it sounded like in the fifth century BC. A provenance page states plainly that Greek has no official stroke-order standard, cites the study of 756 schoolchildren that recorded up to thirty-one ways of writing one letter, and labels every sequence in the book with where it came from.",
     idealReader:
       "An adult beginner who wants to write Greek by hand before speaking it \u2014 for Modern Greek, for reading Attic or Koine, or because the names on the mythology shelf are worth reading in their own alphabet \u2014 and who would rather be told that a stroke order is recommended than be told to trust it.",
     formats: [
@@ -1024,9 +1024,9 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "Gate 2 is prepared and unsigned. RIGHTS.md is written and ledger rows RL-0028\u2013RL-0032 exist, all YELLOW pending the Founder's signature. Nothing about the rights is in doubt \u2014 Long died in 1879 and the work is ancient \u2014 but the signature is what clears the gate, and the book stays draft until it exists.",
+      "Gates 7 (cover) and 8 (interior/proof) are unsigned, so the paperback list price is proposed rather than decided. Gates 2 (rights), 4 (content), 5 (facts) and 9 (metadata) are signed.",
       "No Paddle product or price exists. provision-paddle.mjs has not been run for this slug; paddlePriceId is null and the ebook is coming_soon rather than available.",
-      "The digital edition master has not been uploaded to R2, so masterFileKey and epubFileKey are null. Nothing on the page claims a download.",
+      "No Kindle edition and no hardcover or large print are planned at launch; each decision is recorded below rather than assumed.",
       "No Kindle edition planned at launch: KDP caps public-domain content at the 35% royalty tier and the Kindle store already carries several free Epictetus editions. It is a discovery channel, not a revenue one, and the decision is recorded rather than assumed.",
       "No hardcover and no large print. 176 pages qualifies for KDP hardcover (75\u2013550), but a hardcover on an unproven public-domain title competes with established hardback classics series at a price this edition has not earned. Large print would push 176 pages to roughly 330 and the list to about $22.99 with no evidence of demand. Both are deferred until the paperback has sold; the reasons are written down so the decision can be revisited rather than re-derived.",
     ],
@@ -1091,12 +1091,85 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "Gate 2 is prepared and unsigned. Ledger rows RL-0033\u2013RL-0039 exist and rights-lint passes; the signature is what clears the gate.",
+      "Gates 7 (cover) and 8 (interior/proof) are unsigned, so the paperback list price is proposed rather than decided. Gates 2 (rights), 4 (content), 5 (facts) and 9 (metadata) are signed.",
       "No Paddle product or price exists. paddlePriceId is null and the ebook is coming_soon.",
-      "The digital-edition master has not been uploaded to R2, so masterFileKey and epubFileKey are null. Nothing on the page claims a download.",
+      "Volume-mate note: this edition and the Epictetus volume share a translator-era and a price band; neither has market evidence yet, so Gate 1 is open for both.",
       "No Kindle edition planned at launch: KDP caps public-domain content at 35% and free Seneca editions already saturate the Kindle store.",
-      "No hardcover and no large print. 156 pages qualifies for KDP hardcover, but a hardcover on an unproven public-domain title competes with Penguin and Everyman hardbacks at a price this edition has not earned. Large print would take 156 pages to roughly 290 and the list to about $21.99 with no demand evidence. Both deferred, with the reasons recorded so the decision can be revisited.",
-      "Five of twelve claims are PENDING at Gate 5 \u2014 the Acts identification of Gallio, the Tacitus death scene, the Dio fortune figure, the Paul forgery, and the count of the tragedies. Each is hedged in the text and each has a written fallback.",
+      "No hardcover and no large print. 154 pages qualifies for KDP hardcover, but a hardcover on an unproven public-domain title competes with Penguin and Everyman hardbacks at a price this edition has not earned. Large print would take 154 pages to roughly 285 and the list to about $21.99 with no demand evidence. Both deferred, with the reasons recorded so the decision can be revisited.",
+      "Gate 5 is signed and all twelve claims are VERIFIED. The five that were PENDING were resolved by cutting or hedging: Gallio was confirmed at Acts 18:12 and in the source text itself, the Dio fortune figure and the Jerome attribution were cut, the nine-tragedies count was removed, and the cognitive-therapy resemblance was softened.",
+    ],
+  },
+
+  {
+    slug: "myths-and-legends-of-china",
+    title: "Myths and Legends of China",
+    subtitle:
+      "Volume One: The Gods \u2014 8 Chapters Complete in the 1922 Text, Annotated, with a Register of the 9 Celestial Ministries, a Glossary of 25 Figures with Verified Chapter References and a Chronology",
+    language: "en",
+    pageCount: 108,
+    categories: ["myth-and-folklore", "classics-and-philosophy"],
+    authors: ["emre-dogan"],
+    bisac: ["SOC011000", "REL114000"],
+    series: { name: "Valice Classics", volume: 5 },
+    // SPLIT, DELIBERATELY. Werner's twelve narrative chapters measured 13.3%
+    // original matter against a 20% floor, and the gap could only be closed by
+    // padding \u2014 which the constitution forbids \u2014 or by choosing a smaller
+    // subject. The eight chapters here are the ones in which Werner sets out the
+    // divine order; the four long legend cycles (Kuan Yin, the Guardian, Monkey,
+    // the fox-spirits) are 31,744 words and become volume two. This volume
+    // measures 22.1%, above the floor with real margin and without a padded
+    // sentence in it.
+    // It stays "draft" for the same single reason as Epictetus and Seneca: no
+    // Paddle price exists, because the only Paddle key in this environment is a
+    // SANDBOX key that returns 403 on every endpoint. FOUNDER F-004.
+    websiteStatus: "draft",
+    linkageDecision: { decision: "house_pipeline", why: "The companion leaf is appended by scripts/factory/build-companion-pages.mjs \u2014 the house tool \u2014 not by this book\u2019s typesetter. The interior is built deliberately ODD (107 pp) so the appended leaf makes the final count even, as KDP requires." },
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy:
+      "No Paddle price exists. The only Paddle key in this environment is a sandbox key returning 403 on every endpoint, including read-only listing, so no product or price can be created. FOUNDER F-004.",
+    paddlePriceId: null,
+    onelinePromise:
+      "The Chinese gods do not rule \u2014 they are posted, promoted and demoted. Eight chapters of Werner\u2019s 1922 classic, with the celestial civil service mapped from his own text.",
+    description:
+      "Thunder is a ministry. So are the waters, fire, epidemics, medicine and exorcism, each with a president, a staff and a jurisdiction; a dragon-king can be taken to court and usually loses. E. T. C. Werner spent thirty-three years as a British consul in China, retired to Peking and stayed, and he translated these myths from Chinese sources rather than from other Europeans. This first volume prints the eight chapters in which he sets out that divine order \u2014 the creation of the world from P\u2019an Ku\u2019s body, the archer who shot down nine of the ten suns, the ministries of the natural world, the Eight Immortals, and a war in heaven \u2014 complete and unaltered. The four long legend cycles (Kuan Yin, the Guardian of the Gate of Heaven, Monkey and the fox-spirits) are held for volume two, and the book says so on its first page rather than on its last. Around the text: an introduction, an introduction to each chapter, a register of the nine celestial ministries assembled from the printed chapters because Werner\u2019s own catalogue of them is not in this selection, a glossary of twenty-five figures whose chapter references were produced by searching the text, a note on the Wade-Giles romanisation, a chronology and an index of subjects. The 1922 colour plates are not reproduced: no source names their artist, so they cannot be cleared. 108 pages, 6 \u00d7 9 in.",
+    idealReader:
+      "Someone who knows Greek or Norse myth and wants the Chinese material from a man who read the sources \u2014 with enough apparatus to keep several hundred Wade-Giles names straight.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(9.99),
+        pageCount: 108,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: "books/myths-and-legends-of-china/master/v1/master.pdf",
+        epubFileKey: "books/myths-and-legends-of-china/master/v1/master.epub",
+        priceBasis:
+          "price-engine.mjs 2026-09-04, direct ebook: $9.99 nets $8.99 after Paddle (90%). The Valice Classics bible allows $7.99\u20139.99 for the minimum apparatus standard and $12.99 for premium; this edition measures 22.1% original matter (QA/differentiation.json) \u2014 above the 20% floor but short of the 35% premium tier \u2014 so $9.99, the same as the other Classics.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(13.99),
+        pageCount: 108,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-04, 108 pp 6\u00d79 B&W public domain: prints at $2.30 (flat rate under 110 pp), KDP minimum list $3.84, recommended list $9.99. Proposed at $13.99, which nets $6.09 (43.6%). Deliberately below the $16.99 proposed for Epictetus: this is a 108-page book against a 176-page one, and pricing it level would be charging the same for less. The Founder decides at Gate 8.",
+      },
+    ],
+    blockers: [
+      "No Paddle product or price exists, so the ebook is coming_soon rather than available and websiteStatus is draft. This is the one dependency between this book and a working Buy button.",
+      "Gate 8 (interior) and Gate 7 (cover) are unsigned: the paperback list price is proposed, not decided, and the Founder signs the price.",
+      "No Kindle edition planned at launch. KDP caps public-domain content at the 35% royalty tier and the Kindle store already carries free Werner editions; it is a discovery channel rather than a revenue one, and the decision is recorded rather than assumed.",
+      "No hardcover and no large print. At 108 pages a hardcover is not offered by KDP below 75 pages but would compete with established mythology hardbacks at a price this edition has not earned; large print would roughly double the extent with no demand evidence. Both deferred with the reason recorded.",
+      "Volume two (Kuan Yin, the Guardian of the Gate of Heaven, Monkey, Fox Legends \u2014 31,744 words) is scoped and unbuilt. The apparatus of this volume refers to it as forthcoming, which is a promise this house has to keep.",
     ],
   },
 

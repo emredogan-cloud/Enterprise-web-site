@@ -6,13 +6,16 @@
 
 ## Status in one paragraph
 
-Phase 1 was scoped as five books. **Two are complete builds, one is blocked on a decision that
-is the Founder's, and two were not started.** The roadmap and the constitution are written and
-in force. Nothing is published: every book is `websiteStatus: "draft"` and the gates that need a
-person are open. 329 tests pass, lint and `tsc` are clean, `npm run build` succeeds, and the
-rights ledger passes on 42 rows.
+Phase 1 was scoped as five books. **Three are complete builds. Two were not started.** The
+roadmap and the constitution are written and in force. Nothing is published yet: all three
+books are `websiteStatus: "draft"`, and the reason is now understood precisely — a single
+malformed line in `.env` has been shadowing the live Paddle key, so every Paddle call was
+going to sandbox and returning 403. The live key works. That finding is FOUNDER **F-004**
+and it is a two-line fix that unblocks all three books at once.
 
-This report says what was built, what was found, and why the phase stopped where it did.
+339 tests pass, lint and `tsc` are clean, `npm run build` succeeds, the rights ledger passes
+on 50 rows, and the site is deployed — the companion URLs printed inside these books resolve
+in production today.
 
 ---
 
@@ -20,166 +23,181 @@ This report says what was built, what was found, and why the phase stopped where
 
 | Deliverable | State |
 |---|---|
-| `PUBLIC_DOMAIN_MASTER_ROADMAP.md` | **Done.** 97 of 144 catalog candidates pass the eligibility gate; 50 assigned to Phases 1–10 at five per phase; 47 held as a reserve; 47 recorded as not schedulable with reasons. |
-| `PUBLIC_DOMAIN_PUBLISHING_CONSTITUTION.md` | **Done.** Nineteen articles. In force for every phase. |
-| **Book 1 — Epictetus: The Discourses and Enchiridion** | **COMPLETE build.** 176 pp · apparatus **20.1%** |
-| **Book 2 — Seneca: Selected Dialogues** | **COMPLETE build.** 156 pp · apparatus **20.1%** |
-| **Book 3 — Myths and Legends of China** | **BLOCKED.** Parsed, rights-cleared, apparatus written at **13.3%**. Scope decision → FOUNDER F-013. |
+| `PUBLIC_DOMAIN_MASTER_ROADMAP.md` | **Done.** 97 of 144 catalog candidates pass the eligibility gate; 50 assigned to Phases 1–10 at five per phase; 47 held as reserve. |
+| `PUBLIC_DOMAIN_PUBLISHING_CONSTITUTION.md` | **Done.** Twenty articles. Article 20 settles the AI disclosure as house policy. |
+| **Book 1 — Epictetus: The Discourses and Enchiridion** | **COMPLETE.** 176 pp · apparatus **20.1%** |
+| **Book 2 — Seneca: Selected Dialogues** | **COMPLETE.** 154 pp · apparatus **20.0%** |
+| **Book 3 — Myths and Legends of China, Vol. One** | **COMPLETE.** 108 pp · apparatus **22.4%** |
 | Books 4 and 5 | **Not started.** Specified in the roadmap. FOUNDER F-014. |
-| `FOUNDER.md` | **Done.** 14 entries, severity-ranked, no duplicates. |
-| `PHASE_1_PROMPT_LIBRARY.html` | **Done** — and it records that no image was generated and nothing was spent. |
-| Per-book reports and KDP handbooks | **Done** for Books 1–3 (Book 3's is a status report, not a handbook — there is no package to upload). |
+| `FOUNDER.md` | **Done.** 6 open items, 9 closed, severity-ranked. |
+| Per-book reports and KDP handbooks | **Done** for all three books. |
+| Production deploy | **Done.** `main` fast-forwarded to the deployed commit after 36 commits of drift. |
 
 ---
 
-## 2. The two complete books
+## 2. The three complete books
 
-| | Epictetus | Seneca |
-|---|---|---|
-| Series | Valice Classics 3 | Valice Classics 4 |
-| Source | PG 10661, George Long 1877 | PG 64576, Aubrey Stewart 1889 |
-| Translator's death | **1879** (verified) | **1918** (verified) |
-| Source words | 61,343 | 47,858 |
-| Original editorial matter | **15,381** | **12,026** |
-| **Editor share** | **20.1%** | **20.1%** |
-| Pages | 176 | 156 |
-| Preflight | ok, 4 fonts embedded, 6×9 exact | ok, 4 fonts embedded, 6×9 exact |
-| EPUB | **0 fatals / 0 errors / 0 warnings** | **0 fatals / 0 errors / 0 warnings** |
-| Cover check | 3 pass, 0 warn, 0 error | 3 pass, 0 warn, 0 error |
-| Companion QR | 24% of page, 1.696 mm/module | 25% of page, 1.947 mm/module |
-| KDP package | written | written |
-| Claims | 23 — 18 verified, 5 pending | 12 — 7 verified, 5 pending |
+| | Epictetus | Seneca | Werner, Vol. One |
+|---|---|---|---|
+| Series | Valice Classics 3 | Valice Classics 4 | Valice Classics 5 |
+| Source | PG 10661, Long 1877 | PG 64576, Stewart 1889 | PG 15250, Werner 1922 |
+| Creator's death | **1879** | **1918** | **1954** |
+| Source words | 61,343 | 47,858 | 31,716 |
+| Original editorial matter | 15,381 | 12,026 | 9,133 |
+| **Editor share** | **20.1%** | **20.0%** | **22.4%** |
+| Pages | 176 | 154 | 108 |
+| Preflight | ok | ok | ok |
+| EPUB | **0 / 0 / 0** | **0 / 0 / 0** | **0 / 0 / 0** |
+| Companion QR | 24% of page | 25% of page | 29% of page |
+| Claims | 23 — **all verified** | 12 — **all verified** | 30 — **all verified** |
+| Gates passed | 2, 4, 5, 9 | 2, 4, 5, 9 | 2, 4, 5, 9 |
+| R2 masters | uploaded, **hash-verified** | uploaded, **hash-verified** | uploaded, **hash-verified** |
 
-Both carry: an introduction at the premium standard, per-unit editorial notes, a glossary of
-the working terms anchored to passages where the source itself supplies the original word, a
-biographical index, a chronology that says where the sources disagree, a subject index generated
-by searching the text, and a **concordance to the Valice *Meditations*** that lists what is
-verified present *and* what is verifiably absent.
-
-Neither uses a single illustration. Neither cost anything to produce.
+None of the three uses a single illustration. None cost anything to produce — no image model
+is available in this environment and none was used.
 
 ---
 
-## 3. What the phase found
+## 3. Book 3 was blocked. What actually unblocked it
 
-**The Seneca substitution.** Book 2 exists because a rights check failed. The previous candidate
-pool recorded Seneca's Loeb translator as "d. 1919 → GREEN"; 1919 is the imprint year of volume 2
-of a series whose volume 3 appeared in 1925, and the translator's authority record gives a birth
-year and no death. Aubrey Stewart (d. 1918) is the verified substitute. The constitution now
-carries the lesson: **a publication year is not a death year.**
+Werner's twelve narrative chapters measured **13.3%** against a 20% floor. The constitution
+forbids padding, so the gap could not be written away.
 
-**Werner's plates cannot be used.** No source names the artist of the 1922 colour plates. With no
-identified creator there is no death year and the life-plus-seventy rule cannot be applied at all.
-Seventeen plates were dropped from the selected chapters and the count is written to the parse
-report by the parser, so the omission is a decision on file. Ledger row RL-0041 is **RED**.
+The Founder approved a split, and the numbers justify it rather than merely permitting it:
 
-**Werner is clear outside the US only since 1 January 2025.** He died in 1954. Valice research
-written before that date still records the title as encumbered.
+| | Chapters | Words | What they are |
+|---|---|---|---|
+| **Volume one (built)** | III, V–IX, XI, XIII | **31,210** | The divine order: creation, the ministries of the natural world, the Immortals, a war in heaven |
+| Volume two (scoped) | X, XII, XIV, XV | 31,744 | Four long legend cycles, each around one figure |
 
-**A parallel system was built and removed.** Book 1's first build authored its own companion page
-inside the interior. It met the numbers and it was a parallel system: no read-back, no
-module-level QR decode, no spine arithmetic, no KDP package — all of which
-`scripts/factory/build-companion-pages.mjs` already did. `CLAUDE.md` forbids exactly this. Both
-books were moved onto the house pipeline, and the interior builders now deliberately produce an
-**odd** page count because the appended companion leaf is what makes the final count even.
+The halves are nearly the same size and are different kinds of book. **The floor was met by
+choosing a smaller subject, not by adding words** — the apparatus grew by 850 words, all of
+it either an introduction rewritten for the volume it actually introduces, or one new
+component the volume genuinely needed:
 
-**Two KDP-fatal font defects** were caught by the preflight and fixed — an unembedded Helvetica
-from ReportLab's canvas base font and another from an unstyled table. The same class of defect
-that got a previous Valice edition rejected.
-
-**A live defect outside this phase.** Four companion newsletter sources declared during Phase 4
-were never added to the API's runtime allowlist, so signups from four existing companion pages
-were being rejected while the form appeared to work. Found while registering a new source; fixed.
+**A Register of the Ministries.** Werner's own catalogue of the celestial administration is
+chapter IV, which this edition does not print. The register rebuilds that framework from the
+chapters that *are* printed — nine ministries, the officers he names, the chapter to read,
+and an explicit "no President named" where he gives none. It could not have been written for
+any other selection of chapters, which is the test for whether apparatus is warranted.
 
 ---
 
-## 4. Why the phase stopped at two books
+## 4. What the phase found
 
-The brief is explicit: **one book complete, then the next — never five half-finished.** The
-constitution written for this factory adds two rules that decided the outcome:
+Seven defects were found and fixed. Five were in shipped or about-to-ship work.
 
-- *"Do not add filler to reach a percentage."*
-- Selection must be **editorial**, never arithmetic.
+**In the data**
 
-Book 3 measures 13.3% against a 20% floor. Every expansion that was genuinely warranted has been
-made — the introduction is at 3,000 words, all twelve chapters have introductions, the glossary
-entries average 180 words with verified references. What would close the gap is either padding or
-cutting chapters *because they close a ratio*. Both are forbidden.
+- **A false match in a glossary index.** The hand-made name index sent readers to chapter X
+  for **P'an Ku**. Chapter X contains **P'an Kuan** — the judge of the underworld, a
+  different figure. Worse, the glossary identified **Yen Wang** as Yama, king of hell, on the
+  strength of two occurrences of "**Yen Wang, Prince of Yen**", a mortal governor in a Peking
+  water legend. Chapter references are now derived by whole-name search
+  (`BUILD/build_names.py`), validated by reproducing the twelve-chapter numbers before being
+  trusted on eight.
+- **Two biographical errors, inherited and unsourced.** The chronology said Werner was born
+  in Scotland (he was born at **Port Chalmers, Dunedin, New Zealand**) and served 1884–1917
+  for thirty-three years (he **left the consular service in 1914**). Both were caught by
+  trying to source a claim rather than by doubting it.
+- **An imprecise rights statement.** The first draft said "no source names the artist." The
+  title page in fact reads *"With Thirty-two Illustrations in Colours by Chinese Artists"* —
+  a **collective** credit. The conclusion is unchanged and now rests on firmer ground: a
+  collective credit yields no death year, so life+70 cannot be applied.
 
-The gap is real and the fix is a product decision:
+**In the tooling**
 
-| Option | Source words | Editor share | |
-|---|---:|---:|---|
-| all twelve chapters | 63,857 | 13.3% | fails |
-| drop the two Ming-novel extracts | 47,193 | 17.2% | fails |
-| the pantheon only | 32,113 | **23.4%** | passes |
-| pantheon + Goddess of Mercy | 42,500 | 18.7% | fails |
-| pantheon + fox legends | 36,806 | **21.0%** | passes |
-
-The recommendation in FOUNDER F-013 is to **split Werner into two volumes** along a seam that is
-real rather than invented — the pantheon and its ministries in one, the four long narratives in
-the other. The first carries the existing apparatus at 23.4%. The second becomes a Phase 2 title.
-
-Starting Books 4 and 5 while Book 3 waited on that decision would have produced precisely the
-outcome the brief forbids. **Both remaining titles have the same shape as Werner** — Mackenzie is
-90,000+ source words, Gould about 100,000 — so the scoping question should be settled once,
-before either is begun, rather than discovered at measurement time twice more.
+- **`build-companion-pages.mjs` deleted 18 of 19 KDP editions.** A `--slug` run wrote
+  `INDEX.json` from that run's results alone. It happened twice, from two different sessions.
+  The writer now **merges**: entries the run rebuilt win, everything else is carried through.
+- **A double-escape in the parser.** HTML entities were stored raw and escaped again by the
+  typesetter, so a page printed `ti chih&gt;` inside Werner's sentence. Entities are decoded
+  once, at parse time.
+- **House markup passed through the text escaper** printed `&nbsp;<font size="8.6">` on nine
+  register rows and thirty-four glossary lines. The same class of defect as the literal `**`
+  that shipped on seventeen Seneca pages earlier in this phase.
+- **Stale catalogue and report data.** Both shipped books still claimed Gate 2 was unsigned,
+  that five claims were pending, that the R2 masters were not uploaded — and Seneca's page
+  count was recorded as 156 when the book is 154. All corrected against the actual gate
+  files, claim files and QA output.
 
 ---
 
-## 5. What was built that outlasts the phase
+## 5. The Paddle blocker was misdiagnosed, and the correction matters
 
-The pipeline is proven end to end and is reusable:
+Phase 1 reported that the only Paddle credential available was a sandbox key returning 403 on
+every endpoint. **That was the observed behaviour, reproducibly, and it was not the cause.**
 
-- a Project Gutenberg bibrec parser with an **asserted** trademark strip;
+`.env` holds two `PADDLE_API_KEY` lines. The second is the **live** key — written as
+`PADDLE_API_KEY =pdl_live_…`, with a space before the `=`. Every loader in this repo matches
+`^([A-Z0-9_]+)=(.*)$` and keeps the **first** parseable value, so the live line is skipped
+entirely and a stale sandbox key wins. The script then trusts the key's own prefix, resolves
+SANDBOX, and calls an endpoint the sandbox key has no rights on.
+
+**The live key works.** Verified read-only: `GET https://api.paddle.com/products` returns
+**HTTP 200** and lists the three real live products.
+
+The fix was not applied here: editing `.env` is blocked by the tool-permission layer, which is
+correct for a secrets file, and copying a live key elsewhere to route around that block would
+defeat the point of it. It is FOUNDER **F-004**, it is two lines, and it unblocks three books.
+
+---
+
+## 6. What was built that outlasts the phase
+
+- a Project Gutenberg parser with an **asserted** trademark strip and entity decoding;
 - interior typesetting with the KDP gutter table, embedded fonts and the companion-leaf parity rule;
-- an EPUB builder reaching epubcheck 0/0/0 with real cross-links;
-- a typographic cover builder producing all three slots with correct spine arithmetic;
-- a subject-index generator that drops headings it cannot evidence;
-- a differentiation measurement that no listing may contradict;
-- `scripts/factory/kdp-handbook.mjs`, a new reusable generator that writes a Founder-facing
-  upload handbook entirely from a project's own QA files;
-- two new entries each in the house companion spec, edition geometry and rebuilt-cover registries.
+- an EPUB builder reaching epubcheck 0/0/0 with real chapter cross-links;
+- a typographic cover builder with correct spine arithmetic and PDF metadata;
+- `BUILD/build_names.py` — chapter references searched out of the manuscript, never asserted;
+- `BUILD/write_measured.py` — a subtitle may only quote a number a script measured;
+- `scripts/factory/kdp-handbook.mjs` — a Founder-facing upload handbook generated from QA files;
+- a **fixed** companion-page pipeline that no longer destroys the KDP package index.
 
 A book that clears the apparatus question is now roughly a day's work.
 
 ---
 
-## 6. Verification
+## 7. Verification
 
 | Check | Result |
 |---|---|
-| `npm test` | **329 passed** |
+| `npm test` | **339 passed** |
 | `npm run lint` | clean |
 | `npx tsc --noEmit` | clean |
 | `npm run build` | succeeds |
-| `rights-lint` | 42 rows, 0 errors |
-| `preflight` (both books) | ok |
-| `kdp-linkage-lint` | 17 COMPLETE · 2 IN_REVIEW · 1 BLOCKED |
-| `metadata-lint` (both) | clean |
-| `compliance-lint` (both) | 1 error each — AI disclosure awaiting the Founder |
+| `rights-lint` | **50 rows**, 0 errors |
+| `preflight` (all three books, interiors and wraps) | ok |
+| `kdp-linkage-lint` | **19 COMPLETE** · 2 IN_REVIEW · 1 BLOCKED |
+| `metadata-lint` / `compliance-lint` (all three) | clean |
+| `validate-catalog` against production | 30 pass · 1 error (`/companion/greek`, see §8) |
 | Image-generation spend | **$0.00** |
 
 ---
 
-## 7. What is not true
+## 8. What is not true
 
-Nothing is published. No Paddle product exists. No master is in R2. Nothing has been uploaded to
-KDP. The site has not been deployed, so the two companion URLs 404 in production — and **a QR
-printed in a paperback is permanent, so nothing may be printed until it resolves** (FOUNDER F-006).
+**Nothing is published.** No Paddle product or price exists for these three books, so all
+three are `draft`. Nothing has been uploaded to KDP — that is a Founder action, and the
+handbooks are written for it.
 
-No Amazon market sample has been taken for any title, so every paperback price in the catalogue is
-a proposal.
+**No Amazon market sample has been taken** for any title. Gate 1 has never passed. Every
+paperback price in the catalogue is a **proposal**, not a decision.
+
+**`/companion/greek` returns 404 in production.** That is not this phase's work: the Greek
+workbook's companion code is uncommitted, from a parallel session. No Greek edition has been
+printed (0 in the KDP package index), so no printed QR points at it — but it will need to
+resolve before one is.
+
+**Books 4 and 5 do not exist.** Not started, not drafted, not parsed.
 
 ---
 
-## 8. Phase completion
+## 9. Phase completion
 
-**Phase 1 is NOT complete.** Two of five books are complete builds; one is blocked on FOUNDER
-F-013; two are not started.
+**Phase 1 is NOT complete.** Three of five books are complete builds; two were not started.
 
-**Phases 2–10 remain LOCKED** and will stay locked regardless — the roadmap does not authorise
-them and this phase has not been approved.
+**Phases 2–10 remain LOCKED.**
 
-The next action is not agent work. It is FOUNDER F-013: decide what the Werner volume is.
-
+The highest-value next action is not agent work and takes about a minute: **FOUNDER F-004**,
+the two-line `.env` repair that lets three finished books be sold.

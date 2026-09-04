@@ -1,7 +1,7 @@
 # BOOK 2 — Seneca: Selected Dialogues
 
 **Valice Classics 4 · Lane C · slug `seneca-selected-dialogues`**
-**Built 4 September 2026 · State: RESEARCH · Gates 2/12 passed · NOT PUBLISHED**
+**Built 4 September 2026 · State: RESEARCH · Gates 2, 4, 5, 9 passed · NOT PUBLISHED**
 
 > **This book exists because a rights check failed.** The 2026-09-03 research pass found that
 > the source the previous candidate pool had chosen for Seneca could not be cleared. This is
@@ -62,7 +62,7 @@ close the gaps.
 
 ## 4. Rights
 
-**Prepared and unsigned.** `RIGHTS.md` + ledger **RL-0033 … RL-0039**, all YELLOW pending the
+**Signed at Gate 2.** `RIGHTS.md` + ledger **RL-0033 … RL-0039**, formerly YELLOW pending the
 founder's signature. `rights-lint` passes on 38 rows.
 
 | Market | Rule | Result |
@@ -118,9 +118,9 @@ wealth, on Nero, and on slavery.
 
 | Artifact | Result |
 |---|---|
-| Print interior | **156 pp**, 6 × 9 in, gutter 0.5 in — preflight **ok**, 4 fonts all embedded |
+| Print interior | **154 pp**, 6 × 9 in, gutter 0.5 in — preflight **ok**, 4 fonts all embedded |
 | EPUB | 16 documents, 79 cross-link targets, **epubcheck 0 fatals / 0 errors / 0 warnings** |
-| Digital edition | 0.53 MB, 156 pp |
+| Digital edition | 0.53 MB, 154 pp |
 | Cover | front 2400×3600 sRGB · Kindle 1600×2560 · wrap 12.6013×9.25 in, spine **0.3513 in** |
 | Cover check | 3 pass, 0 warn, 0 error · title 25.5% of height |
 | Companion page | built by the **house pipeline**, p.156, QR **25% of page**, **1.947 mm/module** |
@@ -148,14 +148,14 @@ with the pipeline's own arithmetic to four decimal places.
 | Format | Decision | Basis |
 |---|---|---|
 | Direct ebook | **YES — $9.99** | nets $8.99 (90%). 20.1% apparatus is the floor, not premium, so the same price as the other three Classics. |
-| Paperback | **YES — $15.99 proposed** | 156 pp prints at $2.87; $15.99 nets $6.72 (42.0%). One dollar under the Epictetus paperback because the book is twenty pages shorter. **Founder decides at Gate 8.** |
+| Paperback | **YES — $15.99 proposed** | 154 pp prints at $2.85; $15.99 nets $6.72 (42.0%). One dollar under the Epictetus paperback because the book is twenty pages shorter. **Founder decides at Gate 8.** |
 | Hardcover | **NO** | Qualifies on page count, but competes with Penguin and Everyman hardbacks at a price this edition has not earned. |
-| Large print | **NO** | 156 pp re-set runs to roughly 290, list about $21.99, with no demand evidence. Deferred, with the reason recorded. |
+| Large print | **NO** | 154 pp re-set runs to roughly 285, list about $21.99, with no demand evidence. Deferred, with the reason recorded. |
 | Kindle | **NO at launch** | 35% cap on public domain, and free Seneca editions saturate the store. |
 
 ## 10. Facts
 
-`CLAIMS.jsonl`: **12 claims — 7 VERIFIED, 5 PENDING**, `claim-lint` clean with one warning.
+`CLAIMS.jsonl`: **12 claims — all 12 VERIFIED**, `claim-lint` clean. Gate 5 is signed; the five once-PENDING claims were resolved by verifying Gallio at Acts 18:12 and in the source text itself, and by cutting the Dio fortune figure, the Jerome attribution and the nine-tragedies count.
 The verified ones are evidenced from Long's own *Meditations* and from the project's own
 measurement files. The five pending are the Acts identification of Gallio, the Tacitus death
 scene, the Dio fortune figure, the Paul forgery, and the count of the tragedies — each hedged

@@ -1,13 +1,13 @@
 {
   "tool": "validate-catalog",
   "target": "https://valicepress.com",
-  "startedAt": "2026-09-03T11:11:10.782Z",
-  "finishedAt": "2026-09-03T11:11:51.143Z",
-  "ok": true,
+  "startedAt": "2026-09-04T14:05:46.792Z",
+  "finishedAt": "2026-09-04T14:06:32.854Z",
+  "ok": false,
   "counts": {
-    "pass": 28,
+    "pass": 29,
     "warn": 0,
-    "error": 0,
+    "error": 6,
     "skipped": 2
   },
   "findings": [
@@ -68,7 +68,7 @@
     {
       "level": "pass",
       "check": "sitemap",
-      "message": "41 URLs",
+      "message": "43 URLs",
       "where": null
     },
     {
@@ -169,8 +169,50 @@
     },
     {
       "level": "pass",
+      "check": "companion",
+      "message": "/companion/epictetus 200",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "companion",
+      "message": "/companion/seneca 200",
+      "where": null
+    },
+    {
+      "level": "error",
+      "check": "companion",
+      "message": "https://valicepress.com/companion/greek → 404",
+      "where": "greek"
+    },
+    {
+      "level": "error",
+      "check": "companion",
+      "message": "https://valicepress.com/companion/china-gods → 404",
+      "where": "china-gods"
+    },
+    {
+      "level": "error",
       "check": "companion-asset",
-      "message": "22 companion assets answer 200",
+      "message": "/companion/china-gods/ministries.pdf → 404",
+      "where": null
+    },
+    {
+      "level": "error",
+      "check": "companion-asset",
+      "message": "/companion/china-gods/who-is-who.pdf → 404",
+      "where": null
+    },
+    {
+      "level": "error",
+      "check": "companion-asset",
+      "message": "/companion/china-gods/reading-paths.pdf → 404",
+      "where": null
+    },
+    {
+      "level": "error",
+      "check": "companion-asset",
+      "message": "/companion/china-gods/the-names.pdf → 404",
       "where": null
     },
     {

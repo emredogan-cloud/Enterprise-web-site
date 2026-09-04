@@ -90,6 +90,8 @@ const SOURCES = new Set([
   "myth-hunters-companion",
   "epictetus-companion",
   "seneca-companion",
+  "greek-companion",
+  "china-gods-companion",
 ]);
 
 /**

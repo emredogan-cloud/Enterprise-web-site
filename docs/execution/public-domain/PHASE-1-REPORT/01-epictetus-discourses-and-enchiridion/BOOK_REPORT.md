@@ -1,7 +1,7 @@
 # BOOK 1 — Epictetus: The Discourses and Enchiridion
 
 **Valice Classics 3 · Lane C · slug `epictetus-discourses-and-enchiridion`**
-**Built 4 September 2026 · State: RESEARCH · Gates 2/12 passed · NOT PUBLISHED**
+**Built 4 September 2026 · State: RESEARCH · Gates 2, 4, 5, 9 passed · NOT PUBLISHED**
 
 > Status in one line: **built, validated end to end, and staged.** Every file exists and
 > every automated check passes. It is not on sale, and the reasons are gates that need a
@@ -34,7 +34,7 @@ The parser searches its own output for `project gutenberg`, `gutenberg.org`, `pg
 
 ## 3. Rights
 
-**Prepared and unsigned.** `RIGHTS.md` + ledger rows **RL-0028 … RL-0032**, all YELLOW
+**Signed at Gate 2.** `RIGHTS.md` + ledger rows **RL-0028 … RL-0032**, formerly YELLOW
 pending the founder's signature. `rights-lint.mjs` passes on 31 ledger rows.
 
 | Layer | Creator | Death | US | EU / UK / TR |
@@ -112,7 +112,7 @@ at *Enchiridion* 40 says plainly what is wrong with the argument there.
 
 ## 7. Facts
 
-`CLAIMS.jsonl`: **23 claims — 18 VERIFIED, 5 PENDING.** `claim-lint` passes (1 warning: 5
+`CLAIMS.jsonl`: **23 claims — all 23 VERIFIED.** Gate 5 is signed. `claim-lint` passes (the 5 once-PENDING claims were resolved by verifying, hedging or cutting: 5
 pending). Sixteen of the eighteen verified claims are evidenced from **Long's own
 introduction to his Meditations**, a source the reader can go and read. The five pending
 are hedged in the text and each carries a stated fallback if Gate 5 cannot confirm it.

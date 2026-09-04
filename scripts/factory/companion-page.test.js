@@ -124,7 +124,9 @@ describeBooks("the printed companion pages", () => {
   for (const row of rows) {
     const file = PRINT_INTERIORS[row.bookSlug]?.[row.format];
     const label = `${row.bookSlug}/${row.format}`;
-    const page = row.mode === "replace" ? row.page : row.pagesBefore + 1;
+    // `native` and `replace` both name the page outright; `append` puts the
+    // leaf one past the old last page.
+    const page = row.mode === "append" ? row.pagesBefore + 1 : row.page;
 
     it(`${label}: the interior is the page count the plan produced`, () => {
       expect(existsSync(file), file).toBe(true);
@@ -168,7 +170,14 @@ describeBooks("the KDP upload packages", () => {
     it(`${row.bookSlug}/${row.format}: never tells the Founder to reuse a wrap that no longer fits`, () => {
       const manifest = JSON.parse(readFileSync(join(dir, "manifest.json"), "utf8"));
       const upload = readFileSync(join(dir, "UPLOAD.md"), "utf8");
-      if (manifest.spine.coverRebuildCorrect) {
+      if (manifest.kdpState === "not_created") {
+        // Nothing is at KDP to reuse or to leave alone. Telling the Founder
+        // "do not touch the cover" here would be telling them not to upload
+        // one, which is how a paperback goes live with no cover at all.
+        expect(upload).not.toContain("Do not touch the cover");
+        expect(upload).toContain("there is no cover at KDP yet");
+        expect(upload).toContain("Do not use Cover Creator");
+      } else if (manifest.spine.coverRebuildCorrect) {
         expect(upload).not.toContain("Do not touch the cover");
         // Either a rebuilt wrap is named, or the reason there is none is given.
         expect(manifest.cover?.built === true || typeof manifest.cover?.reason === "string" ).toBe(true);

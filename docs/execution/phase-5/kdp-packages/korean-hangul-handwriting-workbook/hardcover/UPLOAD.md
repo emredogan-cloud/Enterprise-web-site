@@ -1,6 +1,6 @@
 # Korean Hangul Handwriting Workbook — hardcover — KDP upload package
 
-**Generated:** 2026-09-03 · **ASIN:** — (not listed) · **KDP state:** in_review
+**Generated:** 2026-09-04 · **ASIN:** — (not listed) · **KDP state:** in_review
 
 ## HOLD — do not upload yet
 
@@ -10,13 +10,13 @@ The file below is finished and verified. It waits on the calendar, not on work.
 
 ## What changed
 
-A dedicated companion page now stands on page **125**: a QR occupying NaN % of the usable page height, the address `valicepress.com/companion/hangul` printed beneath it in display type, and a named list of what is waiting there. It replaces the grey box at the foot of p.122, which was the fourth thing on that page.
+A dedicated companion page now stands on page **125**: a QR occupying a measured share of the page, the address `valicepress.com/companion/hangul` printed beneath it in display type, and a named list of what is waiting there. It replaces the grey box at the foot of p.122, which was the fourth thing on that page.
 
 - **Pages:** 124 → **126**
 - **Spine:** 0.2792 in → **0.2838 in** (white paper, 8.25×11 in)
 - **Wrap width:** 17.0292 in → **17.0338 in**
 - **Cover:** REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block
-- **Proof:** recommended — the block changed thickness
+- **Proof:** recommended — the block changed thickness, so the wrap is new and unproved
 
 ## The file
 

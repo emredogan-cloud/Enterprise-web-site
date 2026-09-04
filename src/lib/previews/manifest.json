@@ -234,5 +234,26 @@
         "page": 48
       }
     ]
+  },
+  "myths-and-legends-of-china": {
+    "note": "The Ministry of Thunder, opening with the editor's chapter introduction — the apparatus and the text on the same spread, which is what the edition is for.",
+    "pages": [
+      {
+        "src": "/images/previews/myths-and-legends-of-china/p40.webp",
+        "page": 40
+      },
+      {
+        "src": "/images/previews/myths-and-legends-of-china/p41.webp",
+        "page": 41
+      },
+      {
+        "src": "/images/previews/myths-and-legends-of-china/p42.webp",
+        "page": 42
+      },
+      {
+        "src": "/images/previews/myths-and-legends-of-china/p43.webp",
+        "page": 43
+      }
+    ]
   }
 }

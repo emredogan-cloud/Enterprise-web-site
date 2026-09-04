@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03",
+  "generatedAt": "2026-09-04",
   "book": "codex-bestiarium",
   "format": "paperback",
   "title": "Codex Bestiarium",
@@ -12,7 +12,8 @@
     "pagesBefore": 435,
     "pagesAfter": 436,
     "companionPage": 436,
-    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_BESTIARIUM/04_PRINT/PAPERBACK/CODEX_BESTIARIUM_INTERIOR_PAPERBACK.pre-companion.pdf"
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_BESTIARIUM/04_PRINT/PAPERBACK/CODEX_BESTIARIUM_INTERIOR_PAPERBACK.pre-companion.pdf",
+    "builtBy": "scripts/factory/companion-page.py (spliced)"
   },
   "companion": {
     "printedUrl": "valicepress.com/companion/codex-bestiarium",
@@ -62,6 +63,7 @@
   "uploadRequired": true,
   "hold": "Four live listings whose 'Legendary Creatures' count still reads 120 and must read 112 (handbook O4). That correction needs a KDP visit for every edition anyway; this interior and its rebuilt cover ride along with it, one review cycle instead of two.",
   "proofRecommended": true,
+  "proofWhy": "the block changed thickness, so the wrap is new and unproved",
   "verification": [
     {
       "name": "page-count",

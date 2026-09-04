@@ -1,0 +1,107 @@
+{
+  "generatedAt": "2026-09-04",
+  "book": "myths-and-legends-of-china",
+  "format": "paperback",
+  "title": "Myths and Legends of China",
+  "asin": null,
+  "kdpState": "not_created",
+  "interior": {
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pdf",
+    "sha256": "f4738f2a4e0474bb73d16f7fbd9aeea4e92a34ccd17f110690829b9c4f5aa649",
+    "bytes": 347293,
+    "pagesBefore": 107,
+    "pagesAfter": 108,
+    "companionPage": 108,
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pre-companion.pdf",
+    "builtBy": "scripts/factory/companion-page.py (spliced)"
+  },
+  "companion": {
+    "printedUrl": "valicepress.com/companion/china-gods",
+    "qrUrl": "https://valicepress.com/companion/china-gods",
+    "qr": {
+      "modules": 33,
+      "module_pt": 4.850705454545455,
+      "module_mm": 1.7112210909090908,
+      "version": 4,
+      "error": "M",
+      "side_pt": 160.07328,
+      "fraction_of_usable_height": 0.28650000000000003,
+      "x_pt": 135.96336,
+      "y_pt": 300.25633913142866
+    },
+    "dedicatedPage": true,
+    "emailWall": false
+  },
+  "spine": {
+    "pagesBefore": 107,
+    "pagesAfter": 108,
+    "paper": "white",
+    "binding": "paperback",
+    "trim": "6×9 in",
+    "before": {
+      "spineWidthIn": 0.240964,
+      "wrapWidthIn": 12.490964,
+      "wrapHeightIn": 9.25,
+      "spineTextAllowed": true
+    },
+    "after": {
+      "spineWidthIn": 0.243216,
+      "wrapWidthIn": 12.493216,
+      "wrapHeightIn": 9.25,
+      "spineTextAllowed": true
+    },
+    "deltaSpineIn": 0.002252,
+    "deltaWrapWidthIn": 0.002252,
+    "withinKdpTolerance": true,
+    "coverRebuildRequired": false,
+    "coverRebuildCorrect": true,
+    "hardcoverGeometryMustBeRead": false,
+    "barcodeZoneAffected": false,
+    "verdict": "wrap width moves 0.002252 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.002252 in and the house rule is that each edition's cover reads its own page count"
+  },
+  "cover": {
+    "built": true,
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHS-AND-LEGENDS-OF-CHINA/ASSETS/cover/paperback-wrap-v1.pdf",
+    "pageCount": 108,
+    "spineIn": 0.2432,
+    "wrapIn": "12.4932 × 9.2500 (white)",
+    "note": "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 108 — that is, after the companion leaf. Its spine and wrap agree with this pipeline's own arithmetic to four decimal places (0.243216 / 12.493216), so nothing had to be rebuilt after the splice."
+  },
+  "coverAction": "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior",
+  "uploadRequired": true,
+  "hold": null,
+  "proofRecommended": true,
+  "proofWhy": "the block changed thickness, so the wrap is new and unproved",
+  "verification": [
+    {
+      "name": "page-count",
+      "pass": true,
+      "detail": "108 pages (expected 108)"
+    },
+    {
+      "name": "printed-url",
+      "pass": true,
+      "detail": "valicepress.com/companion/china-gods"
+    },
+    {
+      "name": "canonical-host",
+      "pass": true,
+      "detail": "no forbidden host on the page"
+    },
+    {
+      "name": "eyebrow",
+      "pass": true,
+      "detail": "CONTINUE WITH VALICE PRESS"
+    },
+    {
+      "name": "fonts-embedded",
+      "pass": true,
+      "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
+    },
+    {
+      "name": "pdf-metadata",
+      "pass": true,
+      "detail": "title=\"Myths and Legends of China: Volume One: The Gods — Eight Chapters Complete in the 1922 Text, Annotated, with a Register of the Celestial Ministries, a Glossary of 25 Figures with Verified Chapter References, a Note on the Romanisation and a Chronology\" author=\"Emre Doğan\""
+    }
+  ]
+}

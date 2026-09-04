@@ -59,6 +59,12 @@ export const DIGITAL_EDITION_SOURCES = [
     epub: `${ROOT}/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/epictetus-discourses-and-enchiridion.epub`,
   },
   {
+    // Valice Classics 5 (2026-09-04). Volume one of two.
+    slug: "myths-and-legends-of-china",
+    printInterior: `${ROOT}/MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pdf`,
+    epub: `${ROOT}/MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/myths-and-legends-of-china.epub`,
+  },
+  {
     // Valice Script 2 (2026-09-04). The only workbook in this list, and the
     // reason it belongs here is the reason the Hangul workbook does not: a
     // PDF of a handwriting workbook is not a degraded copy of the paperback,

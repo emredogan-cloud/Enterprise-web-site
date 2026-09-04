@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03",
+  "generatedAt": "2026-09-04",
   "book": "korean-hangul-handwriting-workbook",
   "format": "paperback",
   "title": "Korean Hangul Handwriting Workbook",
@@ -12,7 +12,8 @@
     "pagesBefore": 124,
     "pagesAfter": 126,
     "companionPage": 125,
-    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_126pp.pre-companion.pdf"
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_126pp.pre-companion.pdf",
+    "builtBy": "scripts/factory/companion-page.py (spliced)"
   },
   "companion": {
     "printedUrl": "valicepress.com/companion/hangul",
@@ -62,6 +63,7 @@
   "uploadRequired": true,
   "hold": null,
   "proofRecommended": true,
+  "proofWhy": "the block changed thickness, so the wrap is new and unproved",
   "verification": [
     {
       "name": "page-count",

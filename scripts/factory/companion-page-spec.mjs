@@ -183,6 +183,21 @@ export const COMPANION_PAGE_COPY = {
     ],
   },
 
+  "myths-and-legends-of-china": {
+    companionSlug: "china-gods",
+    imprint: "Valice Press",
+    headline: "The gods have jobs.\nHere is the org chart.",
+    promise:
+      "Everything in this book that is worth having on one page, free, for " +
+      "readers of this edition.",
+    listHeading: "WHAT IS WAITING FOR YOU",
+    bullets: [
+      { asset: "ministries", term: "The ministries of heaven", gloss: "nine celestial ministries, their officers, and the chapter to read \u2014 rebuilt from the text" },
+      { asset: "who-is-who", term: "Who is who", gloss: "twenty-five figures with the chapters they appear in, every reference found by searching" },
+      { asset: "reading-paths", term: "Four ways in", gloss: "where to start, with Werner's own chapter numbers, so it works with any edition" },
+      { asset: "the-names", term: "The names", gloss: "what the apostrophe and the breve are doing, after which the names stop being noise" },
+    ],
+  },
   "epictetus-discourses-and-enchiridion": {
     companionSlug: "epictetus",
     imprint: "Valice Press",
@@ -246,6 +261,38 @@ export const COMPANION_PAGE_COPY = {
     ],
   },
 
+  /**
+   * The first book in this catalogue that never needed a splice.
+   *
+   * Every other entry here describes a retrofit: an interior that was typeset,
+   * printed and in some cases sold before anyone thought about where a reader
+   * would go next, and a page pushed into it afterwards. The Greek workbook was
+   * built on 2026-09-04 with the companion leaf in the typesetting — page 99 of
+   * 100, set by `BUILD/backmatter.py` in the book's own fonts at the book's own
+   * margins, with a code at 30 % of the usable height. There is nothing to
+   * splice and nothing to recalculate.
+   *
+   * It is in this file anyway, as `mode: "native"`, because the tests that
+   * matter here read the FILE — the printed address, the standing line, the
+   * embedded fonts, the QR — and those are worth running against a page
+   * whoever drew it.
+   */
+  "greek-alphabet-handwriting-workbook": {
+    companionSlug: "greek",
+    imprint: "Vâliçe Press",
+    headline: "When the boxes in this book\nrun out, print more",
+    promise:
+      "Handwriting is a volume exercise, and a workbook has a last page. " +
+      "These sheets do not.",
+    listHeading: "WHAT IS WAITING FOR YOU",
+    bullets: [
+      { asset: "practice-grid", term: "Practice grids", gloss: "the four-line rule from this book, blank, for any letter at any stage" },
+      { asset: "stroke-boxes", term: "Stroke-order boxes", gloss: "large boxes with the start dots printed, for drilling one letter" },
+      { asset: "alphabet-chart", term: "The alphabet chart", gloss: "all 24 letters with their names, sounds and stroke counts, on one sheet" },
+      { asset: "lesson-tracker", term: "Thirty-two-lesson tracker", gloss: "one page, three boxes a lesson — trace, dot-start, free" },
+    ],
+  },
+
   "codex-mythologica": {
     companionSlug: "codex-mythologica",
     imprint: "Vâliçe Press",
@@ -298,11 +345,45 @@ export const COMPANION_PAGE_COPY = {
  *             matter that is not counted.
  * `recto`     true when the new page falls on a right-hand page; decides
  *             which outer margin a shoulder folio hangs on.
+ * `mode`      `replace` swaps a weak page for the real one, `append` adds a
+ *             leaf, and `native` means the book was typeset with the page in
+ *             it and there is nothing to do but check the result.
  * `hold`      why this edition's file must not be uploaded yet, when that is
  *             the case. A hold is a business decision, never "not built" —
  *             every file below is produced.
  */
 export const COMPANION_PAGE_PLAN = {
+  "greek-alphabet-handwriting-workbook": {
+    // `native`: the leaf was set by the book's own builder, not spliced in, so
+    // pagesBefore and pagesAfter are the same number and the spine arithmetic
+    // has nothing to move. The checks still run against the printed file.
+    //
+    // The style block is recorded even though nothing here draws with it: it
+    // is what the page WAS drawn with, and a package that names the faces in
+    // a file is worth more than one that leaves a reader to run pdffonts.
+    style: {
+      fonts: {
+        regular: "/usr/share/fonts/truetype/lato/Lato-Regular.ttf",
+        bold: "/usr/share/fonts/truetype/lato/Lato-Bold.ttf",
+        italic: "/usr/share/fonts/truetype/lato/Lato-Italic.ttf",
+      },
+      marginIn: 0.75,
+      rule: 0.8,
+      sans: true,
+    },
+    editions: {
+      paperback: {
+        mode: "native",
+        page: 99,
+        pagesBefore: 100,
+        pagesAfter: 100,
+        recto: true,
+        folio: null,
+        builtBy: "BUILD/backmatter.py — the book's own back-matter builder",
+      },
+    },
+  },
+
   "the-great-book-of-world-games": {
     style: { fonts: TYPE.liberationSerif, marginIn: 0.62, rule: 0.7 },
     editions: {
@@ -371,6 +452,17 @@ export const COMPANION_PAGE_PLAN = {
     },
   },
 
+  "myths-and-legends-of-china": {
+    style: { fonts: TYPE.liberationSerif, marginIn: 0.62, rule: 0.7 },
+    editions: {
+      paperback: {
+        // Interior typeset deliberately ODD so this leaf makes the count even.
+        mode: "append", page: null, pagesBefore: 107, pagesAfter: 108, recto: true,
+        folio: { style: "centre", offset: 0, size: 8.6, baselineFromBottomPt: 28.8, outerMarginPt: 36 },
+        replacing: null,
+      },
+    },
+  },
   "epictetus-discourses-and-enchiridion": {
     style: { fonts: TYPE.liberationSerif, marginIn: 0.62, rule: 0.7 },
     editions: {

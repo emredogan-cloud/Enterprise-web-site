@@ -2,1384 +2,21 @@
   "generatedAt": "2026-09-04",
   "editions": [
     {
-      "generatedAt": "2026-09-03",
-      "book": "the-great-book-of-world-games",
-      "format": "paperback",
-      "title": "The Great Book of World Games",
-      "asin": "B0HG3KMK9L",
-      "kdpState": "live",
-      "interior": {
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/PAPERBACK/GreatBookOfWorldGames_interior_paperback.pdf",
-        "sha256": "9a419300bbcc4f3a283aa174df6e14f035478c71375885e12f6bc5eca70cbace",
-        "bytes": 888869,
-        "pagesBefore": 160,
-        "pagesAfter": 160,
-        "companionPage": 160,
-        "previousBuildKept": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/PAPERBACK/GreatBookOfWorldGames_interior_paperback.pre-companion.pdf"
-      },
-      "companion": {
-        "printedUrl": "valicepress.com/companion/world-games",
-        "qrUrl": "https://valicepress.com/companion/world-games",
-        "qr": {
-          "modules": 33,
-          "module_pt": 6.3883636363636365,
-          "module_mm": 2.2536727272727273,
-          "version": 4,
-          "error": "M",
-          "side_pt": 210.816,
-          "fraction_of_usable_height": 0.3,
-          "x_pt": 200.59199999999998,
-          "y_pt": 343.0617862857141
-        },
-        "dedicatedPage": true,
-        "emailWall": false
-      },
-      "spine": {
-        "pagesBefore": 160,
-        "pagesAfter": 160,
-        "paper": "white",
-        "binding": "paperback",
-        "trim": "8.5\u00d711 in",
-        "before": {
-          "spineWidthIn": 0.36032,
-          "wrapWidthIn": 17.61032,
-          "wrapHeightIn": 11.25,
-          "spineTextAllowed": true
-        },
-        "after": {
-          "spineWidthIn": 0.36032,
-          "wrapWidthIn": 17.61032,
-          "wrapHeightIn": 11.25,
-          "spineTextAllowed": true
-        },
-        "deltaSpineIn": 0,
-        "deltaWrapWidthIn": 0,
-        "withinKdpTolerance": true,
-        "coverRebuildRequired": false,
-        "coverRebuildCorrect": false,
-        "hardcoverGeometryMustBeRead": false,
-        "barcodeZoneAffected": false,
-        "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
-      },
-      "cover": null,
-      "coverAction": "NONE \u2014 page count unchanged; the cover at KDP stays valid",
-      "uploadRequired": true,
-      "hold": null,
-      "proofRecommended": false,
-      "verification": [
-        {
-          "name": "page-count",
-          "pass": true,
-          "detail": "160 pages (expected 160)"
-        },
-        {
-          "name": "printed-url",
-          "pass": true,
-          "detail": "valicepress.com/companion/world-games"
-        },
-        {
-          "name": "canonical-host",
-          "pass": true,
-          "detail": "no forbidden host on the page"
-        },
-        {
-          "name": "no-email-wall",
-          "pass": true,
-          "detail": "the page asks for nothing"
-        },
-        {
-          "name": "headline",
-          "pass": true,
-          "detail": "headline present"
-        },
-        {
-          "name": "eyebrow",
-          "pass": true,
-          "detail": "CONTINUE WITH V\u00c2LI\u00c7E PRESS"
-        },
-        {
-          "name": "fonts-embedded",
-          "pass": true,
-          "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
-        },
-        {
-          "name": "qr-floor",
-          "pass": true,
-          "detail": "30.0% of usable height"
-        },
-        {
-          "name": "qr-module-size",
-          "pass": true,
-          "detail": "2.25 mm per module"
-        },
-        {
-          "name": "pdf-metadata",
-          "pass": true,
-          "detail": "title=\"The Great Book of World Games: 56 Games from 4,600 Years of Human Play \u2014 Rules, Boards and Stories from 39 Cultures, Ready to Play Tonight\" author=\"Emre Do\u011fan\""
-        },
-        {
-          "name": "qr-matches-url",
-          "pass": true,
-          "detail": "33\u00d733 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/world-games"
-        }
-      ]
-    },
-    {
-      "generatedAt": "2026-09-03",
-      "book": "the-great-book-of-world-games",
-      "format": "hardcover",
-      "title": "The Great Book of World Games",
-      "asin": "B0HG41F21F",
-      "kdpState": "live",
-      "interior": {
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/HARDCOVER/GreatBookOfWorldGames_interior_hardcover.pdf",
-        "sha256": "e27e6c53ae67825cb585e131593234b5fded7ca4720b94113982ddcc560031f9",
-        "bytes": 889126,
-        "pagesBefore": 160,
-        "pagesAfter": 160,
-        "companionPage": 160,
-        "previousBuildKept": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/HARDCOVER/GreatBookOfWorldGames_interior_hardcover.pre-companion.pdf"
-      },
-      "companion": {
-        "printedUrl": "valicepress.com/companion/world-games",
-        "qrUrl": "https://valicepress.com/companion/world-games",
-        "qr": {
-          "modules": 33,
-          "module_pt": 6.3883636363636365,
-          "module_mm": 2.2536727272727273,
-          "version": 4,
-          "error": "M",
-          "side_pt": 210.816,
-          "fraction_of_usable_height": 0.3,
-          "x_pt": 191.59199999999998,
-          "y_pt": 343.0617862857141
-        },
-        "dedicatedPage": true,
-        "emailWall": false
-      },
-      "spine": {
-        "pagesBefore": 160,
-        "pagesAfter": 160,
-        "paper": "white",
-        "binding": "hardcover",
-        "trim": "8.25\u00d711 in",
-        "before": {
-          "spineWidthIn": 0.36032,
-          "wrapWidthIn": 17.11032,
-          "wrapHeightIn": 11.25,
-          "spineTextAllowed": true
-        },
-        "after": {
-          "spineWidthIn": 0.36032,
-          "wrapWidthIn": 17.11032,
-          "wrapHeightIn": 11.25,
-          "spineTextAllowed": true
-        },
-        "deltaSpineIn": 0,
-        "deltaWrapWidthIn": 0,
-        "withinKdpTolerance": true,
-        "coverRebuildRequired": false,
-        "coverRebuildCorrect": false,
-        "hardcoverGeometryMustBeRead": false,
-        "barcodeZoneAffected": false,
-        "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
-      },
-      "cover": null,
-      "coverAction": "NONE \u2014 page count unchanged; the cover at KDP stays valid",
-      "uploadRequired": true,
-      "hold": null,
-      "proofRecommended": false,
-      "verification": [
-        {
-          "name": "page-count",
-          "pass": true,
-          "detail": "160 pages (expected 160)"
-        },
-        {
-          "name": "printed-url",
-          "pass": true,
-          "detail": "valicepress.com/companion/world-games"
-        },
-        {
-          "name": "canonical-host",
-          "pass": true,
-          "detail": "no forbidden host on the page"
-        },
-        {
-          "name": "no-email-wall",
-          "pass": true,
-          "detail": "the page asks for nothing"
-        },
-        {
-          "name": "headline",
-          "pass": true,
-          "detail": "headline present"
-        },
-        {
-          "name": "eyebrow",
-          "pass": true,
-          "detail": "CONTINUE WITH V\u00c2LI\u00c7E PRESS"
-        },
-        {
-          "name": "fonts-embedded",
-          "pass": true,
-          "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
-        },
-        {
-          "name": "qr-floor",
-          "pass": true,
-          "detail": "30.0% of usable height"
-        },
-        {
-          "name": "qr-module-size",
-          "pass": true,
-          "detail": "2.25 mm per module"
-        },
-        {
-          "name": "pdf-metadata",
-          "pass": true,
-          "detail": "title=\"The Great Book of World Games: 56 Games from 4,600 Years of Human Play \u2014 Rules, Boards and Stories from 39 Cultures, Ready to Play Tonight\" author=\"Emre Do\u011fan\""
-        },
-        {
-          "name": "qr-matches-url",
-          "pass": true,
-          "detail": "33\u00d733 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/world-games"
-        }
-      ]
-    },
-    {
-      "generatedAt": "2026-09-03",
-      "book": "the-great-book-of-world-games",
-      "format": "large_print",
-      "title": "The Great Book of World Games",
-      "asin": null,
-      "kdpState": "in_review",
-      "interior": {
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/LARGEPRINT/GreatBookOfWorldGames_interior_largeprint.pdf",
-        "sha256": "5a73f4b9d8660a4f1f039e5904bb12e705ba22b0a3742fdbbe1e7157769e29a0",
-        "bytes": 994068,
-        "pagesBefore": 232,
-        "pagesAfter": 233,
-        "companionPage": 233,
-        "previousBuildKept": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/LARGEPRINT/GreatBookOfWorldGames_interior_largeprint.pre-companion.pdf"
-      },
-      "companion": {
-        "printedUrl": "valicepress.com/companion/world-games",
-        "qrUrl": "https://valicepress.com/companion/world-games",
-        "qr": {
-          "note": "geometry not re-measured on this run"
-        },
-        "dedicatedPage": true,
-        "emailWall": false
-      },
-      "spine": {
-        "pagesBefore": 232,
-        "pagesAfter": 233,
-        "paper": "white",
-        "binding": "paperback",
-        "trim": "8.5\u00d711 in",
-        "before": {
-          "spineWidthIn": 0.522464,
-          "wrapWidthIn": 17.772464,
-          "wrapHeightIn": 11.25,
-          "spineTextAllowed": true
-        },
-        "after": {
-          "spineWidthIn": 0.524716,
-          "wrapWidthIn": 17.774716,
-          "wrapHeightIn": 11.25,
-          "spineTextAllowed": true
-        },
-        "deltaSpineIn": 0.002252,
-        "deltaWrapWidthIn": 0.002252,
-        "withinKdpTolerance": true,
-        "coverRebuildRequired": false,
-        "coverRebuildCorrect": true,
-        "hardcoverGeometryMustBeRead": false,
-        "barcodeZoneAffected": false,
-        "verdict": "wrap width moves 0.002252 in \u2014 inside KDP's \u00b10.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.002252 in and the house rule is that each edition's cover reads its own page count"
-      },
-      "cover": {
-        "built": false,
-        "reason": "the block moved 232 \u2192 233 pp, so the wrap needs a new spine, but this project's covers.py takes the page count from 06_REPORTS/interior-largeprint.json, which has recorded 234 pages since before this phase while the built block was 232. Only re-running 04_BUILD/interior.py regenerates that report and its pagemap. Do it at the first revision after this edition leaves KDP review, then run covers.py."
-      },
-      "coverAction": "REBUILD CORRECT \u2014 inside tolerance, but the printed spine no longer matches the block",
-      "uploadRequired": true,
-      "hold": "IN KDP REVIEW since 2026-09-02, and the cover cannot be rebuilt from here. The block moves 232 \u2192 233 pages, so the wrap needs a new spine \u2014 but this project's cover pipeline reads `06_REPORTS/interior-largeprint.json`, which has recorded 234 pages since before this phase while the built block was 232 (a pre-existing divergence, reported as a finding). Only re-running `04_BUILD/interior.py` regenerates that report and its pagemap. So: at the first revision after this edition goes live, run interior.py \u2192 covers.py, and take the companion page through the pipeline's own companion block rather than as a splice. The invented biography, which was the other defect, is already fixed and is page-neutral.",
-      "proofRecommended": true,
-      "verification": [
-        {
-          "name": "page-count",
-          "pass": true,
-          "detail": "233 pages (expected 233)"
-        },
-        {
-          "name": "printed-url",
-          "pass": true,
-          "detail": "valicepress.com/companion/world-games"
-        },
-        {
-          "name": "canonical-host",
-          "pass": true,
-          "detail": "no forbidden host on the page"
-        },
-        {
-          "name": "eyebrow",
-          "pass": true,
-          "detail": "CONTINUE WITH V\u00c2LI\u00c7E PRESS"
-        },
-        {
-          "name": "fonts-embedded",
-          "pass": true,
-          "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
-        },
-        {
-          "name": "pdf-metadata",
-          "pass": true,
-          "detail": "title=\"The Great Book of World Games: 56 Games from 4,600 Years of Human Play \u2014 Rules, Boards and Stories from 39 Cultures, Ready to Play Tonight\" author=\"Emre Do\u011fan\""
-        }
-      ]
-    },
-    {
-      "generatedAt": "2026-09-03",
-      "book": "the-great-book-of-world-myths",
-      "format": "paperback",
-      "title": "The Great Book of World Myths",
-      "asin": "B0HDTL5V2H",
-      "kdpState": "live",
-      "interior": {
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/THE-GREAT-BOOK-OF-WORLD-MYTHS/08_OUTPUT/paperback/interior.pdf",
-        "sha256": "811a8bda105386113e5d35cdeac96033a5cd8fcace93edc271e338f0913023a5",
-        "bytes": 97534323,
-        "pagesBefore": 234,
-        "pagesAfter": 234,
-        "companionPage": 233,
-        "previousBuildKept": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/THE-GREAT-BOOK-OF-WORLD-MYTHS/08_OUTPUT/paperback/interior.pre-companion.pdf"
-      },
-      "companion": {
-        "printedUrl": "valicepress.com/companion/world-myths",
-        "qrUrl": "https://valicepress.com/companion/world-myths",
-        "qr": {
-          "modules": 33,
-          "module_pt": 4.511454545454546,
-          "module_mm": 1.5915409090909092,
-          "version": 4,
-          "error": "M",
-          "side_pt": 148.87800000000001,
-          "fraction_of_usable_height": 0.2757,
-          "x_pt": 141.561,
-          "y_pt": 306.1866089714284
-        },
-        "dedicatedPage": true,
-        "emailWall": false
-      },
-      "spine": {
-        "pagesBefore": 234,
-        "pagesAfter": 234,
-        "paper": "cream",
-        "binding": "paperback",
-        "trim": "6\u00d79 in",
-        "before": {
-          "spineWidthIn": 0.585,
-          "wrapWidthIn": 12.835,
-          "wrapHeightIn": 9.25,
-          "spineTextAllowed": true
-        },
-        "after": {
-          "spineWidthIn": 0.585,
-          "wrapWidthIn": 12.835,
-          "wrapHeightIn": 9.25,
-          "spineTextAllowed": true
-        },
-        "deltaSpineIn": 0,
-        "deltaWrapWidthIn": 0,
-        "withinKdpTolerance": true,
-        "coverRebuildRequired": false,
-        "coverRebuildCorrect": false,
-        "hardcoverGeometryMustBeRead": false,
-        "barcodeZoneAffected": false,
-        "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
-      },
-      "cover": null,
-      "coverAction": "NONE \u2014 page count unchanged; the cover at KDP stays valid",
-      "uploadRequired": true,
-      "hold": null,
-      "proofRecommended": false,
-      "verification": [
-        {
-          "name": "page-count",
-          "pass": true,
-          "detail": "234 pages (expected 234)"
-        },
-        {
-          "name": "printed-url",
-          "pass": true,
-          "detail": "valicepress.com/companion/world-myths"
-        },
-        {
-          "name": "canonical-host",
-          "pass": true,
-          "detail": "no forbidden host on the page"
-        },
-        {
-          "name": "no-email-wall",
-          "pass": true,
-          "detail": "the page asks for nothing"
-        },
-        {
-          "name": "headline",
-          "pass": true,
-          "detail": "headline present"
-        },
-        {
-          "name": "eyebrow",
-          "pass": true,
-          "detail": "CONTINUE WITH V\u00c2LI\u00c7E PRESS"
-        },
-        {
-          "name": "fonts-embedded",
-          "pass": true,
-          "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
-        },
-        {
-          "name": "qr-floor",
-          "pass": true,
-          "detail": "27.6% of usable height"
-        },
-        {
-          "name": "qr-module-size",
-          "pass": true,
-          "detail": "1.59 mm per module"
-        },
-        {
-          "name": "pdf-metadata",
-          "pass": true,
-          "detail": "title=\"The Great Book of World Myths: 45 Stories of Gods, Heroes, and Monsters from 22 Cultures \u2014 Retold for Young Readers (Ages 8\u201312)\" author=\"Emre Do\u011fan\""
-        },
-        {
-          "name": "qr-matches-url",
-          "pass": true,
-          "detail": "33\u00d733 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/world-myths"
-        }
-      ]
-    },
-    {
-      "generatedAt": "2026-09-03",
-      "book": "the-great-book-of-world-myths",
-      "format": "hardcover",
-      "title": "The Great Book of World Myths",
-      "asin": "B0HDZJ4PHQ",
-      "kdpState": "live",
-      "interior": {
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/THE-GREAT-BOOK-OF-WORLD-MYTHS/08_OUTPUT/hardcover/interior.pdf",
-        "sha256": "2d7052223b28710dc4ddc3fad56919795d51e3581d38edde14c84fdd42428244",
-        "bytes": 97534323,
-        "pagesBefore": 234,
-        "pagesAfter": 234,
-        "companionPage": 233,
-        "previousBuildKept": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/THE-GREAT-BOOK-OF-WORLD-MYTHS/08_OUTPUT/hardcover/interior.pre-companion.pdf"
-      },
-      "companion": {
-        "printedUrl": "valicepress.com/companion/world-myths",
-        "qrUrl": "https://valicepress.com/companion/world-myths",
-        "qr": {
-          "modules": 33,
-          "module_pt": 4.511454545454546,
-          "module_mm": 1.5915409090909092,
-          "version": 4,
-          "error": "M",
-          "side_pt": 148.87800000000001,
-          "fraction_of_usable_height": 0.2757,
-          "x_pt": 141.561,
-          "y_pt": 306.1866089714284
-        },
-        "dedicatedPage": true,
-        "emailWall": false
-      },
-      "spine": {
-        "pagesBefore": 234,
-        "pagesAfter": 234,
-        "paper": "cream",
-        "binding": "hardcover",
-        "trim": "6\u00d79 in",
-        "before": {
-          "spineWidthIn": 0.585,
-          "wrapWidthIn": 12.835,
-          "wrapHeightIn": 9.25,
-          "spineTextAllowed": true
-        },
-        "after": {
-          "spineWidthIn": 0.585,
-          "wrapWidthIn": 12.835,
-          "wrapHeightIn": 9.25,
-          "spineTextAllowed": true
-        },
-        "deltaSpineIn": 0,
-        "deltaWrapWidthIn": 0,
-        "withinKdpTolerance": true,
-        "coverRebuildRequired": false,
-        "coverRebuildCorrect": false,
-        "hardcoverGeometryMustBeRead": false,
-        "barcodeZoneAffected": false,
-        "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
-      },
-      "cover": null,
-      "coverAction": "NONE \u2014 page count unchanged; the cover at KDP stays valid",
-      "uploadRequired": true,
-      "hold": null,
-      "proofRecommended": false,
-      "verification": [
-        {
-          "name": "page-count",
-          "pass": true,
-          "detail": "234 pages (expected 234)"
-        },
-        {
-          "name": "printed-url",
-          "pass": true,
-          "detail": "valicepress.com/companion/world-myths"
-        },
-        {
-          "name": "canonical-host",
-          "pass": true,
-          "detail": "no forbidden host on the page"
-        },
-        {
-          "name": "no-email-wall",
-          "pass": true,
-          "detail": "the page asks for nothing"
-        },
-        {
-          "name": "headline",
-          "pass": true,
-          "detail": "headline present"
-        },
-        {
-          "name": "eyebrow",
-          "pass": true,
-          "detail": "CONTINUE WITH V\u00c2LI\u00c7E PRESS"
-        },
-        {
-          "name": "fonts-embedded",
-          "pass": true,
-          "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
-        },
-        {
-          "name": "qr-floor",
-          "pass": true,
-          "detail": "27.6% of usable height"
-        },
-        {
-          "name": "qr-module-size",
-          "pass": true,
-          "detail": "1.59 mm per module"
-        },
-        {
-          "name": "pdf-metadata",
-          "pass": true,
-          "detail": "title=\"The Great Book of World Myths: 45 Stories of Gods, Heroes, and Monsters from 22 Cultures \u2014 Retold for Young Readers (Ages 8\u201312)\" author=\"Emre Do\u011fan\""
-        },
-        {
-          "name": "qr-matches-url",
-          "pass": true,
-          "detail": "33\u00d733 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/world-myths"
-        }
-      ]
-    },
-    {
-      "generatedAt": "2026-09-03",
-      "book": "korean-hangul-handwriting-workbook",
-      "format": "paperback",
-      "title": "Korean Hangul Handwriting Workbook",
-      "asin": "B0HHHWXGG4",
-      "kdpState": "live",
-      "interior": {
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_126pp.pdf",
-        "sha256": "791ef3bdbc4cbf8d20d65f257ea768c96990bbb993ca65d8ddc11b4752b9e35b",
-        "bytes": 767355,
-        "pagesBefore": 124,
-        "pagesAfter": 126,
-        "companionPage": 125,
-        "previousBuildKept": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_126pp.pre-companion.pdf"
-      },
-      "companion": {
-        "printedUrl": "valicepress.com/companion/hangul",
-        "qrUrl": "https://valicepress.com/companion/hangul",
-        "qr": {
-          "note": "geometry not re-measured on this run"
-        },
-        "dedicatedPage": true,
-        "emailWall": false
-      },
-      "spine": {
-        "pagesBefore": 124,
-        "pagesAfter": 126,
-        "paper": "white",
-        "binding": "paperback",
-        "trim": "8.5\u00d711 in",
-        "before": {
-          "spineWidthIn": 0.279248,
-          "wrapWidthIn": 17.529248,
-          "wrapHeightIn": 11.25,
-          "spineTextAllowed": true
-        },
-        "after": {
-          "spineWidthIn": 0.283752,
-          "wrapWidthIn": 17.533752,
-          "wrapHeightIn": 11.25,
-          "spineTextAllowed": true
-        },
-        "deltaSpineIn": 0.004504,
-        "deltaWrapWidthIn": 0.004504,
-        "withinKdpTolerance": true,
-        "coverRebuildRequired": false,
-        "coverRebuildCorrect": true,
-        "hardcoverGeometryMustBeRead": false,
-        "barcodeZoneAffected": false,
-        "verdict": "wrap width moves 0.004504 in \u2014 inside KDP's \u00b10.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.004504 in and the house rule is that each edition's cover reads its own page count"
-      },
-      "cover": {
-        "built": true,
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/KOREAN-HANGUL-HANDWRITING-WORKBOOK/05_APLUS_COVER/exports/paperback_cover.pdf",
-        "pageCount": 126,
-        "spineIn": 0.283752,
-        "wrapIn": "17.5338 \u00d7 11.2500",
-        "note": "internal KDP formula, white paper \u2014 the same arithmetic spine-check.mjs runs, and the two agree"
-      },
-      "coverAction": "REBUILD CORRECT \u2014 inside tolerance, but the printed spine no longer matches the block",
-      "uploadRequired": true,
-      "hold": null,
-      "proofRecommended": true,
-      "verification": [
-        {
-          "name": "page-count",
-          "pass": true,
-          "detail": "126 pages (expected 126)"
-        },
-        {
-          "name": "printed-url",
-          "pass": true,
-          "detail": "valicepress.com/companion/hangul"
-        },
-        {
-          "name": "canonical-host",
-          "pass": true,
-          "detail": "no forbidden host on the page"
-        },
-        {
-          "name": "eyebrow",
-          "pass": true,
-          "detail": "CONTINUE WITH V\u00c2LI\u00c7E PRESS"
-        },
-        {
-          "name": "fonts-embedded",
-          "pass": true,
-          "detail": "2 faces: AAAAAA+NotoSansKR-Bold, AAAAAA+NotoSansKR-Regular"
-        },
-        {
-          "name": "pdf-metadata",
-          "pass": true,
-          "detail": "title=\"Korean Hangul Handwriting Workbook: Learn to write all 40 letters with correct stroke order, build syllable blocks, and read your first 97 Korean words\" author=\"Emre Do\u011fan\""
-        }
-      ]
-    },
-    {
-      "generatedAt": "2026-09-03",
-      "book": "korean-hangul-handwriting-workbook",
-      "format": "hardcover",
-      "title": "Korean Hangul Handwriting Workbook",
-      "asin": null,
-      "kdpState": "in_review",
-      "interior": {
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/hardcover/hardcover_interior_8.25x11_126pp.pdf",
-        "sha256": "849c152c7621bb7ea701ddd58a075d746b4978024345a44d47b17566176b141d",
-        "bytes": 767181,
-        "pagesBefore": 124,
-        "pagesAfter": 126,
-        "companionPage": 125,
-        "previousBuildKept": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/hardcover/hardcover_interior_8.25x11_126pp.pre-companion.pdf"
-      },
-      "companion": {
-        "printedUrl": "valicepress.com/companion/hangul",
-        "qrUrl": "https://valicepress.com/companion/hangul",
-        "qr": {
-          "note": "geometry not re-measured on this run"
-        },
-        "dedicatedPage": true,
-        "emailWall": false
-      },
-      "spine": {
-        "pagesBefore": 124,
-        "pagesAfter": 126,
-        "paper": "white",
-        "binding": "hardcover",
-        "trim": "8.25\u00d711 in",
-        "before": {
-          "spineWidthIn": 0.279248,
-          "wrapWidthIn": 17.029248,
-          "wrapHeightIn": 11.25,
-          "spineTextAllowed": true
-        },
-        "after": {
-          "spineWidthIn": 0.283752,
-          "wrapWidthIn": 17.033752,
-          "wrapHeightIn": 11.25,
-          "spineTextAllowed": true
-        },
-        "deltaSpineIn": 0.004504,
-        "deltaWrapWidthIn": 0.004504,
-        "withinKdpTolerance": true,
-        "coverRebuildRequired": false,
-        "coverRebuildCorrect": true,
-        "hardcoverGeometryMustBeRead": true,
-        "barcodeZoneAffected": false,
-        "verdict": "wrap width moves 0.004504 in \u2014 inside KDP's \u00b10.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.004504 in and the house rule is that each edition's cover reads its own page count"
-      },
-      "cover": {
-        "built": false,
-        "reason": "this project pins the hardcover wrap to a value the Founder read out of KDP's Cover Calculator, and that value is page-count independent \u2014 re-running the builder at 126 pp reproduces the 124 pp wrap. The house standard forbids deriving a hardcover wrap. Founder action: run the calculator at 126 pp / 8.25 \u00d7 11 / white, paste the three numbers into project_config.json \u2192 formats.hardcover.kdp_calculator, re-run 06_BUILD/build_cover.py --format hardcover."
-      },
-      "coverAction": "REBUILD CORRECT \u2014 inside tolerance, but the printed spine no longer matches the block",
-      "uploadRequired": true,
-      "hold": "In KDP review, and its wrap geometry is not derivable here. This project records the hardcover wrap as a value the Founder read out of KDP's own Cover Calculator (`project_config.json \u2192 formats.hardcover.kdp_calculator`), pinned and independent of page count \u2014 so re-running the builder at 126 pages reproduces the 124-page wrap rather than a new one. The house standard says a hardcover wrap is read from the calculator and never derived, so this one needs five minutes in the calculator at 126 pp / 8.25 \u00d7 11 / white before it can be rebuilt. The paperback has no such dependency and its cover was rebuilt.",
-      "proofRecommended": true,
-      "verification": [
-        {
-          "name": "page-count",
-          "pass": true,
-          "detail": "126 pages (expected 126)"
-        },
-        {
-          "name": "printed-url",
-          "pass": true,
-          "detail": "valicepress.com/companion/hangul"
-        },
-        {
-          "name": "canonical-host",
-          "pass": true,
-          "detail": "no forbidden host on the page"
-        },
-        {
-          "name": "eyebrow",
-          "pass": true,
-          "detail": "CONTINUE WITH V\u00c2LI\u00c7E PRESS"
-        },
-        {
-          "name": "fonts-embedded",
-          "pass": true,
-          "detail": "2 faces: AAAAAA+NotoSansKR-Bold, AAAAAA+NotoSansKR-Regular"
-        },
-        {
-          "name": "pdf-metadata",
-          "pass": true,
-          "detail": "title=\"Korean Hangul Handwriting Workbook: Learn to write all 40 letters with correct stroke order, build syllable blocks, and read your first 97 Korean words\" author=\"Emre Do\u011fan\""
-        }
-      ]
-    },
-    {
-      "generatedAt": "2026-09-03",
-      "book": "the-puzzles-of-henry-dudeney",
-      "format": "paperback",
-      "title": "The Puzzles of Henry Dudeney",
-      "asin": null,
-      "kdpState": "not_created",
-      "interior": {
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/THE-PUZZLES-OF-HENRY-DUDENEY/OUTPUT/interior-main.pdf",
-        "sha256": "806a4a1babe752926915329ad19d539a92598257207860a8fe76406eebed1083",
-        "bytes": 2111694,
-        "pagesBefore": 144,
-        "pagesAfter": 144,
-        "companionPage": 144,
-        "previousBuildKept": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/THE-PUZZLES-OF-HENRY-DUDENEY/OUTPUT/interior-main.pre-companion.pdf"
-      },
-      "companion": {
-        "printedUrl": "valicepress.com/companion/dudeney",
-        "qrUrl": "https://valicepress.com/companion/dudeney",
-        "qr": {
-          "modules": 29,
-          "module_pt": 5.514345931034484,
-          "module_mm": 1.945338703448276,
-          "version": 3,
-          "error": "M",
-          "side_pt": 159.91603200000003,
-          "fraction_of_usable_height": 0.2892,
-          "x_pt": 136.04198399999999,
-          "y_pt": 292.63426703542865
-        },
-        "dedicatedPage": true,
-        "emailWall": false
-      },
-      "spine": {
-        "pagesBefore": 144,
-        "pagesAfter": 144,
-        "paper": "white",
-        "binding": "paperback",
-        "trim": "6\u00d79 in",
-        "before": {
-          "spineWidthIn": 0.324288,
-          "wrapWidthIn": 12.574288,
-          "wrapHeightIn": 9.25,
-          "spineTextAllowed": true
-        },
-        "after": {
-          "spineWidthIn": 0.324288,
-          "wrapWidthIn": 12.574288,
-          "wrapHeightIn": 9.25,
-          "spineTextAllowed": true
-        },
-        "deltaSpineIn": 0,
-        "deltaWrapWidthIn": 0,
-        "withinKdpTolerance": true,
-        "coverRebuildRequired": false,
-        "coverRebuildCorrect": false,
-        "hardcoverGeometryMustBeRead": false,
-        "barcodeZoneAffected": false,
-        "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
-      },
-      "cover": null,
-      "coverAction": "NONE \u2014 page count unchanged; the cover at KDP stays valid",
-      "uploadRequired": true,
-      "hold": null,
-      "proofRecommended": false,
-      "verification": [
-        {
-          "name": "page-count",
-          "pass": true,
-          "detail": "144 pages (expected 144)"
-        },
-        {
-          "name": "printed-url",
-          "pass": true,
-          "detail": "valicepress.com/companion/dudeney"
-        },
-        {
-          "name": "canonical-host",
-          "pass": true,
-          "detail": "no forbidden host on the page"
-        },
-        {
-          "name": "no-email-wall",
-          "pass": true,
-          "detail": "the page asks for nothing"
-        },
-        {
-          "name": "headline",
-          "pass": true,
-          "detail": "headline present"
-        },
-        {
-          "name": "eyebrow",
-          "pass": true,
-          "detail": "CONTINUE WITH VALICE PRESS"
-        },
-        {
-          "name": "fonts-embedded",
-          "pass": true,
-          "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
-        },
-        {
-          "name": "qr-floor",
-          "pass": true,
-          "detail": "28.9% of usable height"
-        },
-        {
-          "name": "qr-module-size",
-          "pass": true,
-          "detail": "1.95 mm per module"
-        },
-        {
-          "name": "pdf-metadata",
-          "pass": true,
-          "detail": "title=\"The Puzzles of Henry Dudeney: 110 Classic Problems from Amusements in Mathematics and The Canterbury Puzzles \u2014 Annotated, with Hints, a Glossary of Old Money and a Chronology\" author=\"Henry E. Dudeney\""
-        },
-        {
-          "name": "qr-matches-url",
-          "pass": true,
-          "detail": "29\u00d729 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/dudeney"
-        }
-      ]
-    },
-    {
-      "generatedAt": "2026-09-03",
-      "book": "the-myth-hunters-field-book",
-      "format": "paperback",
-      "title": "The Myth Hunter's Field Book",
-      "asin": "B0HFP4KYX5",
-      "kdpState": "live",
-      "interior": {
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/THE-MYTH-HUNTERS-FIELD-BOOK/08_OUTPUT/PAPERBACK/interior.pdf",
-        "sha256": "47cb2b965c55dc19e54ae63ee9b7b2945ca23ceacc699d39d22ec543c9be3429",
-        "bytes": 33184153,
-        "pagesBefore": 156,
-        "pagesAfter": 156,
-        "companionPage": 156,
-        "previousBuildKept": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/THE-MYTH-HUNTERS-FIELD-BOOK/08_OUTPUT/PAPERBACK/interior.pre-companion.pdf"
-      },
-      "companion": {
-        "printedUrl": "valicepress.com/companion/myth-hunters-field-book",
-        "qrUrl": "https://valicepress.com/companion/myth-hunters-field-book",
-        "qr": {
-          "modules": 33,
-          "module_pt": 6.283636363636364,
-          "module_mm": 2.216727272727273,
-          "version": 4,
-          "error": "M",
-          "side_pt": 207.36,
-          "fraction_of_usable_height": 0.3,
-          "x_pt": 202.32,
-          "y_pt": 343.0748057142857
-        },
-        "dedicatedPage": true,
-        "emailWall": false
-      },
-      "spine": {
-        "pagesBefore": 156,
-        "pagesAfter": 156,
-        "paper": "white",
-        "binding": "paperback",
-        "trim": "8.5\u00d711 in",
-        "before": {
-          "spineWidthIn": 0.351312,
-          "wrapWidthIn": 17.601312,
-          "wrapHeightIn": 11.25,
-          "spineTextAllowed": true
-        },
-        "after": {
-          "spineWidthIn": 0.351312,
-          "wrapWidthIn": 17.601312,
-          "wrapHeightIn": 11.25,
-          "spineTextAllowed": true
-        },
-        "deltaSpineIn": 0,
-        "deltaWrapWidthIn": 0,
-        "withinKdpTolerance": true,
-        "coverRebuildRequired": false,
-        "coverRebuildCorrect": false,
-        "hardcoverGeometryMustBeRead": false,
-        "barcodeZoneAffected": false,
-        "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
-      },
-      "cover": null,
-      "coverAction": "NONE \u2014 page count unchanged; the cover at KDP stays valid",
-      "uploadRequired": true,
-      "hold": null,
-      "proofRecommended": false,
-      "verification": [
-        {
-          "name": "page-count",
-          "pass": true,
-          "detail": "156 pages (expected 156)"
-        },
-        {
-          "name": "printed-url",
-          "pass": true,
-          "detail": "valicepress.com/companion/myth-hunters-field-book"
-        },
-        {
-          "name": "canonical-host",
-          "pass": true,
-          "detail": "no forbidden host on the page"
-        },
-        {
-          "name": "no-email-wall",
-          "pass": true,
-          "detail": "the page asks for nothing"
-        },
-        {
-          "name": "headline",
-          "pass": true,
-          "detail": "headline present"
-        },
-        {
-          "name": "eyebrow",
-          "pass": true,
-          "detail": "CONTINUE WITH V\u00c2LI\u00c7E PRESS"
-        },
-        {
-          "name": "fonts-embedded",
-          "pass": true,
-          "detail": "3 faces: AAAAAA+DejaVuSans-Bold, AAAAAA+DejaVuSans-Oblique, AAAAAA+DejaVuSans"
-        },
-        {
-          "name": "qr-floor",
-          "pass": true,
-          "detail": "30.0% of usable height"
-        },
-        {
-          "name": "qr-module-size",
-          "pass": true,
-          "detail": "2.22 mm per module"
-        },
-        {
-          "name": "pdf-metadata",
-          "pass": true,
-          "detail": "title=\"The Myth Hunter's Field Book: A Screen-Free Quest Through 22 Cultures \u2014 120 Puzzles, Maps, Codes and Challenges for Ages 8\u201312\" author=\"Emre Do\u011fan\""
-        },
-        {
-          "name": "qr-matches-url",
-          "pass": true,
-          "detail": "33\u00d733 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/myth-hunters-field-book"
-        }
-      ]
-    },
-    {
-      "generatedAt": "2026-09-03",
-      "book": "codex-enigmatica",
-      "format": "paperback",
-      "title": "Codex Enigmatica",
-      "asin": "B0HGSVF15Q",
-      "kdpState": "live",
-      "interior": {
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX-ENIGMATICA/08_OUTPUT/PAPERBACK/interior.pdf",
-        "sha256": "b37a5921cf4ccabc493563083b75cb4d07e42ff691ec970fbc702d58c8ae36fa",
-        "bytes": 70772599,
-        "pagesBefore": 274,
-        "pagesAfter": 274,
-        "companionPage": 274,
-        "previousBuildKept": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX-ENIGMATICA/08_OUTPUT/PAPERBACK/interior.pre-companion.pdf"
-      },
-      "companion": {
-        "printedUrl": "valicepress.com/codex-enigmatica/verify",
-        "qrUrl": "https://valicepress.com/codex-enigmatica/verify",
-        "qr": {
-          "modules": 33,
-          "module_pt": 4.538487272727272,
-          "module_mm": 1.601077454545454,
-          "version": 4,
-          "error": "M",
-          "side_pt": 149.77007999999998,
-          "fraction_of_usable_height": 0.28109999999999996,
-          "x_pt": 141.11496,
-          "y_pt": 322.3769977599999
-        },
-        "dedicatedPage": true,
-        "emailWall": false
-      },
-      "spine": {
-        "pagesBefore": 274,
-        "pagesAfter": 274,
-        "paper": "cream",
-        "binding": "paperback",
-        "trim": "6\u00d79 in",
-        "before": {
-          "spineWidthIn": 0.685,
-          "wrapWidthIn": 12.935,
-          "wrapHeightIn": 9.25,
-          "spineTextAllowed": true
-        },
-        "after": {
-          "spineWidthIn": 0.685,
-          "wrapWidthIn": 12.935,
-          "wrapHeightIn": 9.25,
-          "spineTextAllowed": true
-        },
-        "deltaSpineIn": 0,
-        "deltaWrapWidthIn": 0,
-        "withinKdpTolerance": true,
-        "coverRebuildRequired": false,
-        "coverRebuildCorrect": false,
-        "hardcoverGeometryMustBeRead": false,
-        "barcodeZoneAffected": false,
-        "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
-      },
-      "cover": null,
-      "coverAction": "NONE \u2014 page count unchanged; the cover at KDP stays valid",
-      "uploadRequired": true,
-      "hold": null,
-      "proofRecommended": false,
-      "verification": [
-        {
-          "name": "page-count",
-          "pass": true,
-          "detail": "274 pages (expected 274)"
-        },
-        {
-          "name": "printed-url",
-          "pass": true,
-          "detail": "valicepress.com/codex-enigmatica/verify"
-        },
-        {
-          "name": "canonical-host",
-          "pass": true,
-          "detail": "no forbidden host on the page"
-        },
-        {
-          "name": "no-email-wall",
-          "pass": true,
-          "detail": "the page asks for nothing"
-        },
-        {
-          "name": "headline",
-          "pass": true,
-          "detail": "headline present"
-        },
-        {
-          "name": "eyebrow",
-          "pass": true,
-          "detail": "CONTINUE WITH V\u00c2LI\u00c7E PRESS"
-        },
-        {
-          "name": "fonts-embedded",
-          "pass": true,
-          "detail": "3 faces: AAAAAA+DejaVuSerif-Bold, AAAAAA+DejaVuSerif-Italic, AAAAAA+DejaVuSerif"
-        },
-        {
-          "name": "qr-floor",
-          "pass": true,
-          "detail": "28.1% of usable height"
-        },
-        {
-          "name": "qr-module-size",
-          "pass": true,
-          "detail": "1.60 mm per module"
-        },
-        {
-          "name": "pdf-metadata",
-          "pass": true,
-          "detail": "title=\"Codex Enigmatica: One Hundred Engraved Enigmas and a Single Unbroken Mystery \u2014 A Puzzle Book Bound as a Grimoire\" author=\"Emre Do\u011fan\""
-        },
-        {
-          "name": "qr-matches-url",
-          "pass": true,
-          "detail": "33\u00d733 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/codex-enigmatica/verify"
-        }
-      ]
-    },
-    {
-      "generatedAt": "2026-09-03",
-      "book": "codex-enigmatica",
-      "format": "hardcover",
-      "title": "Codex Enigmatica",
-      "asin": "B0HH3B4HQ7",
-      "kdpState": "live",
-      "interior": {
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX-ENIGMATICA/08_OUTPUT/HARDCOVER/interior.pdf",
-        "sha256": "3f56c0c2be05e9638173358018afd6a862fb97543438b45f00829bc5073cf69d",
-        "bytes": 67722613,
-        "pagesBefore": 276,
-        "pagesAfter": 276,
-        "companionPage": 276,
-        "previousBuildKept": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX-ENIGMATICA/08_OUTPUT/HARDCOVER/interior.pre-companion.pdf"
-      },
-      "companion": {
-        "printedUrl": "valicepress.com/codex-enigmatica/verify",
-        "qrUrl": "https://valicepress.com/codex-enigmatica/verify",
-        "qr": {
-          "modules": 33,
-          "module_pt": 4.538487272727272,
-          "module_mm": 1.601077454545454,
-          "version": 4,
-          "error": "M",
-          "side_pt": 149.77007999999998,
-          "fraction_of_usable_height": 0.28109999999999996,
-          "x_pt": 141.11496,
-          "y_pt": 322.3769977599999
-        },
-        "dedicatedPage": true,
-        "emailWall": false
-      },
-      "spine": {
-        "pagesBefore": 276,
-        "pagesAfter": 276,
-        "paper": "cream",
-        "binding": "hardcover",
-        "trim": "6\u00d79 in",
-        "before": {
-          "spineWidthIn": 0.69,
-          "wrapWidthIn": 12.94,
-          "wrapHeightIn": 9.25,
-          "spineTextAllowed": true
-        },
-        "after": {
-          "spineWidthIn": 0.69,
-          "wrapWidthIn": 12.94,
-          "wrapHeightIn": 9.25,
-          "spineTextAllowed": true
-        },
-        "deltaSpineIn": 0,
-        "deltaWrapWidthIn": 0,
-        "withinKdpTolerance": true,
-        "coverRebuildRequired": false,
-        "coverRebuildCorrect": false,
-        "hardcoverGeometryMustBeRead": false,
-        "barcodeZoneAffected": false,
-        "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
-      },
-      "cover": null,
-      "coverAction": "NONE \u2014 page count unchanged; the cover at KDP stays valid",
-      "uploadRequired": true,
-      "hold": null,
-      "proofRecommended": false,
-      "verification": [
-        {
-          "name": "page-count",
-          "pass": true,
-          "detail": "276 pages (expected 276)"
-        },
-        {
-          "name": "printed-url",
-          "pass": true,
-          "detail": "valicepress.com/codex-enigmatica/verify"
-        },
-        {
-          "name": "canonical-host",
-          "pass": true,
-          "detail": "no forbidden host on the page"
-        },
-        {
-          "name": "no-email-wall",
-          "pass": true,
-          "detail": "the page asks for nothing"
-        },
-        {
-          "name": "headline",
-          "pass": true,
-          "detail": "headline present"
-        },
-        {
-          "name": "eyebrow",
-          "pass": true,
-          "detail": "CONTINUE WITH V\u00c2LI\u00c7E PRESS"
-        },
-        {
-          "name": "fonts-embedded",
-          "pass": true,
-          "detail": "3 faces: AAAAAA+DejaVuSerif-Bold, AAAAAA+DejaVuSerif-Italic, AAAAAA+DejaVuSerif"
-        },
-        {
-          "name": "qr-floor",
-          "pass": true,
-          "detail": "28.1% of usable height"
-        },
-        {
-          "name": "qr-module-size",
-          "pass": true,
-          "detail": "1.60 mm per module"
-        },
-        {
-          "name": "pdf-metadata",
-          "pass": true,
-          "detail": "title=\"Codex Enigmatica: One Hundred Engraved Enigmas and a Single Unbroken Mystery \u2014 A Puzzle Book Bound as a Grimoire\" author=\"Emre Do\u011fan\""
-        },
-        {
-          "name": "qr-matches-url",
-          "pass": true,
-          "detail": "33\u00d733 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/codex-enigmatica/verify"
-        }
-      ]
-    },
-    {
-      "generatedAt": "2026-09-03",
-      "book": "codex-bestiarium",
-      "format": "paperback",
-      "title": "Codex Bestiarium",
-      "asin": "B0HDLQHQ7H",
-      "kdpState": "live",
-      "interior": {
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX_BESTIARIUM/04_PRINT/PAPERBACK/CODEX_BESTIARIUM_INTERIOR_PAPERBACK.pdf",
-        "sha256": "6c32bf11622230b4537fcf19d6a2a9cdd311033e8be55c30d4417d08f4b67e62",
-        "bytes": 108961076,
-        "pagesBefore": 435,
-        "pagesAfter": 436,
-        "companionPage": 436,
-        "previousBuildKept": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX_BESTIARIUM/04_PRINT/PAPERBACK/CODEX_BESTIARIUM_INTERIOR_PAPERBACK.pre-companion.pdf"
-      },
-      "companion": {
-        "printedUrl": "valicepress.com/companion/codex-bestiarium",
-        "qrUrl": "https://valicepress.com/companion/codex-bestiarium",
-        "qr": {
-          "note": "geometry not re-measured on this run"
-        },
-        "dedicatedPage": true,
-        "emailWall": false
-      },
-      "spine": {
-        "pagesBefore": 435,
-        "pagesAfter": 436,
-        "paper": "cream",
-        "binding": "paperback",
-        "trim": "6\u00d79 in",
-        "before": {
-          "spineWidthIn": 1.0875,
-          "wrapWidthIn": 13.3375,
-          "wrapHeightIn": 9.25,
-          "spineTextAllowed": true
-        },
-        "after": {
-          "spineWidthIn": 1.09,
-          "wrapWidthIn": 13.34,
-          "wrapHeightIn": 9.25,
-          "spineTextAllowed": true
-        },
-        "deltaSpineIn": 0.0025,
-        "deltaWrapWidthIn": 0.0025,
-        "withinKdpTolerance": true,
-        "coverRebuildRequired": false,
-        "coverRebuildCorrect": true,
-        "hardcoverGeometryMustBeRead": false,
-        "barcodeZoneAffected": false,
-        "verdict": "wrap width moves 0.0025 in \u2014 inside KDP's \u00b10.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.0025 in and the house rule is that each edition's cover reads its own page count"
-      },
-      "cover": {
-        "built": true,
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX_BESTIARIUM/03_COVER/PAPERBACK/exports/",
-        "pageCount": 436,
-        "spineIn": 1.09,
-        "wrapIn": "13.3400 \u00d7 9.2500 (cream) \u00b7 13.2319 \u00d7 9.2500 (white)",
-        "note": "both paper stocks built; take the one the listing uses"
-      },
-      "coverAction": "REBUILD CORRECT \u2014 inside tolerance, but the printed spine no longer matches the block",
-      "uploadRequired": true,
-      "hold": "Four live listings whose 'Legendary Creatures' count still reads 120 and must read 112 (handbook O4). That correction needs a KDP visit for every edition anyway; this interior and its rebuilt cover ride along with it, one review cycle instead of two.",
-      "proofRecommended": true,
-      "verification": [
-        {
-          "name": "page-count",
-          "pass": true,
-          "detail": "436 pages (expected 436)"
-        },
-        {
-          "name": "printed-url",
-          "pass": true,
-          "detail": "valicepress.com/companion/codex-bestiarium"
-        },
-        {
-          "name": "canonical-host",
-          "pass": true,
-          "detail": "no forbidden host on the page"
-        },
-        {
-          "name": "eyebrow",
-          "pass": true,
-          "detail": "CONTINUE WITH V\u00c2LI\u00c7E PRESS"
-        },
-        {
-          "name": "fonts-embedded",
-          "pass": true,
-          "detail": "4 faces: AAAAAA+Cinzel500, AAAAAA+Cinzel400, AAAAAA+Garamonditalic400, AAAAAA+Garamond400"
-        },
-        {
-          "name": "pdf-metadata",
-          "pass": true,
-          "detail": "title=\"Codex Bestiarium: A World Bestiary: 112 Legendary Creatures from 40 Traditions \u2014 Beasts, Spirits, and Guardians of World Folklore\" author=\"Emre Do\u011fan\""
-        }
-      ]
-    },
-    {
-      "generatedAt": "2026-09-03",
+      "generatedAt": "2026-09-04",
       "book": "codex-bestiarium",
       "format": "hardcover",
       "title": "Codex Bestiarium",
       "asin": "B0HDLLPG5M",
       "kdpState": "live",
       "interior": {
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX_BESTIARIUM/04_PRINT/HARDCOVER/CODEX_BESTIARIUM_INTERIOR_HARDCOVER.pdf",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_BESTIARIUM/04_PRINT/HARDCOVER/CODEX_BESTIARIUM_INTERIOR_HARDCOVER.pdf",
         "sha256": "32f5b5a8ea4f46977aa634aa641f25bebb2a646998e2f1fbdf291f3e8d2207b5",
         "bytes": 108961076,
         "pagesBefore": 435,
         "pagesAfter": 436,
         "companionPage": 436,
-        "previousBuildKept": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX_BESTIARIUM/04_PRINT/HARDCOVER/CODEX_BESTIARIUM_INTERIOR_HARDCOVER.pre-companion.pdf"
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_BESTIARIUM/04_PRINT/HARDCOVER/CODEX_BESTIARIUM_INTERIOR_HARDCOVER.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
       },
       "companion": {
         "printedUrl": "valicepress.com/companion/codex-bestiarium",
@@ -1395,7 +32,7 @@
         "pagesAfter": 436,
         "paper": "cream",
         "binding": "hardcover",
-        "trim": "6\u00d79 in",
+        "trim": "6×9 in",
         "before": {
           "spineWidthIn": 1.0875,
           "wrapWidthIn": 13.3375,
@@ -1415,20 +52,21 @@
         "coverRebuildCorrect": true,
         "hardcoverGeometryMustBeRead": true,
         "barcodeZoneAffected": false,
-        "verdict": "wrap width moves 0.0025 in \u2014 inside KDP's \u00b10.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.0025 in and the house rule is that each edition's cover reads its own page count"
+        "verdict": "wrap width moves 0.0025 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.0025 in and the house rule is that each edition's cover reads its own page count"
       },
       "cover": {
         "built": true,
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX_BESTIARIUM/03_COVER/HARDCOVER/exports/",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_BESTIARIUM/03_COVER/HARDCOVER/exports/",
         "pageCount": 436,
         "spineIn": null,
-        "wrapIn": "14.8508 \u00d7 10.4167 (cream) \u00b7 14.7427 \u00d7 10.4167 (white)",
+        "wrapIn": "14.8508 × 10.4167 (cream) · 14.7427 × 10.4167 (white)",
         "note": "this project carries a calibrated hardcover profile with a measured board allowance, so its wrap IS derivable and was rebuilt"
       },
-      "coverAction": "REBUILD CORRECT \u2014 inside tolerance, but the printed spine no longer matches the block",
+      "coverAction": "REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block",
       "uploadRequired": true,
       "hold": "Four live listings whose 'Legendary Creatures' count still reads 120 and must read 112 (handbook O4). That correction needs a KDP visit for every edition anyway; this interior and its rebuilt cover ride along with it, one review cycle instead of two.",
       "proofRecommended": true,
+      "proofWhy": "the block changed thickness, so the wrap is new and unproved",
       "verification": [
         {
           "name": "page-count",
@@ -1448,7 +86,7 @@
         {
           "name": "eyebrow",
           "pass": true,
-          "detail": "CONTINUE WITH V\u00c2LI\u00c7E PRESS"
+          "detail": "CONTINUE WITH VÂLIÇE PRESS"
         },
         {
           "name": "fonts-embedded",
@@ -1458,25 +96,26 @@
         {
           "name": "pdf-metadata",
           "pass": true,
-          "detail": "title=\"Codex Bestiarium: A World Bestiary: 112 Legendary Creatures from 40 Traditions \u2014 Beasts, Spirits, and Guardians of World Folklore\" author=\"Emre Do\u011fan\""
+          "detail": "title=\"Codex Bestiarium: A World Bestiary: 112 Legendary Creatures from 40 Traditions — Beasts, Spirits, and Guardians of World Folklore\" author=\"Emre Doğan\""
         }
       ]
     },
     {
-      "generatedAt": "2026-09-03",
+      "generatedAt": "2026-09-04",
       "book": "codex-bestiarium",
       "format": "large_print",
       "title": "Codex Bestiarium",
       "asin": "B0HDLT1V3P",
       "kdpState": "live",
       "interior": {
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX_BESTIARIUM/04_PRINT/LARGEPRINT/CODEX_BESTIARIUM_INTERIOR_LARGEPRINT.pdf",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_BESTIARIUM/04_PRINT/LARGEPRINT/CODEX_BESTIARIUM_INTERIOR_LARGEPRINT.pdf",
         "sha256": "1488e237800d13af58175e051e1a484c17bda6b507d9a0f3fbdc6ede25cba6e6",
         "bytes": 109079309,
         "pagesBefore": 599,
         "pagesAfter": 600,
         "companionPage": 600,
-        "previousBuildKept": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX_BESTIARIUM/04_PRINT/LARGEPRINT/CODEX_BESTIARIUM_INTERIOR_LARGEPRINT.pre-companion.pdf"
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_BESTIARIUM/04_PRINT/LARGEPRINT/CODEX_BESTIARIUM_INTERIOR_LARGEPRINT.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
       },
       "companion": {
         "printedUrl": "valicepress.com/companion/codex-bestiarium",
@@ -1492,7 +131,7 @@
         "pagesAfter": 600,
         "paper": "cream",
         "binding": "paperback",
-        "trim": "6\u00d79 in",
+        "trim": "6×9 in",
         "before": {
           "spineWidthIn": 1.4975,
           "wrapWidthIn": 13.7475,
@@ -1512,20 +151,21 @@
         "coverRebuildCorrect": true,
         "hardcoverGeometryMustBeRead": false,
         "barcodeZoneAffected": false,
-        "verdict": "wrap width moves 0.0025 in \u2014 inside KDP's \u00b10.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.0025 in and the house rule is that each edition's cover reads its own page count"
+        "verdict": "wrap width moves 0.0025 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.0025 in and the house rule is that each edition's cover reads its own page count"
       },
       "cover": {
         "built": true,
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX_BESTIARIUM/03_COVER/LARGEPRINT/exports/",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_BESTIARIUM/03_COVER/LARGEPRINT/exports/",
         "pageCount": 600,
         "spineIn": 1.5,
-        "wrapIn": "13.7500 \u00d7 9.2500 (cream)",
+        "wrapIn": "13.7500 × 9.2500 (cream)",
         "note": "cream only, as the large print is printed"
       },
-      "coverAction": "REBUILD CORRECT \u2014 inside tolerance, but the printed spine no longer matches the block",
+      "coverAction": "REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block",
       "uploadRequired": true,
       "hold": "Four live listings whose 'Legendary Creatures' count still reads 120 and must read 112 (handbook O4). That correction needs a KDP visit for every edition anyway; this interior and its rebuilt cover ride along with it, one review cycle instead of two.",
       "proofRecommended": true,
+      "proofWhy": "the block changed thickness, so the wrap is new and unproved",
       "verification": [
         {
           "name": "page-count",
@@ -1545,7 +185,7 @@
         {
           "name": "eyebrow",
           "pass": true,
-          "detail": "CONTINUE WITH V\u00c2LI\u00c7E PRESS"
+          "detail": "CONTINUE WITH VÂLIÇE PRESS"
         },
         {
           "name": "fonts-embedded",
@@ -1555,29 +195,30 @@
         {
           "name": "pdf-metadata",
           "pass": true,
-          "detail": "title=\"Codex Bestiarium: A World Bestiary: 112 Legendary Creatures from 40 Traditions \u2014 Beasts, Spirits, and Guardians of World Folklore\" author=\"Emre Do\u011fan\""
+          "detail": "title=\"Codex Bestiarium: A World Bestiary: 112 Legendary Creatures from 40 Traditions — Beasts, Spirits, and Guardians of World Folklore\" author=\"Emre Doğan\""
         }
       ]
     },
     {
-      "generatedAt": "2026-09-03",
-      "book": "codex-mythologica",
+      "generatedAt": "2026-09-04",
+      "book": "codex-bestiarium",
       "format": "paperback",
-      "title": "Codex Mythologica",
-      "asin": "B0HCY8KY3X",
+      "title": "Codex Bestiarium",
+      "asin": "B0HDLQHQ7H",
       "kdpState": "live",
       "interior": {
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX_MYTHOLOGICA/04_PRINT/PAPERBACK/CODEX_MYTHOLOGICA_INTERIOR_PAPERBACK.pdf",
-        "sha256": "63c1f714d0cfde04df85ecf614c6ed2bc5d2df60285be1196cfaa440631bb741",
-        "bytes": 950402,
-        "pagesBefore": 329,
-        "pagesAfter": 330,
-        "companionPage": 330,
-        "previousBuildKept": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX_MYTHOLOGICA/04_PRINT/PAPERBACK/CODEX_MYTHOLOGICA_INTERIOR_PAPERBACK.pre-companion.pdf"
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_BESTIARIUM/04_PRINT/PAPERBACK/CODEX_BESTIARIUM_INTERIOR_PAPERBACK.pdf",
+        "sha256": "6c32bf11622230b4537fcf19d6a2a9cdd311033e8be55c30d4417d08f4b67e62",
+        "bytes": 108961076,
+        "pagesBefore": 435,
+        "pagesAfter": 436,
+        "companionPage": 436,
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_BESTIARIUM/04_PRINT/PAPERBACK/CODEX_BESTIARIUM_INTERIOR_PAPERBACK.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
       },
       "companion": {
-        "printedUrl": "valicepress.com/companion/codex-mythologica",
-        "qrUrl": "https://valicepress.com/companion/codex-mythologica",
+        "printedUrl": "valicepress.com/companion/codex-bestiarium",
+        "qrUrl": "https://valicepress.com/companion/codex-bestiarium",
         "qr": {
           "note": "geometry not re-measured on this run"
         },
@@ -1585,20 +226,20 @@
         "emailWall": false
       },
       "spine": {
-        "pagesBefore": 329,
-        "pagesAfter": 330,
+        "pagesBefore": 435,
+        "pagesAfter": 436,
         "paper": "cream",
         "binding": "paperback",
-        "trim": "6\u00d79 in",
+        "trim": "6×9 in",
         "before": {
-          "spineWidthIn": 0.8225,
-          "wrapWidthIn": 13.0725,
+          "spineWidthIn": 1.0875,
+          "wrapWidthIn": 13.3375,
           "wrapHeightIn": 9.25,
           "spineTextAllowed": true
         },
         "after": {
-          "spineWidthIn": 0.825,
-          "wrapWidthIn": 13.075,
+          "spineWidthIn": 1.09,
+          "wrapWidthIn": 13.34,
           "wrapHeightIn": 9.25,
           "spineTextAllowed": true
         },
@@ -1609,30 +250,31 @@
         "coverRebuildCorrect": true,
         "hardcoverGeometryMustBeRead": false,
         "barcodeZoneAffected": false,
-        "verdict": "wrap width moves 0.0025 in \u2014 inside KDP's \u00b10.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.0025 in and the house rule is that each edition's cover reads its own page count"
+        "verdict": "wrap width moves 0.0025 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.0025 in and the house rule is that each edition's cover reads its own page count"
       },
       "cover": {
         "built": true,
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX_MYTHOLOGICA/03_COVER/PAPERBACK/exports/",
-        "pageCount": 330,
-        "spineIn": 0.825,
-        "wrapIn": "13.0750 \u00d7 9.2500 (cream) \u00b7 12.9932 \u00d7 9.2500 (white)",
-        "note": "both paper stocks built"
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_BESTIARIUM/03_COVER/PAPERBACK/exports/",
+        "pageCount": 436,
+        "spineIn": 1.09,
+        "wrapIn": "13.3400 × 9.2500 (cream) · 13.2319 × 9.2500 (white)",
+        "note": "both paper stocks built; take the one the listing uses"
       },
-      "coverAction": "REBUILD CORRECT \u2014 inside tolerance, but the printed spine no longer matches the block",
+      "coverAction": "REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block",
       "uploadRequired": true,
-      "hold": "KDP Select runs to 2026-11-03 (handbook O5). On that date the interiors are reopened anyway so the ebook can be sold here; these files go up in the same pass. Pulling three live editions before then buys nothing.",
+      "hold": "Four live listings whose 'Legendary Creatures' count still reads 120 and must read 112 (handbook O4). That correction needs a KDP visit for every edition anyway; this interior and its rebuilt cover ride along with it, one review cycle instead of two.",
       "proofRecommended": true,
+      "proofWhy": "the block changed thickness, so the wrap is new and unproved",
       "verification": [
         {
           "name": "page-count",
           "pass": true,
-          "detail": "330 pages (expected 330)"
+          "detail": "436 pages (expected 436)"
         },
         {
           "name": "printed-url",
           "pass": true,
-          "detail": "valicepress.com/companion/codex-mythologica"
+          "detail": "valicepress.com/companion/codex-bestiarium"
         },
         {
           "name": "canonical-host",
@@ -1642,7 +284,7 @@
         {
           "name": "eyebrow",
           "pass": true,
-          "detail": "CONTINUE WITH V\u00c2LI\u00c7E PRESS"
+          "detail": "CONTINUE WITH VÂLIÇE PRESS"
         },
         {
           "name": "fonts-embedded",
@@ -1652,25 +294,226 @@
         {
           "name": "pdf-metadata",
           "pass": true,
-          "detail": "title=\"Codex Mythologica: 76 Myths from 19 Civilizations\" author=\"Emre Do\u011fan\""
+          "detail": "title=\"Codex Bestiarium: A World Bestiary: 112 Legendary Creatures from 40 Traditions — Beasts, Spirits, and Guardians of World Folklore\" author=\"Emre Doğan\""
         }
       ]
     },
     {
-      "generatedAt": "2026-09-03",
+      "generatedAt": "2026-09-04",
+      "book": "codex-enigmatica",
+      "format": "hardcover",
+      "title": "Codex Enigmatica",
+      "asin": "B0HH3B4HQ7",
+      "kdpState": "live",
+      "interior": {
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX-ENIGMATICA/08_OUTPUT/HARDCOVER/interior.pdf",
+        "sha256": "3f56c0c2be05e9638173358018afd6a862fb97543438b45f00829bc5073cf69d",
+        "bytes": 67722613,
+        "pagesBefore": 276,
+        "pagesAfter": 276,
+        "companionPage": 276,
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX-ENIGMATICA/08_OUTPUT/HARDCOVER/interior.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
+      },
+      "companion": {
+        "printedUrl": "valicepress.com/codex-enigmatica/verify",
+        "qrUrl": "https://valicepress.com/codex-enigmatica/verify",
+        "qr": {
+          "modules": 33,
+          "module_pt": 4.538487272727272,
+          "module_mm": 1.601077454545454,
+          "version": 4,
+          "error": "M",
+          "side_pt": 149.77007999999998,
+          "fraction_of_usable_height": 0.28109999999999996,
+          "x_pt": 141.11496,
+          "y_pt": 322.3769977599999
+        },
+        "dedicatedPage": true,
+        "emailWall": false
+      },
+      "spine": {
+        "pagesBefore": 276,
+        "pagesAfter": 276,
+        "paper": "cream",
+        "binding": "hardcover",
+        "trim": "6×9 in",
+        "before": {
+          "spineWidthIn": 0.69,
+          "wrapWidthIn": 12.94,
+          "wrapHeightIn": 9.25,
+          "spineTextAllowed": true
+        },
+        "after": {
+          "spineWidthIn": 0.69,
+          "wrapWidthIn": 12.94,
+          "wrapHeightIn": 9.25,
+          "spineTextAllowed": true
+        },
+        "deltaSpineIn": 0,
+        "deltaWrapWidthIn": 0,
+        "withinKdpTolerance": true,
+        "coverRebuildRequired": false,
+        "coverRebuildCorrect": false,
+        "hardcoverGeometryMustBeRead": false,
+        "barcodeZoneAffected": false,
+        "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
+      },
+      "cover": null,
+      "coverAction": "NONE — page count unchanged; the cover at KDP stays valid",
+      "uploadRequired": true,
+      "hold": null,
+      "proofRecommended": false,
+      "proofWhy": "the interior is a swap into an edition already in print",
+      "verification": [
+        {
+          "name": "page-count",
+          "pass": true,
+          "detail": "276 pages (expected 276)"
+        },
+        {
+          "name": "printed-url",
+          "pass": true,
+          "detail": "valicepress.com/codex-enigmatica/verify"
+        },
+        {
+          "name": "canonical-host",
+          "pass": true,
+          "detail": "no forbidden host on the page"
+        },
+        {
+          "name": "eyebrow",
+          "pass": true,
+          "detail": "CONTINUE WITH VÂLIÇE PRESS"
+        },
+        {
+          "name": "fonts-embedded",
+          "pass": true,
+          "detail": "3 faces: AAAAAA+DejaVuSerif-Bold, AAAAAA+DejaVuSerif-Italic, AAAAAA+DejaVuSerif"
+        },
+        {
+          "name": "pdf-metadata",
+          "pass": true,
+          "detail": "title=\"Codex Enigmatica: One Hundred Engraved Enigmas and a Single Unbroken Mystery — A Puzzle Book Bound as a Grimoire\" author=\"Emre Doğan\""
+        }
+      ]
+    },
+    {
+      "generatedAt": "2026-09-04",
+      "book": "codex-enigmatica",
+      "format": "paperback",
+      "title": "Codex Enigmatica",
+      "asin": "B0HGSVF15Q",
+      "kdpState": "live",
+      "interior": {
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX-ENIGMATICA/08_OUTPUT/PAPERBACK/interior.pdf",
+        "sha256": "b37a5921cf4ccabc493563083b75cb4d07e42ff691ec970fbc702d58c8ae36fa",
+        "bytes": 70772599,
+        "pagesBefore": 274,
+        "pagesAfter": 274,
+        "companionPage": 274,
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX-ENIGMATICA/08_OUTPUT/PAPERBACK/interior.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
+      },
+      "companion": {
+        "printedUrl": "valicepress.com/codex-enigmatica/verify",
+        "qrUrl": "https://valicepress.com/codex-enigmatica/verify",
+        "qr": {
+          "modules": 33,
+          "module_pt": 4.538487272727272,
+          "module_mm": 1.601077454545454,
+          "version": 4,
+          "error": "M",
+          "side_pt": 149.77007999999998,
+          "fraction_of_usable_height": 0.28109999999999996,
+          "x_pt": 141.11496,
+          "y_pt": 322.3769977599999
+        },
+        "dedicatedPage": true,
+        "emailWall": false
+      },
+      "spine": {
+        "pagesBefore": 274,
+        "pagesAfter": 274,
+        "paper": "cream",
+        "binding": "paperback",
+        "trim": "6×9 in",
+        "before": {
+          "spineWidthIn": 0.685,
+          "wrapWidthIn": 12.935,
+          "wrapHeightIn": 9.25,
+          "spineTextAllowed": true
+        },
+        "after": {
+          "spineWidthIn": 0.685,
+          "wrapWidthIn": 12.935,
+          "wrapHeightIn": 9.25,
+          "spineTextAllowed": true
+        },
+        "deltaSpineIn": 0,
+        "deltaWrapWidthIn": 0,
+        "withinKdpTolerance": true,
+        "coverRebuildRequired": false,
+        "coverRebuildCorrect": false,
+        "hardcoverGeometryMustBeRead": false,
+        "barcodeZoneAffected": false,
+        "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
+      },
+      "cover": null,
+      "coverAction": "NONE — page count unchanged; the cover at KDP stays valid",
+      "uploadRequired": true,
+      "hold": null,
+      "proofRecommended": false,
+      "proofWhy": "the interior is a swap into an edition already in print",
+      "verification": [
+        {
+          "name": "page-count",
+          "pass": true,
+          "detail": "274 pages (expected 274)"
+        },
+        {
+          "name": "printed-url",
+          "pass": true,
+          "detail": "valicepress.com/codex-enigmatica/verify"
+        },
+        {
+          "name": "canonical-host",
+          "pass": true,
+          "detail": "no forbidden host on the page"
+        },
+        {
+          "name": "eyebrow",
+          "pass": true,
+          "detail": "CONTINUE WITH VÂLIÇE PRESS"
+        },
+        {
+          "name": "fonts-embedded",
+          "pass": true,
+          "detail": "3 faces: AAAAAA+DejaVuSerif-Bold, AAAAAA+DejaVuSerif-Italic, AAAAAA+DejaVuSerif"
+        },
+        {
+          "name": "pdf-metadata",
+          "pass": true,
+          "detail": "title=\"Codex Enigmatica: One Hundred Engraved Enigmas and a Single Unbroken Mystery — A Puzzle Book Bound as a Grimoire\" author=\"Emre Doğan\""
+        }
+      ]
+    },
+    {
+      "generatedAt": "2026-09-04",
       "book": "codex-mythologica",
       "format": "hardcover",
       "title": "Codex Mythologica",
       "asin": "B0HDBFZRQ4",
       "kdpState": "live",
       "interior": {
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX_MYTHOLOGICA/04_PRINT/HARDCOVER/CODEX_MYTHOLOGICA_INTERIOR_HARDCOVER.pdf",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_MYTHOLOGICA/04_PRINT/HARDCOVER/CODEX_MYTHOLOGICA_INTERIOR_HARDCOVER.pdf",
         "sha256": "1f048794fdc1065ab80662499b8892fc51d99b6c67c0fda28585b7d3c8d9f2fa",
         "bytes": 950402,
         "pagesBefore": 329,
         "pagesAfter": 330,
         "companionPage": 330,
-        "previousBuildKept": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX_MYTHOLOGICA/04_PRINT/HARDCOVER/CODEX_MYTHOLOGICA_INTERIOR_HARDCOVER.pre-companion.pdf"
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_MYTHOLOGICA/04_PRINT/HARDCOVER/CODEX_MYTHOLOGICA_INTERIOR_HARDCOVER.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
       },
       "companion": {
         "printedUrl": "valicepress.com/companion/codex-mythologica",
@@ -1686,7 +529,7 @@
         "pagesAfter": 330,
         "paper": "cream",
         "binding": "hardcover",
-        "trim": "6\u00d79 in",
+        "trim": "6×9 in",
         "before": {
           "spineWidthIn": 0.8225,
           "wrapWidthIn": 13.0725,
@@ -1706,20 +549,21 @@
         "coverRebuildCorrect": true,
         "hardcoverGeometryMustBeRead": true,
         "barcodeZoneAffected": false,
-        "verdict": "wrap width moves 0.0025 in \u2014 inside KDP's \u00b10.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.0025 in and the house rule is that each edition's cover reads its own page count"
+        "verdict": "wrap width moves 0.0025 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.0025 in and the house rule is that each edition's cover reads its own page count"
       },
       "cover": {
         "built": true,
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX_MYTHOLOGICA/03_COVER/HARDCOVER/exports/",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_MYTHOLOGICA/03_COVER/HARDCOVER/exports/",
         "pageCount": 330,
         "spineIn": null,
-        "wrapIn": "14.5858 \u00d7 10.4167 (cream) \u00b7 14.5040 \u00d7 10.4167 (white)",
+        "wrapIn": "14.5858 × 10.4167 (cream) · 14.5040 × 10.4167 (white)",
         "note": "calibrated hardcover profile"
       },
-      "coverAction": "REBUILD CORRECT \u2014 inside tolerance, but the printed spine no longer matches the block",
+      "coverAction": "REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block",
       "uploadRequired": true,
       "hold": "KDP Select runs to 2026-11-03 (handbook O5). On that date the interiors are reopened anyway so the ebook can be sold here; these files go up in the same pass. Pulling three live editions before then buys nothing.",
       "proofRecommended": true,
+      "proofWhy": "the block changed thickness, so the wrap is new and unproved",
       "verification": [
         {
           "name": "page-count",
@@ -1739,7 +583,7 @@
         {
           "name": "eyebrow",
           "pass": true,
-          "detail": "CONTINUE WITH V\u00c2LI\u00c7E PRESS"
+          "detail": "CONTINUE WITH VÂLIÇE PRESS"
         },
         {
           "name": "fonts-embedded",
@@ -1749,25 +593,26 @@
         {
           "name": "pdf-metadata",
           "pass": true,
-          "detail": "title=\"Codex Mythologica: 76 Myths from 19 Civilizations\" author=\"Emre Do\u011fan\""
+          "detail": "title=\"Codex Mythologica: 76 Myths from 19 Civilizations\" author=\"Emre Doğan\""
         }
       ]
     },
     {
-      "generatedAt": "2026-09-03",
+      "generatedAt": "2026-09-04",
       "book": "codex-mythologica",
       "format": "large_print",
       "title": "Codex Mythologica",
       "asin": "B0HDDR84MF",
       "kdpState": "live",
       "interior": {
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX_MYTHOLOGICA/04_PRINT/LARGEPRINT/CODEX_MYTHOLOGICA_INTERIOR_LARGEPRINT.pdf",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_MYTHOLOGICA/04_PRINT/LARGEPRINT/CODEX_MYTHOLOGICA_INTERIOR_LARGEPRINT.pdf",
         "sha256": "bf6c8f9a34875bc99574d037bd08727f5aac5cadd8e5877447b8a9346e7f05b6",
         "bytes": 1114694,
         "pagesBefore": 578,
         "pagesAfter": 579,
         "companionPage": 579,
-        "previousBuildKept": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX_MYTHOLOGICA/04_PRINT/LARGEPRINT/CODEX_MYTHOLOGICA_INTERIOR_LARGEPRINT.pre-companion.pdf"
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_MYTHOLOGICA/04_PRINT/LARGEPRINT/CODEX_MYTHOLOGICA_INTERIOR_LARGEPRINT.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
       },
       "companion": {
         "printedUrl": "valicepress.com/companion/codex-mythologica",
@@ -1783,7 +628,7 @@
         "pagesAfter": 579,
         "paper": "cream",
         "binding": "paperback",
-        "trim": "6\u00d79 in",
+        "trim": "6×9 in",
         "before": {
           "spineWidthIn": 1.445,
           "wrapWidthIn": 13.695,
@@ -1803,20 +648,21 @@
         "coverRebuildCorrect": true,
         "hardcoverGeometryMustBeRead": false,
         "barcodeZoneAffected": false,
-        "verdict": "wrap width moves 0.0025 in \u2014 inside KDP's \u00b10.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.0025 in and the house rule is that each edition's cover reads its own page count"
+        "verdict": "wrap width moves 0.0025 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.0025 in and the house rule is that each edition's cover reads its own page count"
       },
       "cover": {
         "built": true,
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/CODEX_MYTHOLOGICA/03_COVER/LARGEPRINT/exports/",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_MYTHOLOGICA/03_COVER/LARGEPRINT/exports/",
         "pageCount": 579,
         "spineIn": 1.4475,
-        "wrapIn": "13.6975 \u00d7 9.2500 (cream)",
+        "wrapIn": "13.6975 × 9.2500 (cream)",
         "note": "cream only"
       },
-      "coverAction": "REBUILD CORRECT \u2014 inside tolerance, but the printed spine no longer matches the block",
+      "coverAction": "REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block",
       "uploadRequired": true,
       "hold": "KDP Select runs to 2026-11-03 (handbook O5). On that date the interiors are reopened anyway so the ebook can be sold here; these files go up in the same pass. Pulling three live editions before then buys nothing.",
       "proofRecommended": true,
+      "proofWhy": "the block changed thickness, so the wrap is new and unproved",
       "verification": [
         {
           "name": "page-count",
@@ -1836,7 +682,7 @@
         {
           "name": "eyebrow",
           "pass": true,
-          "detail": "CONTINUE WITH V\u00c2LI\u00c7E PRESS"
+          "detail": "CONTINUE WITH VÂLIÇE PRESS"
         },
         {
           "name": "fonts-embedded",
@@ -1846,7 +692,106 @@
         {
           "name": "pdf-metadata",
           "pass": true,
-          "detail": "title=\"Codex Mythologica: 76 Myths from 19 Civilizations\" author=\"Emre Do\u011fan\""
+          "detail": "title=\"Codex Mythologica: 76 Myths from 19 Civilizations\" author=\"Emre Doğan\""
+        }
+      ]
+    },
+    {
+      "generatedAt": "2026-09-04",
+      "book": "codex-mythologica",
+      "format": "paperback",
+      "title": "Codex Mythologica",
+      "asin": "B0HCY8KY3X",
+      "kdpState": "live",
+      "interior": {
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_MYTHOLOGICA/04_PRINT/PAPERBACK/CODEX_MYTHOLOGICA_INTERIOR_PAPERBACK.pdf",
+        "sha256": "63c1f714d0cfde04df85ecf614c6ed2bc5d2df60285be1196cfaa440631bb741",
+        "bytes": 950402,
+        "pagesBefore": 329,
+        "pagesAfter": 330,
+        "companionPage": 330,
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_MYTHOLOGICA/04_PRINT/PAPERBACK/CODEX_MYTHOLOGICA_INTERIOR_PAPERBACK.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
+      },
+      "companion": {
+        "printedUrl": "valicepress.com/companion/codex-mythologica",
+        "qrUrl": "https://valicepress.com/companion/codex-mythologica",
+        "qr": {
+          "note": "geometry not re-measured on this run"
+        },
+        "dedicatedPage": true,
+        "emailWall": false
+      },
+      "spine": {
+        "pagesBefore": 329,
+        "pagesAfter": 330,
+        "paper": "cream",
+        "binding": "paperback",
+        "trim": "6×9 in",
+        "before": {
+          "spineWidthIn": 0.8225,
+          "wrapWidthIn": 13.0725,
+          "wrapHeightIn": 9.25,
+          "spineTextAllowed": true
+        },
+        "after": {
+          "spineWidthIn": 0.825,
+          "wrapWidthIn": 13.075,
+          "wrapHeightIn": 9.25,
+          "spineTextAllowed": true
+        },
+        "deltaSpineIn": 0.0025,
+        "deltaWrapWidthIn": 0.0025,
+        "withinKdpTolerance": true,
+        "coverRebuildRequired": false,
+        "coverRebuildCorrect": true,
+        "hardcoverGeometryMustBeRead": false,
+        "barcodeZoneAffected": false,
+        "verdict": "wrap width moves 0.0025 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.0025 in and the house rule is that each edition's cover reads its own page count"
+      },
+      "cover": {
+        "built": true,
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/CODEX_MYTHOLOGICA/03_COVER/PAPERBACK/exports/",
+        "pageCount": 330,
+        "spineIn": 0.825,
+        "wrapIn": "13.0750 × 9.2500 (cream) · 12.9932 × 9.2500 (white)",
+        "note": "both paper stocks built"
+      },
+      "coverAction": "REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block",
+      "uploadRequired": true,
+      "hold": "KDP Select runs to 2026-11-03 (handbook O5). On that date the interiors are reopened anyway so the ebook can be sold here; these files go up in the same pass. Pulling three live editions before then buys nothing.",
+      "proofRecommended": true,
+      "proofWhy": "the block changed thickness, so the wrap is new and unproved",
+      "verification": [
+        {
+          "name": "page-count",
+          "pass": true,
+          "detail": "330 pages (expected 330)"
+        },
+        {
+          "name": "printed-url",
+          "pass": true,
+          "detail": "valicepress.com/companion/codex-mythologica"
+        },
+        {
+          "name": "canonical-host",
+          "pass": true,
+          "detail": "no forbidden host on the page"
+        },
+        {
+          "name": "eyebrow",
+          "pass": true,
+          "detail": "CONTINUE WITH VÂLIÇE PRESS"
+        },
+        {
+          "name": "fonts-embedded",
+          "pass": true,
+          "detail": "4 faces: AAAAAA+Cinzel500, AAAAAA+Cinzel400, AAAAAA+Garamonditalic400, AAAAAA+Garamond400"
+        },
+        {
+          "name": "pdf-metadata",
+          "pass": true,
+          "detail": "title=\"Codex Mythologica: 76 Myths from 19 Civilizations\" author=\"Emre Doğan\""
         }
       ]
     },
@@ -1858,13 +803,14 @@
       "asin": null,
       "kdpState": "not_created",
       "interior": {
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pdf",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pdf",
         "sha256": "17d885aed6eaf7ed9425c62099089326ff3684b0b6aaefb7e1e5d77aa61b1068",
         "bytes": 615771,
         "pagesBefore": 175,
         "pagesAfter": 176,
         "companionPage": 176,
-        "previousBuildKept": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pre-companion.pdf"
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
       },
       "companion": {
         "printedUrl": "valicepress.com/companion/epictetus",
@@ -1888,7 +834,7 @@
         "pagesAfter": 176,
         "paper": "white",
         "binding": "paperback",
-        "trim": "6\u00d79 in",
+        "trim": "6×9 in",
         "before": {
           "spineWidthIn": 0.3941,
           "wrapWidthIn": 12.6441,
@@ -1908,20 +854,21 @@
         "coverRebuildCorrect": true,
         "hardcoverGeometryMustBeRead": false,
         "barcodeZoneAffected": false,
-        "verdict": "wrap width moves 0.002252 in \u2014 inside KDP's \u00b10.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.002252 in and the house rule is that each edition's cover reads its own page count"
+        "verdict": "wrap width moves 0.002252 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.002252 in and the house rule is that each edition's cover reads its own page count"
       },
       "cover": {
         "built": true,
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/ASSETS/cover/paperback-wrap-v1.pdf",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/ASSETS/cover/paperback-wrap-v1.pdf",
         "pageCount": 176,
         "spineIn": 0.3964,
-        "wrapIn": "12.6464 \u00d7 9.2500 (white)",
-        "note": "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 176 \u2014 that is, after the companion leaf. Its spine and wrap agree with this pipeline's own arithmetic to four decimal places (0.396352 / 12.646352), so nothing had to be rebuilt after the splice."
+        "wrapIn": "12.6464 × 9.2500 (white)",
+        "note": "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 176 — that is, after the companion leaf. Its spine and wrap agree with this pipeline's own arithmetic to four decimal places (0.396352 / 12.646352), so nothing had to be rebuilt after the splice."
       },
-      "coverAction": "REBUILD CORRECT \u2014 inside tolerance, but the printed spine no longer matches the block",
+      "coverAction": "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior",
       "uploadRequired": true,
       "hold": null,
       "proofRecommended": true,
+      "proofWhy": "the block changed thickness, so the wrap is new and unproved",
       "verification": [
         {
           "name": "page-count",
@@ -1939,14 +886,415 @@
           "detail": "no forbidden host on the page"
         },
         {
-          "name": "no-email-wall",
+          "name": "eyebrow",
           "pass": true,
-          "detail": "the page asks for nothing"
+          "detail": "CONTINUE WITH VALICE PRESS"
         },
         {
-          "name": "headline",
+          "name": "fonts-embedded",
           "pass": true,
-          "detail": "headline present"
+          "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
+        },
+        {
+          "name": "pdf-metadata",
+          "pass": true,
+          "detail": "title=\"Epictetus: The Discourses and Enchiridion: The George Long Translation, Annotated — the Complete Enchiridion, 68 Discourses in Seven Thematic Parts, 120 Head-Notes, a Stoic Glossary and a Concordance to the Meditations\" author=\"Emre Doğan\""
+        }
+      ]
+    },
+    {
+      "generatedAt": "2026-09-04",
+      "book": "greek-alphabet-handwriting-workbook",
+      "format": "paperback",
+      "title": "The Greek Alphabet Handwriting Workbook",
+      "asin": null,
+      "kdpState": "not_created",
+      "interior": {
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/interior.pdf",
+        "sha256": "b127010251f0e701afba29ab9a6eb7107cb5d923462c65e263e27bcc158abe1f",
+        "bytes": 426044,
+        "pagesBefore": 100,
+        "pagesAfter": 100,
+        "companionPage": 99,
+        "previousBuildKept": null,
+        "builtBy": "BUILD/backmatter.py — the book's own back-matter builder"
+      },
+      "companion": {
+        "printedUrl": "valicepress.com/companion/greek",
+        "qrUrl": "https://valicepress.com/companion/greek",
+        "qr": {
+          "measuredOffThePage": true,
+          "found": true,
+          "dpi": 200,
+          "finders": 3,
+          "sidePt": 213.96,
+          "sideIn": 2.972,
+          "modulePx": 20.48,
+          "moduleMm": 2.6,
+          "modules": 29,
+          "pageWidthPt": 612,
+          "pageHeightPt": 792,
+          "fractionOfPageHeight": 0.2702
+        },
+        "dedicatedPage": true,
+        "emailWall": false
+      },
+      "spine": {
+        "pagesBefore": 100,
+        "pagesAfter": 100,
+        "paper": "white",
+        "binding": "paperback",
+        "trim": "8.5×11 in",
+        "before": {
+          "spineWidthIn": 0.2252,
+          "wrapWidthIn": 17.4752,
+          "wrapHeightIn": 11.25,
+          "spineTextAllowed": true
+        },
+        "after": {
+          "spineWidthIn": 0.2252,
+          "wrapWidthIn": 17.4752,
+          "wrapHeightIn": 11.25,
+          "spineTextAllowed": true
+        },
+        "deltaSpineIn": 0,
+        "deltaWrapWidthIn": 0,
+        "withinKdpTolerance": true,
+        "coverRebuildRequired": false,
+        "coverRebuildCorrect": false,
+        "hardcoverGeometryMustBeRead": false,
+        "barcodeZoneAffected": false,
+        "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
+      },
+      "cover": {
+        "built": true,
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/cover.pdf",
+        "pageCount": 100,
+        "spineIn": 0.2252,
+        "wrapIn": "17.4752 × 11.2500 (white)",
+        "note": "Not rebuilt — built once, at the final page count, by the project's own BUILD/build_cover.py. Nothing was spliced into this book, so the block never changed thickness. It is listed here because this is where the packaging pipeline looks for a wrap, and an edition that has never been uploaded needs its cover NAMED rather than left null: `coverAction` says the Founder must upload one, and this is the file. Spine and wrap agree with spine-check.mjs to four decimal places, and `preflight.py --kind cover` passes 6/6. No spine text: 0.2252 in leaves a 0.100 in safe zone, which cannot carry legible type on a perfect-bound book."
+      },
+      "coverAction": "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior",
+      "uploadRequired": true,
+      "hold": null,
+      "proofRecommended": true,
+      "proofWhy": "this edition has never been printed — first proof of this interior and this cover",
+      "verification": [
+        {
+          "name": "page-count",
+          "pass": true,
+          "detail": "100 pages (expected 100)"
+        },
+        {
+          "name": "printed-url",
+          "pass": true,
+          "detail": "valicepress.com/companion/greek"
+        },
+        {
+          "name": "canonical-host",
+          "pass": true,
+          "detail": "no forbidden host on the page"
+        },
+        {
+          "name": "eyebrow",
+          "pass": true,
+          "detail": "CONTINUE WITH VÂLIÇE PRESS"
+        },
+        {
+          "name": "fonts-embedded",
+          "pass": true,
+          "detail": "5 faces: AAAAAA+Lato-Light, AAAAAA+DejaVuSans, AAAAAA+Lato-Bold, AAAAAA+Lato-Italic, AAAAAA+Lato-Regular"
+        },
+        {
+          "name": "pdf-metadata",
+          "pass": true,
+          "detail": "title=\"The Greek Alphabet Handwriting Workbook: Write all 24 letters in the modern and the classical forms, with a sourced stroke order for every one\" author=\"Emre Doğan\""
+        }
+      ]
+    },
+    {
+      "generatedAt": "2026-09-04",
+      "book": "korean-hangul-handwriting-workbook",
+      "format": "hardcover",
+      "title": "Korean Hangul Handwriting Workbook",
+      "asin": null,
+      "kdpState": "in_review",
+      "interior": {
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/hardcover/hardcover_interior_8.25x11_126pp.pdf",
+        "sha256": "849c152c7621bb7ea701ddd58a075d746b4978024345a44d47b17566176b141d",
+        "bytes": 767181,
+        "pagesBefore": 124,
+        "pagesAfter": 126,
+        "companionPage": 125,
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/hardcover/hardcover_interior_8.25x11_126pp.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
+      },
+      "companion": {
+        "printedUrl": "valicepress.com/companion/hangul",
+        "qrUrl": "https://valicepress.com/companion/hangul",
+        "qr": {
+          "note": "geometry not re-measured on this run"
+        },
+        "dedicatedPage": true,
+        "emailWall": false
+      },
+      "spine": {
+        "pagesBefore": 124,
+        "pagesAfter": 126,
+        "paper": "white",
+        "binding": "hardcover",
+        "trim": "8.25×11 in",
+        "before": {
+          "spineWidthIn": 0.279248,
+          "wrapWidthIn": 17.029248,
+          "wrapHeightIn": 11.25,
+          "spineTextAllowed": true
+        },
+        "after": {
+          "spineWidthIn": 0.283752,
+          "wrapWidthIn": 17.033752,
+          "wrapHeightIn": 11.25,
+          "spineTextAllowed": true
+        },
+        "deltaSpineIn": 0.004504,
+        "deltaWrapWidthIn": 0.004504,
+        "withinKdpTolerance": true,
+        "coverRebuildRequired": false,
+        "coverRebuildCorrect": true,
+        "hardcoverGeometryMustBeRead": true,
+        "barcodeZoneAffected": false,
+        "verdict": "wrap width moves 0.004504 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.004504 in and the house rule is that each edition's cover reads its own page count"
+      },
+      "cover": {
+        "built": false,
+        "reason": "this project pins the hardcover wrap to a value the Founder read out of KDP's Cover Calculator, and that value is page-count independent — re-running the builder at 126 pp reproduces the 124 pp wrap. The house standard forbids deriving a hardcover wrap. Founder action: run the calculator at 126 pp / 8.25 × 11 / white, paste the three numbers into project_config.json → formats.hardcover.kdp_calculator, re-run 06_BUILD/build_cover.py --format hardcover."
+      },
+      "coverAction": "REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block",
+      "uploadRequired": true,
+      "hold": "In KDP review, and its wrap geometry is not derivable here. This project records the hardcover wrap as a value the Founder read out of KDP's own Cover Calculator (`project_config.json → formats.hardcover.kdp_calculator`), pinned and independent of page count — so re-running the builder at 126 pages reproduces the 124-page wrap rather than a new one. The house standard says a hardcover wrap is read from the calculator and never derived, so this one needs five minutes in the calculator at 126 pp / 8.25 × 11 / white before it can be rebuilt. The paperback has no such dependency and its cover was rebuilt.",
+      "proofRecommended": true,
+      "proofWhy": "the block changed thickness, so the wrap is new and unproved",
+      "verification": [
+        {
+          "name": "page-count",
+          "pass": true,
+          "detail": "126 pages (expected 126)"
+        },
+        {
+          "name": "printed-url",
+          "pass": true,
+          "detail": "valicepress.com/companion/hangul"
+        },
+        {
+          "name": "canonical-host",
+          "pass": true,
+          "detail": "no forbidden host on the page"
+        },
+        {
+          "name": "eyebrow",
+          "pass": true,
+          "detail": "CONTINUE WITH VÂLIÇE PRESS"
+        },
+        {
+          "name": "fonts-embedded",
+          "pass": true,
+          "detail": "2 faces: AAAAAA+NotoSansKR-Bold, AAAAAA+NotoSansKR-Regular"
+        },
+        {
+          "name": "pdf-metadata",
+          "pass": true,
+          "detail": "title=\"Korean Hangul Handwriting Workbook: Learn to write all 40 letters with correct stroke order, build syllable blocks, and read your first 97 Korean words\" author=\"Emre Doğan\""
+        }
+      ]
+    },
+    {
+      "generatedAt": "2026-09-04",
+      "book": "korean-hangul-handwriting-workbook",
+      "format": "paperback",
+      "title": "Korean Hangul Handwriting Workbook",
+      "asin": "B0HHHWXGG4",
+      "kdpState": "live",
+      "interior": {
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_126pp.pdf",
+        "sha256": "791ef3bdbc4cbf8d20d65f257ea768c96990bbb993ca65d8ddc11b4752b9e35b",
+        "bytes": 767355,
+        "pagesBefore": 124,
+        "pagesAfter": 126,
+        "companionPage": 125,
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_126pp.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
+      },
+      "companion": {
+        "printedUrl": "valicepress.com/companion/hangul",
+        "qrUrl": "https://valicepress.com/companion/hangul",
+        "qr": {
+          "note": "geometry not re-measured on this run"
+        },
+        "dedicatedPage": true,
+        "emailWall": false
+      },
+      "spine": {
+        "pagesBefore": 124,
+        "pagesAfter": 126,
+        "paper": "white",
+        "binding": "paperback",
+        "trim": "8.5×11 in",
+        "before": {
+          "spineWidthIn": 0.279248,
+          "wrapWidthIn": 17.529248,
+          "wrapHeightIn": 11.25,
+          "spineTextAllowed": true
+        },
+        "after": {
+          "spineWidthIn": 0.283752,
+          "wrapWidthIn": 17.533752,
+          "wrapHeightIn": 11.25,
+          "spineTextAllowed": true
+        },
+        "deltaSpineIn": 0.004504,
+        "deltaWrapWidthIn": 0.004504,
+        "withinKdpTolerance": true,
+        "coverRebuildRequired": false,
+        "coverRebuildCorrect": true,
+        "hardcoverGeometryMustBeRead": false,
+        "barcodeZoneAffected": false,
+        "verdict": "wrap width moves 0.004504 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.004504 in and the house rule is that each edition's cover reads its own page count"
+      },
+      "cover": {
+        "built": true,
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/KOREAN-HANGUL-HANDWRITING-WORKBOOK/05_APLUS_COVER/exports/paperback_cover.pdf",
+        "pageCount": 126,
+        "spineIn": 0.283752,
+        "wrapIn": "17.5338 × 11.2500",
+        "note": "internal KDP formula, white paper — the same arithmetic spine-check.mjs runs, and the two agree"
+      },
+      "coverAction": "REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block",
+      "uploadRequired": true,
+      "hold": null,
+      "proofRecommended": true,
+      "proofWhy": "the block changed thickness, so the wrap is new and unproved",
+      "verification": [
+        {
+          "name": "page-count",
+          "pass": true,
+          "detail": "126 pages (expected 126)"
+        },
+        {
+          "name": "printed-url",
+          "pass": true,
+          "detail": "valicepress.com/companion/hangul"
+        },
+        {
+          "name": "canonical-host",
+          "pass": true,
+          "detail": "no forbidden host on the page"
+        },
+        {
+          "name": "eyebrow",
+          "pass": true,
+          "detail": "CONTINUE WITH VÂLIÇE PRESS"
+        },
+        {
+          "name": "fonts-embedded",
+          "pass": true,
+          "detail": "2 faces: AAAAAA+NotoSansKR-Bold, AAAAAA+NotoSansKR-Regular"
+        },
+        {
+          "name": "pdf-metadata",
+          "pass": true,
+          "detail": "title=\"Korean Hangul Handwriting Workbook: Learn to write all 40 letters with correct stroke order, build syllable blocks, and read your first 97 Korean words\" author=\"Emre Doğan\""
+        }
+      ]
+    },
+    {
+      "generatedAt": "2026-09-04",
+      "book": "myths-and-legends-of-china",
+      "format": "paperback",
+      "title": "Myths and Legends of China",
+      "asin": null,
+      "kdpState": "not_created",
+      "interior": {
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pdf",
+        "sha256": "f4738f2a4e0474bb73d16f7fbd9aeea4e92a34ccd17f110690829b9c4f5aa649",
+        "bytes": 347293,
+        "pagesBefore": 107,
+        "pagesAfter": 108,
+        "companionPage": 108,
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
+      },
+      "companion": {
+        "printedUrl": "valicepress.com/companion/china-gods",
+        "qrUrl": "https://valicepress.com/companion/china-gods",
+        "qr": {
+          "modules": 33,
+          "module_pt": 4.850705454545455,
+          "module_mm": 1.7112210909090908,
+          "version": 4,
+          "error": "M",
+          "side_pt": 160.07328,
+          "fraction_of_usable_height": 0.28650000000000003,
+          "x_pt": 135.96336,
+          "y_pt": 300.25633913142866
+        },
+        "dedicatedPage": true,
+        "emailWall": false
+      },
+      "spine": {
+        "pagesBefore": 107,
+        "pagesAfter": 108,
+        "paper": "white",
+        "binding": "paperback",
+        "trim": "6×9 in",
+        "before": {
+          "spineWidthIn": 0.240964,
+          "wrapWidthIn": 12.490964,
+          "wrapHeightIn": 9.25,
+          "spineTextAllowed": true
+        },
+        "after": {
+          "spineWidthIn": 0.243216,
+          "wrapWidthIn": 12.493216,
+          "wrapHeightIn": 9.25,
+          "spineTextAllowed": true
+        },
+        "deltaSpineIn": 0.002252,
+        "deltaWrapWidthIn": 0.002252,
+        "withinKdpTolerance": true,
+        "coverRebuildRequired": false,
+        "coverRebuildCorrect": true,
+        "hardcoverGeometryMustBeRead": false,
+        "barcodeZoneAffected": false,
+        "verdict": "wrap width moves 0.002252 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.002252 in and the house rule is that each edition's cover reads its own page count"
+      },
+      "cover": {
+        "built": true,
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/MYTHS-AND-LEGENDS-OF-CHINA/ASSETS/cover/paperback-wrap-v1.pdf",
+        "pageCount": 108,
+        "spineIn": 0.2432,
+        "wrapIn": "12.4932 × 9.2500 (white)",
+        "note": "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 108 — that is, after the companion leaf. Its spine and wrap agree with this pipeline's own arithmetic to four decimal places (0.243216 / 12.493216), so nothing had to be rebuilt after the splice."
+      },
+      "coverAction": "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior",
+      "uploadRequired": true,
+      "hold": null,
+      "proofRecommended": true,
+      "proofWhy": "the block changed thickness, so the wrap is new and unproved",
+      "verification": [
+        {
+          "name": "page-count",
+          "pass": true,
+          "detail": "108 pages (expected 108)"
+        },
+        {
+          "name": "printed-url",
+          "pass": true,
+          "detail": "valicepress.com/companion/china-gods"
+        },
+        {
+          "name": "canonical-host",
+          "pass": true,
+          "detail": "no forbidden host on the page"
         },
         {
           "name": "eyebrow",
@@ -1959,24 +1307,9 @@
           "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
         },
         {
-          "name": "qr-floor",
-          "pass": true,
-          "detail": "28.4% of usable height"
-        },
-        {
-          "name": "qr-module-size",
-          "pass": true,
-          "detail": "1.70 mm per module"
-        },
-        {
           "name": "pdf-metadata",
           "pass": true,
-          "detail": "title=\"Epictetus: The Discourses and Enchiridion: The George Long Translation, Annotated \u2014 the Complete Enchiridion, 68 Discourses in Seven Thematic Parts, 120 Head-Notes, a Stoic Glossary and a Concordance to the Meditations\" author=\"Emre Do\u011fan\""
-        },
-        {
-          "name": "qr-matches-url",
-          "pass": true,
-          "detail": "33\u00d733 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/epictetus"
+          "detail": "title=\"Myths and Legends of China: Volume One: The Gods — Eight Chapters Complete in the 1922 Text, Annotated, with a Register of the Celestial Ministries, a Glossary of 25 Figures with Verified Chapter References, a Note on the Romanisation and a Chronology\" author=\"Emre Doğan\""
         }
       ]
     },
@@ -1988,13 +1321,14 @@
       "asin": null,
       "kdpState": "not_created",
       "interior": {
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pdf",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pdf",
         "sha256": "f06fea37a5d083f0a0ea7f89240b42dc8f38c870a85bc3c23f5aee24ea93fa8d",
         "bytes": 575959,
         "pagesBefore": 153,
         "pagesAfter": 154,
         "companionPage": 154,
-        "previousBuildKept": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pre-companion.pdf"
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
       },
       "companion": {
         "printedUrl": "valicepress.com/companion/seneca",
@@ -2018,7 +1352,7 @@
         "pagesAfter": 154,
         "paper": "white",
         "binding": "paperback",
-        "trim": "6\u00d79 in",
+        "trim": "6×9 in",
         "before": {
           "spineWidthIn": 0.344556,
           "wrapWidthIn": 12.594556,
@@ -2038,20 +1372,21 @@
         "coverRebuildCorrect": true,
         "hardcoverGeometryMustBeRead": false,
         "barcodeZoneAffected": false,
-        "verdict": "wrap width moves 0.002252 in \u2014 inside KDP's \u00b10.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.002252 in and the house rule is that each edition's cover reads its own page count"
+        "verdict": "wrap width moves 0.002252 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.002252 in and the house rule is that each edition's cover reads its own page count"
       },
       "cover": {
         "built": true,
-        "path": "/home/emre/Downloads/MY-D\u0130G\u0130TAL-BOOK/SENECA-SELECTED-DIALOGUES/ASSETS/cover/paperback-wrap-v1.pdf",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/SENECA-SELECTED-DIALOGUES/ASSETS/cover/paperback-wrap-v1.pdf",
         "pageCount": 154,
         "spineIn": 0.3468,
-        "wrapIn": "12.5968 \u00d7 9.2500 (white)",
+        "wrapIn": "12.5968 × 9.2500 (white)",
         "note": "rebuilt 2026-09-04 at the final page count of 154, after the companion leaf. The count moved 156 -> 154 when a markdown-bold rendering defect was fixed and the text reflowed; the cover was rebuilt rather than reused."
       },
-      "coverAction": "REBUILD CORRECT \u2014 inside tolerance, but the printed spine no longer matches the block",
+      "coverAction": "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior",
       "uploadRequired": true,
       "hold": null,
       "proofRecommended": true,
+      "proofWhy": "the block changed thickness, so the wrap is new and unproved",
       "verification": [
         {
           "name": "page-count",
@@ -2081,7 +1416,702 @@
         {
           "name": "pdf-metadata",
           "pass": true,
-          "detail": "title=\"Seneca: Selected Dialogues: Five Dialogues Complete in Aubrey Stewart's Translation, Annotated \u2014 with an Argument Map of All 79 Chapters, a Glossary, a Biographical Index and a Chronology\" author=\"Emre Do\u011fan\""
+          "detail": "title=\"Seneca: Selected Dialogues: Five Dialogues Complete in Aubrey Stewart's Translation, Annotated — with an Argument Map of All 79 Chapters, a Glossary, a Biographical Index and a Chronology\" author=\"Emre Doğan\""
+        }
+      ]
+    },
+    {
+      "generatedAt": "2026-09-04",
+      "book": "the-great-book-of-world-games",
+      "format": "hardcover",
+      "title": "The Great Book of World Games",
+      "asin": "B0HG41F21F",
+      "kdpState": "live",
+      "interior": {
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/HARDCOVER/GreatBookOfWorldGames_interior_hardcover.pdf",
+        "sha256": "e27e6c53ae67825cb585e131593234b5fded7ca4720b94113982ddcc560031f9",
+        "bytes": 889126,
+        "pagesBefore": 160,
+        "pagesAfter": 160,
+        "companionPage": 160,
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/HARDCOVER/GreatBookOfWorldGames_interior_hardcover.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
+      },
+      "companion": {
+        "printedUrl": "valicepress.com/companion/world-games",
+        "qrUrl": "https://valicepress.com/companion/world-games",
+        "qr": {
+          "modules": 33,
+          "module_pt": 6.3883636363636365,
+          "module_mm": 2.2536727272727273,
+          "version": 4,
+          "error": "M",
+          "side_pt": 210.816,
+          "fraction_of_usable_height": 0.3,
+          "x_pt": 191.59199999999998,
+          "y_pt": 343.0617862857141
+        },
+        "dedicatedPage": true,
+        "emailWall": false
+      },
+      "spine": {
+        "pagesBefore": 160,
+        "pagesAfter": 160,
+        "paper": "white",
+        "binding": "hardcover",
+        "trim": "8.25×11 in",
+        "before": {
+          "spineWidthIn": 0.36032,
+          "wrapWidthIn": 17.11032,
+          "wrapHeightIn": 11.25,
+          "spineTextAllowed": true
+        },
+        "after": {
+          "spineWidthIn": 0.36032,
+          "wrapWidthIn": 17.11032,
+          "wrapHeightIn": 11.25,
+          "spineTextAllowed": true
+        },
+        "deltaSpineIn": 0,
+        "deltaWrapWidthIn": 0,
+        "withinKdpTolerance": true,
+        "coverRebuildRequired": false,
+        "coverRebuildCorrect": false,
+        "hardcoverGeometryMustBeRead": false,
+        "barcodeZoneAffected": false,
+        "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
+      },
+      "cover": null,
+      "coverAction": "NONE — page count unchanged; the cover at KDP stays valid",
+      "uploadRequired": true,
+      "hold": null,
+      "proofRecommended": false,
+      "proofWhy": "the interior is a swap into an edition already in print",
+      "verification": [
+        {
+          "name": "page-count",
+          "pass": true,
+          "detail": "160 pages (expected 160)"
+        },
+        {
+          "name": "printed-url",
+          "pass": true,
+          "detail": "valicepress.com/companion/world-games"
+        },
+        {
+          "name": "canonical-host",
+          "pass": true,
+          "detail": "no forbidden host on the page"
+        },
+        {
+          "name": "eyebrow",
+          "pass": true,
+          "detail": "CONTINUE WITH VÂLIÇE PRESS"
+        },
+        {
+          "name": "fonts-embedded",
+          "pass": true,
+          "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
+        },
+        {
+          "name": "pdf-metadata",
+          "pass": true,
+          "detail": "title=\"The Great Book of World Games: 56 Games from 4,600 Years of Human Play — Rules, Boards and Stories from 39 Cultures, Ready to Play Tonight\" author=\"Emre Doğan\""
+        }
+      ]
+    },
+    {
+      "generatedAt": "2026-09-04",
+      "book": "the-great-book-of-world-games",
+      "format": "large_print",
+      "title": "The Great Book of World Games",
+      "asin": null,
+      "kdpState": "in_review",
+      "interior": {
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/LARGEPRINT/GreatBookOfWorldGames_interior_largeprint.pdf",
+        "sha256": "5a73f4b9d8660a4f1f039e5904bb12e705ba22b0a3742fdbbe1e7157769e29a0",
+        "bytes": 994068,
+        "pagesBefore": 232,
+        "pagesAfter": 233,
+        "companionPage": 233,
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/LARGEPRINT/GreatBookOfWorldGames_interior_largeprint.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
+      },
+      "companion": {
+        "printedUrl": "valicepress.com/companion/world-games",
+        "qrUrl": "https://valicepress.com/companion/world-games",
+        "qr": {
+          "note": "geometry not re-measured on this run"
+        },
+        "dedicatedPage": true,
+        "emailWall": false
+      },
+      "spine": {
+        "pagesBefore": 232,
+        "pagesAfter": 233,
+        "paper": "white",
+        "binding": "paperback",
+        "trim": "8.5×11 in",
+        "before": {
+          "spineWidthIn": 0.522464,
+          "wrapWidthIn": 17.772464,
+          "wrapHeightIn": 11.25,
+          "spineTextAllowed": true
+        },
+        "after": {
+          "spineWidthIn": 0.524716,
+          "wrapWidthIn": 17.774716,
+          "wrapHeightIn": 11.25,
+          "spineTextAllowed": true
+        },
+        "deltaSpineIn": 0.002252,
+        "deltaWrapWidthIn": 0.002252,
+        "withinKdpTolerance": true,
+        "coverRebuildRequired": false,
+        "coverRebuildCorrect": true,
+        "hardcoverGeometryMustBeRead": false,
+        "barcodeZoneAffected": false,
+        "verdict": "wrap width moves 0.002252 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.002252 in and the house rule is that each edition's cover reads its own page count"
+      },
+      "cover": {
+        "built": false,
+        "reason": "the block moved 232 → 233 pp, so the wrap needs a new spine, but this project's covers.py takes the page count from 06_REPORTS/interior-largeprint.json, which has recorded 234 pages since before this phase while the built block was 232. Only re-running 04_BUILD/interior.py regenerates that report and its pagemap. Do it at the first revision after this edition leaves KDP review, then run covers.py."
+      },
+      "coverAction": "REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block",
+      "uploadRequired": true,
+      "hold": "IN KDP REVIEW since 2026-09-02, and the cover cannot be rebuilt from here. The block moves 232 → 233 pages, so the wrap needs a new spine — but this project's cover pipeline reads `06_REPORTS/interior-largeprint.json`, which has recorded 234 pages since before this phase while the built block was 232 (a pre-existing divergence, reported as a finding). Only re-running `04_BUILD/interior.py` regenerates that report and its pagemap. So: at the first revision after this edition goes live, run interior.py → covers.py, and take the companion page through the pipeline's own companion block rather than as a splice. The invented biography, which was the other defect, is already fixed and is page-neutral.",
+      "proofRecommended": true,
+      "proofWhy": "the block changed thickness, so the wrap is new and unproved",
+      "verification": [
+        {
+          "name": "page-count",
+          "pass": true,
+          "detail": "233 pages (expected 233)"
+        },
+        {
+          "name": "printed-url",
+          "pass": true,
+          "detail": "valicepress.com/companion/world-games"
+        },
+        {
+          "name": "canonical-host",
+          "pass": true,
+          "detail": "no forbidden host on the page"
+        },
+        {
+          "name": "eyebrow",
+          "pass": true,
+          "detail": "CONTINUE WITH VÂLIÇE PRESS"
+        },
+        {
+          "name": "fonts-embedded",
+          "pass": true,
+          "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
+        },
+        {
+          "name": "pdf-metadata",
+          "pass": true,
+          "detail": "title=\"The Great Book of World Games: 56 Games from 4,600 Years of Human Play — Rules, Boards and Stories from 39 Cultures, Ready to Play Tonight\" author=\"Emre Doğan\""
+        }
+      ]
+    },
+    {
+      "generatedAt": "2026-09-04",
+      "book": "the-great-book-of-world-games",
+      "format": "paperback",
+      "title": "The Great Book of World Games",
+      "asin": "B0HG3KMK9L",
+      "kdpState": "live",
+      "interior": {
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/PAPERBACK/GreatBookOfWorldGames_interior_paperback.pdf",
+        "sha256": "9a419300bbcc4f3a283aa174df6e14f035478c71375885e12f6bc5eca70cbace",
+        "bytes": 888869,
+        "pagesBefore": 160,
+        "pagesAfter": 160,
+        "companionPage": 160,
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/PAPERBACK/GreatBookOfWorldGames_interior_paperback.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
+      },
+      "companion": {
+        "printedUrl": "valicepress.com/companion/world-games",
+        "qrUrl": "https://valicepress.com/companion/world-games",
+        "qr": {
+          "modules": 33,
+          "module_pt": 6.3883636363636365,
+          "module_mm": 2.2536727272727273,
+          "version": 4,
+          "error": "M",
+          "side_pt": 210.816,
+          "fraction_of_usable_height": 0.3,
+          "x_pt": 200.59199999999998,
+          "y_pt": 343.0617862857141
+        },
+        "dedicatedPage": true,
+        "emailWall": false
+      },
+      "spine": {
+        "pagesBefore": 160,
+        "pagesAfter": 160,
+        "paper": "white",
+        "binding": "paperback",
+        "trim": "8.5×11 in",
+        "before": {
+          "spineWidthIn": 0.36032,
+          "wrapWidthIn": 17.61032,
+          "wrapHeightIn": 11.25,
+          "spineTextAllowed": true
+        },
+        "after": {
+          "spineWidthIn": 0.36032,
+          "wrapWidthIn": 17.61032,
+          "wrapHeightIn": 11.25,
+          "spineTextAllowed": true
+        },
+        "deltaSpineIn": 0,
+        "deltaWrapWidthIn": 0,
+        "withinKdpTolerance": true,
+        "coverRebuildRequired": false,
+        "coverRebuildCorrect": false,
+        "hardcoverGeometryMustBeRead": false,
+        "barcodeZoneAffected": false,
+        "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
+      },
+      "cover": null,
+      "coverAction": "NONE — page count unchanged; the cover at KDP stays valid",
+      "uploadRequired": true,
+      "hold": null,
+      "proofRecommended": false,
+      "proofWhy": "the interior is a swap into an edition already in print",
+      "verification": [
+        {
+          "name": "page-count",
+          "pass": true,
+          "detail": "160 pages (expected 160)"
+        },
+        {
+          "name": "printed-url",
+          "pass": true,
+          "detail": "valicepress.com/companion/world-games"
+        },
+        {
+          "name": "canonical-host",
+          "pass": true,
+          "detail": "no forbidden host on the page"
+        },
+        {
+          "name": "eyebrow",
+          "pass": true,
+          "detail": "CONTINUE WITH VÂLIÇE PRESS"
+        },
+        {
+          "name": "fonts-embedded",
+          "pass": true,
+          "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
+        },
+        {
+          "name": "pdf-metadata",
+          "pass": true,
+          "detail": "title=\"The Great Book of World Games: 56 Games from 4,600 Years of Human Play — Rules, Boards and Stories from 39 Cultures, Ready to Play Tonight\" author=\"Emre Doğan\""
+        }
+      ]
+    },
+    {
+      "generatedAt": "2026-09-04",
+      "book": "the-great-book-of-world-myths",
+      "format": "hardcover",
+      "title": "The Great Book of World Myths",
+      "asin": "B0HDZJ4PHQ",
+      "kdpState": "live",
+      "interior": {
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-GREAT-BOOK-OF-WORLD-MYTHS/08_OUTPUT/hardcover/interior.pdf",
+        "sha256": "2d7052223b28710dc4ddc3fad56919795d51e3581d38edde14c84fdd42428244",
+        "bytes": 97534323,
+        "pagesBefore": 234,
+        "pagesAfter": 234,
+        "companionPage": 233,
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-GREAT-BOOK-OF-WORLD-MYTHS/08_OUTPUT/hardcover/interior.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
+      },
+      "companion": {
+        "printedUrl": "valicepress.com/companion/world-myths",
+        "qrUrl": "https://valicepress.com/companion/world-myths",
+        "qr": {
+          "modules": 33,
+          "module_pt": 4.511454545454546,
+          "module_mm": 1.5915409090909092,
+          "version": 4,
+          "error": "M",
+          "side_pt": 148.87800000000001,
+          "fraction_of_usable_height": 0.2757,
+          "x_pt": 141.561,
+          "y_pt": 306.1866089714284
+        },
+        "dedicatedPage": true,
+        "emailWall": false
+      },
+      "spine": {
+        "pagesBefore": 234,
+        "pagesAfter": 234,
+        "paper": "cream",
+        "binding": "hardcover",
+        "trim": "6×9 in",
+        "before": {
+          "spineWidthIn": 0.585,
+          "wrapWidthIn": 12.835,
+          "wrapHeightIn": 9.25,
+          "spineTextAllowed": true
+        },
+        "after": {
+          "spineWidthIn": 0.585,
+          "wrapWidthIn": 12.835,
+          "wrapHeightIn": 9.25,
+          "spineTextAllowed": true
+        },
+        "deltaSpineIn": 0,
+        "deltaWrapWidthIn": 0,
+        "withinKdpTolerance": true,
+        "coverRebuildRequired": false,
+        "coverRebuildCorrect": false,
+        "hardcoverGeometryMustBeRead": false,
+        "barcodeZoneAffected": false,
+        "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
+      },
+      "cover": null,
+      "coverAction": "NONE — page count unchanged; the cover at KDP stays valid",
+      "uploadRequired": true,
+      "hold": null,
+      "proofRecommended": false,
+      "proofWhy": "the interior is a swap into an edition already in print",
+      "verification": [
+        {
+          "name": "page-count",
+          "pass": true,
+          "detail": "234 pages (expected 234)"
+        },
+        {
+          "name": "printed-url",
+          "pass": true,
+          "detail": "valicepress.com/companion/world-myths"
+        },
+        {
+          "name": "canonical-host",
+          "pass": true,
+          "detail": "no forbidden host on the page"
+        },
+        {
+          "name": "eyebrow",
+          "pass": true,
+          "detail": "CONTINUE WITH VÂLIÇE PRESS"
+        },
+        {
+          "name": "fonts-embedded",
+          "pass": true,
+          "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
+        },
+        {
+          "name": "pdf-metadata",
+          "pass": true,
+          "detail": "title=\"The Great Book of World Myths: 45 Stories of Gods, Heroes, and Monsters from 22 Cultures — Retold for Young Readers (Ages 8–12)\" author=\"Emre Doğan\""
+        }
+      ]
+    },
+    {
+      "generatedAt": "2026-09-04",
+      "book": "the-great-book-of-world-myths",
+      "format": "paperback",
+      "title": "The Great Book of World Myths",
+      "asin": "B0HDTL5V2H",
+      "kdpState": "live",
+      "interior": {
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-GREAT-BOOK-OF-WORLD-MYTHS/08_OUTPUT/paperback/interior.pdf",
+        "sha256": "811a8bda105386113e5d35cdeac96033a5cd8fcace93edc271e338f0913023a5",
+        "bytes": 97534323,
+        "pagesBefore": 234,
+        "pagesAfter": 234,
+        "companionPage": 233,
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-GREAT-BOOK-OF-WORLD-MYTHS/08_OUTPUT/paperback/interior.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
+      },
+      "companion": {
+        "printedUrl": "valicepress.com/companion/world-myths",
+        "qrUrl": "https://valicepress.com/companion/world-myths",
+        "qr": {
+          "modules": 33,
+          "module_pt": 4.511454545454546,
+          "module_mm": 1.5915409090909092,
+          "version": 4,
+          "error": "M",
+          "side_pt": 148.87800000000001,
+          "fraction_of_usable_height": 0.2757,
+          "x_pt": 141.561,
+          "y_pt": 306.1866089714284
+        },
+        "dedicatedPage": true,
+        "emailWall": false
+      },
+      "spine": {
+        "pagesBefore": 234,
+        "pagesAfter": 234,
+        "paper": "cream",
+        "binding": "paperback",
+        "trim": "6×9 in",
+        "before": {
+          "spineWidthIn": 0.585,
+          "wrapWidthIn": 12.835,
+          "wrapHeightIn": 9.25,
+          "spineTextAllowed": true
+        },
+        "after": {
+          "spineWidthIn": 0.585,
+          "wrapWidthIn": 12.835,
+          "wrapHeightIn": 9.25,
+          "spineTextAllowed": true
+        },
+        "deltaSpineIn": 0,
+        "deltaWrapWidthIn": 0,
+        "withinKdpTolerance": true,
+        "coverRebuildRequired": false,
+        "coverRebuildCorrect": false,
+        "hardcoverGeometryMustBeRead": false,
+        "barcodeZoneAffected": false,
+        "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
+      },
+      "cover": null,
+      "coverAction": "NONE — page count unchanged; the cover at KDP stays valid",
+      "uploadRequired": true,
+      "hold": null,
+      "proofRecommended": false,
+      "proofWhy": "the interior is a swap into an edition already in print",
+      "verification": [
+        {
+          "name": "page-count",
+          "pass": true,
+          "detail": "234 pages (expected 234)"
+        },
+        {
+          "name": "printed-url",
+          "pass": true,
+          "detail": "valicepress.com/companion/world-myths"
+        },
+        {
+          "name": "canonical-host",
+          "pass": true,
+          "detail": "no forbidden host on the page"
+        },
+        {
+          "name": "eyebrow",
+          "pass": true,
+          "detail": "CONTINUE WITH VÂLIÇE PRESS"
+        },
+        {
+          "name": "fonts-embedded",
+          "pass": true,
+          "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
+        },
+        {
+          "name": "pdf-metadata",
+          "pass": true,
+          "detail": "title=\"The Great Book of World Myths: 45 Stories of Gods, Heroes, and Monsters from 22 Cultures — Retold for Young Readers (Ages 8–12)\" author=\"Emre Doğan\""
+        }
+      ]
+    },
+    {
+      "generatedAt": "2026-09-04",
+      "book": "the-myth-hunters-field-book",
+      "format": "paperback",
+      "title": "The Myth Hunter's Field Book",
+      "asin": "B0HFP4KYX5",
+      "kdpState": "live",
+      "interior": {
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-MYTH-HUNTERS-FIELD-BOOK/08_OUTPUT/PAPERBACK/interior.pdf",
+        "sha256": "47cb2b965c55dc19e54ae63ee9b7b2945ca23ceacc699d39d22ec543c9be3429",
+        "bytes": 33184153,
+        "pagesBefore": 156,
+        "pagesAfter": 156,
+        "companionPage": 156,
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-MYTH-HUNTERS-FIELD-BOOK/08_OUTPUT/PAPERBACK/interior.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
+      },
+      "companion": {
+        "printedUrl": "valicepress.com/companion/myth-hunters-field-book",
+        "qrUrl": "https://valicepress.com/companion/myth-hunters-field-book",
+        "qr": {
+          "modules": 33,
+          "module_pt": 6.283636363636364,
+          "module_mm": 2.216727272727273,
+          "version": 4,
+          "error": "M",
+          "side_pt": 207.36,
+          "fraction_of_usable_height": 0.3,
+          "x_pt": 202.32,
+          "y_pt": 343.0748057142857
+        },
+        "dedicatedPage": true,
+        "emailWall": false
+      },
+      "spine": {
+        "pagesBefore": 156,
+        "pagesAfter": 156,
+        "paper": "white",
+        "binding": "paperback",
+        "trim": "8.5×11 in",
+        "before": {
+          "spineWidthIn": 0.351312,
+          "wrapWidthIn": 17.601312,
+          "wrapHeightIn": 11.25,
+          "spineTextAllowed": true
+        },
+        "after": {
+          "spineWidthIn": 0.351312,
+          "wrapWidthIn": 17.601312,
+          "wrapHeightIn": 11.25,
+          "spineTextAllowed": true
+        },
+        "deltaSpineIn": 0,
+        "deltaWrapWidthIn": 0,
+        "withinKdpTolerance": true,
+        "coverRebuildRequired": false,
+        "coverRebuildCorrect": false,
+        "hardcoverGeometryMustBeRead": false,
+        "barcodeZoneAffected": false,
+        "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
+      },
+      "cover": null,
+      "coverAction": "NONE — page count unchanged; the cover at KDP stays valid",
+      "uploadRequired": true,
+      "hold": null,
+      "proofRecommended": false,
+      "proofWhy": "the interior is a swap into an edition already in print",
+      "verification": [
+        {
+          "name": "page-count",
+          "pass": true,
+          "detail": "156 pages (expected 156)"
+        },
+        {
+          "name": "printed-url",
+          "pass": true,
+          "detail": "valicepress.com/companion/myth-hunters-field-book"
+        },
+        {
+          "name": "canonical-host",
+          "pass": true,
+          "detail": "no forbidden host on the page"
+        },
+        {
+          "name": "eyebrow",
+          "pass": true,
+          "detail": "CONTINUE WITH VÂLIÇE PRESS"
+        },
+        {
+          "name": "fonts-embedded",
+          "pass": true,
+          "detail": "3 faces: AAAAAA+DejaVuSans-Bold, AAAAAA+DejaVuSans-Oblique, AAAAAA+DejaVuSans"
+        },
+        {
+          "name": "pdf-metadata",
+          "pass": true,
+          "detail": "title=\"The Myth Hunter's Field Book: A Screen-Free Quest Through 22 Cultures — 120 Puzzles, Maps, Codes and Challenges for Ages 8–12\" author=\"Emre Doğan\""
+        }
+      ]
+    },
+    {
+      "generatedAt": "2026-09-04",
+      "book": "the-puzzles-of-henry-dudeney",
+      "format": "paperback",
+      "title": "The Puzzles of Henry Dudeney",
+      "asin": null,
+      "kdpState": "not_created",
+      "interior": {
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-PUZZLES-OF-HENRY-DUDENEY/OUTPUT/interior-main.pdf",
+        "sha256": "806a4a1babe752926915329ad19d539a92598257207860a8fe76406eebed1083",
+        "bytes": 2111694,
+        "pagesBefore": 144,
+        "pagesAfter": 144,
+        "companionPage": 144,
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-PUZZLES-OF-HENRY-DUDENEY/OUTPUT/interior-main.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
+      },
+      "companion": {
+        "printedUrl": "valicepress.com/companion/dudeney",
+        "qrUrl": "https://valicepress.com/companion/dudeney",
+        "qr": {
+          "modules": 29,
+          "module_pt": 5.514345931034484,
+          "module_mm": 1.945338703448276,
+          "version": 3,
+          "error": "M",
+          "side_pt": 159.91603200000003,
+          "fraction_of_usable_height": 0.2892,
+          "x_pt": 136.04198399999999,
+          "y_pt": 292.63426703542865
+        },
+        "dedicatedPage": true,
+        "emailWall": false
+      },
+      "spine": {
+        "pagesBefore": 144,
+        "pagesAfter": 144,
+        "paper": "white",
+        "binding": "paperback",
+        "trim": "6×9 in",
+        "before": {
+          "spineWidthIn": 0.324288,
+          "wrapWidthIn": 12.574288,
+          "wrapHeightIn": 9.25,
+          "spineTextAllowed": true
+        },
+        "after": {
+          "spineWidthIn": 0.324288,
+          "wrapWidthIn": 12.574288,
+          "wrapHeightIn": 9.25,
+          "spineTextAllowed": true
+        },
+        "deltaSpineIn": 0,
+        "deltaWrapWidthIn": 0,
+        "withinKdpTolerance": true,
+        "coverRebuildRequired": false,
+        "coverRebuildCorrect": false,
+        "hardcoverGeometryMustBeRead": false,
+        "barcodeZoneAffected": false,
+        "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
+      },
+      "cover": null,
+      "coverAction": "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior",
+      "uploadRequired": true,
+      "hold": null,
+      "proofRecommended": true,
+      "proofWhy": "this edition has never been printed — first proof of this interior and this cover",
+      "verification": [
+        {
+          "name": "page-count",
+          "pass": true,
+          "detail": "144 pages (expected 144)"
+        },
+        {
+          "name": "printed-url",
+          "pass": true,
+          "detail": "valicepress.com/companion/dudeney"
+        },
+        {
+          "name": "canonical-host",
+          "pass": true,
+          "detail": "no forbidden host on the page"
+        },
+        {
+          "name": "eyebrow",
+          "pass": true,
+          "detail": "CONTINUE WITH VALICE PRESS"
+        },
+        {
+          "name": "fonts-embedded",
+          "pass": true,
+          "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
+        },
+        {
+          "name": "pdf-metadata",
+          "pass": true,
+          "detail": "title=\"The Puzzles of Henry Dudeney: 110 Classic Problems from Amusements in Mathematics and The Canterbury Puzzles — Annotated, with Hints, a Glossary of Old Money and a Chronology\" author=\"Henry E. Dudeney\""
         }
       ]
     }

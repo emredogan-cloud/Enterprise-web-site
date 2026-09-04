@@ -40,6 +40,12 @@ export const PRINT_INTERIORS = {
   "the-myth-hunters-field-book": {
     paperback: `${ROOT}/THE-MYTH-HUNTERS-FIELD-BOOK/08_OUTPUT/PAPERBACK/interior.pdf`,
   },
+  "greek-alphabet-handwriting-workbook": {
+    // Valice Script 2, built 2026-09-04. Paperback only: the hardcover is not
+    // produced (economics, DECISIONS.md K8) and the large-print edition would
+    // be this book at this size (K4).
+    paperback: `${ROOT}/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/interior.pdf`,
+  },
   "korean-hangul-handwriting-workbook": {
     // The REMEDIATED interiors of 2026-09-02, rebuilt on 2026-09-03 with the
     // companion page on p.125. The filename carries the page count and was
@@ -52,14 +58,21 @@ export const PRINT_INTERIORS = {
     paperback: `${ROOT}/THE-PUZZLES-OF-HENRY-DUDENEY/OUTPUT/interior-main.pdf`,
   },
   "epictetus-discourses-and-enchiridion": {
-    // Valice Classics 3 (2026-09-04). The companion page was designed into the
-    // interior from the first build rather than spliced in afterwards, so the
-    // page count is 176 before and after and there is no spine to recalculate.
+    // Valice Classics 3 (2026-09-04). The first build authored a companion page
+    // inside the interior; that was a parallel system with none of the house
+    // pipeline's verification and it was removed. The interior is now typeset
+    // deliberately ODD (175 pp) and build-companion-pages.mjs appends the leaf
+    // to make 176, which is the even count KDP requires.
     paperback: `${ROOT}/EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pdf`,
   },
   "seneca-selected-dialogues": {
     // Valice Classics 4 (2026-09-04). 156 pp — an odd 155 was padded to an even
     // count by the build, because KDP rejects an odd final page.
     paperback: `${ROOT}/SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pdf`,
+  },
+  "myths-and-legends-of-china": {
+    // Valice Classics 5 (2026-09-04). Volume one of two. Typeset ODD (107 pp)
+    // so the appended companion leaf makes 108.
+    paperback: `${ROOT}/MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pdf`,
   },
 };
