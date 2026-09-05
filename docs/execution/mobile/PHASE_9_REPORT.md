@@ -320,4 +320,4 @@ These remain dev-build numbers against production targets. See below.
    whose page offers a buy button the action then declines is a provisioning gap the Founder should
    close in Paddle, not a UI problem.
 
-**COMMIT:** _(recorded by the following commit)_
+**COMMIT:** `c85f22c`

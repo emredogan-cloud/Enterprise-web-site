@@ -153,7 +153,7 @@ carry velocity data, so hour estimates would be invented.
 | 6 | COMPLETE | `c23bcc2` | [PHASE_6_REPORT.md](PHASE_6_REPORT.md) |
 | 7 | COMPLETE | `62378d2` | [PHASE_7_REPORT.md](PHASE_7_REPORT.md) |
 | 8 | COMPLETE, two targets missed | `8102fa7` | [PHASE_8_REPORT.md](PHASE_8_REPORT.md) |
-| 9 | COMPLETE | `PENDING` | [PHASE_9_REPORT.md](PHASE_9_REPORT.md) |
+| 9 | COMPLETE | `c85f22c` | [PHASE_9_REPORT.md](PHASE_9_REPORT.md) |
 
 Each report states what was measured, on what surface, and what was **not** met.
 Two targets are carried forward unmet and are named in Phase 8 and Phase 9: the
