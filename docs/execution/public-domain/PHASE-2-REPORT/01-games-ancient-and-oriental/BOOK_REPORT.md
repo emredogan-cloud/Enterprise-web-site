@@ -186,7 +186,7 @@ page and the measured share that could not be read.
 
 ## 6. What was added
 
-**7,653 words of original editorial matter — 27.4% of the volume**, against a 20% floor,
+**7,760 words of original editorial matter — 28.0% of the volume**, against a 20% floor,
 measured from the manuscript by `BUILD/measure.py`.
 
 | | Words |
@@ -230,7 +230,7 @@ is fitted to a 6 × 9 text block. The EVIDENCE/RECONSTRUCTION badge stays in bot
 
 | | |
 |---|---|
-| Interior | **76 pp**, 6 × 9 in, Liberation Serif embedded, gutter 0.375 in, no bleed |
+| Interior | **78 pp**, 6 × 9 in, Liberation Serif embedded, gutter 0.375 in, no bleed |
 | Companion leaf | p78, spliced by the house pipeline; QR **28%** of usable height, **1.70 mm/module** against a 0.5 mm floor |
 | Spine | **0.1712 in** — agrees with the pipeline's arithmetic to four decimals; no cover rebuild required |
 | Wrap | 12.4212 × 9.25 in at 300 dpi, 0.125 in bleed |
@@ -267,11 +267,11 @@ diagram cannot disagree, and each carries the same EVIDENCE or RECONSTRUCTION ma
 
 | Format | List | Net | Basis |
 |---|---|---|---|
-| Direct ebook (PDF + EPUB) | **$7.99** | $7.09 after Paddle | Engine recommends $6.99. The Classics band is $7.99–9.99; this volume is 76 pp against 154–176 for the others, so it sits at the bottom of the band, not at the $9.99 the longer books carry. |
+| Direct ebook (PDF + EPUB) | **$7.99** | $7.09 after Paddle | Engine recommends $6.99. The Classics band is $7.99–9.99; this volume is 78 pp against 154–176 for the others, so it sits at the bottom of the band, not at the $9.99 the longer books carry. |
 | Paperback | **$12.99** proposed | $5.49 (42.3%) | Prints at $2.30; engine recommends $9.99. The Classics band of $16.99–19.99 assumes a 150-page-plus volume. Founder decides at Gate 8. |
 
 No Kindle (KDP caps public-domain content at 35% and the store already carries free scans).
-No hardcover (76 pp is the very bottom of KDP's 75–550 range and would bind badly). No large
+No hardcover (78 pp is the very bottom of KDP's 75–550 range and would bind badly). No large
 print (the move tables do not enlarge usefully). Each decision is written down rather than
 assumed.
 
@@ -359,6 +359,70 @@ number it does not print.**
 | 16 | `CLAIMS.jsonl` empty, and `claim-lint` treated that as a *warning* | **an empty ledger is now an error**: a facts gate that passes when nothing has been checked is worse than no gate |
 | 17 | AI disclosure said `generated` in one field and "AI-assisted" in another | config corrected; the handbook now **renders the declaration from the config** instead of a literal |
 | 18 | The annotator was not named anywhere inside a book sold as *(Annotated)* | on the title page and in the imprint |
+
+
+### The second pass: two of the fixes had regressed it
+
+The reviewer verified the eighteen and attacked the rebuild. Nine were fully fixed. **Two
+of the fixes had created new defects**, and that is the part worth recording.
+
+**Inferring the board's range per table broke the table it was meant to protect.** Fixing
+section V — which had been validated against section IV's board — widened section IV's own
+range so far that its out-of-range rule stopped firing. The board key then printed
+`193 293 393` for `19b 29b 39b`: twelve wrong cells, one dagger, and a note assuring the
+reader that 143 of 144 readings were sound. It was the table the Note on the Text cites as
+its worked example of the substitution it was getting wrong.
+
+**And dropping the printed display title as furniture deleted source text.** With it went
+the only place the four Roman names of the game appear — *LUDUS LATRUNCULORUM, LUDUS
+CALCULORUM, PRŒLIA LATRONUM, BELLUM LATRONUM* — while the Note still said nothing had been
+cut, and the freshly-repaired Register argued its case by quoting a heading the book no
+longer printed.
+
+The grid checks are structural now rather than range-based: `rank_rows()` finds the
+lettered ranks Falkener prints above his board so the arithmetic fit runs on the body; a
+lettered token in a table with *no* lettered rank is a misread digit (`11a` is 110 on the
+1–169 board); and the placing tables are checked as permutations, because they are not
+boards — every square appears once, which catches a duplicate no range test can.
+`apply_grid_fit` no longer overwrites silently: it had printed ten reconstructed cells and
+set the unread count to **zero**.
+
+Falkener's display line is kept now, set under this edition's section title, with
+**SAB EM HAN** corrected to **HAB EM HAN** — the game's name misspelled in its own heading.
+
+Four more arithmetic faults on the Note went with them, including one that mattered:
+*"the margin shows the 1892 page wherever it changes"* was false by 33. The marker count is
+now counted as the marks are drawn, carried through the layout's fixed-point loop, and the
+build fails if it never settles. `QA/counts.json` is written by the build rather than
+recomputed and discarded — it had four numbers wrong while the printed page was right,
+which is the worse way round.
+
+### The third pass: the checks, run here
+
+The third review terminated on a session rate limit before reading anything, so the four
+checks it had been asked for were run here instead, against the page images rather than
+against the arithmetic. The 12 × 12 key really does print a **b** rank and an **a** rank
+above twelve rows of plain numbers — cropped at 200 dpi and read — so the twelve rewrites
+are what the page says, and every one is marked.
+
+Two defects came out of it. **Nine tables printed with no column labels**, because the
+heading row was only ever sought on the line immediately above the data, and this OCR puts
+each label on its own line object. And a four-row minimum was leaving short continuation
+blocks to be set as running prose. What remains of the wreckage — seven short runs that
+fall outside every table this edition can rebuild — is now a **marked lacuna** giving the
+word count and the share the scan failed on. Prose wreckage: fifteen at the second review,
+zero now.
+
+### A mistake I made twice
+
+Reconciling the page count with a search-and-replace across the catalogue took
+*"176 pages"* to *"178"* three times inside the **Epictetus** entry, and turned its linkage
+record from *"175 → 176 pp"* into *"175 → 178 pp"*. The same blind replace had corrupted the
+**codex-mythologica** large-print plan a few minutes earlier. Both were reverted by editing
+only the bytes between the owning slug and the next one, and verified by walking every
+changed hunk back to the book that owns it. A search-and-replace across a file of
+twenty-four books is never safe, and twice in one session is a pattern rather than an
+accident.
 
 ### What the review confirmed
 
