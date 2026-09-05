@@ -21,7 +21,7 @@ export function OrdersHero({ count }: { count: number }) {
       <div className="grid items-stretch gap-8 lg:grid-cols-[minmax(0,_1fr)_minmax(0,_40%)] lg:gap-12">
         {/* LEFT — editorial */}
         <div className="relative z-10">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+          <p className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
             Account / Orders
           </p>
 

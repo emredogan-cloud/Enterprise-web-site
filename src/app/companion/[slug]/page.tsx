@@ -80,8 +80,8 @@ export default async function CompanionPage({
     <div className="cinematic-root min-h-screen">
       <CinematicHeader />
 
-      <main className="mx-auto max-w-3xl px-6 pb-24 pt-16">
-        <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-emerald-bright/80">
+      <main className="mx-auto max-w-3xl px-4 sm:px-6 pb-24 pt-16">
+        <p className="text-[12px] sm:text-[11px] font-medium uppercase tracking-[0.3em] text-emerald-bright/80">
           Free companion
         </p>
         <h1 className="mt-4 font-serif text-[34px] font-medium leading-tight tracking-tight text-fg-hi sm:text-[42px]">
@@ -132,7 +132,7 @@ export default async function CompanionPage({
               >
                 <div className="flex flex-wrap items-baseline justify-between gap-3">
                   <h3 className="font-serif text-lg text-fg-hi">{asset.title}</h3>
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-fg-low">
+                  <span className="font-mono text-[12px] sm:text-[11px] uppercase tracking-wider text-fg-low">
                     {asset.meta}
                   </span>
                 </div>
@@ -157,7 +157,7 @@ export default async function CompanionPage({
         </section>
 
         <section className="mt-14 border-t border-white/8 pt-8">
-          <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-fg-low">
+          <h2 className="font-mono text-[12px] sm:text-[11px] uppercase tracking-[0.18em] text-fg-low">
             About this material
           </h2>
           <p className="mt-3 max-w-prose text-sm leading-relaxed text-fg-mid">

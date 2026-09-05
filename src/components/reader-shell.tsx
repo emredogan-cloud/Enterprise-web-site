@@ -338,12 +338,12 @@ export function ReaderShell({
         className="flex flex-1 items-start justify-center overflow-auto bg-muted/40 p-4"
       >
         {loading && (
-          <p className="mt-16 text-sm text-muted-foreground">
+          <p className="mt-10 sm:mt-16 text-sm text-muted-foreground">
             Loading your book…
           </p>
         )}
         {error && !loading && (
-          <div className="mt-16 max-w-md text-center">
+          <div className="mt-10 sm:mt-16 max-w-md text-center">
             <h2 className="font-serif text-2xl font-medium text-foreground">
               Could not load this book
             </h2>

@@ -37,7 +37,7 @@ export function OrderHero({
         {/* LEFT — copy + info row */}
         <div className="relative z-10 pt-2 text-center sm:pt-6 lg:text-left">
           {/* Eyebrow */}
-          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+          <p className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
             Order confirmed
           </p>
 
@@ -71,7 +71,7 @@ export function OrderHero({
 
           {/* Info row — Order ID + Total paid pill */}
           <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-5 lg:justify-start">
-            <p className="text-[11px] uppercase tracking-[0.18em] text-fg-soft">
+            <p className="text-[12px] sm:text-[11px] uppercase tracking-[0.18em] text-fg-soft">
               Order ID{" "}
               <span className="ml-1.5 font-mono text-xs tracking-tight text-fg-mid">
                 {shortId}

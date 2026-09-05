@@ -32,12 +32,12 @@ export function CategoriesSection({
   if (cards.length === 0) return null;
 
   return (
-    <section className="relative px-6 py-24 sm:py-28">
+    <section className="relative px-6 py-14 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl">
         <RevealOnScroll>
           <header className="flex flex-col items-start gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-emerald-bright/80">
+              <p className="text-[12px] sm:text-[11px] font-medium uppercase tracking-[0.3em] text-emerald-bright/80">
                 Browse the shelves
               </p>
               <h2 className="mt-3 font-serif text-[36px] font-medium leading-tight tracking-tight text-fg-hi sm:text-[44px]">
@@ -98,7 +98,7 @@ export function CategoriesSection({
                 />
 
                 <div className="relative z-10 flex h-full flex-col justify-end p-5">
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/55">
+                  <span className="text-[12px] sm:text-[10px] font-semibold uppercase tracking-[0.2em] text-white/55">
                     {cat.bookCount === 1 ? "1 book" : `${cat.bookCount} books`}
                   </span>
                   <h3 className="mt-2 font-serif text-2xl font-medium text-fg-hi transition-colors group-hover:text-emerald-bright">

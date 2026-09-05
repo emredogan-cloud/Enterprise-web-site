@@ -96,7 +96,7 @@ export function SettingsSidebar({
           className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-bright/40 to-transparent"
         />
 
-        <p className="mb-3 px-3 pt-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-fg-soft">
+        <p className="mb-3 px-3 pt-2 text-[12px] sm:text-[10px] font-semibold uppercase tracking-[0.3em] text-fg-soft">
           Account
         </p>
 
@@ -138,7 +138,7 @@ function SidebarItem({ item }: { item: NavItem }) {
         className="flex w-full cursor-not-allowed items-center gap-3 rounded-[14px] px-3 py-2.5 text-sm text-fg-fade"
       >
         {inner}
-        <span className="rounded-full border border-white/[0.08] bg-white/[0.03] px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-fg-soft">
+        <span className="rounded-full border border-white/[0.08] bg-white/[0.03] px-2 py-0.5 text-[12px] sm:text-[9px] font-semibold uppercase tracking-[0.18em] text-fg-soft">
           Soon
         </span>
       </button>

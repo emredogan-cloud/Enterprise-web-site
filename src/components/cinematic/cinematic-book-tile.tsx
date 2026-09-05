@@ -45,7 +45,7 @@ export function CinematicBookTile({ book }: { book: BookCardData }) {
         )}
 
         {book.authors.length > 0 && (
-          <p className="line-clamp-1 text-[11px] uppercase tracking-[0.12em] text-fg-soft">
+          <p className="line-clamp-1 text-[12px] sm:text-[11px] uppercase tracking-[0.12em] text-fg-soft">
             {book.authors.map((a) => a.name).join(", ")}
           </p>
         )}

@@ -33,10 +33,10 @@ export default function GlobalError({
     <div className="cinematic-root">
       <CinematicHeader />
 
-      <main className="relative z-10 mx-auto max-w-2xl px-4 py-24 sm:px-6">
+      <main className="relative z-10 mx-auto max-w-2xl px-4 py-14 sm:py-24 sm:px-6">
         <div className="flex flex-col items-center text-center">
           {/* Eyebrow */}
-          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff9b9b]">
+          <p className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff9b9b]">
             Something went wrong
           </p>
 

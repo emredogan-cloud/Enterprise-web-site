@@ -33,11 +33,11 @@ export function WhyReadersSection() {
   ];
 
   return (
-    <section id="why" className="relative px-6 py-24 sm:py-32">
+    <section id="why" className="relative px-6 py-14 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl">
         <RevealOnScroll>
           <header className="mx-auto max-w-2xl text-center">
-            <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-emerald-bright/80">
+            <p className="text-[12px] sm:text-[11px] font-medium uppercase tracking-[0.3em] text-emerald-bright/80">
               Why readers love us
             </p>
             <h2 className="mt-4 font-serif text-[36px] font-medium leading-tight tracking-tight text-fg-hi sm:text-[44px]">

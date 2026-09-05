@@ -73,7 +73,7 @@ export function FormatTable({
     <section aria-labelledby="formats-heading" className="mt-12">
       <h2
         id="formats-heading"
-        className="text-[11px] font-semibold uppercase tracking-[0.25em] text-emerald-bright"
+        className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.25em] text-emerald-bright"
       >
         Editions
       </h2>

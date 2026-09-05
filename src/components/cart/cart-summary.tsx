@@ -63,7 +63,7 @@ export function CartSummary({
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/45 to-transparent"
       />
 
-      <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+      <h2 className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
         Order summary
       </h2>
 
@@ -130,7 +130,7 @@ export function CartSummary({
 
       {/* Trust microcopy */}
       <div className="mt-7 border-t border-white/[0.06] pt-5">
-        <p className="text-center text-[11px] uppercase tracking-[0.2em] text-fg-fade">
+        <p className="text-center text-[12px] sm:text-[11px] uppercase tracking-[0.2em] text-fg-fade">
           ✓ Paddle · MoR &nbsp;·&nbsp; ✓ Watermarked PDF &nbsp;·&nbsp; ✓ Yours to keep
         </p>
       </div>

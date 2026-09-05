@@ -173,7 +173,7 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
           >
             <Search aria-hidden className="h-4 w-4" />
             <span className="flex-1 text-left">Search books, authors…</span>
-            <kbd className="rounded border border-white/[0.1] bg-white/[0.04] px-1.5 py-0.5 font-mono text-[10px] text-fg-mid">
+            <kbd className="rounded border border-white/[0.1] bg-white/[0.04] px-1.5 py-0.5 font-mono text-[12px] sm:text-[10px] text-fg-mid">
               ⌘K
             </kbd>
           </Link>

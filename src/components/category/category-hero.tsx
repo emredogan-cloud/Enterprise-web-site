@@ -48,7 +48,7 @@ export function CategoryHero({
         {/* RIGHT — editorial content */}
         <div className="flex flex-col">
           {/* Eyebrow */}
-          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#33f0aa]">
+          <p className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-[#33f0aa]">
             Blog Category
           </p>
 

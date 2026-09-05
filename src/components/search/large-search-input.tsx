@@ -100,7 +100,7 @@ export function LargeSearchInput({
         {/* ⌘K shortcut chip — right */}
         <kbd
           aria-hidden
-          className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 items-center gap-1 rounded-md border border-white/[0.12] bg-white/[0.04] px-2 py-1 font-mono text-[11px] font-medium text-fg-mid backdrop-blur-md sm:inline-flex"
+          className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 items-center gap-1 rounded-md border border-white/[0.12] bg-white/[0.04] px-2 py-1 font-mono text-[12px] sm:text-[11px] font-medium text-fg-mid backdrop-blur-md sm:inline-flex"
         >
           <span className="text-[12px] leading-none">⌘</span>
           <span>K</span>

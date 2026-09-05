@@ -85,7 +85,7 @@ export function SharePanel() {
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/35 to-transparent"
       />
 
-      <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+      <p className="text-[12px] sm:text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
         Share this article
       </p>
 

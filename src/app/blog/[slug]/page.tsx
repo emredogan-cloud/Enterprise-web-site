@@ -147,7 +147,7 @@ export default async function BlogPostPage({
         <AuthorNewsletterStrip />
 
         {/* Related books — content-to-commerce bridge from SUB-PR 3.2 */}
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <RelatedBooks limit={3} />
         </div>
 

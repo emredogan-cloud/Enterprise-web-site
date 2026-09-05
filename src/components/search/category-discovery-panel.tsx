@@ -56,7 +56,7 @@ export function CategoryDiscoveryPanel({
               <h3 className="font-serif text-[13px] font-medium leading-tight text-fg-hi transition-colors group-hover:text-emerald-bright sm:text-sm">
                 {c.name}
               </h3>
-              <p className="mt-1 text-[10px] tabular-nums text-fg-soft">
+              <p className="mt-1 text-[12px] sm:text-[10px] tabular-nums text-fg-soft">
                 {c.bookCount} {c.bookCount === 1 ? "book" : "books"}
               </p>
             </div>

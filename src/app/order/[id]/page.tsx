@@ -141,7 +141,7 @@ export default async function OrderPage({ params }: { params: Params }) {
           </div>
 
           {/* What happens next */}
-          <div className="mt-16">
+          <div className="mt-10 sm:mt-16">
             <WhatHappensNextStrip />
           </div>
 

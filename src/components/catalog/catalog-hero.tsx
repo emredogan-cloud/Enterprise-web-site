@@ -60,7 +60,7 @@ export function CatalogHero() {
 
       <div className="mx-auto max-w-3xl">
         {/* Eyebrow */}
-        <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+        <p className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
           Catalog
         </p>
 

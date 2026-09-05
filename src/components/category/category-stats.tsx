@@ -65,7 +65,7 @@ export function CategoryStats({
                 <p className="font-serif text-[18px] font-medium leading-none tabular-nums text-[#e6e6e0]">
                   {stat.number}
                 </p>
-                <p className="mt-1 text-[10px] uppercase tracking-[0.12em] text-[#88918a]">
+                <p className="mt-1 text-[12px] sm:text-[10px] uppercase tracking-[0.12em] text-[#88918a]">
                   {stat.label}
                 </p>
               </div>

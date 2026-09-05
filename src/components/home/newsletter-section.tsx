@@ -44,7 +44,7 @@ export function NewsletterSection() {
   };
 
   return (
-    <section className="relative px-6 py-24 sm:py-28">
+    <section className="relative px-6 py-14 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-5xl">
         <RevealOnScroll>
           <div className="home-glass relative overflow-hidden rounded-[24px] px-8 py-14 text-center sm:px-14 sm:py-20">
@@ -58,7 +58,7 @@ export function NewsletterSection() {
               }}
             />
 
-            <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-emerald-bright/80">
+            <p className="text-[12px] sm:text-[11px] font-medium uppercase tracking-[0.3em] text-emerald-bright/80">
               Stay in the loop
             </p>
             <h2 className="mt-4 font-serif text-[36px] font-medium leading-tight tracking-tight text-fg-hi sm:text-[44px]">

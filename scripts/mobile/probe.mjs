@@ -5,6 +5,13 @@
  * enough to be obvious and must never throw — a probe exception aborts the
  * whole sweep. Each section is individually try/caught.
  */
+/*
+ * GUARD: this file must contain exactly two backticks — the String.raw
+ * delimiters below. A backtick anywhere in the probe body or its comments ends
+ * the template early and the rest of the file is parsed as JavaScript, which
+ * fails with a confusing "X is not defined" at import time. This has bitten
+ * three times; write comments with plain quotes.
+ */
 export const PROBE_SOURCE = String.raw`(() => {
   const W = innerWidth, H = innerHeight, de = document.documentElement;
   const out = { vw: W, vh: H, dpr: devicePixelRatio };
@@ -41,6 +48,7 @@ export const PROBE_SOURCE = String.raw`(() => {
   try {
     const docScrollW = Math.max(de.scrollWidth, document.body.scrollWidth);
     out.docScrollW = docScrollW;
+    out.docScrollH = Math.max(de.scrollHeight, document.body.scrollHeight);
     out.hOverflowPx = Math.max(0, docScrollW - de.clientWidth);
     const offenders = [];
     for (const el of all) {
@@ -143,12 +151,27 @@ export const PROBE_SOURCE = String.raw`(() => {
     }
     out.tinyText = Object.keys(buckets).map((k) => buckets[k]).sort((a, b) => a.size - b.size);
     out.tinyTextTotal = out.tinyText.reduce((s, t) => s + t.count, 0);
+    /* The acceptance number. tinyTextTotal counts everything under 12.5px,
+       which includes 12px text-xs — a legitimate size. What matters is text
+       BELOW the 12px floor. */
+    out.textBelow12 = out.tinyText.filter((t) => t.size < 12).reduce((s, t) => s + t.count, 0);
   } catch (e) { out.textError = String(e).slice(0, 120); }
 
   /* ── body type scale (editorial legibility) ──────────────────────── */
   try {
-    const ps = Array.prototype.slice.call(document.querySelectorAll("p"))
+    /* Measure the READING body, not whatever <p> happens to come first.
+       Taking document.querySelectorAll("p")[0] picked up the hero standfirst on
+       article pages and reported its ratio as the article's — the roadmap's
+       P2-4 ("blog line-height 1.35") was that mistake. The real reading column
+       is the .cinematic-prose column, which measures 18px/1.75. */
+    const proseRoot = document.querySelector(".cinematic-prose");
+    const scope = proseRoot || document;
+    let ps = Array.prototype.slice.call(scope.querySelectorAll("p"))
       .filter(visible).filter((e) => (e.textContent || "").trim().length > 60);
+    if (ps.length === 0) {
+      ps = Array.prototype.slice.call(document.querySelectorAll("p"))
+        .filter(visible).filter((e) => (e.textContent || "").trim().length > 60);
+    }
     if (ps.length) {
       const cs = getComputedStyle(ps[0]);
       const fs = parseFloat(cs.fontSize), lh = parseFloat(cs.lineHeight);
@@ -159,6 +182,7 @@ export const PROBE_SOURCE = String.raw`(() => {
         fontPx: fs, lineHeightPx: lh, ratio: +(lh / fs).toFixed(2),
         charsPerLine: Math.round(ps[0].getBoundingClientRect().width / chw),
         paragraphs: ps.length,
+        source: proseRoot ? ".cinematic-prose" : "document",
       };
     }
     const h1 = document.querySelector("h1");

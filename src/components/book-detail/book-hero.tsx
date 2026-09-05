@@ -98,7 +98,7 @@ export function BookHero({
 
             {/* Price line — only when there is a price of ours to state. */}
             <div className="flex items-baseline justify-between">
-              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+              <span className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
                 {directSale ? "Price" : "Editions"}
               </span>
               <span className="font-serif text-[28px] font-medium leading-none text-fg-hi">
@@ -120,7 +120,7 @@ export function BookHero({
               )}
             </div>
             {!directSale && (
-              <p className="mt-3 text-center text-[11px] leading-relaxed text-fg-soft">
+              <p className="mt-3 text-center text-[12px] sm:text-[11px] leading-relaxed text-fg-soft">
                 This title isn&apos;t sold on this site. Every edition it
                 exists in is listed below, with where to buy it.
               </p>
@@ -157,7 +157,7 @@ export function BookHero({
         <div>
           {/* Authors */}
           {authors.length > 0 && (
-            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+            <p className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
               {authors.map((a, i) => (
                 <span key={`${a.slug}-${i}`}>
                   {/* Always a real link now. The plain-text branch existed
@@ -216,19 +216,19 @@ export function BookHero({
           <dl className="mt-12 grid grid-cols-[auto_1fr] gap-x-6 gap-y-4 text-sm">
             {pageCount !== null && (
               <>
-                <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+                <dt className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
                   Pages
                 </dt>
                 <dd className="text-fg-hi">{pageCount}</dd>
               </>
             )}
-            <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+            <dt className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
               Language
             </dt>
             <dd className="text-fg-hi">{language}</dd>
             {isbn && (
               <>
-                <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+                <dt className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
                   ISBN
                 </dt>
                 <dd className="font-mono text-xs text-fg-mid">{isbn}</dd>

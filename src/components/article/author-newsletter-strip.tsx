@@ -51,7 +51,7 @@ export function AuthorNewsletterStrip({
   };
 
   return (
-    <section className="mx-auto mt-24 max-w-5xl px-6">
+    <section className="mx-auto mt-14 sm:mt-24 max-w-5xl px-6">
       <div className="home-glass relative overflow-hidden rounded-[32px] p-7 sm:p-9">
         {/* Top emerald edge line */}
         <div
@@ -72,7 +72,7 @@ export function AuthorNewsletterStrip({
                 }}
               />
               <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+                <p className="text-[12px] sm:text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
                   Written by
                 </p>
                 <p className="mt-0.5 font-serif text-[19px] font-medium text-fg-hi">
@@ -98,7 +98,7 @@ export function AuthorNewsletterStrip({
 
           {/* RIGHT — Newsletter CTA */}
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-bright">
+            <p className="text-[12px] sm:text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-bright">
               Newsletter
             </p>
             <h2 className="mt-3 font-serif text-[24px] font-medium leading-tight text-fg-hi sm:text-[28px]">

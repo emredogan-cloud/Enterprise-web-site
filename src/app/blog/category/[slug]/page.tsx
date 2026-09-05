@@ -121,7 +121,7 @@ export default async function BlogCategoryPage({
         {/* Breadcrumb — keeps the path back to /blog visible */}
         <nav
           aria-label="Breadcrumb"
-          className="mx-auto mt-6 max-w-[1320px] px-4 text-[11px] uppercase tracking-[0.18em] text-[#88918a] sm:px-6"
+          className="mx-auto mt-6 max-w-[1320px] px-4 text-[12px] sm:text-[11px] uppercase tracking-[0.18em] text-[#88918a] sm:px-6"
         >
           <Link
             href="/blog"

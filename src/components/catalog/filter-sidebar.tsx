@@ -207,7 +207,7 @@ function SectionWrap({
 }) {
   return (
     <div className="mt-6 border-t border-white/[0.05] pt-5 first-of-type:mt-7">
-      <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+      <h3 className="mb-3 text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
         {title}
       </h3>
       {children}

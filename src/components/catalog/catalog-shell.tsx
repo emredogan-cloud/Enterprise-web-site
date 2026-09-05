@@ -396,7 +396,7 @@ function ListRow({ book }: { book: CatalogItem }) {
           {book.category.slice(0, 3)}
         </span>
         <span
-          className="font-serif text-[10px] leading-tight"
+          className="font-serif text-[12px] sm:text-[10px] leading-tight"
           style={{ color: book.cover.darkText ? "#1a1612" : "#fff" }}
         >
           {book.title.split(" ").slice(0, 2).join(" ")}
@@ -451,7 +451,7 @@ function ListRow({ book }: { book: CatalogItem }) {
  */
 function CatalogEmpty() {
   return (
-    <div className="home-glass mt-10 rounded-2xl px-8 py-16 text-center">
+    <div className="home-glass mt-10 rounded-2xl px-8 py-10 sm:py-16 text-center">
       <p className="font-serif text-xl text-fg-hi">
         The first editions are still at the press.
       </p>
@@ -471,7 +471,7 @@ function CatalogEmpty() {
 
 function EmptyResults({ onReset }: { onReset: () => void }) {
   return (
-    <div className="home-glass mt-10 rounded-2xl px-8 py-16 text-center">
+    <div className="home-glass mt-10 rounded-2xl px-8 py-10 sm:py-16 text-center">
       <p className="font-serif text-xl text-fg-hi">
         No books match these filters.
       </p>

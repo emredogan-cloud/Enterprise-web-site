@@ -59,7 +59,7 @@ export default async function AuthorsDiscoveryPage() {
  */
 function AuthorsEmpty() {
   return (
-    <section className="mx-auto mt-10 max-w-2xl px-6 text-center">
+    <section className="mx-auto mt-10 max-w-2xl px-4 sm:px-6 text-center">
       <div className="home-glass rounded-[24px] px-8 py-14">
         <p className="font-serif text-xl text-fg-hi">
           No author pages yet.

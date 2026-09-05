@@ -29,7 +29,7 @@ export function Hero() {
               aria-hidden
               className="h-1.5 w-1.5 rounded-full bg-[#33f0aa] shadow-[0_0_6px_#33f0aa]"
             />
-            <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-fg-mid">
+            <span className="text-[12px] sm:text-[11px] font-medium uppercase tracking-[0.2em] text-fg-mid">
               New · Curated Digital Library
             </span>
           </div>

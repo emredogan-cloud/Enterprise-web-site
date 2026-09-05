@@ -102,7 +102,7 @@ async function main() {
         console.log(
           `  ✓ ${route.name.padEnd(20)} ovf=${String(probe.hOverflowPx).padStart(3)} ` +
           `tap<24=${String(probe.tapUnder24).padStart(3)} wcagFail=${String(probe.tapFailsWcag).padStart(3)} ` +
-          `tiny=${String(probe.tinyTextTotal).padStart(3)} nodes=${String(probe.domNodes).padStart(4)}${flag}`,
+          `<12px=${String(probe.textBelow12).padStart(3)} h=${String(probe.docScrollH).padStart(5)} nodes=${String(probe.domNodes).padStart(4)}${flag}`,
         );
       } catch (err) {
         failures.push({ route: route.name, width: width ?? "device", error: String(err.message).slice(0, 300) });
@@ -132,6 +132,7 @@ async function main() {
       totalWcagTapFailures: results.reduce((s, r) => s + (r.tapFailsWcag ?? 0), 0),
       totalUnder24: results.reduce((s, r) => s + (r.tapUnder24 ?? 0), 0),
       totalTinyText: results.reduce((s, r) => s + (r.tinyTextTotal ?? 0), 0),
+      totalTextBelow12: results.reduce((s, r) => s + (r.textBelow12 ?? 0), 0),
       routesWithConsoleErrors: results.filter((r) => (r.consoleErrors ?? []).length).length,
     },
   };

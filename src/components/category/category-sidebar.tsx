@@ -101,14 +101,14 @@ export function CategorySidebar({
           <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-[#16c784]/30 bg-[#16c784]/10 text-[#33f0aa] shadow-[0_0_10px_-2px_rgba(51,240,170,0.4)]">
             <Info aria-hidden className="h-3.5 w-3.5" strokeWidth={2.2} />
           </span>
-          <h3 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#88918a]">
+          <h3 className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] text-[#88918a]">
             About this category
           </h3>
         </header>
 
         <p className="mt-4 text-sm leading-relaxed text-[#a7a7a0]">{about}</p>
 
-        <p className="mt-6 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#88918a]">
+        <p className="mt-6 text-[12px] sm:text-[10px] font-semibold uppercase tracking-[0.18em] text-[#88918a]">
           Popular topics
         </p>
         <ul className="mt-3 flex flex-wrap gap-2">
@@ -135,7 +135,7 @@ export function CategorySidebar({
           <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-[#16c784]/30 bg-[#16c784]/10 text-[#33f0aa] shadow-[0_0_10px_-2px_rgba(51,240,170,0.4)]">
             <Mail aria-hidden className="h-3.5 w-3.5" strokeWidth={2} />
           </span>
-          <h3 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#88918a]">
+          <h3 className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] text-[#88918a]">
             Newsletter
           </h3>
         </header>

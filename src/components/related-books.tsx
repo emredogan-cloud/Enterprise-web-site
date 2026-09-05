@@ -32,7 +32,7 @@ export async function RelatedBooks({ limit = 3 }: { limit?: number } = {}) {
   if (books.length === 0) return null;
 
   return (
-    <section className="mt-20 border-t border-border pt-16">
+    <section className="mt-12 sm:mt-20 border-t border-border pt-16">
       <header className="text-center">
         <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
           From the catalog

@@ -87,7 +87,7 @@ export default async function CartPage() {
         {isEmpty ? (
           <EmptyCartCard />
         ) : (
-          <section className="mx-auto max-w-5xl px-6">
+          <section className="mx-auto max-w-5xl px-4 sm:px-6">
             <div className="grid gap-6 lg:grid-cols-[1fr_320px] lg:gap-8">
               {/* Items list */}
               <div className="space-y-3">

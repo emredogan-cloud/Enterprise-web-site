@@ -170,14 +170,14 @@ export default async function AdminPage() {
             <p>
               Signed in as <span className="text-fg-hi">{ctx.email}</span>{" "}
               · local user{" "}
-              <code className="rounded border border-white/[0.08] bg-white/[0.04] px-1.5 py-0.5 font-mono text-[10px] text-emerald-bright">
+              <code className="rounded border border-white/[0.08] bg-white/[0.04] px-1.5 py-0.5 font-mono text-[12px] sm:text-[10px] text-emerald-bright">
                 {ctx.localUserId}
               </code>
             </p>
           }
         />
 
-        <div className="mx-auto mt-16 max-w-6xl space-y-16 px-4 sm:px-6">
+        <div className="mx-auto mt-10 sm:mt-16 max-w-6xl space-y-16 px-4 sm:px-6">
           <MetricsRow metrics={metrics} />
           <RecentOrdersSection orders={recentOrders} />
           <CatalogManagementSection books={catalog} />
@@ -257,7 +257,7 @@ function StatCard({ label, value, sublabel }: StatCardProps) {
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/30 to-transparent"
       />
-      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+      <p className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
         {label}
       </p>
       <p className="mt-3 font-serif text-[32px] font-medium leading-tight tabular-nums text-fg-hi">
@@ -283,7 +283,7 @@ function RecentOrdersSection({ orders }: { orders: RecentOrder[] }) {
         >
           Recent orders
         </h2>
-        <p className="text-[11px] uppercase tracking-[0.2em] text-fg-soft">
+        <p className="text-[12px] sm:text-[11px] uppercase tracking-[0.2em] text-fg-soft">
           Newest {orders.length}
         </p>
       </header>
@@ -298,7 +298,7 @@ function RecentOrdersSection({ orders }: { orders: RecentOrder[] }) {
       ) : (
         <div className="home-glass mt-6 overflow-x-auto rounded-[20px]">
           <table className="w-full text-sm">
-            <thead className="border-b border-white/[0.06] bg-white/[0.02] text-left text-[10px] uppercase tracking-[0.12em] text-fg-soft">
+            <thead className="border-b border-white/[0.06] bg-white/[0.02] text-left text-[12px] sm:text-[10px] uppercase tracking-[0.12em] text-fg-soft">
               <tr>
                 <th scope="col" className="px-4 py-3 font-semibold">
                   Date
@@ -375,7 +375,7 @@ const ORDER_STATUS_BADGE_CLASSES: Record<OrderStatus, string> = {
 function OrderStatusBadge({ status }: { status: OrderStatus }) {
   return (
     <span
-      className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] ${ORDER_STATUS_BADGE_CLASSES[status]}`}
+      className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-[12px] sm:text-[10px] font-semibold uppercase tracking-[0.12em] ${ORDER_STATUS_BADGE_CLASSES[status]}`}
     >
       {status}
     </span>
@@ -405,7 +405,7 @@ function CatalogManagementSection({ books }: { books: BookAdminListItem[] }) {
         >
           Catalog management
         </h2>
-        <p className="text-[11px] uppercase tracking-[0.2em] text-fg-soft">
+        <p className="text-[12px] sm:text-[11px] uppercase tracking-[0.2em] text-fg-soft">
           {books.length} {books.length === 1 ? "title" : "titles"}
         </p>
       </header>
@@ -420,7 +420,7 @@ function CatalogManagementSection({ books }: { books: BookAdminListItem[] }) {
       ) : (
         <div className="home-glass mt-6 overflow-x-auto rounded-[20px]">
           <table className="w-full text-sm">
-            <thead className="border-b border-white/[0.06] bg-white/[0.02] text-left text-[10px] uppercase tracking-[0.12em] text-fg-soft">
+            <thead className="border-b border-white/[0.06] bg-white/[0.02] text-left text-[12px] sm:text-[10px] uppercase tracking-[0.12em] text-fg-soft">
               <tr>
                 <th scope="col" className="px-4 py-3 font-semibold">
                   Title
@@ -502,7 +502,7 @@ function CreateBookSection({
   return (
     <section aria-labelledby="create-book-heading">
       <header>
-        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+        <p className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
           Catalog · Ingest
         </p>
         <h2
@@ -579,7 +579,7 @@ function CreateBookSection({
         />
 
         <fieldset className="space-y-3 rounded-[16px] border border-white/[0.08] bg-white/[0.02] p-5">
-          <legend className="px-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+          <legend className="px-2 text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
             Collections / categories
           </legend>
           {allCategories.length === 0 ? (
@@ -609,7 +609,7 @@ function CreateBookSection({
         </fieldset>
 
         <fieldset className="space-y-6 rounded-[16px] border border-white/[0.08] bg-white/[0.02] p-5">
-          <legend className="px-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+          <legend className="px-2 text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
             R2 object keys (optional now; required before publish)
           </legend>
           <FormField
@@ -630,7 +630,7 @@ function CreateBookSection({
         </fieldset>
 
         <fieldset className="space-y-6 rounded-[16px] border border-white/[0.08] bg-white/[0.02] p-5">
-          <legend className="px-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+          <legend className="px-2 text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
             Merchant of Record (Paddle) — required before checkout
           </legend>
           <FormField
@@ -676,7 +676,7 @@ function FormField({
     <div>
       <label
         htmlFor={name}
-        className="block text-[11px] font-semibold uppercase tracking-[0.12em] text-fg-soft"
+        className="block text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.12em] text-fg-soft"
       >
         {label}
         {required && <span className="text-[#ff9b9b]"> *</span>}

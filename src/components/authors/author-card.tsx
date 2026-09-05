@@ -52,7 +52,7 @@ export function AuthorCard({ author }: { author: AuthorCardData }) {
 
           {/* Bottom row — book count LEFT, arrow CTA RIGHT */}
           <div className="mt-4 flex items-center justify-between">
-            <span className="text-[11px] font-medium uppercase tracking-[0.12em] text-fg-fade">
+            <span className="text-[12px] sm:text-[11px] font-medium uppercase tracking-[0.12em] text-fg-fade">
               {author.bookCount} {author.bookCount === 1 ? "Book" : "Books"}
             </span>
             <span

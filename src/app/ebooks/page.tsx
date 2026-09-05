@@ -39,8 +39,8 @@ export default async function EbooksPage() {
       <CinematicHeader active="ebooks" />
 
       <main className="relative z-10">
-        <header className="mx-auto max-w-[1440px] px-6 pb-4 pt-16 sm:pt-24">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+        <header className="mx-auto max-w-[1440px] px-4 sm:px-6 pb-4 pt-16 sm:pt-24">
+          <p className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
             Ebooks
           </p>
           <h1 className="mt-4 max-w-3xl font-serif text-[40px] font-medium leading-[1.08] tracking-[-0.025em] text-fg-hi sm:text-[56px]">
@@ -77,7 +77,7 @@ export default async function EbooksPage() {
  */
 function EbooksEmpty() {
   return (
-    <section className="mx-auto mt-10 max-w-2xl px-6 pb-24 text-center">
+    <section className="mx-auto mt-10 max-w-2xl px-4 sm:px-6 pb-24 text-center">
       <div className="home-glass rounded-[24px] px-8 py-14">
         <p className="font-serif text-xl text-fg-hi">
           No ebook is on sale yet.
