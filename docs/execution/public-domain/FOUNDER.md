@@ -14,6 +14,26 @@ output while other work continues · **P2** is an inconvenience and never stops 
 ## Open
 
 
+### F-021 · P1 · Deploy, so Falkener's companion URL resolves before the book ships
+
+- **Date raised:** 2026-09-05 · **Phase:** 2 · **Book:** 1
+- **Blocker:** `valicepress.com/companion/games-ancient-and-oriental` and its four PDFs
+  return **404**. `validate-catalog --env .env` reports them as five errors, correctly:
+  the address is **printed inside the book**, on page 78, and encoded in a QR code, so a
+  reader who scans it before the deploy gets nothing. This is the same dependency F-006
+  answered for Phase 1, and it is open again because Phase 2 has not been deployed.
+- **Why the agent cannot do it:** deploying is a production write, and this branch must
+  not be merged or deployed without explicit instruction. The page and its assets are
+  built, tracked and correct — `npm run build` renders 73 static pages including
+  `/companion/games-ancient-and-oriental`, and the four PDFs are sha256-identical to the
+  book's own `ASSETS/companion/`.
+- **The action:** when Phase 2 is approved for merge, deploy, then re-run
+  `node scripts/catalog/validate-catalog.mjs --env .env` and confirm 74 pass · 0 error.
+- **Not a reason to hold the ebook.** The companion is free material with no sign-up; the
+  404 blocks the *printed* edition, which is not on KDP yet either (see the handbook).
+
+---
+
 ### F-020 · P1 · Sign gates 2 and 5 for Falkener
 
 - **Date raised:** 2026-09-05 · **Phase:** 2 · **Book:** 1

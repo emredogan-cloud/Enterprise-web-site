@@ -113,7 +113,7 @@ export const DIRECT_SALE_EBOOKS = [
       // actually produces: `master.pdf` from the print interior and
       // `master.epub`, both uploaded and content-verified under
       // books/epictetus-discourses-and-enchiridion/master/v1/.
-      "Arrian's complete Enchiridion — all fifty-two chapters — followed by the sixty-eight Discourses George Long selected in 1877, arranged into seven thematic parts. Around them, original to this edition: an introduction, a head-note on every one of the 120 chapters, a glossary of the eighteen terms Epictetus uses technically, a biographical index, a chronology, an index of subjects, and a concordance listing the four passages Marcus Aurelius demonstrably read — and the two Long cites that are not in this selection. 176 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included.",
+      "Arrian's complete Enchiridion — all fifty-two chapters — followed by the sixty-eight Discourses George Long selected in 1877, arranged into seven thematic parts. Around them, original to this edition: an introduction, a head-note on every one of the 120 chapters, a glossary of the eighteen terms Epictetus uses technically, a biographical index, a chronology, an index of subjects, and a concordance listing the four passages Marcus Aurelius demonstrably read — and the two Long cites that are not in this selection. 178 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included.",
     // price-engine.mjs 2026-09-04: $9.99 nets $8.99 after Paddle (90%). The
     // Valice Classics band is $7.99–9.99 for the minimum apparatus standard;
     // this edition measures 20.1% original matter, which is the floor rather
@@ -125,11 +125,11 @@ export const DIRECT_SALE_EBOOKS = [
     slug: "games-ancient-and-oriental",
     name: "Games Ancient and Oriental: The Egyptian Games (Annotated)",
     description:
-      "Falkener's 1892 reconstruction of the ancient Egyptian games, sections I to VI complete, with the 1864 paper Dr Samuel Birch of the British Museum wrote for him. Original to this edition: a Register of Reconstructions separating, for each game, what the evidence shows, what Falkener supplies and what is known now; five diagrams drawn from the descriptions in the text, each marked EVIDENCE or RECONSTRUCTION on its face; a glossary, a chronology and an index of subjects. Falkener's move tables are rebuilt from the scan's own word coordinates, with every reading that could not be made out marked rather than guessed. 76 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included.",
+      "Falkener's 1892 reconstruction of the ancient Egyptian games, sections I to VI complete, with the 1864 paper Dr Samuel Birch of the British Museum wrote for him. Original to this edition: a Register of Reconstructions separating, for each game, what the evidence shows, what Falkener supplies and what is known now; five diagrams drawn from the descriptions in the text, each marked EVIDENCE or RECONSTRUCTION on its face; a glossary, a chronology and an index of subjects. Falkener's move tables are rebuilt from the scan's own word coordinates, with every reading that could not be made out marked rather than guessed. 78 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included.",
     // price-engine.mjs 2026-09-05, direct ebook, public domain: recommended
     // $6.99; $7.99 nets $7.09 after Paddle. The Classics band is $7.99–9.99 for
-    // the minimum apparatus standard. This edition measures 27.7% original
-    // matter — above the floor — but runs 76 pages against 154–176 for the other
+    // the minimum apparatus standard. This edition measures 28.0% original
+    // matter — above the floor — but runs 78 pages against 154–176 for the other
     // Classics titles, so it sits at the bottom of the band, not at $9.99.
     priceCents: 799,
   },

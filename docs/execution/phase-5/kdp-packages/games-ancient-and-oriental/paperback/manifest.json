@@ -7,11 +7,11 @@
   "kdpState": "not_created",
   "interior": {
     "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/OUTPUT/interior-main.pdf",
-    "sha256": "58af46362ffc0ad16a5cb345fa364cfacb63fec8050d202f8fd1dd164f97a20e",
-    "bytes": 899467,
-    "pagesBefore": 75,
-    "pagesAfter": 76,
-    "companionPage": 76,
+    "sha256": "681ffbe112c166c3eb8afa4b99343da15f7cf2d00e3739b5b69e06aef2448920",
+    "bytes": 900561,
+    "pagesBefore": 77,
+    "pagesAfter": 78,
+    "companionPage": 78,
     "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/OUTPUT/interior-main.pre-companion.pdf",
     "builtBy": "scripts/factory/companion-page.py (spliced)"
   },
@@ -33,20 +33,20 @@
     "emailWall": false
   },
   "spine": {
-    "pagesBefore": 75,
-    "pagesAfter": 76,
+    "pagesBefore": 77,
+    "pagesAfter": 78,
     "paper": "white",
     "binding": "paperback",
     "trim": "6×9 in",
     "before": {
-      "spineWidthIn": 0.1689,
-      "wrapWidthIn": 12.4189,
+      "spineWidthIn": 0.173404,
+      "wrapWidthIn": 12.423404,
       "wrapHeightIn": 9.25,
       "spineTextAllowed": false
     },
     "after": {
-      "spineWidthIn": 0.171152,
-      "wrapWidthIn": 12.421152,
+      "spineWidthIn": 0.175656,
+      "wrapWidthIn": 12.425656,
       "wrapHeightIn": 9.25,
       "spineTextAllowed": false
     },
@@ -76,7 +76,7 @@
     {
       "name": "page-count",
       "pass": true,
-      "detail": "76 pages (expected 76)"
+      "detail": "78 pages (expected 78)"
     },
     {
       "name": "printed-url",

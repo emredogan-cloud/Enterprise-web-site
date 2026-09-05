@@ -4,11 +4,11 @@
 
 ## What this is
 
-This edition has never been uploaded. The file below is its first. A dedicated companion page stands on page **76**: a QR occupying 28 % of the usable page height, the address `valicepress.com/companion/games-ancient-and-oriental` printed beneath it in display type, and a named list of what is waiting there. It is a new leaf; nothing was removed.
+This edition has never been uploaded. The file below is its first. A dedicated companion page stands on page **78**: a QR occupying 28 % of the usable page height, the address `valicepress.com/companion/games-ancient-and-oriental` printed beneath it in display type, and a named list of what is waiting there. It is a new leaf; nothing was removed.
 
-- **Pages:** **76**
-- **Spine:** **0.1712 in** (white paper, 6×9 in)
-- **Wrap width:** **12.4212 in**
+- **Pages:** **78**
+- **Spine:** **0.1757 in** (white paper, 6×9 in)
+- **Wrap width:** **12.4257 in**
 - **Cover:** FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior
 - **Proof:** recommended — the block changed thickness, so the wrap is new and unproved
 
@@ -16,8 +16,8 @@ This edition has never been uploaded. The file below is its first. A dedicated c
 
 ```
 /home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/OUTPUT/interior-main.pdf
-sha256 58af46362ffc0ad16a5cb345fa364cfacb63fec8050d202f8fd1dd164f97a20e
-899,467 bytes · 76 pages
+sha256 681ffbe112c166c3eb8afa4b99343da15f7cf2d00e3739b5b69e06aef2448920
+900,561 bytes · 78 pages
 ```
 
 The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/OUTPUT/interior-main.pre-companion.pdf` and is never deleted.
@@ -25,13 +25,13 @@ The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-2
 ## In KDP
 
 1. KDP → **Create** → **Paperback**. This book is not on the bookshelf; there is nothing to edit.
-2. Upload the interior above, and the cover built for **76 pages** — see the book's own `OUTPUT/KDP/KDP_UPLOAD_GUIDE.html` for the trim, paper and bleed settings, which must match or the file is rejected.
+2. Upload the interior above, and the cover built for **78 pages** — see the book's own `OUTPUT/KDP/KDP_UPLOAD_GUIDE.html` for the trim, paper and bleed settings, which must match or the file is rejected.
 3. **Do not use Cover Creator.** The wrap was computed for this page count; Cover Creator regenerates it and the spine moves.
-4. Open the previewer and confirm page 76 shows the code and the address. Scan the code with a phone before you publish — it cannot be changed once it is printed.
+4. Open the previewer and confirm page 78 shows the code and the address. Scan the code with a phone before you publish — it cannot be changed once it is printed.
 
 ## How this file was checked
 
-- PASS · **page-count** — 76 pages (expected 76)
+- PASS · **page-count** — 78 pages (expected 78)
 - PASS · **printed-url** — valicepress.com/companion/games-ancient-and-oriental
 - PASS · **canonical-host** — no forbidden host on the page
 - PASS · **no-email-wall** — the page asks for nothing

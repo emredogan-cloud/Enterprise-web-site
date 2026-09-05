@@ -551,7 +551,7 @@ export const COMPANION_PAGE_PLAN = {
         // moved from 77/78 to 75/76 when an adversarial review's findings were fixed —
         // and this plan refused the splice until they were updated, which is the guard
         // doing its job.
-        mode: "append", page: null, pagesBefore: 75, pagesAfter: 76, recto: true,
+        mode: "append", page: null, pagesBefore: 77, pagesAfter: 78, recto: true,
         folio: { style: "centre", offset: 0, size: 8.6, baselineFromBottomPt: 28.8, outerMarginPt: 36 },
         replacing: null,
       },

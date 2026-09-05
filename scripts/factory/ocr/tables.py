@@ -137,12 +137,14 @@ def to_grid(rows: list[Row], edges: list[float]) -> list[list[str]]:
     return grid
 
 
-def find_tables(page, min_rows: int = 4, min_cells: int = 3,
+def find_tables(page, min_rows: int = 3, min_cells: int = 3,
                 narrow_rows: int = 6) -> list[dict]:
     """Every move table on the page, as {headings, rows, yFrom, yTo}.
 
     A table is a run of consecutive printed rows each carrying tabular cells: at
-    least `min_cells` of them over `min_rows` rows, or two of them over `narrow_rows`
+    least `min_cells` of them over `min_rows` rows, or two of them over `narrow_rows`.
+    Three rows of four move-shaped cells is a table — a four-row minimum left the
+    short continuation blocks on 1892 page 55 to be set as running prose
     — Falkener sets some games in two columns and some in four, and a flat rule of
     three cells walked past every two-column game in the book.
     """
@@ -171,9 +173,25 @@ def find_tables(page, min_rows: int = 4, min_cells: int = 3,
         if n >= (min_rows if wide else narrow_rows):
             block = rows[i:j + 1]
             edges = column_edges(block, tol=em * 0.6)
+            # LOOK FURTHER UP. The heading row is not always the line immediately
+            # above the data: the OCR puts each label on its own line object, and a
+            # rule or a stray mark can sit between. Taking only rows[i-1] left nine of
+            # twenty tables with no column labels at all, on a page that has them.
             head = []
-            if i > 0 and rows[i - 1].headings >= 2:
-                head = to_grid([rows[i - 1]], edges)[0]
+            for k in range(1, 4):
+                if i - k < 0:
+                    break
+                cand = rows[i - k]
+                if cand.tabular >= 2:      # data, not a heading — stop looking
+                    break
+                if cand.headings >= 1:
+                    merged = Row(cand.y, list(cand.cells))
+                    for k2 in range(1, k):     # fold in the split label lines above
+                        merged.cells += rows[i - k + k2].cells
+                    merged.cells.sort(key=lambda c: c.x0)
+                    if merged.headings >= 2:
+                        head = to_grid([merged], edges)[0]
+                        break
             out.append({"headings": head,
                         "rows": to_grid(block, edges),
                         "columns": len(edges),
