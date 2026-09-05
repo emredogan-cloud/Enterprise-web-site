@@ -158,7 +158,8 @@ two things worth doing are:
 2. **Look at the 640–1023 px band on a tablet if you have one.** It is correct by measurement, but
    it is the part of the site that has changed the most and that nobody has ever *looked* at.
 
-Then: `scripts/mobile/wvhost` installed a debug-signed test app on the phone during QA. Remove it
-with `npm run mobile:webview -- --uninstall`.
+The phone is as it was found: the debug-signed WebView host that `scripts/mobile/wvhost` installs
+for the in-app-browser check has been uninstalled. `scripts/mobile/wvhost/build.sh` puts it back in
+one command when the suite next needs it.
 
 # DO NOT MERGE.
