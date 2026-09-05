@@ -23,7 +23,7 @@ export default function LegalGroupLayout({
     <div className="cinematic-root">
       <CinematicHeader />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         {children}
       </main>
 

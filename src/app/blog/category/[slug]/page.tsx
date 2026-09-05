@@ -117,7 +117,7 @@ export default async function BlogCategoryPage({
     <div className="cinematic-root">
       <CinematicHeader active="blog" />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         {/* Breadcrumb — keeps the path back to /blog visible */}
         <nav
           aria-label="Breadcrumb"

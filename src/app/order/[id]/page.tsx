@@ -100,7 +100,7 @@ export default async function OrderPage({ params }: { params: Params }) {
     <div className="cinematic-root">
       <CinematicHeader />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         {/* Background poller — flips entitlement status as Inngest
             finishes each watermark job. No UI; just revalidatePath. */}
         <FulfillmentPoller enabled={hasPending} />

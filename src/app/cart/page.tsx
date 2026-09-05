@@ -78,7 +78,7 @@ export default async function CartPage() {
     <div className="cinematic-root">
       <CinematicHeader />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         <CartHero
           variant={isEmpty ? "empty" : "with-items"}
           itemCount={orderedBooks.length}

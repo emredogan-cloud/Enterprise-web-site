@@ -72,7 +72,11 @@
   --color-fg-hi: #e6e6e0;
   --color-fg-mid: #a7a7a0;
   --color-fg-soft: #88918a;
-  --color-fg-fade: #5d675f;
+  /* Phase 8 — raised from #5d675f for WCAG 2.2 SC 1.4.3 (AA). Measured on the
+     cinematic ground (#050705) the old value gave 3.44:1 at 13px and 3.25:1 at
+     12px, against a required 4.5:1 for body text. #737e75 measures 4.78:1 and
+     keeps the faint, recessive quality the token exists for. */
+  --color-fg-fade: #737e75;
   --color-emerald: #1ddf8f;
   --color-emerald-bright: #33f0aa;
   --color-emerald-deep: #16c784;
@@ -301,7 +305,8 @@ body:has(.cinematic-root) > header {
   --home-text-hi: #e6e6e0;
   --home-text-mid: #a7a7a0;
   --home-text-soft: #88918a;
-  --home-text-muted: #5d675f;
+  /* See --color-fg-fade above: raised for SC 1.4.3. 3.44:1 -> 4.78:1. */
+  --home-text-muted: #737e75;
   --home-border: rgba(255, 255, 255, 0.06);
   --home-border-strong: rgba(255, 255, 255, 0.12);
 
@@ -451,6 +456,23 @@ body:has(.cinematic-root) > header {
   transition-delay: var(--reveal-delay, 0ms);
 }
 .cinematic-root [data-reveal="visible"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered blocks hide their own children from first paint. The wrapper is
+   rendered with `data-reveal-stagger` on the server; the observer then promotes
+   each child to `data-reveal="visible"`. Without this the children shipped
+   visible and were hidden at hydration — a flash on slow devices. */
+.cinematic-root [data-reveal-stagger] > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.cinematic-root [data-reveal-stagger] > [data-reveal="visible"] {
   opacity: 1;
   transform: translateY(0);
 }

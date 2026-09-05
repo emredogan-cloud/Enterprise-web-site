@@ -136,7 +136,10 @@ export function CatalogBookCard({ book, priority = false }: { book: CatalogItem;
             src={book.coverSrc!}
             alt=""
             fill
-            sizes="(min-width: 1024px) 22vw, 50vw"
+            /* Measured, not guessed: the cover box is 145 CSS px at a 392px
+               viewport (2-up grid inside px-4 with gap-5) = 37vw, and ~28vw in
+               the 3-up `sm:` grid. 50vw over-fetched every card. */
+            sizes="(min-width: 1024px) 22vw, (min-width: 640px) 28vw, 40vw"
             // The first row is above the fold on every viewport this store is
             // used at. Lazy-loading it is what produced the loading state
             // described above; `priority` removes it entirely for those cards.

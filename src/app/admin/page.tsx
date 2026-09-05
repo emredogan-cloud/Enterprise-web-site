@@ -159,7 +159,7 @@ export default async function AdminPage() {
     <div className="cinematic-root">
       <CinematicHeader />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         <CinematicHero
           eyebrow="Admin · Dashboard"
           headlineHead="Bookstore"

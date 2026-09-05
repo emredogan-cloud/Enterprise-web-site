@@ -111,7 +111,7 @@ export default async function AdminEditBookPage({
     <div className="cinematic-root">
       <CinematicHeader />
 
-      <main className="relative z-10 mx-auto max-w-3xl space-y-12 px-4 py-10 sm:py-16 sm:px-6">
+      <main id="main-content" className="relative z-10 mx-auto max-w-3xl space-y-12 px-4 py-10 sm:py-16 sm:px-6">
         <header>
           {/* Breadcrumb */}
           <nav

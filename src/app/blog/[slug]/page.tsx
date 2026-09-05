@@ -95,7 +95,7 @@ export default async function BlogPostPage({
     <div className="cinematic-root">
       <CinematicHeader active="blog" />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         {/* JSON-LD — same structured-data contract as before */}
         <script
           type="application/ld+json"

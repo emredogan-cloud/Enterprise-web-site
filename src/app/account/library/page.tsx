@@ -68,7 +68,7 @@ export default async function LibraryPage() {
     <div className="cinematic-root">
       <CinematicHeader active="library" />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         {/* Poll for pending fulfillments — unchanged behavior */}
         <FulfillmentPoller enabled={hasPending} />
 

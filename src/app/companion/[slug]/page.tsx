@@ -81,7 +81,7 @@ export default async function CompanionPage({
     <div className="cinematic-root min-h-screen">
       <CinematicHeader />
 
-      <main className="mx-auto max-w-3xl px-4 sm:px-6 pb-24 pt-16">
+      <main id="main-content" className="mx-auto max-w-3xl px-4 sm:px-6 pb-24 pt-16">
         <p className="text-[12px] sm:text-[11px] font-medium uppercase tracking-[0.3em] text-emerald-bright/80">
           Free companion
         </p>

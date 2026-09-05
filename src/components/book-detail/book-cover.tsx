@@ -24,6 +24,7 @@ export function BookCover({
   coverKey,
   coverSrc,
   priority = false,
+  sizes = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 72vw",
 }: {
   title: string;
   coverKey?: string | null;
@@ -36,6 +37,13 @@ export function BookCover({
    */
   coverSrc?: string | null;
   priority?: boolean;
+  /**
+   * Responsive size hint. Defaults to the book-detail hero, which is what this
+   * component was written for. Small consumers — the shelf tiles in
+   * <CinematicBookTile>, which render a 103-211px cover — must pass their own,
+   * or the hero's hint over-fetches them by ~2.7x.
+   */
+  sizes?: string;
 }) {
   const src = coverSrc ?? getCoverImageUrl(coverKey);
 
@@ -81,7 +89,11 @@ export function BookCover({
             src={src}
             alt={`Cover of ${title}`}
             fill
-            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            /* Default is the hero: 72vw below `sm:` because Phase 6 capped the
+               cover at w-[72%]. While this said 100vw, Next's preload picked
+               w=1200 for a slot needing 710 device pixels — the LCP asset on
+               this route, fetched ~1.7x larger than required. */
+            sizes={sizes}
             priority={priority}
             className={coverFit(src) === "contain" ? "object-contain bg-[#0a1410]" : "object-cover"}
           />

@@ -231,6 +231,125 @@ export const PROBE_SOURCE = String.raw`(() => {
     if (h1) out.h1Px = parseFloat(getComputedStyle(h1).fontSize);
   } catch (e) { out.typeError = String(e).slice(0, 120); }
 
+  /* ── colour contrast (WCAG 2.2 SC 1.4.3) ─────────────────────────── */
+  try {
+    const parseRGB = (str) => {
+      const m = /rgba?\(([^)]+)\)/.exec(str);
+      if (!m) return null;
+      const p = m[1].split(",").map((x) => parseFloat(x));
+      return { r: p[0], g: p[1], b: p[2], a: p.length > 3 ? p[3] : 1 };
+    };
+    const lum = (c) => {
+      const f = (v) => { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
+      return 0.2126 * f(c.r) + 0.7152 * f(c.g) + 0.0722 * f(c.b);
+    };
+    const ratio = (a, b) => {
+      const l1 = lum(a), l2 = lum(b);
+      return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+    };
+    const blend = (fg, bg) => ({
+      r: fg.r * fg.a + bg.r * (1 - fg.a),
+      g: fg.g * fg.a + bg.g * (1 - fg.a),
+      b: fg.b * fg.a + bg.b * (1 - fg.a),
+      a: 1,
+    });
+    /* Walk up for the first opaque background. Anything sitting on an image or
+       a gradient is reported as INDETERMINATE rather than guessed at — a
+       contrast number invented over a photograph is worse than none. */
+    const gradientAverage = (bi) => {
+      if (!bi || bi === "none" || !/gradient/i.test(bi)) return null;
+      const stops = bi.match(/rgba?\([^)]+\)/g);
+      if (!stops || !stops.length) return null;
+      const cols = stops.map(parseRGB).filter((c) => c && c.a > 0.5);
+      if (!cols.length) return null;
+      return {
+        r: cols.reduce((t, c) => t + c.r, 0) / cols.length,
+        g: cols.reduce((t, c) => t + c.g, 0) / cols.length,
+        b: cols.reduce((t, c) => t + c.b, 0) / cols.length,
+        a: 1,
+      };
+    };
+
+    const backdrop = (el) => {
+      let n = el, acc = null, approx = false;
+      while (n && n !== document.documentElement) {
+        const cs = getComputedStyle(n);
+        /* A "background-clip: text" element paints its background onto the
+           GLYPHS, not behind them — it is the foreground. Skip it as a backdrop
+           and keep walking. Without this the emerald gradient headlines were
+           compared against themselves and reported 1.42:1 when the real ratio
+           is about 12.5:1. */
+        const clip = cs.webkitBackgroundClip || cs.backgroundClip;
+        if (clip === "text") { n = n.parentElement; continue; }
+        const bg = parseRGB(cs.backgroundColor);
+        if (bg && bg.a > 0) {
+          acc = acc ? blend(acc, bg) : bg;
+          if (acc.a >= 0.999 && !approx) return { color: acc, approximate: false };
+        }
+        /* A gradient backdrop: average its colour stops rather than ignoring
+           it. Without this the emerald CTA buttons — dark text on a bright
+           gradient — were measured against the dark page behind them and
+           reported a 1.11 ratio, which is the opposite of the truth. A
+           background IMAGE (a photo) still cannot be resolved this way, so it
+           only marks the result approximate. */
+        const bi = cs.backgroundImage;
+        if (bi && bi !== "none") {
+          const avg = gradientAverage(bi);
+          if (avg) {
+            acc = acc ? blend(acc, avg) : avg;
+            return { color: acc, approximate: true };
+          }
+          approx = true;
+        }
+        n = n.parentElement;
+      }
+      const root = parseRGB(getComputedStyle(document.documentElement).backgroundColor);
+      if (root && root.a > 0) {
+        return { color: acc ? blend(acc, root) : root, approximate: approx };
+      }
+      return { indeterminate: true };
+    };
+
+    const results = [];
+    let indeterminate = 0, approximate = 0;
+    for (const el of all) {
+      if (!el.firstChild || el.firstChild.nodeType !== 3) continue;
+      const txt = (el.firstChild.nodeValue || "").trim();
+      if (txt.length < 3) continue;
+      if (!visible(el)) continue;
+      const cs = getComputedStyle(el);
+      const clip = cs.webkitBackgroundClip || cs.backgroundClip;
+      // Gradient-filled text: the gradient is the ink, "color" never paints.
+      const inkGradient = clip === "text" ? gradientAverage(cs.backgroundImage) : null;
+      const fg = inkGradient || parseRGB(cs.color);
+      if (!fg || fg.a === 0) continue;
+      const bd = backdrop(el);
+      if (bd.indeterminate) { indeterminate++; continue; }
+      if (bd.approximate) approximate++;
+      const fgOn = fg.a < 1 ? blend(fg, bd.color) : fg;
+      const cr = ratio(fgOn, bd.color);
+      const size = parseFloat(cs.fontSize);
+      const weight = parseInt(cs.fontWeight, 10) || 400;
+      /* SC 1.4.3: large text is >=24px, or >=18.66px when bold. */
+      const large = size >= 24 || (size >= 18.66 && weight >= 700);
+      const required = large ? 3 : 4.5;
+      if (cr + 0.05 < required) {
+        results.push({ sel: sel(el), text: txt.slice(0, 34), ratio: +cr.toFixed(2),
+                       required, size, weight, fg: cs.color,
+                       approximate: !!bd.approximate });
+      }
+    }
+    out.contrast = {
+      failures: results.length,
+      failuresOnSolidBackground: results.filter((r) => !r.approximate).length,
+      measured: results.length + approximate,
+      approximateBackdrops: approximate,
+      indeterminate,
+      worst: results.sort((a, b) => a.ratio - b.ratio).slice(0, 8),
+    };
+  } catch (e) { out.contrastError = String(e).slice(0, 140); }
+
+
   /* ── images ──────────────────────────────────────────────────────── */
   try {
     const imgs = Array.prototype.slice.call(document.images).filter(visible);

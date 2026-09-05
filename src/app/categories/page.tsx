@@ -94,7 +94,7 @@ export default async function CategoriesIndexPage() {
       {/* Atmospheric backdrop — fixed, behind everything */}
       <CategoriesBackground />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         <CinematicHero
           eyebrow="Browse by category"
           headlineHead="Every"

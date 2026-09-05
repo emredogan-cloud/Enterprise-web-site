@@ -38,7 +38,7 @@ export default async function EbooksPage() {
     <div className="cinematic-root">
       <CinematicHeader active="ebooks" />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         <header className="mx-auto max-w-[1440px] px-4 sm:px-6 pb-4 pt-16 sm:pt-24">
           <p className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
             Ebooks

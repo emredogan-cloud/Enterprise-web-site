@@ -90,7 +90,7 @@ export default async function CategoryPage({
     <div className="cinematic-root">
       <CinematicHeader active="genres" />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         {/* Breadcrumb structured data + visible trail (WS-G / WS-F) */}
         <script
           type="application/ld+json"

@@ -52,7 +52,7 @@ export default async function BooksCatalogPage() {
     <div className="cinematic-root">
       <CinematicHeader active="books" />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         <CatalogHero />
         {/* Phase 2.F — `<CatalogShell>` uses `useSearchParams()` (URL-
             synced filter/sort/page state). Next.js requires a Suspense

@@ -89,6 +89,37 @@ if (COMPARE >= 0) {
       continue;
     }
 
+    /*
+     * Colour-only classification.
+     *
+     * The signature packs geometry and paint into one string, so a deliberate
+     * token change (Phase 8 raised --color-fg-fade for WCAG 1.4.3) reads as
+     * "everything changed". Compare the multiset with the two colour fields
+     * blanked: if THAT matches, nothing moved and only paint differs. Also
+     * ignore elements of 2px or less in both dimensions, which is how a
+     * visually-hidden sr-only control appears.
+     */
+    const COLOR_FIELDS = [10, 11];
+    const tiny = (n) => { const p = n.sig.split("|"); return Number(p[2]) <= 2 && Number(p[3]) <= 2; };
+    const blank = (n) => { const p = n.sig.split("|"); for (const i of COLOR_FIELDS) p[i] = ""; return p.join("|"); };
+    const bagBy = (ns, f) => { const m = new Map(); for (const n of ns) m.set(f(n), (m.get(f(n)) ?? 0) + 1); return m; };
+    const ax = x.nodes.filter((n) => !tiny(n)), bx = y.nodes.filter((n) => !tiny(n));
+    const ga = bagBy(ax, blank), gb = bagBy(bx, blank);
+    let geometryOnlyMatch = ga.size === gb.size;
+    if (geometryOnlyMatch) for (const [k, v] of ga) if (gb.get(k) !== v) { geometryOnlyMatch = false; break; }
+
+    if (geometryOnlyMatch) {
+      const ca = bagBy(ax, (n) => n.sig.split("|")[10]);
+      const cb = bagBy(bx, (n) => n.sig.split("|")[10]);
+      const shifts = [];
+      for (const k of new Set([...ca.keys(), ...cb.keys()])) {
+        const d = (cb.get(k) ?? 0) - (ca.get(k) ?? 0);
+        if (d !== 0) shifts.push(`${d > 0 ? "+" : ""}${d} ${k}`);
+      }
+      console.log(`  ✓ ${route}  (identical layout; COLOUR ONLY — ${shifts.join(", ") || "paint differs"})`);
+      continue;
+    }
+
     if (diffs.length) {
       changed++;
       console.log(`  ╳ ${route}`);

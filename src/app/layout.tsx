@@ -118,6 +118,29 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        {/*
+          Skip link — WCAG 2.2 SC 2.4.1 Bypass Blocks. First focusable element
+          on every page, off-screen until focused. Every route's <main> carries
+          id="main-content". `sr-only` keeps it out of the visual design;
+          `focus:not-sr-only` brings it back for keyboard users only.
+        */}
+        <a
+          href="#main-content"
+          /* Padding is applied only on focus. With `px-5 py-3` in the base
+             class, `sr-only` still produced a 41x25 clipped box instead of the
+             1x1 it is meant to be — invisible, but a real element in every
+             layout snapshot. Focus-only padding keeps it a true zero-footprint
+             control until a keyboard user reaches it. */
+          className="sr-only z-[100] rounded-full border border-emerald-bright/40 bg-[#0a1410] text-sm font-medium text-fg-hi focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:px-5 focus:py-3"
+        >
+          Skip to content
+        </a>
+        {/* Reveal-on-scroll hides its blocks until an IntersectionObserver
+            promotes them. If JavaScript never arrives, nothing would ever be
+            promoted — so without JS, show everything. */}
+        <noscript>
+          <style>{`[data-reveal],[data-reveal-stagger]>*{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <SiteHeader />
         {children}
         {/*

@@ -69,7 +69,7 @@ export default async function BlogTagPage({
     <div className="cinematic-root">
       <CinematicHeader active="blog" />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         {/* Breadcrumb */}
         <nav
           aria-label="Breadcrumb"

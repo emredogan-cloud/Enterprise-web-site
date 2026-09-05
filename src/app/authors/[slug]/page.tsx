@@ -97,7 +97,7 @@ export default async function AuthorPage({
     <div className="cinematic-root">
       <CinematicHeader active="authors" />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         {/* Author entity graph (Organization + Breadcrumb + ProfilePage +
             Person) + visible breadcrumb trail (WS-G / WS-F) */}
         <script

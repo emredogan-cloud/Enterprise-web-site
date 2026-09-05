@@ -156,7 +156,26 @@ async function main() {
   console.log(`  conditions: cache off · ${NO_THROTTLE ? "unthrottled (real network)" : "1.6 Mbps · 70 ms RTT"} · physical Redmi`);
 
   const cdp = await connectDevice();
-  console.log(`  device: ${cdp.meta.browser}\n`);
+  console.log(`  device: ${cdp.meta.browser}`);
+
+  /*
+   * Protected Vercel previews.
+   *
+   * A preview deployment sits behind Deployment Protection, so the phone —
+   * which has no Vercel session — gets bounced to vercel.com/sso-api. The
+   * supported way through for browser automation is to attach the short-lived
+   * local OIDC token as a request header (see the
+   * access-protected-vercel-deployment skill). Run this script under
+   * `vercel env run --` so the token is in the environment; it is never
+   * printed or written anywhere.
+   */
+  if (process.env.VERCEL_OIDC_TOKEN && /vercel\.app/.test(TARGET)) {
+    await cdp.send("Network.setExtraHTTPHeaders", {
+      headers: { "x-vercel-trusted-oidc-idp-token": process.env.VERCEL_OIDC_TOKEN },
+    });
+    console.log("  auth: Vercel OIDC header attached (protected preview)");
+  }
+  console.log("");
 
   const results = [];
   for (const p of PATHS) {

@@ -78,7 +78,7 @@ export default async function SearchPage({
     <div className="cinematic-root">
       <CinematicHeader />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         <SearchHero />
         {/* `key` remounts the input when the URL `?q=` changes so the
             controlled state reflects back/forward navigation without

@@ -42,7 +42,7 @@ export default async function AuthorsDiscoveryPage() {
     <div className="cinematic-root">
       <CinematicHeader active="authors" />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         <AuthorsHero />
         {authors.length > 0 ? <AuthorsShell authors={authors} /> : <AuthorsEmpty />}
         <div className="h-20" />

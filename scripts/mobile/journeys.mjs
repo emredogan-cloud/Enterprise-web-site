@@ -646,6 +646,15 @@ async function commerceChecks(cdp) {
     const small = Array.from(document.querySelectorAll("button,a[href]")).filter(vis)
       .map((e) => ({ e, r: e.getBoundingClientRect() }))
       .filter((o) => o.r.width > 0 && o.r.height > 0)
+      /* Visually-hidden controls are not pointer targets. The skip link is
+         sr-only until focused (41x25 while clipped) and exists for keyboard
+         users; sizing it as a touch target would be meaningless. */
+      .filter((o) => {
+        const cs = getComputedStyle(o.e);
+        const clipped = (cs.clipPath && cs.clipPath !== "none") ||
+                        (cs.clip && cs.clip !== "auto");
+        return !(clipped && cs.position === "absolute");
+      })
       // Cart controls only. The header cluster is Phase 8's scope and the
       // footer link list is site-wide chrome that passes SC 2.5.8 by spacing.
       .filter((o) => !o.e.closest("header") && !o.e.closest("footer"))
@@ -797,11 +806,101 @@ async function editorialChecks(cdp) {
   return out;
 }
 
+/* ──────────────────── accessibility + motion (Phase 8) ─────────────────── */
+
+async function a11yChecks(cdp) {
+  const out = [];
+  const add = (name, pass, detail) => out.push({ name, pass, detail });
+
+  for (const route of ["home", "catalog", "book-detail", "blog-article", "cart"]) {
+    await goto(cdp, route);
+
+    const a = await cdp.eval(`(() => {
+      const vis = (e) => e.getClientRects().length > 0;
+      // Skip link: must be the first focusable thing on the page.
+      const focusables = Array.from(document.querySelectorAll(
+        'a[href], button:not([disabled]), input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])'));
+      const first = focusables[0];
+      const skipHref = first ? first.getAttribute("href") : null;
+      const target = skipHref && skipHref.startsWith("#")
+        ? document.getElementById(skipHref.slice(1)) : null;
+      // header controls
+      const hdr = Array.from(document.querySelectorAll("header")).filter(vis)[0];
+      const ctrls = hdr
+        ? Array.from(hdr.querySelectorAll("a[href], button")).filter(vis)
+            .map((e) => { const r = e.getBoundingClientRect();
+                          return { min: Math.round(Math.min(r.width, r.height)),
+                                   label: (e.getAttribute("aria-label") || e.textContent || "").trim().slice(0, 20) }; })
+        : [];
+      // reveal: nothing may be rendered visible and then hidden
+      const revealHidden = document.querySelectorAll('[data-reveal]:not([data-reveal="visible"]), [data-reveal-stagger]').length;
+      return {
+        firstFocusableText: first ? (first.textContent || "").trim().slice(0, 24) : null,
+        skipHref, skipTargetExists: !!target,
+        headerControls: ctrls,
+        headerUnder44: ctrls.filter((c) => c.min < 44).map((c) => c.label + ":" + c.min),
+        revealBlocks: revealHidden,
+        landmarks: document.querySelectorAll("main,[role=main],nav,[role=navigation],footer,[role=contentinfo],header").length,
+        h1Count: document.querySelectorAll("h1").length,
+      };
+    })()`);
+
+    add(`${route}: skip link is the first focusable element`,
+      a.skipHref === "#main-content" && /skip/i.test(a.firstFocusableText || ""), a.firstFocusableText);
+    add(`${route}: skip link target exists`, a.skipTargetExists === true, a.skipHref);
+    add(`${route}: header controls >= 44px`, a.headerUnder44.length === 0, a.headerUnder44);
+    add(`${route}: exactly one h1`, a.h1Count === 1, a.h1Count);
+    add(`${route}: landmarks present`, a.landmarks >= 3, a.landmarks);
+  }
+
+  /* The skip link must actually be reachable and visible when focused. */
+  await goto(cdp, "home");
+  const focused = await cdp.eval(`(() => {
+    const a = document.querySelector('a[href="#main-content"]');
+    if (!a) return { found: false };
+    a.focus();
+    const r = a.getBoundingClientRect();
+    const cs = getComputedStyle(a);
+    return { found: true, focused: document.activeElement === a,
+             w: Math.round(r.width), h: Math.round(r.height),
+             onScreen: r.top >= 0 && r.left >= 0 && r.width > 1 && r.height > 1,
+             clip: cs.clipPath || cs.clip, position: cs.position };
+  })()`);
+  add("skip link becomes visible on focus",
+    focused.found && focused.focused && focused.onScreen, focused);
+
+  /* Reduced motion must remove the reveal transition entirely. */
+  await cdp.send("Emulation.setEmulatedMedia", {
+    features: [{ name: "prefers-reduced-motion", value: "reduce" }],
+  });
+  await goto(cdp, "home");
+  await sleep(900);
+  const rm = await cdp.eval(`(() => {
+    const el = document.querySelector("[data-reveal], [data-reveal-stagger] > *");
+    if (!el) return { none: true };
+    const cs = getComputedStyle(el);
+    return { transitionDuration: cs.transitionDuration, animationDuration: cs.animationDuration,
+             opacity: cs.opacity };
+  })()`);
+  add("prefers-reduced-motion neutralises the reveal transition",
+    rm.none === true || parseFloat(rm.transitionDuration) < 0.05, rm);
+  await cdp.send("Emulation.setEmulatedMedia", { features: [] });
+
+  /* No content may be painted and then hidden: the hiding attribute has to be
+     present in the SERVER HTML, not applied after hydration. */
+  const html = await (await fetch(new URL("/", BASE_URL).href)).text();
+  const serverHidden = (html.match(/data-reveal(-stagger)?=/g) || []).length;
+  add("reveal blocks are hidden in the server HTML (no flash)", serverHidden > 0,
+    `${serverHidden} occurrences in SSR markup`);
+
+  return out;
+}
+
 /* ─────────────────────────────── runner ─────────────────────────────── */
 
 const GROUPS = { nav: navChecks, inputs: inputChecks, theme: themeChecks, cards: cardChecks,
                  filters: filterChecks, commerce: commerceChecks,
-                 editorial: editorialChecks };
+                 editorial: editorialChecks, a11y: a11yChecks };
 
 async function main() {
   const names = ONLY ? [ONLY] : Object.keys(GROUPS);

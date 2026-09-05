@@ -92,7 +92,7 @@ export default async function SettingsPage() {
       {/* Atmospheric backdrop — fixed, behind every card */}
       <SettingsBackground />
 
-      <main className="relative z-10 mx-auto max-w-[1320px] px-4 pt-8 sm:px-6 sm:pt-12">
+      <main id="main-content" className="relative z-10 mx-auto max-w-[1320px] px-4 pt-8 sm:px-6 sm:pt-12">
         {/* Two-column body: sidebar + main */}
         <div className="grid gap-8 lg:grid-cols-[260px_minmax(0,_1fr)] lg:gap-12">
           {/* LEFT — sidebar (collapses to top stack on mobile) */}

@@ -1,0 +1,248 @@
+{
+  "generatedAt": "2026-09-05T14:31:54.500Z",
+  "target": "http://localhost:3100",
+  "device": {
+    "kind": "device",
+    "browser": "Chrome/152.0.7977.75",
+    "androidPackage": "com.android.chrome"
+  },
+  "conditions": {
+    "cacheDisabled": true,
+    "throttled": true,
+    "downKbps": 1600,
+    "latencyMs": 70,
+    "hardware": "Redmi Note 8 (2021)",
+    "repeats": 3,
+    "statistic": "median"
+  },
+  "caveat": "Lab measurements on one device over an emulated link. Not field data, not a 75th percentile. inpProxyMs is the worst scripted-interaction latency across a fixed tap set, not true INP. Values are the median of `repeats` runs; per-run spread is in lcpSamples/inpSamples. Measuring a REMOTE origin stacks CDP throttling on live network jitter and is much noisier than measuring the local server over adb — prefer local for phase-to-phase comparison.",
+  "thresholds": {
+    "lcpGoodMs": 2500,
+    "clsGood": 0.1,
+    "inpGoodMs": 200
+  },
+  "results": [
+    {
+      "path": "/",
+      "url": "http://localhost:3100/",
+      "ttfbMs": 858,
+      "fcpMs": 2152,
+      "lcp": {
+        "t": 2152,
+        "size": 34557,
+        "el": "P.mt-7 max-w-[480px] text-[17px] leading-[",
+        "text": "The Valice Press Book Store. Buy once, d",
+        "url": null
+      },
+      "cls": 0,
+      "topShifts": [],
+      "inpProxyMs": 240,
+      "slowestInteractions": [
+        {
+          "name": "gotpointercapture",
+          "dur": 240,
+          "target": "A.home-cta-primary inline-flex h"
+        },
+        {
+          "name": "pointerup",
+          "dur": 240,
+          "target": "A.home-cta-primary inline-flex h"
+        },
+        {
+          "name": "lostpointercapture",
+          "dur": 240,
+          "target": "A.home-cta-primary inline-flex h"
+        },
+        {
+          "name": "pointerout",
+          "dur": 240,
+          "target": "A.home-cta-primary inline-flex h"
+        },
+        {
+          "name": "pointerleave",
+          "dur": 240,
+          "target": null
+        }
+      ],
+      "interactionCount": 222,
+      "longTasks": 5,
+      "longTaskMs": 547,
+      "requests": 43,
+      "jsKB": 907,
+      "jsCount": 27,
+      "cssKB": 29,
+      "cssCount": 1,
+      "fontKB": 104,
+      "fontCount": 4,
+      "imgKB": 287,
+      "imgCount": 8,
+      "totalKB": 1337,
+      "domNodes": 436,
+      "interactionsDriven": 7,
+      "lcpMedianMs": 2152,
+      "lcpSamples": [
+        2152,
+        1808,
+        2476
+      ],
+      "fcpMedianMs": 2152,
+      "clsMax": 0,
+      "inpProxyMedianMs": 240,
+      "inpSamples": [
+        240,
+        256,
+        240
+      ],
+      "totalKBMedian": 1337,
+      "samples": 3
+    },
+    {
+      "path": "/books",
+      "url": "http://localhost:3100/books",
+      "ttfbMs": 447,
+      "fcpMs": 1728,
+      "lcp": {
+        "t": 2576,
+        "size": 25285,
+        "el": "IMG.object-cover",
+        "text": "",
+        "url": "http://localhost:3100/_next/image?url=%2Fimages%2Fbooks%2Fcodex-enigmatica.webp&w=640&q=75"
+      },
+      "cls": 0,
+      "topShifts": [],
+      "inpProxyMs": 232,
+      "slowestInteractions": [
+        {
+          "name": "gotpointercapture",
+          "dur": 232,
+          "target": "SPAN.font-serif"
+        },
+        {
+          "name": "pointerup",
+          "dur": 232,
+          "target": "SPAN.font-serif"
+        },
+        {
+          "name": "lostpointercapture",
+          "dur": 232,
+          "target": "SPAN.font-serif"
+        },
+        {
+          "name": "pointerout",
+          "dur": 232,
+          "target": "SPAN.font-serif"
+        },
+        {
+          "name": "pointerleave",
+          "dur": 232,
+          "target": null
+        }
+      ],
+      "interactionCount": 1028,
+      "longTasks": 12,
+      "longTaskMs": 880,
+      "requests": 50,
+      "jsKB": 922,
+      "jsCount": 27,
+      "cssKB": 29,
+      "cssCount": 1,
+      "fontKB": 132,
+      "fontCount": 5,
+      "imgKB": 527,
+      "imgCount": 12,
+      "totalKB": 1629,
+      "domNodes": 583,
+      "interactionsDriven": 8,
+      "lcpMedianMs": 2576,
+      "lcpSamples": [
+        2576,
+        3492,
+        2068
+      ],
+      "fcpMedianMs": 1884,
+      "clsMax": 0.0007,
+      "inpProxyMedianMs": 216,
+      "inpSamples": [
+        232,
+        216,
+        184
+      ],
+      "totalKBMedian": 1392,
+      "samples": 3
+    },
+    {
+      "path": "/books/meditations",
+      "url": "http://localhost:3100/books/meditations",
+      "ttfbMs": 1045,
+      "fcpMs": 2292,
+      "lcp": {
+        "t": 3108,
+        "size": 100174,
+        "el": "IMG.object-cover",
+        "text": "",
+        "url": "http://localhost:3100/_next/image?url=%2Fimages%2Fbooks%2Fmeditations.webp&w=828&q=75"
+      },
+      "cls": 0,
+      "topShifts": [],
+      "inpProxyMs": 240,
+      "slowestInteractions": [
+        {
+          "name": "gotpointercapture",
+          "dur": 240,
+          "target": "BUTTON.home-cta-primary inline-flex h"
+        },
+        {
+          "name": "pointerup",
+          "dur": 240,
+          "target": "BUTTON.home-cta-primary inline-flex h"
+        },
+        {
+          "name": "lostpointercapture",
+          "dur": 240,
+          "target": "BUTTON.home-cta-primary inline-flex h"
+        },
+        {
+          "name": "pointerout",
+          "dur": 240,
+          "target": "BUTTON.home-cta-primary inline-flex h"
+        },
+        {
+          "name": "pointerleave",
+          "dur": 240,
+          "target": null
+        }
+      ],
+      "interactionCount": 1337,
+      "longTasks": 14,
+      "longTaskMs": 1351,
+      "requests": 42,
+      "jsKB": 929,
+      "jsCount": 27,
+      "cssKB": 29,
+      "cssCount": 1,
+      "fontKB": 104,
+      "fontCount": 4,
+      "imgKB": 511,
+      "imgCount": 5,
+      "totalKB": 1584,
+      "domNodes": 444,
+      "interactionsDriven": 6,
+      "lcpMedianMs": 3108,
+      "lcpSamples": [
+        3108,
+        3480,
+        3076
+      ],
+      "fcpMedianMs": 2512,
+      "clsMax": 0,
+      "inpProxyMedianMs": 256,
+      "inpSamples": [
+        240,
+        256,
+        288
+      ],
+      "totalKBMedian": 1131,
+      "samples": 3
+    }
+  ]
+}

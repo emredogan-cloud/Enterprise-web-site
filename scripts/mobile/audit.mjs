@@ -133,6 +133,8 @@ async function main() {
       totalUnder24: results.reduce((s, r) => s + (r.tapUnder24 ?? 0), 0),
       totalTinyText: results.reduce((s, r) => s + (r.tinyTextTotal ?? 0), 0),
       totalTextBelow12: results.reduce((s, r) => s + (r.textBelow12 ?? 0), 0),
+      totalContrastFailures: results.reduce((s, r) => s + (r.contrast?.failures ?? 0), 0),
+      totalContrastIndeterminate: results.reduce((s, r) => s + (r.contrast?.indeterminate ?? 0), 0),
       routesWithConsoleErrors: results.filter((r) => (r.consoleErrors ?? []).length).length,
     },
   };

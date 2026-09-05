@@ -181,7 +181,7 @@ export default async function BookDetailPage({
     <div className="cinematic-root">
       <CinematicHeader active="books" />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         {/* JSON-LD — same payload, same emission strategy */}
         <script
           type="application/ld+json"
