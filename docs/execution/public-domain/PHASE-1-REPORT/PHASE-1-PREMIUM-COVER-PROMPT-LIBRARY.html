@@ -1,0 +1,188 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phase 1 — Premium Cover Prompt Library</title>
+<style>
+:root{--ink:#16211e;--mut:#5d6b66;--line:#d5ded9;--grn:#0e3d33;--bg:#faf9f6;--card:#fff;--warn:#8a3b2f}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.62 Georgia,"Liberation Serif",serif;color:var(--ink);background:var(--bg)}
+.wrap{max-width:980px;margin:0 auto;padding:34px 22px 90px}
+h1{font-size:30px;margin:0 0 6px;color:var(--grn)}
+.sub{color:var(--mut);margin:0 0 26px;font-style:italic}
+h2{font-size:20px;margin:38px 0 4px;padding-bottom:7px;border-bottom:2px solid var(--grn);color:var(--grn)}
+h3{font-size:15px;margin:20px 0 6px;font-family:system-ui,sans-serif}
+.card{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:15px 17px;margin:12px 0}
+.warn{border-left:4px solid var(--warn);background:#fdf5f4}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:#eef2f0;font-family:system-ui,sans-serif;font-size:12.5px}
+code{font-family:"Liberation Mono",ui-monospace,monospace;font-size:12.6px}
+textarea{width:100%;font-family:"Liberation Mono",ui-monospace,monospace;font-size:12.4px;
+line-height:1.55;padding:11px;border:1px solid var(--line);border-radius:7px;
+background:#12211d;color:#e8f0ec;resize:vertical}
+.k{font-family:system-ui,sans-serif;font-size:12.5px;color:var(--mut);margin:2px 0 0}
+.big{font-size:17px;font-weight:700}
+ul{margin:7px 0 7px 20px;padding:0} li{margin:5px 0}
+</style></head><body><div class="wrap">
+
+<h1>Phase 1 — Premium Cover Prompt Library</h1>
+<p class="sub">Five prompts, written and not run · public-domain factory · 6 September 2026</p>
+
+<div class="card warn">
+<p class="big" style="margin:.3em 0">Nothing here has been generated. No image model was called.</p>
+<p>This library is a set of instructions for the Founder to run later, at a time of his
+choosing, on an account of his own. It contains <b>no generated image and no reference to
+one</b>, and running it is a decision with three consequences that are set out below before
+the prompts, because they are the part that is easy to skip.</p>
+</div>
+
+<h2>Before you run any of these</h2>
+<div class="card">
+<p><b>1. The type is not in the image, and must never be.</b> Every Valice cover sets its
+own type — author, title, subtitle, series line, imprint — in <code>BUILD/build_cover.py</code>,
+from <code>project_config.json</code>. The image is the ground it is set on. Every prompt
+below therefore ends with an absolute prohibition on letters, and every prompt leaves the
+upper two-thirds of the frame quiet, because that is where the title block lands. An image
+that comes back with a beautiful invented word on it is a failed image, not a bonus.</p>
+
+<p><b>2. Generating a cover changes the book's AI disclosure.</b> All five Phase 1 books
+currently declare <code>images: none</code>, because their covers are drawn from vector
+primitives by script. A generated cover makes that answer <code>images: generated</code>,
+in <code>project_config.json</code>, in the KDP form at every upload and republish, and in
+the book's rights ledger row. The precedent to copy is <code>RL-0070</code> in
+<code>valice-house/rights/ledger.csv</code>, written for the one generated cover this press
+has: it records the model, the account, the terms under which the output is owned, the cost,
+and the fact that the prompt forbade all writing.</p>
+
+<p><b>3. There is a budget and it is enforced.</b>
+<code>scripts/covers/generate-cover.mjs</code> reads the key only from
+<code>OPENAI_API_KEY</code>, is dry-run by default, refuses to spend past
+<code>OPENAI_IMAGE_BUDGET_USD</code> (default $4.00), and writes every call to
+<code>assets/.image-ledger.json</code> and the house cost ledger. Output lands in
+<code>assets/&lt;slug&gt;/cover/generated/</code> and <b>never</b> in a cover slot: promoting
+an image to <code>front-v1.png</code> is a founder decision made by renaming after looking
+at it.</p>
+</div>
+
+<h2>The command</h2>
+<div class="card">
+<p class="k">Dry run first. It prints the request and calls nothing.</p>
+<textarea readonly rows="4">node scripts/covers/generate-cover.mjs --slug epictetus-discourses-and-enchiridion \
+     --prompt-file docs/execution/public-domain/PHASE-1-REPORT/prompts/epictetus.md \
+     --model gpt-image-1 --size 1024x1536 --quality high --n 2
+# add --commit to spend</textarea>
+<p class="k">Two images per book at 1024×1536 is the sensible first pass: enough to choose
+between, cheap enough to run five books inside the cap. Upscale the chosen one to
+2400×3600 before it goes into a slot.</p>
+</div>
+
+<h2>What to check when an image comes back</h2>
+<div class="card">
+<table>
+<tr><th>Check</th><th>Why</th></tr>
+<tr><td>No letters anywhere, at any size, including on labels, spines and seals</td><td>The model invents script that looks like language and is not. It reads as a forgery at any size above a thumbnail.</td></tr>
+<tr><td>The upper two-thirds is quiet</td><td>The title block is set over it. Test by opening the image beside the current cover at 150 px wide.</td></tr>
+<tr><td>Nothing in it is a real, identifiable object from a museum</td><td>A recognisable artefact brings a photograph's rights question with it, and this press does not publish an image it cannot clear.</td></tr>
+<tr><td>No faces</td><td>A face on a public-domain cover is read as a portrait of the author, and none of these five authors may be portrayed by a model.</td></tr>
+<tr><td>The period is right to the decade, not to the century</td><td>Gould's drawer is Victorian; Seneca's clock is Roman. A model will happily put a Victorian magnifying glass on a Roman table.</td></tr>
+<tr><td>It survives a 150 px thumbnail</td><td><code>QA/cover.json</code> already records a thumbnail contrast figure for the typographic covers; a premium cover must beat it, not merely differ from it.</td></tr>
+</table>
+</div>
+
+
+<h2>1. Epictetus: The Discourses and Enchiridion</h2>
+<p class="k">Valice Classics 1 · 176 pp · <code>epictetus-discourses-and-enchiridion</code></p>
+<div class="card">
+<p><b>What the book is.</b> A freed slave's lectures on what is and is not in our power, taken down by a pupil in the second century and translated by George Long in 1877.</p>
+<p><b>What the cover has to do.</b> The book's whole argument is a division: what is up to you, and what is not. The cover should show a division, not a philosopher.</p>
+<p><b>Why this image and not another.</b> The collar is the one fact about Epictetus everybody remembers and the one he never mentions. Broken and set down, it is the book's subject exactly: the thing that was not in his power, and the thing that was.</p>
+</div>
+<h3>The prompt</h3>
+<textarea readonly rows="12">A single antique iron slave-collar link, broken open, resting on a plain stone ledge, lit from the upper left by a low raking light so that the metal's pitting and the stone's grain are both legible. The broken ends of the ring are clean, not violent — the collar has been opened rather than smashed. Behind and slightly out of focus, a shallow doorway of dressed stone opening onto flat, bright, empty light. Muted palette: deep blue-green shadow, iron grey, warm bone-white stone; a single small accent of aged brass on the collar's pin. Painted in the manner of a nineteenth-century academic still life — restrained, unromantic, no drama in the brushwork. Vertical composition, the collar in the lower third, two-thirds of the frame given to quiet wall and light above it, because the upper two-thirds of this image will be covered by type.
+
+NO TEXT OF ANY KIND. No letters, numerals, script, signature, watermark, logo, border or
+frame. No people and no faces. No modern objects. Vertical 2:3. Leave the upper two-thirds
+of the frame quiet: it will be covered by type set outside the image.</textarea>
+<p class="k">Then, in a second pass if the first is close but busy:
+<code>same image, less detail in the upper two thirds, nothing there but even light and
+plain ground</code>.</p>
+
+<h2>2. Seneca: Selected Dialogues</h2>
+<p class="k">Valice Classics 2 · 154 pp · <code>seneca-selected-dialogues</code></p>
+<div class="card">
+<p><b>What the book is.</b> Five dialogues — anger, the shortness of life, the happy life, tranquillity, providence — in Aubrey Stewart's translation.</p>
+<p><b>What the cover has to do.</b> Seneca wrote to a friend about time, and died by the emperor's order. The cover should be about time, not about death.</p>
+<p><b>Why this image and not another.</b> The shortness of life is the best-known of the five dialogues, and a half-emptied clock says it without a skull or an hourglass, both of which would be a century wrong and a mood wrong.</p>
+</div>
+<h3>The prompt</h3>
+<textarea readonly rows="12">A Roman water-clock (clepsydra) of plain bronze and glass on a marble table, half emptied, with the water still and a single drop suspended at the spout. Beside it a closed wax writing-tablet with its stylus laid across it, unopened. The light is late afternoon through an unseen window: long, warm, low, casting the clock's shadow far across the marble to the right. Palette: honeyed bronze, cool grey-green marble, deep shadow at the edges; nothing bright, nothing gilded. Painted with the sober precision of a Dutch still life but with Roman objects and Mediterranean light. Vertical composition; the objects occupy the lower third only, and the upper two-thirds is the wall behind them, evenly lit and free of detail, to carry type.
+
+NO TEXT OF ANY KIND. No letters, numerals, script, signature, watermark, logo, border or
+frame. No people and no faces. No modern objects. Vertical 2:3. Leave the upper two-thirds
+of the frame quiet: it will be covered by type set outside the image.</textarea>
+<p class="k">Then, in a second pass if the first is close but busy:
+<code>same image, less detail in the upper two thirds, nothing there but even light and
+plain ground</code>.</p>
+
+<h2>3. Myths and Legends of China</h2>
+<p class="k">Valice Classics 3 · 108 pp · <code>myths-and-legends-of-china</code></p>
+<div class="card">
+<p><b>What the book is.</b> E. T. C. Werner's 1922 account of the Chinese divine order — volume one, the gods: the celestial ministries and how they are arranged.</p>
+<p><b>What the cover has to do.</b> This volume is about an ADMINISTRATION of heaven, not about dragons. The cover should show a bureaucracy that happens to be divine.</p>
+<p><b>Why this image and not another.</b> Werner's argument is that the Chinese pantheon is a civil service. Nine seals on nine cords, ranked, is that argument as an object — and it avoids every dragon-and-lantern cliché the subject attracts.</p>
+</div>
+<h3>The prompt</h3>
+<textarea readonly rows="12">A vertical arrangement of nine hanging seals of carved stone and bronze, suspended on faded silk cords at slightly different heights against a dark ground, as if in a ministry's record room. Each seal is a plain geometric block with an abstract carved boss on top — a coiled form, a cloud form, a tortoise form — and each hangs a little lower than the one above it, so the group reads as a hierarchy. No characters, no script, no writing of any kind on the seals or anywhere in the image: the carved tops are the only ornament. Palette: ink-black ground, celadon and jade green, oxidised bronze, one faded vermilion cord. Lit softly from the front left with no strong highlights. Vertical composition; the seals hang in the lower half, and the upper half is empty dark ground for type.
+
+NO TEXT OF ANY KIND. No letters, numerals, script, signature, watermark, logo, border or
+frame. No people and no faces. No modern objects. Vertical 2:3. Leave the upper two-thirds
+of the frame quiet: it will be covered by type set outside the image.</textarea>
+<p class="k">Then, in a second pass if the first is close but busy:
+<code>same image, less detail in the upper two thirds, nothing there but even light and
+plain ground</code>.</p>
+
+<h2>4. Indian Myth and Legend</h2>
+<p class="k">Valice Classics 4 · 94 pp · <code>indian-myth-and-legend</code></p>
+<div class="card">
+<p><b>What the book is.</b> Donald Mackenzie's 1913 account of the Vedic gods — volume one, the five chapters on the oldest layer.</p>
+<p><b>What the cover has to do.</b> The Vedic gods are weather and fire and the sacrifice. The cover should be elemental and pre-figurative: these gods had no images.</p>
+<p><b>Why this image and not another.</b> The Vedic religion is a fire and a formula, not a pantheon of portraits. An altar under an enormous sky is the honest picture, and it keeps the cover clear of the temple sculpture that belongs to a much later India.</p>
+</div>
+<h3>The prompt</h3>
+<textarea readonly rows="12">A low altar of packed earth and river stones, square, with a small clear fire burning in the middle of it, photographed at the blue hour so that the flame is the only warm light in the frame. Around the altar, at its four corners, four plain wooden posts of unequal height, weathered and unpainted. Beyond, a flat plain and an enormous, empty, graduated sky occupying most of the picture. No figures, no faces, no idols, no ornament, no script. Palette: indigo and slate sky, ochre earth, one hot amber core to the fire and a faint amber wash on the nearest stones. Painted with the restraint of a nineteenth-century topographical watercolour. Vertical composition; the altar sits at the very bottom of the frame and the sky above it is unbroken, to carry type.
+
+NO TEXT OF ANY KIND. No letters, numerals, script, signature, watermark, logo, border or
+frame. No people and no faces. No modern objects. Vertical 2:3. Leave the upper two-thirds
+of the frame quiet: it will be covered by type set outside the image.</textarea>
+<p class="k">Then, in a second pass if the first is close but busy:
+<code>same image, less detail in the upper two thirds, nothing there but even light and
+plain ground</code>.</p>
+
+<h2>5. Mythical Monsters</h2>
+<p class="k">Valice Classics 5 · 74 pp · <code>mythical-monsters</code></p>
+<div class="card">
+<p><b>What the book is.</b> Charles Gould's 1886 attempt to argue that dragons were real animals — volume one, the three chapters on the dragon.</p>
+<p><b>What the cover has to do.</b> Gould is a Victorian naturalist arguing a wrong thing carefully. The cover should look like natural history, not like fantasy.</p>
+<p><b>Why this image and not another.</b> The book's interest is that a careful man used real bones to argue for a creature that never lived. A specimen drawer says that; a dragon on a cover would say the opposite and would sell the book to the wrong reader.</p>
+</div>
+<h3>The prompt</h3>
+<textarea readonly rows="12">A museum specimen drawer, pulled half open, seen from directly above: inside, on faded cotton wool, a large fossil vertebra, two curved claw-like bones, and a fragment of scaled skin impression in stone, each in its own compartment with an empty blank paper label beside it. The labels are blank — no writing, no letters, no numbers anywhere in the image. Beside the drawer, the corner of a brass magnifying glass and a pair of callipers. Palette: mahogany drawer, bone and grey fossil, yellowed cotton, brass; cool museum daylight from a high window, no dramatic shadow. Painted with the exactness of a Victorian natural-history plate. Vertical composition, the drawer occupying the bottom two-fifths of the frame, the tabletop above it plain and evenly lit, to carry type.
+
+NO TEXT OF ANY KIND. No letters, numerals, script, signature, watermark, logo, border or
+frame. No people and no faces. No modern objects. Vertical 2:3. Leave the upper two-thirds
+of the frame quiet: it will be covered by type set outside the image.</textarea>
+<p class="k">Then, in a second pass if the first is close but busy:
+<code>same image, less detail in the upper two thirds, nothing there but even light and
+plain ground</code>.</p>
+
+
+<h2>If none of them is good enough</h2>
+<div class="card">
+<p>The five covers that exist are typographic, drawn by script, cost nothing, carry no
+disclosure and are honest about what they are. They are not a placeholder. A generated
+cover is worth having only if it is better than the one it replaces at 150 pixels wide —
+which is the size at which almost every buying decision about these books will be made.</p>
+<p>If two passes do not produce that, the right answer is to keep the typographic cover and
+spend the attention on the book.</p>
+</div>
+
+</div></body></html>

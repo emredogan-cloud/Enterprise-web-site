@@ -1,0 +1,5 @@
+A museum specimen drawer, pulled half open, seen from directly above: inside, on faded cotton wool, a large fossil vertebra, two curved claw-like bones, and a fragment of scaled skin impression in stone, each in its own compartment with an empty blank paper label beside it. The labels are blank — no writing, no letters, no numbers anywhere in the image. Beside the drawer, the corner of a brass magnifying glass and a pair of callipers. Palette: mahogany drawer, bone and grey fossil, yellowed cotton, brass; cool museum daylight from a high window, no dramatic shadow. Painted with the exactness of a Victorian natural-history plate. Vertical composition, the drawer occupying the bottom two-fifths of the frame, the tabletop above it plain and evenly lit, to carry type.
+
+NO TEXT OF ANY KIND. No letters, numerals, script, signature, watermark, logo, border or
+frame. No people and no faces. No modern objects. Vertical 2:3. Leave the upper two-thirds
+of the frame quiet: it will be covered by type set outside the image.

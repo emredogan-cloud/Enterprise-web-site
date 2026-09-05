@@ -1,0 +1,5 @@
+A low altar of packed earth and river stones, square, with a small clear fire burning in the middle of it, photographed at the blue hour so that the flame is the only warm light in the frame. Around the altar, at its four corners, four plain wooden posts of unequal height, weathered and unpainted. Beyond, a flat plain and an enormous, empty, graduated sky occupying most of the picture. No figures, no faces, no idols, no ornament, no script. Palette: indigo and slate sky, ochre earth, one hot amber core to the fire and a faint amber wash on the nearest stones. Painted with the restraint of a nineteenth-century topographical watercolour. Vertical composition; the altar sits at the very bottom of the frame and the sky above it is unbroken, to carry type.
+
+NO TEXT OF ANY KIND. No letters, numerals, script, signature, watermark, logo, border or
+frame. No people and no faces. No modern objects. Vertical 2:3. Leave the upper two-thirds
+of the frame quiet: it will be covered by type set outside the image.

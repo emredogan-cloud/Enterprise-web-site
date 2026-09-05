@@ -1,37 +1,245 @@
 # PHASE 2 REPORT — The World's Games
 
-**Branch: `feature/public-domain-phase-2` · NOT MERGED · started 4 September 2026**
+**Branch: `feature/public-domain-phase-2` · NOT MERGED · 4–6 September 2026**
 
-**Where the books live is no longer written down.** `MY-DİGİTAL-BOOK/` was reorganised
-three times in a week — flat, then into series folders, then into
-`PUBLİC-PHASE-1-BOOK/` and `PUBLİC-PHASE-2-BOOK/`, and then those two inside a
-`PUBLIC-BOOKS/` folder, the last of them **while a build was running**. Each time every
-hard-coded path in this repository broke silently. `scripts/factory/book-dirs.mjs` now
-finds a book by its own directory name, at any depth, with or without a numeric prefix,
-and throws rather than guessing. The three path tables and the cover table all read
-through it.
-
-> **Status: IN PROGRESS.** The shared scan/OCR pipeline is built. **Books 1, 2 and 3 are
-> built end to end** and each has been through an adversarial review; each is held on
-> Founder signatures and one blocked live write. Books 4 and 5 are not started.
-> Nothing in this branch has been merged to `main` or deployed to production, and nothing
-> will be without explicit Founder instruction.
+> **PHASE 2 COMPLETE.** All five books are built end to end, each has been through an
+> adversarial review of its own, and the phase has been through a final review across all
+> five together. Nothing has been merged to `main`, nothing has been deployed, and no
+> product of this phase is on sale. Each book is held on Founder signatures and one blocked
+> live write; the paperbacks are held on a KDP upload that only the Founder can make.
 
 ---
 
 ## The five books
 
-Taken from `PUBLIC_DOMAIN_MASTER_ROADMAP.md` without substitution.
+| # | Book | Author, date | Source | Pages | Editorial | Claims | Price |
+|---|---|---|---|---|---|---|---|
+| 1 | *Games Ancient and Oriental* | Edward Falkener, 1892 | IA scan, OCR | 78 | **28.0%** | 18 | $7.99 · $12.99 |
+| 2 | *Korean Games* | Stewart Culin, 1895 | IA scan, OCR | 144 | **23.0%** | 12 | $8.99 · $16.99 |
+| 3 | *Chess and Playing Cards* | Stewart Culin, 1898 | IA scan, OCR | 120 | **21.5%** | 12 | $7.99 · $14.99 |
+| 4 | *Mancala* | Stewart Culin, 1894 | PG 66220, a transcription | 38 | **54.8%** | 17 | $4.99 · ebook only |
+| 5 | *The Singing Games* | Alice Gomme, 1894 | PG 41727, a transcription | 244 | **20.3%** | 15 | $9.99 · $16.99 |
 
-| # | Book | Author | Pub. | Source | State |
-|---|---|---|---|---|---|
-| 1 | Games Ancient and Oriental, and How to Play Them | Edward Falkener | 1892 | IA `gamesancientorie00falkuoft` — **scan, OCR** | **built end to end; three review rounds; held on F-019, F-020, F-021** |
-| 2 | Korean Games | Stewart Culin | 1895 | IA `koreangameswith00culigoog` — **scan, OCR** | **built end to end; adversarial review run and its six findings fixed; held on F-022, F-023** |
-| 3 | Chess and Playing Cards | Stewart Culin | 1898 | IA `chessplayingcard00culi` — **scan, OCR** | **built end to end; adversarial review run and its five findings fixed; held on F-024** |
-| 4 | Mancala, the National Game of Africa | Stewart Culin | 1896 | PG 66220 — proof-read HTML | not started |
-| 5 | The Traditional Games of England, Scotland, and Ireland | Alice Bertha Gomme | 1894/98 | PG 41727 / 41728 | not started |
+**624 printed pages. 146,333 words of source text and 47,184 words of editorial matter.
+74 claims, every one verified against an external source. Five EPUBs at 0 errors and 0
+warnings. And 78 engraved tunes.**
+
+Every percentage above is measured from the manuscript by the book's own `measure.py` at
+build time. The floor is 20% and the tightest margin in the phase is book 5's 20.3%.
 
 ---
+
+## What the phase was for, and what it produced
+
+Phase 2's stated objective was to build the scan pipeline **once** and amortise it across
+five titles. That happened, and then something better happened: the phase produced three
+instruments that did not exist before, each of which was built because a specific defect got
+into a finished book.
+
+| Instrument | Built for | Exists because |
+|---|---|---|
+| `scripts/factory/ocr/djvu.py` + `ocr/streams.py` | books 1–3 | an OCR layer is not a manuscript: footnotes, captions and body have to be told apart by type size, and illustration debris has to be found and marked |
+| `COMMON-AREA/music/` — `midi.py`, `notation.py`, `engrave.py`, `rlcairo.py` | book 5 | a printed stave is a picture, and this press does not reprint pictures it cannot improve on. 78 tunes, 836 bars, drawn from pitch and duration |
+| `COMMON-AREA/checks/check_quotes.py` | book 4, then all five | a fabricated quotation survived three readings of a finished book |
+
+`COMMON-AREA/` now holds all three, with `CONVENTIONS.md` — one page of rules, each one a
+defect that reached a finished book.
+
+---
+
+## The books, in one paragraph each
+
+**1. Games Ancient and Oriental** (Falkener, 1892). The Egyptian half of a Victorian
+gentleman's attempt to reconstruct games nobody had played for three thousand years. Its
+instrument is a Register of Reconstructions, which separates the boards Falkener saw in
+museums from the rules he invented for them — the distinction his own book never makes.
+Five original diagrams; 20,003 source words; 28.0% editorial, the highest of the scan-built
+three.
+
+**2. Korean Games** (Culin, 1895). Twenty-eight games of chance and divination, collected in
+America from Korean informants Culin names. Its instruments are a Register of Record and
+Inference and a note on the spellings that gets a reader from Culin's *tjyang-keui* to the
+*janggi* the rest of the world writes. It also carries the phase's hardest single piece of
+reconstruction: a thirty-move illustrative chess game rebuilt from the word coordinates of
+the scan, because the printed table had been shredded by the OCR.
+
+**3. Chess and Playing Cards** (Culin, 1898). A museum catalogue that is a thesis: that
+chess and playing-cards both descend from the divinatory use of the arrow. Murray
+disbelieved it and the field has left it alone since. The edition's instrument is a Register
+of Object and Argument, because **this is a book whose evidence outlived its argument** —
+sixty-two gambling sticks in a leather pouch stay true whatever one thinks about arrows.
+
+**4. Mancala** (Culin, 1894). The shortest book this press has made and the only one of the
+five not built from a scan. Thirteen printed pages of the first serious study of mancala in
+English, with an apparatus longer than the text — and **ebook only**, because a 40-page
+perfect-bound paperback is a bad object whatever is printed in it.
+
+**5. The Singing Games** (Gomme, 1894). The largest book this press has made: 43 singing
+games, 209 versions of the rhymes each with its county and its collector, and **78 tunes
+engraved for this edition from the notes**. Gomme's contribution was never the rhymes —
+Halliwell had printed rhymes for fifty years — it was that she wrote down the tunes as the
+children sang them.
+
+---
+
+## What the reviews found
+
+Each book was reviewed on the instruction *prove this book is not ready*, and then the phase
+was reviewed across all five. The findings that matter are of four kinds.
+
+### 1. A fabricated quotation
+
+Book 4's introduction quoted Culin's closing prediction as ending "…when this account may
+acquire a practical value." **He wrote no such thing.** The first half was his; the second
+was invented, and it survived three readings because it sounds like the sentence it replaced
+and finishes the thought a reader expects.
+
+`check_quotes.py` was built for that finding and then run against the other four books. It
+found three more: two invented examples of the kind of cross-reference Culin writes, an
+honorific dropped from inside a quotation, and a measurement silently modernised inside
+quotation marks. It also found a repair that was *right* and unrecorded — "Chargé" where
+the scan reads "Cftarge" — which is now in the book's corrections ledger, and the checker
+applies that ledger to the corpus, so **a repaired quotation passes only if the repair is
+written down**.
+
+### 2. Silent losses in the parse
+
+Book 5's parser dropped **28,752 of Gomme's 51,383 words** and reported success. Two rules
+did it: a non-greedy regex for a `<div>` that stops at the first closing tag, which is the
+end of the *first stanza*; and a page-marker rule that swallowed any paragraph containing a
+page marker, which the transcribers put in the middle of sentences. Coverage went from 44%
+to 97%, and the missing 3% is the transcribers' own apparatus.
+
+The lesson generalises: **a parse must be measured against its source, not trusted.** Every
+book of this phase now reports its capture rate.
+
+### 3. Machinery that promised what it never delivered
+
+Book 4 carried a complete apparatus for printing the source's page numbers at the head of
+each leaf — which drew nothing on every page of every pass, because the transcription does
+not record where the pages fell. It had also inherited six helper functions from book 3 that
+nothing called, including a chess-table renderer in a book with no chess in it. All of it is
+gone, and *A Note on the Text* now tells the reader plainly that this edition cannot cite
+the pages of its original, which is a real difference from the other four.
+
+### 4. Defects the five books shared
+
+Found only by looking at all five at once:
+
+- **`&nbsp;` printed literally** in three books, in every game of two playing guides. The
+  `rl()` helper escapes markup, so an entity passed through it comes out as text.
+- **Every section opened under the wrong running head** in books 2, 3 and 4. ReportLab hands
+  `afterFlowable` an `LCActionFlowable` at each page transition, before the page's first real
+  content, so the control object claimed the first-content slot on every leaf that opens a
+  section.
+- **An unembedded Helvetica** in book 5's interior, from a table cell's default font. KDP
+  rejects a PDF that carries one even where nothing visible uses it.
+- **Two QA records describing files that no longer existed** — 143 pages against the 144 the
+  PDF had — because a rebuild had not been followed by a re-seal, and the cover's spine
+  arithmetic reads that record.
+
+---
+
+## Rights, book by book
+
+| Book | Text | Illustrations | Position |
+|---|---|---|---|
+| 1 | Falkener d. 1896; 1892 imprint | **RED** — unattributed plates, not reproduced | green text, red images |
+| 2 | Culin d. 1929; 1895 imprint | **RED** — Ki San (Kim Chun-gŭn), no death year recorded | green text, red images |
+| 3 | Culin d. 1929; 1898 imprint | **RED** — several plates are Culin's own reuse of the *Korean Games* artwork | green text, red images |
+| 4 | Culin d. 1929; 1896 imprint | **RED** — 22 captioned pictures, no photographer and no draughtsman named | green text, red images |
+| 5 | Gomme d. 1938; 1894 imprint | **GREEN** — J. P. Emslie d. 1913, and still not reproduced | green throughout |
+
+Four of the five reproduce no illustration because nobody is named in them. The fifth names
+its artist, who is out of copyright — and it still draws its own, which is a decision about
+scope and is stated as one in the book.
+
+**The tunes of book 5 are the one novel rights question of the phase**, and the answer is
+that nothing of the transcribers' work is in the product: their MIDI files are read for
+pitch and duration, and every stave is drawn by a program in this repository.
+
+---
+
+## What is registered, and what is held
+
+Every book is registered in the catalogue, the Paddle product table, the digital-edition
+sources, the preview pages, the companion registry and the newsletter sources; four of the
+five are registered in the print pipeline with their companion leaf spliced and their
+interior sealed. Masters for all five are in R2. **Nothing is on sale.**
+
+| Held on | Books | Founder action |
+|---|---|---|
+| Paddle product creation (a live write this environment blocks) | all five | F-019, F-022, F-024, F-026, F-027 — one command covers all of them |
+| Gate 2 (Rights) signature | all five | the evidence is prepared in each `RIGHTS.md` |
+| Gate 5 (Facts) signature | all five | 74 claims, all verified |
+| Gate 10 (KDP compliance) signature | 4 and 5 | the sheets are clean |
+| KDP upload | 1, 2, 3, 5 | handbooks written; `kdp: "not_created"` and no ASIN invented |
+
+`node scripts/factory/status.mjs` shows all five at **QA, 2/12 gates passed, blocked on
+gate 2**.
+
+---
+
+## What this phase did not do
+
+- **It did not merge.** `main` has not been merged into, fast-forwarded, reset or
+  force-pushed, and will not be without explicit Founder instruction.
+- **It did not deploy.** The 33 errors `validate-catalog` reports are all companion routes
+  and assets returning 404 in production, which is what a companion page that has never been
+  deployed does. They resolve on the first deploy and not before.
+- **It did not invent an identifier.** No ASIN, no Paddle price id, no rating, no review.
+- **It did not generate an image.** Every cover, diagram and stave in these five books is
+  drawn by a program in this repository. Total image-model spend for Phase 2: **$0.00**.
+- **It did not reproduce an illustration** from any of the five source volumes.
+
+---
+
+## Volume II, and what a sixth book would start from
+
+Three of the five books have an explicit second volume already scoped, which is the most
+useful thing this phase leaves behind after the instruments:
+
+- **Falkener**, the non-Egyptian half — the Oriental games he reconstructs.
+- **Chess and Playing Cards**, entries 1 to 44: the dice, boards and race games, 68,849
+  words, which carry the collection but not the thesis.
+- **The Singing Games**, volume two: 23 more singing games and 59 more tunes, plus Gomme's
+  memoir on the study of children's games. And the four hundred *descriptive* games of
+  volume one — hopscotch, marbles, fivestones, tag — which are a different book again.
+
+A sixth book starts by copying `COMMON-AREA/` and reading `CONVENTIONS.md`, which is one
+page and every line of it was paid for.
+
+---
+
+## Branch discipline
+
+Created from `origin/main` at `2b16865`, 0 ahead / 0 behind at creation. Every Phase 2
+commit lands on `feature/public-domain-phase-2` only. `main` has not been touched.
+
+**PHASE 2 COMPLETE — WAITING FOR FOUNDER MERGE APPROVAL.**
+
+---
+
+## Appendix: a book that is on this branch but is not a Phase 2 book
+
+**Codex Mythologica: The Puzzle Book** was built end to end on 2026-09-05 and its work lands
+on this branch, but it is **not** one of the five public-domain titles this phase is about.
+It is roadmap book 4 — an original work built out of two Codex volumes this press already
+owns — and it does not count towards Phase 2's five. Its report is at
+`docs/execution/public-domain/PHASE-2-REPORT/04-CODEX-MYTHOLOGICA/BOOK_REPORT.md` because the
+2026-09-05 instruction named that path; the book itself lives under `ROADMAP-BOOKS/`.
+
+It is here because a branch is a place to put work, not a claim about what the work is.
+
+---
+
+# Appendix: the working record
+
+*What follows was written during the phase, book by book, as each problem was met. It is
+kept unedited below the summary because it is the only account of HOW the pipeline was
+built and what it cost: the summary above says what the five books are, and this says
+what it took. Where it disagrees with the summary about a count, the summary is later
+and is measured from the finished books.*
 
 ## 1. The scan pipeline, built once
 
@@ -349,42 +557,15 @@ review, final QA.
 
 ---
 
-## 4. What is not done
+## 4. What was not done, at the moment this record stops
 
-Book 1 has apparatus and diagrams; nothing has been typeset yet. Books 2–5 have not been started. No Phase 2 product exists on the website and
-none will be published from this branch.
+*This paragraph was true when it was written, on 5 September, and is kept as written.*
 
----
+Book 1 has apparatus and diagrams; nothing has been typeset yet. Books 2–5 have not been
+started. No Phase 2 product exists on the website and none will be published from this
+branch.
 
-## 5. A book that is on this branch but is not a Phase 2 book
-
-**Codex Mythologica: The Puzzle Book** was built end to end on 2026-09-05 and
-its work lands on this branch, but it is **not** one of the five public-domain
-titles this phase is about. It is roadmap book 4 — an original work built out
-of two Codex volumes this press already owns — and it does not count towards
-Phase 2's five.
-
-It is here because a branch is a place to put work, not a claim about what the
-work is. Its report is at
-`docs/execution/public-domain/PHASE-2-REPORT/04-CODEX-MYTHOLOGICA/BOOK_REPORT.md`
-because the 2026-09-05 instruction named that path; the book itself lives at
-`MY-DİGİTAL-BOOK/ROADMAP-BOOKS/04-CODEX-MYTHOLOGICA-THE-PUZZLE-BOOK`, where the
-Founder's own reorganisation of the book tree the same day put it, alongside
-Hangul, Greek and Dudeney.
-
-In one line: 100 puzzles, 19 civilizations, 516 factual premises each re-read
-from source on every build, every puzzle solved independently to exactly one
-answer, a paperback and a hardcover at 156 pages each and preflight clean, an
-EPUB at 0/0/0, and a direct ebook live on a live Paddle price. Nothing of it is
-deployed.
-
-**Phase 2's own count is unchanged: Book 1 built and held, Book 2 parsed,
-Books 3–5 not started.**
+**All five books were built in the day that followed.** The summary at the head of this
+document is the state now.
 
 ---
-
-## 4. Branch discipline
-
-Created from `origin/main` at `2b16865`, 0 ahead / 0 behind at creation. Every Phase 2
-commit lands here only. `main` has not been merged into, fast-forwarded, reset or
-force-pushed, and will not be without explicit Founder instruction.

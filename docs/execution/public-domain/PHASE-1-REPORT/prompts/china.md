@@ -1,0 +1,5 @@
+A vertical arrangement of nine hanging seals of carved stone and bronze, suspended on faded silk cords at slightly different heights against a dark ground, as if in a ministry's record room. Each seal is a plain geometric block with an abstract carved boss on top — a coiled form, a cloud form, a tortoise form — and each hangs a little lower than the one above it, so the group reads as a hierarchy. No characters, no script, no writing of any kind on the seals or anywhere in the image: the carved tops are the only ornament. Palette: ink-black ground, celadon and jade green, oxidised bronze, one faded vermilion cord. Lit softly from the front left with no strong highlights. Vertical composition; the seals hang in the lower half, and the upper half is empty dark ground for type.
+
+NO TEXT OF ANY KIND. No letters, numerals, script, signature, watermark, logo, border or
+frame. No people and no faces. No modern objects. Vertical 2:3. Leave the upper two-thirds
+of the frame quiet: it will be covered by type set outside the image.

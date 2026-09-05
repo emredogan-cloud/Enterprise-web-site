@@ -1,0 +1,5 @@
+A single antique iron slave-collar link, broken open, resting on a plain stone ledge, lit from the upper left by a low raking light so that the metal's pitting and the stone's grain are both legible. The broken ends of the ring are clean, not violent — the collar has been opened rather than smashed. Behind and slightly out of focus, a shallow doorway of dressed stone opening onto flat, bright, empty light. Muted palette: deep blue-green shadow, iron grey, warm bone-white stone; a single small accent of aged brass on the collar's pin. Painted in the manner of a nineteenth-century academic still life — restrained, unromantic, no drama in the brushwork. Vertical composition, the collar in the lower third, two-thirds of the frame given to quiet wall and light above it, because the upper two-thirds of this image will be covered by type.
+
+NO TEXT OF ANY KIND. No letters, numerals, script, signature, watermark, logo, border or
+frame. No people and no faces. No modern objects. Vertical 2:3. Leave the upper two-thirds
+of the frame quiet: it will be covered by type set outside the image.
