@@ -790,6 +790,117 @@ export const BOOKS = [
     ],
   },
   {
+    // Roadmap book 4, built end to end on 2026-09-05. A companion volume to
+    // the two Codex reference books rather than the next one in the series,
+    // which is why it carries no series volume number.
+    //
+    // The differentiator is not the subject — mythology puzzle books exist —
+    // it is that every puzzle in it was solved by a program that saw only the
+    // printed page, to exactly one answer, and every factual premise in it
+    // points at a field or a sentence in a manuscript this press owns and
+    // re-reads on every build. 516 of them.
+    slug: "codex-mythologica-the-puzzle-book",
+    title: "Codex Mythologica: The Puzzle Book",
+    subtitle: "100 Myth Puzzles from 19 Civilizations",
+    language: "en",
+    pageCount: 156,
+    categories: ["puzzle-and-challenge"],
+    authors: ["emre-dogan"],
+    bisac: ["GAM007000"],
+    series: null,
+    // PUBLISHED 2026-09-05. The condition for publishing is that the page
+    // gives a reader something they can act on, and it now does: the direct
+    // ebook is buyable here against a live Paddle price, with both master
+    // files in R2. Neither print format is uploaded, and the page says so.
+    websiteStatus: "published",
+    linkageDecision: {
+      decision: "rebuild_now",
+      why: "Built new on 2026-09-05 with the companion leaf in the typesetting rather than spliced on afterwards: page 155 is a dedicated leaf carrying a 3.00 in code at 27 % of the usable page height and valicepress.com/companion/codex-puzzles beneath it, and the code was read back module for module in both interiors.",
+    },
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: null,
+    // Created against the LIVE Paddle account on 2026-09-05 by
+    // provision-paddle.mjs and read back from the API: active, one-time,
+    // 1199 USD, custom_data.valice_slug matching this row.
+    paddlePriceId: "pri_01m1sbkq3qsjyfx3tzwctay664",
+    onelinePromise:
+      "A hundred myth puzzles whose every fact is checkable and whose every answer was reached, independently, by something that only saw the printed page.",
+    description:
+      "A hundred puzzles built out of CODEX MYTHOLOGICA and CODEX BESTIARIUM \u2014 and you need neither of them. Every fact a puzzle rests on is printed with the puzzle: the names, the classes, the dates, the whole candidate list. Nothing here is a quiz. Fourteen ciphers over lines quoted from the myths themselves, ten logic grids and twelve deductions, ten word fits and ten searches whose leftover letters spell a sentence, eight orderings, eight classifications, eight tallies and eight pictures drawn out of their own numbers. Three hints for every one of them, printed in three separate passes so that looking up the first does not show you the third. Every answer given, and beside each one the line that says how it was checked \u2014 because every puzzle in this book was solved by a program that saw only the printed page, and had to reach one answer and no other. Where a puzzle had two, the puzzle was rebuilt.",
+    idealReader:
+      "An adult puzzler who is tired of puzzle books that are really quizzes \u2014 someone who will do a logic grid on a train, wants the facts inside it to be true, and would rather be given the whole candidate list than be tested on what they happen to remember.",
+    formats: [
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(16.99),
+        pageCount: 156,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-05 at the MEASURED 156 pages, 8.5 \u00d7 11 large trim, B&W, white: printing $3.65, KDP minimum list $6.09. $16.99 nets $6.54 (38.5 %). The roadmap said $14.99 against a planned 130 pages; at the built 156 that nets 35.6 %, six tenths of a point over the house floor and inside the noise of a KDP printing-rate change.",
+      },
+      {
+        format: "hardcover",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(33.99),
+        pageCount: 156,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-05 at 156 pages, 8.25 \u00d7 11 hardcover, B&W, white: printing $8.30. The roadmap's $24.99 TEST nets 26.8 % and fails the 35 % floor by eight points; so do $29.99 (32.3 %) and $31.99 (34.0 %). $33.99 nets $12.09 = 35.6 %, the first price that clears it, inside the Codex hardcover band and beside the closest comparable in this catalogue \u2014 World Games, 160 pages at the same trim, live at $34.99.",
+      },
+      {
+        format: "large_print",
+        availability: "unavailable",
+        fulfillment: "amazon",
+        priceCents: null,
+        pageCount: null,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: null,
+        priceBasis:
+          "NOT PRODUCED, and the reason is the format rather than the market. The book is already 8.5 \u00d7 11 with 10 pt clues and nothing under 8 pt. Large print would have to enlarge the GRIDS, and a nonogram at 1.75\u00d7 is not a more readable nonogram \u2014 it is one that no longer fits a page. Where large print would help is the hints and answers, and those are on the companion page as text at whatever size the reader's own browser is set to.",
+      },
+      {
+        format: "ebook",
+        // Two files, one purchase: the print interior as a DRM-free
+        // watermarked PDF (the solving copy \u2014 print puzzle 63 again rather
+        // than write in your only one) and a reflowable EPUB with every grid
+        // as SVG and the three hint passes in three separate documents.
+        //
+        // AVAILABLE 2026-09-05: the price exists, is active, and was read back
+        // from api.paddle.com before this line was changed.
+        availability: "available",
+        fulfillment: "direct",
+        priceCents: usd(11.99),
+        pageCount: 156,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: "books/codex-mythologica-the-puzzle-book/master/v1/master.pdf",
+        epubFileKey: "books/codex-mythologica-the-puzzle-book/master/v1/master.epub",
+        priceBasis:
+          "$11.99 direct, netting $10.89 after Paddle (5 % + $0.50) = 90.8 %. Comparison inside this catalogue: Dudeney $9.99, Enigmatica $9.99, World Games $11.99, Bestiarium $12.99. The Codex bible sets the direct ebook at the Kindle list price, $9.99\u201312.99; this sits at World Games' price because it is the same shape of book \u2014 a large-format volume you work through rather than read.",
+      },
+    ],
+    blockers: [
+      "PADDLE TAX CATEGORY \u2014 the product was created as `standard` because this Paddle account is not approved for the `ebooks` category. That over-collects VAT where books are taxed at a reduced rate. Same pending request as the other seven products.",
+      "KDP UPLOAD \u2014 the paperback and hardcover interiors and both wraps are built and preflight clean; only the account holder can upload them.",
+      "AI DECLARATION \u2014 the manuscript prose and the cover illustration were both produced by AI tools; the facts are recorded in project_config.json \u2192 compliance.aiDisclosure with their evidence. Only the account holder can enter that declaration on the KDP form.",
+      "ISBN \u2014 none assigned; the copyright page prints PENDING until one is.",
+      "NO PHYSICAL PROOF \u2014 first print of both interiors and both covers. A proof copy is recommended, and more so for the hardcover, whose case wrap folds around board.",
+    ],
+  },
+  {
     slug: "korean-hangul-handwriting-workbook",
     title: "Korean Hangul Handwriting Workbook",
     subtitle:
@@ -1470,6 +1581,75 @@ export const BOOKS = [
       "Thirty-six passages \u2014 about 598 words \u2014 are the scanner's reading of a line figure, or of the ghost a tissue guard prints onto the facing page, and are marked rather than set as Culin's prose. Every one is listed with what the scanner made of it in QA/debris.json, so the refusal can be checked. Three of Culin's tables are described rather than reproduced for the same reason.",
       "Games I to LXIX are not in this volume. They are 20,648 words of children's amusements in one-paragraph entries, and they carry none of the argument the book is built on. The scope was decided and recorded before any apparatus was written, which is the order Phase 1 taught.",
       "No Kindle edition planned at launch: KDP caps public-domain content at the 35% royalty tier, and the Kindle store already carries free scans of this title. No hardcover and no large print at launch: both are open decisions rather than refusals, and neither is claimed as planned until it is built.",
+    ],
+  },
+
+  {
+    slug: "chess-and-playing-cards",
+    title: "Chess and Playing Cards: The Chess, Divination and Card Collections",
+    subtitle:
+      "Stewart Culin's 1898 Catalogue, Annotated \u2014 with a Register of Object and Argument, the Nine Forms of Chess Compared, Five Original Diagrams and the Index the Original Never Printed",
+    language: "en",
+    pageCount: 120,
+    categories: ["games-and-play", "classics-and-philosophy"],
+    authors: ["emre-dogan"],
+    bisac: ["GAM001000", "SOC002010"],
+    series: { name: "Valice Classics", volume: 10 },
+    // PHASE 2, BOOK 3. An Internet Archive scan sponsored by the Library of Congress,
+    // and a better one than book 2's Google derive: median junk 5.1% a leaf. It carries
+    // a per-word confidence score which was MEASURED AND FOUND UNUSABLE \u2014 median 22
+    // on a 0-100 scale, with "and", "of" and "four" scoring under 10 \u2014 and nothing
+    // in the edition depends on it. Where each of the 76 entries begins is settled by
+    // three readings that have to agree: Culin's own table of contents, the run-in
+    // heading, and the printed page number validated against a physical rule.
+    websiteStatus: "draft",
+    linkageDecision: null,
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: "paddle-not-provisioned",
+    paddlePriceId: null,
+    onelinePromise:
+      "A museum catalogue whose ORDER is an argument \u2014 and the first edition to say so, entry group by entry group, so the objects can be read apart from the theory they were arranged to prove.",
+    description:
+      "A museum catalogue is normally the least argumentative thing a scholar writes. This one is a thesis from its first sentence. \u201cThe object of this collection,\u201d Culin begins, \u201cis to illustrate the probable origin, significance, and development of the games of chess and playing-cards\u201d \u2014 which, following a suggestion from Frank Hamilton Cushing, he takes to descend from the divinatory use of the arrow. Everything that follows is arranged to make that case: the chessboards first, then the quivers and divining splints and carved gambling sticks that are supposed to be arrows in disguise, then the cards, ending with a whist pack sold as a souvenir of the Chicago fair the collection was assembled for. Murray disbelieved the thesis and the field has left it alone since. But an object is not a claim: when Culin writes that sixty-two gambling sticks five inches long came in a leather pouch and were collected by Dr A. H. Hoff of the United States Army, that stays true whatever one thinks about arrows. This is a book whose evidence outlived its argument, and this edition is built to let the two be told apart. A Register of Object and Argument gives, part by part, what the objects are, what Culin says they show, what the claim actually rests on, and how to read the difference. The nine forms of chess he catalogues are compared on one table drawn entirely from his own descriptions. His introduction and entries 45 to 120 complete, in four parts \u2014 chess and the games of the board, the arrows and lots and gambling-sticks, the cards of Asia, and the tarots and the cards of Europe and America. Around them: five original diagrams marked EVIDENCE or RECONSTRUCTION, an account of how the divining procedures actually work, a playing guide, a who's-who, a glossary, a chronology, a note on tracing an object today, and an index of subjects generated from the text. 120 pages, 6 \u00d7 9 in.",
+    idealReader:
+      "Someone who wants the objects and can enjoy watching a good observer's theory being kept honestly at arm's length from them.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(7.99),
+        pageCount: 120,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: "books/chess-and-playing-cards/master/v1/master.pdf",
+        epubFileKey: "books/chess-and-playing-cards/master/v1/master.epub",
+        priceBasis:
+          "price-engine.mjs 2026-09-05, direct ebook, public domain: recommended $6.99, and $7.99 nets $7.09 after Paddle. The Valice Classics band is $7.99\u20139.99; at 120 pages and 21.5% original matter this sits at the band's floor, below the $8.99 of the 144-page volume 9.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(14.99),
+        pageCount: 120,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-05, 120 pp 6\u00d79 B&W: prints at $2.44, KDP minimum list $4.07, recommended $9.99. $14.99 nets $6.31 (42.1%). The Classics print band of $16.99\u201319.99 assumes about 150 pages and this is 120, so it is priced between book 8's short-volume $12.99 and the band floor rather than at either. The Founder decides at Gate 8.",
+      },
+    ],
+    blockers: [
+      "The ebook is built, priced and ready but not yet on sale: creating the Paddle product and price is a live write that this environment's permission layer blocks. One command, in FOUNDER F-024.",
+      "Not on KDP. The interior and wrap are built and packaged; the print upload is a Founder action \u2014 see the KDP upload handbook in PHASE-2-REPORT.",
+      "Five of the seventy-six entries could not have their headings recovered from the scan, so their descriptions stand within the entry above them. They are printed in their place with their number and title from Culin's own table of contents and a line saying so. Nothing is missing from the text; what is missing is the seam, and it is marked rather than guessed.",
+      "Entries 1 to 44 \u2014 the dice, the boards and the race games, 68,849 words \u2014 are not in this volume. They carry the collection but not the thesis and are scoped as a second volume. The decision was recorded before any apparatus was written.",
+      "Nine entries describe games already published in Valice Classics 9. That is not duplication and the edition says so in a dedicated section: Korean Games describes how a game is PLAYED, this catalogue describes the OBJECT \u2014 its size, its material, its museum number, who collected it.",
+      "No Kindle edition planned at launch: KDP caps public-domain content at the 35% royalty tier. No hardcover and no large print at launch; both are open decisions rather than refusals.",
     ],
   },
   {

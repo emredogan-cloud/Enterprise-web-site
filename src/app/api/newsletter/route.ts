@@ -96,6 +96,7 @@ const SOURCES = new Set([
   "the-dragon-companion",
   "games-ancient-and-oriental-companion",
   "korean-games-companion",
+  "chess-and-playing-cards-companion",
 ]);
 
 /**

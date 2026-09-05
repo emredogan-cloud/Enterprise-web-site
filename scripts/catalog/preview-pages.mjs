@@ -100,6 +100,20 @@ export const PREVIEW_PAGES = [
     note: "Lesson 4 in full: where each letter goes inside the syllable block, six real words built from it, and the trace-then-write practice pages.",
   },
   {
+    slug: "codex-mythologica-the-puzzle-book",
+    source: bookPath("04-CODEX-MYTHOLOGICA-THE-PUZZLE-BOOK", "OUTPUT", "PAPERBACK", "interior.pdf"),
+    // `pages` is a RANGE, first to last, not a list — a first attempt at
+    // [59, 76, 93, 137] rendered eighteen pages of the book into /public.
+    //
+    // Four consecutive pages from the middle of the deduction gathering, which
+    // is where this book's one real difference from every other mythology
+    // puzzle book is visible: the whole candidate table is printed with the
+    // puzzle. A buyer deciding whether this is a quiz can see in one glance
+    // that it is not.
+    pages: [59, 62],
+    note: "Four consecutive pages from the deduction gathering — a logic grid and its clues, and the deductions with their full candidate tables printed, which is the promise that nothing here needs knowledge you arrived with.",
+  },
+  {
     slug: "greek-alphabet-handwriting-workbook",
     source: bookPath("02-GREEK-ALPHABET-HANDWRITING-WORKBOOK", "OUTPUT", "KDP", "PAPERBACK", "interior.pdf"),
     // Lesson 8, beta, as the spread is actually printed: teaching page on the
@@ -172,6 +186,17 @@ export const PREVIEW_PAGES = [
     // and that test is the reason to stop rather than a hurdle to clear.
     pages: [21, 23],
     note: "Dr Birch on the Manchester relics, with the board of thirty compartments drawn from his description and marked EVIDENCE.",
+  },
+  {
+    slug: "chess-and-playing-cards",
+    source: `${BUILT}/chess-and-playing-cards.pdf`,
+    // Culin on Chinese and Korean chess, with the two boards drawn from his own
+    // descriptions on the same spread — the Chinese one with its River, and the
+    // Korean one that rules the files straight across it. Four pages that show what
+    // this edition does that the free scan does not: the entries set clean, the
+    // footnotes lifted out of his sentences, and the boards you can actually see.
+    pages: [28, 31],
+    note: "Chinese and Korean chess, with both boards drawn from Culin's own descriptions and marked EVIDENCE.",
   },
   {
     slug: "korean-games",

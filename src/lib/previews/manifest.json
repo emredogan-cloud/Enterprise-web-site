@@ -331,5 +331,47 @@
         "page": 23
       }
     ]
+  },
+  "codex-mythologica-the-puzzle-book": {
+    "note": "Four consecutive pages from the deduction gathering — a logic grid and its clues, and the deductions with their full candidate tables printed, which is the promise that nothing here needs knowledge you arrived with.",
+    "pages": [
+      {
+        "src": "/images/previews/codex-mythologica-the-puzzle-book/p59.webp",
+        "page": 59
+      },
+      {
+        "src": "/images/previews/codex-mythologica-the-puzzle-book/p60.webp",
+        "page": 60
+      },
+      {
+        "src": "/images/previews/codex-mythologica-the-puzzle-book/p61.webp",
+        "page": 61
+      },
+      {
+        "src": "/images/previews/codex-mythologica-the-puzzle-book/p62.webp",
+        "page": 62
+      }
+    ]
+  },
+  "chess-and-playing-cards": {
+    "note": "Chinese and Korean chess, with both boards drawn from Culin's own descriptions and marked EVIDENCE.",
+    "pages": [
+      {
+        "src": "/images/previews/chess-and-playing-cards/p28.webp",
+        "page": 28
+      },
+      {
+        "src": "/images/previews/chess-and-playing-cards/p29.webp",
+        "page": 29
+      },
+      {
+        "src": "/images/previews/chess-and-playing-cards/p30.webp",
+        "page": 30
+      },
+      {
+        "src": "/images/previews/chess-and-playing-cards/p31.webp",
+        "page": 31
+      }
+    ]
   }
 }

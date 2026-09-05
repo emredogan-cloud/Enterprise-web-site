@@ -11,9 +11,9 @@ finds a book by its own directory name, at any depth, with or without a numeric 
 and throws rather than guessing. The three path tables and the cover table all read
 through it.
 
-> **Status: IN PROGRESS.** The shared scan/OCR pipeline is built. **Books 1 and 2 are
-> built end to end** and each has been through an adversarial review; both are held on
-> Founder signatures and one blocked live write apiece. Books 3, 4 and 5 are not started.
+> **Status: IN PROGRESS.** The shared scan/OCR pipeline is built. **Books 1, 2 and 3 are
+> built end to end** and each has been through an adversarial review; each is held on
+> Founder signatures and one blocked live write. Books 4 and 5 are not started.
 > Nothing in this branch has been merged to `main` or deployed to production, and nothing
 > will be without explicit Founder instruction.
 
@@ -27,7 +27,7 @@ Taken from `PUBLIC_DOMAIN_MASTER_ROADMAP.md` without substitution.
 |---|---|---|---|---|---|
 | 1 | Games Ancient and Oriental, and How to Play Them | Edward Falkener | 1892 | IA `gamesancientorie00falkuoft` — **scan, OCR** | **built end to end; three review rounds; held on F-019, F-020, F-021** |
 | 2 | Korean Games | Stewart Culin | 1895 | IA `koreangameswith00culigoog` — **scan, OCR** | **built end to end; adversarial review run and its six findings fixed; held on F-022, F-023** |
-| 3 | Chess and Playing Cards | Stewart Culin | 1898 | IA `chessplayingcard00culi` — **scan, OCR** | not started |
+| 3 | Chess and Playing Cards | Stewart Culin | 1898 | IA `chessplayingcard00culi` — **scan, OCR** | **built end to end; adversarial review run and its five findings fixed; held on F-024** |
 | 4 | Mancala, the National Game of Africa | Stewart Culin | 1896 | PG 66220 — proof-read HTML | not started |
 | 5 | The Traditional Games of England, Scotland, and Ireland | Alice Bertha Gomme | 1894/98 | PG 41727 / 41728 | not started |
 

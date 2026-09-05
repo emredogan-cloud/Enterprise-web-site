@@ -121,6 +121,23 @@ export const DIRECT_SALE_EBOOKS = [
     priceCents: 999,
   },
   {
+    // Roadmap book 4 (2026-09-05). NOT on Amazon and never enrolled in KDP
+    // Select: this book's whole companion bridge depends on the direct edition
+    // existing, and Select would forbid it. Codex Mythologica — a different
+    // book with a confusingly similar name — is the cautionary case, and its
+    // Kindle enrolment is why IT is absent from this list.
+    slug: "codex-mythologica-the-puzzle-book",
+    name: "Codex Mythologica: The Puzzle Book",
+    description:
+      "A hundred myth puzzles from nineteen civilizations, as two files: the 156-page interior as a DRM-free watermarked PDF, which is what lets you print puzzle 63 again instead of writing in your only copy, and a reflowable EPUB whose grids are scalable drawings and whose three hint passes are three separate documents. Every puzzle was solved by a program that saw only the printed page and had to reach exactly one answer; every factual premise points at a field or a sentence in Codex Mythologica or Codex Bestiarium, and all 516 of them are re-read from the source on every build.",
+    // price-engine.mjs 2026-09-05: the Codex bible sets a direct ebook at the
+    // Kindle list price, $9.99–12.99. There is no Kindle edition to match, so
+    // this takes the price of the closest comparable in the catalogue — The
+    // Great Book of World Games, the same shape of large-format book you work
+    // through rather than read. $11.99 nets $10.89 after Paddle (90.8%).
+    priceCents: 1199,
+  },
+  {
     // PHASE 2, BOOK 1 (2026-09-05). Valice Classics 8.
     slug: "games-ancient-and-oriental",
     name: "Games Ancient and Oriental: The Egyptian Games (Annotated)",
@@ -144,6 +161,16 @@ export const DIRECT_SALE_EBOOKS = [
     // original matter, five diagrams and a rebuilt game table, so it sits in the
     // middle of the band.
     priceCents: 899,
+  },
+  {
+    slug: "chess-and-playing-cards",
+    name: "Chess and Playing Cards: The Chess, Divination and Card Collections (Annotated)",
+    description:
+      "Culin's 1898 catalogue of the chess, divination and playing-card collections he showed at the World's Columbian Exposition \u2014 his introduction and entries 45 to 120 complete, in four parts. Original to this edition: a Register of Object and Argument separating, part by part, what the objects are from what Culin says they show and what the claim actually rests on; a table comparing the nine forms of chess he catalogues, drawn entirely from his own descriptions; an account of how the divining procedures work; a playing guide; five diagrams drawn from the text, each marked EVIDENCE or RECONSTRUCTION on its face; a who's-who, a glossary, a chronology, a note on tracing an object today, and an index of subjects. 120 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included.",
+    // price-engine.mjs 2026-09-05, direct ebook, public domain: recommended
+    // $6.99; $7.99 nets $7.09 after Paddle. The Classics band is $7.99\u20139.99, and
+    // at 120 pages this sits at its floor, below volume 9's $8.99 at 144 pages.
+    priceCents: 799,
   },
   {
     slug: "seneca-selected-dialogues",

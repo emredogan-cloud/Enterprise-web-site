@@ -244,6 +244,29 @@ This is research, not production, and it does not block Phase 1.
 
 ---
 
+### F-024 · P1 · Paddle product and gates 2 and 5 for Chess and Playing Cards
+
+- **Date raised:** 2026-09-05 · **Phase:** 2 · **Book:** 3
+- **Paddle.** `chess-and-playing-cards` is built, priced at **$7.99**, uploaded to R2,
+  previewed and validated, and has no Paddle product. Same blocked live write as F-019
+  and F-022. `node scripts/catalog/provision-paddle.mjs --commit --i-know-this-is-live`,
+  then put the returned price id in the catalogue row, set the ebook to `available`, and
+  run the loader **against `neondb`**.
+- **Gate 2 (Rights).** Stronger than the two books before it: Culin died in 1929 **and**
+  the 1898 United States imprint settles the United States on its own. He was not a
+  federal employee, so the government-works rule is not relied on and is not needed. The
+  illustration layer is not cleared — several plates are his own reuse of the *Korean
+  Games* artwork by Ki San, for whom no death year is recorded — and none of it is
+  reproduced.
+- **Gate 5 (Factual verification).** 12 claims, every one VERIFIED against an external
+  source; `claim-lint` clean. Includes a finding worth your attention: this scan carries a
+  per-word confidence score that the previous volume's did not, and it was **measured and
+  found unusable** — median 22 on a 0–100 scale, with *and*, *of* and *four* scoring under
+  10. Nothing in the edition depends on it.
+- **What signing means:** these two gates are `founderSignoff` and only you can set them.
+
+---
+
 ### F-022 · P1 · Create the Paddle product for Korean Games (one command)
 
 - **Date raised:** 2026-09-05 · **Phase:** 2 · **Book:** 2

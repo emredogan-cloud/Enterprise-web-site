@@ -228,6 +228,21 @@ export const COMPANION_PAGE_COPY = {
       { asset: "the-names", term: "The names", gloss: "what the apostrophe and the breve are doing, after which the names stop being noise" },
     ],
   },
+  "chess-and-playing-cards": {
+    companionSlug: "chess-and-playing-cards",
+    imprint: "Valice Press",
+    headline: "Print the boards.\nFind the objects.",
+    promise:
+      "Culin catalogued a hundred and twenty things and printed no index to them. " +
+      "Here is the one he never made, free, for readers of this edition.",
+    listHeading: "WHAT IS WAITING FOR YOU",
+    bullets: [
+      { asset: "boards", term: "Three chessboards", gloss: "the Chinese, the Korean and the Japanese, at playing size, to print and play on" },
+      { asset: "chess-compared", term: "Nine forms of chess", gloss: "on one sheet, with the single decision that tells each of them apart" },
+      { asset: "register-card", term: "The Register", gloss: "what the objects are, what Culin says they show, and what the claim rests on" },
+      { asset: "entry-finder", term: "Every entry", gloss: "all seventy-six with Culin's numbers and pages — the index the 1898 volume never printed" },
+    ],
+  },
   "korean-games": {
     companionSlug: "korean-games",
     imprint: "Valice Press",
@@ -354,6 +369,22 @@ export const COMPANION_PAGE_COPY = {
     ],
   },
 
+  "codex-mythologica-the-puzzle-book": {
+    companionSlug: "codex-puzzles",
+    imprint: "Vâliçe Press",
+    headline: "Ten more puzzles,\nand every hint in this book",
+    promise:
+      "A hundred puzzles is a hundred puzzles. These are the ten that would " +
+      "not fit, the hints, and a checker that tells you whether you have an " +
+      "answer right. Free to print, no email asked for.",
+    listHeading: "WHAT IS WAITING FOR YOU",
+    bullets: [
+      { asset: "extra-puzzles", term: "Ten more puzzles", gloss: "numbered 101 to 110, not in this book, checked the same way these were" },
+      { asset: "hint-cards", term: "Every hint, in three passes", gloss: "all three hundred and thirty, so hint one never shows you hint three" },
+      { asset: "solution-grids", term: "The filled grids", gloss: "the word fits and the pictures, solved — the answers a sentence cannot carry" },
+    ],
+  },
+
   "codex-mythologica": {
     companionSlug: "codex-mythologica",
     imprint: "Vâliçe Press",
@@ -414,6 +445,35 @@ export const COMPANION_PAGE_COPY = {
  *             every file below is produced.
  */
 export const COMPANION_PAGE_PLAN = {
+  "codex-mythologica-the-puzzle-book": {
+    // `native`: the leaf was set by the book's own builder, not spliced in, so
+    // pagesBefore and pagesAfter are the same number and the spine arithmetic
+    // has nothing to move. Both formats typeset their own leaf, because both
+    // are separate builds.
+    style: {
+      fonts: {
+        regular: "/usr/share/fonts/truetype/noto/NotoSerif-Regular.ttf",
+        bold: "/usr/share/fonts/truetype/noto/NotoSerif-Bold.ttf",
+        italic: "/usr/share/fonts/truetype/noto/NotoSerif-Italic.ttf",
+      },
+      marginIn: 0.8,
+      rule: 0.7,
+      sans: false,
+    },
+    editions: {
+      paperback: {
+        mode: "native", page: 155, pagesBefore: 156, pagesAfter: 156,
+        recto: true, folio: null,
+        builtBy: "BUILD/build_interior.py — the book's own companion leaf",
+      },
+      hardcover: {
+        mode: "native", page: 155, pagesBefore: 156, pagesAfter: 156,
+        recto: true, folio: null,
+        builtBy: "BUILD/build_interior.py — the book's own companion leaf",
+      },
+    },
+  },
+
   "greek-alphabet-handwriting-workbook": {
     // `native`: the leaf was set by the book's own builder, not spliced in, so
     // pagesBefore and pagesAfter are the same number and the spine arithmetic
@@ -571,6 +631,18 @@ export const COMPANION_PAGE_PLAN = {
     },
   },
 
+  "chess-and-playing-cards": {
+    style: { fonts: TYPE.liberationSerif, marginIn: 0.62, rule: 0.7 },
+    editions: {
+      paperback: {
+        // Phase 2 book 3. As the two before it: the interior is typeset deliberately ODD
+        // so this pipeline's appended leaf produces the even count KDP requires.
+        mode: "append", page: null, pagesBefore: 119, pagesAfter: 120, recto: true,
+        folio: { style: "centre", offset: 0, size: 8.6, baselineFromBottomPt: 28.8, outerMarginPt: 36 },
+        replacing: null,
+      },
+    },
+  },
   "korean-games": {
     style: { fonts: TYPE.liberationSerif, marginIn: 0.62, rule: 0.7 },
     editions: {

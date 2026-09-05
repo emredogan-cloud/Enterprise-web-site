@@ -34,6 +34,13 @@ export const EDITION_GEOMETRY = {
     // read from KDP's Cover Calculator (spine 0.414 in at 100 pp), never derived.
     hardcover: { trimWidthIn: 8.25, trimHeightIn: 11, binding: "hardcover", paper: "white", paperVerified: true },
   },
+  "codex-mythologica-the-puzzle-book": {
+    // Measured off both built interiors (2026-09-05). White paper: the
+    // paperback spine is 156 x 0.002252 = 0.3513 in, and the hardcover wrap is
+    // read from KDP's Cover Calculator rather than derived.
+    paperback: { trimWidthIn: 8.5, trimHeightIn: 11, binding: "paperback", paper: "white", paperVerified: true },
+    hardcover: { trimWidthIn: 8.25, trimHeightIn: 11, binding: "hardcover", paper: "white", paperVerified: true },
+  },
   "codex-mythologica": {
     paperback: { trimWidthIn: 6, trimHeightIn: 9, binding: "paperback", paper: "cream", paperVerified: false },
     hardcover: { trimWidthIn: 6, trimHeightIn: 9, binding: "hardcover", paper: "cream", paperVerified: false },
@@ -71,6 +78,9 @@ export const EDITION_GEOMETRY = {
     paperback: { trimWidthIn: 6, trimHeightIn: 9, binding: "paperback", paper: "white", paperVerified: "project" },
   },
   "epictetus-discourses-and-enchiridion": {
+    paperback: { trimWidthIn: 6, trimHeightIn: 9, binding: "paperback", paper: "white", paperVerified: "project" },
+  },
+  "chess-and-playing-cards": {
     paperback: { trimWidthIn: 6, trimHeightIn: 9, binding: "paperback", paper: "white", paperVerified: "project" },
   },
   "korean-games": {

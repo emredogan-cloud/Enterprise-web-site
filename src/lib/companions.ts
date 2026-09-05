@@ -694,6 +694,90 @@ const EPICTETUS: Companion = {
  * look anything up has to get from Culin's tjyang-keui to the janggi the rest of
  * the world writes, and no edition of this text has ever supplied the bridge.
  */
+/**
+ * Chess and Playing Cards (Culin, 1898) — Valice Classics 10.
+ *
+ * A catalogue of a hundred and twenty objects that printed no index to itself. The
+ * entry finder here is the index the 1898 volume never made: every entry with
+ * Culin's own number and the page of the Report it stands on. The boards are drawn
+ * from his descriptions by the same code path as the figures in the book, because
+ * none of his fifty plates can be cleared — several are his own reuse of the Korean
+ * Games artwork by Ki San, for whom no death year is recorded.
+ */
+const CHESS_AND_PLAYING_CARDS: Companion = {
+  slug: "chess-and-playing-cards",
+  bookSlug: "chess-and-playing-cards",
+  bookTitle: "Chess and Playing Cards: The Chess, Divination and Card Collections",
+  state: "book-not-yet-available",
+  stateNote:
+    "The Valice edition is built, validated and priced but not yet on sale — " +
+    "creating the payment product is a live write that is held behind a " +
+    "founder action. Everything on this page is free and works today regardless.",
+  intro:
+    "Free material for Culin's 1898 catalogue: three chessboards at playing size " +
+    "to print, the nine forms of chess compared on one sheet, the register that " +
+    "keeps his objects apart from his argument, and every entry listed with his " +
+    "own numbers — the index the original never printed.",
+  newsletterSource: "chess-and-playing-cards-companion",
+  assetsHeading: "Print and play",
+  rightsNote:
+    "Stewart Culin died in 1929 and the 1898 United States imprint puts this text " +
+    "in the public domain there on its own. None of the fifty plates or the text " +
+    "figures is reproduced: several plates are Culin's own reuse of the artwork " +
+    "made for Korean Games by Ki San — the Korean painter Kim Chun-gŭn — for whom " +
+    "no death year is recorded, and the museum photographs and text figures are " +
+    "unattributed. Every board on these sheets was drawn for this edition from the " +
+    "descriptions in Culin's text.",
+  assets: [
+    {
+      id: "boards",
+      title: "Three chessboards to print and play on",
+      description:
+        "The Chinese board with its River and its two palaces, the Korean board " +
+        "that rules the files straight across that River so the River is ignored, " +
+        "and the Japanese board of nine squares each way. Drawn at playing size " +
+        "from Culin's own counts. Coins or draughts will do for men.",
+      kind: "static",
+      href: "/companion/chess-and-playing-cards/boards.pdf",
+      meta: "PDF · US Letter · 3 pages",
+    },
+    {
+      id: "chess-compared",
+      title: "Nine forms of chess, compared",
+      description:
+        "Chaturanga, the Maldive, Malay and Burmese games, the European, the " +
+        "Chinese, the Korean and the Japanese — with the board, the men, and the " +
+        "single structural decision that tells each of them apart. Drawn entirely " +
+        "from Culin's own descriptions.",
+      kind: "static",
+      href: "/companion/chess-and-playing-cards/chess-compared.pdf",
+      meta: "PDF · US Letter · 1 page",
+    },
+    {
+      id: "register-card",
+      title: "The Register of Object and Argument",
+      description:
+        "For each part of the catalogue: what the objects are, what Culin says " +
+        "they show, what the claim actually rests on, and how to read the " +
+        "difference. The instrument this edition is built around.",
+      kind: "static",
+      href: "/companion/chess-and-playing-cards/register-card.pdf",
+      meta: "PDF · US Letter · 2 pages",
+    },
+    {
+      id: "entry-finder",
+      title: "Every entry in the catalogue",
+      description:
+        "All seventy-six entries of this volume with Culin's own numbers and the " +
+        "page of the 1898 Report each stands on. The 1898 volume printed a table " +
+        "of contents and no index; this is the finding aid it never had.",
+      kind: "static",
+      href: "/companion/chess-and-playing-cards/entry-finder.pdf",
+      meta: "PDF · US Letter · 2 pages",
+    },
+  ],
+};
+
 const KOREAN_GAMES: Companion = {
   slug: "korean-games",
   bookSlug: "korean-games",
@@ -1242,6 +1326,87 @@ const THE_DRAGON: Companion = {
   ],
 };
 
+
+/**
+ * Roadmap book 4 — Codex Mythologica: The Puzzle Book (2026-09-05).
+ *
+ * The brief for this one said, in as many words, do not make a marketing page.
+ * So it carries four things a reader would actually come back for: ten puzzles
+ * that are NOT in the book, every hint in the book as a printable card set,
+ * the eighteen filled grids, and an answer checker that works without the page
+ * being a list of answers anybody can read by opening it.
+ *
+ * The ten extra puzzles went through the same gate the hundred in the book did
+ * — each solved by a program that saw only what is printed, each to exactly one
+ * answer. A free sample that is wrong tells a reader what the paid book is
+ * like.
+ */
+const CODEX_PUZZLES: Companion = {
+  slug: "codex-puzzles",
+  bookSlug: "codex-mythologica-the-puzzle-book",
+  bookTitle: "Codex Mythologica: The Puzzle Book",
+  // Built end to end on 2026-09-05 and not uploaded to KDP; the direct ebook
+  // needs a Paddle price. The page says so rather than showing a buy button
+  // that goes nowhere — and it exists from today, because the QR code printed
+  // inside the book will outlive every commercial state the book is ever in.
+  state: "book-not-yet-available",
+  stateNote:
+    "The book is not on sale yet. Everything on this page is free and works " +
+    "on its own \u2014 the ten puzzles here are not in the book, so you can do " +
+    "them without owning it.",
+  intro:
+    "Ten more puzzles, every hint from the book, the filled grids, and a " +
+    "checker that will tell you whether you have an answer right.",
+  newsletterSource: "codex-puzzles-companion",
+  assetsHeading: "Puzzles, hints and answers",
+  rightsNote:
+    "Everything here is Valice Press's own work. The puzzles are generated " +
+    "from the editorial apparatus of CODEX MYTHOLOGICA and CODEX BESTIARIUM " +
+    "\u2014 which civilization a myth is filed under, which class a creature is " +
+    "in \u2014 both of which this press wrote and publishes. The mythological " +
+    "facts themselves belong to the traditions they come from and are not " +
+    "claimed by anybody. Where a sentence is quoted it is quoted whole and " +
+    "attributed to the story it came from.",
+  assets: [
+    {
+      id: "extra-puzzles",
+      title: "Ten more puzzles \u2014 not in the book",
+      description:
+        "Four ciphers, three deductions, a word fit, a word search and a " +
+        "picture, numbered 101 to 110 so you can tell them from the hundred " +
+        "in the book. Answers at the back. Each one was solved by a program " +
+        "that saw only the printed page and had to reach exactly one answer, " +
+        "which is the same gate the book's hundred went through.",
+      kind: "static",
+      href: "/companion/codex-puzzles/extra-puzzles.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 12 pages",
+    },
+    {
+      id: "hint-cards",
+      title: "Every hint, in three passes",
+      description:
+        "All three hundred and thirty hints \u2014 the hundred puzzles in the " +
+        "book and the ten here \u2014 printed the way the book prints them: every " +
+        "first hint, then every second, then every third. Looking up the first " +
+        "hint for puzzle sixty-one does not put the third one in front of you.",
+      kind: "static",
+      href: "/companion/codex-puzzles/hint-cards.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 13 pages",
+    },
+    {
+      id: "solution-grids",
+      title: "The filled grids",
+      description:
+        "Eleven word fits and nine pictures, solved. These are the answers a " +
+        "sentence cannot carry, and printing them is the only honest way to " +
+        "give them.",
+      kind: "static",
+      href: "/companion/codex-puzzles/solution-grids.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 6 pages",
+    },
+  ],
+};
+
 const COMPANIONS: readonly Companion[] = [
   HANGUL,
   WORLD_GAMES,
@@ -1253,6 +1418,8 @@ const COMPANIONS: readonly Companion[] = [
   EPICTETUS,
   GAMES_ANCIENT,
   KOREAN_GAMES,
+  CHESS_AND_PLAYING_CARDS,
+  CODEX_PUZZLES,
   SENECA,
   GREEK,
   CHINA_GODS,

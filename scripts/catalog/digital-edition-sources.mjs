@@ -72,6 +72,13 @@ export const DIGITAL_EDITION_SOURCES = [
     epub: bookPath("02-KOREAN-GAMES", "OUTPUT", "korean-games.epub"),
   },
   {
+    // Valice Classics 10 (2026-09-05). Phase 2 book 3. Five diagram plates, no
+    // photographic matter, so the /ebook pass normalises rather than downsamples.
+    slug: "chess-and-playing-cards",
+    printInterior: bookPath("03-CHESS-AND-PLAYING-CARDS", "OUTPUT", "interior-main.pdf"),
+    epub: bookPath("03-CHESS-AND-PLAYING-CARDS", "OUTPUT", "chess-and-playing-cards.epub"),
+  },
+  {
     // Valice Classics 3 (2026-09-04). Text-only 6 × 9 interior with no plates,
     // so the /ebook pass is a normalising pass rather than a downsampling one.
     slug: "epictetus-discourses-and-enchiridion",
@@ -110,6 +117,15 @@ export const DIGITAL_EDITION_SOURCES = [
     // a reflowable reference edition of the same material, 36 chapters with
     // the stroke diagrams as scalable SVG. One purchase, both files.
     epub: bookPath("02-GREEK-ALPHABET-HANDWRITING-WORKBOOK", "OUTPUT", "EBOOK", "greek-alphabet-reference.epub"),
+  },
+  {
+    // Roadmap book 4 (2026-09-05). Two files, and neither is the other:
+    // the print interior screen-normalised, which for a puzzle book is the
+    // format that lets a reader print puzzle 63 twice, and a reflowable EPUB
+    // whose grids are SVG and whose three hint passes are three documents.
+    slug: "codex-mythologica-the-puzzle-book",
+    printInterior: bookPath("04-CODEX-MYTHOLOGICA-THE-PUZZLE-BOOK", "OUTPUT", "PAPERBACK", "interior.pdf"),
+    epub: bookPath("04-CODEX-MYTHOLOGICA-THE-PUZZLE-BOOK", "OUTPUT", "EBOOK", "codex-mythologica-the-puzzle-book.epub"),
   },
   {
     // Valice Classics 4 (2026-09-04).

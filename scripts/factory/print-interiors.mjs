@@ -78,6 +78,12 @@ export const PRINT_INTERIORS = {
     // to make 176, which is the even count KDP requires.
     paperback: bookPath("01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION", "OUTPUT", "interior-main.pdf"),
   },
+  "chess-and-playing-cards": {
+    // PHASE 2, BOOK 3 (2026-09-05). Valice Classics 10. Typeset deliberately ODD
+    // (119 pp) so the companion leaf appended by build-companion-pages.mjs makes
+    // the even 120 that KDP requires.
+    paperback: bookPath("03-CHESS-AND-PLAYING-CARDS", "OUTPUT", "interior-main.pdf"),
+  },
   "korean-games": {
     // PHASE 2, BOOK 2 (2026-09-05). Valice Classics 9. Typeset deliberately ODD
     // (143 pp) so the companion leaf appended by build-companion-pages.mjs makes
@@ -104,6 +110,13 @@ export const PRINT_INTERIORS = {
     // Valice Classics 6 (2026-09-04). Volume one of four. Typeset ODD (93 pp)
     // so the appended companion leaf makes 94.
     paperback: bookPath("04-INDIAN-MYTH-AND-LEGEND", "OUTPUT", "interior-main.pdf"),
+  },
+  "codex-mythologica-the-puzzle-book": {
+    // Roadmap book 4 (2026-09-05). TWO SEPARATE BUILDS: KDP has no 8.5 x 11
+    // case laminate, so the hardcover is typeset at 8.25 x 11 with a 0.95 in
+    // gutter and measures its own page count.
+    paperback: bookPath("04-CODEX-MYTHOLOGICA-THE-PUZZLE-BOOK", "OUTPUT", "PAPERBACK", "interior.pdf"),
+    hardcover: bookPath("04-CODEX-MYTHOLOGICA-THE-PUZZLE-BOOK", "OUTPUT", "HARDCOVER", "interior.pdf"),
   },
   "mythical-monsters": {
     // Valice Classics 7 (2026-09-04). Volume one of three. Typeset ODD (73 pp)
