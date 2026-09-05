@@ -7,13 +7,17 @@
  * "file not needed" are different answers and a package that confuses them is
  * how a book ships with a spine that does not fit its block.
  */
-const BOOKS = "/home/emre/Downloads/MY-DİGİTAL-BOOK";
+// The parent folder is no longer written down here: MY-DİGİTAL-BOOK has been
+// reorganised twice, and every hard-coded path in this table broke silently
+// both times. book-dirs.mjs finds a book by its own directory name, which has
+// been stable, and throws rather than guessing when it cannot.
+import { bookPath } from "./book-dirs.mjs";
 
 export const REBUILT_COVERS = {
   "greek-alphabet-handwriting-workbook": {
     paperback: {
       built: true,
-      path: `${BOOKS}/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/cover.pdf`,
+      path: bookPath("02-GREEK-ALPHABET-HANDWRITING-WORKBOOK", "OUTPUT", "KDP", "PAPERBACK", "cover.pdf"),
       pageCount: 100, spineIn: 0.2252, wrapIn: "17.4752 × 11.2500 (white)",
       note: "Not rebuilt — built once, at the final page count, by the project's own BUILD/build_cover.py. Nothing was spliced into this book, so the block never changed thickness. It is listed here because this is where the packaging pipeline looks for a wrap, and an edition that has never been uploaded needs its cover NAMED rather than left null: `coverAction` says the Founder must upload one, and this is the file. Spine and wrap agree with spine-check.mjs to four decimal places, and `preflight.py --kind cover` passes 6/6. No spine text: 0.2252 in leaves a 0.100 in safe zone, which cannot carry legible type on a perfect-bound book.",
     },
@@ -25,7 +29,7 @@ export const REBUILT_COVERS = {
   "korean-hangul-handwriting-workbook": {
     paperback: {
       built: true,
-      path: `${BOOKS}/KOREAN-HANGUL-HANDWRITING-WORKBOOK/05_APLUS_COVER/exports/paperback_cover.pdf`,
+      path: bookPath("01-KOREAN-HANGUL-HANDWRITING-WORKBOOK", "05_APLUS_COVER", "exports", "paperback_cover.pdf"),
       pageCount: 126, spineIn: 0.283752, wrapIn: "17.5338 × 11.2500",
       note: "internal KDP formula, white paper — the same arithmetic spine-check.mjs runs, and the two agree",
     },
@@ -35,27 +39,36 @@ export const REBUILT_COVERS = {
     },
   },
   "codex-bestiarium": {
-    paperback: { built: true, path: `${BOOKS}/CODEX_BESTIARIUM/03_COVER/PAPERBACK/exports/`, pageCount: 436, spineIn: 1.09, wrapIn: "13.3400 × 9.2500 (cream) · 13.2319 × 9.2500 (white)", note: "both paper stocks built; take the one the listing uses" },
-    hardcover: { built: true, path: `${BOOKS}/CODEX_BESTIARIUM/03_COVER/HARDCOVER/exports/`, pageCount: 436, spineIn: null, wrapIn: "14.8508 × 10.4167 (cream) · 14.7427 × 10.4167 (white)", note: "this project carries a calibrated hardcover profile with a measured board allowance, so its wrap IS derivable and was rebuilt" },
-    large_print: { built: true, path: `${BOOKS}/CODEX_BESTIARIUM/03_COVER/LARGEPRINT/exports/`, pageCount: 600, spineIn: 1.5, wrapIn: "13.7500 × 9.2500 (cream)", note: "cream only, as the large print is printed" },
+    paperback: { built: true, path: bookPath("CODEX-BESTIARIUM", "03_COVER", "PAPERBACK", "exports") + "/", pageCount: 436, spineIn: 1.09, wrapIn: "13.3400 × 9.2500 (cream) · 13.2319 × 9.2500 (white)", note: "both paper stocks built; take the one the listing uses" },
+    hardcover: { built: true, path: bookPath("CODEX-BESTIARIUM", "03_COVER", "HARDCOVER", "exports") + "/", pageCount: 436, spineIn: null, wrapIn: "14.8508 × 10.4167 (cream) · 14.7427 × 10.4167 (white)", note: "this project carries a calibrated hardcover profile with a measured board allowance, so its wrap IS derivable and was rebuilt" },
+    large_print: { built: true, path: bookPath("CODEX-BESTIARIUM", "03_COVER", "LARGEPRINT", "exports") + "/", pageCount: 600, spineIn: 1.5, wrapIn: "13.7500 × 9.2500 (cream)", note: "cream only, as the large print is printed" },
   },
   "codex-mythologica": {
-    paperback: { built: true, path: `${BOOKS}/CODEX_MYTHOLOGICA/03_COVER/PAPERBACK/exports/`, pageCount: 330, spineIn: 0.825, wrapIn: "13.0750 × 9.2500 (cream) · 12.9932 × 9.2500 (white)", note: "both paper stocks built" },
-    hardcover: { built: true, path: `${BOOKS}/CODEX_MYTHOLOGICA/03_COVER/HARDCOVER/exports/`, pageCount: 330, spineIn: null, wrapIn: "14.5858 × 10.4167 (cream) · 14.5040 × 10.4167 (white)", note: "calibrated hardcover profile" },
-    large_print: { built: true, path: `${BOOKS}/CODEX_MYTHOLOGICA/03_COVER/LARGEPRINT/exports/`, pageCount: 579, spineIn: 1.4475, wrapIn: "13.6975 × 9.2500 (cream)", note: "cream only" },
+    paperback: { built: true, path: bookPath("CODEX-MYTHOLOGICA", "03_COVER", "PAPERBACK", "exports") + "/", pageCount: 330, spineIn: 0.825, wrapIn: "13.0750 × 9.2500 (cream) · 12.9932 × 9.2500 (white)", note: "both paper stocks built" },
+    hardcover: { built: true, path: bookPath("CODEX-MYTHOLOGICA", "03_COVER", "HARDCOVER", "exports") + "/", pageCount: 330, spineIn: null, wrapIn: "14.5858 × 10.4167 (cream) · 14.5040 × 10.4167 (white)", note: "calibrated hardcover profile" },
+    large_print: { built: true, path: bookPath("CODEX-MYTHOLOGICA", "03_COVER", "LARGEPRINT", "exports") + "/", pageCount: 579, spineIn: 1.4475, wrapIn: "13.6975 × 9.2500 (cream)", note: "cream only" },
   },
   "epictetus-discourses-and-enchiridion": {
     paperback: {
       built: true,
-      path: `${BOOKS}/PHASE-1-BOOK/01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/ASSETS/cover/paperback-wrap-v1.pdf`,
+      path: bookPath("01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION", "ASSETS", "cover", "paperback-wrap-v1.pdf"),
       pageCount: 176, spineIn: 0.3964, wrapIn: "12.6464 × 9.2500 (white)",
       note: "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 176 — that is, after the companion leaf. Its spine and wrap agree with this pipeline's own arithmetic to four decimal places (0.396352 / 12.646352), so nothing had to be rebuilt after the splice.",
+    },
+  },
+  "korean-games": {
+    paperback: {
+      built: true,
+      path: bookPath("02-KOREAN-GAMES", "ASSETS", "cover", "paperback-wrap-v1.pdf"),
+      pageCount: 144, spineIn: 0.3243,
+      wrapIn: "12.5743 × 9.2500 (white)",
+      note: "built 2026-09-05 by the project's own BUILD/build_cover.py, which reads the FINAL page count out of QA/interior-main.json — that is, after the companion leaf — so the spine is computed from the count the book will actually have. At 144 pp this one clears the 79-page floor and does carry spine text. The device is the nyout board, twenty marks round a circle and an interior cross of nine, which Culin counts out in his own words: the EVIDENCE diagram, not the one reconstruction.",
     },
   },
   "games-ancient-and-oriental": {
     paperback: {
       built: true,
-      path: `${BOOKS}/PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/ASSETS/cover/paperback-wrap-v1.pdf`,
+      path: bookPath("01-GAMES-ANCIENT-AND-ORIENTAL", "ASSETS", "cover", "paperback-wrap-v1.pdf"),
       pageCount: 78, spineIn: 0.1757,
       wrapIn: "12.4257 × 9.2500 (white)",
       note: "built 2026-09-05 by the project's own BUILD/build_cover.py, which reads the FINAL page count out of QA/interior-main.json — that is, after the companion leaf — so the spine is computed from the count the book will actually have. The device is the board of thirty compartments, the EVIDENCE board; putting a reconstructed board on the cover would have stated the book's argument backwards.",
@@ -64,7 +77,7 @@ export const REBUILT_COVERS = {
   "mythical-monsters": {
     paperback: {
       built: true,
-      path: `${BOOKS}/PHASE-1-BOOK/05-MYTHICAL-MONSTERS/ASSETS/cover/paperback-wrap-v1.pdf`,
+      path: bookPath("05-MYTHICAL-MONSTERS", "ASSETS", "cover", "paperback-wrap-v1.pdf"),
       pageCount: 74, spineIn: 0.1666, wrapIn: "12.4166 × 9.2500 (white)",
       note: "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 74 — after the companion leaf — so its spine agrees with this pipeline's arithmetic.",
     },
@@ -72,7 +85,7 @@ export const REBUILT_COVERS = {
   "indian-myth-and-legend": {
     paperback: {
       built: true,
-      path: `${BOOKS}/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/ASSETS/cover/paperback-wrap-v1.pdf`,
+      path: bookPath("04-INDIAN-MYTH-AND-LEGEND", "ASSETS", "cover", "paperback-wrap-v1.pdf"),
       pageCount: 94, spineIn: 0.2117, wrapIn: "12.4617 × 9.2500 (white)",
       note: "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 94 — after the companion leaf — so its spine agrees with this pipeline's arithmetic and nothing had to be rebuilt after the splice.",
     },
@@ -80,7 +93,7 @@ export const REBUILT_COVERS = {
   "myths-and-legends-of-china": {
     paperback: {
       built: true,
-      path: `${BOOKS}/PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/ASSETS/cover/paperback-wrap-v1.pdf`,
+      path: bookPath("03-MYTHS-AND-LEGENDS-OF-CHINA", "ASSETS", "cover", "paperback-wrap-v1.pdf"),
       pageCount: 108, spineIn: 0.2432, wrapIn: "12.4932 × 9.2500 (white)",
       note: "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 108 — that is, after the companion leaf. Its spine and wrap agree with this pipeline's own arithmetic to four decimal places (0.243216 / 12.493216), so nothing had to be rebuilt after the splice.",
     },
@@ -88,7 +101,7 @@ export const REBUILT_COVERS = {
   "seneca-selected-dialogues": {
     paperback: {
       built: true,
-      path: `${BOOKS}/PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/ASSETS/cover/paperback-wrap-v1.pdf`,
+      path: bookPath("02-SENECA-SELECTED-DIALOGUES", "ASSETS", "cover", "paperback-wrap-v1.pdf"),
       pageCount: 154, spineIn: 0.3468, wrapIn: "12.5968 × 9.2500 (white)",
       note: "rebuilt 2026-09-04 at the final page count of 154, after the companion leaf. The count moved 156 -> 154 when a markdown-bold rendering defect was fixed and the text reflowed; the cover was rebuilt rather than reused.",
     },

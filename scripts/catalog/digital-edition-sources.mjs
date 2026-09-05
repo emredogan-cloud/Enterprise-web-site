@@ -26,68 +26,75 @@
  * digital edition since. Every path below was checked against the filesystem
  * on 2026-09-05.
  */
-
-const ROOT = "/home/emre/Downloads/MY-DİGİTAL-BOOK";
+import { bookPath } from "../factory/book-dirs.mjs";
 
 export const DIGITAL_EDITION_SOURCES = [
   {
     slug: "codex-bestiarium",
-    printInterior: `${ROOT}/CODEX-SERIES/CODEX-BESTIARIUM/04_PRINT/PAPERBACK/CODEX_BESTIARIUM_INTERIOR_PAPERBACK.pdf`,
+    printInterior: bookPath("CODEX-BESTIARIUM", "04_PRINT", "PAPERBACK", "CODEX_BESTIARIUM_INTERIOR_PAPERBACK.pdf"),
   },
   {
     slug: "codex-enigmatica",
-    printInterior: `${ROOT}/CODEX-SERIES/CODEX-ENIGMATICA/08_OUTPUT/PAPERBACK/interior.pdf`,
+    printInterior: bookPath("CODEX-ENIGMATICA", "08_OUTPUT", "PAPERBACK", "interior.pdf"),
   },
   {
     slug: "the-great-book-of-world-games",
-    printInterior: `${ROOT}/GAMES-PUZZLE/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/PAPERBACK/GreatBookOfWorldGames_interior_paperback.pdf`,
+    printInterior: bookPath("THE-GREAT-BOOK-OF-WORLD-GAMES", "08_OUTPUT", "PAPERBACK", "GreatBookOfWorldGames_interior_paperback.pdf"),
   },
   {
     slug: "the-great-book-of-world-myths",
-    printInterior: `${ROOT}/GAMES-PUZZLE/THE-GREAT-BOOK-OF-WORLD-MYTHS/08_OUTPUT/paperback/interior.pdf`,
+    printInterior: bookPath("THE-GREAT-BOOK-OF-WORLD-MYTHS", "08_OUTPUT", "paperback", "interior.pdf"),
   },
   {
     // Valice Classics 2 (2026-09-02). The 6 × 9 print interior is already
     // small (scan-resolution figures), so the /ebook pass mostly normalises.
     slug: "the-puzzles-of-henry-dudeney",
-    printInterior: `${ROOT}/GAMES-PUZZLE/THE-PUZZLES-OF-HENRY-DUDENEY/OUTPUT/interior-main.pdf`,
+    printInterior: bookPath("03-THE-PUZZLES-OF-HENRY-DUDENEY", "OUTPUT", "interior-main.pdf"),
     // The second delivered artifact. One purchase, both files: the worker
     // watermarks the PDF page by page and the EPUB by appending a licence
     // leaf and writing the same line into the package metadata.
-    epub: `${ROOT}/GAMES-PUZZLE/THE-PUZZLES-OF-HENRY-DUDENEY/OUTPUT/the-puzzles-of-henry-dudeney-main.epub`,
+    epub: bookPath("03-THE-PUZZLES-OF-HENRY-DUDENEY", "OUTPUT", "the-puzzles-of-henry-dudeney-main.epub"),
   },
   {
     // Valice Classics 8 (2026-09-05), Phase 2 book 1. The interior carries five
     // raster plates and nineteen rebuilt move tables, so the /ebook pass does
     // downsample rather than merely normalise.
     slug: "games-ancient-and-oriental",
-    printInterior: `${ROOT}/PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/OUTPUT/interior-main.pdf`,
-    epub: `${ROOT}/PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/OUTPUT/games-ancient-and-oriental.epub`,
+    printInterior: bookPath("01-GAMES-ANCIENT-AND-ORIENTAL", "OUTPUT", "interior-main.pdf"),
+    epub: bookPath("01-GAMES-ANCIENT-AND-ORIENTAL", "OUTPUT", "games-ancient-and-oriental.epub"),
+  },
+  {
+    // Valice Classics 9 (2026-09-05). Phase 2 book 2. Five diagram plates and one
+    // rebuilt move table; no photographic matter, so the /ebook pass normalises
+    // rather than downsamples.
+    slug: "korean-games",
+    printInterior: bookPath("02-KOREAN-GAMES", "OUTPUT", "interior-main.pdf"),
+    epub: bookPath("02-KOREAN-GAMES", "OUTPUT", "korean-games.epub"),
   },
   {
     // Valice Classics 3 (2026-09-04). Text-only 6 × 9 interior with no plates,
     // so the /ebook pass is a normalising pass rather than a downsampling one.
     slug: "epictetus-discourses-and-enchiridion",
-    printInterior: `${ROOT}/PHASE-1-BOOK/01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pdf`,
-    epub: `${ROOT}/PHASE-1-BOOK/01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/epictetus-discourses-and-enchiridion.epub`,
+    printInterior: bookPath("01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION", "OUTPUT", "interior-main.pdf"),
+    epub: bookPath("01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION", "OUTPUT", "epictetus-discourses-and-enchiridion.epub"),
   },
   {
     // Valice Classics 5 (2026-09-04). Volume one of two.
     slug: "myths-and-legends-of-china",
-    printInterior: `${ROOT}/PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pdf`,
-    epub: `${ROOT}/PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/myths-and-legends-of-china.epub`,
+    printInterior: bookPath("03-MYTHS-AND-LEGENDS-OF-CHINA", "OUTPUT", "interior-main.pdf"),
+    epub: bookPath("03-MYTHS-AND-LEGENDS-OF-CHINA", "OUTPUT", "myths-and-legends-of-china.epub"),
   },
   {
     // Valice Classics 6 (2026-09-04). Volume one of four.
     slug: "indian-myth-and-legend",
-    printInterior: `${ROOT}/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf`,
-    epub: `${ROOT}/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/indian-myth-and-legend.epub`,
+    printInterior: bookPath("04-INDIAN-MYTH-AND-LEGEND", "OUTPUT", "interior-main.pdf"),
+    epub: bookPath("04-INDIAN-MYTH-AND-LEGEND", "OUTPUT", "indian-myth-and-legend.epub"),
   },
   {
     // Valice Classics 7 (2026-09-04). Volume one of three.
     slug: "mythical-monsters",
-    printInterior: `${ROOT}/PHASE-1-BOOK/05-MYTHICAL-MONSTERS/OUTPUT/interior-main.pdf`,
-    epub: `${ROOT}/PHASE-1-BOOK/05-MYTHICAL-MONSTERS/OUTPUT/mythical-monsters.epub`,
+    printInterior: bookPath("05-MYTHICAL-MONSTERS", "OUTPUT", "interior-main.pdf"),
+    epub: bookPath("05-MYTHICAL-MONSTERS", "OUTPUT", "mythical-monsters.epub"),
   },
   {
     // Valice Script 2 (2026-09-04). The only workbook in this list, and the
@@ -97,18 +104,18 @@ export const DIGITAL_EDITION_SOURCES = [
     // of once. The interior is vector at 0.4 MB, so the /ebook pass
     // normalises rather than downsamples.
     slug: "greek-alphabet-handwriting-workbook",
-    printInterior: `${ROOT}/LANGUAGE-SERIES/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/interior.pdf`,
+    printInterior: bookPath("02-GREEK-ALPHABET-HANDWRITING-WORKBOOK", "OUTPUT", "KDP", "PAPERBACK", "interior.pdf"),
     // Not the workbook as an ebook — a workbook's value is the empty box, and
     // an empty box cannot be written in on a screen. This is the other half:
     // a reflowable reference edition of the same material, 36 chapters with
     // the stroke diagrams as scalable SVG. One purchase, both files.
-    epub: `${ROOT}/LANGUAGE-SERIES/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/EBOOK/greek-alphabet-reference.epub`,
+    epub: bookPath("02-GREEK-ALPHABET-HANDWRITING-WORKBOOK", "OUTPUT", "EBOOK", "greek-alphabet-reference.epub"),
   },
   {
     // Valice Classics 4 (2026-09-04).
     slug: "seneca-selected-dialogues",
-    printInterior: `${ROOT}/PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pdf`,
-    epub: `${ROOT}/PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/OUTPUT/seneca-selected-dialogues.epub`,
+    printInterior: bookPath("02-SENECA-SELECTED-DIALOGUES", "OUTPUT", "interior-main.pdf"),
+    epub: bookPath("02-SENECA-SELECTED-DIALOGUES", "OUTPUT", "seneca-selected-dialogues.epub"),
   },
 ];
 

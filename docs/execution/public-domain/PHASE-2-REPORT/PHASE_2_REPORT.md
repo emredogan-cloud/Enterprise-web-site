@@ -2,14 +2,20 @@
 
 **Branch: `feature/public-domain-phase-2` · NOT MERGED · started 4 September 2026**
 
-**Phase directory convention:** every phase now has one parent under `MY-DİGİTAL-BOOK/` —
-`PHASE-1-BOOK/`, `PHASE-2-BOOK/`, and so on. Falkener lives at
-`PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL`.
+**Where the books live is no longer written down.** `MY-DİGİTAL-BOOK/` was reorganised
+three times in a week — flat, then into series folders, then into
+`PUBLİC-PHASE-1-BOOK/` and `PUBLİC-PHASE-2-BOOK/`, and then those two inside a
+`PUBLIC-BOOKS/` folder, the last of them **while a build was running**. Each time every
+hard-coded path in this repository broke silently. `scripts/factory/book-dirs.mjs` now
+finds a book by its own directory name, at any depth, with or without a numeric prefix,
+and throws rather than guessing. The three path tables and the cover table all read
+through it.
 
-> **Status: IN PROGRESS.** The shared scan/OCR pipeline is built and Book 1 is
-> ingested, rights-verified and scoped. No Phase 2 book is complete. Nothing in this
-> branch has been merged to `main` or deployed to production, and nothing will be
-> without explicit Founder instruction.
+> **Status: IN PROGRESS.** The shared scan/OCR pipeline is built. **Books 1 and 2 are
+> built end to end** and each has been through an adversarial review; both are held on
+> Founder signatures and one blocked live write apiece. Books 3, 4 and 5 are not started.
+> Nothing in this branch has been merged to `main` or deployed to production, and nothing
+> will be without explicit Founder instruction.
 
 ---
 
@@ -20,7 +26,7 @@ Taken from `PUBLIC_DOMAIN_MASTER_ROADMAP.md` without substitution.
 | # | Book | Author | Pub. | Source | State |
 |---|---|---|---|---|---|
 | 1 | Games Ancient and Oriental, and How to Play Them | Edward Falkener | 1892 | IA `gamesancientorie00falkuoft` — **scan, OCR** | **built end to end; three review rounds; held on F-019, F-020, F-021** |
-| 2 | Korean Games | Stewart Culin | 1895 | IA `koreangameswith00culigoog` — **scan, OCR** | **ingested, rights verified, scoped, parsed, corrected** |
+| 2 | Korean Games | Stewart Culin | 1895 | IA `koreangameswith00culigoog` — **scan, OCR** | **built end to end; adversarial review run and its six findings fixed; held on F-022, F-023** |
 | 3 | Chess and Playing Cards | Stewart Culin | 1898 | IA `chessplayingcard00culi` — **scan, OCR** | not started |
 | 4 | Mancala, the National Game of Africa | Stewart Culin | 1896 | PG 66220 — proof-read HTML | not started |
 | 5 | The Traditional Games of England, Scotland, and Ireland | Alice Bertha Gomme | 1894/98 | PG 41727 / 41728 | not started |

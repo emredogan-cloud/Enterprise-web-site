@@ -228,6 +228,22 @@ export const COMPANION_PAGE_COPY = {
       { asset: "the-names", term: "The names", gloss: "what the apostrophe and the breve are doing, after which the names stop being noise" },
     ],
   },
+  "korean-games": {
+    companionSlug: "korean-games",
+    imprint: "Valice Press",
+    headline: "Print the boards.\nPlay the games.",
+    promise:
+      "Culin watched these games being played and then put the diagrams in " +
+      "plates this edition cannot reproduce. Here they are, free, for readers " +
+      "of this edition.",
+    listHeading: "WHAT IS WAITING FOR YOU",
+    bullets: [
+      { asset: "boards", term: "Three boards", gloss: "nyout, merrells and four-field kono, at playing size, to print and play on" },
+      { asset: "spellings-card", term: "The spellings", gloss: "Culin's 1895 romanisation against the two in use today, so you can look anything up" },
+      { asset: "register-card", term: "The Register", gloss: "what Culin saw, what he was told, and what he concluded, kept apart" },
+      { asset: "how-to-play", term: "The playing guide", gloss: "every game you can actually sit down and play, and what he leaves you to settle" },
+    ],
+  },
   "games-ancient-and-oriental": {
     companionSlug: "games-ancient-and-oriental",
     imprint: "Valice Press",
@@ -555,6 +571,19 @@ export const COMPANION_PAGE_PLAN = {
     },
   },
 
+  "korean-games": {
+    style: { fonts: TYPE.liberationSerif, marginIn: 0.62, rule: 0.7 },
+    editions: {
+      paperback: {
+        // Phase 2 book 2. Same arrangement as book 1: the interior is typeset
+        // deliberately ODD so this pipeline's appended leaf produces the even count
+        // KDP requires, and the cover is built from the FINAL count, not this one.
+        mode: "append", page: null, pagesBefore: 143, pagesAfter: 144, recto: true,
+        folio: { style: "centre", offset: 0, size: 8.6, baselineFromBottomPt: 28.8, outerMarginPt: 36 },
+        replacing: null,
+      },
+    },
+  },
   "games-ancient-and-oriental": {
     style: { fonts: TYPE.liberationSerif, marginIn: 0.62, rule: 0.7 },
     editions: {

@@ -73,6 +73,9 @@ export const EDITION_GEOMETRY = {
   "epictetus-discourses-and-enchiridion": {
     paperback: { trimWidthIn: 6, trimHeightIn: 9, binding: "paperback", paper: "white", paperVerified: "project" },
   },
+  "korean-games": {
+    paperback: { trimWidthIn: 6, trimHeightIn: 9, binding: "paperback", paper: "white", paperVerified: "project" },
+  },
   "games-ancient-and-oriental": {
     paperback: { trimWidthIn: 6, trimHeightIn: 9, binding: "paperback", paper: "white", paperVerified: "project" },
   },

@@ -134,6 +134,18 @@ export const DIRECT_SALE_EBOOKS = [
     priceCents: 799,
   },
   {
+    slug: "korean-games",
+    name: "Korean Games: The Games of Chance and Divination (Annotated)",
+    description:
+      "Culin's 1895 survey of Korean games of chance, strategy and divination \u2014 his introduction and games LXX to XCVII complete, in six parts, including W. H. Wilkinson's chapter on Korean chess. Original to this edition: a Register of Record and Inference separating, part by part, what Culin sets down at first hand from what he was told and what he concluded; a Note on the Spellings bridging his 1895 romanisation to the two in use today; a playing guide that says which games can actually be played from the book and which cannot; five diagrams drawn from the descriptions in the text, each marked EVIDENCE or RECONSTRUCTION on its face; a who's-who, a glossary, a chronology and an index of subjects. Wilkinson's thirty-move illustrative game is rebuilt from the position of every word on the page \u2014 read as prose, as every other digital text of this book reads it, that page is gibberish. 144 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included.",
+    // price-engine.mjs 2026-09-05, direct ebook, public domain: recommended
+    // $6.99; $8.99 nets $8.04 after Paddle. The Classics band is $7.99\u20139.99.
+    // Volume 8 took the floor because it is 78 pages; this is 144 with 23.0%
+    // original matter, five diagrams and a rebuilt game table, so it sits in the
+    // middle of the band.
+    priceCents: 899,
+  },
+  {
     slug: "seneca-selected-dialogues",
     name: "Seneca: Selected Dialogues (Annotated)",
     description:

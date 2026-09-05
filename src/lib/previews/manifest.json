@@ -293,5 +293,43 @@
         "page": 57
       }
     ]
+  },
+  "korean-games": {
+    "note": "Wilkinson on the Korean pieces, and his illustrative game rebuilt from the position of every word on the scanned page.",
+    "pages": [
+      {
+        "src": "/images/previews/korean-games/p61.webp",
+        "page": 61
+      },
+      {
+        "src": "/images/previews/korean-games/p62.webp",
+        "page": 62
+      },
+      {
+        "src": "/images/previews/korean-games/p63.webp",
+        "page": 63
+      },
+      {
+        "src": "/images/previews/korean-games/p64.webp",
+        "page": 64
+      }
+    ]
+  },
+  "games-ancient-and-oriental": {
+    "note": "Dr Birch on the Manchester relics, with the board of thirty compartments drawn from his description and marked EVIDENCE.",
+    "pages": [
+      {
+        "src": "/images/previews/games-ancient-and-oriental/p21.webp",
+        "page": 21
+      },
+      {
+        "src": "/images/previews/games-ancient-and-oriental/p22.webp",
+        "page": 22
+      },
+      {
+        "src": "/images/previews/games-ancient-and-oriental/p23.webp",
+        "page": 23
+      }
+    ]
   }
 }

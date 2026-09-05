@@ -1,0 +1,132 @@
+{
+  "generatedAt": "2026-09-05",
+  "book": "korean-games",
+  "format": "paperback",
+  "title": "Korean Games: The Games of Chance and Divination",
+  "asin": null,
+  "kdpState": "not_created",
+  "interior": {
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-2-BOOK/02-KOREAN-GAMES/OUTPUT/interior-main.pdf",
+    "sha256": "404fee6b8fed6a2de5daf6d559a713c44347c2f8eda8a499872fbe4bf271eea8",
+    "bytes": 863688,
+    "pagesBefore": 143,
+    "pagesAfter": 144,
+    "companionPage": 144,
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-2-BOOK/02-KOREAN-GAMES/OUTPUT/interior-main.pre-companion.pdf",
+    "builtBy": "scripts/factory/companion-page.py (spliced)"
+  },
+  "companion": {
+    "printedUrl": "valicepress.com/companion/korean-games",
+    "qrUrl": "https://valicepress.com/companion/korean-games",
+    "qr": {
+      "modules": 33,
+      "module_pt": 4.896418909090911,
+      "module_mm": 1.7273477818181824,
+      "version": 4,
+      "error": "M",
+      "side_pt": 161.58182400000004,
+      "fraction_of_usable_height": 0.28920000000000007,
+      "x_pt": 135.20908799999998,
+      "y_pt": 282.87789393371406
+    },
+    "dedicatedPage": true,
+    "emailWall": false
+  },
+  "spine": {
+    "pagesBefore": 143,
+    "pagesAfter": 144,
+    "paper": "white",
+    "binding": "paperback",
+    "trim": "6×9 in",
+    "before": {
+      "spineWidthIn": 0.322036,
+      "wrapWidthIn": 12.572036,
+      "wrapHeightIn": 9.25,
+      "spineTextAllowed": true
+    },
+    "after": {
+      "spineWidthIn": 0.324288,
+      "wrapWidthIn": 12.574288,
+      "wrapHeightIn": 9.25,
+      "spineTextAllowed": true
+    },
+    "deltaSpineIn": 0.002252,
+    "deltaWrapWidthIn": 0.002252,
+    "withinKdpTolerance": true,
+    "coverRebuildRequired": false,
+    "coverRebuildCorrect": true,
+    "hardcoverGeometryMustBeRead": false,
+    "barcodeZoneAffected": false,
+    "verdict": "wrap width moves 0.002252 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.002252 in and the house rule is that each edition's cover reads its own page count"
+  },
+  "cover": {
+    "built": true,
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-2-BOOK/02-KOREAN-GAMES/ASSETS/cover/paperback-wrap-v1.pdf",
+    "pageCount": 142,
+    "spineIn": 0.3198,
+    "wrapIn": "12.5698 × 9.2500 (white)",
+    "note": "built 2026-09-05 by the project's own BUILD/build_cover.py, which reads the FINAL page count out of QA/interior-main.json — that is, after the companion leaf — so the spine is computed from the count the book will actually have. At 142 pp this one clears the 79-page floor and does carry spine text. The device is the nyout board, twenty marks round a circle and an interior cross of nine, which Culin counts out in his own words: the EVIDENCE diagram, not the one reconstruction."
+  },
+  "coverAction": "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior",
+  "uploadRequired": true,
+  "hold": null,
+  "proofRecommended": true,
+  "proofWhy": "the block changed thickness, so the wrap is new and unproved",
+  "verification": [
+    {
+      "name": "page-count",
+      "pass": true,
+      "detail": "144 pages (expected 144)"
+    },
+    {
+      "name": "printed-url",
+      "pass": true,
+      "detail": "valicepress.com/companion/korean-games"
+    },
+    {
+      "name": "canonical-host",
+      "pass": true,
+      "detail": "no forbidden host on the page"
+    },
+    {
+      "name": "no-email-wall",
+      "pass": true,
+      "detail": "the page asks for nothing"
+    },
+    {
+      "name": "headline",
+      "pass": true,
+      "detail": "headline present"
+    },
+    {
+      "name": "eyebrow",
+      "pass": true,
+      "detail": "CONTINUE WITH VALICE PRESS"
+    },
+    {
+      "name": "fonts-embedded",
+      "pass": true,
+      "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
+    },
+    {
+      "name": "qr-floor",
+      "pass": true,
+      "detail": "28.9% of usable height"
+    },
+    {
+      "name": "qr-module-size",
+      "pass": true,
+      "detail": "1.73 mm per module"
+    },
+    {
+      "name": "pdf-metadata",
+      "pass": true,
+      "detail": "title=\"Korean Games: The Games of Chance and Divination: Stewart Culin's 1895 Survey, Annotated — with a Register of Record and Inference, a Bridge to the Modern Spellings, Five Original Diagrams and Wilkinson's Chess Game Rebuilt from the Page\" author=\"Emre Doğan\""
+    },
+    {
+      "name": "qr-matches-url",
+      "pass": true,
+      "detail": "33×33 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/korean-games"
+    }
+  ]
+}

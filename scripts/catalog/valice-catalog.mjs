@@ -1398,6 +1398,80 @@ export const BOOKS = [
       "No Kindle edition planned at launch: KDP caps public-domain content at the 35% royalty tier, and the Kindle store already carries free scans of this title. No hardcover: 78 pages is at the very bottom of KDP's 75\u2013550 hardcover range and would bind badly. No large print: the move tables do not enlarge usefully. Each decision is recorded rather than assumed.",
     ],
   },
+
+  {
+    slug: "korean-games",
+    title: "Korean Games: The Games of Chance and Divination",
+    subtitle:
+      "Stewart Culin's 1895 Survey, Annotated \u2014 with a Register of Record and Inference, a Bridge to the Modern Spellings, Five Original Diagrams and Wilkinson's Chess Game Rebuilt from the Page",
+    language: "en",
+    pageCount: 144,
+    categories: ["games-and-play", "classics-and-philosophy"],
+    authors: ["emre-dogan"],
+    bisac: ["GAM001000", "SOC002010"],
+    series: { name: "Valice Classics", volume: 9 },
+    // PHASE 2, BOOK 2. Built from a Google scan on the Internet Archive, which is a
+    // poorer source than book 1's: no per-word confidence, tissue guards ghosting the
+    // facing page into the text layer, and a third of the book in Korean, Chinese and
+    // Japanese script the OCR cannot read at all. All three are handled explicitly.
+    // The single-character-confusion detector that found real errors on Falkener
+    // proposed 137 substitutions here and was SWITCHED OFF as a candidate list: it
+    // cannot tell a misread English word from a correctly read Korean one. Only closed
+    // fault classes were applied. QA/parse-report.json and QA/debris.json have the counts.
+    websiteStatus: "draft",
+    linkageDecision: null,
+    kdpSelect: false,
+    directSale: true,
+    // As book 1: the product and price are written and priced, but creating them on the
+    // live Paddle account is a write this environment's permission layer blocks, and
+    // routing around that block would defeat it. FOUNDER F-022 holds the one command.
+    // Until it runs the ebook is `coming_soon`, not `available`.
+    directSaleBlockedBy: "paddle-not-provisioned",
+    paddlePriceId: null,
+    onelinePromise:
+      "The book that made games evidence \u2014 with the line drawn, for the first time, between what Culin watched and what he concluded, and his Korean made searchable again.",
+    description:
+      "In 1893 a young Philadelphian who had never left America put on an exhibition of the world's games in Chicago, and two years later published the book that came out of it. Stewart Culin was thirty-seven and had never been to Korea. He says so himself, in his second paragraph, without apology: the collection was made in America, from museum specimens, from Chinese and Japanese shopkeepers in Eastern cities, and from Korean informants he names. Out of it he built a thesis \u2014 that games are not amusements but the wreckage of divination \u2014 and pressed it hard enough that a reader cannot always tell which sentences are the record and which are the argument. This edition draws the line. A Register of Record and Inference gives, part by part, what Culin sets down at first hand, what he is told, and what he concludes. A Note on the Spellings bridges his 1895 romanisation to the two in use today, sixteen words at a time, so that a reader who wants to look anything up can: nyout is yut, tjyang-keui is janggi, pa-tok is baduk. His introduction and games LXX to XCVII complete, in six parts \u2014 the games of the throw, the two board games, the games drawn on the ground, the tablets and the divinations, the cards, and the lottery and the riddles. W. H. Wilkinson's chapter on Korean chess is here with its thirty-move illustrative game rebuilt from the position of every word on the page: read as prose, which is what every other digital text of this book does with it, that page comes out as gibberish. Around them: five original diagrams marked EVIDENCE or RECONSTRUCTION on their faces, a playing guide that says plainly which games you can sit down and play and which you cannot, a glossary, a who's-who, a chronology, an index of subjects generated from the text, and a note on the text that says exactly what this scan can and cannot give you. 144 pages, 6 \u00d7 9 in.",
+    idealReader:
+      "Someone who came for the games and stays for the question of how much a careful observer's theory should be allowed to colour what he wrote down.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(8.99),
+        pageCount: 144,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: "books/korean-games/master/v1/master.pdf",
+        epubFileKey: "books/korean-games/master/v1/master.epub",
+        priceBasis:
+          "price-engine.mjs 2026-09-05, direct ebook, public domain: recommended $6.99, and $8.99 nets $8.04 after Paddle. The Valice Classics band is $7.99\u20139.99. Book 8 of the series took the $7.99 floor because it is 78 pages; this is 144 with 23.0% original matter (QA/differentiation.json), five original diagrams and a rebuilt game table, so it sits in the middle of the band rather than at its floor.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(16.99),
+        pageCount: 144,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-05, 144 pp 6\u00d79 B&W: prints at $2.73, KDP minimum list $4.55, recommended $10.99. $16.99 nets $7.46 (43.9%). The Classics print band is $16.99\u201319.99 and assumes a volume of about 150 pages; at 144 this is within a rounding of that assumption, so the band's floor applies rather than the short-volume exception made for book 8. The Founder decides at Gate 8.",
+      },
+    ],
+    blockers: [
+      "The ebook is built, priced and ready but not yet on sale: creating the Paddle product and price is a live write that this environment's permission layer blocks, and working around it would defeat the block. One command, in FOUNDER F-022.",
+      "Not on KDP. The interior and wrap are built and packaged; the print upload is a Founder action \u2014 see the KDP upload handbook in PHASE-2-REPORT.",
+      "About a third of Culin's text quotes Korean, Chinese and Japanese in their own scripts, and this scan's text layer reads none of it. Those runs are marked where they stand rather than guessed at: 502 markers in the finished book. The page images are free and are the place to go for them. This is stated in the Note on the Text, not hidden.",
+      "Thirty-six passages \u2014 about 598 words \u2014 are the scanner's reading of a line figure, or of the ghost a tissue guard prints onto the facing page, and are marked rather than set as Culin's prose. Every one is listed with what the scanner made of it in QA/debris.json, so the refusal can be checked. Three of Culin's tables are described rather than reproduced for the same reason.",
+      "Games I to LXIX are not in this volume. They are 20,648 words of children's amusements in one-paragraph entries, and they carry none of the argument the book is built on. The scope was decided and recorded before any apparatus was written, which is the order Phase 1 taught.",
+      "No Kindle edition planned at launch: KDP caps public-domain content at the 35% royalty tier, and the Kindle store already carries free scans of this title. No hardcover and no large print at launch: both are open decisions rather than refusals, and neither is claimed as planned until it is built.",
+    ],
+  },
   {
     slug: "codex-enigmatica",
     title: "Codex Enigmatica",

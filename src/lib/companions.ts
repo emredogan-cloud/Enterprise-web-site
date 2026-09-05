@@ -681,6 +681,99 @@ const EPICTETUS: Companion = {
  * in the book, so the sheet and the diagram cannot disagree, and each carries
  * the same EVIDENCE or RECONSTRUCTION mark.
  */
+/**
+ * Korean Games (Culin, 1895) — Valice Classics 9.
+ *
+ * Culin recorded these games from people who were playing them, and then the
+ * diagrams that would let a reader play went into plates and text figures this
+ * edition cannot reproduce: he names two of his artists — Ki San, the Korean
+ * painter Kim Chun-gŭn, and Teotiku Morimoto — and no death year is recoverable
+ * for either. So the boards here are drawn from his descriptions by the same
+ * code path as the figures in the book, and the sheet and the diagram cannot
+ * disagree. The spellings card is peculiar to this book: a reader who wants to
+ * look anything up has to get from Culin's tjyang-keui to the janggi the rest of
+ * the world writes, and no edition of this text has ever supplied the bridge.
+ */
+const KOREAN_GAMES: Companion = {
+  slug: "korean-games",
+  bookSlug: "korean-games",
+  bookTitle: "Korean Games: The Games of Chance and Divination",
+  state: "book-not-yet-available",
+  stateNote:
+    "The Valice edition is built, validated and priced but not yet on sale — " +
+    "creating the payment product is a live write that is held behind a " +
+    "founder action. Everything on this page is free and works today regardless.",
+  intro:
+    "Free material for Culin's Korean games: three boards at playing size to " +
+    "print, the bridge from his 1895 spellings to the ones in use today, the " +
+    "register that keeps what he saw apart from what he concluded, and the " +
+    "guide to what you can actually sit down and play.",
+  newsletterSource: "korean-games-companion",
+  assetsHeading: "Print and play",
+  rightsNote:
+    "Stewart Culin died in 1929 and W. H. Wilkinson, who wrote the chapter on " +
+    "chess, died in 1930, so their text is in the public domain (source: " +
+    "Internet Archive, koreangameswith00culigoog). None of the 1895 plates or " +
+    "text figures is reproduced. Culin names two of his artists — Ki San, the " +
+    "Korean painter Kim Chun-gŭn, and Teotiku Morimoto — and no death year is " +
+    "recoverable for either; the remaining figures are unattributed. Every " +
+    "board on these sheets was drawn for this edition from the descriptions in " +
+    "Culin's text.",
+  assets: [
+    {
+      id: "boards",
+      title: "Three boards to print and play on",
+      description:
+        "The nyout board — twenty marks round a circle and an interior cross " +
+        "of nine — the merrells board of twenty-four points, and the " +
+        "five-by-five lattice of four-field kono, at playing size on US " +
+        "Letter. Each carries the mark it carries in the book: EVIDENCE where " +
+        "Culin describes the board, RECONSTRUCTION where the starting array is " +
+        "this edition's reading. Coins or dried beans will do for men.",
+      kind: "static",
+      href: "/companion/korean-games/boards.pdf",
+      meta: "PDF · US Letter · 4 pages",
+    },
+    {
+      id: "spellings-card",
+      title: "A Note on the Spellings",
+      description:
+        "Sixteen of Culin's words against Revised Romanisation and " +
+        "McCune–Reischauer: nyout is yut, tjyang-keui is janggi, pa-tok is " +
+        "baduk. The book keeps his spellings, because changing them would " +
+        "quietly claim he wrote something he did not. This card is how you " +
+        "look anything up.",
+      kind: "static",
+      href: "/companion/korean-games/spellings-card.pdf",
+      meta: "PDF · US Letter · 2 pages",
+    },
+    {
+      id: "register-card",
+      title: "The Register of Record and Inference",
+      description:
+        "For each of the six parts: what Culin records at first hand, what he " +
+        "is told, what he concludes, and how to read the difference. He is a " +
+        "careful observer and a bold theorist, and the two are not the same " +
+        "instrument.",
+      kind: "static",
+      href: "/companion/korean-games/register-card.pdf",
+      meta: "PDF · US Letter · 2 pages",
+    },
+    {
+      id: "how-to-play",
+      title: "The playing guide",
+      description:
+        "Every game in the book a reader can actually sit down and play, with " +
+        "what Culin leaves out said plainly — and a section on what cannot be " +
+        "played from these pages at all, because a guide that lists only its " +
+        "successes is advertising.",
+      kind: "static",
+      href: "/companion/korean-games/how-to-play.pdf",
+      meta: "PDF · US Letter · 2 pages",
+    },
+  ],
+};
+
 const GAMES_ANCIENT: Companion = {
   slug: "games-ancient-and-oriental",
   bookSlug: "games-ancient-and-oriental",
@@ -1159,6 +1252,7 @@ const COMPANIONS: readonly Companion[] = [
   MYTH_HUNTERS,
   EPICTETUS,
   GAMES_ANCIENT,
+  KOREAN_GAMES,
   SENECA,
   GREEK,
   CHINA_GODS,

@@ -27,8 +27,8 @@
  * the preview a substitute for the book. The Myth Hunter's Field Book gets
  * puzzle pages WITHOUT their answer key, which is printed elsewhere.
  */
+import { bookPath } from "../factory/book-dirs.mjs";
 
-const ROOT = "/home/emre/Downloads/MY-DİGİTAL-BOOK";
 const BUILT = "scripts/tmp/digital-editions";
 
 export const PREVIEW_PAGES = [
@@ -42,7 +42,7 @@ export const PREVIEW_PAGES = [
   },
   {
     slug: "codex-mythologica",
-    source: `${ROOT}/CODEX-SERIES/CODEX-MYTHOLOGICA/04_PRINT/PAPERBACK/CODEX_MYTHOLOGICA_INTERIOR_PAPERBACK.pdf`,
+    source: bookPath("CODEX-MYTHOLOGICA", "04_PRINT", "PAPERBACK", "CODEX_MYTHOLOGICA_INTERIOR_PAPERBACK.pdf"),
     pages: [24, 27],
     note: "Inside the Greek sequence, mid-retelling, at full narrative length.",
   },
@@ -91,7 +91,7 @@ export const PREVIEW_PAGES = [
     // next unrelated run. The path is corrected here and the builder now
     // keeps an already-rendered preview instead of dropping it.
     // The page range is unaffected: the leaf was appended after p.124.
-    source: `${ROOT}/LANGUAGE-SERIES/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_126pp.pdf`,
+    source: bookPath("01-KOREAN-HANGUL-HANDWRITING-WORKBOOK", "09_OUTPUT", "FINAL", "paperback", "paperback_interior_8.5x11_126pp.pdf"),
     // Lesson 4 entire: the rule for where a letter goes inside the square,
     // the six words built from it, and both practice pages. It is the step
     // the book exists for, and the one a buyer wants to see done well before
@@ -101,7 +101,7 @@ export const PREVIEW_PAGES = [
   },
   {
     slug: "greek-alphabet-handwriting-workbook",
-    source: `${ROOT}/LANGUAGE-SERIES/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/interior.pdf`,
+    source: bookPath("02-GREEK-ALPHABET-HANDWRITING-WORKBOOK", "OUTPUT", "KDP", "PAPERBACK", "interior.pdf"),
     // Lesson 8, beta, as the spread is actually printed: teaching page on the
     // verso, practice on the recto. Beta is the deliberate choice rather than
     // the first letter — it is the letter the 1998 Travlos study found Greek
@@ -159,8 +159,34 @@ export const PREVIEW_PAGES = [
     note: "The opening of On Peace of Mind, with the argument map that gives every unnumbered chapter a description Seneca never supplied.",
   },
   {
+    // Phase 2 book 1. This range was missing when book 2's was added — the title
+    // had gone through the whole pipeline with no preview at all, so its page on
+    // the storefront offered nothing to read.
+    slug: "games-ancient-and-oriental",
+    source: `${BUILT}/games-ancient-and-oriental.pdf`,
+    // Birch's account of the Manchester relics, running into the thirty-square
+    // board drawn from his description and marked EVIDENCE on its face: the
+    // specialist's own words and the edition's diagram on the same spread.
+    // Three pages, not four: at 78 pages this book is short enough that a fourth
+    // would put the preview over the 5% of the volume the catalogue test allows,
+    // and that test is the reason to stop rather than a hurdle to clear.
+    pages: [21, 23],
+    note: "Dr Birch on the Manchester relics, with the board of thirty compartments drawn from his description and marked EVIDENCE.",
+  },
+  {
+    slug: "korean-games",
+    source: `${BUILT}/korean-games.pdf`,
+    // Wilkinson on how the Korean pieces move, then his thirty-move illustrative
+    // game — the page every other digital text of this book renders as "takes
+    // takes 7 h" — then the prose picking up on the other side of it. If a reader
+    // is going to judge this edition on four pages, these are the four that show
+    // what it did that the free scans do not.
+    pages: [61, 64],
+    note: "Wilkinson on the Korean pieces, and his illustrative game rebuilt from the position of every word on the scanned page.",
+  },
+  {
     slug: "the-myth-hunters-field-book",
-    source: `${ROOT}/GAMES-PUZZLE/THE-MYTH-HUNTERS-FIELD-BOOK/08_OUTPUT/PAPERBACK/interior.pdf`,
+    source: bookPath("THE-MYTH-HUNTERS-FIELD-BOOK", "08_OUTPUT", "PAPERBACK", "interior.pdf"),
     pages: [14, 17],
     note: "Two puzzle spreads as they are printed — deliberately without the answer key.",
   },

@@ -54,7 +54,8 @@ export type NewsletterSource =
   | "vedic-gods-companion"
   | "the-dragon-companion"
   // Phase 2 of the public-domain factory (2026-09-05).
-  | "games-ancient-and-oriental-companion";
+  | "games-ancient-and-oriental-companion"
+  | "korean-games-companion";
 
 /** The subset of sources a printed-book companion page may carry. */
 export type CompanionNewsletterSource = Extract<

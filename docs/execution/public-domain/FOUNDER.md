@@ -244,6 +244,50 @@ This is research, not production, and it does not block Phase 1.
 
 ---
 
+### F-022 · P1 · Create the Paddle product for Korean Games (one command)
+
+- **Date raised:** 2026-09-05 · **Phase:** 2 · **Book:** 2
+- **Blocker:** `korean-games` is built, priced, uploaded to R2, previewed and validated,
+  but it has no Paddle product or price, so it cannot be sold. Everything else is done.
+- **Why the agent cannot do it:** the live write is refused by this environment's
+  permission layer, exactly as for F-019. Routing around that block would defeat the
+  control, so it was not done.
+- **Already done:** `scripts/catalog/paddle-products.mjs` carries the entry at **$8.99**
+  with its price basis. The masters are in R2 at `books/korean-games/master/v1/`
+  (`master.pdf`, `master.epub`), the catalogue row is written with
+  `directSaleBlockedBy: "paddle-not-provisioned"`, and the ebook shows `coming_soon`
+  rather than a buy button with no price behind it.
+- **The command:**
+  `node scripts/catalog/provision-paddle.mjs --commit --i-know-this-is-live`
+  Run the dry run first; it should report `korean-games product=WOULD CREATE
+  price=WOULD CREATE $8.99` and resolve every other book to its existing ids.
+- **Then:** put the returned price id into the catalogue row's `paddlePriceId`, set the
+  ebook to `available`, and run `node scripts/catalog/load-catalog.mjs` **against
+  `neondb`** — not `bookstore`, which the loader still defaults to.
+
+---
+
+### F-023 · P0 · Sign gates 2 and 5 for Korean Games
+
+- **Date raised:** 2026-09-05 · **Phase:** 2 · **Book:** 2
+- **Gate 2 (Rights).** `RIGHTS.md` is complete and `rights-lint` is clean. Culin died in
+  1929 and Wilkinson in 1930, so both text layers are public domain everywhere and the
+  1895 US imprint settles the United States on its own. The **illustration layer is not
+  cleared and none of it is reproduced**: Culin names Ki San — the Korean painter Kim
+  Chun-gŭn, whose drawings the Smithsonian holds — and Teotiku Morimoto of Tokyo, and no
+  death year is recorded for either, so there is no life-plus-seventy calculation to make.
+  Every board in the book is drawn for it from his descriptions.
+- **Gate 5 (Factual verification).** 12 claims registered, every one VERIFIED against an
+  external source; `claim-lint` clean. The adversarial review found and corrected six
+  substantive faults before this was written — see the book report — including a wrong
+  McCune–Reischauer form printed in the conversion table the edition advertises, and a
+  playing guide that gave kon-tjil the European game's nine men where Culin's own text
+  has the players fill all twenty-four points, which is twelve each.
+- **What signing means:** these two gates are marked `founderSignoff` in `gates.json` and
+  only you can set them. Nothing else in the book is waiting on them.
+
+---
+
 ### F-007 · P2 · Confirm or cut five hedged claims (Gate 5)
 
 **RESOLVED 2026-09-04.** All 23 Epictetus claims are VERIFIED and Gate 5 is signed.
