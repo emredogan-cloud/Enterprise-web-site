@@ -263,7 +263,7 @@ them from `OUTPUT` now.
 | Paddle | product `pro_01m1sbkpvz2xryxdcvbxjrwb0k`, price `pri_01m1sbkq3qsjyfx3tzwctay664` — created against the LIVE account, active, one-time, 1199 USD |
 | Catalogue | `valice-catalog.test.ts` 18/18 · loader wrote 20 books, this one 4 formats and 1 buyable |
 | House lints | metadata **clean** · claim-lint **clean** · rights-lint 0 errors · compliance-lint 1 error, which is the AI declaration only a person can make |
-| Test suite | 378/379 · the one failure is another agent's in-flight `chess-and-playing-cards`, not this book |
+| Test suite | **379/379** across 21 files |
 | Production build | `/books/codex-mythologica-the-puzzle-book`, `/companion/codex-puzzles` and `/ebooks` all prerender with the right content |
 
 ## 6 · The economics, and the one place the roadmap was wrong
