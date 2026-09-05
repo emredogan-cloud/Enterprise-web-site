@@ -1,13 +1,13 @@
 {
   "tool": "validate-catalog",
   "target": "https://valicepress.com",
-  "startedAt": "2026-09-05T20:08:30.131Z",
-  "finishedAt": "2026-09-05T20:09:22.678Z",
+  "startedAt": "2026-09-05T21:59:11.375Z",
+  "finishedAt": "2026-09-05T22:00:12.851Z",
   "ok": false,
   "counts": {
     "pass": 44,
     "warn": 0,
-    "error": 28,
+    "error": 33,
     "skipped": 2
   },
   "findings": [
@@ -325,6 +325,12 @@
     },
     {
       "level": "error",
+      "check": "companion",
+      "message": "https://valicepress.com/companion/traditional-games → 404",
+      "where": "traditional-games"
+    },
+    {
+      "level": "error",
       "check": "companion-asset",
       "message": "/companion/chess-and-playing-cards/boards.pdf → 404",
       "where": null
@@ -435,6 +441,30 @@
       "level": "error",
       "check": "companion-asset",
       "message": "/companion/mancala/the-objects.pdf → 404",
+      "where": null
+    },
+    {
+      "level": "error",
+      "check": "companion-asset",
+      "message": "/companion/traditional-games/tunes.pdf → 404",
+      "where": null
+    },
+    {
+      "level": "error",
+      "check": "companion-asset",
+      "message": "/companion/traditional-games/how-to-play.pdf → 404",
+      "where": null
+    },
+    {
+      "level": "error",
+      "check": "companion-asset",
+      "message": "/companion/traditional-games/register-card.pdf → 404",
+      "where": null
+    },
+    {
+      "level": "error",
+      "check": "companion-asset",
+      "message": "/companion/traditional-games/gazetteer.pdf → 404",
       "where": null
     },
     {

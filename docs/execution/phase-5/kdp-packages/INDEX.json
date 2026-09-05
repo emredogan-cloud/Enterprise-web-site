@@ -3086,6 +3086,138 @@
           "detail": "title=\"The Puzzles of Henry Dudeney: 110 Classic Problems from Amusements in Mathematics and The Canterbury Puzzles — Annotated, with Hints, a Glossary of Old Money and a Chronology\" author=\"Henry E. Dudeney\""
         }
       ]
+    },
+    {
+      "generatedAt": "2026-09-05",
+      "book": "traditional-games",
+      "format": "paperback",
+      "title": "The Singing Games of England, Scotland, and Ireland",
+      "asin": null,
+      "kdpState": "not_created",
+      "interior": {
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-2-BOOK/05-TRADITIONAL-GAMES/OUTPUT/interior-main.pdf",
+        "sha256": "d5dd84056e6a797218cbd6137f7500e539ea90efa9f5e00cfc4b99602b8e23cf",
+        "bytes": 652668,
+        "pagesBefore": 243,
+        "pagesAfter": 244,
+        "companionPage": 244,
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-2-BOOK/05-TRADITIONAL-GAMES/OUTPUT/interior-main.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
+      },
+      "companion": {
+        "printedUrl": "valicepress.com/companion/traditional-games",
+        "qrUrl": "https://valicepress.com/companion/traditional-games",
+        "qr": {
+          "modules": 33,
+          "module_pt": 4.850705454545455,
+          "module_mm": 1.7112210909090908,
+          "version": 4,
+          "error": "M",
+          "side_pt": 160.07328,
+          "fraction_of_usable_height": 0.28650000000000003,
+          "x_pt": 135.96336,
+          "y_pt": 288.49989113142874
+        },
+        "dedicatedPage": true,
+        "emailWall": false
+      },
+      "spine": {
+        "pagesBefore": 243,
+        "pagesAfter": 244,
+        "paper": "white",
+        "binding": "paperback",
+        "trim": "6×9 in",
+        "before": {
+          "spineWidthIn": 0.547236,
+          "wrapWidthIn": 12.797236,
+          "wrapHeightIn": 9.25,
+          "spineTextAllowed": true
+        },
+        "after": {
+          "spineWidthIn": 0.549488,
+          "wrapWidthIn": 12.799488,
+          "wrapHeightIn": 9.25,
+          "spineTextAllowed": true
+        },
+        "deltaSpineIn": 0.002252,
+        "deltaWrapWidthIn": 0.002252,
+        "withinKdpTolerance": true,
+        "coverRebuildRequired": false,
+        "coverRebuildCorrect": true,
+        "hardcoverGeometryMustBeRead": false,
+        "barcodeZoneAffected": false,
+        "verdict": "wrap width moves 0.002252 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.002252 in and the house rule is that each edition's cover reads its own page count"
+      },
+      "cover": {
+        "built": true,
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-2-BOOK/05-TRADITIONAL-GAMES/ASSETS/cover/paperback-wrap-v1.pdf",
+        "pageCount": 244,
+        "spineIn": 0.5495,
+        "wrapIn": "12.7995 × 9.2500 (white)",
+        "note": "built 2026-09-06 by the project's own BUILD/build_cover.py, which reads the FINAL page count out of QA/interior-main.json after BUILD/seal_interior.py has rewritten it from the spliced file — so the spine is computed from the block the printer will bind. At 244 pp it clears the 79-page floor and carries spine text. The device is a stave with the opening of a phrase on it, drawn with the same geometry as the 78 staves inside."
+      },
+      "coverAction": "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior",
+      "uploadRequired": true,
+      "hold": null,
+      "proofRecommended": true,
+      "proofWhy": "the block changed thickness, so the wrap is new and unproved",
+      "verification": [
+        {
+          "name": "page-count",
+          "pass": true,
+          "detail": "244 pages (expected 244)"
+        },
+        {
+          "name": "printed-url",
+          "pass": true,
+          "detail": "valicepress.com/companion/traditional-games"
+        },
+        {
+          "name": "canonical-host",
+          "pass": true,
+          "detail": "no forbidden host on the page"
+        },
+        {
+          "name": "no-email-wall",
+          "pass": true,
+          "detail": "the page asks for nothing"
+        },
+        {
+          "name": "headline",
+          "pass": true,
+          "detail": "headline present"
+        },
+        {
+          "name": "eyebrow",
+          "pass": true,
+          "detail": "CONTINUE WITH VALICE PRESS"
+        },
+        {
+          "name": "fonts-embedded",
+          "pass": true,
+          "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
+        },
+        {
+          "name": "qr-floor",
+          "pass": true,
+          "detail": "28.7% of usable height"
+        },
+        {
+          "name": "qr-module-size",
+          "pass": true,
+          "detail": "1.71 mm per module"
+        },
+        {
+          "name": "pdf-metadata",
+          "pass": true,
+          "detail": "title=\"The Singing Games of England, Scotland, and Ireland: Alice Gomme's 1894 Collection, Annotated — 43 Singing Games, 209 Versions of the Rhymes, and 78 Tunes Engraved for This Edition\" author=\"Emre Doğan\""
+        },
+        {
+          "name": "qr-matches-url",
+          "pass": true,
+          "detail": "33×33 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/traditional-games"
+        }
+      ]
     }
   ]
 }

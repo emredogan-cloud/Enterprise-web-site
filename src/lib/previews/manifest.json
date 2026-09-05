@@ -382,5 +382,26 @@
         "page": 19
       }
     ]
+  },
+  "traditional-games": {
+    "note": "Green Gravel: the edition's head-note, the six tunes engraved from the notes, and the first versions with the counties they came from.",
+    "pages": [
+      {
+        "src": "/images/previews/traditional-games/p75.webp",
+        "page": 75
+      },
+      {
+        "src": "/images/previews/traditional-games/p76.webp",
+        "page": 76
+      },
+      {
+        "src": "/images/previews/traditional-games/p77.webp",
+        "page": 77
+      },
+      {
+        "src": "/images/previews/traditional-games/p78.webp",
+        "page": 78
+      }
+    ]
   }
 }

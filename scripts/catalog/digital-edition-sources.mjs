@@ -72,6 +72,15 @@ export const DIGITAL_EDITION_SOURCES = [
     epub: bookPath("02-KOREAN-GAMES", "OUTPUT", "korean-games.epub"),
   },
   {
+    // Valice Classics 12 (2026-09-06). Phase 2 book 5, and the largest: 244 pages with
+    // 78 engraved staves. The print interior is also the ebook's PDF — a book set with
+    // music on the page is one a reader wants as a page rather than as reflowed text —
+    // and the EPUB carries the reflowable version beside it.
+    slug: "traditional-games",
+    printInterior: bookPath("05-TRADITIONAL-GAMES", "OUTPUT", "interior-main.pdf"),
+    epub: bookPath("05-TRADITIONAL-GAMES", "OUTPUT", "traditional-games.epub"),
+  },
+  {
     // Valice Classics 10 (2026-09-05). Phase 2 book 3. Five diagram plates, no
     // photographic matter, so the /ebook pass normalises rather than downsamples.
     slug: "chess-and-playing-cards",

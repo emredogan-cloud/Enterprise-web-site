@@ -80,6 +80,9 @@ export const EDITION_GEOMETRY = {
   "epictetus-discourses-and-enchiridion": {
     paperback: { trimWidthIn: 6, trimHeightIn: 9, binding: "paperback", paper: "white", paperVerified: "project" },
   },
+  "traditional-games": {
+    paperback: { trimWidthIn: 6, trimHeightIn: 9, binding: "paperback", paper: "white", paperVerified: "project" },
+  },
   "chess-and-playing-cards": {
     paperback: { trimWidthIn: 6, trimHeightIn: 9, binding: "paperback", paper: "white", paperVerified: "project" },
   },

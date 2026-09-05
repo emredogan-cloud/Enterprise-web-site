@@ -199,6 +199,15 @@ export const PREVIEW_PAGES = [
     note: "How a move works — the edition's reconstruction, in three panels, of the sowing rules Culin left as prose.",
   },
   {
+    slug: "traditional-games",
+    source: `${BUILT}/traditional-games.pdf`,
+    // The opening of Green Gravel: the edition's head-note, the tunes engraved for it,
+    // and the first of eighteen versions with the county under it. Four pages of 244 is
+    // 1.6%, well inside the catalogue's own 5% cap.
+    pages: [75, 78],
+    note: "Green Gravel: the edition's head-note, the six tunes engraved from the notes, and the first versions with the counties they came from.",
+  },
+  {
     slug: "chess-and-playing-cards",
     source: `${BUILT}/chess-and-playing-cards.pdf`,
     // Culin on Chinese and Korean chess, with the two boards drawn from his own

@@ -1484,6 +1484,86 @@ const MANCALA: Companion = {
   ],
 };
 
+const TRADITIONAL_GAMES: Companion = {
+  slug: "traditional-games",
+  bookSlug: "traditional-games",
+  bookTitle: "The Singing Games of England, Scotland, and Ireland",
+  state: "book-not-yet-available",
+  stateNote:
+    "The Valice edition is built, validated and priced but not yet on sale — " +
+    "creating the payment product is a live write that is held behind a " +
+    "founder action, and the paperback has not been uploaded to KDP. " +
+    "Everything on this page is free and works today regardless.",
+  intro:
+    "Free material for Alice Gomme's 1894 singing games: eight tunes engraved " +
+    "large enough to prop on a piano, those eight games set out to be played " +
+    "from, the register that keeps what she collected apart from what she " +
+    "concluded, and the gazetteer of every county and collector named in the " +
+    "volume.",
+  newsletterSource: "traditional-games-companion",
+  assetsHeading: "Print and sing",
+  rightsNote:
+    "Alice Bertha Gomme died on 5 January 1938 and this work has been in the " +
+    "public domain everywhere since the end of 2008; the 1894 British imprint " +
+    "puts it there in the United States on its own. Every stave on these sheets " +
+    "was engraved for this edition from the notes — pitch and duration — and " +
+    "not one is a photograph or a tracing of her printed page. The drawings in " +
+    "the 1894 volumes, which are by J. P. Emslie, are not reproduced here: he " +
+    "died in 1913 and his work is out of copyright, but this edition draws its " +
+    "own rather than reprinting his.",
+  assets: [
+    {
+      id: "tunes",
+      title: "Eight tunes to sing them to",
+      description:
+        "The melodies of the eight games in the playing guide — Nuts in May, " +
+        "Hark the Robbers, Green Gravel, Jenny Jones, the Mulberry Bush, " +
+        "Milking Pails, London Bridge and the Jolly Miller — engraved from the " +
+        "notes Gomme took down from the children, at a size you can read at " +
+        "arm's length.",
+      kind: "static",
+      href: "/companion/traditional-games/tunes.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 3 pages",
+    },
+    {
+      id: "how-to-play",
+      title: "How to play eight of them",
+      description:
+        "The same eight games set out to be played from rather than read " +
+        "about: how many players, what shape they stand in, what each verse " +
+        "is for and how the game ends. Drawn entirely from Gomme's own " +
+        "descriptions, with every place she leaves something unstated marked.",
+      kind: "static",
+      href: "/companion/traditional-games/how-to-play.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 3 pages",
+    },
+    {
+      id: "register-card",
+      title: "A Register of Collection and Conjecture",
+      description:
+        "What Gomme collected, what she was told, what she concluded, and how " +
+        "to tell the three apart — class by class, on one sheet. The " +
+        "instrument the edition is built around, and the thing that makes a " +
+        "Victorian folklorist's book usable now.",
+      kind: "static",
+      href: "/companion/traditional-games/register-card.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 2 pages",
+    },
+    {
+      id: "gazetteer",
+      title: "Where the games were sung",
+      description:
+        "Every county and country named under a version or a tune in the " +
+        "forty-three games, with the games recorded there, and the collectors " +
+        "who sent the most. Built by reading the 296 attribution lines Gomme " +
+        "printed under her versions.",
+      kind: "static",
+      href: "/companion/traditional-games/gazetteer.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 3 pages",
+    },
+  ],
+};
+
 const COMPANIONS: readonly Companion[] = [
   HANGUL,
   WORLD_GAMES,
@@ -1497,6 +1577,7 @@ const COMPANIONS: readonly Companion[] = [
   KOREAN_GAMES,
   CHESS_AND_PLAYING_CARDS,
   MANCALA,
+  TRADITIONAL_GAMES,
   CODEX_PUZZLES,
   SENECA,
   GREEK,

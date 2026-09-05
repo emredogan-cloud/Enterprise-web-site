@@ -163,6 +163,15 @@ export const DIRECT_SALE_EBOOKS = [
     priceCents: 899,
   },
   {
+    slug: "traditional-games",
+    name: "The Singing Games of England, Scotland, and Ireland (Annotated)",
+    description:
+      "Alice Gomme's 1894 singing games, annotated: 43 games, 209 versions with their counties and collectors, and 78 tunes engraved for this edition from the notes.",
+    priceCents: 999,
+    priceBasis:
+      "The top of the Valice Classics band. 244 pages and 78 pieces of engraved music; $9.99 nets $8.99 after Paddle.",
+  },
+  {
     slug: "chess-and-playing-cards",
     name: "Chess and Playing Cards: The Chess, Divination and Card Collections (Annotated)",
     description:

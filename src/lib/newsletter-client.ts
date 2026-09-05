@@ -59,7 +59,8 @@ export type NewsletterSource =
   | "codex-puzzles-companion"
   | "korean-games-companion"
   | "chess-and-playing-cards-companion"
-  | "mancala-companion";
+  | "mancala-companion"
+  | "traditional-games-companion";
 
 /** The subset of sources a printed-book companion page may carry. */
 export type CompanionNewsletterSource = Extract<

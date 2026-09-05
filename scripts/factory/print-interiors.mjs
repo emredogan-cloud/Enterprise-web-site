@@ -78,6 +78,13 @@ export const PRINT_INTERIORS = {
     // to make 176, which is the even count KDP requires.
     paperback: bookPath("01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION", "OUTPUT", "interior-main.pdf"),
   },
+  "traditional-games": {
+    // PHASE 2, BOOK 5 (2026-09-06). Valice Classics 12, and the longest book of the
+    // phase: 243 pp, typeset deliberately ODD so the companion leaf appended by
+    // build-companion-pages.mjs makes the even 244 that KDP requires. Its 78 engraved
+    // staves are vector, drawn into the page by the book's own engraver.
+    paperback: bookPath("05-TRADITIONAL-GAMES", "OUTPUT", "interior-main.pdf"),
+  },
   "chess-and-playing-cards": {
     // PHASE 2, BOOK 3 (2026-09-05). Valice Classics 10. Typeset deliberately ODD
     // (119 pp) so the companion leaf appended by build-companion-pages.mjs makes

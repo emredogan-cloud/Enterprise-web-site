@@ -1585,6 +1585,69 @@ export const BOOKS = [
   },
 
   {
+    slug: "traditional-games",
+    title: "The Singing Games of England, Scotland, and Ireland",
+    subtitle:
+      "Alice Gomme's 1894 Collection, Annotated \u2014 43 Singing Games, 209 Versions of the Rhymes, and 78 Tunes Engraved for This Edition",
+    language: "en",
+    pageCount: 244,
+    categories: ["games-and-play", "classics-and-philosophy"],
+    authors: ["emre-dogan"],
+    bisac: ["GAM001000", "SOC002010"],
+    series: { name: "Valice Classics", volume: 12 },
+    // PHASE 2, BOOK 5, and the largest thing this press has made: 244 pages with
+    // 78 engraved staves in them. The scope is the singing half of Gomme's first
+    // volume \u2014 every entry that carries a tune \u2014 decided before a word of the
+    // apparatus was written. The tunes are drawn from the notes by the edition's own
+    // engraver; nothing is traced from her page and no page image is used.
+    websiteStatus: "draft",
+    linkageDecision: null,
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: "paddle-not-provisioned",
+    paddlePriceId: null,
+    onelinePromise:
+      "The book that wrote down the tunes: forty-three singing games as children sang them in the 1890s, with every version's county and collector, and seventy-eight melodies engraved for this edition.",
+    description:
+      "In January 1894 a woman in Barnes finished a book nobody had asked her to write. Alice Gomme had spent years collecting children's games by post \u2014 from village schoolmistresses, country clergymen, dialect scholars and her own friends \u2014 and she had done something nobody in England had done before: she wrote down the tunes. There were collections of children's rhymes before hers. What she added was the music, taken down as the children actually sang it and printed unaltered. A rhyme without its tune is a poem; a rhyme with its tune is a game you can still play. This edition is the singing half of her first volume: 43 games, from All the Soldiers in the Town to Nuts in May, with 209 versions of the rhymes \u2014 each one printed with the county it came from and the person who sent it, exactly as she printed them \u2014 and all 78 tunes. EVERY STAVE IN THIS BOOK WAS ENGRAVED FOR IT. The tunes were read as pitch and duration and then drawn, note by note, by the edition's own engraver: nothing is a photograph or a tracing of an 1894 page. Around them: a Register of Collection and Conjecture that keeps what Gomme gathered apart from what she concluded \u2014 the survivals theory of her generation, which held that a ring game about a dead lady was the wreckage of a funeral rite, and which nobody now believes; a guide to reading one of her entries; a playing guide that sets out eight of the games to be played this afternoon; head-notes to all 43 games; and a gazetteer of where every version was sung and who wrote it down, built by reading the 296 attribution lines under her versions. That gazetteer stands in for the one thing this edition could not reproduce: her husband's great comparative tables, up to eighteen columns wide, which will not go on a book page at a size anybody could read. What they encode is the geography, and the geography is here \u2014 42 counties and countries, 79 named collectors, most of them women whose names appear nowhere else. 244 pages.",
+    idealReader:
+      "Anyone who has stood in a playground and heard a ring form, and wants to know what was sung there a hundred and thirty years ago \u2014 and to sing it.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(9.99),
+        pageCount: 244,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: "books/traditional-games/master/v1/master.pdf",
+        epubFileKey: "books/traditional-games/master/v1/master.epub",
+        priceBasis:
+          "price-engine.mjs 2026-09-06, direct ebook, public domain: recommended $6.99, and $9.99 nets $8.99 after Paddle at a 90% margin. At the TOP of the Valice Classics band of $7.99\u20139.99 because it is the longest book in the series and the only one with 78 pieces of engraved music in it.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(16.99),
+        pageCount: 244,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-06, 244 pp 6\u00d79 B&W on white: prints at $3.61, KDP minimum list $6.02, recommended $12.99; $16.99 nets $6.58 (38.7%) at 60% royalty.",
+      },
+    ],
+    blockers: [
+      "The ebook is built, priced and ready but not yet on sale: creating the Paddle product and price is a live write that this environment's permission layer blocks. One command, in FOUNDER F-027.",
+      "NO KDP LISTING YET. The paperback is built \u2014 interior, companion leaf and wrap \u2014 and has never been uploaded; `kdp: \"not_created\"` says so and no ASIN is invented.",
+      "The apparatus is 20.3% of the volume against a 20% floor, which is the tightest margin of the five books of this phase. It is measured from the manuscript by BUILD/measure.py at build time, not estimated.",
+      "THE COMPARATIVE TABLES ARE NOT REPRODUCED. 23 of the 43 entries carry one in the original, up to eighteen columns wide and printed sideways; there is no honest way to set them on a 6\u00d79 page. The gazetteer prints what they encode and A Note on the Text says so plainly.",
+    ],
+  },
+  {
     slug: "chess-and-playing-cards",
     title: "Chess and Playing Cards: The Chess, Divination and Card Collections",
     subtitle:

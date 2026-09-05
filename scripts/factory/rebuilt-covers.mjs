@@ -65,6 +65,15 @@ export const REBUILT_COVERS = {
       note: "built 2026-09-05 by the project's own BUILD/build_cover.py, which reads the FINAL page count out of QA/interior-main.json — that is, after the companion leaf — so the spine is computed from the count the book will actually have. At 144 pp this one clears the 79-page floor and does carry spine text. The device is the nyout board, twenty marks round a circle and an interior cross of nine, which Culin counts out in his own words: the EVIDENCE diagram, not the one reconstruction.",
     },
   },
+  "traditional-games": {
+    paperback: {
+      built: true,
+      path: bookPath("05-TRADITIONAL-GAMES", "ASSETS", "cover", "paperback-wrap-v1.pdf"),
+      pageCount: 244, spineIn: 0.5495,
+      wrapIn: "12.7995 × 9.2500 (white)",
+      note: "built 2026-09-06 by the project's own BUILD/build_cover.py, which reads the FINAL page count out of QA/interior-main.json after BUILD/seal_interior.py has rewritten it from the spliced file — so the spine is computed from the block the printer will bind. At 244 pp it clears the 79-page floor and carries spine text. The device is a stave with the opening of a phrase on it, drawn with the same geometry as the 78 staves inside.",
+    },
+  },
   "chess-and-playing-cards": {
     paperback: {
       built: true,

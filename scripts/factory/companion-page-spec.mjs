@@ -228,6 +228,22 @@ export const COMPANION_PAGE_COPY = {
       { asset: "the-names", term: "The names", gloss: "what the apostrophe and the breve are doing, after which the names stop being noise" },
     ],
   },
+  "traditional-games": {
+    companionSlug: "traditional-games",
+    imprint: "Valice Press",
+    headline: "Print the tunes.\nSing them.",
+    promise:
+      "Gomme took these tunes down from the children themselves, and they are the " +
+      "half of her work nobody else had. Here they are on paper you can hold while " +
+      "the ring goes round \u2014 free, for readers of this edition.",
+    listHeading: "WHAT IS WAITING FOR YOU",
+    bullets: [
+      { asset: "tunes", term: "Eight tunes", gloss: "the melodies of the eight games in the playing guide, engraved large enough to read at arm's length" },
+      { asset: "how-to-play", term: "How to play them", gloss: "the same eight games set out to be played from, from Gomme's own descriptions" },
+      { asset: "register-card", term: "The Register", gloss: "what she collected, what she concluded, and how to tell the two apart" },
+      { asset: "gazetteer", term: "Where they were sung", gloss: "every county and collector named in the volume \u2014 the map her comparative tables encode" },
+    ],
+  },
   "chess-and-playing-cards": {
     companionSlug: "chess-and-playing-cards",
     imprint: "Valice Press",
@@ -631,6 +647,18 @@ export const COMPANION_PAGE_PLAN = {
     },
   },
 
+  "traditional-games": {
+    style: { fonts: TYPE.liberationSerif, marginIn: 0.62, rule: 0.7 },
+    editions: {
+      paperback: {
+        // Phase 2 book 5. As the three before it: the interior is typeset deliberately
+        // ODD so this pipeline's appended leaf produces the even count KDP requires.
+        mode: "append", page: null, pagesBefore: 243, pagesAfter: 244, recto: true,
+        folio: { style: "centre", offset: 0, size: 8.6, baselineFromBottomPt: 28.8, outerMarginPt: 36 },
+        replacing: null,
+      },
+    },
+  },
   "chess-and-playing-cards": {
     style: { fonts: TYPE.liberationSerif, marginIn: 0.62, rule: 0.7 },
     editions: {

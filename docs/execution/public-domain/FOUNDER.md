@@ -304,6 +304,57 @@ This is research, not production, and it does not block Phase 1.
 
 ---
 
+### F-027 · P1 · Paddle, KDP and gates 2, 5 and 10 for The Singing Games
+
+- **Date raised:** 2026-09-06 · **Phase:** 2 · **Book:** 5
+- **This is the biggest book this press has made**: 244 pages, 43 games, 209 versions of
+  the rhymes, and **78 tunes engraved for it from the notes**. It is also the last of the
+  five, so Phase 2's five books are now all built.
+- **Paddle.** `traditional-games` is built, priced at **$9.99**, uploaded to R2, previewed
+  and validated, and has no Paddle product. Same blocked live write as F-019, F-022, F-024
+  and F-026, and all five can be done in one run:
+  `node scripts/catalog/provision-paddle.mjs --commit --i-know-this-is-live`, then put the
+  returned price ids in the catalogue rows, set the ebooks to `available`, and run the
+  loader **against `neondb`**.
+- **KDP.** The paperback is built and has never been uploaded: interior 244 pp with the
+  companion leaf spliced and sealed, wrap at a 0.5495 in spine, handbook at
+  `docs/execution/public-domain/PHASE-2-REPORT/05-traditional-games/KDP_UPLOAD_HANDBOOK.html`.
+  `kdp: "not_created"` and no ASIN is invented.
+- **Gate 2 (Rights) — the cleanest of the five, and the only one with no red row.** Gomme
+  died in 1938, so the text is public domain everywhere and has been since 2008; the 1894
+  British imprint settles the United States on its own. Two things are worth your eye:
+  1. **The tunes.** Gomme's staves are not photographed, traced or reproduced. The MIDI
+     files Project Gutenberg's Music Team made from them are read for **pitch and duration
+     only**, and every stave in the book is then *drawn* by `BUILD/engrave.py` — 78 tunes,
+     94 staves, 836 bars, 3,042 notes. Nothing of the transcribers' own work (page images,
+     harmonisation, tempo, instrument) is in the product.
+  2. **The illustrator is clear and his drawings are still not used.** J. P. Emslie died
+     in 1913, so the figures in the 1894 volumes have been out of copyright since 1983 —
+     the opposite of the other four books of this phase, where the illustration layer is
+     red because nobody is named. This edition still does not reproduce them, which is a
+     decision about scope, and the book says so.
+- **Gate 5 (Factual verification).** 15 claims, every one VERIFIED against an external
+  source; `claim-lint` clean. The load-bearing one is critical rather than biographical:
+  **the survivals doctrine that frames Gomme's conclusions was abandoned in the middle of
+  the twentieth century**, and the edition says so in the introduction, in the register and
+  in Since 1894 — while arguing, at the same length, that it never touched the quality of
+  what she wrote down. `BUILD/check_quotes.py` holds all 31 quoted passages against her
+  text on every build.
+- **Gate 10 (KDP compliance).** `compliance-lint` clean, linkage included. Text
+  **generated**, images **NONE**, translation **none**. The images answer is worth a
+  sentence because a reader of the file will see 78 pieces of music in a book that
+  declares no images: **they are drawn by a program in this repository from a list of
+  pitches**, which is drawing and not generation, and no image model was used or is
+  available here.
+- **One decision of scope you may want to revisit.** This edition is the *singing* games of
+  Gomme's **first** volume — every entry in it that carries a tune. Her Volume II holds 23
+  more singing games and 59 more tunes, and the four hundred descriptive games of Volume I
+  (hopscotch, marbles, fivestones, tag) are a third book. The scope was fixed before a word
+  of apparatus was written and is stated on the product page and in A Note on the Text.
+- **What signing means:** gates 2, 5 and 10 are `founderSignoff` and only you can set them.
+
+---
+
 ### F-026 · P1 · Paddle product and gates 2, 5 and 10 for Mancala
 
 - **Date raised:** 2026-09-05 · **Phase:** 2 · **Book:** 4
