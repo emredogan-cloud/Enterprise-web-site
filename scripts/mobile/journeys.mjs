@@ -702,10 +702,106 @@ async function commerceChecks(cdp) {
   return out;
 }
 
+/* ───────────────────────── editorial surfaces ──────────────────────────── */
+
+async function editorialChecks(cdp) {
+  const out = [];
+  const add = (name, pass, detail) => out.push({ name, pass, detail });
+
+  for (const route of ["blog-article", "blog-article-2"]) {
+    await goto(cdp, route);
+    const a = await cdp.eval(`(() => {
+      const vis = (e) => e.getClientRects().length > 0;
+      const abs = (r) => Math.round(r.top + scrollY);
+      const list = document.getElementById("reading-toc");
+      const btn = document.querySelector('button[aria-controls="reading-toc"]');
+      const prose = document.querySelector(".cinematic-prose");
+      const share = Array.from(document.querySelectorAll("button")).filter(vis)
+        .filter((b) => /share/i.test(b.getAttribute("aria-label") || ""))
+        .map((b) => Math.round(b.getBoundingClientRect().height));
+      const p = prose ? prose.querySelector("p") : null;
+      const cs = p ? getComputedStyle(p) : null;
+      return {
+        vh: innerHeight,
+        tocButton: btn ? Math.round(btn.getBoundingClientRect().height) : null,
+        tocExpanded: btn ? btn.getAttribute("aria-expanded") : null,
+        tocListVisible: list ? vis(list) : null,
+        proseTop: prose ? abs(prose.getBoundingClientRect()) : null,
+        shareHeights: share,
+        nativeShare: typeof navigator.share === "function",
+        bodyFont: cs ? parseFloat(cs.fontSize) : null,
+        bodyRatio: cs ? +(parseFloat(cs.lineHeight) / parseFloat(cs.fontSize)).toFixed(2) : null,
+      };
+    })()`);
+
+    add(`${route}: TOC is a disclosure, closed by default`,
+      a.tocButton !== null && a.tocExpanded === "false" && a.tocListVisible === false, a);
+    add(`${route}: TOC toggle >= 44px`, (a.tocButton ?? 0) >= 44, `${a.tocButton}px`);
+    add(`${route}: article body starts within 1000px`,
+      a.proseTop !== null && a.proseTop <= 1000, `${a.proseTop}px`);
+    add(`${route}: share buttons >= 44px`,
+      a.shareHeights.length > 0 && a.shareHeights.every((h) => h >= 44), a.shareHeights.join(", "));
+    add(`${route}: native Web Share available`, a.nativeShare === true, a.nativeShare);
+    add(`${route}: reading rhythm >= 1.5`, (a.bodyRatio ?? 0) >= 1.5,
+      `${a.bodyFont}px / ratio ${a.bodyRatio}`);
+
+    // the disclosure must actually open
+    await cdp.eval(`(() => { const b = document.querySelector('button[aria-controls="reading-toc"]');
+      if (b) b.scrollIntoView({ block: "center" }); return true; })()`);
+    await sleep(600);
+    const opened = await tapUntil(cdp, 'button[aria-controls="reading-toc"]',
+      `(() => { const l = document.getElementById("reading-toc");
+                return !!l && l.getClientRects().length > 0; })()`);
+    add(`${route}: TOC opens on tap`, opened.ok, opened);
+    if (opened.ok) {
+      const links = await cdp.eval(`(() => {
+        const l = document.getElementById("reading-toc");
+        const as = Array.from(l.querySelectorAll("a[href^='#']"));
+        return { count: as.length, allAnchored: as.every((a) => !!document.getElementById(a.getAttribute("href").slice(1))) };
+      })()`);
+      add(`${route}: TOC links resolve to real headings`,
+        links.count > 0 && links.allAnchored, links);
+    }
+  }
+
+  /* Korean is marked for SC 3.1.2. It is NOT expected to change fonts — see
+     PHASE_7_REPORT.md; the reference device maps every Korean family name to a
+     single unified CJK face. */
+  await goto(cdp, "companion-hangul");
+  const ko = await cdp.eval(`(() => {
+    const marked = Array.from(document.querySelectorAll('[lang="ko"]'));
+    const hangul = /[가-힯]/;
+    const bodyHasHangul = hangul.test(document.body.innerText || "");
+    return { markedCount: marked.length,
+             markedText: marked.map((e) => (e.textContent || "").trim()).join(" "),
+             bodyHasHangul,
+             unmarked: bodyHasHangul && marked.length === 0 };
+  })()`);
+  add("companion: Korean runs marked lang=ko (WCAG 3.1.2)",
+    !ko.bodyHasHangul || ko.markedCount > 0, ko);
+
+  /* Editorial routes render clean. */
+  for (const route of ["authors", "author-detail", "category-detail", "blog-category", "companion"]) {
+    await goto(cdp, route);
+    const r = await cdp.eval(`(() => {
+      const de = document.documentElement;
+      const vis = (e) => e.getClientRects().length > 0;
+      return { overflow: Math.max(0, de.scrollWidth - de.clientWidth),
+               imgs: Array.from(document.images).filter(vis).filter((i) => i.complete && i.naturalWidth > 0).length,
+               brokenImgs: Array.from(document.images).filter(vis).filter((i) => i.complete && i.naturalWidth === 0).length };
+    })()`);
+    add(`${route}: no overflow, no broken images`,
+      r.overflow <= 1 && r.brokenImgs === 0, r);
+  }
+
+  return out;
+}
+
 /* ─────────────────────────────── runner ─────────────────────────────── */
 
 const GROUPS = { nav: navChecks, inputs: inputChecks, theme: themeChecks, cards: cardChecks,
-                 filters: filterChecks, commerce: commerceChecks };
+                 filters: filterChecks, commerce: commerceChecks,
+                 editorial: editorialChecks };
 
 async function main() {
   const names = ONLY ? [ONLY] : Object.keys(GROUPS);

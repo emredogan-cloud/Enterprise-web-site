@@ -1,5 +1,6 @@
 "use client";
 
+import { ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import type { BlogPostHeading } from "@/lib/blog";
@@ -22,6 +23,7 @@ import { SharePanel } from "./share-panel";
  */
 export function ReadingSidebar({ toc }: { toc: BlogPostHeading[] }) {
   const [activeId, setActiveId] = useState<string | null>(toc[0]?.id ?? null);
+  const [tocOpen, setTocOpen] = useState(false);
   const [nodeOffset, setNodeOffset] = useState(0);
   const itemRefs = useRef(new Map<string, HTMLAnchorElement>());
 
@@ -123,13 +125,39 @@ export function ReadingSidebar({ toc }: { toc: BlogPostHeading[] }) {
           className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/35 to-transparent"
         />
 
-        <p className="text-[12px] sm:text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+        {/*
+          Below `lg:` the table of contents is a disclosure, closed by default.
+          Measured on the Redmi before this: the TOC card was 408px tall and,
+          with the share row beneath it, the article body did not start until
+          1134px — 1.6 screens of navigation furniture before the first
+          sentence. At `lg:` the sidebar is a sticky column beside the text and
+          stays exactly as it was: the summary button is hidden and the list is
+          always shown.
+        */}
+        <button
+          type="button"
+          onClick={() => setTocOpen((v) => !v)}
+          aria-expanded={tocOpen}
+          aria-controls="reading-toc"
+          className="flex min-h-11 w-full items-center justify-between gap-3 text-left text-[12px] font-semibold uppercase tracking-[0.2em] text-fg-soft transition-colors hover:text-fg-hi focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/50 lg:hidden"
+        >
+          On this page
+          <ChevronDown
+            aria-hidden
+            className={`h-4 w-4 shrink-0 transition-transform ${tocOpen ? "rotate-180" : ""}`}
+          />
+        </button>
+
+        <p className="hidden text-[12px] sm:text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-soft lg:block">
           On this page
         </p>
 
         {/* The list — wrapped in a relatively-positioned <ol> so we can
             place the progress line + node absolutely on its right edge. */}
-        <div className="relative mt-4">
+        <div
+          id="reading-toc"
+          className={`relative mt-4 ${tocOpen ? "" : "hidden"} lg:block`}
+        >
           <ol className="relative space-y-3 pr-3">
             {toc.map((h, i) => {
               const isActive = activeId === h.id;

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { buildPageMetadata } from "@/lib/metadata";
+import { withLangRuns } from "@/lib/lang-runs";
 import { getCompanion, listCompanions } from "@/lib/companions";
 import { CompanionSignup } from "@/components/companion/companion-signup";
 import { CompanionDownloadLink } from "@/components/companion/companion-download-link";
@@ -131,7 +132,7 @@ export default async function CompanionPage({
                 className="rounded-2xl border border-white/10 bg-white/[0.02] p-6"
               >
                 <div className="flex flex-wrap items-baseline justify-between gap-3">
-                  <h3 className="font-serif text-lg text-fg-hi">{asset.title}</h3>
+                  <h3 className="font-serif text-lg text-fg-hi">{withLangRuns(asset.title)}</h3>
                   <span className="font-mono text-[12px] sm:text-[11px] uppercase tracking-wider text-fg-low">
                     {asset.meta}
                   </span>
