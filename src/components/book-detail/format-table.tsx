@@ -115,7 +115,7 @@ export function FormatTable({
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="home-cta-secondary inline-flex h-10 items-center rounded-full px-5 text-sm font-medium"
+                    className="home-cta-secondary inline-flex h-11 items-center rounded-full px-5 text-sm font-medium sm:h-10"
                   >
                     Buy on Amazon
                     <span aria-hidden className="ml-1.5">

@@ -98,7 +98,7 @@ export function CartLine({
         onClick={onRemove}
         disabled={pending}
         aria-label={`Remove ${book.title} from cart`}
-        className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.02] text-fg-soft transition-all hover:border-[#ff7a7a]/40 hover:bg-[#ff7a7a]/10 hover:text-[#ff9b9b] disabled:cursor-not-allowed disabled:opacity-50"
+        className="flex h-11 w-11 flex-shrink-0 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.02] text-fg-soft transition-all hover:border-[#ff7a7a]/40 hover:bg-[#ff7a7a]/10 hover:text-[#ff9b9b] disabled:cursor-not-allowed disabled:opacity-50"
       >
         <X aria-hidden className="h-4 w-4" />
       </button>

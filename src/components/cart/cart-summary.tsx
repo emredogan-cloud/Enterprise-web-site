@@ -122,7 +122,11 @@ export function CartSummary({
           type="button"
           onClick={onClear}
           disabled={clearPending}
-          className="text-xs text-fg-fade underline-offset-4 transition-colors hover:text-fg-mid hover:underline disabled:cursor-not-allowed disabled:opacity-50"
+          /* Deliberately understated — a destructive action should not shout.
+             Below `sm:` it gets a 44px hit area from padding rather than from
+             type size, so it looks exactly the same and is actually tappable;
+             measured 54x16 before. Desktop keeps its original box. */
+          className="inline-flex min-h-11 items-center px-3 text-xs text-fg-fade underline-offset-4 transition-colors hover:text-fg-mid hover:underline disabled:cursor-not-allowed disabled:opacity-50 sm:min-h-0 sm:px-0"
         >
           {clearPending ? "Clearing…" : "Clear cart"}
         </button>

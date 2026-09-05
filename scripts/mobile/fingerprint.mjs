@@ -26,7 +26,7 @@ import { dirname, resolve } from "node:path";
 
 import {
   BASE_URL, assertServerHealthy, connectDevice, launchDesktopChrome, closeDesktopChrome,
-  navigateAndSettle, assertRendered, setViewport, sleep,
+  navigateAndSettle, assertRendered, setViewport, sleep, resetCart,
 } from "./device.mjs";
 import { ROUTES, DESKTOP_BASELINE, deviceRoutes } from "./routes.mjs";
 
@@ -187,6 +187,9 @@ async function main() {
   await cdp.send("Emulation.setEmulatedMedia", {
     features: [{ name: "prefers-reduced-motion", value: "reduce" }],
   });
+  // Baselines are captured with an empty cart — see resetCart().
+  const cartState = await resetCart(cdp);
+  if (cartState === "empty") console.log("  (cart verified empty for a comparable baseline)");
 
   const collected = [];
   const failures = [];

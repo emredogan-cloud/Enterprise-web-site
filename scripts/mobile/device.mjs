@@ -467,6 +467,48 @@ export async function assertRendered(cdp, route, url) {
   return s;
 }
 
+/**
+ * Put the cart in a known-empty state before a baseline capture.
+ *
+ * The cart is an httpOnly cookie, so clearing it is a browser-level operation,
+ * not an app-level one. Two things made this worth automating:
+ *
+ *   - Running the purchase journey leaves an item in the cart. The next
+ *     fingerprint then compares a full cart against an empty-cart baseline and
+ *     reports ~226 elements "changed" on /cart with no code difference at all.
+ *   - `next dev` caches the rendered /cart. After the cookie is gone the dev
+ *     server can still serve the populated render — which is also why clicking
+ *     "Clear cart" appears to do nothing in dev. It is a dev render cache, not
+ *     a product bug and not session leakage: an anonymous request after a dev
+ *     restart correctly returns the empty state, and the route is
+ *     `export const dynamic = "force-dynamic"`.
+ *
+ * So: clear the cookies, then VERIFY against an anonymous fetch. If the server
+ * is still serving a cached cart, say so loudly rather than baselining it.
+ */
+export async function resetCart(cdp) {
+  try {
+    await cdp.send("Network.clearBrowserCookies");
+  } catch { /* not fatal */ }
+  try {
+    const html = await (await fetch(new URL("/cart", BASE_URL).href, {
+      signal: AbortSignal.timeout(20000),
+    })).text();
+    const stale = /Order summary/i.test(html);
+    if (stale) {
+      console.warn(
+        "  ⚠ /cart still renders items for an anonymous request — `next dev` is\n" +
+        "    serving a cached render. Restart the dev server before trusting a\n" +
+        "    /cart baseline.",
+      );
+      return "stale-dev-cache";
+    }
+    return "empty";
+  } catch {
+    return "unverified";
+  }
+}
+
 /** Set an emulated viewport. Used for the width matrix and desktop capture. */
 export async function setViewport(cdp, { width, height, dpr = 1, mobile = false }) {
   await cdp.send("Emulation.setDeviceMetricsOverride", {

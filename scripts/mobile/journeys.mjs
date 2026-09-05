@@ -487,7 +487,7 @@ async function filterChecks(cdp) {
                bodyLocked: getComputedStyle(document.body).overflow === "hidden",
                sliderH: rr ? Math.round(rr.height) : null, sliderHit: hit,
                priceLabels: Array.from(document.querySelectorAll("span")).filter(vis)
-                 .map((x) => x.textContent.trim()).filter((t) => /^\$/.test(t)).slice(0, 3) };
+                 .map((x) => x.textContent.trim()).filter((t) => /^\\$/.test(t)).slice(0, 3) };
     })()`);
 
     add(`${route}: sheet has dialog semantics`, open.role === "dialog" && open.modal === "true", open);
@@ -509,7 +509,7 @@ async function filterChecks(cdp) {
       await sleep(900);
       const after = await cdp.eval(`(() => {
         const badge = document.querySelector(${JSON.stringify(FILTER_BTN)});
-        return { badge: badge ? (badge.textContent || "").replace(/\s+/g, " ").trim() : null };
+        return { badge: badge ? (badge.textContent || "").replace(/\\s+/g, " ").trim() : null };
       })()`);
       add(`${route}: active-filter count appears on the trigger`,
         /\d/.test(after.badge || ""), after.badge);
@@ -592,9 +592,120 @@ async function filterChecks(cdp) {
   return out;
 }
 
+/* ───────────────────── the money path: detail → cart ──────────────────── */
+
+async function commerceChecks(cdp) {
+  const out = [];
+  const add = (name, pass, detail) => out.push({ name, pass, detail });
+
+  /* Price and the primary CTA must be reachable without scrolling. Measured
+     before Phase 6: price 695px, "Add to cart" 743px, on a 718px viewport —
+     the buy control was below the fold on every book type. */
+  const BOOKS = [
+    ["book-detail", "direct-sale"],
+    ["book-detail-2", "mixed (direct + Amazon)"],
+    ["book-detail-3", "mixed (direct + Amazon)"],
+  ];
+  for (const [route, kind] of BOOKS) {
+    await goto(cdp, route);
+    const m = await cdp.eval(`(() => {
+      const vis = (e) => e.getClientRects().length > 0;
+      const abs = (r) => Math.round(r.top + scrollY);
+      const t = (e) => (e.textContent || "").replace(/\\s+/g, " ").trim();
+      const price = Array.from(document.querySelectorAll("span,p,strong")).filter(vis)
+        .filter((e) => /^(\\$|£|€)\\d/.test(t(e)) && t(e).length < 14 && e.children.length === 0)[0];
+      const cta = Array.from(document.querySelectorAll("button,a[href]")).filter(vis)
+        .filter((e) => /add to cart|see editions/i.test(t(e)))[0];
+      const cr = cta ? cta.getBoundingClientRect() : null;
+      const amazon = Array.from(document.querySelectorAll("a[href]")).filter(vis)
+        .filter((e) => /buy on amazon/i.test(t(e)))
+        .map((e) => Math.round(e.getBoundingClientRect().height));
+      return { vh: innerHeight,
+               priceTop: price ? abs(price.getBoundingClientRect()) : null,
+               priceText: price ? t(price) : null,
+               ctaTop: cr ? abs(cr) : null, ctaH: cr ? Math.round(cr.height) : null,
+               ctaLabel: cta ? t(cta).slice(0, 24) : null,
+               amazonHeights: amazon };
+    })()`);
+    add(`${route} (${kind}): price above the fold`,
+      m.priceTop !== null && m.priceTop < m.vh, `${m.priceText} at ${m.priceTop}px of ${m.vh}`);
+    add(`${route} (${kind}): primary CTA above the fold`,
+      m.ctaTop !== null && m.ctaTop < m.vh, `"${m.ctaLabel}" at ${m.ctaTop}px`);
+    add(`${route} (${kind}): primary CTA >= 44px tall`, (m.ctaH ?? 0) >= 44, `${m.ctaH}px`);
+    if (m.amazonHeights.length) {
+      add(`${route}: Amazon CTAs >= 44px tall`, m.amazonHeights.every((h) => h >= 44),
+        m.amazonHeights.join(", "));
+    }
+  }
+
+  /* Cart: every control a finger has to hit. */
+  await goto(cdp, "cart");
+  const cart = await cdp.eval(`(() => {
+    const vis = (e) => e.getClientRects().length > 0;
+    const t = (e) => (e.textContent || e.getAttribute("aria-label") || "").replace(/\\s+/g, " ").trim();
+    const small = Array.from(document.querySelectorAll("button,a[href]")).filter(vis)
+      .map((e) => ({ e, r: e.getBoundingClientRect() }))
+      .filter((o) => o.r.width > 0 && o.r.height > 0)
+      // Cart controls only. The header cluster is Phase 8's scope and the
+      // footer link list is site-wide chrome that passes SC 2.5.8 by spacing.
+      .filter((o) => !o.e.closest("header") && !o.e.closest("footer"))
+      .filter((o) => Math.min(o.r.width, o.r.height) < 44)
+      // SC 2.5.8 equivalent exception: a small text link is carried by a larger
+      // control with the same destination. The cart line links the book from
+      // both its 96x64 cover and its 179x20 title.
+      .filter((o) => {
+        const href = o.e.getAttribute("href");
+        if (!href) return true;
+        return !Array.from(document.querySelectorAll('a[href="' + href + '"]'))
+          .some((other) => {
+            if (other === o.e || other.getClientRects().length === 0) return false;
+            const r = other.getBoundingClientRect();
+            return Math.min(r.width, r.height) >= 44;
+          });
+      })
+      .map((o) => ({ label: t(o.e).slice(0, 30), w: Math.round(o.r.width), h: Math.round(o.r.height) }));
+    const checkout = Array.from(document.querySelectorAll("button,a[href]")).filter(vis)
+      .filter((e) => /checkout|proceed|pay/i.test(t(e)))[0];
+    const chr = checkout ? checkout.getBoundingClientRect() : null;
+    return { smallControls: small,
+             checkout: chr ? { h: Math.round(chr.height), w: Math.round(chr.width),
+                               label: t(checkout).slice(0, 30) } : null };
+  })()`);
+  add("cart: no body control under 44px",
+    cart.smallControls.length === 0, cart.smallControls.slice(0, 5));
+  if (cart.checkout) {
+    add("cart: checkout CTA >= 44px", cart.checkout.h >= 44, cart.checkout);
+  } else {
+    out.push({ name: "cart: checkout CTA >= 44px", pass: true, skipped: true,
+               detail: "cart is empty in this environment — no checkout control rendered" });
+  }
+
+  /* Routes that could not be reached before. Recorded, not claimed. */
+  for (const [path, label] of [["/read/meditations", "reader"], ["/order/1", "order detail"],
+                               ["/admin", "admin"]]) {
+    await navigateAndSettle(cdp, new URL(path, BASE_URL).href, { hard: true });
+    await sleep(900);
+    const g = await cdp.eval(`(() => {
+      const de = document.documentElement;
+      return { h1: ((document.querySelector("h1") || {}).textContent || "").slice(0, 40),
+               overflow: Math.max(0, de.scrollWidth - de.clientWidth),
+               menu: !!document.querySelector('button[aria-controls="mobile-nav-panel"]') };
+    })()`);
+    const gated = /Configuration required/i.test(g.h1);
+    out.push({ name: `${label}: renders on device without overflow`,
+      pass: g.overflow <= 1 && g.menu, skipped: gated,
+      detail: gated
+        ? `shell only — "${g.h1}" (Clerk/DB not configured); no overflow, menu present`
+        : g });
+  }
+
+  return out;
+}
+
 /* ─────────────────────────────── runner ─────────────────────────────── */
 
-const GROUPS = { nav: navChecks, inputs: inputChecks, theme: themeChecks, cards: cardChecks, filters: filterChecks };
+const GROUPS = { nav: navChecks, inputs: inputChecks, theme: themeChecks, cards: cardChecks,
+                 filters: filterChecks, commerce: commerceChecks };
 
 async function main() {
   const names = ONLY ? [ONLY] : Object.keys(GROUPS);

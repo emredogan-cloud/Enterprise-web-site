@@ -40,7 +40,18 @@ export function BookCover({
   const src = coverSrc ?? getCoverImageUrl(coverKey);
 
   return (
-    <div className="relative">
+    /*
+     * Below `sm:` the cover is capped at 72% of the column.
+     *
+     * At full width on the Redmi it rendered 359x540 — 75% of a 718px viewport
+     * — which pushed the price to 695px and the "Add to cart" button to 743px,
+     * below the fold on every book measured. A reader landing on a product page
+     * could not see the buy control without scrolling. Capped, the cover is
+     * still the dominant object on the first screen and both the price and the
+     * CTA clear the fold. `sm:w-full` restores the original at 640px and up, so
+     * the desktop composition is untouched.
+     */
+    <div className="relative mx-auto w-[72%] sm:mx-0 sm:w-full">
       {/* Subtle floor shadow under the cover */}
       <div
         aria-hidden

@@ -91,8 +91,42 @@ export const PROBE_SOURCE = String.raw`(() => {
        an undersized target must not intersect another target's circle or box.
        Undersized targets that pass this are conformant; we report them apart
        from genuine failures so the numbers are not inflated. */
+    /* SC 2.5.8's INLINE exception: "the target is in a sentence or its size is
+       otherwise constrained by the line-height of non-target text." A text link
+       sitting in a metadata line or a paragraph is exempt no matter how the
+       spacing arithmetic lands. Without this the checker reported a conformance
+       failure for a tag link sitting next to a date — which the criterion
+       explicitly excludes. Implemented, not waived: the element must actually
+       be line-height-constrained AND sit among other text. */
+    const isInline = (t) => {
+      const cs = getComputedStyle(t.el);
+      const lh = parseFloat(cs.lineHeight) || parseFloat(cs.fontSize) * 1.2;
+      if (t.r.height > lh + 2) return false;            // taller than its line box
+      const parent = t.el.parentElement;
+      if (!parent) return false;
+      let otherText = "";
+      for (const node of parent.childNodes) {
+        if (node === t.el) continue;
+        otherText += (node.textContent || "");
+      }
+      return otherText.trim().length > 0;
+    };
+
+    /* SC 2.5.8's EQUIVALENT exception: "another control on the same page
+       performs the same function and meets the requirement." A cart line links
+       the book from both its 96x64 cover and its 179x20 title; the title is
+       carried by the cover. Matched on href, which is the function here. */
+    const bigHrefs = new Set(
+      targets.filter((t) => t.min >= 24 && t.el.getAttribute("href"))
+             .map((t) => t.el.getAttribute("href")));
+    const hasEquivalent = (t) => {
+      const href = t.el.getAttribute("href");
+      return !!href && bigHrefs.has(href);
+    };
+
     const failsSpacing = [];
     for (const a of under24) {
+      if (isInline(a) || hasEquivalent(a)) continue;
       const ac = { x: a.r.left + a.r.width / 2, y: a.r.top + a.r.height / 2 };
       let intersects = false;
       for (const b of targets) {

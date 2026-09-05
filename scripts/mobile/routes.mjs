@@ -43,11 +43,17 @@ export const ROUTES = [
   { path: "/unsubscribe",                         name: "legal-unsub",      device: true,  minNodes: 100 },
 
   // Source-only at audit time. Phase 9 re-attempts each and records the outcome.
-  { path: "/codex-enigmatica/verify",             name: "codex-verify",     device: false, minNodes: 80 },
-  { path: "/blog/tag/reading-habits",             name: "blog-tag",         device: false, minNodes: 80 },
+  /* Phase 6 re-attempted every source-only route on the device. These two
+     render fully without auth and are now measured every phase. */
+  { path: "/codex-enigmatica/verify",             name: "codex-verify",     device: true,  minNodes: 150 },
+  { path: "/blog/tag/reading-habits",             name: "blog-tag",         device: true,  minNodes: 150 },
+  /* These four answer HTTP 200 on the device but render UnprovisionedNotice:
+     Clerk and the database are not configured in this environment, so the real
+     admin / order / reader UI cannot be exercised here. Verified on device in
+     Phase 6 — the shell renders, no overflow, the mobile menu is present. */
   { path: "/admin",                               name: "admin",            device: false, minNodes: 50 },
-  { path: "/order/PLACEHOLDER",                   name: "order-detail",     device: false, minNodes: 50 },
-  { path: "/read/PLACEHOLDER",                    name: "reader",           device: false, minNodes: 50 },
+  { path: "/order/1",                             name: "order-detail",     device: false, minNodes: 50 },
+  { path: "/read/meditations",                    name: "reader",           device: false, minNodes: 50 },
 ];
 
 /** The 9 routes the desktop regression gate diffs on every phase. */
