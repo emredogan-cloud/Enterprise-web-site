@@ -1,0 +1,5788 @@
+{
+  "generatedAt": "2026-09-05T01:20:21.584Z",
+  "baseUrl": "http://localhost:3100",
+  "device": {
+    "kind": "device",
+    "browser": "Chrome/152.0.7977.75",
+    "androidPackage": "com.android.chrome"
+  },
+  "widths": [
+    null
+  ],
+  "routeCount": 30,
+  "results": [
+    {
+      "route": "home",
+      "path": "/",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 452,
+      "title": "Valice Press — Find it. Own it. Read it anywhere.",
+      "href": "http://localhost:3100/",
+      "docScrollW": 393,
+      "docScrollH": 6342,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 29,
+      "tapUnder24": 20,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "header > a.text-sm.font-medium.text-emerald-bright.underline-offset-4",
+          "w": 68,
+          "h": 20,
+          "txt": "View all →"
+        },
+        {
+          "sel": "header > a.text-sm.font-medium.text-emerald-bright.underline-offset-4",
+          "w": 112,
+          "h": 20,
+          "txt": "View all books →"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        }
+      ],
+      "tapUnder44": 4,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 27,
+          "sample": [
+            "div > span.text-[12px].sm:text-[11px].font-medium.uppercase :: New · Curated Digital Library",
+            "div > span.text-[12px].sm:text-[11px].font-medium.uppercase :: Scroll to explore",
+            "header > p.text-[12px].sm:text-[11px].font-medium.uppercase :: Why readers love us"
+          ]
+        }
+      ],
+      "tinyTextTotal": 27,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 17,
+        "lineHeightPx": 28.05,
+        "ratio": 1.65,
+        "charsPerLine": 39,
+        "paragraphs": 7,
+        "source": "document"
+      },
+      "h1Px": 56,
+      "imgCount": 12,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 8,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 4,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x122"
+        ],
+        "heading": [
+          "Fraunces (webfont) x31"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "catalog",
+      "path": "/books",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 603,
+      "title": "All books · Browse the catalog · Valice Press",
+      "href": "http://localhost:3100/books",
+      "docScrollW": 393,
+      "docScrollH": 4170,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 62,
+      "tapUnder24": 20,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "header > button.text-xs.font-medium.text-emerald-bright.transition-colors",
+          "w": 49,
+          "h": 16,
+          "txt": "Reset all"
+        },
+        {
+          "sel": "div > input.catalog-range.w-full",
+          "w": 295,
+          "h": 4,
+          "txt": "Maximum price"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        }
+      ],
+      "tapUnder44": 29,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > input.block.h-9.w-full.rounded-lg",
+          "w": 295,
+          "h": 36,
+          "txt": ""
+        },
+        {
+          "sel": "li > button.group.flex.w-full.items-center",
+          "w": 295,
+          "h": 32,
+          "txt": "Classics & Philosophy7"
+        },
+        {
+          "sel": "li > button.group.flex.w-full.items-center",
+          "w": 295,
+          "h": 32,
+          "txt": "Myth & Folklore3"
+        },
+        {
+          "sel": "li > button.group.flex.w-full.items-center",
+          "w": 295,
+          "h": 32,
+          "txt": "Language & Learning2"
+        },
+        {
+          "sel": "li > button.group.flex.w-full.items-center",
+          "w": 295,
+          "h": 32,
+          "txt": "Puzzle & Challenge2"
+        },
+        {
+          "sel": "li > button.group.flex.w-full.items-center",
+          "w": 295,
+          "h": 32,
+          "txt": "Games & Play1"
+        },
+        {
+          "sel": "select#catalog-sort",
+          "w": 225,
+          "h": 36,
+          "txt": "NewestPrice: Low → HighPrice: "
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [
+        {
+          "sel": "div > input.catalog-range.w-full",
+          "w": 295,
+          "h": 4,
+          "hitHeightPx": 0
+        }
+      ],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 22,
+          "sample": [
+            "div > p.text-[12px].sm:text-[11px].font-semibold.uppercase :: Catalog",
+            "header > button.text-xs.font-medium.text-emerald-bright.transition-colors :: Reset all",
+            "div > h3.mb-3.text-[12px].sm:text-[11px].font-semibold :: Search books"
+          ]
+        }
+      ],
+      "tinyTextTotal": 22,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 14,
+        "lineHeightPx": 22.75,
+        "ratio": 1.63,
+        "charsPerLine": 44,
+        "paragraphs": 1,
+        "source": "document"
+      },
+      "h1Px": 52,
+      "imgCount": 12,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 8,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 5,
+        "skipLink": false,
+        "inputsWithoutLabel": 1,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x7"
+        ],
+        "heading": [
+          "Fraunces (webfont) x9"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "ebooks",
+      "path": "/ebooks",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 580,
+      "title": "Ebooks · Buy and download instantly · Valice Press",
+      "href": "http://localhost:3100/ebooks",
+      "docScrollW": 393,
+      "docScrollH": 4224,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 58,
+      "tapUnder24": 20,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "header > button.text-xs.font-medium.text-emerald-bright.transition-colors",
+          "w": 49,
+          "h": 16,
+          "txt": "Reset all"
+        },
+        {
+          "sel": "div > input.catalog-range.w-full",
+          "w": 295,
+          "h": 4,
+          "txt": "Maximum price"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        }
+      ],
+      "tapUnder44": 25,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > input.block.h-9.w-full.rounded-lg",
+          "w": 295,
+          "h": 36,
+          "txt": ""
+        },
+        {
+          "sel": "li > button.group.flex.w-full.items-center",
+          "w": 295,
+          "h": 32,
+          "txt": "Classics & Philosophy7"
+        },
+        {
+          "sel": "li > button.group.flex.w-full.items-center",
+          "w": 295,
+          "h": 32,
+          "txt": "Myth & Folklore2"
+        },
+        {
+          "sel": "li > button.group.flex.w-full.items-center",
+          "w": 295,
+          "h": 32,
+          "txt": "Games & Play1"
+        },
+        {
+          "sel": "li > button.group.flex.w-full.items-center",
+          "w": 295,
+          "h": 32,
+          "txt": "Language & Learning1"
+        },
+        {
+          "sel": "li > button.group.flex.w-full.items-center",
+          "w": 295,
+          "h": 32,
+          "txt": "Puzzle & Challenge1"
+        },
+        {
+          "sel": "select#catalog-sort",
+          "w": 225,
+          "h": 36,
+          "txt": "NewestPrice: Low → HighPrice: "
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [
+        {
+          "sel": "div > input.catalog-range.w-full",
+          "w": 295,
+          "h": 4,
+          "hitHeightPx": 0
+        }
+      ],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 22,
+          "sample": [
+            "header > p.text-[12px].sm:text-[11px].font-semibold.uppercase :: Ebooks",
+            "header > button.text-xs.font-medium.text-emerald-bright.transition-colors :: Reset all",
+            "div > h3.mb-3.text-[12px].sm:text-[11px].font-semibold :: Search books"
+          ]
+        }
+      ],
+      "tinyTextTotal": 22,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 17,
+        "lineHeightPx": 27.625,
+        "ratio": 1.63,
+        "charsPerLine": 41,
+        "paragraphs": 2,
+        "source": "document"
+      },
+      "h1Px": 40,
+      "imgCount": 12,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 8,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 4,
+        "skipLink": false,
+        "inputsWithoutLabel": 1,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x6"
+        ],
+        "heading": [
+          "Fraunces (webfont) x26"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "book-detail",
+      "path": "/books/meditations",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 463,
+      "title": "Meditations · Valice Press",
+      "href": "http://localhost:3100/books/meditations",
+      "docScrollW": 393,
+      "docScrollH": 5478,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 33,
+      "tapUnder24": 20,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "span > a.transition-colors.hover:text-fg-hi",
+          "w": 168,
+          "h": 16,
+          "txt": "Marcus Aurelius"
+        },
+        {
+          "sel": "div > a.text-sm.text-fg-mid.transition-colors.hover:text-emerald-bright",
+          "w": 220,
+          "h": 20,
+          "txt": "Or pick from our reading guide"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        }
+      ],
+      "tapUnder44": 4,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 30,
+          "sample": [
+            "div > span.text-[12px].sm:text-[11px].font-semibold.uppercase :: Price",
+            "span > a.transition-colors.hover:text-fg-hi :: Marcus Aurelius",
+            "dl > dt.text-[12px].sm:text-[11px].font-semibold.uppercase :: Pages"
+          ]
+        }
+      ],
+      "tinyTextTotal": 30,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 16,
+        "lineHeightPx": 26,
+        "ratio": 1.63,
+        "charsPerLine": 44,
+        "paragraphs": 12,
+        "source": "document"
+      },
+      "h1Px": 44,
+      "imgCount": 11,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 10,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 4,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [],
+        "heading": [
+          "Fraunces (webfont) x11"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "book-detail-2",
+      "path": "/books/the-great-book-of-world-games",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 495,
+      "title": "The Great Book of World Games · Valice Press",
+      "href": "http://localhost:3100/books/the-great-book-of-world-games",
+      "docScrollW": 393,
+      "docScrollH": 6083,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 36,
+      "tapUnder24": 20,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "span > a.transition-colors.hover:text-fg-hi",
+          "w": 116,
+          "h": 16,
+          "txt": "Emre Doğan"
+        },
+        {
+          "sel": "div > a.text-sm.text-fg-mid.transition-colors.hover:text-emerald-bright",
+          "w": 220,
+          "h": 20,
+          "txt": "Or pick from our reading guide"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        }
+      ],
+      "tapUnder44": 7,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > a.home-cta-secondary.inline-flex.h-10.items-center",
+          "w": 159,
+          "h": 40,
+          "txt": "Buy on Amazon↗ (opens on amazo"
+        },
+        {
+          "sel": "div > a.home-cta-secondary.inline-flex.h-10.items-center",
+          "w": 159,
+          "h": 40,
+          "txt": "Buy on Amazon↗ (opens on amazo"
+        },
+        {
+          "sel": "span > a.text-emerald-bright.underline-offset-4.hover:underline",
+          "w": 274,
+          "h": 41,
+          "txt": "printable sheets for The Great"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 30,
+          "sample": [
+            "div > span.text-[12px].sm:text-[11px].font-semibold.uppercase :: Price",
+            "span > a.transition-colors.hover:text-fg-hi :: Emre Doğan",
+            "dl > dt.text-[12px].sm:text-[11px].font-semibold.uppercase :: Pages"
+          ]
+        }
+      ],
+      "tinyTextTotal": 30,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 20,
+        "lineHeightPx": 30,
+        "ratio": 1.5,
+        "charsPerLine": 34,
+        "paragraphs": 14,
+        "source": "document"
+      },
+      "h1Px": 44,
+      "imgCount": 11,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 10,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 4,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [],
+        "heading": [
+          "Fraunces (webfont) x28"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "book-detail-3",
+      "path": "/books/codex-enigmatica",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 484,
+      "title": "Codex Enigmatica · Valice Press",
+      "href": "http://localhost:3100/books/codex-enigmatica",
+      "docScrollW": 393,
+      "docScrollH": 5884,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 35,
+      "tapUnder24": 20,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "span > a.transition-colors.hover:text-fg-hi",
+          "w": 116,
+          "h": 16,
+          "txt": "Emre Doğan"
+        },
+        {
+          "sel": "div > a.text-sm.text-fg-mid.transition-colors.hover:text-emerald-bright",
+          "w": 220,
+          "h": 20,
+          "txt": "Or pick from our reading guide"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        }
+      ],
+      "tapUnder44": 6,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > a.home-cta-secondary.inline-flex.h-10.items-center",
+          "w": 159,
+          "h": 40,
+          "txt": "Buy on Amazon↗ (opens on amazo"
+        },
+        {
+          "sel": "div > a.home-cta-secondary.inline-flex.h-10.items-center",
+          "w": 159,
+          "h": 40,
+          "txt": "Buy on Amazon↗ (opens on amazo"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 30,
+          "sample": [
+            "div > span.text-[12px].sm:text-[11px].font-semibold.uppercase :: Price",
+            "span > a.transition-colors.hover:text-fg-hi :: Emre Doğan",
+            "dl > dt.text-[12px].sm:text-[11px].font-semibold.uppercase :: Pages"
+          ]
+        }
+      ],
+      "tinyTextTotal": 30,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 20,
+        "lineHeightPx": 30,
+        "ratio": 1.5,
+        "charsPerLine": 34,
+        "paragraphs": 14,
+        "source": "document"
+      },
+      "h1Px": 44,
+      "imgCount": 11,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 10,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 4,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [],
+        "heading": [
+          "Fraunces (webfont) x15"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "categories",
+      "path": "/categories",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 429,
+      "title": "Browse by category · Valice Press",
+      "href": "http://localhost:3100/categories",
+      "docScrollW": 393,
+      "docScrollH": 1952,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 28,
+      "tapUnder24": 18,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 44,
+          "h": 18,
+          "txt": "Library"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 43,
+          "h": 18,
+          "txt": "Orders"
+        }
+      ],
+      "tapUnder44": 4,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 11,
+          "sample": [
+            "div > p.text-[12px].sm:text-[11px].font-semibold.uppercase :: Browse by category",
+            "div > p.mt-0.5.truncate.text-xs.text-white/60 :: 7 books",
+            "div > p.mt-0.5.truncate.text-xs.text-white/60 :: 1 book"
+          ]
+        }
+      ],
+      "tinyTextTotal": 11,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 16,
+        "lineHeightPx": 26,
+        "ratio": 1.63,
+        "charsPerLine": 44,
+        "paragraphs": 2,
+        "source": "document"
+      },
+      "h1Px": 52,
+      "imgCount": 6,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 6,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 4,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x18"
+        ],
+        "heading": [
+          "Fraunces (webfont) x11"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "category-detail",
+      "path": "/categories/games-and-play",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 309,
+      "title": "Games & Play · Valice Press",
+      "href": "http://localhost:3100/categories/games-and-play",
+      "docScrollW": 393,
+      "docScrollH": 1808,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 26,
+      "tapUnder24": 20,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "li > a.transition-colors.hover:text-emerald-bright",
+          "w": 45,
+          "h": 18,
+          "txt": "Home"
+        },
+        {
+          "sel": "li > a.transition-colors.hover:text-emerald-bright",
+          "w": 96,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        }
+      ],
+      "tapUnder44": 4,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 10,
+          "sample": [
+            "li > a.transition-colors.hover:text-emerald-bright :: Home",
+            "li > a.transition-colors.hover:text-emerald-bright :: Categories",
+            "li > span.text-fg-hi :: Games & Play"
+          ]
+        }
+      ],
+      "tinyTextTotal": 10,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 16,
+        "lineHeightPx": 26,
+        "ratio": 1.63,
+        "charsPerLine": 48,
+        "paragraphs": 3,
+        "source": "document"
+      },
+      "h1Px": 48,
+      "imgCount": 1,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 1,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 5,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x5"
+        ],
+        "heading": [
+          "Fraunces (webfont) x12"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "category-detail-2",
+      "path": "/categories/classics-and-philosophy",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 354,
+      "title": "Classics & Philosophy · Valice Press",
+      "href": "http://localhost:3100/categories/classics-and-philosophy",
+      "docScrollW": 393,
+      "docScrollH": 3104,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 32,
+      "tapUnder24": 20,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "li > a.transition-colors.hover:text-emerald-bright",
+          "w": 45,
+          "h": 18,
+          "txt": "Home"
+        },
+        {
+          "sel": "li > a.transition-colors.hover:text-emerald-bright",
+          "w": 96,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        }
+      ],
+      "tapUnder44": 4,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 22,
+          "sample": [
+            "li > a.transition-colors.hover:text-emerald-bright :: Home",
+            "li > a.transition-colors.hover:text-emerald-bright :: Categories",
+            "li > span.text-fg-hi :: Classics & Philosophy"
+          ]
+        }
+      ],
+      "tinyTextTotal": 22,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 16,
+        "lineHeightPx": 26,
+        "ratio": 1.63,
+        "charsPerLine": 48,
+        "paragraphs": 8,
+        "source": "document"
+      },
+      "h1Px": 48,
+      "imgCount": 7,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 7,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 5,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x5"
+        ],
+        "heading": [
+          "Fraunces (webfont) x20"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "authors",
+      "path": "/authors",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 333,
+      "title": "Authors · Valice Press",
+      "href": "http://localhost:3100/authors",
+      "docScrollW": 393,
+      "docScrollH": 2198,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 25,
+      "tapUnder24": 18,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 44,
+          "h": 18,
+          "txt": "Library"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 43,
+          "h": 18,
+          "txt": "Orders"
+        }
+      ],
+      "tapUnder44": 5,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > select.h-10.cursor-pointer.appearance-none.rounded-full",
+          "w": 180,
+          "h": 40,
+          "txt": "A → ZMost books"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 10,
+          "sample": [
+            "div > p.text-[12px].sm:text-[11px].font-semibold.uppercase :: Authors",
+            "div > span.pointer-events-none.absolute.left-3.5.top-1/2 :: Sort by:",
+            "div > span.text-[12px].sm:text-[9px].font-semibold.uppercase :: Valice Press author"
+          ]
+        }
+      ],
+      "tinyTextTotal": 10,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 16,
+        "lineHeightPx": 26,
+        "ratio": 1.63,
+        "charsPerLine": 42,
+        "paragraphs": 5,
+        "source": "document"
+      },
+      "h1Px": 52,
+      "imgCount": 3,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 3,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 4,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x7"
+        ],
+        "heading": [
+          "Fraunces (webfont) x18"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "author-detail",
+      "path": "/authors/marcus-aurelius",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 290,
+      "title": "Marcus Aurelius · Valice Press",
+      "href": "http://localhost:3100/authors/marcus-aurelius",
+      "docScrollW": 393,
+      "docScrollH": 2292,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 26,
+      "tapUnder24": 20,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "li > a.transition-colors.hover:text-emerald-bright",
+          "w": 45,
+          "h": 18,
+          "txt": "Home"
+        },
+        {
+          "sel": "li > a.transition-colors.hover:text-emerald-bright",
+          "w": 72,
+          "h": 18,
+          "txt": "Authors"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        }
+      ],
+      "tapUnder44": 4,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 11,
+          "sample": [
+            "li > a.transition-colors.hover:text-emerald-bright :: Home",
+            "li > a.transition-colors.hover:text-emerald-bright :: Authors",
+            "li > span.text-fg-hi :: Marcus Aurelius"
+          ]
+        }
+      ],
+      "tinyTextTotal": 11,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 16,
+        "lineHeightPx": 26,
+        "ratio": 1.63,
+        "charsPerLine": 44,
+        "paragraphs": 3,
+        "source": "document"
+      },
+      "h1Px": 48,
+      "imgCount": 2,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 2,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 5,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x6"
+        ],
+        "heading": [
+          "Fraunces (webfont) x15"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "author-detail-2",
+      "path": "/authors/emre-dogan",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 476,
+      "title": "Emre Doğan · Valice Press",
+      "href": "http://localhost:3100/authors/emre-dogan",
+      "docScrollW": 393,
+      "docScrollH": 4989,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 39,
+      "tapUnder24": 20,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "li > a.transition-colors.hover:text-emerald-bright",
+          "w": 45,
+          "h": 18,
+          "txt": "Home"
+        },
+        {
+          "sel": "li > a.transition-colors.hover:text-emerald-bright",
+          "w": 72,
+          "h": 18,
+          "txt": "Authors"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        }
+      ],
+      "tapUnder44": 4,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 38,
+          "sample": [
+            "li > a.transition-colors.hover:text-emerald-bright :: Home",
+            "li > a.transition-colors.hover:text-emerald-bright :: Authors",
+            "li > span.text-fg-hi :: Emre Doğan"
+          ]
+        }
+      ],
+      "tinyTextTotal": 38,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 16,
+        "lineHeightPx": 26,
+        "ratio": 1.63,
+        "charsPerLine": 44,
+        "paragraphs": 18,
+        "source": "document"
+      },
+      "h1Px": 48,
+      "imgCount": 14,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 14,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 5,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x6"
+        ],
+        "heading": [
+          "Fraunces (webfont) x10"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "blog",
+      "path": "/blog",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 408,
+      "title": "Blog · Valice Press",
+      "href": "http://localhost:3100/blog",
+      "docScrollW": 393,
+      "docScrollH": 6045,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 32,
+      "tapUnder24": 18,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 44,
+          "h": 18,
+          "txt": "Library"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 43,
+          "h": 18,
+          "txt": "Orders"
+        }
+      ],
+      "tapUnder44": 6,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "nav > button.group.inline-flex.items-center.gap-2.5",
+          "w": 210,
+          "h": 37,
+          "txt": "Behind the Scenes2"
+        },
+        {
+          "sel": "nav > button.group.inline-flex.items-center.gap-2.5",
+          "w": 189,
+          "h": 37,
+          "txt": "Reading Guides5"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 19,
+          "sample": [
+            "div > p.text-[12px].sm:text-[11px].font-semibold.uppercase :: Blog",
+            "p > time.text-fg-soft :: SEP 2, 2026",
+            "p > span.text-emerald-bright :: Reading Guides"
+          ]
+        }
+      ],
+      "tinyTextTotal": 19,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 16,
+        "lineHeightPx": 26,
+        "ratio": 1.63,
+        "charsPerLine": 44,
+        "paragraphs": 9,
+        "source": "document"
+      },
+      "h1Px": 52,
+      "imgCount": 7,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 7,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 5,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x4"
+        ],
+        "heading": [
+          "Fraunces (webfont) x23"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "blog-article",
+      "path": "/blog/hangul-stroke-order",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 464,
+      "title": "Hangul stroke order: how to write all 40 letters, and where each order comes from · Valice Press",
+      "href": "http://localhost:3100/blog/hangul-stroke-order",
+      "docScrollW": 393,
+      "docScrollH": 9436,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 50,
+      "tapUnder24": 28,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "li > a.transition-colors.hover:text-emerald-bright",
+          "w": 45,
+          "h": 18,
+          "txt": "Home"
+        },
+        {
+          "sel": "li > a.transition-colors.hover:text-emerald-bright",
+          "w": 41,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "div > a.inline-flex.w-fit.items-center.gap-2",
+          "w": 148,
+          "h": 18,
+          "txt": "READING GUIDES"
+        },
+        {
+          "sel": "li > a.block.text-[13px].leading-snug.transition-colors",
+          "w": 303,
+          "h": 18,
+          "txt": "1. The rule that covers most o"
+        },
+        {
+          "sel": "li > a.block.text-[13px].leading-snug.transition-colors",
+          "w": 303,
+          "h": 18,
+          "txt": "2. The part the rule does not "
+        },
+        {
+          "sel": "li > a.block.text-[13px].leading-snug.transition-colors",
+          "w": 303,
+          "h": 18,
+          "txt": "3. Vowels tell you where they "
+        },
+        {
+          "sel": "li > a.block.text-[13px].leading-snug.transition-colors",
+          "w": 303,
+          "h": 18,
+          "txt": "5. One thing that is not a str"
+        },
+        {
+          "sel": "li > a.block.text-[13px].leading-snug.transition-colors",
+          "w": 303,
+          "h": 18,
+          "txt": "6. The workbook"
+        },
+        {
+          "sel": "strong > a",
+          "w": 311,
+          "h": 24,
+          "txt": "valicepress.com/companion/hang"
+        }
+      ],
+      "tapUnder44": 15,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "li > a.block.text-[13px].leading-snug.transition-colors",
+          "w": 303,
+          "h": 36,
+          "txt": "4. Where these orders actually"
+        },
+        {
+          "sel": "div > button.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Share via system"
+        },
+        {
+          "sel": "div > button.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Share on X"
+        },
+        {
+          "sel": "div > button.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Share on Facebook"
+        },
+        {
+          "sel": "div > button.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Share on LinkedIn"
+        },
+        {
+          "sel": "div > button.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Copy link"
+        },
+        {
+          "sel": "div > button.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Share via system"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 13,
+          "sample": [
+            "li > a.transition-colors.hover:text-emerald-bright :: Home",
+            "li > a.transition-colors.hover:text-emerald-bright :: Blog",
+            "li > span.text-fg-hi :: Hangul stroke order: how to wr"
+          ]
+        }
+      ],
+      "tinyTextTotal": 13,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 18,
+        "lineHeightPx": 31.5,
+        "ratio": 1.75,
+        "charsPerLine": 39,
+        "paragraphs": 14,
+        "source": ".cinematic-prose"
+      },
+      "h1Px": 40,
+      "imgCount": 4,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 3,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 6,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x229"
+        ],
+        "heading": [
+          "Fraunces (webfont) x75"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "blog-article-2",
+      "path": "/blog/why-we-built-valice-press",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 398,
+      "title": "Why we built Valice Press · Valice Press",
+      "href": "http://localhost:3100/blog/why-we-built-valice-press",
+      "docScrollW": 393,
+      "docScrollH": 7475,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 46,
+      "tapUnder24": 25,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "li > a.transition-colors.hover:text-emerald-bright",
+          "w": 45,
+          "h": 18,
+          "txt": "Home"
+        },
+        {
+          "sel": "li > a.transition-colors.hover:text-emerald-bright",
+          "w": 41,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "div > a.inline-flex.w-fit.items-center.gap-2",
+          "w": 176,
+          "h": 18,
+          "txt": "BEHIND THE SCENES"
+        },
+        {
+          "sel": "li > a.block.text-[13px].leading-snug.transition-colors",
+          "w": 303,
+          "h": 18,
+          "txt": "1. The principle: buy once, ke"
+        },
+        {
+          "sel": "li > a.block.text-[13px].leading-snug.transition-colors",
+          "w": 303,
+          "h": 18,
+          "txt": "2. Protection without locks"
+        },
+        {
+          "sel": "li > a.block.text-[13px].leading-snug.transition-colors",
+          "w": 303,
+          "h": 18,
+          "txt": "3. What's next"
+        },
+        {
+          "sel": "p > a.font-medium.text-primary.underline-offset-4.hover:underline",
+          "w": 169,
+          "h": 18,
+          "txt": "Browse the full catalog →"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        }
+      ],
+      "tapUnder44": 14,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > button.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Share via system"
+        },
+        {
+          "sel": "div > button.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Share on X"
+        },
+        {
+          "sel": "div > button.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Share on Facebook"
+        },
+        {
+          "sel": "div > button.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Share on LinkedIn"
+        },
+        {
+          "sel": "div > button.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Copy link"
+        },
+        {
+          "sel": "div > button.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Share via system"
+        },
+        {
+          "sel": "div > button.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Share on X"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 13,
+          "sample": [
+            "li > a.transition-colors.hover:text-emerald-bright :: Home",
+            "li > a.transition-colors.hover:text-emerald-bright :: Blog",
+            "li > span.text-fg-hi :: Why we built Valice Press"
+          ]
+        }
+      ],
+      "tinyTextTotal": 13,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 18,
+        "lineHeightPx": 31.5,
+        "ratio": 1.75,
+        "charsPerLine": 39,
+        "paragraphs": 8,
+        "source": ".cinematic-prose"
+      },
+      "h1Px": 40,
+      "imgCount": 4,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 3,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 6,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x194"
+        ],
+        "heading": [
+          "Fraunces (webfont) x24"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "blog-category",
+      "path": "/blog/category/reading-guides",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 478,
+      "title": "Reading Guides · Valice Press",
+      "href": "http://localhost:3100/blog/category/reading-guides",
+      "docScrollW": 393,
+      "docScrollH": 5797,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 36,
+      "tapUnder24": 19,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "nav > a.transition-colors.hover:text-[#33f0aa]",
+          "w": 40,
+          "h": 16,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 44,
+          "h": 18,
+          "txt": "Library"
+        }
+      ],
+      "tapUnder44": 11,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "li > button.rounded-full.border.border-white/[0.08].bg-white/[0.03]",
+          "w": 115,
+          "h": 25,
+          "txt": "Choosing Books"
+        },
+        {
+          "sel": "li > button.rounded-full.border.border-white/[0.08].bg-white/[0.03]",
+          "w": 109,
+          "h": 25,
+          "txt": "Reading Habits"
+        },
+        {
+          "sel": "li > button.rounded-full.border.border-white/[0.08].bg-white/[0.03]",
+          "w": 70,
+          "h": 25,
+          "txt": "Mindset"
+        },
+        {
+          "sel": "li > button.rounded-full.border.border-white/[0.08].bg-white/[0.03]",
+          "w": 58,
+          "h": 25,
+          "txt": "Focus"
+        },
+        {
+          "sel": "li > button.rounded-full.border.border-white/[0.08].bg-white/[0.03]",
+          "w": 83,
+          "h": 25,
+          "txt": "Book Lists"
+        },
+        {
+          "sel": "input#category-newsletter-email",
+          "w": 311,
+          "h": 40,
+          "txt": ""
+        },
+        {
+          "sel": "form > button.home-cta-primary.inline-flex.h-10.w-full",
+          "w": 311,
+          "h": 40,
+          "txt": "Subscribe"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 31,
+          "sample": [
+            "nav > a.transition-colors.hover:text-[#33f0aa] :: Blog",
+            "nav > span.text-[#e6e6e0] :: Reading Guides",
+            "div > p.text-[12px].sm:text-[11px].font-semibold.uppercase :: Blog Category"
+          ]
+        }
+      ],
+      "tinyTextTotal": 31,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 16,
+        "lineHeightPx": 26,
+        "ratio": 1.63,
+        "charsPerLine": 44,
+        "paragraphs": 9,
+        "source": "document"
+      },
+      "h1Px": 44,
+      "imgCount": 5,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 5,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 5,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x13"
+        ],
+        "heading": [
+          "Fraunces (webfont) x14"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "search",
+      "path": "/search",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 448,
+      "title": "Search · Valice Press",
+      "href": "http://localhost:3100/search",
+      "docScrollW": 393,
+      "docScrollH": 2823,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 41,
+      "tapUnder24": 18,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 44,
+          "h": 18,
+          "txt": "Library"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 43,
+          "h": 18,
+          "txt": "Orders"
+        }
+      ],
+      "tapUnder44": 10,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > a.group.inline-flex.items-center.gap-1.5",
+          "w": 163,
+          "h": 29,
+          "txt": "Classics & Philosophy"
+        },
+        {
+          "sel": "div > a.group.inline-flex.items-center.gap-1.5",
+          "w": 119,
+          "h": 29,
+          "txt": "Games & Play"
+        },
+        {
+          "sel": "div > a.group.inline-flex.items-center.gap-1.5",
+          "w": 159,
+          "h": 29,
+          "txt": "Language & Learning"
+        },
+        {
+          "sel": "div > a.group.inline-flex.items-center.gap-1.5",
+          "w": 129,
+          "h": 29,
+          "txt": "Myth & Folklore"
+        },
+        {
+          "sel": "div > a.group.inline-flex.items-center.gap-1.5",
+          "w": 149,
+          "h": 29,
+          "txt": "Puzzle & Challenge"
+        },
+        {
+          "sel": "div > a.group.inline-flex.items-center.gap-1.5",
+          "w": 131,
+          "h": 29,
+          "txt": "Young Explorers"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 17,
+          "sample": [
+            "div > p.text-[12px].sm:text-[11px].font-semibold.uppercase :: Search",
+            "p > span :: Try searching for",
+            "a > span :: Classics & Philosophy"
+          ]
+        }
+      ],
+      "tinyTextTotal": 17,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 15,
+        "lineHeightPx": 24.375,
+        "ratio": 1.63,
+        "charsPerLine": 36,
+        "paragraphs": 2,
+        "source": "document"
+      },
+      "h1Px": 52,
+      "imgCount": 0,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 0,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 4,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x6"
+        ],
+        "heading": [
+          "Fraunces (webfont) x17"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "search-results",
+      "path": "/search?q=games",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 247,
+      "title": "Search · Valice Press",
+      "href": "http://localhost:3100/search?q=games",
+      "docScrollW": 393,
+      "docScrollH": 1603,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 25,
+      "tapUnder24": 18,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 44,
+          "h": 18,
+          "txt": "Library"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 43,
+          "h": 18,
+          "txt": "Orders"
+        }
+      ],
+      "tapUnder44": 4,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 6,
+          "sample": [
+            "div > p.text-[12px].sm:text-[11px].font-semibold.uppercase :: Search",
+            "div > p.mt-1.text-xs.text-fg-soft :: Emre Doğan",
+            "div > h3.text-xs.font-semibold.uppercase.tracking-[0.2em] :: Shop"
+          ]
+        }
+      ],
+      "tinyTextTotal": 6,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 14,
+        "lineHeightPx": 22.75,
+        "ratio": 1.63,
+        "charsPerLine": 44,
+        "paragraphs": 1,
+        "source": "document"
+      },
+      "h1Px": 52,
+      "imgCount": 1,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 1,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 4,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x6"
+        ],
+        "heading": [
+          "Fraunces (webfont) x17"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "cart",
+      "path": "/cart",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 376,
+      "title": "Your cart · Valice Press",
+      "href": "http://localhost:3100/cart",
+      "docScrollW": 393,
+      "docScrollH": 2096,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 40,
+      "tapUnder24": 18,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 44,
+          "h": 18,
+          "txt": "Library"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 43,
+          "h": 18,
+          "txt": "Orders"
+        }
+      ],
+      "tapUnder44": 12,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > button.flex.h-8.w-8.items-center",
+          "w": 32,
+          "h": 32,
+          "txt": "Add Codex Enigmatica to cart"
+        },
+        {
+          "sel": "div > button.flex.h-8.w-8.items-center",
+          "w": 32,
+          "h": 32,
+          "txt": "Add Myths and Legends of China"
+        },
+        {
+          "sel": "div > button.flex.h-8.w-8.items-center",
+          "w": 32,
+          "h": 32,
+          "txt": "Add Epictetus: The Discourses "
+        },
+        {
+          "sel": "div > button.flex.h-8.w-8.items-center",
+          "w": 32,
+          "h": 32,
+          "txt": "Add Mythical Monsters to cart"
+        },
+        {
+          "sel": "div > button.flex.h-8.w-8.items-center",
+          "w": 32,
+          "h": 32,
+          "txt": "Add Indian Myth and Legend to "
+        },
+        {
+          "sel": "div > button.flex.h-8.w-8.items-center",
+          "w": 32,
+          "h": 32,
+          "txt": "Add The Great Book of World Ga"
+        },
+        {
+          "sel": "div > button.flex.h-8.w-8.items-center",
+          "w": 32,
+          "h": 32,
+          "txt": "Add Seneca: Selected Dialogues"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 13,
+          "sample": [
+            "div > p.text-[12px].sm:text-[11px].font-semibold.uppercase :: Your cart",
+            "div > p.text-xs.text-fg-soft :: Emre Doğan",
+            "div > p.text-xs.text-fg-soft :: Emre Doğan"
+          ]
+        }
+      ],
+      "tinyTextTotal": 13,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 15,
+        "lineHeightPx": 24.75,
+        "ratio": 1.65,
+        "charsPerLine": 36,
+        "paragraphs": 2,
+        "source": "document"
+      },
+      "h1Px": 52,
+      "imgCount": 8,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 8,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 4,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x9"
+        ],
+        "heading": [
+          "Fraunces (webfont) x17"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "companion",
+      "path": "/companion/world-games",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 256,
+      "title": "The Great Book of World Games — free companion · Valice Press",
+      "href": "http://localhost:3100/companion/world-games",
+      "docScrollW": 393,
+      "docScrollH": 3185,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 31,
+      "tapUnder24": 20,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "p > a.text-emerald-bright.hover:underline",
+          "w": 285,
+          "h": 18,
+          "txt": "See the book, its formats and "
+        },
+        {
+          "sel": "p > a.text-emerald-bright.hover:underline",
+          "w": 221,
+          "h": 18,
+          "txt": "Browse the Valice Press catalo"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        }
+      ],
+      "tapUnder44": 8,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "li > a.mt-4.inline-flex.items-center.gap-2",
+          "w": 117,
+          "h": 37,
+          "txt": "Open PDF↓"
+        },
+        {
+          "sel": "li > a.mt-4.inline-flex.items-center.gap-2",
+          "w": 117,
+          "h": 37,
+          "txt": "Open PDF↓"
+        },
+        {
+          "sel": "li > a.mt-4.inline-flex.items-center.gap-2",
+          "w": 117,
+          "h": 37,
+          "txt": "Open PDF↓"
+        },
+        {
+          "sel": "li > a.mt-4.inline-flex.items-center.gap-2",
+          "w": 117,
+          "h": 37,
+          "txt": "Open PDF↓"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 11,
+          "sample": [
+            "main > p.text-[12px].sm:text-[11px].font-medium.uppercase :: Free companion",
+            "div > span.font-mono.text-[12px].sm:text-[11px].uppercase :: PDF · US Letter · 3 pages",
+            "div > span.font-mono.text-[12px].sm:text-[11px].uppercase :: PDF · US Letter · 14 pages"
+          ]
+        }
+      ],
+      "tinyTextTotal": 11,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 16,
+        "lineHeightPx": 26,
+        "ratio": 1.63,
+        "charsPerLine": 44,
+        "paragraphs": 9,
+        "source": "document"
+      },
+      "h1Px": 34,
+      "imgCount": 0,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 0,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 4,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x14"
+        ],
+        "heading": [
+          "Fraunces (webfont) x28"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "companion-hangul",
+      "path": "/companion/hangul",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 249,
+      "title": "Korean Hangul Handwriting Workbook — free companion · Valice Press",
+      "href": "http://localhost:3100/companion/hangul",
+      "docScrollW": 393,
+      "docScrollH": 2891,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 30,
+      "tapUnder24": 20,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "p > a.text-emerald-bright.hover:underline",
+          "w": 285,
+          "h": 18,
+          "txt": "See the book, its formats and "
+        },
+        {
+          "sel": "p > a.text-emerald-bright.hover:underline",
+          "w": 221,
+          "h": 18,
+          "txt": "Browse the Valice Press catalo"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        }
+      ],
+      "tapUnder44": 7,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "li > a.mt-4.inline-flex.items-center.gap-2",
+          "w": 117,
+          "h": 37,
+          "txt": "Open PDF↓"
+        },
+        {
+          "sel": "li > a.mt-4.inline-flex.items-center.gap-2",
+          "w": 117,
+          "h": 37,
+          "txt": "Open PDF↓"
+        },
+        {
+          "sel": "li > a.mt-4.inline-flex.items-center.gap-2",
+          "w": 117,
+          "h": 37,
+          "txt": "Open PDF↓"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 10,
+          "sample": [
+            "main > p.text-[12px].sm:text-[11px].font-medium.uppercase :: Free companion",
+            "div > span.font-mono.text-[12px].sm:text-[11px].uppercase :: PDF · US Letter · 4 pages",
+            "div > span.font-mono.text-[12px].sm:text-[11px].uppercase :: PDF · US Letter · 2 pages"
+          ]
+        }
+      ],
+      "tinyTextTotal": 10,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 16,
+        "lineHeightPx": 26,
+        "ratio": 1.63,
+        "charsPerLine": 44,
+        "paragraphs": 8,
+        "source": "document"
+      },
+      "h1Px": 34,
+      "imgCount": 0,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 0,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 4,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x14"
+        ],
+        "heading": [
+          "Fraunces (webfont) x32"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "about",
+      "path": "/about",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 444,
+      "title": "About · Valice Press",
+      "href": "http://localhost:3100/about",
+      "docScrollW": 393,
+      "docScrollH": 5291,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 36,
+      "tapUnder24": 19,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "p > a.font-medium.text-emerald-bright.underline.decoration-emerald-bright/30",
+          "w": 143,
+          "h": 21,
+          "txt": "behind-the-scenes"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 44,
+          "h": 18,
+          "txt": "Library"
+        }
+      ],
+      "tapUnder44": 6,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > a.group.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Follow on X"
+        },
+        {
+          "sel": "div > a.group.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "GitHub"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 15,
+          "sample": [
+            "div > p.text-[12px].sm:text-[11px].font-semibold.uppercase :: About",
+            "header > p.text-[12px].sm:text-[11px].font-semibold.uppercase :: Our convictions",
+            "div > p.text-[12px].sm:text-[11px].font-semibold.uppercase :: Transparency"
+          ]
+        }
+      ],
+      "tinyTextTotal": 15,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 16,
+        "lineHeightPx": 26,
+        "ratio": 1.63,
+        "charsPerLine": 44,
+        "paragraphs": 12,
+        "source": "document"
+      },
+      "h1Px": 40,
+      "imgCount": 1,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 1,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 4,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x5"
+        ],
+        "heading": [
+          "Fraunces (webfont) x36"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "library",
+      "path": "/account/library",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 235,
+      "title": "Your library · Valice Press",
+      "href": "http://localhost:3100/account/library",
+      "docScrollW": 393,
+      "docScrollH": 1440,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 23,
+      "tapUnder24": 18,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 44,
+          "h": 18,
+          "txt": "Library"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 43,
+          "h": 18,
+          "txt": "Orders"
+        }
+      ],
+      "tapUnder44": 4,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 9,
+          "sample": [
+            "div > p.text-[12px].sm:text-[11px].font-semibold.uppercase :: Configuration required",
+            "div > p.text-[12px].sm:text-[11px].font-semibold.uppercase :: Set these environment variable",
+            "div > p.mt-5.text-xs.leading-relaxed.text-fg-soft :: See"
+          ]
+        }
+      ],
+      "tinyTextTotal": 9,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 16,
+        "lineHeightPx": 26,
+        "ratio": 1.63,
+        "charsPerLine": 44,
+        "paragraphs": 3,
+        "source": "document"
+      },
+      "h1Px": 36,
+      "imgCount": 0,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 0,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 4,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x22"
+        ],
+        "heading": [
+          "Fraunces (webfont) x20"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "orders",
+      "path": "/account/orders",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 241,
+      "title": "Your orders · Valice Press",
+      "href": "http://localhost:3100/account/orders",
+      "docScrollW": 393,
+      "docScrollH": 1440,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 23,
+      "tapUnder24": 18,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 44,
+          "h": 18,
+          "txt": "Library"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 43,
+          "h": 18,
+          "txt": "Orders"
+        }
+      ],
+      "tapUnder44": 4,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 9,
+          "sample": [
+            "div > p.text-[12px].sm:text-[11px].font-semibold.uppercase :: Configuration required",
+            "div > p.text-[12px].sm:text-[11px].font-semibold.uppercase :: Set these environment variable",
+            "div > p.mt-5.text-xs.leading-relaxed.text-fg-soft :: See"
+          ]
+        }
+      ],
+      "tinyTextTotal": 9,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 16,
+        "lineHeightPx": 26,
+        "ratio": 1.63,
+        "charsPerLine": 44,
+        "paragraphs": 3,
+        "source": "document"
+      },
+      "h1Px": 36,
+      "imgCount": 0,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 0,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 4,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x22"
+        ],
+        "heading": [
+          "Fraunces (webfont) x20"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "settings",
+      "path": "/account/settings",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 247,
+      "title": "Account settings · Valice Press",
+      "href": "http://localhost:3100/account/settings",
+      "docScrollW": 393,
+      "docScrollH": 1440,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 23,
+      "tapUnder24": 18,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 44,
+          "h": 18,
+          "txt": "Library"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 43,
+          "h": 18,
+          "txt": "Orders"
+        }
+      ],
+      "tapUnder44": 4,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 9,
+          "sample": [
+            "div > p.text-[12px].sm:text-[11px].font-semibold.uppercase :: Configuration required",
+            "div > p.text-[12px].sm:text-[11px].font-semibold.uppercase :: Set these environment variable",
+            "div > p.mt-5.text-xs.leading-relaxed.text-fg-soft :: See"
+          ]
+        }
+      ],
+      "tinyTextTotal": 9,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 16,
+        "lineHeightPx": 26,
+        "ratio": 1.63,
+        "charsPerLine": 44,
+        "paragraphs": 3,
+        "source": "document"
+      },
+      "h1Px": 36,
+      "imgCount": 0,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 0,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 4,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x22"
+        ],
+        "heading": [
+          "Fraunces (webfont) x20"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "legal-terms",
+      "path": "/terms",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 285,
+      "title": "Terms of service · Valice Press",
+      "href": "http://localhost:3100/terms",
+      "docScrollW": 393,
+      "docScrollH": 5736,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 28,
+      "tapUnder24": 23,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "nav > a.transition-colors.hover:text-emerald-bright",
+          "w": 45,
+          "h": 16,
+          "txt": "Home"
+        },
+        {
+          "sel": "p > a",
+          "w": 199,
+          "h": 24,
+          "txt": "emre30283@gmail.com"
+        },
+        {
+          "sel": "p > a",
+          "w": 148,
+          "h": 24,
+          "txt": "/account/settings"
+        },
+        {
+          "sel": "p > a",
+          "w": 113,
+          "h": 24,
+          "txt": "Refund Policy"
+        },
+        {
+          "sel": "p > a",
+          "w": 199,
+          "h": 24,
+          "txt": "emre30283@gmail.com"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        }
+      ],
+      "tapUnder44": 4,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 8,
+          "sample": [
+            "nav > a.transition-colors.hover:text-emerald-bright :: Home",
+            "nav > span.text-fg-hi :: Legal",
+            "article > p.mt-10.text-[12px].sm:text-[11px].font-semibold :: Legal"
+          ]
+        }
+      ],
+      "tinyTextTotal": 8,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 18,
+        "lineHeightPx": 31.5,
+        "ratio": 1.75,
+        "charsPerLine": 39,
+        "paragraphs": 14,
+        "source": ".cinematic-prose"
+      },
+      "h1Px": 40,
+      "imgCount": 0,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 0,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 5,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x5"
+        ],
+        "heading": [
+          "Fraunces (webfont) x16"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "legal-privacy",
+      "path": "/privacy",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 310,
+      "title": "Privacy policy · Valice Press",
+      "href": "http://localhost:3100/privacy",
+      "docScrollW": 393,
+      "docScrollH": 6441,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 29,
+      "tapUnder24": 23,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "nav > a.transition-colors.hover:text-emerald-bright",
+          "w": 45,
+          "h": 16,
+          "txt": "Home"
+        },
+        {
+          "sel": "li > a",
+          "w": 148,
+          "h": 24,
+          "txt": "/account/settings"
+        },
+        {
+          "sel": "li > a",
+          "w": 148,
+          "h": 24,
+          "txt": "/account/settings"
+        },
+        {
+          "sel": "li > a",
+          "w": 199,
+          "h": 24,
+          "txt": "emre30283@gmail.com"
+        },
+        {
+          "sel": "p > a",
+          "w": 199,
+          "h": 24,
+          "txt": "emre30283@gmail.com"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        }
+      ],
+      "tapUnder44": 4,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 8,
+          "sample": [
+            "nav > a.transition-colors.hover:text-emerald-bright :: Home",
+            "nav > span.text-fg-hi :: Legal",
+            "article > p.mt-10.text-[12px].sm:text-[11px].font-semibold :: Legal"
+          ]
+        }
+      ],
+      "tinyTextTotal": 8,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 18,
+        "lineHeightPx": 31.5,
+        "ratio": 1.75,
+        "charsPerLine": 39,
+        "paragraphs": 12,
+        "source": ".cinematic-prose"
+      },
+      "h1Px": 40,
+      "imgCount": 0,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 0,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 5,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x5"
+        ],
+        "heading": [
+          "Fraunces (webfont) x14"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "legal-refund",
+      "path": "/refund",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 279,
+      "title": "Refund policy · Valice Press",
+      "href": "http://localhost:3100/refund",
+      "docScrollW": 393,
+      "docScrollH": 4924,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 28,
+      "tapUnder24": 23,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "nav > a.transition-colors.hover:text-emerald-bright",
+          "w": 45,
+          "h": 16,
+          "txt": "Home"
+        },
+        {
+          "sel": "p > a",
+          "w": 98,
+          "h": 24,
+          "txt": "orders page"
+        },
+        {
+          "sel": "p > a",
+          "w": 199,
+          "h": 24,
+          "txt": "emre30283@gmail.com"
+        },
+        {
+          "sel": "p > a",
+          "w": 133,
+          "h": 24,
+          "txt": "/account/library"
+        },
+        {
+          "sel": "p > a",
+          "w": 199,
+          "h": 24,
+          "txt": "emre30283@gmail.com"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        }
+      ],
+      "tapUnder44": 4,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 8,
+          "sample": [
+            "nav > a.transition-colors.hover:text-emerald-bright :: Home",
+            "nav > span.text-fg-hi :: Legal",
+            "article > p.mt-10.text-[12px].sm:text-[11px].font-semibold :: Legal"
+          ]
+        }
+      ],
+      "tinyTextTotal": 8,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 18,
+        "lineHeightPx": 31.5,
+        "ratio": 1.75,
+        "charsPerLine": 39,
+        "paragraphs": 10,
+        "source": ".cinematic-prose"
+      },
+      "h1Px": 40,
+      "imgCount": 0,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 0,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 5,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x5"
+        ],
+        "heading": [
+          "Fraunces (webfont) x13"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "legal-kvkk",
+      "path": "/kvkk",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 352,
+      "title": "KVKK aydınlatma metni · Valice Press",
+      "href": "http://localhost:3100/kvkk",
+      "docScrollW": 393,
+      "docScrollH": 7498,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 29,
+      "tapUnder24": 24,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "nav > a.transition-colors.hover:text-emerald-bright",
+          "w": 45,
+          "h": 16,
+          "txt": "Home"
+        },
+        {
+          "sel": "p > a",
+          "w": 199,
+          "h": 24,
+          "txt": "emre30283@gmail.com"
+        },
+        {
+          "sel": "li > a",
+          "w": 148,
+          "h": 24,
+          "txt": "/account/settings"
+        },
+        {
+          "sel": "li > a",
+          "w": 148,
+          "h": 24,
+          "txt": "/account/settings"
+        },
+        {
+          "sel": "li > a",
+          "w": 199,
+          "h": 24,
+          "txt": "emre30283@gmail.com"
+        },
+        {
+          "sel": "p > a",
+          "w": 199,
+          "h": 24,
+          "txt": "emre30283@gmail.com"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        }
+      ],
+      "tapUnder44": 4,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 8,
+          "sample": [
+            "nav > a.transition-colors.hover:text-emerald-bright :: Home",
+            "nav > span.text-fg-hi :: Yasal",
+            "article > p.mt-10.text-[12px].sm:text-[11px].font-semibold :: Yasal"
+          ]
+        }
+      ],
+      "tinyTextTotal": 8,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 18,
+        "lineHeightPx": 31.5,
+        "ratio": 1.75,
+        "charsPerLine": 39,
+        "paragraphs": 7,
+        "source": ".cinematic-prose"
+      },
+      "h1Px": 40,
+      "imgCount": 0,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 0,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 5,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x5"
+        ],
+        "heading": [
+          "Fraunces (webfont) x20"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "route": "legal-unsub",
+      "path": "/unsubscribe",
+      "width": "device",
+      "vw": 392,
+      "vh": 718,
+      "dpr": 2.75,
+      "domNodes": 228,
+      "title": "Unsubscribe · Valice Press",
+      "href": "http://localhost:3100/unsubscribe",
+      "docScrollW": 393,
+      "docScrollH": 1793,
+      "hOverflowPx": 1,
+      "overflowers": [],
+      "overflowCount": 0,
+      "tapTotal": 25,
+      "tapUnder24": 20,
+      "tapUnder24List": [
+        {
+          "sel": "div > a.group.flex.items-center.gap-2",
+          "w": 95,
+          "h": 23,
+          "txt": "Valice Press"
+        },
+        {
+          "sel": "nav > a.transition-colors.hover:text-emerald-bright",
+          "w": 45,
+          "h": 16,
+          "txt": "Home"
+        },
+        {
+          "sel": "p > a",
+          "w": 188,
+          "h": 24,
+          "txt": "hello@valicepress.com"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 60,
+          "h": 18,
+          "txt": "All Books"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 71,
+          "h": 18,
+          "txt": "Bestsellers"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 91,
+          "h": 18,
+          "txt": "New Releases"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 69,
+          "h": 18,
+          "txt": "Categories"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 29,
+          "h": 18,
+          "txt": "Blog"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 100,
+          "h": 18,
+          "txt": "Reading Guides"
+        },
+        {
+          "sel": "li > a.text-fg-soft.transition-colors.hover:text-fg-hi",
+          "w": 120,
+          "h": 18,
+          "txt": "Behind the Scenes"
+        }
+      ],
+      "tapUnder44": 4,
+      "tapUnder44List": [
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Search"
+        },
+        {
+          "sel": "div > a.relative.flex.h-9.w-9",
+          "w": 36,
+          "h": 36,
+          "txt": "Cart, empty"
+        },
+        {
+          "sel": "div > a.flex.h-9.w-9.items-center",
+          "w": 36,
+          "h": 36,
+          "txt": "Account"
+        },
+        {
+          "sel": "div > a.inline-flex.items-center.gap-2.text-base",
+          "w": 106,
+          "h": 24,
+          "txt": "Valice Press"
+        }
+      ],
+      "tapFailsWcag": 0,
+      "tapFailsWcagList": [],
+      "dragTargets": [],
+      "tinyText": [
+        {
+          "size": 12,
+          "count": 8,
+          "sample": [
+            "nav > a.transition-colors.hover:text-emerald-bright :: Home",
+            "nav > span.text-fg-hi :: Mailing list",
+            "article > p.mt-10.text-[12px].sm:text-[11px].font-semibold :: Mailing list"
+          ]
+        }
+      ],
+      "tinyTextTotal": 8,
+      "textBelow12": 0,
+      "bodyType": {
+        "fontPx": 18,
+        "lineHeightPx": 31.5,
+        "ratio": 1.75,
+        "charsPerLine": 39,
+        "paragraphs": 2,
+        "source": ".cinematic-prose"
+      },
+      "h1Px": 40,
+      "imgCount": 0,
+      "imgOversized": [],
+      "imgNoAlt": 0,
+      "imgLazy": 0,
+      "safeArea": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "0px",
+        "right": "0px"
+      },
+      "theme": {
+        "htmlBg": "rgb(5, 7, 5)",
+        "bodyBg": "lab(99.2132 -0.128955 1.51819)",
+        "colorScheme": "dark",
+        "themeColorMeta": "#050705",
+        "viewportMeta": "width=device-width, initial-scale=1, viewport-fit=cover"
+      },
+      "nav": {
+        "headerFound": true,
+        "headerLinks": [
+          "/",
+          "/search",
+          "/cart",
+          "/account/library"
+        ],
+        "headerLinkCount": 4,
+        "browseDestinations": 1,
+        "hasMenuButton": true,
+        "menuButtonSize": "44x44",
+        "menuButtonExpanded": "false"
+      },
+      "a11y": {
+        "h1Count": 1,
+        "landmarks": 5,
+        "skipLink": false,
+        "inputsWithoutLabel": 0,
+        "reducedMotionHonoured": false
+      },
+      "fonts": {
+        "body": [
+          "Geist (webfont) x12"
+        ],
+        "heading": [
+          "Fraunces (webfont) x11"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "routesMeasured": 30,
+    "routesFailed": 0,
+    "totalOverflow": 0,
+    "totalWcagTapFailures": 0,
+    "totalUnder24": 606,
+    "totalTinyText": 478,
+    "totalTextBelow12": 0,
+    "routesWithConsoleErrors": 0
+  }
+}

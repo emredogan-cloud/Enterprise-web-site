@@ -17,7 +17,7 @@ import { dirname, resolve } from "node:path";
 
 import {
   BASE_URL, assertServerHealthy, connectDevice, navigateAndSettle,
-  assertRendered, sleep,
+  assertRendered, setViewport, clearViewport, sleep,
 } from "./device.mjs";
 import { byName, ROUTES } from "./routes.mjs";
 
@@ -348,9 +348,92 @@ async function themeChecks(cdp) {
   return out;
 }
 
+/* ────────────────────────── cards + shelves ────────────────────────── */
+
+async function cardChecks(cdp) {
+  const out = [];
+  const add = (name, pass, detail) => out.push({ name, pass, detail });
+
+  /* Category tiles: no title may paint outside its box, at any card width.
+     The card is a container query, so what matters is the card's own width —
+     the grid is 2-up / 3-up / 5-up and card width is not monotonic in viewport
+     width. Six of six collided at 1024px before Phase 4, the worst case. */
+  for (const w of [320, 360, 392, 430, 600, 768]) {
+    await setViewport(cdp, { width: w, height: 800, dpr: 2.75, mobile: true });
+    await goto(cdp, "categories");
+    const rows = await cdp.eval(`(() => {
+      const out = [];
+      document.querySelectorAll("article h3").forEach((h3) => {
+        const r = h3.getBoundingClientRect();
+        const card = h3.closest("article").getBoundingClientRect();
+        out.push({
+          title: h3.textContent.trim(),
+          ink: Math.max(0, h3.scrollWidth - h3.clientWidth),
+          inside: r.right <= card.right + 0.5 && r.left >= card.left - 0.5,
+        });
+      });
+      return out;
+    })()`);
+    const bad = rows.filter((r) => r.ink > 0 || !r.inside);
+    add(`categories @${w}px: no title ink overflow`, rows.length > 0 && bad.length === 0,
+      bad.length ? JSON.stringify(bad.slice(0, 3)) : `${rows.length} cards clean`);
+    // the covers must still be there
+    const art = await cdp.eval(
+      `Array.from(document.querySelectorAll("article img")).filter((i) => i.complete && i.naturalWidth > 0).length`);
+    add(`categories @${w}px: card artwork renders`, art > 0, `${art} images loaded`);
+  }
+  await clearViewport(cdp);
+
+  /* Horizontal shelves: the partial next card IS the scroll affordance on
+     touch — the scrollbar is hidden (cart-shelf-track) and the arrows are
+     sm:flex. If a change ever makes cards exactly fill the track, the shelf
+     stops looking scrollable. */
+  const SHELVES = [
+    { route: "cart", label: "cart recommendation shelf" },
+    { route: "library", label: "library shelf" },
+    { route: "book-detail", label: "related books shelf" },
+  ];
+  for (const sh of SHELVES) {
+    await goto(cdp, sh.route);
+    /* Auth-gated routes render UnprovisionedNotice locally (no Clerk key in
+       this environment), so there is nothing to measure. Record that rather
+       than reporting a failure for something that was never rendered. */
+    const gated = await cdp.eval(
+      `/Configuration required/i.test((document.querySelector("h1") || {}).textContent || "")`);
+    if (gated) {
+      out.push({ name: `${sh.label}: present`, pass: true, skipped: true,
+                 detail: "route renders UnprovisionedNotice — Clerk not configured in this environment" });
+      continue;
+    }
+    const info = await cdp.eval(`(() => {
+      const tracks = Array.from(document.querySelectorAll('[class*="shelf-track"], ul[class*="overflow-x-auto"], div[class*="overflow-x-auto"]'))
+        .filter((t) => t.getClientRects().length > 0 && t.scrollWidth > t.clientWidth + 4);
+      if (tracks.length === 0) return { tracks: 0 };
+      const t = tracks[0];
+      const kids = Array.from(t.children).filter((k) => k.getClientRects().length > 0);
+      const first = kids[0] ? kids[0].getBoundingClientRect() : null;
+      // is a following card partially visible at the right edge?
+      const trackBox = t.getBoundingClientRect();
+      const peeking = kids.some((k) => {
+        const b = k.getBoundingClientRect();
+        return b.left < trackBox.right - 4 && b.right > trackBox.right + 4;
+      });
+      return { tracks: tracks.length, cards: kids.length,
+               cardW: first ? Math.round(first.width) : null,
+               trackW: Math.round(trackBox.width),
+               scrollable: t.scrollWidth > t.clientWidth + 4, peeking };
+    })()`);
+    if (info.tracks === 0) { add(`${sh.label}: present`, false, "no scrollable track found"); continue; }
+    add(`${sh.label}: scrollable`, info.scrollable === true, info);
+    add(`${sh.label}: next card peeks (touch affordance)`, info.peeking === true, info);
+  }
+
+  return out;
+}
+
 /* ─────────────────────────────── runner ─────────────────────────────── */
 
-const GROUPS = { nav: navChecks, inputs: inputChecks, theme: themeChecks };
+const GROUPS = { nav: navChecks, inputs: inputChecks, theme: themeChecks, cards: cardChecks };
 
 async function main() {
   const names = ONLY ? [ONLY] : Object.keys(GROUPS);
@@ -371,14 +454,18 @@ async function main() {
     console.log(`  ── ${g} ──`);
     const results = await GROUPS[g](cdp);
     for (const r of results) {
-      console.log(`  ${r.pass ? "✓" : "╳"} ${r.name}${r.pass ? "" : `  → ${JSON.stringify(r.detail)}`}`);
+      const mark = r.skipped ? "–" : r.pass ? "✓" : "╳";
+      const note = r.skipped ? `  (skipped: ${r.detail})` : r.pass ? "" : `  → ${JSON.stringify(r.detail)}`;
+      console.log(`  ${mark} ${r.name}${note}`);
     }
     all.push(...results.map((r) => ({ group: g, ...r })));
   }
   cdp.close();
 
   const failed = all.filter((r) => !r.pass);
-  console.log(`\n▸ ${all.length - failed.length}/${all.length} passed`);
+  const skipped = all.filter((r) => r.skipped);
+  console.log(`\n▸ ${all.length - failed.length - skipped.length}/${all.length - skipped.length} passed` +
+              (skipped.length ? `, ${skipped.length} skipped (not testable here)` : ""));
 
   if (OUT) {
     const p = resolve(process.cwd(), OUT);
