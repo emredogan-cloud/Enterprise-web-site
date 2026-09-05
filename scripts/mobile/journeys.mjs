@@ -431,9 +431,170 @@ async function cardChecks(cdp) {
   return out;
 }
 
+/* ──────────────────── discovery: catalog, filters, search ──────────────── */
+
+const FILTER_BTN = 'button[aria-controls="catalog-filters"]';
+const FILTER_PANEL = "#catalog-filters";
+
+async function filterChecks(cdp) {
+  const out = [];
+  const add = (name, pass, detail) => out.push({ name, pass, detail });
+
+  for (const route of ["catalog", "ebooks"]) {
+    await goto(cdp, route);
+
+    const shut = await cdp.eval(`(() => {
+      const vis = (e) => e.getClientRects().length > 0;
+      const imgs = Array.from(document.querySelectorAll("img")).filter(vis)
+        .map((i) => Math.round(i.getBoundingClientRect().top + scrollY)).sort((a, b) => a - b);
+      const b = document.querySelector(${JSON.stringify(FILTER_BTN)});
+      const r = b ? b.getBoundingClientRect() : null;
+      return { firstCoverTop: imgs[0] ?? null,
+               asideInFlow: Array.from(document.querySelectorAll("aside")).filter(vis).length,
+               btn: r ? { w: Math.round(r.width), h: Math.round(r.height) } : null };
+    })()`);
+
+    /* The reason the phase exists: the sidebar used to sit above the results,
+       putting the first product 1053px down for a 15-book catalogue. */
+    add(`${route}: first cover within the first 720px`,
+      shut.firstCoverTop !== null && shut.firstCoverTop <= 720, `${shut.firstCoverTop}px`);
+    add(`${route}: filter panel not in flow when closed`, shut.asideInFlow === 0, shut.asideInFlow);
+    add(`${route}: filters button >= 44px tall`, !!shut.btn && shut.btn.h >= 44,
+      shut.btn ? `${shut.btn.w}x${shut.btn.h}` : "missing");
+
+    const opened = await tapUntil(cdp, FILTER_BTN,
+      `(() => { const p = document.querySelector(${JSON.stringify(FILTER_PANEL)});
+                return !!p && getComputedStyle(p).position === "fixed"; })()`);
+    add(`${route}: filter sheet opens`, opened.ok, opened);
+    if (!opened.ok) continue;
+
+    const open = await cdp.eval(`(() => {
+      const vis = (e) => e.getClientRects().length > 0;
+      const p = document.querySelector(${JSON.stringify(FILTER_PANEL)});
+      const range = document.querySelector("input[type=range]");
+      let hit = null;
+      if (range && vis(range)) {
+        const r = range.getBoundingClientRect();
+        const cx = Math.round(r.left + r.width / 2), cy = Math.round(r.top + r.height / 2);
+        if (cy > 30 && cy < innerHeight - 30) {
+          hit = 0;
+          for (let dy = -30; dy <= 30; dy++) if (document.elementFromPoint(cx, cy + dy) === range) hit++;
+        }
+      }
+      const rr = range ? range.getBoundingClientRect() : null;
+      return { role: p.getAttribute("role"), modal: p.getAttribute("aria-modal"),
+               htmlLocked: getComputedStyle(document.documentElement).overflow === "hidden",
+               bodyLocked: getComputedStyle(document.body).overflow === "hidden",
+               sliderH: rr ? Math.round(rr.height) : null, sliderHit: hit,
+               priceLabels: Array.from(document.querySelectorAll("span")).filter(vis)
+                 .map((x) => x.textContent.trim()).filter((t) => /^\$/.test(t)).slice(0, 3) };
+    })()`);
+
+    add(`${route}: sheet has dialog semantics`, open.role === "dialog" && open.modal === "true", open);
+    add(`${route}: page scroll locked behind sheet`, open.htmlLocked && open.bodyLocked, open);
+    add(`${route}: price slider hit area >= 44px`, open.sliderHit !== null && open.sliderHit >= 44,
+      `box ${open.sliderH}px, hit ${open.sliderHit}px`);
+    add(`${route}: numeric price readout visible`, open.priceLabels.length >= 2, open.priceLabels);
+
+    // filtering actually filters, and the count badge follows
+    const filtered = await cdp.eval(`(() => {
+      const b = document.querySelector('#catalog-filters button[class*="w-full"]');
+      const cats = Array.from(document.querySelectorAll('#catalog-filters li button'));
+      if (!cats.length) return { ok: false, reason: "no category buttons" };
+      const before = document.querySelectorAll('a[href^="/books/"]').length;
+      cats[0].click();
+      return { ok: true, before };
+    })()`);
+    if (filtered.ok) {
+      await sleep(900);
+      const after = await cdp.eval(`(() => {
+        const badge = document.querySelector(${JSON.stringify(FILTER_BTN)});
+        return { badge: badge ? (badge.textContent || "").replace(/\s+/g, " ").trim() : null };
+      })()`);
+      add(`${route}: active-filter count appears on the trigger`,
+        /\d/.test(after.badge || ""), after.badge);
+    }
+
+    await pressKey(cdp, "Escape", "Escape", 27);
+    const closed = await cdp.eval(`(() => {
+      const p = document.querySelector(${JSON.stringify(FILTER_PANEL)});
+      return { hidden: p ? getComputedStyle(p).display === "none" : true,
+               unlocked: getComputedStyle(document.documentElement).overflow !== "hidden" };
+    })()`);
+    add(`${route}: Escape closes the sheet`, closed.hidden === true, closed);
+    add(`${route}: scroll lock released`, closed.unlocked === true, closed);
+  }
+
+  /* Search: the field must stay reachable and the results must not hide behind
+     the sticky header when the on-screen keyboard is up. */
+  await goto(cdp, "search");
+  const search = await cdp.eval(`(() => {
+    const vis = (e) => e.getClientRects().length > 0;
+    const input = Array.from(document.querySelectorAll('input[type="search"], input[type="text"], input:not([type])'))
+      .filter(vis)[0];
+    if (!input) return { found: false };
+    input.focus();
+    const r = input.getBoundingClientRect();
+    const hdr = Array.from(document.querySelectorAll("header")).filter(vis)[0];
+    const hr = hdr ? hdr.getBoundingClientRect() : null;
+    return { found: true, focused: document.activeElement === input,
+             top: Math.round(r.top), bottom: Math.round(r.bottom), h: Math.round(r.height),
+             headerBottom: hr ? Math.round(hr.bottom) : 0,
+             fontSize: getComputedStyle(input).fontSize,
+             visualH: visualViewport ? Math.round(visualViewport.height) : null };
+  })()`);
+  add("search: field present and focusable", search.found && search.focused, search);
+  if (search.found) {
+    add("search: field clear of the sticky header", search.top >= search.headerBottom - 1,
+      `field top ${search.top}, header bottom ${search.headerBottom}`);
+    add("search: field >= 44px tall", search.h >= 44, `${search.h}px`);
+  }
+
+  /* The real on-screen keyboard, not a simulation. Tapping the field on the
+     Redmi raises a 255px IME and the visual viewport drops 719px -> 464px.
+     Before the focus-scroll the first result sat at 477px, below the fold, so
+     a reader typing could not see a single result. */
+  await goto(cdp, "search-results");
+  const kbBefore = await cdp.eval(`(visualViewport ? Math.round(visualViewport.height) : innerHeight)`);
+  const field = await cdp.eval(`(() => {
+    const vis = (e) => e.getClientRects().length > 0;
+    const i = Array.from(document.querySelectorAll("input")).filter(vis)[0];
+    if (!i) return null;
+    const r = i.getBoundingClientRect();
+    return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+  })()`);
+  if (!field) {
+    add("search: on-screen keyboard leaves results visible", false, "no input found");
+  } else {
+    await tapAt(cdp, field.x, field.y);
+    await sleep(2200);
+    const kb = await cdp.eval(`(() => {
+      const vis = (e) => e.getClientRects().length > 0;
+      const i = Array.from(document.querySelectorAll("input")).filter(vis)[0];
+      const r = i.getBoundingClientRect();
+      const res = Array.from(document.querySelectorAll('a[href^="/books/"]')).filter(vis);
+      const fr = res[0] ? res[0].getBoundingClientRect() : null;
+      const vh = visualViewport ? visualViewport.height : innerHeight;
+      return { vvH: Math.round(vh), focused: document.activeElement === i,
+               inputTop: Math.round(r.top),
+               inputVisible: r.top >= -1 && r.bottom <= vh + 1,
+               results: res.length,
+               firstResultTop: fr ? Math.round(fr.top) : null,
+               firstResultVisible: fr ? (fr.top < vh && fr.bottom > 0) : null };
+    })()`);
+    const raised = kbBefore - kb.vvH > 50;
+    add("search: on-screen keyboard actually raised", raised, `${kbBefore} -> ${kb.vvH}`);
+    add("search: field stays visible with the keyboard up", kb.inputVisible === true, kb);
+    add("search: first result stays visible with the keyboard up",
+      kb.results === 0 || kb.firstResultVisible === true, kb);
+  }
+
+  return out;
+}
+
 /* ─────────────────────────────── runner ─────────────────────────────── */
 
-const GROUPS = { nav: navChecks, inputs: inputChecks, theme: themeChecks, cards: cardChecks };
+const GROUPS = { nav: navChecks, inputs: inputChecks, theme: themeChecks, cards: cardChecks, filters: filterChecks };
 
 async function main() {
   const names = ONLY ? [ONLY] : Object.keys(GROUPS);

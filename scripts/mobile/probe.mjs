@@ -124,13 +124,21 @@ export const PROBE_SOURCE = String.raw`(() => {
     out.dragTargets = Array.prototype.slice.call(document.querySelectorAll("input[type=range]"))
       .filter(visible).map((el) => {
         const r = el.getBoundingClientRect();
-        // Sample down the element's centre line to find the real hit height.
-        let hit = 0;
-        for (let dy = -30; dy <= 30; dy++) {
-          const el2 = document.elementFromPoint(Math.round(r.left + r.width / 2), Math.round(r.top + r.height / 2 + dy));
-          if (el2 === el) hit++;
+        /* elementFromPoint is viewport-relative and returns null for anything
+           off-screen, so an element below the fold would report a hit height of
+           0 and look catastrophic when it is merely scrolled away. Only sample
+           when the centre line is actually on screen; otherwise say so. */
+        const cx = Math.round(r.left + r.width / 2), cy = Math.round(r.top + r.height / 2);
+        const onScreen = cy >= 30 && cy <= innerHeight - 30 && cx >= 0 && cx <= innerWidth;
+        let hit = null;
+        if (onScreen) {
+          hit = 0;
+          for (let dy = -30; dy <= 30; dy++) {
+            if (document.elementFromPoint(cx, cy + dy) === el) hit++;
+          }
         }
-        return { sel: sel(el), w: Math.round(r.width), h: Math.round(r.height), hitHeightPx: hit };
+        return { sel: sel(el), w: Math.round(r.width), h: Math.round(r.height),
+                 hitHeightPx: hit, measured: onScreen };
       });
   } catch (e) { out.tapError = String(e).slice(0, 120); }
 

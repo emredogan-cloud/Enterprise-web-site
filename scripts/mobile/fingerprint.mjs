@@ -72,6 +72,23 @@ if (COMPARE >= 0) {
     }
     if (moved) diffs.push(`${moved} element(s) changed`);
 
+    /*
+     * Paths encode tree depth, so wrapping a subtree in a `display: contents`
+     * element renames every descendant path while moving nothing. Compare the
+     * multiset of signatures as well: if it is identical, the layout is
+     * identical and only the DOM shape changed. Reported, not hidden — a tree
+     * change is worth knowing about; it just is not a regression.
+     */
+    const bag = (n) => { const m = new Map(); for (const x of n) m.set(x.sig, (m.get(x.sig) ?? 0) + 1); return m; };
+    const ba = bag(x.nodes), bb = bag(y.nodes);
+    let sameGeometry = ba.size === bb.size;
+    if (sameGeometry) for (const [k, v] of ba) if (bb.get(k) !== v) { sameGeometry = false; break; }
+
+    if (sameGeometry && diffs.length) {
+      console.log(`  ✓ ${route}  (identical geometry; DOM depth changed — ${moved} paths renamed)`);
+      continue;
+    }
+
     if (diffs.length) {
       changed++;
       console.log(`  ╳ ${route}`);

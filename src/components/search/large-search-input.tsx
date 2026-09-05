@@ -89,7 +89,32 @@ export function LargeSearchInput({
           name="q"
           value={value}
           onChange={(e) => setValue(e.currentTarget.value)}
-          onFocus={() => setFocused(true)}
+          onFocus={() => {
+            setFocused(true);
+            /*
+             * Bring the field up under the header when the on-screen keyboard
+             * appears. Measured on the Redmi: focusing raises a 255px IME, so
+             * the visual viewport drops 719px -> 464px. The field itself stayed
+             * visible, but the first result sat at 477px — 13px below the fold
+             * — so a reader typing a query could not see a single result. The
+             * browser does not scroll here because the field was already in
+             * view before the keyboard arrived.
+             *
+             * Phone and tablet only; on desktop there is no IME to make room
+             * for and the page should not jump.
+             */
+            if (window.innerWidth >= 1024) return;
+            requestAnimationFrame(() => {
+              const el = inputRef.current;
+              if (!el) return;
+              const header = document.querySelector("header");
+              const offset = (header?.getBoundingClientRect().height ?? 0) + 12;
+              const target = el.getBoundingClientRect().top + window.scrollY - offset;
+              if (target > window.scrollY + 8) {
+                window.scrollTo({ top: target, behavior: "smooth" });
+              }
+            });
+          }}
           onBlur={() => setFocused(false)}
           placeholder={placeholder}
           autoComplete="off"

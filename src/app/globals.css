@@ -794,6 +794,56 @@ body:has(.cinematic-root) > header {
   cursor: pointer;
 }
 
+/*
+ * Phase 4/5 — a finger-sized hit area for the price slider, below `lg:` only.
+ *
+ * The control is a 295x4px box whose only graspable part is the 16px thumb.
+ * Measured on the Redmi with `elementFromPoint` sampled down its centre line,
+ * the real hit height is 16px — under the 24px WCAG 2.2 SC 2.5.8 minimum and
+ * far under the 44px this roadmap wants for a control you have to DRAG.
+ *
+ * (For the record: SC 2.5.8's spacing exception does carry an isolated
+ * undersized control, so this is a usability failure rather than a conformance
+ * one. It is fixed because a 16px drag target is genuinely hard to operate,
+ * not because a checker complained.)
+ *
+ * The element grows to 44px and paints nothing itself; the visible 4px track
+ * moves to ::-webkit-slider-runnable-track, so the control LOOKS identical and
+ * only its touch surface changes. Scoped under 1024px because growing the box
+ * would otherwise make the desktop sidebar 40px taller.
+ */
+@media (max-width: 1023px) {
+  .cinematic-root .catalog-range {
+    height: 44px;
+    background: transparent;
+    cursor: pointer;
+  }
+  .cinematic-root .catalog-range::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 999px;
+    background: linear-gradient(
+      to right,
+      #16c784 0%,
+      #16c784 var(--range-progress, 50%),
+      rgba(255, 255, 255, 0.08) var(--range-progress, 50%),
+      rgba(255, 255, 255, 0.08) 100%
+    );
+  }
+  .cinematic-root .catalog-range::-webkit-slider-thumb {
+    margin-top: -6px; /* centre the 16px thumb on the 4px track */
+  }
+  .cinematic-root .catalog-range::-moz-range-track {
+    height: 4px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .cinematic-root .catalog-range::-moz-range-progress {
+    height: 4px;
+    border-radius: 999px;
+    background: #16c784;
+  }
+}
+
 /* Glass card utility — used by stats card, newsletter, feature cards */
 .cinematic-root .home-glass {
   background: var(--home-surface-glass);

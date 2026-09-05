@@ -1,5 +1,6 @@
 "use client";
 
+import { SlidersHorizontal, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -295,24 +296,128 @@ export function CatalogShell({ books }: { books: CatalogItem[] }) {
       selectedFormats: new Set(),
     });
 
+  /* ------------------------- mobile filter sheet ------------------------- */
+  /*
+   * Below `lg:` the sidebar used to sit in normal flow ABOVE the results: on
+   * the Redmi the first book cover was 1053px down — a screen and a half of
+   * hero and filter controls before a single product, for a catalogue of 15.
+   * The same <FilterSidebar> instance is now presented as a sheet on demand,
+   * so filter state stays in one place.
+   *
+   * `lg:contents` on the wrapper is what keeps desktop untouched: at desktop
+   * the wrapper generates no box at all, so <aside> remains a direct child of
+   * the grid and its `lg:sticky lg:top-24 lg:self-start` behaves exactly as
+   * before. Re-parenting it would have broken that.
+   */
+  const [filtersOpen, setFiltersOpen] = useState(false);
+
+  const activeFilterCount =
+    state.selectedCategories.size +
+    state.selectedFormats.size +
+    (state.priceMax < PRICE_MAX_CAP ? 1 : 0) +
+    (state.minRating > 0 ? 1 : 0) +
+    (state.searchQuery.trim() ? 1 : 0);
+
+  useEffect(() => {
+    if (!filtersOpen) return;
+    const html = document.documentElement;
+    const { body } = document;
+    const prevHtml = html.style.overflow;
+    const prevBody = body.style.overflow;
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setFiltersOpen(false);
+    }
+    document.addEventListener("keydown", onKey);
+    return () => {
+      html.style.overflow = prevHtml;
+      body.style.overflow = prevBody;
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [filtersOpen]);
+
   /* --------------------------------- render ----------------------------- */
   return (
-    <div className="mx-auto grid max-w-[1440px] gap-8 px-6 pb-24 lg:grid-cols-[300px_minmax(0,_1fr)] lg:gap-12">
-      {/* Sidebar */}
-      <FilterSidebar
-        allBooks={books}
-        searchQuery={state.searchQuery}
-        selectedCategories={state.selectedCategories}
-        selectedFormats={state.selectedFormats}
-        priceMax={state.priceMax}
-        minRating={state.minRating}
-        onSearchChange={onSearchChange}
-        onToggleCategory={onToggleCategory}
-        onToggleFormat={onToggleFormat}
-        onPriceMaxChange={onPriceMaxChange}
-        onMinRatingChange={onMinRatingChange}
-        onResetAll={onResetAll}
-      />
+    <div className="mx-auto grid max-w-[1440px] gap-8 px-4 pb-24 sm:px-6 lg:grid-cols-[300px_minmax(0,_1fr)] lg:gap-12">
+      {/* Filters trigger — phone and tablet only. */}
+      <button
+        type="button"
+        onClick={() => setFiltersOpen(true)}
+        aria-expanded={filtersOpen}
+        aria-controls="catalog-filters"
+        aria-haspopup="dialog"
+        className="home-glass inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-white/[0.08] text-sm font-medium text-fg-hi transition-colors hover:border-emerald-bright/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/50 lg:hidden"
+      >
+        <SlidersHorizontal aria-hidden className="h-4 w-4" />
+        Filters
+        {activeFilterCount > 0 && (
+          <span className="ml-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-emerald-bright px-1.5 text-[12px] font-semibold text-[#032015]">
+            {activeFilterCount}
+          </span>
+        )}
+      </button>
+
+      {/* Backdrop — sheet only. */}
+      {filtersOpen && (
+        <div
+          aria-hidden
+          onClick={() => setFiltersOpen(false)}
+          className="fixed inset-0 z-[60] bg-black/70 backdrop-blur-sm lg:hidden"
+        />
+      )}
+
+      {/* Sidebar. `lg:contents` dissolves this wrapper at desktop. */}
+      <div
+        id="catalog-filters"
+        role={filtersOpen ? "dialog" : undefined}
+        aria-modal={filtersOpen ? true : undefined}
+        aria-label={filtersOpen ? "Filters" : undefined}
+        className={`${
+          filtersOpen
+            ? "fixed inset-x-0 bottom-0 top-16 z-[70] overflow-y-auto overscroll-contain rounded-t-[24px] border-t border-white/[0.08] bg-[#0a1410] p-4 pb-[calc(1rem+env(safe-area-inset-bottom))]"
+            : "hidden"
+        } lg:contents`}
+      >
+        {/* Close only — FilterSidebar renders its own "Filters / Reset all"
+            header, and two of them read as a mistake. The dialog is named by
+            aria-label instead. */}
+        {filtersOpen && (
+          <div className="mb-2 flex justify-end lg:hidden">
+            <button
+              type="button"
+              onClick={() => setFiltersOpen(false)}
+              aria-label="Close filters"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] text-fg-mid transition-colors hover:text-fg-hi focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/50"
+            >
+              <X aria-hidden className="h-5 w-5" />
+            </button>
+          </div>
+        )}
+        <FilterSidebar
+          allBooks={books}
+          searchQuery={state.searchQuery}
+          selectedCategories={state.selectedCategories}
+          selectedFormats={state.selectedFormats}
+          priceMax={state.priceMax}
+          minRating={state.minRating}
+          onSearchChange={onSearchChange}
+          onToggleCategory={onToggleCategory}
+          onToggleFormat={onToggleFormat}
+          onPriceMaxChange={onPriceMaxChange}
+          onMinRatingChange={onMinRatingChange}
+          onResetAll={onResetAll}
+        />
+        {filtersOpen && (
+          <button
+            type="button"
+            onClick={() => setFiltersOpen(false)}
+            className="home-cta-primary mt-4 inline-flex h-12 w-full items-center justify-center rounded-full text-sm font-semibold lg:hidden"
+          >
+            Show {filtered.length} {filtered.length === 1 ? "book" : "books"}
+          </button>
+        )}
+      </div>
 
       {/* Main content */}
       <section className="min-w-0">
