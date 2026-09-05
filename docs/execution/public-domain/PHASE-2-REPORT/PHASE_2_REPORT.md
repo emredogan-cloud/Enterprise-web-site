@@ -19,8 +19,8 @@ Taken from `PUBLIC_DOMAIN_MASTER_ROADMAP.md` without substitution.
 
 | # | Book | Author | Pub. | Source | State |
 |---|---|---|---|---|---|
-| 1 | Games Ancient and Oriental, and How to Play Them | Edward Falkener | 1892 | IA `gamesancientorie00falkuoft` — **scan, OCR** | **apparatus + diagrams written** |
-| 2 | Korean Games | Stewart Culin | 1895 | IA `koreangameswith00culigoog` — **scan, OCR** | not started |
+| 1 | Games Ancient and Oriental, and How to Play Them | Edward Falkener | 1892 | IA `gamesancientorie00falkuoft` — **scan, OCR** | **built end to end; three review rounds; held on F-019, F-020, F-021** |
+| 2 | Korean Games | Stewart Culin | 1895 | IA `koreangameswith00culigoog` — **scan, OCR** | **ingested, rights verified, scoped, parsed, corrected** |
 | 3 | Chess and Playing Cards | Stewart Culin | 1898 | IA `chessplayingcard00culi` — **scan, OCR** | not started |
 | 4 | Mancala, the National Game of Africa | Stewart Culin | 1896 | PG 66220 — proof-read HTML | not started |
 | 5 | The Traditional Games of England, Scotland, and Ireland | Alice Bertha Gomme | 1894/98 | PG 41727 / 41728 | not started |
@@ -257,7 +257,93 @@ line to it.
 
 ---
 
-## 3. What is not done
+## 3. Book 2 — Korean Games, and the detector that had to be switched off
+
+Stewart Culin, *Korean Games, with Notes on the Corresponding Games of China and Japan*
+(Philadelphia, 1895), from the Internet Archive scan `koreangameswith00culigoog`.
+
+**Scope: the introduction and games LXX–XCVII — 45,423 words.** Culin's argument is that
+games are survivals of divinatory rites, and the games that carry it are the ones played
+with implements of chance on boards: nyout, the game of promotion, dice, backgammon,
+chess, the pebble game, the kono family, dominoes, playing-cards, the lottery. Games
+I–LXIX are 20,648 words of children's amusements in one-paragraph entries; they carry
+none of the thesis and would add roughly 5,000 words to the apparatus floor for it.
+Measured before any apparatus was written.
+
+### The rights answer arrives by the opposite route
+
+Culin died 1929 and **W. H. Wilkinson**, who wrote the chess chapter — the book says so on
+its first line — died 1930. Both texts are free everywhere; the 1895 imprint settles the
+United States regardless.
+
+The illustrations cannot be cleared, and this time it is because the artists **are** named.
+Culin's preface credits the Korean plates to **Ki San**, *"an artist in the little Korean
+village of Tcho-ryang, back of Fusan"*, and the text sketches in part to **Teotiku
+Morimoto of Tokyo**. Ki San is Kim Chun-gŭn, the genre painter whose Shufeldt collection
+the Smithsonian holds, catalogued everywhere as *late 19th – early 20th century*: **no
+death year is recorded.** Morimoto is not identifiable at all beyond Culin naming him, and
+the rest are unattributed.
+
+So: the same conclusion as Werner's plates and Falkener's engravings, reached from the
+other direction — named artists with no recoverable dates rather than no artists at all.
+
+### Three new problems for the shared pipeline
+
+This is a **Google** scan, and it needed three changes rather than a rewrite:
+
+1. **Google's own front matter, and its footer on 238 of 313 leaves.** Google's text is
+   Google's. `furniture.py` finds footers now as well as heads — and the capitals test
+   that identifies a head had to be dropped at the foot, because *"Digitized by"* is not
+   capitals and gating on it found zero footers on a book that has one on every page.
+2. **Short heads.** An eight-letter minimum on the head key silently dropped the entire
+   chess chapter, whose recto head is `CHESS.` — five letters — and a three-page
+   recurrence floor dropped backgammon, which is four pages long.
+3. **Native script.** Culin quotes Korean, Chinese and Japanese throughout and the OCR
+   reads none of it. Falkener's Greek could be transcribed word by word from the page
+   images; **737 runs** here cannot, so they are marked, and the count is published.
+
+### The detector that worked on book one is dangerous here
+
+The single-character-confusion detector — the thing that found `Eoman` for *Roman* on
+Falkener and named the fix — proposed **137 substitutions** over Culin's 45,000 words.
+About a dozen were real.
+
+The rest were **romanisations**. `Kan`, `Oya`, `sai`, `Kung`, `Liu`, `piu`, `tai`, `hau`,
+`Kon`, `lai`, `Bai`, `shiu`, `Chau`, `siu`, `Kiu`, `tui`, `fai`, `fau` — none is an English
+word and every one is correct. It even proposed `Tau → Tan` again, the exact suggestion
+Falkener's detector made thirty-seven times.
+
+A detector cannot tell a misread English word from a correctly read Korean one, and on a
+book that is a third transliteration that makes it a source of errors rather than a finder
+of them. **So it is not used as a candidate list here.** A correction is applied only where
+the class of fault is closed and no romanisation could produce the token: the `li/h`
+confusion (there is no syllable spelled *tlie*, *wlio* or *witli*), and the small-capital
+`B/E` and `K/R` faults. **Eleven corrections, sixteen occurrences.** Ten of the rejections
+are written down with the reason, so the next book inherits the judgement rather than the
+list.
+
+### Four parse bugs, found by reading the output
+
+Games sharing a scan page were each given the whole page, so the kono family's text
+printed three times over. `LXXX`'s numeral pattern matched the head of `LXXXI` and
+swallowed the next game. The OCR splits `LXXXVIII` as `LXXXVII I.`, so `LXXXVII` ate it.
+And the heading strip was consuming the first letter of every game's name.
+
+The printed display titles are dropped too — this edition sets its own, and the OCR's is
+where the damage is: **NVOUT** for NYOUT, **DIGNITARIES** for what the contents calls
+PROMOTION. Found by measuring the capital share of the run rather than matching a
+capitals-only pattern, which broke on `(bACKGAMMON)`.
+
+### What Book 2 still needs
+
+Apparatus (~11,000 words at the 20% floor), original diagrams for the boards, interior,
+cover, EPUB, companion, catalogue, Paddle, R2, KDP package and handbook, adversarial
+review, final QA.
+
+
+---
+
+## 4. What is not done
 
 Book 1 has apparatus and diagrams; nothing has been typeset yet. Books 2–5 have not been started. No Phase 2 product exists on the website and
 none will be published from this branch.
