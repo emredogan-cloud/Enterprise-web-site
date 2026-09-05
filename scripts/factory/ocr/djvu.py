@@ -150,25 +150,75 @@ _FOLIO = re.compile(r"^\s*(\d{1,4})\s*$")
 def printed_folio(page: Page, band: float = 0.12) -> int | None:
     """The page number printed on the leaf, if one is legible.
 
-    Looks only in the top and bottom bands, where a folio can be, and only at
-    lines that are nothing but digits. Returns None rather than guessing — a
-    wrong page reference is worse than an absent one.
+    Looks only in the top and bottom bands, where a folio can be. Two shapes are
+    accepted, because this book uses both:
+
+      1. a line that is nothing but digits;
+      2. a running-head line with the folio at one end, which is how most of this
+         book sets it — "QUEEN HATASU'S DRAUGHT-BOARD.      29".
+
+    Returns None rather than guessing. A folio read here is still only a candidate:
+    `folio_series` below is what decides whether to believe it.
     """
     if not page.height:
         return None
     top = page.height * band
     bottom = page.height * (1 - band)
     for l in page.lines:
-        m = _FOLIO.match(l.text)
-        if not m:
-            continue
         ys = [w.coords[1] for w in l.words if w.coords and len(w.coords) >= 2]
         if not ys:
             continue
         y = sum(ys) / len(ys)
-        if y <= top or y >= bottom:
+        if not (y <= top or y >= bottom):
+            continue
+        m = _FOLIO.match(l.text)
+        if m:
+            return int(m.group(1))
+        # a folio at either end of the running head
+        m = re.match(r"^\s*(\d{1,4})\s+\D", l.text) or \
+            re.search(r"\D\s+(\d{1,4})\s*$", l.text)
+        if m and len(l.text.split()) >= 2:
             return int(m.group(1))
     return None
+
+
+def folio_series(candidates: dict[int, int | None]) -> tuple[dict[int, int], list[dict]]:
+    """Decide which candidate folios to believe, from a physical constraint.
+
+    A scan is a photograph of leaves in order, so between any two leaves the
+    printed page number can only go FORWARD, and never faster than the scan does.
+    Inserted plates carry no folio, which makes the scan run ahead — never the
+    other way about. So for two observed folios,
+
+        0 <= folio[i] - folio[i-1] <= scan[i] - scan[i-1]
+
+    On the Falkener scan this keeps every genuine reading, including the ones on
+    either side of an inserted plate where the offset steps from -10 to -12 to -14
+    to -18, and rejects exactly one: scan 107, whose head reads "THE GAME OF THE
+    BOWL.  89" but where a stray "2" elsewhere in the band had been taken as the
+    folio. Verified against the page image.
+
+    Returns the folios worth printing, and a report of what was rejected and why.
+    """
+    kept: dict[int, int] = {}
+    rejected: list[dict] = []
+    prev_scan = prev_folio = None
+    for scan in sorted(candidates):
+        f = candidates[scan]
+        if f is None:
+            continue
+        if prev_folio is not None:
+            delta, span = f - prev_folio, scan - prev_scan
+            if not (0 <= delta <= span):
+                rejected.append({"scanPage": scan, "read": f, "previousFolio": prev_folio,
+                                 "previousScanPage": prev_scan,
+                                 "why": (f"folio moved {delta} over {span} scan pages; a "
+                                         "printed page can only advance, and no faster "
+                                         "than the scan")})
+                continue
+        kept[scan] = f
+        prev_scan, prev_folio = scan, f
+    return kept, rejected
 
 
 def main() -> int:
