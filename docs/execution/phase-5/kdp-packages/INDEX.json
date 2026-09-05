@@ -10,8 +10,8 @@
       "kdpState": "not_created",
       "interior": {
         "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-2-BOOK/03-CHESS-AND-PLAYING-CARDS/OUTPUT/interior-main.pdf",
-        "sha256": "5161bc76ad82a61d61887ea81db35f6493417fa02eb0c12167ba7f44a927a290",
-        "bytes": 849424,
+        "sha256": "7e52429d80d7e393741ed8c60d551874739690504812eb10cf5cceec93431d37",
+        "bytes": 849387,
         "pagesBefore": 119,
         "pagesAfter": 120,
         "companionPage": 120,
@@ -1248,13 +1248,13 @@
       "asin": null,
       "kdpState": "not_created",
       "interior": {
-        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/OUTPUT/interior-main.pdf",
-        "sha256": "681ffbe112c166c3eb8afa4b99343da15f7cf2d00e3739b5b69e06aef2448920",
-        "bytes": 900561,
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/OUTPUT/interior-main.pdf",
+        "sha256": "b45cc2b28556eae3672ea98b782cc0be9898812cedf0f240664893ecf2daeb88",
+        "bytes": 900559,
         "pagesBefore": 77,
         "pagesAfter": 78,
         "companionPage": 78,
-        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/OUTPUT/interior-main.pre-companion.pdf",
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/OUTPUT/interior-main.pre-companion.pdf",
         "builtBy": "scripts/factory/companion-page.py (spliced)"
       },
       "companion": {
@@ -1303,7 +1303,7 @@
       },
       "cover": {
         "built": true,
-        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/ASSETS/cover/paperback-wrap-v1.pdf",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/ASSETS/cover/paperback-wrap-v1.pdf",
         "pageCount": 78,
         "spineIn": 0.1757,
         "wrapIn": "12.4257 × 9.2500 (white)",
@@ -1729,8 +1729,8 @@
       "kdpState": "not_created",
       "interior": {
         "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-2-BOOK/02-KOREAN-GAMES/OUTPUT/interior-main.pdf",
-        "sha256": "3b84c659d264d4d4e8b099719d7b6bd88a0df1ea5cde6f932f36eb6873c51975",
-        "bytes": 863442,
+        "sha256": "13f35b18d78de650104c1025861eb21ab6f97cde77263f8750deb4eac39454f5",
+        "bytes": 863376,
         "pagesBefore": 143,
         "pagesAfter": 144,
         "companionPage": 144,

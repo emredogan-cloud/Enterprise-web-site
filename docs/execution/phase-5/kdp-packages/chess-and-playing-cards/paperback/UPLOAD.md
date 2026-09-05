@@ -16,8 +16,8 @@ This edition has never been uploaded. The file below is its first. A dedicated c
 
 ```
 /home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-2-BOOK/03-CHESS-AND-PLAYING-CARDS/OUTPUT/interior-main.pdf
-sha256 5161bc76ad82a61d61887ea81db35f6493417fa02eb0c12167ba7f44a927a290
-849,424 bytes · 120 pages
+sha256 7e52429d80d7e393741ed8c60d551874739690504812eb10cf5cceec93431d37
+849,387 bytes · 120 pages
 ```
 
 The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-2-BOOK/03-CHESS-AND-PLAYING-CARDS/OUTPUT/interior-main.pre-companion.pdf` and is never deleted.
