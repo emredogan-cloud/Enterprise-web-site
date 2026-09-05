@@ -7,8 +7,8 @@
   "kdpState": "not_created",
   "interior": {
     "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/OUTPUT/interior-main.pdf",
-    "sha256": "e8564c2cb17b16d7cdbefd475e6ed90aa4a998c87097f872abcdc6a78449e820",
-    "bytes": 899642,
+    "sha256": "58af46362ffc0ad16a5cb345fa364cfacb63fec8050d202f8fd1dd164f97a20e",
+    "bytes": 899467,
     "pagesBefore": 75,
     "pagesAfter": 76,
     "companionPage": 76,
@@ -89,6 +89,16 @@
       "detail": "no forbidden host on the page"
     },
     {
+      "name": "no-email-wall",
+      "pass": true,
+      "detail": "the page asks for nothing"
+    },
+    {
+      "name": "headline",
+      "pass": true,
+      "detail": "headline present"
+    },
+    {
       "name": "eyebrow",
       "pass": true,
       "detail": "CONTINUE WITH VALICE PRESS"
@@ -99,9 +109,24 @@
       "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
     },
     {
+      "name": "qr-floor",
+      "pass": true,
+      "detail": "28.4% of usable height"
+    },
+    {
+      "name": "qr-module-size",
+      "pass": true,
+      "detail": "1.70 mm per module"
+    },
+    {
       "name": "pdf-metadata",
       "pass": true,
-      "detail": "title=\"Games Ancient and Oriental: The Egyptian Games: Edward Falkener's 1892 Reconstruction, Annotated — with Dr Samuel Birch's 1864 Paper, a Register of Reconstructions, Five Original Diagrams and Nineteen Rebuilt Move Tables\" author=\"Emre Doğan\""
+      "detail": "title=\"Games Ancient and Oriental: The Egyptian Games: Edward Falkener's 1892 Reconstruction, Annotated — with Dr Samuel Birch's 1864 Paper, a Register of Reconstructions, Five Original Diagrams and the Move Tables Rebuilt from the Scan\" author=\"Edward Falkener · edited and annotated by Emre Doğan\""
+    },
+    {
+      "name": "qr-matches-url",
+      "pass": true,
+      "detail": "33×33 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/games-ancient-and-oriental"
     }
   ]
 }

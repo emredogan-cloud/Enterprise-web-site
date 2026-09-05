@@ -57,10 +57,14 @@ one, with its assumptions on the page. He published his as rules.
 | **The 1892 engravings** | **unidentified** | **unknown** | **NOT USED — and not usable** |
 | Apparatus, diagrams, arrangement | Valice Press | — | © 2026 Valice Press |
 
-**The engravings are the interesting row.** They are unsigned; no illustrator is named in
-the book or in the Archive record. An image with no identified creator has no death year,
-so there is nothing to clear it against. None is reproduced. This is the same finding that
-removed Werner's plates in Phase 1, and it is why this book has five drawings of its own.
+**The illustrations are the interesting row, and the first build got the reasoning wrong.**
+There are two layers. The line figures — the boards and diagrams — are unsigned, and no
+draughtsman is named for them. The photographic plates *are* credited: the volume's
+terminal colophon reads *WILLIAM POLLARD & Co., PRINTERS, EXETER. **OWEN WILLIAMS,
+PHOTOGRAPHER, LAUGHARNE.** WATERLOW & SONS LTD., PHOTO-ENGRAVERS, LONDON.* Owen Williams
+is a named person whose dates are not recoverable, so the plates cannot be cleared either.
+Neither layer is reproduced, which is why this book has five drawings of its own — the
+same outcome as Werner's plates in Phase 1, by a different route.
 
 Gate 2's evidence is complete; the signature is the Founder's — **FOUNDER F-020**.
 
@@ -342,7 +346,7 @@ number it does not print.**
 | 3 | Five counts in the Note on the Text false | `BUILD/counts.py`; the note is now token-filled |
 | 4 | `895—89` printed unmarked where the page reads `89b—89a`; a table's final row and its result deleted; `Slack` for `Black` in 8 heading cells; ten phantom empty rows | move cells are range-checked against the board now, not just shape-checked; headings are matched against `{White, Black, Red}`; empty rows dropped; a blank cell inside a table is **marked unread**, not printed blank |
 | 5 | Section V's 13×13 board validated against section IV's 10–129 board, so ~12 cells printed wrong and unmarked | the board's range is **inferred per table**, and a numbered board that fits its own arithmetic is now *checked against it* — the 13×13 fits row-major from 1, the scan agreed on 159 of 168 readings, and the edition prints what the board requires |
-| 6 | "no illustrator is named anywhere" — false; the colophon credits **Owen Williams, photographer, Laugharne** | rewritten in imprint, source note, `RIGHTS.md` and config; claim **C-015** |
+| 6 | "the 1892 line figures are unsigned and no draughtsman is named for them; the colophon credits the photographic plates to Owen Williams, photographer, of Laugharne, whose dates are not recoverable" — false; the colophon credits **Owen Williams, photographer, Laugharne** | rewritten in imprint, source note, `RIGHTS.md` and config; claim **C-015** |
 | 7 | `RIGHTS.md` a blank template; `DECISIONS.md` had two entries numbered A2 | `RIGHTS.md` written in full; decisions renumbered and closed |
 | 8 | Sections V and VI opened with OCR garbage — `r11"!` and `SAB EM HAN` for **HAB EM HAN** | a section's printed display title is now dropped as furniture, structurally, by the gap under it |
 | 9 | The wrap's frame rules struck through **VALICE PRESS**; the cover printed one series name and the config another | imprint block moved clear, and the build now *asserts* it clears the rule; the series line is read from `project_config.json` |

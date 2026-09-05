@@ -125,10 +125,10 @@ export const DIRECT_SALE_EBOOKS = [
     slug: "games-ancient-and-oriental",
     name: "Games Ancient and Oriental: The Egyptian Games (Annotated)",
     description:
-      "Falkener's 1892 reconstruction of the ancient Egyptian games, sections I to VI complete, with the 1864 paper Dr Samuel Birch of the British Museum wrote for him. Original to this edition: a Register of Reconstructions separating, for each game, what the evidence shows, what Falkener supplies and what is known now; five diagrams drawn from the descriptions in the text, each marked EVIDENCE or RECONSTRUCTION on its face; a glossary, a chronology and an index of subjects. Nineteen of Falkener's move tables are rebuilt from the scan's own word coordinates, with every reading that could not be made out marked rather than guessed. 76 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included.",
+      "Falkener's 1892 reconstruction of the ancient Egyptian games, sections I to VI complete, with the 1864 paper Dr Samuel Birch of the British Museum wrote for him. Original to this edition: a Register of Reconstructions separating, for each game, what the evidence shows, what Falkener supplies and what is known now; five diagrams drawn from the descriptions in the text, each marked EVIDENCE or RECONSTRUCTION on its face; a glossary, a chronology and an index of subjects. Falkener's move tables are rebuilt from the scan's own word coordinates, with every reading that could not be made out marked rather than guessed. 76 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included.",
     // price-engine.mjs 2026-09-05, direct ebook, public domain: recommended
     // $6.99; $7.99 nets $7.09 after Paddle. The Classics band is $7.99–9.99 for
-    // the minimum apparatus standard. This edition measures 27.4% original
+    // the minimum apparatus standard. This edition measures 27.7% original
     // matter — above the floor — but runs 76 pages against 154–176 for the other
     // Classics titles, so it sits at the bottom of the band, not at $9.99.
     priceCents: 799,

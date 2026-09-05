@@ -16,8 +16,8 @@ This edition has never been uploaded. The file below is its first. A dedicated c
 
 ```
 /home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/OUTPUT/interior-main.pdf
-sha256 e8564c2cb17b16d7cdbefd475e6ed90aa4a998c87097f872abcdc6a78449e820
-899,642 bytes · 76 pages
+sha256 58af46362ffc0ad16a5cb345fa364cfacb63fec8050d202f8fd1dd164f97a20e
+899,467 bytes · 76 pages
 ```
 
 The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/OUTPUT/interior-main.pre-companion.pdf` and is never deleted.
@@ -34,8 +34,13 @@ The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-2
 - PASS · **page-count** — 76 pages (expected 76)
 - PASS · **printed-url** — valicepress.com/companion/games-ancient-and-oriental
 - PASS · **canonical-host** — no forbidden host on the page
+- PASS · **no-email-wall** — the page asks for nothing
+- PASS · **headline** — headline present
 - PASS · **eyebrow** — CONTINUE WITH VALICE PRESS
 - PASS · **fonts-embedded** — 3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif
-- PASS · **pdf-metadata** — title="Games Ancient and Oriental: The Egyptian Games: Edward Falkener's 1892 Reconstruction, Annotated — with Dr Samuel Birch's 1864 Paper, a Register of Reconstructions, Five Original Diagrams and Nineteen Rebuilt Move Tables" author="Emre Doğan"
+- PASS · **qr-floor** — 28.4% of usable height
+- PASS · **qr-module-size** — 1.70 mm per module
+- PASS · **pdf-metadata** — title="Games Ancient and Oriental: The Egyptian Games: Edward Falkener's 1892 Reconstruction, Annotated — with Dr Samuel Birch's 1864 Paper, a Register of Reconstructions, Five Original Diagrams and the Move Tables Rebuilt from the Scan" author="Edward Falkener · edited and annotated by Emre Doğan"
+- PASS · **qr-matches-url** — 33×33 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/games-ancient-and-oriental
 
 Regenerate with `node scripts/factory/build-companion-pages.mjs --commit --slug games-ancient-and-oriental`.

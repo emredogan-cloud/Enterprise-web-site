@@ -229,7 +229,7 @@ which he was — from 1870, six years after the letter. Verified, and noted in t
 
 ### Five original diagrams
 
-The 1892 engravings are unsigned, no illustrator is named anywhere, and an image with no
+The 1892 engravings are unsigned, the 1892 line figures are unsigned and no draughtsman is named for them; the colophon credits the photographic plates to Owen Williams, photographer, of Laugharne, whose dates are not recoverable, and an image with no
 identified creator has no death year — the same position that made Werner's plates
 unusable. **None is reproduced.** Every board is newly drawn from the descriptions in
 Falkener's own text, and each states its status on its face:

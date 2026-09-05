@@ -700,10 +700,11 @@ const GAMES_ANCIENT: Companion = {
     "Edward Falkener died in 1896 and Dr Samuel Birch, whose 1864 paper the " +
     "book prints, died in 1885, so their text is in the public domain " +
     "everywhere (source: Internet Archive, gamesancientorie00falkuoft). None " +
-    "of the 1892 engravings is reproduced: they are unsigned, no illustrator " +
-    "is named, and an image with no identified creator has no death year to " +
-    "clear it with. Every board on these sheets was drawn for this edition " +
-    "from the descriptions in the text.",
+    "of the 1892 illustrations is reproduced. The line figures are unsigned " +
+    "and no draughtsman is named for them; the colophon credits the " +
+    "photographic plates to Owen Williams, photographer, of Laugharne, whose " +
+    "dates are not recoverable. Every board on these sheets was drawn for " +
+    "this edition from the descriptions in the text.",
   assets: [
     {
       id: "boards",

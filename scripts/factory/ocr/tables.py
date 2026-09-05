@@ -399,15 +399,23 @@ def tidy(table: dict) -> dict:
     elif headings:
         headings = headings[:len(keep)] + [""] * max(0, len(keep) - len(headings))
     fit = fit_grid(rows) if kind == "grid" else None
+    perm = None
     if fit:
         rows, differs = apply_grid_fit(rows, fit)
-        flagged = 0
+        flagged = differs
+    elif kind == "grid":
+        perm = check_permutation(rows)
+        if perm:
+            flagged = perm["marked"]
     cells = sum(1 for r in rows for c in r if c["t"])
     out = {"kind": kind, "headings": headings, "rows": rows, "columns": len(keep),
            "cells": cells, "unread": flagged, "proseDropped": prose,
            "prose": [" ".join(r) for r in stray if len(" ".join(r).split()) >= 3]}
+    if perm:
+        out["permutation"] = perm
     if fit:
         out["regular"] = {"layout": fit["layout"], "base": fit["base"],
+                          "rankRows": fit.get("rankRows", 0),
                           "scanAgrees": fit["agree"], "scanRead": fit["read"],
                           "cells": fit["cells"], "scanDiffers": differs}
     return out
@@ -420,6 +428,38 @@ def _layouts(rows: int, cols: int, base: int):
     yield "row-major, bottom-up", lambda r, c: base + (rows - 1 - r) * cols + c
     yield "column-major", lambda r, c: base + c * rows + r
     yield "column-major, bottom-up", lambda r, c: base + c * rows + (rows - 1 - r)
+
+
+_SUFFIX_SUB = {"a": "0", "b": "3"}
+
+
+def rank_rows(grid: list[list[dict]]) -> int:
+    """How many rows at the top are a lettered rank of the row beneath them.
+
+    Falkener's board key is twelve rows of plain numbers with two extra ranks above
+    it, printed 19a…129a and 19b…129b. Those rows are not part of the arithmetic run
+    and a linear fit over the whole grid fails because of them, which is why the key
+    fitted nothing and its nine misread cells printed unmarked.
+    """
+    for k in (2, 1):
+        if len(grid) <= k + 2:
+            continue
+        base = [c["t"].strip() for c in grid[k]]
+        ok = True
+        for r in range(k):
+            row = [c["t"].strip() for c in grid[r]]
+            if len(row) != len(base):
+                ok = False; break
+            pairs = [(a, b) for a, b in zip(row, base) if a and b]
+            # The suffix may itself be misread — the scan returns 193 for 19b — so any
+            # single trailing character counts. Requiring a letter found no rank rows
+            # at all on the one table in the book that has them.
+            hits = sum(1 for a, b in pairs if len(a) == len(b) + 1 and a[:-1] == b)
+            if not pairs or hits / len(pairs) < 0.5:
+                ok = False; break
+        if ok:
+            return k
+    return 0
 
 
 def fit_grid(grid: list[list[dict]]) -> dict | None:
@@ -437,34 +477,53 @@ def fit_grid(grid: list[list[dict]]) -> dict | None:
     rows, cols = len(grid), max(len(r) for r in grid)
     if rows < 3 or cols < 3:
         return None
+    ranks = rank_rows(grid)
+    body = grid[ranks:]
+    brows = len(body)
+    if brows < 3:
+        return None
     read = {}
-    for r, row in enumerate(grid):
+    for r, row in enumerate(body):
         for c, cell in enumerate(row):
             m = re.fullmatch(r"(\d{1,4})([ab]?)", cell["t"].strip())
             if m and not cell.get("unread"):
-                read[(r, c)] = int(m.group(1))
+                v = int(m.group(1))
+                # A lettered token in a table with no lettered rank is a misread
+                # digit, not a rank: "11a" on the 1-169 board is 110. Try that
+                # reading here so the fit is not defeated by nine of them.
+                if m.group(2) and not ranks:
+                    v = int(m.group(1) + _SUFFIX_SUB[m.group(2)])
+                read[(r, c)] = v
     if len(read) < rows * cols * 0.6:
         return None
     best = None
-    for base in {v - (r * cols + c) for (r, c), v in list(read.items())[:8]} | {1, 10}:
-        for name, fn in _layouts(rows, cols, base):
+    cands = {v - (r * cols + c) for (r, c), v in list(read.items())[:8]} | {1, 10}
+    for base in cands:
+        for name, fn in _layouts(brows, cols, base):
             agree = sum(1 for (r, c), v in read.items() if fn(r, c) == v)
             if best is None or agree > best[0]:
                 best = (agree, name, base, fn)
     agree, name, base, fn = best
     if agree < len(read) * 0.85:
         return None
+    required = {(r + ranks, c): str(fn(r, c)) for r in range(brows) for c in range(cols)}
+    # the lettered ranks take the top body row's value with their own letter
+    for r in range(ranks):
+        letter = "ab"[ranks - 1 - r]
+        for c in range(cols):
+            required[(r, c)] = str(fn(0, c)) + letter
     return {"layout": name, "base": base, "agree": agree, "read": len(read),
-            "cells": rows * cols,
-            "required": {(r, c): fn(r, c) for r in range(rows) for c in range(cols)}}
+            "cells": rows * cols, "rankRows": ranks, "required": required}
 
 
 def apply_grid_fit(grid: list[list[dict]], fit: dict) -> tuple[list[list[dict]], int]:
-    """Print what the board's own numbering requires, and say where the scan differs.
+    """Print what the board's own numbering requires, and MARK where the scan differed.
 
     Nothing is invented: the numbering is the page's, the layout is measured from the
-    page, and a cell the scan read differently is recorded as a disagreement rather
-    than quietly overwritten.
+    page. But a cell the scan read differently is a reading this edition supplied, and
+    the book's guarantee is that a supplied reading is marked. An earlier version of
+    this function overwrote silently and set the unread count to zero, which told the
+    reader every cell had been read when ten had been reconstructed.
     """
     differs = 0
     for r, row in enumerate(grid):
@@ -472,9 +531,62 @@ def apply_grid_fit(grid: list[list[dict]], fit: dict) -> tuple[list[list[dict]],
             want = fit["required"].get((r, c))
             if want is None:
                 continue
-            if cell["t"].strip() != str(want):
+            if cell["t"].strip() != want:
                 differs += 1
                 cell["scanRead"] = cell["t"]
-            cell["t"] = str(want)
-            cell.pop("unread", None)
+                cell["unread"] = True
+            cell["t"] = want
     return grid, differs
+
+
+def check_permutation(grid: list[list[dict]]) -> dict | None:
+    """A grid that is not a numbered board but should still use each square once.
+
+    Culin's and Falkener's placing tables give the ORDER in which men are set down, so
+    there is no arithmetic to fit — but every square appears exactly once, which is a
+    check just as strong. It catches what a range test cannot: a duplicated value.
+
+    Where a lettered token appears in a table with no lettered rank, the letter is a
+    misread digit (a→0, b→3) and the substitution is tried before the cell is judged.
+    Anything still out of range, or duplicated, is MARKED.
+    """
+    rows, cols = len(grid), max(len(r) for r in grid)
+    cells = [(r, c) for r in range(rows) for c in range(len(grid[r]))]
+    n = len(cells)
+    if n < 12 or rank_rows(grid):
+        return None
+    vals, parsed = {}, 0
+    for r, c in cells:
+        m = re.fullmatch(r"(\d{1,4})([ab]?)", grid[r][c]["t"].strip())
+        if not m:
+            continue
+        v = int(m.group(1) + _SUFFIX_SUB[m.group(2)]) if m.group(2) else int(m.group(1))
+        vals[(r, c)] = v
+        parsed += 1
+    if parsed < n * 0.8:
+        return None
+    lo = min(vals.values())
+    hi = lo + n                      # n cells, one square each, one gap allowed
+    inside = sum(1 for v in vals.values() if lo <= v <= hi)
+    if inside < parsed * 0.9:
+        return None
+    seen, marked = {}, 0
+    for r, c in cells:
+        cell = grid[r][c]
+        v = vals.get((r, c))
+        bad = v is None or not (lo <= v <= hi) or v in seen
+        if v is not None and not bad:
+            seen[v] = (r, c)
+            if str(v) != cell["t"].strip():        # a letter was substituted
+                cell["scanRead"] = cell["t"]
+                cell["t"] = str(v)
+                cell["unread"] = True
+                marked += 1
+        elif v is not None:
+            cell["unread"] = True
+            marked += 1
+        elif cell["t"].strip():
+            cell["unread"] = True
+            marked += 1
+    return {"kind": "one square each", "range": [lo, hi], "cells": n,
+            "distinct": len(seen), "marked": marked}

@@ -1324,7 +1324,7 @@ export const BOOKS = [
     slug: "games-ancient-and-oriental",
     title: "Games Ancient and Oriental: The Egyptian Games",
     subtitle:
-      "Edward Falkener's 1892 Reconstruction, Annotated \u2014 with Dr Samuel Birch's 1864 Paper, a Register of Reconstructions, Five Original Diagrams and Nineteen Rebuilt Move Tables",
+      "Edward Falkener's 1892 Reconstruction, Annotated \u2014 with Dr Samuel Birch's 1864 Paper, a Register of Reconstructions, Five Original Diagrams and the Move Tables Rebuilt from the Scan",
     language: "en",
     pageCount: 76,
     categories: ["games-and-play", "classics-and-philosophy"],
@@ -1367,7 +1367,7 @@ export const BOOKS = [
         masterFileKey: "books/games-ancient-and-oriental/master/v1/master.pdf",
         epubFileKey: "books/games-ancient-and-oriental/master/v1/master.epub",
         priceBasis:
-          "price-engine.mjs 2026-09-05, direct ebook, public domain: recommended $6.99, and $7.99 nets $7.09 after Paddle. The Valice Classics band is $7.99\u20139.99 for the minimum apparatus standard. This edition measures 27.4% original matter (QA/differentiation.json) \u2014 above the 20% floor \u2014 but it is 76 pages against the 154\u2013176 of the other Classics titles, so it is priced at the bottom of the band rather than at the $9.99 the longer volumes carry.",
+          "price-engine.mjs 2026-09-05, direct ebook, public domain: recommended $6.99, and $7.99 nets $7.09 after Paddle. The Valice Classics band is $7.99\u20139.99 for the minimum apparatus standard. This edition measures 27.7% original matter (QA/differentiation.json) \u2014 above the 20% floor \u2014 but it is 76 pages against the 154\u2013176 of the other Classics titles, so it is priced at the bottom of the band rather than at the $9.99 the longer volumes carry.",
       },
       {
         format: "paperback",

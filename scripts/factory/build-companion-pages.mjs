@@ -174,7 +174,11 @@ function buildSpec(bookSlug, format, edition, book, { skipDoneCheck = false } = 
     pdfAuthor: author?.name ?? "",
     docInfo: {
       title: catalogBook ? `${catalogBook.title}${catalogBook.subtitle ? `: ${catalogBook.subtitle}` : ""}` : info.title,
-      author: author?.name ?? info.author,
+      // Keep the interior's own author line where it has one. On a public-domain
+      // edition it names both parties — "Edward Falkener · edited and annotated by
+      // Emre Dogan" — and overwriting it with the catalogue's author credited the
+      // annotator alone for a book whose text is somebody else's.
+      author: info.author || author?.name || "",
     },
     house: { ...HOUSE_COPY, eyebrow: eyebrowFor(copy.imprint) },
     copy: {

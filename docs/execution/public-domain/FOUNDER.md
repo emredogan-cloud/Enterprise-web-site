@@ -25,7 +25,7 @@ output while other work continues · **P2** is an inconvenience and never stops 
   was founder-approved on 2026-09-02 for the work itself. Falkener died 17 December 1896
   and Samuel Birch on 27 December 1885, both verified against the National Archives
   authority record and the DNB. None of the 1892 engravings is reproduced: they are
-  unsigned, no illustrator is named anywhere, so there is no death year to clear them
+  unsigned, the 1892 line figures are unsigned and no draughtsman is named for them; the colophon credits the photographic plates to Owen Williams, photographer, of Laugharne, whose dates are not recoverable, so there is no death year to clear them
   against — the same finding that removed Werner's plates in Phase 1. Every figure is drawn
   for this edition from the descriptions in the text.
 - **Already done — gate 5:** twelve claims registered in `CLAIMS.jsonl`, every one VERIFIED
