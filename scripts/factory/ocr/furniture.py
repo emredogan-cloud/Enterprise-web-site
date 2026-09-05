@@ -30,8 +30,9 @@ HEAD_BAND = 0.22          # a head must at least START in the top fifth
 FOOT_BAND = 0.86          # a footer must start below this
 HEAD_GAP = 1.30           # measured: the gap under a head runs ~1.5x the leading
 HEAD_MAX_LINES = 3        # furniture is never taller than this
-MIN_PAGES = 3             # it must recur this often to count as furniture
+MIN_PAGES = 2             # a short chapter shows its head on only two rectos
 SIMILARITY = 0.72         # OCR variance between two printings of the same head
+MIN_KEY = 4               # letters in a head, once the folio is stripped
 
 BARE_NUMBER = re.compile(r"^\s*[\dIVXLCivxlc]{1,6}\s*$")
 
@@ -123,7 +124,11 @@ def furniture_pages(pages, foot: bool = False) -> set[int]:
             if t and (foot or is_furniture_line(t))}
     out = set()
     for n, k in keys.items():
-        if len(k) < 8:
+        # An 8-letter minimum was tried and silently dropped every short head:
+        # Culin's recto head over the chess chapter is "CHESS." — five letters —
+        # so thirty leaves of the chapter kept their furniture. Position, the white
+        # space under the run and recurrence do the work; length adds nothing.
+        if len(k) < MIN_KEY:
             continue
         if sum(1 for k2 in keys.values() if _similar(k, k2) >= SIMILARITY) >= MIN_PAGES:
             out.add(n)
