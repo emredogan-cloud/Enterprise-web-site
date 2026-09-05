@@ -545,10 +545,13 @@ export const COMPANION_PAGE_PLAN = {
     style: { fonts: TYPE.liberationSerif, marginIn: 0.62, rule: 0.7 },
     editions: {
       paperback: {
-        // Phase 2 book 1. The interior is typeset deliberately ODD at 77 pages so
-        // that this pipeline's appended leaf produces the even 78 KDP requires,
-        // and the cover was built from that final count, not from the pre-splice one.
-        mode: "append", page: null, pagesBefore: 77, pagesAfter: 78, recto: true,
+        // Phase 2 book 1. The interior is typeset deliberately ODD so that this
+        // pipeline's appended leaf produces the even count KDP requires, and the cover
+        // is built from that final count, not from the pre-splice one. The numbers
+        // moved from 77/78 to 75/76 when an adversarial review's findings were fixed —
+        // and this plan refused the splice until they were updated, which is the guard
+        // doing its job.
+        mode: "append", page: null, pagesBefore: 75, pagesAfter: 76, recto: true,
         folio: { style: "centre", offset: 0, size: 8.6, baselineFromBottomPt: 28.8, outerMarginPt: 36 },
         replacing: null,
       },

@@ -150,3 +150,33 @@ def folio_from_head(lines: list[str]) -> int | None:
             if v and len(t.split()) >= 2:
                 return int(v)
     return None
+
+
+def display_block(page, max_lines: int = 8, gap: float = 2.0) -> list[str]:
+    """The printed display title at the head of a section's opening leaf.
+
+    Not found by the head rule, and shouldn't be: a display title occurs once, and the
+    recurrence test that separates a running head from a title is exactly what protects
+    it. But on the ONE page where it is the title, this edition sets its own, and the
+    printed one is furniture like any other — arriving, on the Falkener scan, as
+    `r11"! THE GAME OF SENAT…` and `i n a o vt o 1 … SAB EM HAN.`, the game's own name
+    misspelled in its own heading and running straight into the prose.
+
+    The compositor separates the display block from the text with a deep space — 758,
+    838 and 315 px against an 80 px leading on the three sections measured. So: every
+    line above the largest gap in the upper half of the page, when that gap is worth
+    at least `gap` lines of leading and the run is short.
+    """
+    ys = line_ys(page)
+    if len(ys) < 4:
+        return []
+    gaps = [ys[i + 1][0] - ys[i][0] for i in range(len(ys) - 1)]
+    body = sorted(gaps)[len(gaps) // 2] or 1
+    half = (page.height or 1) * 0.5
+    best = None
+    for i, g in enumerate(gaps[:max_lines]):
+        if ys[i][0] <= half and g > body * gap and (best is None or g > gaps[best]):
+            best = i
+    if best is None:
+        return []
+    return [t for _, t in ys[:best + 1]]

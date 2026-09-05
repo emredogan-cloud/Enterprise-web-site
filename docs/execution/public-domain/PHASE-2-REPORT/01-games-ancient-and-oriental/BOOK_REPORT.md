@@ -182,7 +182,7 @@ page and the measured share that could not be read.
 
 ## 6. What was added
 
-**6,943 words of original editorial matter — 25.7% of the volume**, against a 20% floor,
+**7,653 words of original editorial matter — 27.4% of the volume**, against a 20% floor,
 measured from the manuscript by `BUILD/measure.py`.
 
 | | Words |
@@ -226,10 +226,10 @@ is fitted to a 6 × 9 text block. The EVIDENCE/RECONSTRUCTION badge stays in bot
 
 | | |
 |---|---|
-| Interior | **78 pp**, 6 × 9 in, Liberation Serif embedded, gutter 0.375 in, no bleed |
+| Interior | **76 pp**, 6 × 9 in, Liberation Serif embedded, gutter 0.375 in, no bleed |
 | Companion leaf | p78, spliced by the house pipeline; QR **28%** of usable height, **1.70 mm/module** against a 0.5 mm floor |
-| Spine | **0.1757 in** — agrees with the pipeline's arithmetic to four decimals; no cover rebuild required |
-| Wrap | 12.4257 × 9.25 in at 300 dpi, 0.125 in bleed |
+| Spine | **0.1712 in** — agrees with the pipeline's arithmetic to four decimals; no cover rebuild required |
+| Wrap | 12.4212 × 9.25 in at 300 dpi, 0.125 in bleed |
 | **Spine text** | **None.** KDP allows it only from 79 pages and this book is 78 |
 | Cover title | 30.6% of cover height (house floor 25%); thumbnail contrast 0.97 at 150 px |
 | EPUB | 865 KB, 17 documents, **EPUBCheck 0 errors / 0 warnings** |
@@ -263,11 +263,11 @@ diagram cannot disagree, and each carries the same EVIDENCE or RECONSTRUCTION ma
 
 | Format | List | Net | Basis |
 |---|---|---|---|
-| Direct ebook (PDF + EPUB) | **$7.99** | $7.09 after Paddle | Engine recommends $6.99. The Classics band is $7.99–9.99; this volume is 78 pp against 154–176 for the others, so it sits at the bottom of the band, not at the $9.99 the longer books carry. |
+| Direct ebook (PDF + EPUB) | **$7.99** | $7.09 after Paddle | Engine recommends $6.99. The Classics band is $7.99–9.99; this volume is 76 pp against 154–176 for the others, so it sits at the bottom of the band, not at the $9.99 the longer books carry. |
 | Paperback | **$12.99** proposed | $5.49 (42.3%) | Prints at $2.30; engine recommends $9.99. The Classics band of $16.99–19.99 assumes a 150-page-plus volume. Founder decides at Gate 8. |
 
 No Kindle (KDP caps public-domain content at 35% and the store already carries free scans).
-No hardcover (78 pp is the very bottom of KDP's 75–550 range and would bind badly). No large
+No hardcover (76 pp is the very bottom of KDP's 75–550 range and would bind badly). No large
 print (the move tables do not enlarge usefully). Each decision is written down rather than
 assumed.
 
@@ -288,6 +288,90 @@ served from the site · catalogue entry · R2 masters uploaded and content-verif
 | Gates 2 and 5 unsigned | They need a person's signature, not a check. Both checks are done. | **F-020** |
 | Not on KDP | The print upload is a Founder action. | `KDP_UPLOAD_HANDBOOK.html` |
 | `websiteStatus: draft` | Follows from F-019. A buy button with no price behind it is a lie. | catalogue |
+
+---
+
+## 11. The adversarial review, and what it found
+
+**The first build of this book failed its review.** An independent reviewer was given one
+instruction — *prove this book is not ready* — and its verdict was **no**. It was right,
+and the findings are recorded here rather than quietly fixed, because the point of the
+review is lost if the book that ships pretends it passed first time.
+
+### The worst one
+
+**The Register of Reconstructions committed the error it exists to catch.** Under WHAT THE
+EVIDENCE SHOWS, for Senat, the first build printed:
+
+> Living practice in nineteenth-century Egypt, **which Falkener reports at first hand**
+
+and called it *the most defensible chapter, because its best material — what he saw people
+doing — is reported rather than inferred.*
+
+Falkener saw nothing. He never went to Egypt for it. The passage is **E. W. Lane's**, from
+*Manners and Customs of the Modern Egyptians* (1836), and Falkener credits him twice on the
+page: *"Lane tells us that many of the fellaheen of Egypt frequently amuse themselves with
+the game of Seega."* The one feature that distinguishes this edition — a register that
+separates evidence from inference — attributed another man's observation to Falkener as
+eyewitness testimony, in four places.
+
+Two more went with it. The same row called Senat's board *"the same board with fewer
+pieces"* — it is a different board, five squares each way against section IV's twelve, as
+the edition's own two diagrams show on facing claims of sameness. And the introduction
+said the register's *what is known now* column *"in every case includes that the rules are
+still not known"*, which is false for exactly that section: **Seega's rules were recorded
+from living players and never lost.** That inversion is now the interesting thing about the
+row, and it is written up as such.
+
+### Numbers that were false on the page that promises they are measured
+
+The Note on the Text said *"The counts below are written by the build from the manuscript
+it produced; they are not estimates."* Five of them were typed by hand from an early
+working report, and the parse had changed underneath them.
+
+The fix is mechanical, not editorial: the note now carries `{{TOKENS}}` and `BUILD/counts.py`
+fills them from the manuscript being set. **A number this edition cannot compute is a
+number it does not print.**
+
+### Everything else, and where it went
+
+| # | Finding | Fix |
+|---|---|---|
+| 1 | Register attributes Lane's observation to Falkener | row rewritten; claims **C-013**, **C-014** |
+| 2 | "the same board with fewer pieces" — it is a different board | corrected in register, section intro and glossary |
+| 3 | Five counts in the Note on the Text false | `BUILD/counts.py`; the note is now token-filled |
+| 4 | `895—89` printed unmarked where the page reads `89b—89a`; a table's final row and its result deleted; `Slack` for `Black` in 8 heading cells; ten phantom empty rows | move cells are range-checked against the board now, not just shape-checked; headings are matched against `{White, Black, Red}`; empty rows dropped; a blank cell inside a table is **marked unread**, not printed blank |
+| 5 | Section V's 13×13 board validated against section IV's 10–129 board, so ~12 cells printed wrong and unmarked | the board's range is **inferred per table**, and a numbered board that fits its own arithmetic is now *checked against it* — the 13×13 fits row-major from 1, the scan agreed on 159 of 168 readings, and the edition prints what the board requires |
+| 6 | "no illustrator is named anywhere" — false; the colophon credits **Owen Williams, photographer, Laugharne** | rewritten in imprint, source note, `RIGHTS.md` and config; claim **C-015** |
+| 7 | `RIGHTS.md` a blank template; `DECISIONS.md` had two entries numbered A2 | `RIGHTS.md` written in full; decisions renumbered and closed |
+| 8 | Sections V and VI opened with OCR garbage — `r11"!` and `SAB EM HAN` for **HAB EM HAN** | a section's printed display title is now dropped as furniture, structurally, by the gap under it |
+| 9 | The wrap's frame rules struck through **VALICE PRESS**; the cover printed one series name and the config another | imprint block moved clear, and the build now *asserts* it clears the rule; the series line is read from `project_config.json` |
+| 10 | Eight of fourteen contents page numbers off by one | the layout **iterates to a fixed point** — filling the numbers in lengthened the table and moved everything after it — and the build fails rather than shipping a contents that disagrees |
+| 11 | `QA/interior-main.json` described the pre-splice file, and the cover read its page count | `BUILD/seal_interior.py` rewrites the record from the PDF after the splice; the cover refuses to run until it has |
+| 12 | `Eameses`, `Eosellini`, `Eenouf`, `Garrington`, `Historise`, `mture`, `rowp`, `iar` — the very class the note says it hunted | 13 more corrections and 7 more token fixes, each with its page |
+| 13 | Three passages deleted, including the winning move and the result of Game I | prose inside a table's span is collected **per row and rejoined in column order** instead of dropped |
+| 14 | `[hieroglyphs]` markers splitting a transliterated word | restored Greek and existing markers are now immune to the sign pass — **κραδία had been read off the page image, written in, and then eaten** |
+| 15 | Ten factual defects: the spiral/rings contradiction, fourth vs fifth dynasty, senet on the wrong board, the AD 100 papyrus, the 1967 anachronism, Murray vs Kendall, "eleven sections", the *kelbs* etymology, three index headings naming things not in the text | all corrected; claims **C-016**, **C-017**, **C-018** |
+| 16 | `CLAIMS.jsonl` empty, and `claim-lint` treated that as a *warning* | **an empty ledger is now an error**: a facts gate that passes when nothing has been checked is worse than no gate |
+| 17 | AI disclosure said `generated` in one field and "AI-assisted" in another | config corrected; the handbook now **renders the declaration from the config** instead of a literal |
+| 18 | The annotator was not named anywhere inside a book sold as *(Annotated)* | on the title page and in the imprint |
+
+### What the review confirmed
+
+Falkener 1814–1896 and Birch 1813–1885; the 1892 Longmans imprint; the Society of Biblical
+Archaeology in 1870; *latrunculi* as its own game; senet's rules genuinely unknown. Every
+price reproduces from `price-engine.mjs`. The catalogue row, the companion wiring and the
+spine rule are clean. `epubcheck` genuinely passes. **No 1892 illustration is reproduced
+anywhere** — verified across all six EPUB images and all five interior figures.
+
+### The verification, re-run
+
+27 checks over the rebuilt PDF: 17 things that must not appear (`Slack`, `at first hand`,
+`SAB EM HAN`, `1 January 1967`, unfilled `{{tokens}}`, literal `<font>` tags, `Eameses`,
+"no illustrator is named", …) and 10 that must (`Lane tells us`, `Black resigns`, `but is
+taken itself`, `Here it is evident`, `ἱερὰ γραμμή`, `κραδία`, Owen Williams, the annotator's
+name, the Royal Jubilee Exhibition, Rashepses). **All 27 pass.**
+
 
 ---
 

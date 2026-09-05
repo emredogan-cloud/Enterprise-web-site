@@ -83,7 +83,7 @@ ul{margin:7px 0 7px 20px;padding:0} li{margin:4px 0}
 <p class="big" style="margin:.3em 0">This book is not cleared to upload yet.</p>
 <ul>
 <li><b>Gate 2 — rights.</b> <code>RIGHTS.md</code> is written and the ledger rows exist. They are YELLOW until you sign. The signature is the gate.</li>
-<li><b>The AI declaration.</b> A fully human public-domain text with a ${(diff.editorShare * 100).toFixed(1)}% apparatus that was AI-assisted. You decide how to answer; do not let it be guessed.</li>
+<li><b>The AI declaration.</b> A fully human public-domain text with a ${(diff.editorShare * 100).toFixed(1)}% apparatus declared as <b>${cfg.compliance?.aiDisclosure?.text ?? "UNDECIDED"}</b> text, <b>${cfg.compliance?.aiDisclosure?.images ?? "UNDECIDED"}</b> images, <b>${cfg.compliance?.aiDisclosure?.translation ?? "UNDECIDED"}</b> translation — decided by ${cfg.compliance?.aiDisclosure?.decidedBy ?? "nobody yet"}${cfg.compliance?.aiDisclosure?.decidedAt ? " on " + cfg.compliance.aiDisclosure.decidedAt : ""}. Answer the KDP form with exactly those three values. This line is rendered from project_config.json rather than written out here, because the handbook used to say "AI-assisted" while the config said "generated", which is the sort of contradiction a reviewer finds and a reader does not.</li>
 <li><b>Gate 1 — market.</b> No Amazon sample has been taken. Take one before fixing the paperback price.</li>
 </ul></div>
 

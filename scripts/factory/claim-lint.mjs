@@ -61,7 +61,13 @@ export function lintClaims(claims, { facts = [], rejected = [] } = {}, report = 
   const ids = new Set();
   let pending = 0;
   let wrong = 0;
-  if (!claims.length) report.warn("empty", "CLAIMS.jsonl has no claims yet");
+  // AN EMPTY LEDGER IS A FAILURE, NOT A NOTE. It was a warning, so a book whose
+  // apparatus made a hundred checkable statements passed this lint on zero claims,
+  // while its own config told KDP that "every checkable claim is registered in
+  // CLAIMS.jsonl". An adversarial review found that on Falkener. Gate 5 is the facts
+  // gate; a facts gate that passes when nothing has been checked is worse than no gate.
+  if (!claims.length)
+    report.error("empty", "CLAIMS.jsonl has no claims — gate 5 cannot pass on an empty ledger");
   let legacyRows = 0;
   claims = claims.map((c) => {
     const { claim, legacy } = adaptLegacyClaim(c);
