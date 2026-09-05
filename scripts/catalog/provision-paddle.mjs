@@ -26,6 +26,13 @@ import { DIRECT_SALE_EBOOKS } from "./paddle-products.mjs";
 
 const commit = process.argv.includes("--commit");
 const liveOk = process.argv.includes("--i-know-this-is-live");
+// Optional slug filter, added 2026-09-05. Without it a --commit run creates
+// EVERY pending product, which is wrong whenever two people are working on the
+// catalogue at once: three titles were pending that day and only one of them
+// was the run's business. The report still lists every title so nothing is
+// hidden — the filter narrows what is WRITTEN, not what is shown.
+const onlyIndex = process.argv.indexOf("--slug");
+const only = onlyIndex !== -1 ? process.argv[onlyIndex + 1] : null;
 const flag = process.argv.indexOf("--env");
 const envFile = flag !== -1 ? process.argv[flag + 1] : ".env";
 
@@ -182,6 +189,7 @@ async function createProduct(book) {
 }
 
 for (const book of DIRECT_SALE_EBOOKS) {
+  const inScope = !only || book.slug === only;
   let product = productBySlug.get(book.slug);
   let price = priceBySlug.get(book.slug);
 
@@ -198,12 +206,15 @@ for (const book of DIRECT_SALE_EBOOKS) {
       ? `$${(Number(price.unit_price.amount) / 100).toFixed(2)} → $${(book.priceCents / 100).toFixed(2)}`
       : null;
 
-  if (!commit) {
+  // Out of scope is reported and never written: the run still shows the whole
+  // catalogue so nothing is hidden, but only the named slug is touched.
+  if (!commit || !inScope) {
     console.log(
       `  ${book.slug.padEnd(32)} product=${product?.id ?? "WOULD CREATE"}  ` +
         `price=${price?.id ?? "WOULD CREATE"}  $${(book.priceCents / 100).toFixed(2)}` +
         (drift ? `  ← WOULD REPRICE ${drift} (new price, old one archived)` : "") +
-        (stale ? "  ← name/description WOULD UPDATE" : ""),
+        (stale ? "  ← name/description WOULD UPDATE" : "") +
+        (commit && !inScope ? "  ← out of --slug scope, not written" : ""),
     );
     continue;
   }

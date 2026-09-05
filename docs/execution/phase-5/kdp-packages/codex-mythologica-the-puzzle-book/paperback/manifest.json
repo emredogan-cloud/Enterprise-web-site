@@ -1,0 +1,103 @@
+{
+  "generatedAt": "2026-09-05",
+  "book": "codex-mythologica-the-puzzle-book",
+  "format": "paperback",
+  "title": "Codex Mythologica: The Puzzle Book",
+  "asin": null,
+  "kdpState": "not_created",
+  "interior": {
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/04-CODEX-MYTHOLOGICA-THE-PUZZLE-BOOK/OUTPUT/PAPERBACK/interior.pdf",
+    "sha256": "6edf0cf35736152a6710a5fed013b1b570e53ee1fc49d7ddaf8637b61b2514e9",
+    "bytes": 428659,
+    "pagesBefore": 156,
+    "pagesAfter": 156,
+    "companionPage": 155,
+    "previousBuildKept": null,
+    "builtBy": "BUILD/build_interior.py — the book's own companion leaf"
+  },
+  "companion": {
+    "printedUrl": "valicepress.com/companion/codex-puzzles",
+    "qrUrl": "https://valicepress.com/companion/codex-puzzles",
+    "qr": {
+      "measuredOffThePage": true,
+      "found": true,
+      "dpi": 200,
+      "finders": 3,
+      "sidePt": 216,
+      "sideIn": 3,
+      "modulePx": 18.14,
+      "moduleMm": 2.304,
+      "modules": 33,
+      "pageWidthPt": 612,
+      "pageHeightPt": 792,
+      "fractionOfPageHeight": 0.2727
+    },
+    "dedicatedPage": true,
+    "emailWall": false
+  },
+  "spine": {
+    "pagesBefore": 156,
+    "pagesAfter": 156,
+    "paper": "white",
+    "binding": "paperback",
+    "trim": "8.5×11 in",
+    "before": {
+      "spineWidthIn": 0.351312,
+      "wrapWidthIn": 17.601312,
+      "wrapHeightIn": 11.25,
+      "spineTextAllowed": true
+    },
+    "after": {
+      "spineWidthIn": 0.351312,
+      "wrapWidthIn": 17.601312,
+      "wrapHeightIn": 11.25,
+      "spineTextAllowed": true
+    },
+    "deltaSpineIn": 0,
+    "deltaWrapWidthIn": 0,
+    "withinKdpTolerance": true,
+    "coverRebuildRequired": false,
+    "coverRebuildCorrect": false,
+    "hardcoverGeometryMustBeRead": false,
+    "barcodeZoneAffected": false,
+    "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
+  },
+  "cover": null,
+  "coverAction": "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior",
+  "uploadRequired": true,
+  "hold": null,
+  "proofRecommended": true,
+  "proofWhy": "this edition has never been printed — first proof of this interior and this cover",
+  "verification": [
+    {
+      "name": "page-count",
+      "pass": true,
+      "detail": "156 pages (expected 156)"
+    },
+    {
+      "name": "printed-url",
+      "pass": true,
+      "detail": "valicepress.com/companion/codex-puzzles"
+    },
+    {
+      "name": "canonical-host",
+      "pass": true,
+      "detail": "no forbidden host on the page"
+    },
+    {
+      "name": "eyebrow",
+      "pass": true,
+      "detail": "CONTINUE WITH VÂLIÇE PRESS"
+    },
+    {
+      "name": "fonts-embedded",
+      "pass": true,
+      "detail": "9 faces: AAAAAA+Lato-Light, AAAAAA+NotoSerif-Regular, AAAAAA+Lato-Regular, AAAAAA+Lato-Bold, AAAAAA+NotoSerif-Italic, AAAAAA+Lato-Black, AAAAAA+DejaVuSansMono, AAAAAA+DejaVuSansMono-Bold, AAAAAA+NotoSerif-Bold"
+    },
+    {
+      "name": "pdf-metadata",
+      "pass": true,
+      "detail": "title=\"Codex Mythologica: The Puzzle Book: 100 Myth Puzzles from 19 Civilizations\" author=\"Emre Doğan\""
+    }
+  ]
+}

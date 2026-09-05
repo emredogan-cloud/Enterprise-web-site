@@ -6,6 +6,7 @@ import { buildPageMetadata } from "@/lib/metadata";
 import { getCompanion, listCompanions } from "@/lib/companions";
 import { CompanionSignup } from "@/components/companion/companion-signup";
 import { CompanionDownloadLink } from "@/components/companion/companion-download-link";
+import { AnswerChecker } from "@/components/companion/answer-checker";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
 
@@ -148,6 +149,26 @@ export default async function CompanionPage({
             ))}
           </ul>
         </section>
+
+        {/* One companion has an interactive piece: the puzzle book's answer
+            checker. It is keyed off the slug rather than added to the
+            Companion type, because a `component` field on a data record is a
+            field that will be null on fourteen of fifteen rows. */}
+        {companion.slug === "codex-puzzles" && (
+          <section className="mt-14" aria-labelledby="checker">
+            <h2 id="checker" className="font-serif text-2xl text-fg-hi">
+              Have you got it?
+            </h2>
+            <p className="mt-2 max-w-prose text-sm text-fg-low">
+              Type a puzzle number and your answer. Every answer in the book is
+              printed at the back of the book — this is for the moment before
+              you decide to look.
+            </p>
+            <div className="mt-6">
+              <AnswerChecker />
+            </div>
+          </section>
+        )}
 
         <section className="mt-14">
           <CompanionSignup

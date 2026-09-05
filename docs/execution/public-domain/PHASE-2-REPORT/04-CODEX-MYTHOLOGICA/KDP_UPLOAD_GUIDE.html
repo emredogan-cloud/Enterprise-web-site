@@ -1,0 +1,208 @@
+<title>Codex Mythologica: The Puzzle Book — KDP Yükleme Kılavuzu</title>
+<style>
+:root{--bg:#faf7f2;--ink:#241f1a;--mut:#6d6459;--line:#ded5c7;
+--card:#fff;--acc:#8a6a3b;--ok:#2f6b46;--warn:#8a5a1b;--bad:#8f2f2f;
+--okbg:#e9f3ec;--warnbg:#f7efe1;--badbg:#f6e9e9;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+--bg:#17150f;--ink:#ece5d8;--mut:#a2988a;--line:#3a3328;--card:#1f1c15;
+--acc:#c9a86a;--ok:#7fc79b;--warn:#e0b271;--bad:#e79191;
+--okbg:#1b2a20;--warnbg:#2b2317;--badbg:#2c1c1c;}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.65 "Iowan Old Style",Palatino,Georgia,serif;}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px 90px}
+h1{font-size:1.9rem;margin:34px 0 6px;letter-spacing:-.01em}
+h2{font-size:1.3rem;margin:44px 0 10px;padding-bottom:7px;
+border-bottom:2px solid var(--line)}
+h3{font-size:1.02rem;margin:0}
+.sub{color:var(--mut);margin:0 0 18px}
+nav{position:sticky;top:0;z-index:9;background:var(--bg);
+border-bottom:1px solid var(--line);padding:9px 0;margin-bottom:6px;
+display:flex;gap:6px;flex-wrap:wrap}
+nav a{font:600 12px/1 ui-monospace,Menlo,monospace;color:var(--mut);
+text-decoration:none;border:1px solid var(--line);border-radius:99px;
+padding:6px 11px;white-space:nowrap}
+nav a:hover{color:var(--ink);border-color:var(--acc)}
+.bar{position:sticky;top:44px;z-index:8;background:var(--card);
+border:1px solid var(--line);border-radius:12px;padding:11px 14px;
+margin:8px 0 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.track{flex:1;min-width:170px;height:9px;background:var(--line);
+border-radius:99px;overflow:hidden}
+.fill{height:100%;width:0;background:var(--ok);transition:width .25s}
+.cnt{font:700 13px ui-monospace,monospace}
+.card{background:var(--card);border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;margin:12px 0}
+.hd{display:flex;gap:10px;align-items:flex-start}
+.hd input{margin-top:5px;width:17px;height:17px;flex:none;accent-color:var(--ok)}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.9rem}
+th,td{text-align:left;vertical-align:top;padding:7px 9px;
+border-bottom:1px solid var(--line)}
+th{width:210px;color:var(--mut);font-weight:600;font-size:.76rem;
+text-transform:uppercase;letter-spacing:.05em}
+.scroll{overflow-x:auto}
+code{font:.86em ui-monospace,Menlo,monospace;background:var(--warnbg);
+padding:1px 5px;border-radius:4px}
+.pill{display:inline-block;font:700 10.5px/1 ui-monospace,monospace;
+padding:4px 8px;border-radius:99px;text-transform:uppercase;
+letter-spacing:.05em;white-space:nowrap}
+.p-ok{background:var(--okbg);color:var(--ok)}
+.p-wait{background:var(--warnbg);color:var(--warn)}
+.p-no{background:var(--badbg);color:var(--bad)}
+.note{border-left:4px solid var(--acc);background:var(--card);
+padding:11px 14px;margin:13px 0;border-radius:0 9px 9px 0}
+.stop{border-left-color:var(--bad);background:var(--badbg)}
+.go{border-left-color:var(--ok);background:var(--okbg)}
+button.c{font:600 11px ui-monospace,monospace;cursor:pointer;
+background:var(--card);color:var(--mut);border:1px solid var(--line);
+border-radius:7px;padding:4px 9px;margin-left:6px}
+button.c:hover{border-color:var(--acc);color:var(--ink)}
+.val{white-space:pre-wrap;word-break:break-word}
+details{margin:8px 0}
+summary{cursor:pointer;color:var(--acc);font-size:.85rem;font-weight:600}
+footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);
+color:var(--mut);font-size:.82rem}
+</style>
+<div class="wrap">
+<nav>
+<a href="#00">Durum</a><a href="#01">01 Önce</a><a href="#02">02 Metadata</a>
+<a href="#03">03 E-kitap</a><a href="#04">04 Ciltsiz</a><a href="#05">05 Ciltli</a>
+<a href="#06">06 Büyük punto</a><a href="#07">07 Yüklenmeyecekler</a>
+<a href="#08">08 Previewer</a><a href="#09">09 Sıra</a><a href="#10">Dosya haritası</a>
+<a href="#11">Hata çıkarsa</a>
+</nav>
+
+<h1>KDP Yükleme Kılavuzu — Codex Mythologica: The Puzzle Book</h1>
+<p class="sub">Codex &nbsp;·&nbsp; 2026-09-05'te, dosyalar okunarak üretildi.
+Üç format: <b>e-kitap · ciltsiz · ciltli</b>. Buradaki her sayı ölçülmüştür.</p>
+
+<div class="bar">
+  <span class="cnt" id="cnt">0 / 0</span>
+  <div class="track"><div class="fill" id="fill"></div></div>
+  <span class="pill p-wait" id="ready">EKSİK ADIM VAR</span>
+</div>
+
+<h2 id="00">Durum — ölçüm, iddia değil</h2>
+<div class="scroll"><table><tr><th>Kitap</th><td><b>Codex Mythologica: The Puzzle Book</b></td></tr><tr><th>Alt başlık</th><td>100 Myth Puzzles from 19 Civilizations</td></tr><tr><th>Yazar alanı</th><td>Emre Doğan</td></tr><tr><th>Yayınevi</th><td>Vâliçe Press</td></tr><tr><th>Katkıda bulunanlar</th><td><b>Yok.</b> Çevirmen, editör, illüstratör alanı boş bırakılacak.</td></tr><tr><th>Seri</th><td>Codex — ama KDP <i>seri metadatası</i> <b>açılmayacak</b>. Bu kitap Codex'in bir sonraki cildi değil, iki referans cildin <b>yoldaşı</b>; numara vermek okura sıra beklettirir.</td></tr><tr><th>Edition number</th><td><b>Boş.</b> İlk baskı.</td></tr><tr><th>Formatlar</th><td><b>Üçü de üretildi:</b> doğrudan e-kitap (valicepress.com, <b>canlı</b>), ciltsiz, ciltli. Büyük punto üretilmedi — gerekçe §06'da.</td></tr><tr><th>Bulmaca</th><td><b>100</b> bulmaca, 12 aile, 5 bölüm. Kademeler: I 33 · II 31 · III 36.</td></tr><tr><th>Doğrulama</th><td><b>100/100</b> bulmaca, yalnızca <i>basılı sayfayı gören</i> bağımsız bir çözücü tarafından çözüldü ve her biri <b>tek</b> cevaba ulaştı. Bir bulmacada iki cevap çıktıysa bulmaca yeniden kuruldu.</td></tr><tr><th>Olgusal önerme</th><td><b>542</b> — hepsi bu derlemede kaynaktan yeniden okundu (542/542 geçti).</td></tr><tr><th>19 medeniyet</th><td>Alt başlık bu sayıyı alıntılıyor, bu yüzden <code>BUILD/codex.py</code> sayı 19 olmaktan çıkarsa <b>derlemeyi durduruyor</b>. Ondokuzunun her biri en az sekiz bulmacada geçiyor.</td></tr><tr><th>Ciltsiz sayfa</th><td><b>156</b> — <code>pdfinfo</code>: 156 sayfa, 612 x 792 pts (letter)</td></tr><tr><th>Ciltli sayfa</th><td><b>156</b> — <code>pdfinfo</code>: 156 sayfa, 594 x 792 pts (8,25 × 11 in)</td></tr><tr><th>ISBN</th><td><b>Yok.</b> Künye <code>PENDING — KDP-PROVIDED ISBN</code> basıyor. <b>Her formatın kendi ISBN'i olur.</b></td></tr><tr><th>ASIN</th><td><b>Yok.</b> Hiçbir format KDP'ye yüklenmedi.</td></tr><tr><th>Companion</th><td><code>valicepress.com/companion/codex-puzzles</code> — her iki basılı sürümün <b>155. sayfası</b>; QR kod sayfa yüksekliğinin %27'si ve <b>modül modül</b> bu adrese çözüldü (1089/1089).</td></tr><tr><th>KDP Select</th><td><b>HAYIR — ve bu bir tercih değil, bir kilit.</b> Select münhasırlıktır: kaydolursanız valicepress.com'daki 11,99 $'lık doğrudan e-kitap <b>satıştan kalkmak zorunda</b>. Codex Mythologica (karışmasın: <i>farklı</i> kitap) bu hatanın kayıtlı örneğidir.</td></tr><tr><th>Doğrudan e-kitap</th><td>valicepress.com'da <b>11,99 $</b>, <b>canlı</b> — Paddle fiyatı <code>pri_01m1sbkq3qsjyfx3tzwctay664</code>.</td></tr></table></div>
+
+<div class="note go"><b>Bu kitabın satış argümanı doğrulanabilirliğidir, ve o argüman ölçülmüştür.</b> Yüz bulmacanın her biri, yalnızca <i>basılı sayfada ne varsa onu</i> gören bir programa çözdürüldü — cevap anahtarını görmedi, bulmacanın nasıl kurulduğunu görmedi — ve her biri <b>tam olarak bir</b> cevaba ulaştı. İki cevaba ulaşan bulmacalar yeniden kuruldu; mantık ızgaralarının ipuçları, doğru cevaptan <i>büyütülerek</i> seçildi, öyle ki hiçbir ipucu çıkarılamıyor. 542 olgusal önermenin her biri CODEX MYTHOLOGICA veya CODEX BESTIARIUM'da bir alana ya da bir cümleye işaret ediyor ve her derlemede kaynaktan yeniden okunuyor. Bunu ilan metninde söyleyebilirsiniz, çünkü doğru.</div>
+
+<div class="note stop"><b>Tek gerçek engel teknik değil.</b> Dört basılı dosyanın dördü de preflight'tan geçti, EPUB EPUBCheck'ten 0/0/0 aldı ve doğrudan e-kitap canlı. Yükleyemeyeceğim tek şey sizin adınıza verilemeyecek bir beyandır: <b>yapay zekâ beyanı</b> (§01). Onu karara bağlamadan <b>Publish</b>'e basmayın.</div>
+
+<h2 id="01">🧭 01 · KDP'Yİ AÇMADAN ÖNCE</h2>
+
+<div class="card "><div class="hd"><input type="checkbox" id="c1"><div><h3><label for="c1">Yapay zekâ beyanı — bu kitapta <b>iki</b> cevap da EVET</label></h3><p>KDP <b>AI-generated</b> ile <b>AI-assisted</b> arasında ayrım yapar: ilk taslağı kim üretti sorusuna bakar. Bu kitapta hem metin hem kapak için dürüst cevap <b>generated</b>'dır.</p><table><tr><th>Text</th><td><b>GENERATED</b> — beyan edilecek</td></tr><tr><th>Images</th><td><b>GENERATED</b> — kapak illüstrasyonu OpenAI gpt-image-1 çıktısıdır (5 Eylül 2026, 4,00 $ tavana karşı 0,4992 $, defteri tutuldu). <b>İç blokta hiçbir görsel modeli kullanılmadı</b>: ızgaralar, resimli bulmacalar ve QR kod hesaplanmış koordinatlardan çizilmiş vektörlerdir.</td></tr><tr><th>Translation</th><td><b>NONE</b></td></tr></table><p><b>Bir nüans, ve söylemeye değer:</b> bulmacaların <i>kendileri</i> düzyazı değil. Bir mantık ızgarasının ipuçları bir kısıt aramasıyla büyütüldü, bir resimli bulmacanın sayıları bir çizimden türetildi, bir şifrenin metni başka bir kitaptan alıntılanmış bir cümlenin mekanik dönüşümü. Bunları bir program üretti. Çevrelerindeki cümleleri model yazdı — bu yüzden cevap yine de GENERATED.</p><p>Gerekçenin tamamı <code>project_config.json → compliance.aiDisclosure</code> içinde.</p></div></div></div>
+
+<div class="card "><div class="hd"><input type="checkbox" id="c2"><div><h3><label for="c2">ISBN: her formatın kendi numarası</label></h3><p>Künye şu anda <code>PENDING — KDP-PROVIDED ISBN</code> basıyor. KDP'nin ücretsiz ISBN'ini alırsanız bu doğrudur. <b>Ciltsiz ve ciltli aynı ISBN'i paylaşamaz.</b> Kendi ISBN'inizi kullanacaksanız iki numara gerekir; verirseniz künyeyi format başına yeniden üretirim. <b>Yükledikten sonra değiştirilemez.</b></p></div></div></div>
+
+<div class="card "><div class="hd"><input type="checkbox" id="c3"><div><h3><label for="c3">Prova kopyası — <b>iki tane</b></label></h3><p>Bu iç bloklar ve bu kapaklar hiç basılmadı, ve bu kitap içine <b>yazılan</b> bir kitap. Bakılacak dört şey: <b>(1)</b> ızgara kareleri kaleme yetiyor mu (hiçbiri 0,24 in'in altında değil, ama kâğıt farklıdır); <b>(2)</b> cilt payı yeterli mi — ciltsiz 0,80 in, ciltli 0,95 in; <b>(3)</b> şifre satırlarının altındaki yazma çizgileri basılıyor mu, yoksa çok mu açık; <b>(4)</b> ciltlide sırt yazısı ortada mı. Ciltli için ayrıca: <b>kapak kartonun etrafına katlanır</b> ve o katlanma ekranda görünmez.</p></div></div></div>
+
+<div class="card "><div class="hd"><input type="checkbox" id="c4"><div><h3><label for="c4">Bir bulmacayı gerçekten çözün</label></h3><p>Bir program yüzünü de çözdü, ama bir program yorulmaz ve sıkılmaz. Rastgele bir tanesini — 46 iyi bir seçim, beş satırlık bir mantık ızgarası — kalemle çözün ve şu ikisine bakın: ipuçları okununca anlaşılıyor mu, ve ızgarada işaretleyecek yer var mı.</p></div></div></div>
+
+<h2 id="02">🏷 02 · METADATA — ÜÇ FORMATTA DA AYNI</h2>
+
+<div class="card "><div class="hd"><input type="checkbox" id="c5"><div><h3><label for="c5">Title, Subtitle, Author, Publisher — harfi harfine</label></h3><table><tr><th>Title</th><td><code>Codex Mythologica: The Puzzle Book</code></td></tr><tr><th>Subtitle</th><td><code>100 Myth Puzzles from 19 Civilizations</code></td></tr><tr><th>Author</th><td><code>Emre Doğan</code></td></tr><tr><th>Publisher</th><td><code>Vâliçe Press</code></td></tr><tr><th>Contributors</th><td><b>Boş.</b></td></tr><tr><th>Series</th><td><b>Boş bırakın.</b></td></tr><tr><th>Edition number</th><td><b>Boş.</b></td></tr><tr><th>Language</th><td><code>English</code></td></tr><tr><th>Publishing rights</th><td><b>I own the copyright</b></td></tr><tr><th>Primary audience</th><td>Adult · <b>Sexually explicit: No</b></td></tr></table></div></div></div>
+
+<div class="card "><div class="hd"><input type="checkbox" id="c6"><div><h3><label for="c6">Description</label></h3><p>Aşağıdaki metni olduğu gibi yapıştırın. Üç formatta da aynı.</p><pre style='white-space:pre-wrap'>A hundred puzzles built out of CODEX MYTHOLOGICA and CODEX BESTIARIUM — and you need neither of them. Every fact a puzzle rests on is printed with the puzzle: the names, the classes, the dates, the whole candidate list. Nothing here is a quiz. Fourteen ciphers over lines quoted from the myths themselves, ten logic grids and twelve deductions, ten word fits and ten searches whose leftover letters spell a sentence, eight orderings, eight classifications, eight tallies and eight pictures drawn out of their own numbers. Three hints for every one of them, printed in three separate passes so that looking up the first does not show you the third. Every answer given, and beside each one the line that says how it was checked — because every puzzle in this book was solved by a program that saw only the printed page, and had to reach one answer and no other. Where a puzzle had two, the puzzle was rebuilt.</pre></div></div></div>
+
+<div class="card "><div class="hd"><input type="checkbox" id="c7"><div><h3><label for="c7">Keywords — yedi kutu</label></h3><p><code>cryptogram book for adults</code><br><code>nonogram picross grids</code><br><code>deduction with a full answer key</code><br><code>mythology gift for a puzzler</code><br><code>word search and word fit grids</code><br><code>greek norse egyptian aztec myths</code><br><code>solve it on paper not a screen</code><br></p><p>Hiçbiri başlıktan veya kategoriden bir kelimeyi tekrar etmiyor. Yedincisi bilinçli istisnadır: bu kitabın var olduğunu bilmeyen birinin yazacağı ifade.</p></div></div></div>
+
+<div class="card "><div class="hd"><input type="checkbox" id="c8"><div><h3><label for="c8">Categories</label></h3><p><b>Books › Humor &amp; Entertainment › Puzzles &amp; Games › Logic &amp; Brain Teasers</b> — BISAC <code>GAM007000</code>. İkinci kategori olarak <b>Books › Reference › Encyclopedias &amp; Subject Guides › Mythology</b> uygundur: kitabın alıcısı iki raftan birinde duruyor ve ikisi de doğru.</p></div></div></div>
+
+<h2 id="03">📱 03 · E-KİTAP</h2>
+
+<div class="note go"><b>Bu format KDP'ye yüklenmiyor, ve zaten satışta.</b> Doğrudan e-kitap valicepress.com'da <b>11,99 $</b> ve Paddle sonrası net <b>%90,8</b> bırakıyor; aynı dosya Kindle'da en iyi %70 bırakır. Daha önemlisi: KDP Select münhasırlıktır ve doğrudan satışı <b>yasaklar</b>. <b>O kutuyu işaretlemeyin.</b></div>
+
+<div class="card "><div class="hd"><input type="checkbox" id="c9"><div><h3><label for="c9">Ürünün kendisi — ne satılıyor</label></h3><table><tr><th>Nerede</th><td><code>valicepress.com/books/codex-mythologica-the-puzzle-book</code></td></tr><tr><th>Fiyat</th><td><b>11,99 $</b> — net 10,89 $ (%90,8)</td></tr><tr><th>Paddle</th><td><code>pri_01m1sbkq3qsjyfx3tzwctay664</code> — canlı hesapta, tek seferlik, 1199 USD</td></tr><tr><th>Kategori (site)</th><td>Puzzle &amp; Challenge</td></tr><tr><th>Teslim edilen</th><td><b>İki dosya, tek alım.</b> (1) 156 sayfalık iç blok, ekran için normalize edilmiş <b>DRM'siz filigranlı PDF</b> — bir bulmaca kitabında bu, ciltsizin kötü kopyası değil, 63. bulmacayı tekrar bastırabilmenin yoludur. (2) <b>Yeniden akan EPUB</b>: 12 belge, 42 ızgara <b>SVG</b> olarak (ekranda büyütünce bozulmaz), üç ipucu geçişi <b>üç ayrı belgede</b>.</td></tr><tr><th>EPUB dosyası</th><td><code>OUTPUT/EBOOK/codex-mythologica-the-puzzle-book.epub</code> — 1,920,020 bayt</td></tr><tr><th>EPUBCheck</th><td><b>Messages: 0 fatals / 0 errors / 0 warnings / 0 infos</b></td></tr><tr><th>Kapak</th><td><code>ASSETS/cover/kindle-v1.jpg</code> — 1600 × 2560, EPUB'ın içinde. <b>Mağaza kapağıyla aynı resim.</b></td></tr><tr><th>R2 master</th><td><code>books/codex-mythologica-the-puzzle-book/master/v1/master.pdf</code> ve <code>…/master.epub</code></td></tr></table></div></div></div>
+
+<div class="card "><div class="hd"><input type="checkbox" id="c10"><div><h3><label for="c10">Eğer bir gün Kindle sürümü açarsanız — tam alan listesi</label></h3><p>Bugün <b>açılmayacak</b>. Açılırsa:</p><table><tr><th>Yüklenecek dosya</th><td><code>OUTPUT/EBOOK/codex-mythologica-the-puzzle-book.epub</code>. <b>PDF yüklemeyin.</b></td></tr><tr><th>Kapak</th><td><code>ASSETS/cover/kindle-v1.jpg</code> — 1600 × 2560 px, sRGB, JPEG</td></tr><tr><th>Metadata</th><td>§02'nin tamamı, değişmeden</td></tr><tr><th>DRM</th><td><b>Do not enable DRM</b> — doğrudan sürüm DRM'siz</td></tr><tr><th>KDP Select</th><td><b>HAYIR.</b></td></tr><tr><th>Fiyat</th><td>11,99 $ (aynı) — %70 bandında net ~8,39 $; doğrudan satıştan 2,50 $ daha az</td></tr><tr><th>AI beyanı</th><td>§01 ile aynı</td></tr></table></div></div></div>
+
+<h2 id="04">📕 04 · CİLTSİZ (PAPERBACK)</h2>
+
+<div class="card "><div class="hd"><input type="checkbox" id="c11"><div><h3><label for="c11">Baskı seçenekleri — bu dördü tam olarak böyle</label></h3><table><tr><th>Ink &amp; Paper</th><td><b>Black &amp; white interior with white paper</b>. Krem değil: sırt beyaza göre hesaplandı (0.3513 in).</td></tr><tr><th>Trim Size</th><td><b>8.5 × 11 in</b> (large trim)</td></tr><tr><th>Bleed</th><td><b>No Bleed</b></td></tr><tr><th>Cover Finish</th><td><b>Matte</b></td></tr></table></div></div></div>
+
+<div class="card "><div class="hd"><input type="checkbox" id="c12"><div><h3><label for="c12">İç bloğu yükleyin</label></h3><p><code>OUTPUT/PAPERBACK/interior.pdf</code> — 429,015 bayt, <b>156</b> sayfa, 612 x 792 pts (letter).</p><p>Preflight: <b>TEMİZ — 5/5 kontrol geçti</b>. Dokuz font ailesi, hepsi gömülü.</p><p><code style='font-size:.8em'>sha256 fcf5cb01057092516c9f510c78ff87eed345238ad700b1a76e3b51e0e5515aff</code></p></div></div></div>
+
+<div class="card "><div class="hd"><input type="checkbox" id="c13"><div><h3><label for="c13">Kapağı yükleyin</label></h3><p><b>Upload a cover you already have (Print-ready PDF)</b> → <code>OUTPUT/PAPERBACK/cover.pdf</code> — 324,332 bayt, tek sayfa, <b>17.6013 × 11.25 in</b> (<code>pdfinfo</code>: 1267.29 x 810 pts).</p><table><tr><th>Sırt</th><td><b>0.3513 in</b> = 156 × 0,002252 (beyaz kâğıt). <b>Sırt yazısı VAR</b> — güvenli genişlik 0.2263 in, 8.47 punto.</td></tr><tr><th>Taşma</th><td>0,125 in, dört kenarda</td></tr><tr><th>Barkod alanı</th><td>ölçülerek temizlendi: mürekkep oranı %0.00 — <b>temiz</b></td></tr><tr><th>Kapak sanatı</th><td>OpenAI gpt-image-1; <b>hiçbir yazı modelden gelmedi</b> — istem tüm yazıyı yasakladı ve tipografi <code>BUILD/build_cover.py</code> tarafından dizildi</td></tr></table><p><b>Cover Creator'ı kullanmayın.</b> Preflight: <b>TEMİZ — 6/6 kontrol geçti</b>.</p><p><code style='font-size:.8em'>sha256 7f05aea7cd9da762d1cc47251d4b43121e1b81fc8a6fe6171a35b4f638aa37c7</code></p></div></div></div>
+
+<div class="card "><div class="hd"><input type="checkbox" id="c14"><div><h3><label for="c14">Ciltsiz fiyatı</label></h3><table><tr><th>ABD listesi</th><td><b>16,99 $</b></td></tr><tr><th>Baskı maliyeti</th><td>3,65 $ (156 sayfa, large trim, s/b, beyaz)</td></tr><tr><th>Net</th><td><b>6,54 $</b> — %38,5</td></tr><tr><th>KDP asgari liste</th><td>6,09 $</td></tr><tr><th>Neden 14,99 değil</th><td>Yol haritasının 14,99 $'ı 130 sayfaya göreydi; ölçülen 156 sayfada %35,6 bırakıyor — ev tabanının 0,6 puan üstü, yani bir KDP fiyat güncellemesinin gürültüsünün içinde.</td></tr><tr><th>Expanded Distribution</th><td><b>Açık</b></td></tr></table></div></div></div>
+
+<h2 id="05">📗 05 · CİLTLİ (HARDCOVER)</h2>
+
+<div class="note warn"><b>Ciltli, yol haritasındaki 24,99 $ TEST konumunda üretilemez.</b> Brief bu rakamın gerçek ekonomiye karşı yeniden değerlendirilmesini istedi; sonuç: 156 sayfada ciltli baskı 8,30 $ ve 24,99 $ yalnızca <b>%26,8</b> bırakıyor — %35'lik ev tabanının sekiz puan altında. 29,99 $ %32,3, 31,99 $ %34,0. Tabanı temizleyen ilk fiyat <b>33,99 $</b> (%35,6) ve bu, Codex ciltli bandının (29,99–37,99 $) içinde ve katalogdaki en yakın örneğin yanında: World Games, aynı trimde 160 sayfa, canlı 34,99 $.</div>
+
+<div class="card "><div class="hd"><input type="checkbox" id="c15"><div><h3><label for="c15">Baskı seçenekleri</label></h3><table><tr><th>Ink &amp; Paper</th><td><b>Black &amp; white with white paper</b></td></tr><tr><th>Trim Size</th><td><b>8.25 × 11 in</b> — <b>8,5 değil.</b> KDP'nin ciltli trimleri yalnızca 5,5×8,5 · 6×9 · 6,14×9,21 · 7×10 · <b>8,25×11</b>'dir.</td></tr><tr><th>Bleed</th><td><b>No Bleed</b></td></tr><tr><th>Cover Finish</th><td><b>Case Laminate</b> · Matte</td></tr></table></div></div></div>
+
+<div class="card "><div class="hd"><input type="checkbox" id="c16"><div><h3><label for="c16">Ciltli iç bloğu yükleyin — <b>ayrı dosya</b></label></h3><p><code>OUTPUT/HARDCOVER/interior.pdf</code> — 430,992 bayt, <b>156</b> sayfa, 594 x 792 pts (= 8,25 × 11 in).</p><p>Bu, ciltsiz dosyasının aynısı <b>değildir</b>: 8,25 in trimde ve 0,95 in cilt payıyla yeniden dizildi. Preflight: <b>TEMİZ — 5/5 kontrol geçti</b>. KDP ciltli aralığı 76–550 sayfa.</p><p><code style='font-size:.8em'>sha256 411e70bb3baf92a94419f13d0fabd88bdc77a40299fff969bb3682f5ee268e8d</code></p></div></div></div>
+
+<div class="card "><div class="hd"><input type="checkbox" id="c17"><div><h3><label for="c17">Ciltli kapağı yükleyin — geometri KDP'nin kendi hesaplayıcısından</label></h3><p><code>OUTPUT/HARDCOVER/cover.pdf</code> — 337,780 bayt, tek sayfa, <b>18.615 × 12.417 in</b> (<code>pdfinfo</code>: 1340.28 x 894.02 pts).</p><table><tr><th>Kaynak</th><td>KDP Print Cover Calculator (kdp.amazon.com/cover-calculator) · Hardcover · Black &amp; white · White paper · Left to Right · Inches · 8.25 x 11 in · 156 pages · read 2026-09-05</td></tr><tr><th>Tam kapak</th><td>18.615 × 12.417 in</td></tr><tr><th>Ön kapak paneli</th><td>8.447 × 11.236 in</td></tr><tr><th>Sırt</th><td><b>0.54 in</b> — güvenli alan 0.415 in, sırt yazısı 12.0 punto</td></tr><tr><th>Sarma (wrap)</th><td>0.591 in — kartonun etrafına katlanan pay</td></tr><tr><th>Menteşe (hinge)</th><td>0.394 in — <b>buraya yazı konmaz</b></td></tr><tr><th>Barkod payı</th><td>0.25 in yatay · 0.375 in dikey — mürekkep oranı %0.00</td></tr></table><div class="note warn">Bu geometri <b>hesaplanmadı, okundu</b>. Ev kuralı böyle, çünkü bir kez türetildi ve tuttu: World Myths'in türetilmiş ciltli sırtı 0,129 in dardı ve reddedilirdi. <b>Sayfa sayısı değişirse</b> bu kapak bayatlar ve builder üretmeyi reddeder.</div><p>Preflight: <b>TEMİZ — 6/6 kontrol geçti</b>.</p><p><code style='font-size:.8em'>sha256 cbab0509f02fab57283166c5ff32b8ce99247410ea15ecd68cee4a1bdf390d57</code></p></div></div></div>
+
+<div class="card "><div class="hd"><input type="checkbox" id="c18"><div><h3><label for="c18">Ciltli fiyatı</label></h3><table><tr><th>ABD listesi</th><td><b>33,99 $</b></td></tr><tr><th>Baskı maliyeti</th><td>8,30 $</td></tr><tr><th>Net</th><td><b>12,09 $</b> — <b>%35,6</b></td></tr><tr><th>KDP asgari liste</th><td>13,84 $</td></tr><tr><th>Expanded Distribution</th><td>Ciltlide yok</td></tr></table></div></div></div>
+
+<h2 id="06">🔎 06 · BÜYÜK PUNTO — ÜRETİLMEDİ, VE NEDEN</h2>
+
+<div class="note warn"><b>Büyük punto sürümü yapılmadı, ve bu katalog sayısı için verilmiş bir taviz değil — formatın kendisiyle ilgili.</b> Kitap zaten 8,5 × 11; ipucu metni 10 punto, gövde 10,4 punto ve kitapta <b>8 puntonun altında hiçbir şey yok</b>. Büyük punto sürümünün büyütmesi gereken şey <b>ızgaralar</b> olurdu, ve 1,75 katına çıkmış bir resimli bulmaca daha okunaklı bir bulmaca değil — sayfaya sığmayan bir bulmacadır. Büyük puntonun bu kitapta gerçekten yardımcı olacağı yer ipuçları ve cevaplardır; onlar da companion sayfasında, okurun kendi tarayıcısının punto ayarında, seçilebilir metin olarak duruyor.</div>
+
+<h2 id="07">⛔ 07 · YÜKLENMEYECEK DOSYALAR</h2>
+
+<div class="note stop"><ul><li><code>ASSETS/cover/front-v1.png</code> — mağaza görseli</li><li><code>ASSETS/cover/kindle-v1.jpg</code> — Kindle kapağı (§03)</li><li><code>OUTPUT/EBOOK/*.epub</code> — doğrudan satış içindir</li><li><code>ASSETS/cover/art/tablet.png</code> — ham model çıktısı; kaynak, ürün değil</li><li><code>OUTPUT/COMPANION/*.pdf</code> — companion sayfası yayınlıyor</li><li><code>CONTENT/puzzles.json</code> — kitabın kaynak verisi; cevap anahtarını içerir</li></ul></div>
+
+<h2 id="08">🔍 08 · PREVIEWER — HER İKİ BASILI FORMATTA ZORUNLU</h2>
+
+<div class="card "><div class="hd"><input type="checkbox" id="c19"><div><h3><label for="c19">Launch Previewer — ciltsiz</label></h3><p>Beş yer: <b>s. 13</b> ilk şifre (yazma çizgileri görünüyor mu?) · <b>s. 59</b> mantık ızgarası (kareler kaleme yetiyor mu?) · <b>s. 71</b> kelime avı ızgarası · <b>s. 121</b> resimli bulmaca (1 puntoluk çizgiler basılıyor mu?) · <b>s. 155</b> companion sayfası.</p><p><b>Telefonunuzla s. 155'teki QR kodu okutun.</b> <code>https://valicepress.com/companion/codex-puzzles</code> açmalı — kod modül modül bu adrese çözüldü (1089/1089), ama basılmış kâğıt ayrı bir kanıttır. <b>Bu kod basıldıktan sonra değiştirilemez.</b></p></div></div></div>
+
+<div class="card "><div class="hd"><input type="checkbox" id="c20"><div><h3><label for="c20">Launch Previewer — ciltli</label></h3><p>Aynı beş sayfa, artı ikisi ciltliye özel: <b>sırt</b> (yazı ortada mı? sırt 0.54 in, güvenli alan 0.415 in) ve <b>menteşe</b> (ön kapaktaki başlık 0.394 in'lik katlanma bandının dışında mı?).</p></div></div></div>
+
+<h2 id="09">🚀 09 · GÖNDERİM SIRASI</h2>
+
+<div class="card "><div class="hd"><input type="checkbox" id="c21"><div><h3><label for="c21">Sıra: ciltsiz → ciltli → (e-kitap zaten canlı)</label></h3><p><b>1.</b> Ciltsizi yükleyin ve yayınlayın. <b>2.</b> Onay geldikten sonra ciltliyi yükleyin. <b>3.</b> Doğrudan e-kitap zaten satışta; hiçbir şey yapmayın, özellikle de <b>KDP Select kutusunu işaretlemeyin</b>.</p><p>İkisi de canlıya çıkınca ASIN'leri bana verin: katalog satırındaki <code>amazonAsin</code>/<code>amazonUrl</code> alanlarını doldurup iki formatı <code>coming_soon</code>'dan <code>available</code>'a geçireceğim.</p></div></div></div>
+
+<h2 id="10">📂 Dosya haritası</h2>
+<div class="scroll"><table><tr><th>Ne</th><th>Dosya</th><th>Boyut / SHA-256</th><th>Nereye</th></tr><tr><td>Ciltsiz iç blok</td><td><code>OUTPUT/PAPERBACK/interior.pdf</code></td><td>429,015 bayt<br><code style='font-size:.72em'>fcf5cb01057092516c9f510c78ff87ee…</code></td><td>KDP → Paperback → Manuscript</td></tr><tr><td>Ciltsiz tam kapak</td><td><code>OUTPUT/PAPERBACK/cover.pdf</code></td><td>324,332 bayt<br><code style='font-size:.72em'>7f05aea7cd9da762d1cc47251d4b4312…</code></td><td>KDP → Paperback → Book Cover → Upload a cover you already have</td></tr><tr><td>Ciltli iç blok</td><td><code>OUTPUT/HARDCOVER/interior.pdf</code></td><td>430,992 bayt<br><code style='font-size:.72em'>411e70bb3baf92a94419f13d0fabd88b…</code></td><td>KDP → Hardcover → Manuscript</td></tr><tr><td>Ciltli tam kapak</td><td><code>OUTPUT/HARDCOVER/cover.pdf</code></td><td>337,780 bayt<br><code style='font-size:.72em'>cbab0509f02fab57283166c5ff32b8ce…</code></td><td>KDP → Hardcover → Book Cover → Upload a cover you already have</td></tr><tr><td>Ön kapak (mağaza)</td><td><code>ASSETS/cover/front-v1.png</code></td><td>14,626,715 bayt<br><code style='font-size:.72em'>25d1fbb5419b51ef49629c230e1f6763…</code></td><td>KDP'ye <b>yüklenmez</b>. valicepress.com ve kayıt için.</td></tr><tr><td>Kindle kapağı</td><td><code>ASSETS/cover/kindle-v1.jpg</code></td><td>1,859,427 bayt<br><code style='font-size:.72em'>caeecd33961b720f7fa5d786231bbcd9…</code></td><td>KDP'ye <b>yüklenmez</b> — Kindle sürümü yok (§03).</td></tr><tr><td>EPUB</td><td><code>OUTPUT/EBOOK/codex-mythologica-the-puzzle-book.epub</code></td><td>1,920,020 bayt<br><code style='font-size:.72em'>111b420de950f4818dd00efbde38e614…</code></td><td>KDP'ye <b>yüklenmez</b>. Doğrudan satış içindir.</td></tr></table></div>
+
+<h2 id="11">⛔ KDP'nin önizlemesinde hata çıkarsa</h2>
+<div class="note warn"><ul><li><i>'Cover dimensions do not match'</i> → ciltsizde sırt sayfa sayısından hesaplanır; <b>ciltlide kapak KDP hesaplayıcısından yeniden okunmalıdır</b>.</li><li><i>'Fonts are not embedded'</i> → olmamalı; dört dosyada da preflight geçti.</li><li><i>'Content in the bleed area'</i> → iç bloklar <b>No Bleed</b>.</li><li><i>'Text in the hinge area'</i> → yalnız ciltlide; tipografi menteşenin dışına alındı. Çıkarsa söyleyin, kapak yeniden üretilir.</li></ul></div>
+
+<p class="sub" style="margin-top:40px">Bu kılavuz
+<code>BUILD/build_handbook.py</code> tarafından üretildi. Buradaki sayılar QA
+dosyalarından ve dosyaların kendisinden okundu; elle yazılmadı.</p>
+</div>
+<script>
+(function(){
+ var K="codex-puzzles-kdp-v1";
+ function load(){try{return JSON.parse(localStorage.getItem(K))||{}}
+   catch(e){return {}}}
+ function save(s){try{localStorage.setItem(K,JSON.stringify(s))}catch(e){}}
+ var st=load();
+ var boxes=[].slice.call(document.querySelectorAll('input[type=checkbox]'));
+ function tick(){
+   var n=boxes.filter(function(b){return b.checked}).length;
+   var pct=boxes.length?Math.round(n*100/boxes.length):0;
+   document.getElementById('fill').style.width=pct+'%';
+   document.getElementById('cnt').textContent=n+' / '+boxes.length+'  ('+pct+'%)';
+   var r=document.getElementById('ready');
+   if(n===boxes.length){r.textContent='TÜM ADIMLAR İŞARETLİ';r.className='pill p-ok';}
+   else {r.textContent='EKSİK ADIM VAR';r.className='pill p-wait';}
+ }
+ boxes.forEach(function(b){
+   if(st[b.id]){b.checked=true}
+   b.addEventListener('change',function(){st[b.id]=b.checked;save(st);tick()});
+ });
+ tick();
+ document.querySelectorAll('button.c').forEach(function(b){
+   b.addEventListener('click',function(){
+     var el=document.getElementById(b.dataset.t); if(!el){return}
+     var t=el.innerText.replace(/kopyala|kopyalandı/g,'').trim(), done=function(){
+       var o=b.textContent;b.textContent='kopyalandı';
+       setTimeout(function(){b.textContent=o},1100)};
+     if(navigator.clipboard&&navigator.clipboard.writeText){
+       navigator.clipboard.writeText(t).then(done,done)
+     } else {
+       var a=document.createElement('textarea');a.value=t;
+       document.body.appendChild(a);a.select();
+       try{document.execCommand('copy')}catch(e){}
+       document.body.removeChild(a);done();
+     }
+   });
+ });
+})();
+</script>

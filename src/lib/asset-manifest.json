@@ -114,6 +114,14 @@
       "entity": "codex-enigmatica"
     },
     {
+      "path": "/images/books/codex-mythologica-the-puzzle-book.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 381142,
+      "slot": "book-cover",
+      "entity": "codex-mythologica-the-puzzle-book"
+    },
+    {
       "path": "/images/books/codex-mythologica.webp",
       "width": 992,
       "height": 1586,
@@ -141,7 +149,7 @@
       "path": "/images/books/greek-alphabet-handwriting-workbook.webp",
       "width": 1067,
       "height": 1600,
-      "bytes": 30232,
+      "bytes": 145098,
       "slot": "book-cover",
       "entity": "greek-alphabet-handwriting-workbook"
     },
@@ -410,6 +418,38 @@
       "entity": "codex-mythologica"
     },
     {
+      "path": "/images/previews/codex-mythologica-the-puzzle-book/p59.webp",
+      "width": 1100,
+      "height": 1424,
+      "bytes": 52472,
+      "slot": "book-preview",
+      "entity": "codex-mythologica-the-puzzle-book"
+    },
+    {
+      "path": "/images/previews/codex-mythologica-the-puzzle-book/p60.webp",
+      "width": 1100,
+      "height": 1424,
+      "bytes": 50178,
+      "slot": "book-preview",
+      "entity": "codex-mythologica-the-puzzle-book"
+    },
+    {
+      "path": "/images/previews/codex-mythologica-the-puzzle-book/p61.webp",
+      "width": 1100,
+      "height": 1424,
+      "bytes": 60010,
+      "slot": "book-preview",
+      "entity": "codex-mythologica-the-puzzle-book"
+    },
+    {
+      "path": "/images/previews/codex-mythologica-the-puzzle-book/p62.webp",
+      "width": 1100,
+      "height": 1424,
+      "bytes": 2856,
+      "slot": "book-preview",
+      "entity": "codex-mythologica-the-puzzle-book"
+    },
+    {
       "path": "/images/previews/epictetus-discourses-and-enchiridion/p60.webp",
       "width": 900,
       "height": 1350,
@@ -440,6 +480,30 @@
       "bytes": 165060,
       "slot": "book-preview",
       "entity": "epictetus-discourses-and-enchiridion"
+    },
+    {
+      "path": "/images/previews/games-ancient-and-oriental/p21.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 94792,
+      "slot": "book-preview",
+      "entity": "games-ancient-and-oriental"
+    },
+    {
+      "path": "/images/previews/games-ancient-and-oriental/p22.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 123176,
+      "slot": "book-preview",
+      "entity": "games-ancient-and-oriental"
+    },
+    {
+      "path": "/images/previews/games-ancient-and-oriental/p23.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 170984,
+      "slot": "book-preview",
+      "entity": "games-ancient-and-oriental"
     },
     {
       "path": "/images/previews/greek-alphabet-handwriting-workbook/p30.webp",
@@ -488,6 +552,38 @@
       "bytes": 109542,
       "slot": "book-preview",
       "entity": "indian-myth-and-legend"
+    },
+    {
+      "path": "/images/previews/korean-games/p61.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 161448,
+      "slot": "book-preview",
+      "entity": "korean-games"
+    },
+    {
+      "path": "/images/previews/korean-games/p62.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 170136,
+      "slot": "book-preview",
+      "entity": "korean-games"
+    },
+    {
+      "path": "/images/previews/korean-games/p63.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 57888,
+      "slot": "book-preview",
+      "entity": "korean-games"
+    },
+    {
+      "path": "/images/previews/korean-games/p64.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 141272,
+      "slot": "book-preview",
+      "entity": "korean-games"
     },
     {
       "path": "/images/previews/korean-hangul-handwriting-workbook/p13.webp",

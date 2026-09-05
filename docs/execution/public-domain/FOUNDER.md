@@ -14,6 +14,43 @@ output while other work continues · **P2** is an inconvenience and never stops 
 ## Open
 
 
+### F-025 · P1 · Six account-holder actions for Codex Mythologica: The Puzzle Book
+
+- **Date raised:** 2026-09-05 · **Phase:** roadmap book 4 · **Branch:**
+  `feature/public-domain-phase-2`, not merged
+- **Blocker:** production is complete and verified — both interiors and both wraps
+  preflight clean at 156 pp, EPUBCheck 0/0/0, 100/100 puzzles independently solved,
+  542/542 premises re-read, the live Paddle price created and the R2 masters read back
+  byte-identical. Everything that remains needs a person, an account or a physical object.
+- **Why the agent cannot do them:**
+
+  1. **KDP upload, paperback then hardcover.** Four files, all preflight clean.
+     `KDP/KDP_UPLOAD_GUIDE.html` carries a complete section per format with every field,
+     every filename, every measured dimension, every sha256, and the files *not* to
+     upload. Uploading needs the KDP account.
+  2. **The AI declaration.** Text **generated** and images **generated**, both recorded
+     with their evidence in `project_config.json → compliance.aiDisclosure`. The
+     declaration is made on a person's KDP form; `compliance-lint` fails on exactly that
+     one line (`decidedBy=founder`) and should, because recording it from inside the
+     factory would be forging it.
+  3. **Gate 2 signature** on six assessed-clean rights rows, RL-0068 … RL-0073 — two own
+     works, one generated illustration, three open-licence faces. `rights-lint` is clean;
+     a row goes GREEN when the account holder signs it.
+  4. **Paddle `ebooks` tax category.** The product was created as `standard` because this
+     account is not approved for `ebooks`, which over-collects VAT where books are
+     zero- or reduced-rated. Same pending request as seven other books.
+  5. **ISBNs.** None assigned; each format needs its own. The copyright page prints
+     PENDING.
+  6. **Proof copies of both print formats.** The hardcover's case wrap folds around board
+     and that fold is not visible on any screen.
+
+- **The action:** work down the handbook, then sign gates 2 and 5.
+- **Not blocking the ebook.** The direct ebook is live on a live Paddle price and reaches
+  buyers when this branch is deployed; items 1, 5 and 6 are print-only.
+
+---
+
+
 ### F-021 · P1 · Deploy, so Falkener's companion URL resolves before the book ships
 
 - **Date raised:** 2026-09-05 · **Phase:** 2 · **Book:** 1

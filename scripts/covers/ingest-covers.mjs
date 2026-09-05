@@ -27,12 +27,16 @@ import { Report, finish } from "../factory/lib/lint.mjs";
 import { checkFile } from "../factory/cover-check.mjs";
 import { REPO_ROOT, parseArgs } from "../factory/lib/project.mjs";
 import { slugToDirName } from "../factory/new-project.mjs";
+import { bookDir } from "../factory/book-dirs.mjs";
 
 export function resolveSource(slug, explicit) {
   const candidates = [
     explicit ? resolve(explicit) : null,
     join(REPO_ROOT, "assets", slug, "cover"),
-    join(process.env.VALICE_BOOKS_ROOT ?? "/home/emre/Downloads/MY-DİGİTAL-BOOK", slugToDirName(slug), "ASSETS", "cover"),
+    // The book projects have moved twice; `bookDir` finds the directory
+    // wherever it now sits, and throws rather than guessing when it cannot.
+    (() => { try { return join(bookDir(slugToDirName(slug)), "ASSETS", "cover"); }
+             catch { return null; } })(),
   ].filter(Boolean);
   return candidates.find((c) => existsSync(c)) ?? null;
 }

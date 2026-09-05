@@ -356,6 +356,33 @@ none will be published from this branch.
 
 ---
 
+## 5. A book that is on this branch but is not a Phase 2 book
+
+**Codex Mythologica: The Puzzle Book** was built end to end on 2026-09-05 and
+its work lands on this branch, but it is **not** one of the five public-domain
+titles this phase is about. It is roadmap book 4 — an original work built out
+of two Codex volumes this press already owns — and it does not count towards
+Phase 2's five.
+
+It is here because a branch is a place to put work, not a claim about what the
+work is. Its report is at
+`docs/execution/public-domain/PHASE-2-REPORT/04-CODEX-MYTHOLOGICA/BOOK_REPORT.md`
+because the 2026-09-05 instruction named that path; the book itself lives at
+`MY-DİGİTAL-BOOK/ROADMAP-BOOKS/04-CODEX-MYTHOLOGICA-THE-PUZZLE-BOOK`, where the
+Founder's own reorganisation of the book tree the same day put it, alongside
+Hangul, Greek and Dudeney.
+
+In one line: 100 puzzles, 19 civilizations, 516 factual premises each re-read
+from source on every build, every puzzle solved independently to exactly one
+answer, a paperback and a hardcover at 156 pages each and preflight clean, an
+EPUB at 0/0/0, and a direct ebook live on a live Paddle price. Nothing of it is
+deployed.
+
+**Phase 2's own count is unchanged: Book 1 built and held, Book 2 parsed,
+Books 3–5 not started.**
+
+---
+
 ## 4. Branch discipline
 
 Created from `origin/main` at `2b16865`, 0 ahead / 0 behind at creation. Every Phase 2

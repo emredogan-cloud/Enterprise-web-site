@@ -798,7 +798,7 @@ export const BOOKS = [
     // it is that every puzzle in it was solved by a program that saw only the
     // printed page, to exactly one answer, and every factual premise in it
     // points at a field or a sentence in a manuscript this press owns and
-    // re-reads on every build. 516 of them.
+    // re-reads on every build. 542 of them.
     slug: "codex-mythologica-the-puzzle-book",
     title: "Codex Mythologica: The Puzzle Book",
     subtitle: "100 Myth Puzzles from 19 Civilizations",

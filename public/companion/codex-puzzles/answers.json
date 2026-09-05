@@ -1,0 +1,1115 @@
+{
+ "note": "SHA-256 digests of normalised answers, truncated to 32 hex characters. The answers themselves are printed in the book; these exist so the checker can say yes or no without this file being a list of answers.",
+ "normalisation": "lower-cased, accents stripped, everything but a-z0-9 removed",
+ "salt": "codex-puzzles:",
+ "puzzles": {
+  "1": {
+   "title": "Prometheus the Firebringer",
+   "family": "cryptogram",
+   "tier": "I",
+   "shape": "the deciphered line",
+   "digests": [
+    "ee2213a62b4abaec9e4a10ea400de23d"
+   ],
+   "checkable": true
+  },
+  "2": {
+   "title": "Odin at the World-Tree",
+   "family": "cryptogram",
+   "tier": "I",
+   "shape": "the deciphered line",
+   "digests": [
+    "7929a84c0fcb60a48acf5e22c95c3a15"
+   ],
+   "checkable": true
+  },
+  "3": {
+   "title": "Baba Yaga",
+   "family": "cryptogram",
+   "tier": "I",
+   "shape": "the deciphered line",
+   "digests": [
+    "5167f173b313372225e8f663d1357847"
+   ],
+   "checkable": true
+  },
+  "4": {
+   "title": "Sedna, Mistress of the Sea",
+   "family": "cryptogram",
+   "tier": "I",
+   "shape": "the deciphered line",
+   "digests": [
+    "d9105347c0855bbea20e5dae2d945d71"
+   ],
+   "checkable": true
+  },
+  "5": {
+   "title": "Pangu Splits the World",
+   "family": "cryptogram",
+   "tier": "I",
+   "shape": "the deciphered line",
+   "digests": [
+    "0dc3195f14f6780dad9fcf11f45c347c"
+   ],
+   "checkable": true
+  },
+  "6": {
+   "title": "The Simurgh",
+   "family": "cryptogram",
+   "tier": "I",
+   "shape": "the deciphered line",
+   "digests": [
+    "5ced7aa350e2fef714e4f4d36699e6d2"
+   ],
+   "checkable": true
+  },
+  "7": {
+   "title": "Anansi and the Sky-God's Stories",
+   "family": "cryptogram",
+   "tier": "I",
+   "shape": "the deciphered line",
+   "digests": [
+    "c8e1212ae09e1157b7c062e2e85d4e23"
+   ],
+   "checkable": true
+  },
+  "8": {
+   "title": "The Five Suns",
+   "family": "cryptogram",
+   "tier": "I",
+   "shape": "the deciphered line",
+   "digests": [
+    "a47a7618e29c73f27256f31e0624eb83"
+   ],
+   "checkable": true
+  },
+  "9": {
+   "title": "The Hero Twins of Xibalba",
+   "family": "cryptogram",
+   "tier": "I",
+   "shape": "the deciphered line",
+   "digests": [
+    "64525cd26b931149dcb183663d66b185"
+   ],
+   "checkable": true
+  },
+  "10": {
+   "title": "Gilgamesh and the Quest for Immortality",
+   "family": "cryptogram",
+   "tier": "III",
+   "shape": "the deciphered line",
+   "digests": [
+    "58cef699e0fda462694cb8aaaf9c6895"
+   ],
+   "checkable": true
+  },
+  "11": {
+   "title": "Amaterasu in the Cave of Heaven",
+   "family": "cryptogram",
+   "tier": "III",
+   "shape": "the deciphered line",
+   "digests": [
+    "3f220cdd00deb8d8dafdb685c42b8839"
+   ],
+   "checkable": true
+  },
+  "12": {
+   "title": "The Children of Lir",
+   "family": "cryptogram",
+   "tier": "II",
+   "shape": "the deciphered line",
+   "digests": [
+    "724fc632e43a4f3e2b3a0e11973cf2a4"
+   ],
+   "checkable": true
+  },
+  "13": {
+   "title": "Maui Fishes Up the Islands",
+   "family": "cryptogram",
+   "tier": "III",
+   "shape": "the deciphered line",
+   "digests": [
+    "9ce4b29c99944280844c20c80be19e90"
+   ],
+   "checkable": true
+  },
+  "14": {
+   "title": "Shahmaran, Queen of the Snakes",
+   "family": "cryptogram",
+   "tier": "III",
+   "shape": "the deciphered line",
+   "digests": [
+    "b2929bd52900dd30708ae5e140e8dc2a"
+   ],
+   "checkable": true
+  },
+  "15": {
+   "title": "The Fence of Three",
+   "family": "transposition",
+   "tier": "I",
+   "shape": "the deciphered line",
+   "digests": [
+    "0481e0833fc613459d105d1a1253beec"
+   ],
+   "checkable": true
+  },
+  "16": {
+   "title": "The Fence of Four",
+   "family": "transposition",
+   "tier": "I",
+   "shape": "the deciphered line",
+   "digests": [
+    "e6faf1ad288a310e0dd91aa897ec6afa"
+   ],
+   "checkable": true
+  },
+  "17": {
+   "title": "The Fence of Three",
+   "family": "transposition",
+   "tier": "I",
+   "shape": "the deciphered line",
+   "digests": [
+    "e8e8e8b49a019863bb20755eebb324d3"
+   ],
+   "checkable": true
+  },
+  "18": {
+   "title": "The Fence of Four",
+   "family": "transposition",
+   "tier": "I",
+   "shape": "the deciphered line",
+   "digests": [
+    "eb734df5055af34cb7bb568e1f1ad5c5"
+   ],
+   "checkable": true
+  },
+  "19": {
+   "title": "The Acrostic of Death",
+   "family": "acrostic",
+   "tier": "I",
+   "shape": "the word the initials spell",
+   "digests": [
+    "228761a6ba38c96faf6193f3e6393e2e"
+   ],
+   "checkable": true
+  },
+  "20": {
+   "title": "The Acrostic of Night",
+   "family": "acrostic",
+   "tier": "I",
+   "shape": "the word the initials spell",
+   "digests": [
+    "8c4ccb51b83149611749c97cf621ab28"
+   ],
+   "checkable": true
+  },
+  "21": {
+   "title": "The Acrostic of Mask",
+   "family": "acrostic",
+   "tier": "I",
+   "shape": "the word the initials spell",
+   "digests": [
+    "559dd46a8487232ce06a3676cb1f32ff"
+   ],
+   "checkable": true
+  },
+  "22": {
+   "title": "The Acrostic of Gate",
+   "family": "acrostic",
+   "tier": "I",
+   "shape": "the word the initials spell",
+   "digests": [
+    "fb8d80763a7ade174c21aaaf9e3f7b49"
+   ],
+   "checkable": true
+  },
+  "23": {
+   "title": "The One at the Door",
+   "family": "deduction",
+   "tier": "II",
+   "shape": "one name, or NONE",
+   "digests": [
+    "8e67b955ec4834196454975dcd418fb0"
+   ],
+   "checkable": true
+  },
+  "24": {
+   "title": "The One in the Water",
+   "family": "deduction",
+   "tier": "II",
+   "shape": "one name, or NONE",
+   "digests": [
+    "2735715bd8e39877e942fd407cfcdb93"
+   ],
+   "checkable": true
+  },
+  "25": {
+   "title": "The One That Changes Shape",
+   "family": "deduction",
+   "tier": "I",
+   "shape": "one name, or NONE",
+   "digests": [
+    "41285d77fc1fb1b8d49dd3f9753ac511"
+   ],
+   "checkable": true
+  },
+  "26": {
+   "title": "The One That Will Not Lie Down",
+   "family": "deduction",
+   "tier": "I",
+   "shape": "one name, or NONE",
+   "digests": [
+    "54c93ad1b794fcf18056198517f36777"
+   ],
+   "checkable": true
+  },
+  "27": {
+   "title": "The Bird",
+   "family": "deduction",
+   "tier": "I",
+   "shape": "one name, or NONE",
+   "digests": [
+    "d9ba5ce0aa7a2d0dd1ddb0d94599be34"
+   ],
+   "checkable": true
+  },
+  "28": {
+   "title": "The One With No Kin",
+   "family": "deduction",
+   "tier": "I",
+   "shape": "one name, or NONE",
+   "digests": [
+    "486eb49a5a2328c9d924c9ee30c448c7"
+   ],
+   "checkable": true
+  },
+  "29": {
+   "title": "The Only One of Its Kind Here",
+   "family": "deduction",
+   "tier": "III",
+   "shape": "one name, or NONE",
+   "digests": [
+    "8e67b955ec4834196454975dcd418fb0"
+   ],
+   "checkable": true
+  },
+  "30": {
+   "title": "Three Share a Homeland",
+   "family": "deduction",
+   "tier": "III",
+   "shape": "one name, or NONE",
+   "digests": [
+    "04e3196d56c51042aa79ad319eb0b881"
+   ],
+   "checkable": true
+  },
+  "31": {
+   "title": "The Long Name",
+   "family": "deduction",
+   "tier": "I",
+   "shape": "one name, or NONE",
+   "digests": [
+    "531962740760c5d315f9768009e82d5c"
+   ],
+   "checkable": true
+  },
+  "32": {
+   "title": "The One the Sun Kills",
+   "family": "deduction",
+   "tier": "I",
+   "shape": "one name, or NONE",
+   "digests": [
+    "0f270dd98772398a36e92ad09b9e99bd"
+   ],
+   "checkable": true
+  },
+  "33": {
+   "title": "Two Foxes and One Answer",
+   "family": "deduction",
+   "tier": "II",
+   "shape": "one name, or NONE",
+   "digests": [
+    "7071b3f843be277539d06c237a2379e0"
+   ],
+   "checkable": true
+  },
+  "34": {
+   "title": "The Guardian Who Is Not a Guard",
+   "family": "deduction",
+   "tier": "I",
+   "shape": "one name, or NONE",
+   "digests": [
+    "8c76d81b7af90287e776ddf18b338006"
+   ],
+   "checkable": true
+  },
+  "35": {
+   "title": "Five Names, Five Homelands",
+   "family": "matching",
+   "tier": "III",
+   "shape": "the right-hand items, in the order of the left-hand list",
+   "digests": [
+    "a1f682ea19f8f6776f9ec0b4af5372f3"
+   ],
+   "checkable": true
+  },
+  "36": {
+   "title": "Four Classes, Four Creatures",
+   "family": "matching",
+   "tier": "II",
+   "shape": "the right-hand items, in the order of the left-hand list",
+   "digests": [
+    "a9cb78777ae0172eb02ce6560ca60746"
+   ],
+   "checkable": true
+  },
+  "37": {
+   "title": "The Kin Families",
+   "family": "matching",
+   "tier": "II",
+   "shape": "the right-hand items, in the order of the left-hand list",
+   "digests": [
+    "6206f4eb4cec8fad60e0efd4f36b71ab"
+   ],
+   "checkable": true
+  },
+  "38": {
+   "title": "Where the Story Is Set",
+   "family": "matching",
+   "tier": "III",
+   "shape": "the right-hand items, in the order of the left-hand list",
+   "digests": [
+    "0314af6d6d63a7902ca414b5ad8feb4e"
+   ],
+   "checkable": true
+  },
+  "39": {
+   "title": "Four Doors, Four Classes",
+   "family": "logic-grid",
+   "tier": "III",
+   "shape": "every value in the grid, row by row",
+   "digests": [
+    "7d56e456e263fcc23dc9ebb7fa060e1e"
+   ],
+   "checkable": true
+  },
+  "40": {
+   "title": "What Came Back",
+   "family": "logic-grid",
+   "tier": "III",
+   "shape": "every value in the grid, row by row",
+   "digests": [
+    "2d69de57642b1e86d4f4ec3a6b80fe13"
+   ],
+   "checkable": true
+  },
+  "41": {
+   "title": "The Ones That Do Not Announce Themselves",
+   "family": "logic-grid",
+   "tier": "III",
+   "shape": "every value in the grid, row by row",
+   "digests": [
+    "f347d9e7b8fc77ffb2cce4fc4628db23"
+   ],
+   "checkable": true
+  },
+  "42": {
+   "title": "Feathers, Teeth, Hooves",
+   "family": "logic-grid",
+   "tier": "III",
+   "shape": "every value in the grid, row by row",
+   "digests": [
+    "3edbe0bddd8a842473e1ea0a6add9aa7"
+   ],
+   "checkable": true
+  },
+  "43": {
+   "title": "The Far Edges",
+   "family": "logic-grid",
+   "tier": "III",
+   "shape": "every value in the grid, row by row",
+   "digests": [
+    "a07df7c293fdfed9897235199060b7df"
+   ],
+   "checkable": true
+  },
+  "44": {
+   "title": "Nobody Settled With Them",
+   "family": "logic-grid",
+   "tier": "III",
+   "shape": "every value in the grid, row by row",
+   "digests": [
+    "90f965875e47b912c74a9780995591b0"
+   ],
+   "checkable": true
+  },
+  "45": {
+   "title": "The Ones You Meet Alone",
+   "family": "logic-grid",
+   "tier": "III",
+   "shape": "every value in the grid, row by row",
+   "digests": [
+    "5c2f59eb535ad1c5f6b9d699ceda2eb0"
+   ],
+   "checkable": true
+  },
+  "46": {
+   "title": "Five Who Wait",
+   "family": "logic-grid",
+   "tier": "III",
+   "shape": "every value in the grid, row by row",
+   "digests": [
+    "9b059bfd4a76ee4e69556f337ce34cb9"
+   ],
+   "checkable": true
+  },
+  "47": {
+   "title": "Five More",
+   "family": "logic-grid",
+   "tier": "III",
+   "shape": "every value in the grid, row by row",
+   "digests": [
+    "99ff17f34eb0307fae93e05289240607"
+   ],
+   "checkable": true
+  },
+  "48": {
+   "title": "The Council of Four Epochs",
+   "family": "logic-grid",
+   "tier": "III",
+   "shape": "every value in the grid, row by row",
+   "digests": [
+    "2018ca99fadcb5001ff9eec9243a7b4a"
+   ],
+   "checkable": true
+  },
+  "49": {
+   "title": "Hellas and Kemet",
+   "family": "wordsearch",
+   "tier": "I",
+   "shape": "the sentence the leftover letters spell",
+   "digests": [
+    "2b8b02d31f92c99a84f87dfdc1ced5d5"
+   ],
+   "checkable": true
+  },
+  "50": {
+   "title": "The North",
+   "family": "wordsearch",
+   "tier": "II",
+   "shape": "the sentence the leftover letters spell",
+   "digests": [
+    "ce92458396f900909344936bbf885889"
+   ],
+   "checkable": true
+  },
+  "51": {
+   "title": "The Islands",
+   "family": "wordsearch",
+   "tier": "II",
+   "shape": "the sentence the leftover letters spell",
+   "digests": [
+    "20f21bd70ada88fbf142fbdb214c6d2d"
+   ],
+   "checkable": true
+  },
+  "52": {
+   "title": "Two Rivers",
+   "family": "wordsearch",
+   "tier": "I",
+   "shape": "the sentence the leftover letters spell",
+   "digests": [
+    "15c2dff7f04326f235f43ebd3f12a25b"
+   ],
+   "checkable": true
+  },
+  "53": {
+   "title": "The Long Roads",
+   "family": "wordsearch",
+   "tier": "I",
+   "shape": "the sentence the leftover letters spell",
+   "digests": [
+    "c0f706c080027511abb9e363ecdb7faf"
+   ],
+   "checkable": true
+  },
+  "54": {
+   "title": "Under the Ice",
+   "family": "wordsearch",
+   "tier": "I",
+   "shape": "the sentence the leftover letters spell",
+   "digests": [
+    "57f9d9a9a615fac852f9322efee5db14"
+   ],
+   "checkable": true
+  },
+  "55": {
+   "title": "The Americas",
+   "family": "wordsearch",
+   "tier": "I",
+   "shape": "the sentence the leftover letters spell",
+   "digests": [
+    "615b91b11c6e9f2602afe8984f08cb28"
+   ],
+   "checkable": true
+  },
+  "56": {
+   "title": "The Middle Kingdom and the Peninsula",
+   "family": "wordsearch",
+   "tier": "II",
+   "shape": "the sentence the leftover letters spell",
+   "digests": [
+    "9d69a1bb3b20f13599d5230882a93ad4"
+   ],
+   "checkable": true
+  },
+  "57": {
+   "title": "The Green Island and the Seven Hills",
+   "family": "wordsearch",
+   "tier": "II",
+   "shape": "the sentence the leftover letters spell",
+   "digests": [
+    "19a39e5c335d1921542c95c862c7d1c5"
+   ],
+   "checkable": true
+  },
+  "58": {
+   "title": "The Sky God's Box",
+   "family": "wordsearch",
+   "tier": "I",
+   "shape": "the sentence the leftover letters spell",
+   "digests": [
+    "5e639828bfbc42c1fd60f5d92a9956e0"
+   ],
+   "checkable": true
+  },
+  "59": {
+   "title": "The Guardians",
+   "family": "crisscross",
+   "tier": "II",
+   "shape": "not checkable here — compare against the filled grids",
+   "digests": [
+    "0fd3de7d507edc3f17b89de571ef06ca"
+   ],
+   "checkable": false
+  },
+  "60": {
+   "title": "The Devourers",
+   "family": "crisscross",
+   "tier": "II",
+   "shape": "not checkable here — compare against the filled grids",
+   "digests": [
+    "fd16aafe2bf39eb0a39ef782ae7086ba"
+   ],
+   "checkable": false
+  },
+  "61": {
+   "title": "The Shape-Changers",
+   "family": "crisscross",
+   "tier": "II",
+   "shape": "not checkable here — compare against the filled grids",
+   "digests": [
+    "2a33417a31b3f5230c242b04ea5389e9"
+   ],
+   "checkable": false
+  },
+  "62": {
+   "title": "The Water-Dwellers",
+   "family": "crisscross",
+   "tier": "II",
+   "shape": "not checkable here — compare against the filled grids",
+   "digests": [
+    "a9f97ad76405d205f64bde61b17c9110"
+   ],
+   "checkable": false
+  },
+  "63": {
+   "title": "Sky and Storm",
+   "family": "crisscross",
+   "tier": "II",
+   "shape": "not checkable here — compare against the filled grids",
+   "digests": [
+    "c178bba1a5ffc59c5aa570cc5867fd0e"
+   ],
+   "checkable": false
+  },
+  "64": {
+   "title": "The Restless Dead",
+   "family": "crisscross",
+   "tier": "II",
+   "shape": "not checkable here — compare against the filled grids",
+   "digests": [
+    "bc04663fdb0f2a9806b8329d32370628"
+   ],
+   "checkable": false
+  },
+  "65": {
+   "title": "Kin Family E",
+   "family": "crisscross",
+   "tier": "II",
+   "shape": "not checkable here — compare against the filled grids",
+   "digests": [
+    "fa4ef76ef4aef8f3c6fe89b230afed5e"
+   ],
+   "checkable": false
+  },
+  "66": {
+   "title": "Kin Family C",
+   "family": "crisscross",
+   "tier": "II",
+   "shape": "not checkable here — compare against the filled grids",
+   "digests": [
+    "20b62c7354566ba7ccd4e289c3f040fe"
+   ],
+   "checkable": false
+  },
+  "67": {
+   "title": "The Nineteen, First Letters",
+   "family": "crisscross",
+   "tier": "III",
+   "shape": "not checkable here — compare against the filled grids",
+   "digests": [
+    "db57caf5d6147d1e0cdf18ee8f4e9e69"
+   ],
+   "checkable": false
+  },
+  "68": {
+   "title": "The Nineteen, Second Letters",
+   "family": "crisscross",
+   "tier": "III",
+   "shape": "not checkable here — compare against the filled grids",
+   "digests": [
+    "a9d1be4b1c939ed002d1911c9e4b1eeb"
+   ],
+   "checkable": false
+  },
+  "69": {
+   "title": "What They Have in Common (I)",
+   "family": "classification",
+   "tier": "II",
+   "shape": "one name, or NONE",
+   "digests": [
+    "78d0804768c47f0677f5a5ebb1a8e5d3"
+   ],
+   "checkable": true
+  },
+  "70": {
+   "title": "What They Have in Common (II)",
+   "family": "classification",
+   "tier": "II",
+   "shape": "one name, or NONE",
+   "digests": [
+    "0267600c9a8f767d087e73bd228fb7e9"
+   ],
+   "checkable": true
+  },
+  "71": {
+   "title": "What They Have in Common (III)",
+   "family": "classification",
+   "tier": "II",
+   "shape": "one name, or NONE",
+   "digests": [
+    "3f5b7c299f9abf84583cefab95c9aefe"
+   ],
+   "checkable": true
+  },
+  "72": {
+   "title": "What They Have in Common (IV)",
+   "family": "classification",
+   "tier": "II",
+   "shape": "one name, or NONE",
+   "digests": [
+    "30bad640e2f949e49ab5a3d88e1f56e8"
+   ],
+   "checkable": true
+  },
+  "73": {
+   "title": "What They Have in Common (V)",
+   "family": "classification",
+   "tier": "II",
+   "shape": "one name, or NONE",
+   "digests": [
+    "54c93ad1b794fcf18056198517f36777"
+   ],
+   "checkable": true
+  },
+  "74": {
+   "title": "What They Have in Common (VI)",
+   "family": "classification",
+   "tier": "II",
+   "shape": "one name, or NONE",
+   "digests": [
+    "c280f0bcef91f703bf9b6f93d28c2c68"
+   ],
+   "checkable": true
+  },
+  "75": {
+   "title": "The Ones Nothing Resembles",
+   "family": "classification",
+   "tier": "II",
+   "shape": "one name, or NONE",
+   "digests": [
+    "6640dcef637536fe29a80b7940de0587"
+   ],
+   "checkable": true
+  },
+  "76": {
+   "title": "Six Letters Exactly",
+   "family": "classification",
+   "tier": "II",
+   "shape": "one name, or NONE",
+   "digests": [
+    "6052bec1bb6d8e8eeaa4ca43c5a7d2ca"
+   ],
+   "checkable": true
+  },
+  "77": {
+   "title": "Oldest First",
+   "family": "sequence",
+   "tier": "II",
+   "shape": "the items in order, separated by spaces",
+   "digests": [
+    "b6258597b35a63b053b705a66e38f14f"
+   ],
+   "checkable": true
+  },
+  "78": {
+   "title": "The Five Suns",
+   "family": "sequence",
+   "tier": "III",
+   "shape": "the items in order, separated by spaces",
+   "digests": [
+    "8fdc21bcffd0b6805970a7930d11444c"
+   ],
+   "checkable": true
+  },
+  "79": {
+   "title": "The Six Classes",
+   "family": "sequence",
+   "tier": "III",
+   "shape": "the items in order, separated by spaces",
+   "digests": [
+    "65baef188cb89b2561853eac5839dc3a"
+   ],
+   "checkable": true
+  },
+  "80": {
+   "title": "What Prometheus Did, In Order",
+   "family": "sequence",
+   "tier": "III",
+   "shape": "the items in order, separated by spaces",
+   "digests": [
+    "dee082546af7b32b82e06b6ac0f6daec"
+   ],
+   "checkable": true
+  },
+  "81": {
+   "title": "The Churning of the Ocean",
+   "family": "sequence",
+   "tier": "III",
+   "shape": "the items in order, separated by spaces",
+   "digests": [
+    "c9f69e7e557e60b3928667dd5fc0e1f6"
+   ],
+   "checkable": true
+  },
+  "82": {
+   "title": "Six Names by Length",
+   "family": "sequence",
+   "tier": "III",
+   "shape": "the items in order, separated by spaces",
+   "digests": [
+    "12ae27da93cfd086094e6fa3aa5ddfe7"
+   ],
+   "checkable": true
+  },
+  "83": {
+   "title": "Inanna's Seven Gates",
+   "family": "sequence",
+   "tier": "III",
+   "shape": "the items in order, separated by spaces",
+   "digests": [
+    "bee6a5d04bd906c421c258ccfaf49c56"
+   ],
+   "checkable": true
+  },
+  "84": {
+   "title": "Five Civilizations, Oldest to Youngest",
+   "family": "sequence",
+   "tier": "II",
+   "shape": "the items in order, separated by spaces",
+   "digests": [
+    "67c362c871b73737d1d87398328ccec4"
+   ],
+   "checkable": true
+  },
+  "85": {
+   "title": "The First Reckoning",
+   "family": "arithmetic",
+   "tier": "I",
+   "shape": "the number, or the civilization it lands on",
+   "digests": [
+    "3e27e8cd0d87c54fa1b9488f8fe7442f",
+    "9f035c34623a94c4e5c2c34df0542eb2"
+   ],
+   "checkable": true
+  },
+  "86": {
+   "title": "The Stories of the Middle Sea",
+   "family": "arithmetic",
+   "tier": "I",
+   "shape": "the number, or the civilization it lands on",
+   "digests": [
+    "8c246da3b9572e3d04968f1774ee49c1",
+    "ca11086d708a174644563fdde96aade8"
+   ],
+   "checkable": true
+  },
+  "87": {
+   "title": "The Devourers, Divided",
+   "family": "arithmetic",
+   "tier": "II",
+   "shape": "the number, or the civilization it lands on",
+   "digests": [
+    "9401ec44b77c9a5500cccbabbff08044",
+    "c8a5797d8301c0f811730928204bb200"
+   ],
+   "checkable": true
+  },
+  "88": {
+   "title": "The Serpents and the Birds",
+   "family": "arithmetic",
+   "tier": "I",
+   "shape": "the number, or the civilization it lands on",
+   "digests": [
+    "876864ae6fd11e07a8d531e2d1b9794b",
+    "d6cddd5460f67fbd13d44d6df862fd7d"
+   ],
+   "checkable": true
+  },
+  "89": {
+   "title": "Inside and Outside the Nineteen",
+   "family": "arithmetic",
+   "tier": "II",
+   "shape": "the number, or the civilization it lands on",
+   "digests": [
+    "bffbef837bbfe6280fec4841f7d58b79",
+    "fa3ce5d035d84e8ef5a4215c38437a3a"
+   ],
+   "checkable": true
+  },
+  "90": {
+   "title": "The Three of the North",
+   "family": "arithmetic",
+   "tier": "III",
+   "shape": "the number, or the civilization it lands on",
+   "digests": [
+    "87a49186e5c738b4cf4e9b8ac55ab41f",
+    "c4d7bcfb8c44393bce13565369e37f02"
+   ],
+   "checkable": true
+  },
+  "91": {
+   "title": "The Long Division",
+   "family": "arithmetic",
+   "tier": "II",
+   "shape": "the number, or the civilization it lands on",
+   "digests": [
+    "1726fc5efe32aefcc53c3c85a1c76c42",
+    "8a91ce227a48476568cab3923163046d"
+   ],
+   "checkable": true
+  },
+  "92": {
+   "title": "The Last Reckoning",
+   "family": "arithmetic",
+   "tier": "III",
+   "shape": "the number, or the civilization it lands on",
+   "digests": [
+    "a2930a8a04ba6799be7be07aab7b7f4c",
+    "c651ceb4d027d2d47abe980042210bf4"
+   ],
+   "checkable": true
+  },
+  "93": {
+   "title": "The Key",
+   "family": "nonogram",
+   "tier": "III",
+   "shape": "not checkable here — compare against the filled grids",
+   "digests": [
+    "5c69b47cb37d768cb13e682e377a1d48"
+   ],
+   "checkable": false
+  },
+  "94": {
+   "title": "The Hammer",
+   "family": "nonogram",
+   "tier": "III",
+   "shape": "not checkable here — compare against the filled grids",
+   "digests": [
+    "5c69b47cb37d768cb13e682e377a1d48"
+   ],
+   "checkable": false
+  },
+  "95": {
+   "title": "The Labyrinth",
+   "family": "nonogram",
+   "tier": "III",
+   "shape": "not checkable here — compare against the filled grids",
+   "digests": [
+    "5c69b47cb37d768cb13e682e377a1d48"
+   ],
+   "checkable": false
+  },
+  "96": {
+   "title": "The World-Circle",
+   "family": "nonogram",
+   "tier": "III",
+   "shape": "not checkable here — compare against the filled grids",
+   "digests": [
+    "5c69b47cb37d768cb13e682e377a1d48"
+   ],
+   "checkable": false
+  },
+  "97": {
+   "title": "The Tree",
+   "family": "nonogram",
+   "tier": "III",
+   "shape": "not checkable here — compare against the filled grids",
+   "digests": [
+    "5c69b47cb37d768cb13e682e377a1d48"
+   ],
+   "checkable": false
+  },
+  "98": {
+   "title": "The Eye",
+   "family": "nonogram",
+   "tier": "III",
+   "shape": "not checkable here — compare against the filled grids",
+   "digests": [
+    "5c69b47cb37d768cb13e682e377a1d48"
+   ],
+   "checkable": false
+  },
+  "99": {
+   "title": "The Bird That Came Back",
+   "family": "nonogram",
+   "tier": "III",
+   "shape": "not checkable here — compare against the filled grids",
+   "digests": [
+    "5c69b47cb37d768cb13e682e377a1d48"
+   ],
+   "checkable": false
+  },
+  "100": {
+   "title": "The One Who Bought the Stories",
+   "family": "nonogram",
+   "tier": "III",
+   "shape": "not checkable here — compare against the filled grids",
+   "digests": [
+    "5c69b47cb37d768cb13e682e377a1d48"
+   ],
+   "checkable": false
+  },
+  "101": {
+   "title": "The Murder of Osiris",
+   "family": "cryptogram",
+   "tier": "I",
+   "shape": "the deciphered line",
+   "digests": [
+    "c8e01ad5bb8ca2a3e3ac0b2980022d3c"
+   ],
+   "checkable": true
+  },
+  "102": {
+   "title": "The Hero Twins of Xibalba",
+   "family": "cryptogram",
+   "tier": "I",
+   "shape": "the deciphered line",
+   "digests": [
+    "64525cd26b931149dcb183663d66b185"
+   ],
+   "checkable": true
+  },
+  "103": {
+   "title": "Erlik Han, Lord of the Lower Country",
+   "family": "cryptogram",
+   "tier": "I",
+   "shape": "the deciphered line",
+   "digests": [
+    "251f603f7059f0f69071752d0d394e15"
+   ],
+   "checkable": true
+  },
+  "104": {
+   "title": "The Sun and Moon Siblings",
+   "family": "cryptogram",
+   "tier": "III",
+   "shape": "the deciphered line",
+   "digests": [
+    "84e2d3ee4816ae85d2a8408cad38725d"
+   ],
+   "checkable": true
+  },
+  "105": {
+   "title": "The One in the Canal",
+   "family": "deduction",
+   "tier": "II",
+   "shape": "one name, or NONE",
+   "digests": [
+    "2ccd61f2857f8836d15c13639b997750"
+   ],
+   "checkable": true
+  },
+  "106": {
+   "title": "The Only Bird in the List",
+   "family": "deduction",
+   "tier": "I",
+   "shape": "one name, or NONE",
+   "digests": [
+    "5efa5c52a722f7004ebc263b61f54a5a"
+   ],
+   "checkable": true
+  },
+  "107": {
+   "title": "The Guardian With a Family",
+   "family": "deduction",
+   "tier": "I",
+   "shape": "one name, or NONE",
+   "digests": [
+    "8affd7611f288a3438bfb509fb5c729a"
+   ],
+   "checkable": true
+  },
+  "108": {
+   "title": "The Six Guardians",
+   "family": "crisscross",
+   "tier": "II",
+   "shape": "not checkable here — compare against the filled grids",
+   "digests": [
+    "a9209febca48c76e51748cd09618ac01"
+   ],
+   "checkable": false
+  },
+  "109": {
+   "title": "The Unquiet, and Their Neighbours",
+   "family": "wordsearch",
+   "tier": "II",
+   "shape": "the sentence the leftover letters spell",
+   "digests": [
+    "c7197de1846c14d3d44fff18a5e981dd"
+   ],
+   "checkable": true
+  },
+  "110": {
+   "title": "The Jar",
+   "family": "nonogram",
+   "tier": "III",
+   "shape": "not checkable here — compare against the filled grids",
+   "digests": [
+    "5c69b47cb37d768cb13e682e377a1d48"
+   ],
+   "checkable": false
+  }
+ }
+}
