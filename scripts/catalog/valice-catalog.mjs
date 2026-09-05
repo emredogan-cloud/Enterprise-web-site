@@ -1652,6 +1652,60 @@ export const BOOKS = [
       "No Kindle edition planned at launch: KDP caps public-domain content at the 35% royalty tier. No hardcover and no large print at launch; both are open decisions rather than refusals.",
     ],
   },
+
+  {
+    slug: "mancala",
+    title: "Mancala, the National Game of Africa",
+    subtitle:
+      "Stewart Culin's 1894 Paper, Annotated \u2014 with a Playing Guide to Three Complete Games, a Register of Record and Inference, Three Original Diagrams and What Has Been Established Since",
+    language: "en",
+    pageCount: 38,
+    categories: ["games-and-play", "classics-and-philosophy"],
+    authors: ["emre-dogan"],
+    bisac: ["GAM001000", "SOC002010"],
+    series: { name: "Valice Classics", volume: 11 },
+    // PHASE 2, BOOK 4. The only book of the five NOT built from a scan: Project
+    // Gutenberg 66220 is a proof-read human transcription, so none of the OCR
+    // machinery the other four depend on is used or needed here. It is also the
+    // shortest thing this press has published \u2014 a thirteen-page paper \u2014 and is
+    // deliberately EBOOK ONLY: a 38-page perfect-bound paperback is a bad object
+    // whatever is printed in it. Both decisions are on the product page, not buried.
+    websiteStatus: "draft",
+    linkageDecision: null,
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: "paddle-not-provisioned",
+    paddlePriceId: null,
+    onelinePromise:
+      "The paper that started the study of mancala \u2014 five thousand words, three complete games you can play tonight, and an informant who became the first African diplomat in modern Europe.",
+    description:
+      "In 1894 Stewart Culin went to Washington Street in New York and watched two Syrian men play a game with a board of fourteen cups and a handful of shells. A lad from Damascus explained the rules; Culin wrote them down; and the paper he read to the Oriental Club of Philadelphia that May became the first serious study of mancala in English. It is still cited. It is also thirteen printed pages, which is why this is the shortest book this press has made and why it says so on the cover of its own description rather than leaving a buyer to find out. What it contains is worth the length. Three COMPLETE games come out of these pages and this edition sets them out to be played from: the Syrian \u201ccrazy game\u201d, whose result Culin noticed is fixed before the first move; its companion the \u201crational game\u201d; and Chuba, the four-row version that Culin discovered, in a postscript, had already been on sale in America since 1891 \u2014 three years after he predicted the game might one day reach American firesides. A Register of Record and Inference separates what he watched from what he was told and what he read, which matters in a paper that moves between the three inside a single sentence. A who's-who identifies his named informants, including Prince Momolu Massaquoi, described here only as the son of a Vai king, who went on to become Liberia's consul-general in Hamburg and generally the first indigenous African diplomat accredited to modern Europe. A section on what has been established since 1894 gives the modern distribution figures, the archaeology \u2014 including one much-repeated claim this edition marks as disputed rather than repeating \u2014 and says plainly what has aged worst about the title. With three original diagrams, one of them three panels showing how a move works, because sowing is very hard to follow in prose. 38 pages, ebook only.",
+    idealReader:
+      "Someone who wants to play mancala tonight and to know where the game's written history begins.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(4.99),
+        pageCount: 38,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: "books/mancala/master/v1/master.pdf",
+        epubFileKey: "books/mancala/master/v1/master.epub",
+        priceBasis:
+          "price-engine.mjs 2026-09-05, direct ebook, public domain: recommended $6.99, and $4.99 nets $4.24 after Paddle at an 85% margin. Priced BELOW the Valice Classics band of $7.99\u20139.99 on purpose: at 38 pages this is about a quarter the length of the other volumes, and charging band price for it would be charging band price for a pamphlet. 54.8% of it is original editorial matter, which is what makes it a book at all.",
+      },
+    ],
+    blockers: [
+      "The ebook is built, priced and ready but not yet on sale: creating the Paddle product and price is a live write that this environment's permission layer blocks. One command, in FOUNDER F-026.",
+      "NO PAPERBACK, and that is a decision rather than an omission. The volume is 38 pages; with the blank leaf a printed edition needs to keep the block even it would run to 40, giving a spine of 0.090 in. A perfect-bound book that thin is a bad object, it cannot carry spine text, and it invites exactly the review it would deserve. The interior and a cover wrap are built so the arithmetic exists if this is ever revisited, and both are marked not for use.",
+      "The source paper is 4,885 words and the apparatus is longer than it \u2014 54.8% of the finished volume against a 20% floor. That inversion is unusual for this series and is stated in the Note on the Text and here rather than discovered on the page.",
+      "None of the paper's five plates or fifteen text figures is reproduced (22 captioned pictures in all, since Plates 2 and 4 carry two figures each): no photographer and no draughtsman is named for any of them. All 22 captions are printed where the figures stood, because the caption carries the provenance, and the three boards are drawn for this edition from Culin's descriptions.",
+      "The title has aged badly. \u201cThe national game of Africa\u201d is a nineteenth-century way of speaking about a continent, and mancala is neither one game nor confined to Africa. The title is kept because it is the paper's title and this press does not rewrite the books it publishes; the edition says so in its own introduction.",
+    ],
+  },
   {
     slug: "codex-enigmatica",
     title: "Codex Enigmatica",

@@ -4,7 +4,7 @@
  *
  *   node scripts/factory/status.mjs [--root <dir>] [--json] [--out <file>]
  *
- * A project is any directory (depth 1 under the root) that carries both
+ * A project is any directory under the root (searched to a bounded depth) carrying both
  * `project_config.json` and `gates.json`. Legacy book repositories that only
  * have `project_config.json` + `.gate` are listed as `legacy` with their
  * `.gate` token, so the founder sees the whole shelf in one table.
@@ -71,13 +71,28 @@ export function legacyStatus(dir) {
   };
 }
 
-export function scan(root, house) {
+/**
+ * DEPTH ONE IS NOT ENOUGH, and the day this table went empty is why. The books tree was
+ * flat, then grouped into series folders, then grouped again into PUBLİC-PHASE-1-BOOK and
+ * PUBLİC-PHASE-2-BOOK, and then both were moved inside PUBLIC-BOOKS — so every Phase 2
+ * project now sits three levels under the root. This scan looked one level down, found no
+ * project_config.json anywhere, and printed a table with no rows: not an error, not a
+ * warning, just an empty shelf, which is the most expensive way a status tool can fail.
+ * It searches to a bounded depth now, the same way book-dirs.mjs resolves a book, and it
+ * does not descend into a project it has already recognised.
+ */
+const MAX_DEPTH = 3;
+const SKIP = new Set(["reports", "BACKUP", "node_modules", "OUTPUT", "ASSETS", "SOURCE"]);
+
+export function scan(root, house, depth = 0) {
   const rows = [];
   for (const entry of readdirSync(root)) {
+    if (entry.startsWith(".") || SKIP.has(entry)) continue;
     const p = join(root, entry);
     if (!statSync(p).isDirectory()) continue;
     if (existsSync(join(p, "gates.json")) && existsSync(join(p, "project_config.json"))) rows.push(projectStatus(p, house));
     else if (existsSync(join(p, "project_config.json"))) rows.push(legacyStatus(p));
+    else if (depth < MAX_DEPTH) rows.push(...scan(p, house, depth + 1));
   }
   return rows.sort((a, b) => a.kind.localeCompare(b.kind) || a.project.localeCompare(b.project));
 }

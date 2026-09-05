@@ -2,13 +2,13 @@
   "generatedAt": "2026-09-05",
   "book": "chess-and-playing-cards",
   "format": "paperback",
-  "title": null,
+  "title": "Chess and Playing Cards: The Chess, Divination and Card Collections",
   "asin": null,
-  "kdpState": "unknown",
+  "kdpState": "not_created",
   "interior": {
     "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-2-BOOK/03-CHESS-AND-PLAYING-CARDS/OUTPUT/interior-main.pdf",
-    "sha256": "214e6bb865a0476c5b2076385e32c69ddf285e19213cba7d050e7d10d247b470",
-    "bytes": 849305,
+    "sha256": "5161bc76ad82a61d61887ea81db35f6493417fa02eb0c12167ba7f44a927a290",
+    "bytes": 849424,
     "pagesBefore": 119,
     "pagesAfter": 120,
     "companionPage": 120,
@@ -59,8 +59,15 @@
     "barcodeZoneAffected": false,
     "verdict": "wrap width moves 0.002252 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.002252 in and the house rule is that each edition's cover reads its own page count"
   },
-  "cover": null,
-  "coverAction": "REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block",
+  "cover": {
+    "built": true,
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-2-BOOK/03-CHESS-AND-PLAYING-CARDS/ASSETS/cover/paperback-wrap-v1.pdf",
+    "pageCount": 120,
+    "spineIn": 0.2702,
+    "wrapIn": "12.5202 × 9.2500 (white)",
+    "note": "built 2026-09-05 by the project's own BUILD/build_cover.py, which reads the FINAL page count out of QA/interior-main.json — that is, after the companion leaf — so the spine is computed from the count the book will actually have. At 120 pp it clears the 79-page floor and carries spine text. The device is a Korean playing card beside the feathered end of an arrow, at the proportions Culin gives: the resemblance his whole catalogue is arranged to prove."
+  },
+  "coverAction": "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior",
   "uploadRequired": true,
   "hold": null,
   "proofRecommended": true,
@@ -114,7 +121,7 @@
     {
       "name": "pdf-metadata",
       "pass": true,
-      "detail": "title=\"Chess and Playing Cards (Annotated)\" author=\"Emre Doğan\""
+      "detail": "title=\"Chess and Playing Cards: The Chess, Divination and Card Collections: Stewart Culin's 1898 Catalogue, Annotated — with a Register of Object and Argument, the Nine Forms of Chess Compared, Five Original Diagrams and the Index the Original Never Printed\" author=\"Emre Doğan\""
     },
     {
       "name": "qr-matches-url",

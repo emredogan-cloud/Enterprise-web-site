@@ -173,6 +173,16 @@ export const DIRECT_SALE_EBOOKS = [
     priceCents: 799,
   },
   {
+    slug: "mancala",
+    name: "Mancala, the National Game of Africa (Annotated)",
+    description:
+      "Culin's 1894 paper, the first serious study of mancala in English, entire. Original to this edition: a playing guide setting out the THREE complete games the paper contains \u2014 the Syrian crazy and rational games and Chuba, the four-row version already on sale in America by 1891 \u2014 in a form you can play from; a Register of Record and Inference separating what Culin watched from what he was told and what he read; three diagrams drawn from his descriptions, one of them three panels showing how a move works; a who's-who of his named informants, one of whom became the first African diplomat in modern Europe; an account of what has been established since 1894; a glossary, a chronology and an index. 37 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included. It is a short book and it says so.",
+    // price-engine.mjs 2026-09-05: recommended $6.99; $4.99 nets $4.24 at an 85%
+    // margin. Priced BELOW the Classics band on purpose \u2014 at a quarter the length
+    // of the other volumes, band price would be band price for a pamphlet.
+    priceCents: 499,
+  },
+  {
     slug: "seneca-selected-dialogues",
     name: "Seneca: Selected Dialogues (Annotated)",
     description:

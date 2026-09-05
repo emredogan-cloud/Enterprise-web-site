@@ -65,6 +65,15 @@ export const REBUILT_COVERS = {
       note: "built 2026-09-05 by the project's own BUILD/build_cover.py, which reads the FINAL page count out of QA/interior-main.json — that is, after the companion leaf — so the spine is computed from the count the book will actually have. At 144 pp this one clears the 79-page floor and does carry spine text. The device is the nyout board, twenty marks round a circle and an interior cross of nine, which Culin counts out in his own words: the EVIDENCE diagram, not the one reconstruction.",
     },
   },
+  "chess-and-playing-cards": {
+    paperback: {
+      built: true,
+      path: bookPath("03-CHESS-AND-PLAYING-CARDS", "ASSETS", "cover", "paperback-wrap-v1.pdf"),
+      pageCount: 120, spineIn: 0.2702,
+      wrapIn: "12.5202 × 9.2500 (white)",
+      note: "built 2026-09-05 by the project's own BUILD/build_cover.py, which reads the FINAL page count out of QA/interior-main.json — that is, after the companion leaf — so the spine is computed from the count the book will actually have. At 120 pp it clears the 79-page floor and carries spine text. The device is a Korean playing card beside the feathered end of an arrow, at the proportions Culin gives: the resemblance his whole catalogue is arranged to prove.",
+    },
+  },
   "games-ancient-and-oriental": {
     paperback: {
       built: true,

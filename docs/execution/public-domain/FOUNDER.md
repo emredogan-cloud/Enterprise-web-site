@@ -304,6 +304,54 @@ This is research, not production, and it does not block Phase 1.
 
 ---
 
+### F-026 · P1 · Paddle product and gates 2, 5 and 10 for Mancala
+
+- **Date raised:** 2026-09-05 · **Phase:** 2 · **Book:** 4
+- **Paddle.** `mancala` is built, priced at **$4.99**, uploaded to R2, previewed and
+  validated, and has no Paddle product. Same blocked live write as F-019, F-022 and
+  F-024, and all four can be done in one run:
+  `node scripts/catalog/provision-paddle.mjs --commit --i-know-this-is-live`, then put
+  the returned price id in the catalogue row, set the ebook to `available`, and run the
+  loader **against `neondb`**.
+- **Two decisions in this book you should know about, because they are yours to reverse.**
+  1. **EBOOK ONLY.** The volume is 38 pages. A printed block would need a blank leaf to
+     stay even and would run to 40, giving a spine of 0.090 in: too thin to carry spine
+     text (KDP allows it from 79 pages) and too thin to be a good object. The interior
+     and a cover wrap are both built so the arithmetic exists if you want to revisit it;
+     both are marked not for use, and nothing is registered in `print-interiors.mjs`.
+  2. **PRICED BELOW THE BAND.** $4.99 against the Valice Classics band of $7.99–9.99,
+     because at 38 pages this is a quarter the length of the other volumes of the phase.
+     It nets $4.24 after Paddle.
+- **Gate 2 (Rights).** The simplest position of the four: Culin died in 1929 **and** the
+  1896 United States imprint settles the United States on its own. This is the one book
+  of the phase with **no scan and no OCR layer** — the source is Project Gutenberg 66220,
+  a transcription proof-read by volunteers — so there is no OCR rights row to clear. The
+  PG boilerplate is stripped at parse time and the PG trademark is used nowhere. RED on
+  the images: all 22 captioned pictures name neither photographer nor draughtsman, and
+  none is reproduced.
+- **Gate 5 (Factual verification).** 17 claims, every one VERIFIED against an external
+  source; `claim-lint` clean. **Three were corrected by the verification rather than
+  confirmed by it**, and one of those is worth a minute of your time:
+  - the introduction quoted Culin's closing prediction as ending "…when this account may
+    acquire a practical value." **He wrote no such thing** — his sentence ends "…when
+    this account may answer some inquiries that may be made as to its history." The first
+    half was his and the second half was invented. It is now printed as he wrote it, and
+    `BUILD/check_quotes.py` holds every quoted passage in the apparatus *and* in the build
+    scripts against the source text on every build, so the class of error cannot recur
+    silently in this book;
+  - the Aksumite mancala boards are dated to the sixth or seventh century, not the
+    eighth, and one of the two sites (Matara) is in Eritrea, not Ethiopia;
+  - the count of traditional names was called "the standard reference count"; the
+    encyclopaedia carries it without a citation and the country figure comes from a
+    specialist census, so the sentence now says which number comes from where.
+- **Gate 10 (KDP compliance).** `compliance-lint` clean. Text **generated**, images
+  **none**, translation **none** — and the text figure matters more here than anywhere
+  else in the phase, because the apparatus is **54.8%** of the volume, longer than
+  Culin's paper. There is no KDP upload to declare it on and none is planned.
+- **What signing means:** gates 2, 5 and 10 are `founderSignoff` and only you can set them.
+
+---
+
 ### F-022 · P1 · Create the Paddle product for Korean Games (one command)
 
 - **Date raised:** 2026-09-05 · **Phase:** 2 · **Book:** 2

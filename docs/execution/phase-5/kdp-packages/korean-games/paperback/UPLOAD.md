@@ -16,8 +16,8 @@ This edition has never been uploaded. The file below is its first. A dedicated c
 
 ```
 /home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-2-BOOK/02-KOREAN-GAMES/OUTPUT/interior-main.pdf
-sha256 404fee6b8fed6a2de5daf6d559a713c44347c2f8eda8a499872fbe4bf271eea8
-863,688 bytes · 144 pages
+sha256 3b84c659d264d4d4e8b099719d7b6bd88a0df1ea5cde6f932f36eb6873c51975
+863,442 bytes · 144 pages
 ```
 
 The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-2-BOOK/02-KOREAN-GAMES/OUTPUT/interior-main.pre-companion.pdf` and is never deleted.

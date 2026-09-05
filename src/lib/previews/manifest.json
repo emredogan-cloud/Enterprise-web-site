@@ -373,5 +373,14 @@
         "page": 31
       }
     ]
+  },
+  "mancala": {
+    "note": "How a move works — the edition's reconstruction, in three panels, of the sowing rules Culin left as prose.",
+    "pages": [
+      {
+        "src": "/images/previews/mancala/p19.webp",
+        "page": 19
+      }
+    ]
   }
 }

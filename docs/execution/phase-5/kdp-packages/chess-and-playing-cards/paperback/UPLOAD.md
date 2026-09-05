@@ -1,33 +1,33 @@
-# null — paperback — KDP upload package
+# Chess and Playing Cards: The Chess, Divination and Card Collections — paperback — KDP upload package
 
-**Generated:** 2026-09-05 · **ASIN:** — (not listed) · **KDP state:** unknown
+**Generated:** 2026-09-05 · **ASIN:** — (not listed) · **KDP state:** not_created
 
-## What changed
+## What this is
 
-A dedicated companion page now stands on page **120**: a QR occupying 29 % of the usable page height, the address `valicepress.com/companion/chess-and-playing-cards` printed beneath it in display type, and a named list of what is waiting there. It is a new leaf; nothing was removed.
+This edition has never been uploaded. The file below is its first. A dedicated companion page stands on page **120**: a QR occupying 29 % of the usable page height, the address `valicepress.com/companion/chess-and-playing-cards` printed beneath it in display type, and a named list of what is waiting there. It is a new leaf; nothing was removed.
 
-- **Pages:** 119 → **120**
-- **Spine:** 0.2680 in → **0.2702 in** (white paper, 6×9 in)
-- **Wrap width:** 12.5180 in → **12.5202 in**
-- **Cover:** REBUILD CORRECT — inside tolerance, but the printed spine no longer matches the block
+- **Pages:** **120**
+- **Spine:** **0.2702 in** (white paper, 6×9 in)
+- **Wrap width:** **12.5202 in**
+- **Cover:** FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior
 - **Proof:** recommended — the block changed thickness, so the wrap is new and unproved
 
 ## The file
 
 ```
 /home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-2-BOOK/03-CHESS-AND-PLAYING-CARDS/OUTPUT/interior-main.pdf
-sha256 214e6bb865a0476c5b2076385e32c69ddf285e19213cba7d050e7d10d247b470
-849,305 bytes · 120 pages
+sha256 5161bc76ad82a61d61887ea81db35f6493417fa02eb0c12167ba7f44a927a290
+849,424 bytes · 120 pages
 ```
 
 The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-2-BOOK/03-CHESS-AND-PLAYING-CARDS/OUTPUT/interior-main.pre-companion.pdf` and is never deleted.
 
 ## In KDP
 
-1. Bookshelf → **null** → paperback → *Edit print manuscript*.
-2. Upload the interior above.
-3. The spine changed and no rebuilt wrap is recorded for this edition — do not upload the interior until one exists.
-4. Open the previewer and confirm page 120 shows the code and the address, and that the spine text still sits inside its safe zone.
+1. KDP → **Create** → **Paperback**. This book is not on the bookshelf; there is nothing to edit.
+2. Upload the interior above, and the cover built for **120 pages** — see the book's own `OUTPUT/KDP/KDP_UPLOAD_GUIDE.html` for the trim, paper and bleed settings, which must match or the file is rejected.
+3. **Do not use Cover Creator.** The wrap was computed for this page count; Cover Creator regenerates it and the spine moves.
+4. Open the previewer and confirm page 120 shows the code and the address. Scan the code with a phone before you publish — it cannot be changed once it is printed.
 
 ## How this file was checked
 
@@ -40,7 +40,7 @@ The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-
 - PASS · **fonts-embedded** — 3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif
 - PASS · **qr-floor** — 28.9% of usable height
 - PASS · **qr-module-size** — 1.73 mm per module
-- PASS · **pdf-metadata** — title="Chess and Playing Cards (Annotated)" author="Emre Doğan"
+- PASS · **pdf-metadata** — title="Chess and Playing Cards: The Chess, Divination and Card Collections: Stewart Culin's 1898 Catalogue, Annotated — with a Register of Object and Argument, the Nine Forms of Chess Compared, Five Original Diagrams and the Index the Original Never Printed" author="Emre Doğan"
 - PASS · **qr-matches-url** — 33×33 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/chess-and-playing-cards
 
 Regenerate with `node scripts/factory/build-companion-pages.mjs --commit --slug chess-and-playing-cards`.

@@ -79,6 +79,14 @@ export const DIGITAL_EDITION_SOURCES = [
     epub: bookPath("03-CHESS-AND-PLAYING-CARDS", "OUTPUT", "chess-and-playing-cards.epub"),
   },
   {
+    // Valice Classics 11 (2026-09-05). Phase 2 book 4, and the only one of the five not
+    // built from a scan. EBOOK ONLY: at 37 pages there is no paperback, so this
+    // interior is not a print master — it IS the ebook's PDF.
+    slug: "mancala",
+    printInterior: bookPath("04-MANCALA", "OUTPUT", "interior-main.pdf"),
+    epub: bookPath("04-MANCALA", "OUTPUT", "mancala.epub"),
+  },
+  {
     // Valice Classics 3 (2026-09-04). Text-only 6 × 9 interior with no plates,
     // so the /ebook pass is a normalising pass rather than a downsampling one.
     slug: "epictetus-discourses-and-enchiridion",

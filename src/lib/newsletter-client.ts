@@ -58,7 +58,8 @@ export type NewsletterSource =
   // Roadmap book 4 (2026-09-05): the Codex puzzle companion.
   | "codex-puzzles-companion"
   | "korean-games-companion"
-  | "chess-and-playing-cards-companion";
+  | "chess-and-playing-cards-companion"
+  | "mancala-companion";
 
 /** The subset of sources a printed-book companion page may carry. */
 export type CompanionNewsletterSource = Extract<

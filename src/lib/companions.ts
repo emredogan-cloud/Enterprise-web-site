@@ -1407,6 +1407,83 @@ const CODEX_PUZZLES: Companion = {
   ],
 };
 
+const MANCALA: Companion = {
+  slug: "mancala",
+  bookSlug: "mancala",
+  bookTitle: "Mancala, the National Game of Africa",
+  state: "book-not-yet-available",
+  stateNote:
+    "The Valice edition is built, validated and priced but not yet on sale — " +
+    "creating the payment product is a live write that is held behind a " +
+    "founder action. Everything on this page is free and works today regardless.",
+  intro:
+    "Free material for Culin's 1894 paper: two boards at playing size to print, " +
+    "all three complete games on a single sheet you can keep beside the board, " +
+    "the register that separates what he watched from what he was told, and " +
+    "every one of the twenty-two illustrations he published listed with the " +
+    "provenance he recorded for it.",
+  newsletterSource: "mancala-companion",
+  assetsHeading: "Print and play",
+  rightsNote:
+    "Stewart Culin died in 1929 and the 1896 United States imprint puts this " +
+    "text in the public domain there on its own. None of the paper's five " +
+    "plates or fifteen text figures is reproduced: no photographer and no " +
+    "draughtsman is named for any of them, so nothing on this page is taken " +
+    "from them. Both boards were drawn for this edition from the counts in " +
+    "Culin's own text — fourteen holes and ninety-eight counters for the " +
+    "Syrian games, four rows for Chuba.",
+  assets: [
+    {
+      id: "boards",
+      title: "Two mancala boards to print and play on",
+      description:
+        "The two-row board of fourteen holes for the Syrian games, and the " +
+        "four-row board for Chuba. Drawn at playing size, with cups large " +
+        "enough to hold a stack of coins. Beans, coins or shells will do for " +
+        "counters; the game has always been played with whatever was to hand.",
+      kind: "static",
+      href: "/companion/mancala/boards.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 2 pages",
+    },
+    {
+      id: "how-to-play",
+      title: "All three games, on one sheet",
+      description:
+        "La'b madjnuni — the crazy game, whose result is fixed by the opening " +
+        "layout — its companion la'b akila, and Chuba. Culin sets his rules " +
+        "out as prose in the middle of an argument; here they are set out to " +
+        "be played from, and every place he leaves something unsaid says so.",
+      kind: "static",
+      href: "/companion/mancala/how-to-play.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "register-card",
+      title: "A Register of Record and Inference",
+      description:
+        "What Culin watched in Washington Street, what a lad from Damascus " +
+        "told him, what he read in Lane and Hyde, and what he concluded from " +
+        "the three — kept apart on one page. A short paper moves between them " +
+        "inside a single sentence, which is exactly when it matters.",
+      kind: "static",
+      href: "/companion/mancala/register-card.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "the-objects",
+      title: "The objects he figured",
+      description:
+        "All twenty-two captions from the illustrations this edition does not " +
+        "reproduce, in Culin's own wording, with the museum numbers and the " +
+        "provenance he recorded — a catalogue of the boards a curator could " +
+        "put his hands on in Philadelphia in 1894.",
+      kind: "static",
+      href: "/companion/mancala/the-objects.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+  ],
+};
+
 const COMPANIONS: readonly Companion[] = [
   HANGUL,
   WORLD_GAMES,
@@ -1419,6 +1496,7 @@ const COMPANIONS: readonly Companion[] = [
   GAMES_ANCIENT,
   KOREAN_GAMES,
   CHESS_AND_PLAYING_CARDS,
+  MANCALA,
   CODEX_PUZZLES,
   SENECA,
   GREEK,

@@ -188,6 +188,17 @@ export const PREVIEW_PAGES = [
     note: "Dr Birch on the Manchester relics, with the board of thirty compartments drawn from his description and marked EVIDENCE.",
   },
   {
+    slug: "mancala",
+    source: `${BUILT}/mancala.pdf`,
+    // ONE page, and the shortness of the book is why. The catalogue's own test caps a
+    // preview at 5% of the volume; this volume is 37 pages, so 5% is a single leaf, and
+    // three pages of it would be 8.1% given away. The leaf chosen is the one that shows
+    // what the reader is actually buying: the three panels reconstructing how a move
+    // works, which is the edition's own reading of rules Culin left in prose.
+    pages: [19, 19],
+    note: "How a move works — the edition's reconstruction, in three panels, of the sowing rules Culin left as prose.",
+  },
+  {
     slug: "chess-and-playing-cards",
     source: `${BUILT}/chess-and-playing-cards.pdf`,
     // Culin on Chinese and Korean chess, with the two boards drawn from his own
