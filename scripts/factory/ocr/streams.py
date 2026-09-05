@@ -238,3 +238,73 @@ def dehyphenate(lines: list[str]) -> list[str]:
         else:
             out.append(l)
     return out
+
+
+def _load_words() -> set[str]:
+    try:
+        with open("/usr/share/dict/british-english", encoding="utf-8", errors="ignore") as fh:
+            return {w.strip().lower() for w in fh}
+    except OSError:
+        return set()
+
+
+WORDS = _load_words()
+
+
+def _is_word(t: str) -> bool:
+    t = t.lower()
+    return bool(t) and (t in WORDS or t.rstrip("s") in WORDS)
+
+
+def mark_script(text: str, tally: dict) -> str:
+    """Replace runs the OCR could not read with one marker.
+
+    A token qualifies when it carries no vowel and no digit, is not a word, and is not a
+    romanised Korean syllable — Culin's transliterations (nyout, ssang-ryouk, tjyang-keui)
+    must survive, and they always carry vowels.
+    """
+    out = []
+    for tok in text.split():
+        core = tok.strip(".,;:!?()[]\"'“”‘’")
+        if not core:
+            out.append(tok); continue
+        letters = [c for c in core if c.isalpha()]
+        # THE DICTIONARY IS DOING REAL WORK HERE, not decorating the rule. "by" has no
+        # vowel and only two letters, and the third book of this phase adapted this
+        # function by hand, dropped the dictionary test, and replaced every "by" in a
+        # 400-page catalogue with the marker for unreadable script: "Collected by Dr.
+        # A. H. Hoff" came out as "Collected [...script] Dr. A. H. Hoff".
+        # Counting y as a vowel would also fix that, and was tried — but it then keeps
+        # -j^y, YY, Ytng and d'y, which are exactly the garbage this marker exists for.
+        # The dictionary is the better instrument: it knows "by" and does not know those.
+        vowels = sum(1 for c in core.lower() if c in "aeiou")
+        odd = sum(1 for c in core if not c.isalnum() and c not in "-'’.,")
+        unreadable = (len(letters) >= 2 and vowels == 0 and not _is_word(core)) or odd >= 2
+        if unreadable and not core[0].isdigit():
+            # TWO NUMBERS, because they are two facts. `marked` is how many tokens
+            # the OCR could not read; `runs` is how many markers the page carries,
+            # which is smaller because a run of unreadable tokens collapses into one.
+            # The source note claims runs; an earlier draft printed the token count
+            # under the word "runs" and would have overstated the page by a fifth.
+            tally["marked"] = tally.get("marked", 0) + 1
+            if out and out[-1] == MARK:
+                continue
+            tally["runs"] = tally.get("runs", 0) + 1
+            out.append(MARK)
+        else:
+            out.append(tok)
+    return " ".join(out)
+
+
+# ── leaves whose table was rebuilt from the coordinates ──────────────────────
+# A printed table read as prose comes out as "takes takes 7 h" and "to I e to". Where a
+# table has been rebuilt properly the fragments are suppressed and the rebuilt block
+# stands in their place; `resumesAt` is the first words of the prose that follows the
+# table on the same leaf, so the parse knows where Culin starts again.
+REBUILT = {
+    202: {"file": "CONTENT/chess-game.json", "kind": "chess-game",
+          "resumesAt": '" Check " in Korean is tjyang',
+          # Culin's note crediting Wilkinson runs under the table, and the rebuilt
+          # block sets it there. Left in the prose as well it printed twice.
+          "alreadyIn": ["* Mr. Wilkinson is to be credited"]},
+}
