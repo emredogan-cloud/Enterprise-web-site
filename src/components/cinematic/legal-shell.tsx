@@ -56,7 +56,7 @@ export function LegalShell({
       {/* Breadcrumb back to / */}
       <nav
         aria-label="Breadcrumb"
-        className="text-[12px] sm:text-[11px] uppercase tracking-[0.2em] text-fg-soft"
+        className="text-[12px] lg:text-[11px] uppercase tracking-[0.2em] text-fg-soft"
       >
         <Link
           href="/"
@@ -69,7 +69,7 @@ export function LegalShell({
       </nav>
 
       {/* Eyebrow */}
-      <p className="mt-10 text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+      <p className="mt-10 text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
         {eyebrow}
       </p>
 
@@ -97,7 +97,7 @@ export function LegalShell({
 
       {/* Last-updated chip — small but legally important */}
       {lastUpdated && (
-        <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[12px] sm:text-[11px] uppercase tracking-[0.2em] text-fg-soft">
+        <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[12px] lg:text-[11px] uppercase tracking-[0.2em] text-fg-soft">
           <span
             aria-hidden
             className="h-1.5 w-1.5 rounded-full bg-[#33f0aa] shadow-[0_0_6px_#33f0aa]"

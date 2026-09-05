@@ -36,7 +36,7 @@ export function OrderItemsPanel({
         >
           Your digital items
         </h2>
-        <p className="text-[12px] sm:text-[11px] uppercase tracking-[0.18em] text-fg-soft">
+        <p className="text-[12px] lg:text-[11px] uppercase tracking-[0.18em] text-fg-soft">
           {entitlements.length}{" "}
           {entitlements.length === 1 ? "title" : "titles"}
         </p>
@@ -134,7 +134,7 @@ function OrderItemRow({
 function ItemStatusPill({ status }: { status: OrderEntitlement["status"] }) {
   if (status === "ready") {
     return (
-      <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-bright/30 bg-emerald-bright/10 px-2.5 py-0.5 text-[12px] sm:text-[10px] font-semibold uppercase tracking-[0.15em] text-emerald-bright">
+      <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-bright/30 bg-emerald-bright/10 px-2.5 py-0.5 text-[12px] lg:text-[10px] font-semibold uppercase tracking-[0.15em] text-emerald-bright">
         <span
           aria-hidden
           className="h-1.5 w-1.5 rounded-full bg-emerald-bright shadow-[0_0_6px_#33f0aa]"
@@ -146,7 +146,7 @@ function ItemStatusPill({ status }: { status: OrderEntitlement["status"] }) {
 
   if (status === "pending") {
     return (
-      <span className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.12] bg-white/[0.04] px-2.5 py-0.5 text-[12px] sm:text-[10px] font-semibold uppercase tracking-[0.15em] text-fg-mid">
+      <span className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.12] bg-white/[0.04] px-2.5 py-0.5 text-[12px] lg:text-[10px] font-semibold uppercase tracking-[0.15em] text-fg-mid">
         <span
           aria-hidden
           className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-bright shadow-[0_0_6px_#33f0aa]"
@@ -157,7 +157,7 @@ function ItemStatusPill({ status }: { status: OrderEntitlement["status"] }) {
   }
 
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-full border border-[#ff7a7a]/30 bg-[#ff7a7a]/8 px-2.5 py-0.5 text-[12px] sm:text-[10px] font-semibold uppercase tracking-[0.15em] text-[#ff9b9b]">
+    <span className="inline-flex items-center gap-1.5 rounded-full border border-[#ff7a7a]/30 bg-[#ff7a7a]/8 px-2.5 py-0.5 text-[12px] lg:text-[10px] font-semibold uppercase tracking-[0.15em] text-[#ff9b9b]">
       <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-[#ff7a7a]" />
       Revoked
     </span>

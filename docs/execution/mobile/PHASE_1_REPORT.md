@@ -184,4 +184,4 @@ as the gate. `npm run mobile:diff` remains available.
 
 Unchanged from the audit, minus nothing. Phase 1 introduced no new P2/P3.
 
-**COMMIT:** `061c0af`
+**COMMIT:** `fbe4bbc`

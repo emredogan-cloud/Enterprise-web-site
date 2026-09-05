@@ -71,7 +71,7 @@ export function ArticleHero({
             {/* Top: category eyebrow */}
             <Link
               href={`/blog/category/${post.categorySlug}`}
-              className="inline-flex w-fit items-center gap-2 text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-bright transition-colors hover:text-white"
+              className="inline-flex w-fit items-center gap-2 text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-bright transition-colors hover:text-white"
             >
               <span
                 aria-hidden

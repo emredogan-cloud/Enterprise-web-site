@@ -228,7 +228,7 @@ function BadgePill({
   const t = tones[tone];
   return (
     <span
-      className="absolute left-3 top-3 rounded-full px-2 py-0.5 text-[12px] sm:text-[9px] font-bold uppercase tracking-[0.12em]"
+      className="absolute left-3 top-3 rounded-full px-2 py-0.5 text-[12px] lg:text-[9px] font-bold uppercase tracking-[0.12em]"
       style={{ background: t.bg, color: t.color, boxShadow: t.shadow }}
     >
       {label}

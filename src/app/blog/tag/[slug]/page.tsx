@@ -73,7 +73,7 @@ export default async function BlogTagPage({
         {/* Breadcrumb */}
         <nav
           aria-label="Breadcrumb"
-          className="mx-auto mt-6 max-w-[1320px] px-4 text-[12px] sm:text-[11px] uppercase tracking-[0.2em] text-fg-soft sm:px-6"
+          className="mx-auto mt-6 max-w-[1320px] px-4 text-[12px] lg:text-[11px] uppercase tracking-[0.2em] text-fg-soft sm:px-6"
         >
           <Link
             href="/blog"
@@ -115,7 +115,7 @@ export default async function BlogTagPage({
                     aria-hidden
                     className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/25 to-transparent"
                   />
-                  <p className="flex items-center gap-2 text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+                  <p className="flex items-center gap-2 text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
                     <time dateTime={post.date}>
                       {DATE_FMT.format(new Date(post.date))}
                     </time>

@@ -29,7 +29,7 @@ export function SuggestionPills({
   return (
     <div className="mx-auto mt-6 max-w-3xl px-6 text-center">
       {/* Label */}
-      <p className="inline-flex items-center gap-1.5 text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+      <p className="inline-flex items-center gap-1.5 text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
         <Sparkles
           aria-hidden
           className="h-3 w-3 text-emerald-bright"

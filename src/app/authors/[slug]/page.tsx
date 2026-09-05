@@ -156,7 +156,7 @@ export default async function AuthorPage({
         {/* Books section */}
         <section className="mx-auto mt-20 max-w-[1320px] px-4 sm:mt-24 sm:px-6">
           <header className="text-center">
-            <p className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+            <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
               Published works
             </p>
 

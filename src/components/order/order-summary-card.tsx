@@ -30,7 +30,7 @@ export function OrderSummaryCard({
       />
 
       <header>
-        <p className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+        <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
           Order summary
         </p>
       </header>
@@ -42,7 +42,7 @@ export function OrderSummaryCard({
 
       <div className="mt-5 border-t border-white/[0.06] pt-5">
         <dl className="flex items-baseline justify-between gap-3">
-          <dt className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] text-fg-mid">
+          <dt className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.18em] text-fg-mid">
             Total paid
           </dt>
           <dd className="font-serif text-[22px] font-medium tabular-nums text-emerald-bright">

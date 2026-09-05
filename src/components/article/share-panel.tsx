@@ -85,11 +85,16 @@ export function SharePanel() {
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/35 to-transparent"
       />
 
-      <p className="text-[12px] sm:text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+      <p className="text-[12px] lg:text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
         Share this article
       </p>
 
-      <div className="mt-4 flex items-center gap-2.5">
+      {/* `flex-wrap`: with six 44px targets (Phase 7 sized them for fingers)
+          plus the card's own p-6, this row's min-content is 308px, and at
+          320px it dragged the whole article grid 7px past the viewport — the
+          grid's implicit `auto` track sizes to its items' min-content. Wrapping
+          fixes it at the source instead of clamping the track. */}
+      <div className="mt-4 flex flex-wrap items-center gap-2.5">
         {/* Phase 3.I — native Web Share API button. Only shows on
             mobile browsers that expose `navigator.share`; on desktop
             this slot stays hidden so the layout doesn't have a phantom

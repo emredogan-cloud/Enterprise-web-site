@@ -82,7 +82,7 @@ export function LibraryStatusMenu({
         aria-expanded={open}
         disabled={pending}
         onClick={() => setOpen((v) => !v)}
-        className={`inline-flex h-7 items-center gap-1.5 rounded-full border px-2.5 text-[12px] sm:text-[10px] font-medium uppercase tracking-[0.12em] transition-all ${
+        className={`inline-flex h-7 items-center gap-1.5 rounded-full border px-2.5 text-[12px] lg:text-[10px] font-medium uppercase tracking-[0.12em] transition-all ${
           current === "reading"
             ? "border-emerald-bright/40 bg-emerald-bright/10 text-emerald-bright"
             : current === "finished"
@@ -126,7 +126,7 @@ export function LibraryStatusMenu({
       {error && (
         <p
           role="alert"
-          className="absolute right-0 top-9 z-20 mt-1 rounded-md border border-[#ff6a6a]/30 bg-[#ff6a6a]/5 px-2 py-1 text-[12px] sm:text-[10px] text-[#ff9b9b]"
+          className="absolute right-0 top-9 z-20 mt-1 rounded-md border border-[#ff6a6a]/30 bg-[#ff6a6a]/5 px-2 py-1 text-[12px] lg:text-[10px] text-[#ff9b9b]"
         >
           {error}
         </p>

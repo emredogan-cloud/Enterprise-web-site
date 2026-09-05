@@ -118,10 +118,19 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
           />
         </Link>
 
-        {/* Center nav — hidden below md */}
+        {/* Center nav — hidden below lg.
+            PHASE 9, P2-5: this was `md:flex`, and the 768-1023px band had
+            never been measured. It does not fit there. Measured on the Redmi
+            at an emulated 768px: wordmark + seven nav links + the 256px search
+            pill + cart + account need 987px, so the document went 219px wider
+            than the viewport and the browser shrank the whole page to
+            compensate — on all 32 routes, since this is site-wide chrome.
+            1024px is the first width where the full row fits (987 of 1024,
+            measured), so that is where it may appear. Below it the drawer is
+            the navigation, which is exactly what it is for. */}
         <nav
           aria-label="Primary"
-          className="ml-6 hidden items-center gap-7 text-sm md:flex"
+          className="ml-6 hidden items-center gap-7 text-sm lg:flex"
         >
           {NAV_ITEMS.map((item) => {
             const isActive = item.key === active;
@@ -177,7 +186,7 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
           >
             <Search aria-hidden className="h-4 w-4" />
             <span className="flex-1 text-left">Search books, authors…</span>
-            <kbd className="rounded border border-white/[0.1] bg-white/[0.04] px-1.5 py-0.5 font-mono text-[12px] sm:text-[10px] text-fg-mid">
+            <kbd className="rounded border border-white/[0.1] bg-white/[0.04] px-1.5 py-0.5 font-mono text-[12px] lg:text-[10px] text-fg-mid">
               ⌘K
             </kbd>
           </Link>
@@ -203,7 +212,7 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
               provider is mounted (e.g. unprovisioned local dev). */}
           <AccountSlot />
 
-          {/* Phase 1 — the phone-width navigation. `md:hidden` inside the
+          {/* Phase 1 — the phone-width navigation. `lg:hidden` inside the
               component, so the desktop cluster is unchanged. */}
           <MobileNav items={MOBILE_NAV_ITEMS} active={active} />
         </div>

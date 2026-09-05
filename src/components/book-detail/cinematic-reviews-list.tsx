@@ -46,7 +46,7 @@ export function CinematicReviewsList({ reviews }: { reviews: ReviewItem[] }) {
             </div>
             <time
               dateTime={r.createdAt.toISOString()}
-              className="text-[12px] sm:text-[11px] uppercase tracking-[0.2em] text-fg-soft"
+              className="text-[12px] lg:text-[11px] uppercase tracking-[0.2em] text-fg-soft"
             >
               {formatReviewDate(r.createdAt)}
             </time>

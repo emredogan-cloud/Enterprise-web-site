@@ -29,7 +29,7 @@ export function RelatedBooksShelf({
   return (
     <section className="mx-auto mt-14 sm:mt-24 max-w-[1320px] px-4 sm:px-6">
       <header className="text-center">
-        <p className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+        <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
           Continue reading
         </p>
 

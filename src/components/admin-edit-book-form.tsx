@@ -206,7 +206,7 @@ export function AdminEditBookForm({
       />
 
       <fieldset className="space-y-3 rounded-[16px] border border-white/[0.08] bg-white/[0.02] p-5">
-        <legend className="px-2 text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+        <legend className="px-2 text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
           Collections / categories
         </legend>
         {allCategories.length === 0 ? (
@@ -237,7 +237,7 @@ export function AdminEditBookForm({
       </fieldset>
 
       <fieldset className="space-y-6 rounded-[16px] border border-white/[0.08] bg-white/[0.02] p-5">
-        <legend className="px-2 text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+        <legend className="px-2 text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
           R2 object keys
         </legend>
         <Field
@@ -262,7 +262,7 @@ export function AdminEditBookForm({
       </fieldset>
 
       <fieldset className="space-y-6 rounded-[16px] border border-white/[0.08] bg-white/[0.02] p-5">
-        <legend className="px-2 text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+        <legend className="px-2 text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
           Merchant of Record (Paddle)
         </legend>
         <Field
@@ -275,12 +275,12 @@ export function AdminEditBookForm({
       </fieldset>
 
       <fieldset className="space-y-3 rounded-[16px] border border-white/[0.08] bg-white/[0.02] p-5">
-        <legend className="px-2 text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+        <legend className="px-2 text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
           Publish status
         </legend>
         <label
           htmlFor="status"
-          className="block text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.12em] text-fg-soft"
+          className="block text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.12em] text-fg-soft"
         >
           Status
         </label>
@@ -313,7 +313,7 @@ export function AdminEditBookForm({
         {status === "published" && book.publishedAt === null && (
           <p className="text-xs text-emerald-bright">
             Publishing for the first time —{" "}
-            <code className="rounded border border-white/[0.08] bg-white/[0.04] px-1 py-0.5 text-[12px] sm:text-[10px]">
+            <code className="rounded border border-white/[0.08] bg-white/[0.04] px-1 py-0.5 text-[12px] lg:text-[10px]">
               published_at
             </code>{" "}
             will be stamped to now on save.
@@ -393,7 +393,7 @@ function Field({
     <div>
       <label
         htmlFor={name}
-        className="block text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.12em] text-fg-soft"
+        className="block text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.12em] text-fg-soft"
       >
         {label}
         {required && <span className="text-[#ff9b9b]"> *</span>}

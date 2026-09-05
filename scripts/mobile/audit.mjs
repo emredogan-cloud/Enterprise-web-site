@@ -27,6 +27,13 @@ const arg = (name, dflt) => {
 };
 const OUT = arg("out", "docs/execution/mobile/baseline/latest/audit.json");
 const WIDTHS = arg("widths", "") ? arg("widths").split(",").map(Number) : [null];
+/* Landscape is a real orientation, not a wide portrait: the Redmi reports
+ * 986x392 with the same 2.75 DPR, so the page gets 392 CSS px of HEIGHT. That
+ * is what breaks sticky headers, above-the-fold CTAs and any `h-screen`. The
+ * height matters as much as the width, so it cannot be expressed with
+ * --widths. See MOBILE_REGRESSION_SUITE.md.  */
+const LANDSCAPE = argv.includes("--landscape");
+const LANDSCAPE_SIZE = { width: 986, height: 392 };
 const ONLY = arg("routes", "") ? arg("routes").split(",") : null;
 const INCLUDE_SOURCE_ONLY = argv.includes("--include-source-only");
 
@@ -55,7 +62,10 @@ async function main() {
   const failures = [];
 
   for (const width of WIDTHS) {
-    if (width) {
+    if (LANDSCAPE) {
+      await setViewport(cdp, { ...LANDSCAPE_SIZE, dpr: 2.75, mobile: true });
+      console.log(`\n  ── landscape ${LANDSCAPE_SIZE.width}x${LANDSCAPE_SIZE.height} ──`);
+    } else if (width) {
       // Emulate the width while keeping the device's real DPR and mobile flag.
       await setViewport(cdp, { width, height: 800, dpr: 2.75, mobile: true });
       console.log(`\n  ── emulated width ${width}px ──`);
@@ -94,7 +104,12 @@ async function main() {
         };
         probe.consoleErrors = cdp.consoleErrors.slice(0, 10);
         probe.pageErrors = cdp.pageErrors.slice(0, 5);
-        results.push({ route: route.name, path: route.path, width: width ?? "device", ...probe });
+        results.push({
+          route: route.name, path: route.path,
+          width: LANDSCAPE ? LANDSCAPE_SIZE.width : (width ?? "device"),
+          orientation: LANDSCAPE ? "landscape" : "portrait",
+          ...probe,
+        });
 
         const flag =
           probe.hOverflowPx > 1 ? " ⚠ OVERFLOW" :
@@ -122,6 +137,7 @@ async function main() {
     baseUrl: BASE_URL,
     device: cdp.meta,
     widths: WIDTHS,
+    orientation: LANDSCAPE ? "landscape" : "portrait",
     routeCount: routes.length,
     results,
     failures,

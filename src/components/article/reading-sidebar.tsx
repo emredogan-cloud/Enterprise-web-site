@@ -148,7 +148,7 @@ export function ReadingSidebar({ toc }: { toc: BlogPostHeading[] }) {
           />
         </button>
 
-        <p className="hidden text-[12px] sm:text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-soft lg:block">
+        <p className="hidden text-[12px] lg:text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-soft lg:block">
           On this page
         </p>
 

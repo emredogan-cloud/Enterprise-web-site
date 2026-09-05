@@ -126,7 +126,7 @@ export function AuthorIdentityMark({
         aria-hidden
         className="absolute inset-x-0 bottom-0 flex justify-center pb-3"
       >
-        <span className="text-[12px] sm:text-[9px] font-semibold uppercase tracking-[0.28em] text-white/45">
+        <span className="text-[12px] lg:text-[9px] font-semibold uppercase tracking-[0.28em] text-white/45">
           Valice Press author
         </span>
       </div>

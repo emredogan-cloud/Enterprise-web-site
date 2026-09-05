@@ -66,7 +66,7 @@ export function TopicPills({
             />
             <span className="font-medium">{t.name}</span>
             <span
-              className={`rounded-full px-1.5 text-[12px] sm:text-[10px] font-semibold tabular-nums ${
+              className={`rounded-full px-1.5 text-[12px] lg:text-[10px] font-semibold tabular-nums ${
                 isActive
                   ? "bg-emerald-bright/20 text-emerald-bright"
                   : "bg-white/[0.05] text-fg-fade"

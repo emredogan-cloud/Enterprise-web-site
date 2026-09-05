@@ -202,4 +202,4 @@ since Phase 5. No assertion weakened.
    development event handling inflates it). Not verified for production.
 3. **iOS Safari untested** throughout.
 
-**COMMIT:** `c8f93f2`
+**COMMIT:** `8102fa7`

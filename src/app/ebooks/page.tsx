@@ -40,7 +40,7 @@ export default async function EbooksPage() {
 
       <main id="main-content" className="relative z-10">
         <header className="mx-auto max-w-[1440px] px-4 sm:px-6 pb-4 pt-16 sm:pt-24">
-          <p className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+          <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
             Ebooks
           </p>
           <h1 className="mt-4 max-w-3xl font-serif text-[40px] font-medium leading-[1.08] tracking-[-0.025em] text-fg-hi sm:text-[56px]">

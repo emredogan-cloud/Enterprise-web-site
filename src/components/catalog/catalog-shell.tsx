@@ -501,7 +501,7 @@ function ListRow({ book }: { book: CatalogItem }) {
           {book.category.slice(0, 3)}
         </span>
         <span
-          className="font-serif text-[12px] sm:text-[10px] leading-tight"
+          className="font-serif text-[12px] lg:text-[10px] leading-tight"
           style={{ color: book.cover.darkText ? "#1a1612" : "#fff" }}
         >
           {book.title.split(" ").slice(0, 2).join(" ")}

@@ -57,14 +57,14 @@ export function CategoryArticleCard({
         {/* RIGHT — content */}
         <div className="flex flex-col p-6 sm:p-8">
           {/* Date + reading time */}
-          <p className="flex items-center gap-2 text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] text-[#88918a]">
+          <p className="flex items-center gap-2 text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.18em] text-[#88918a]">
             <time dateTime={post.date}>{formatMetaDate(post.date)}</time>
             <span aria-hidden className="text-[#33f0aa]">•</span>
             <span>{readingMinutes} min read</span>
           </p>
 
           {/* Emerald category pill */}
-          <span className="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full border border-[#33f0aa]/30 bg-[#33f0aa]/10 px-3 py-1 text-[12px] sm:text-[10px] font-semibold uppercase tracking-[0.18em] text-[#33f0aa]">
+          <span className="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full border border-[#33f0aa]/30 bg-[#33f0aa]/10 px-3 py-1 text-[12px] lg:text-[10px] font-semibold uppercase tracking-[0.18em] text-[#33f0aa]">
             <span
               aria-hidden
               className="h-1 w-1 rounded-full bg-[#33f0aa] shadow-[0_0_6px_#33f0aa]"

@@ -37,7 +37,7 @@ export function WhyReadersSection() {
       <div className="mx-auto max-w-7xl">
         <RevealOnScroll>
           <header className="mx-auto max-w-2xl text-center">
-            <p className="text-[12px] sm:text-[11px] font-medium uppercase tracking-[0.3em] text-emerald-bright/80">
+            <p className="text-[12px] lg:text-[11px] font-medium uppercase tracking-[0.3em] text-emerald-bright/80">
               Why readers love us
             </p>
             <h2 className="mt-4 font-serif text-[36px] font-medium leading-tight tracking-tight text-fg-hi sm:text-[44px]">

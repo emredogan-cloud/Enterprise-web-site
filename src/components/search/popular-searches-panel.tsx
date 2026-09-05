@@ -83,7 +83,7 @@ export function PopularSearchesPanel({ picks }: { picks: CatalogItem[] }) {
                   <p className="truncate font-serif text-[15px] font-medium leading-tight text-fg-hi transition-colors group-hover:text-emerald-bright">
                     {p.title}
                   </p>
-                  <p className="mt-0.5 truncate text-[12px] sm:text-[11px] text-fg-soft">
+                  <p className="mt-0.5 truncate text-[12px] lg:text-[11px] text-fg-soft">
                     {p.author}
                   </p>
                 </div>

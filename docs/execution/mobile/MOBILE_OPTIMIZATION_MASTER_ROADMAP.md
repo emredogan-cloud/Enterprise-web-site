@@ -140,9 +140,36 @@ mutually independent once 3 lands and may run in parallel or in any order.
 Effort is **LOW / MEDIUM / HIGH** — relative implementation size, not hours. The repository does not
 carry velocity data, so hour estimates would be invented.
 
+### Execution status
+
+| Phase | Status | Commit | Report |
+| --- | --- | --- | --- |
+| 0 | COMPLETE | `99f21bc` | [PHASE_0_REPORT.md](PHASE_0_REPORT.md) |
+| 1 | COMPLETE | `fbe4bbc` | [PHASE_1_REPORT.md](PHASE_1_REPORT.md) |
+| 2 | COMPLETE | `f4a8379` | [PHASE_2_REPORT.md](PHASE_2_REPORT.md) |
+| 3 | COMPLETE | `0334dc9` | [PHASE_3_REPORT.md](PHASE_3_REPORT.md) |
+| 4 | COMPLETE | `10c1216` | [PHASE_4_REPORT.md](PHASE_4_REPORT.md) |
+| 5 | COMPLETE | `3988f31` | [PHASE_5_REPORT.md](PHASE_5_REPORT.md) |
+| 6 | COMPLETE | `c23bcc2` | [PHASE_6_REPORT.md](PHASE_6_REPORT.md) |
+| 7 | COMPLETE | `62378d2` | [PHASE_7_REPORT.md](PHASE_7_REPORT.md) |
+| 8 | COMPLETE, two targets missed | `8102fa7` | [PHASE_8_REPORT.md](PHASE_8_REPORT.md) |
+| 9 | COMPLETE | `PENDING` | [PHASE_9_REPORT.md](PHASE_9_REPORT.md) |
+
+Each report states what was measured, on what surface, and what was **not** met.
+Two targets are carried forward unmet and are named in Phase 8 and Phase 9: the
+production LCP/INP numbers, which could not be measured on this branch because
+the preview deployment is behind Deployment Protection and a local production
+build cannot boot without Clerk keys.
+
+The permanent checklist lives in [MOBILE_REGRESSION_SUITE.md](MOBILE_REGRESSION_SUITE.md).
+
+---
+
 ---
 
 ### PHASE 0 — Instrumentation and device harness
+
+**Status: COMPLETE** (`99f21bc`) — harness committed; Phase 0 baseline captured.
 
 **Objective.** Make the Redmi loop reproducible and committed, and establish the numbers every later
 phase is measured against. No UI changes at all.
@@ -194,6 +221,8 @@ stored under `baseline/phase-0/`; INP baseline recorded for `/`, `/books`, `/car
 ---
 
 ### PHASE 1 — Navigation and the input-collapse cluster
+
+**Status: COMPLETE** (`fbe4bbc`) — drawer nav + 5 collapsed inputs; the roadmap's only P0 closed.
 
 **Objective.** Remove the P0 and the highest-value P1. After this phase a phone user can reach every
 destination and every form field is a real field.
@@ -263,6 +292,8 @@ hard part, not the layout.
 
 ### PHASE 2 — Document-level theme, viewport, and safe areas
 
+**Status: COMPLETE** (`f4a8379`) — document theme, viewport-fit, safe areas, zoom no longer suppressed.
+
 **Objective.** Make the dark theme a document theme instead of a scoped `div`, so the browser chrome,
 overscroll, and native controls stop contradicting it.
 
@@ -319,6 +350,8 @@ desktop diff.
 ---
 
 ### PHASE 3 — Responsive containers, spacing, and editorial type
+
+**Status: COMPLETE** (`0334dc9`) — 12px type floor, responsive rhythm, consistent gutters.
 
 **Objective.** Make the vertical rhythm and type scale fit a 718 px viewport without flattening the
 editorial voice.
@@ -378,6 +411,8 @@ strongest assertion available and this phase should meet it.
 ---
 
 ### PHASE 4 — Cards, category tiles, and shelves
+
+**Status: COMPLETE** (`10c1216`) — category cards containerised; no fixed aspect below sm.
 
 **Objective.** Fix the category-card collision and confirm every card and shelf works under a finger.
 
@@ -439,6 +474,8 @@ retained. Canonical asset consistency confirmed.
 ---
 
 ### PHASE 5 — Discovery: catalog, filters, search
+
+**Status: COMPLETE** (`3988f31`) — filter drawer, usable price slider, keyboard-safe search.
 
 **Objective.** Put products above filters on mobile and make the filter controls touchable.
 
@@ -502,6 +539,8 @@ grid still `lg:grid-cols-3 xl:grid-cols-4`, slider visually unchanged.
 
 ### PHASE 6 — Consideration and purchase: book detail, cart, library, order
 
+**Status: COMPLETE** (`c23bcc2`) — price and CTA above the fold on every book type.
+
 **Objective.** Verify and tune the money path on a phone.
 
 **Files.** `src/app/books/[slug]/page.tsx` (:195–:318), `book-detail/book-hero.tsx`,
@@ -561,6 +600,8 @@ if a fix appears to require that, stop and escalate.
 
 ### PHASE 7 — Editorial surfaces: blog, authors, categories, companions
 
+**Status: COMPLETE** (`62378d2`) — TOC disclosure, share controls sized, Korean decided on measurement.
+
 **Objective.** Bring the reading and discovery surfaces to the same standard.
 
 **Files.** `src/app/blog/[slug]/page.tsx`, `article/reading-sidebar.tsx`, `article-body.tsx`,
@@ -608,6 +649,8 @@ Reading sidebar position deliberate and documented.
 ---
 
 ### PHASE 8 — Accessibility, performance, motion
+
+**Status: COMPLETE, two targets missed** (`8102fa7`) — contrast measured (0 failures); LCP met on / only and INP 216–256ms, both on a dev build; production not measurable.
 
 **Objective.** Close the remaining conformance gaps and bring mobile LCP under target.
 
@@ -659,6 +702,8 @@ regressed.
 ---
 
 ### PHASE 9 — Full regression, tablet band, and sign-off
+
+**Status: COMPLETE** — width matrix, landscape, WebView, journeys A–E and the tablet band; see PHASE_9_REPORT.md.
 
 **Objective.** Prove the whole system on the device, close the 640–1023 px gap, and establish the
 permanent regression suite.

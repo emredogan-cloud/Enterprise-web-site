@@ -12,18 +12,24 @@ import type { ActiveNavSection } from "@/components/home/cinematic-header";
  * <MobileNav> — the phone-width navigation for the cinematic header.
  *
  * WHY THIS EXISTS
- * The header's primary nav is `hidden … md:flex`, and no drawer, hamburger or
- * overflow menu existed anywhere in the codebase. Below 768px that left four
- * controls — wordmark, search, cart, account — and **no browse destination at
- * all**: All books, Ebooks, Authors, Categories, Blog and About were
- * unreachable from the header on a phone. Measured on the Redmi at 392px:
+ * The header's primary nav was `hidden … md:flex` (Phase 9 moved it to
+ * `lg:flex`), and no drawer, hamburger or overflow menu existed anywhere in
+ * the codebase. Below 768px that left four controls — wordmark, search,
+ * cart, account — and **no browse destination at all**: All books, Ebooks,
+ * Authors, Categories, Blog and About were unreachable from the header on a
+ * phone. Measured on the Redmi at 392px:
  * `headerLinks: ["/", "/search", "/cart", "/account/library"]`,
  * `hasMenuButton: false`. That was the roadmap's only P0.
  *
  * SCOPE
- * Strictly `md:hidden`. At 768px and above the existing horizontal nav remains
+ * Strictly `lg:hidden`. At 1024px and above the existing horizontal nav remains
  * the authority and this component renders nothing — the desktop composition is
  * untouched by design, not by luck.
+ *
+ * The boundary was `md:` (768px) until Phase 9 measured the band it covers.
+ * The desktop header needs 987px; between 768 and 1023 it appeared, did not
+ * fit, and pushed every route 219px wider than the viewport. The drawer now
+ * carries navigation up to 1023px.
  *
  * ACCESSIBILITY CONTRACT
  *   - trigger is >= 44x44 CSS px, labelled, with aria-expanded/aria-controls
@@ -140,7 +146,7 @@ export function MobileNav({
   }, [open, close]);
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <button
         ref={triggerRef}
         type="button"

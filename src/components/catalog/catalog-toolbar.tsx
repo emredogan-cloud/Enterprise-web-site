@@ -44,8 +44,12 @@ export function CatalogToolbar(props: CatalogToolbarProps) {
         books
       </p>
 
-      {/* RIGHT — sort + view */}
-      <div className="flex items-center gap-3">
+      {/* RIGHT — sort + view.
+          `flex-wrap` because at 320px (Galaxy Fold cover, iPhone SE 1) the
+          sort dropdown and the grid/list toggle need 308px of a 288px row and
+          pushed the document 4px wide. Wrapping costs nothing at every width
+          where they already fit, which is every width from 360 up. */}
+      <div className="flex flex-wrap items-center gap-3">
         {/* Sort — glass dropdown (native select with custom styling) */}
         <div className="relative">
           {/* `sr-only`, not a negative offset. The old

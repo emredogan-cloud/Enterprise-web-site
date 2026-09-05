@@ -50,7 +50,7 @@ export function ProfileIdentityCard({
 
       {/* Section header */}
       <header>
-        <p className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+        <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
           Profile &amp; Identity
         </p>
       </header>
@@ -80,7 +80,7 @@ export function ProfileIdentityCard({
             {email}
           </p>
           {memberSince && (
-            <p className="mt-2 text-[12px] sm:text-[11px] uppercase tracking-[0.12em] text-fg-soft">
+            <p className="mt-2 text-[12px] lg:text-[11px] uppercase tracking-[0.12em] text-fg-soft">
               Member since {DATE_FMT.format(memberSince)}
             </p>
           )}
@@ -91,7 +91,7 @@ export function ProfileIdentityCard({
           <EditProfileButton />
 
           {/* Premium Member pill */}
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-bright/30 bg-emerald-bright/8 px-3 py-1 text-[12px] sm:text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-bright">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-bright/30 bg-emerald-bright/8 px-3 py-1 text-[12px] lg:text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-bright">
             <span
               aria-hidden
               className="h-1.5 w-1.5 rounded-full bg-emerald-bright shadow-[0_0_6px_#33f0aa]"

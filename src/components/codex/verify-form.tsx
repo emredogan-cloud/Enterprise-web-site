@@ -186,7 +186,7 @@ function VerifiedPanel() {
               "radial-gradient(circle, rgba(22, 199, 132, 0.18) 0%, transparent 60%)",
           }}
         />
-        <p className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+        <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
           Verified
         </p>
         <h2 className="mt-4 font-serif text-[30px] font-medium leading-tight tracking-tight text-fg-hi sm:text-[36px]">
@@ -206,7 +206,7 @@ function VerifiedPanel() {
 
       {/* ── Optional. Genuinely. ─────────────────────────────────────── */}
       <div className="mt-8 rounded-2xl border border-white/[0.08] bg-white/[0.02] px-6 py-7">
-        <p className="text-[12px] sm:text-[11px] font-medium uppercase tracking-[0.25em] text-fg-soft">
+        <p className="text-[12px] lg:text-[11px] font-medium uppercase tracking-[0.25em] text-fg-soft">
           Optional
         </p>
         <h3 className="mt-3 font-serif text-xl font-medium text-fg-hi">

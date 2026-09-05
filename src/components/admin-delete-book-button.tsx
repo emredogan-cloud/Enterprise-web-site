@@ -82,7 +82,7 @@ export function AdminDeleteBookButton({
         This cannot be undone. If the book has ever been purchased, the
         database will refuse the delete — archive it instead by setting the
         status to{" "}
-        <code className="rounded border border-white/[0.08] bg-white/[0.04] px-1 py-0.5 text-[12px] sm:text-[10px] text-[#ffce63]">
+        <code className="rounded border border-white/[0.08] bg-white/[0.04] px-1 py-0.5 text-[12px] lg:text-[10px] text-[#ffce63]">
           archived
         </code>
         .

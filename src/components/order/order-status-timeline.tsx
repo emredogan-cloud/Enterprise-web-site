@@ -107,10 +107,10 @@ export function OrderStatusTimeline({
       />
 
       <header className="flex items-baseline justify-between gap-4">
-        <p className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+        <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
           Order status
         </p>
-        <p className="text-[12px] sm:text-[11px] font-medium uppercase tracking-[0.12em] text-emerald-bright">
+        <p className="text-[12px] lg:text-[11px] font-medium uppercase tracking-[0.12em] text-emerald-bright">
           {states.completed === "done" ? "Completed" : "In progress"}
         </p>
       </header>
@@ -186,7 +186,7 @@ function Step({ step, state }: { step: StepDef; state: StepState }) {
         >
           {step.label}
         </p>
-        <p className="mt-1 text-[12px] sm:text-[10px] uppercase tracking-[0.12em] text-fg-soft">
+        <p className="mt-1 text-[12px] lg:text-[10px] uppercase tracking-[0.12em] text-fg-soft">
           {isDone ? "Done" : isActive ? "In progress" : "Upcoming"}
         </p>
       </div>

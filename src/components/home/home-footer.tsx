@@ -160,7 +160,7 @@ export function HomeFooter() {
               (no light-mode toggle planned), so the chip's affordance
               was misleading. Reduced to a plain inline note: same icon,
               same tone, no fake button chrome. */}
-          <span className="inline-flex items-center gap-1.5 text-[12px] sm:text-[11px] uppercase tracking-[0.12em] text-fg-fade">
+          <span className="inline-flex items-center gap-1.5 text-[12px] lg:text-[11px] uppercase tracking-[0.12em] text-fg-fade">
             <Moon aria-hidden className="h-3 w-3 text-emerald-bright" />
             Dark theme
           </span>

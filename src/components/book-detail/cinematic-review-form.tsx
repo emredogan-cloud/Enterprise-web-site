@@ -117,7 +117,7 @@ function CinematicReviewFormAuthed({
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/35 to-transparent"
       />
       <fieldset disabled={pending} className="space-y-3">
-        <legend className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+        <legend className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
           Your rating
         </legend>
         <div className="flex items-center gap-1">
@@ -147,10 +147,10 @@ function CinematicReviewFormAuthed({
       <div>
         <label
           htmlFor="review-body"
-          className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft"
+          className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft"
         >
           Your review{" "}
-          <span className="text-[12px] sm:text-[10px] font-normal lowercase tracking-normal text-fg-fade">
+          <span className="text-[12px] lg:text-[10px] font-normal lowercase tracking-normal text-fg-fade">
             (optional)
           </span>
         </label>
@@ -165,7 +165,7 @@ function CinematicReviewFormAuthed({
           placeholder="Share what you thought — what worked, what didn't, who you'd recommend it to…"
           className="mt-2 w-full rounded-[14px] border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm leading-relaxed text-fg-hi placeholder:text-fg-fade focus-visible:border-emerald-bright/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/20 disabled:cursor-not-allowed disabled:opacity-60"
         />
-        <p className="mt-2 text-[12px] sm:text-[11px] text-fg-fade">
+        <p className="mt-2 text-[12px] lg:text-[11px] text-fg-fade">
           {body.length.toLocaleString()} / {MAX_BODY_LENGTH.toLocaleString()}{" "}
           characters
         </p>

@@ -25,7 +25,7 @@ export function FounderCard() {
       <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,_1fr)_minmax(0,_400px)] lg:gap-14">
         {/* LEFT — editorial copy */}
         <div>
-          <p className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+          <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
             Transparency
           </p>
           <h2

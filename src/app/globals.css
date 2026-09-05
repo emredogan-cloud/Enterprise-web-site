@@ -602,6 +602,19 @@ body:has(.cinematic-root) > header {
   text-underline-offset: 3px;
   transition: text-decoration-color 0.2s ease;
 }
+/* PHASE 9 — an article's links and inline code must be breakable.
+   `overflow-wrap: anywhere`, not `break-word`: only `anywhere` also reduces
+   the element's MIN-CONTENT width, and min-content is what was doing the
+   damage. The Hangul article links a bare URL, "valicepress.com/companion/
+   hangul", which is 311px of unbreakable text. The article sits in a grid
+   whose single implicit track sizes to its items' min-content, so that one
+   URL made the track 311px wide inside a 288px container and pushed every
+   blog route 7px past a 320px viewport. `break-word` would have wrapped the
+   URL visually and left the track — and the overflow — exactly as it was. */
+.cinematic-root .cinematic-prose a,
+.cinematic-root .cinematic-prose code {
+  overflow-wrap: anywhere;
+}
 .cinematic-root .cinematic-prose a:hover {
   text-decoration-color: rgba(51, 240, 170, 0.9);
 }

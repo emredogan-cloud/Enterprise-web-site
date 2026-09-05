@@ -130,7 +130,12 @@ export default async function BlogPostPage({
         {/* Reading layout — sidebar LEFT, article RIGHT.
             Sticky sidebar on lg+, stacks on mobile (TOC moves below hero). */}
         <section className="mx-auto mt-14 max-w-[1320px] px-4 sm:mt-16 sm:px-6">
-          <div className="grid gap-10 lg:grid-cols-[280px_minmax(0,_1fr)] lg:gap-14">
+          {/* `grid-cols-1` is `repeat(1, minmax(0, 1fr))` — the explicit form.
+              Without it the single-column layout below lg uses an IMPLICIT
+              `auto` track, which sizes to its items' min-content and therefore
+              grows past the container whenever the prose contains one long
+              unbreakable token. The `lg:` two-column rule is unchanged. */}
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[280px_minmax(0,_1fr)] lg:gap-14">
             {/* Sidebar — sticky on lg+ */}
             <div className="lg:sticky lg:top-24 lg:self-start">
               <ReadingSidebar toc={post.toc} />

@@ -238,7 +238,7 @@ function FloatingBook({
                     <br />
                     {title[1]}
                   </h3>
-                  <p className="mt-5 text-[12px] sm:text-[11px] text-white/50">{author}</p>
+                  <p className="mt-5 text-[12px] lg:text-[11px] text-white/50">{author}</p>
                 </div>
               </div>
               {/* Inner shine */}

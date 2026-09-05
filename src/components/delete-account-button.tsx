@@ -99,7 +99,7 @@ export function DeleteAccountButton() {
       </ul>
       <p className="mt-4 text-xs text-fg-mid">
         Type{" "}
-        <code className="rounded border border-white/[0.08] bg-white/[0.04] px-1.5 py-0.5 font-mono text-[12px] sm:text-[10px] text-[#ff9b9b]">
+        <code className="rounded border border-white/[0.08] bg-white/[0.04] px-1.5 py-0.5 font-mono text-[12px] lg:text-[10px] text-[#ff9b9b]">
           DELETE
         </code>{" "}
         to confirm.

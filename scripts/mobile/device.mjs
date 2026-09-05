@@ -192,6 +192,17 @@ export function wakeDevice() {
   const woke = run(["shell", "input", "keyevent", "KEYCODE_WAKEUP"]);
   run(["shell", "svc", "power", "stayon", "usb"]);
   run(["shell", "settings", "put", "system", "screen_off_timeout", "1800000"]);
+  /* Chrome must be the FOREGROUND app, not merely running.
+   *
+   * Android suspends a backgrounded Chrome's renderers, and the DevTools
+   * socket then accepts a connection but never answers — the sweep dies on
+   * "CDP timeout: CSS.enable" partway through, which reads like a harness bug
+   * and is not one. This bit us for real in Phase 9: launching the WebView
+   * host (scripts/mobile/wvhost) pushed Chrome to the background and the very
+   * next audit aborted on route 1 of 224. Cheap to prevent; costly to
+   * diagnose. Best-effort, like the rest of this function. */
+  run(["shell", "monkey", "-p", "com.android.chrome", "-c",
+       "android.intent.category.LAUNCHER", "1"]);
   return woke;
 }
 
@@ -216,6 +227,21 @@ export async function connectDevice({ cdpUrl = DEVICE_CDP } = {}) {
     androidPackage: version["Android-Package"],
   });
   await cdp.enableDomains();
+
+  /* Pin the browser to English.
+   *
+   * A phone set to Turkish had Chrome translate the page on arrival: every
+   * visible string came back Turkish ("Sepete ekle" for "Add to cart"), and
+   * every text-matching check in the suite reported the control missing. The
+   * page was fine; the harness was reading a translation. Overriding the
+   * accept-language and the locale stops Chrome offering it, and it also keeps
+   * dates and number formats stable between phones. */
+  try {
+    await cdp.send("Emulation.setUserAgentOverride", {
+      userAgent: version["User-Agent"], acceptLanguage: "en-US,en", platform: "Android",
+    });
+    await cdp.send("Emulation.setLocaleOverride", { locale: "en-US" });
+  } catch { /* older builds: not fatal, the guard below still catches it */ }
   return cdp;
 }
 

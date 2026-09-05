@@ -35,7 +35,7 @@ export function LibraryRecommendationShelf({
         <div className="grid gap-0 lg:grid-cols-[1fr_1.6fr]">
           {/* LEFT — editorial CTA */}
           <div className="relative flex flex-col justify-center p-7 sm:p-10">
-            <p className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-bright">
+            <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-bright">
               Looking for your next read?
             </p>
             <h2 className="mt-4 font-serif text-[26px] font-medium leading-tight tracking-tight text-fg-hi sm:text-[32px]">

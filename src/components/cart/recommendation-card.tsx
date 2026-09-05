@@ -35,7 +35,9 @@ export function RecommendationCard({ book }: { book: CatalogItem }) {
     e.stopPropagation();
     if (!direct) return;
     startTransition(async () => {
-      await addToCart(book.id);
+      // Same contract as <BookAddToCart>: only claim it was added if it was.
+      const result = await addToCart(book.id);
+      if (!result.ok) return;
       if (typeof window !== "undefined") {
         window.dispatchEvent(new CustomEvent("cart-changed"));
       }

@@ -132,4 +132,4 @@ agent). No assertion weakened.
    Korean copy is added elsewhere, `withLangRuns` should be applied there too.
 3. **iOS Safari untested** — `navigator.share` behaviour there is unverified.
 
-**COMMIT:** `eb29970`
+**COMMIT:** `62378d2`

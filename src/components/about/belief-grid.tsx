@@ -52,7 +52,7 @@ export function BeliefGrid() {
   return (
     <section aria-labelledby="beliefs-heading">
       <header className="max-w-2xl">
-        <p className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+        <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
           Our convictions
         </p>
         <h2

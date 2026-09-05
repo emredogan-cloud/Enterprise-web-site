@@ -64,7 +64,7 @@ export function WhatHappensNextStrip() {
               />
 
               {/* Step number — small, calm */}
-              <p className="text-[12px] sm:text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-bright">
+              <p className="text-[12px] lg:text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-bright">
                 Step {i + 1}
               </p>
 

@@ -7,7 +7,7 @@ import { ChevronDown } from "lucide-react";
 export function ScrollCue() {
   return (
     <div className="flex flex-col items-center gap-2 text-fg-fade">
-      <span className="text-[12px] sm:text-[11px] font-medium uppercase tracking-[0.3em]">
+      <span className="text-[12px] lg:text-[11px] font-medium uppercase tracking-[0.3em]">
         Scroll to explore
       </span>
       <ChevronDown

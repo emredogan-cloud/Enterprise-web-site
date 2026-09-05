@@ -183,4 +183,4 @@ reproduce identically in the main working tree. No assertion was weakened.
 3. **Checkout stops at the handoff.** The Paddle flow, the return URL and
    entitlement were not exercised — that needs a real transaction.
 
-**COMMIT:** `fa60c71`
+**COMMIT:** `c23bcc2`

@@ -173,4 +173,4 @@ size that raises the floor without touching leading — and the gate went green.
 - **P2-6** Korean fallback — Phase 7. **P2-7** iOS input zoom — untestable.
 - **P2-8** skip link — Phase 8. **P3-2/3/4** unchanged.
 
-**COMMIT:** `0c7bb3d`
+**COMMIT:** `0334dc9`

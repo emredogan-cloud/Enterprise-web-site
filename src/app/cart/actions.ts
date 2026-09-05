@@ -15,21 +15,43 @@ import { getPaddleClient, isPaddleConfigured } from "@/lib/paddle";
 /**
  * Add a book to the cart. Idempotent — if the book is already in the
  * cart we no-op (digital books have an implicit quantity of 1).
+ *
+ * RETURNS A RESULT, and the caller must respect it.
+ *
+ * Every guard below is a legitimate refusal, but they used to be SILENT: the
+ * action returned void, so `BookAddToCart` set "Added to cart" no matter what
+ * happened. Measured on the Redmi in Phase 9 — a tap on a real product page
+ * answered "Added to cart", `/api/cart/count` stayed at 0, and the cart was
+ * empty when the reader got there. A store may decline to sell a book; it may
+ * not tell the reader it sold them one.
+ *
+ * `inCart` is a success: the book is in the cart, which is what the reader
+ * asked for. `unavailable` and `unknown` are not.
  */
-export async function addToCart(bookId: string): Promise<void> {
-  if (!bookId) return;
+export type AddToCartResult =
+  | { ok: true; state: "added" | "inCart" }
+  | { ok: false; reason: "unknown" | "unavailable" };
+
+export async function addToCart(bookId: string): Promise<AddToCartResult> {
+  if (!bookId) return { ok: false, reason: "unknown" };
   // Only a title this store actually sells may enter the cart. A book whose
   // every edition is fulfilled by Amazon has `price_cents = 0` and no Paddle
   // price; adding it produced a $0 line that checkout then refused. The
   // shelves no longer offer the button for such a book, and this guard makes
   // the rule hold even for a stale page or a hand-made request.
   const [book] = await getCheckoutItems([bookId]);
-  if (!book || book.priceCents <= 0 || !book.paddlePriceId) return;
+  // A stale ISR page can carry a book id the database no longer has — that is
+  // exactly how this was found — so "unknown" and "unavailable" are separate.
+  if (!book) return { ok: false, reason: "unknown" };
+  if (book.priceCents <= 0 || !book.paddlePriceId) {
+    return { ok: false, reason: "unavailable" };
+  }
   const cart = await readCart();
-  if (cart.items.some((i) => i.bookId === bookId)) return;
+  if (cart.items.some((i) => i.bookId === bookId)) return { ok: true, state: "inCart" };
   cart.items.push({ bookId, addedAt: Date.now() });
   await writeCart(cart);
   revalidatePath("/cart");
+  return { ok: true, state: "added" };
 }
 
 /** Remove a single book from the cart. */

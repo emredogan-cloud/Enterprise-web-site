@@ -72,7 +72,7 @@ export function AuthorNewsletterStrip({
                 }}
               />
               <div>
-                <p className="text-[12px] sm:text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+                <p className="text-[12px] lg:text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
                   Written by
                 </p>
                 <p className="mt-0.5 font-serif text-[19px] font-medium text-fg-hi">
@@ -98,7 +98,7 @@ export function AuthorNewsletterStrip({
 
           {/* RIGHT — Newsletter CTA */}
           <div>
-            <p className="text-[12px] sm:text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-bright">
+            <p className="text-[12px] lg:text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-bright">
               Newsletter
             </p>
             <h2 className="mt-3 font-serif text-[24px] font-medium leading-tight text-fg-hi sm:text-[28px]">
