@@ -93,3 +93,6 @@ gcp-*.json
 # Python venv for the print factory (reportlab, pikepdf, segno, fontTools).
 # Recreate with: python3 -m venv .venv-factory && .venv-factory/bin/pip install pypdf pikepdf segno reportlab fonttools Pillow
 .venv-factory/
+
+# Python bytecode from the OCR tooling
+scripts/factory/ocr/__pycache__/

@@ -29,8 +29,9 @@ and keeps `grep` for a project honest. The author and volume are already carried
 catalogue slug and the book's own `project_config.json`.
 
 **Nothing else moved.** Greek Alphabet, Dudeney, the Codex titles, World Games, World
-Myths, Hangul, Field Book, the Phase 2 project (`GAMES-ANCIENT-AND-ORIENTAL`) and every
-unrelated directory stayed where they were.
+Myths, Hangul, Field Book, and every unrelated directory stayed where they were. The Phase 2 project moved
+separately, into `PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL`, when that phase's own
+directory was created — the same convention, one parent per phase.
 
 ## What had to change with it
 
