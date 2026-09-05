@@ -668,6 +668,96 @@ const EPICTETUS: Companion = {
 };
 
 /**
+ * ── GAMES ANCIENT AND ORIENTAL ────────────────────────────────────────────
+ *
+ * Valice Classics 8, built 2026-09-05 as Book 1 of the public-domain factory's
+ * Phase 2 — the first Valice edition made from a SCAN rather than from a
+ * proof-read transcription.
+ *
+ * The boards are the point of this companion. Falkener's complaint about two
+ * centuries of antiquarian scholarship was that the game was never played; the
+ * one thing a reader of this edition can do that his readers could not is print
+ * the board and play on it. They are drawn by the same code path as the figures
+ * in the book, so the sheet and the diagram cannot disagree, and each carries
+ * the same EVIDENCE or RECONSTRUCTION mark.
+ */
+const GAMES_ANCIENT: Companion = {
+  slug: "games-ancient-and-oriental",
+  bookSlug: "games-ancient-and-oriental",
+  bookTitle: "Games Ancient and Oriental: The Egyptian Games",
+  state: "book-not-yet-available",
+  stateNote:
+    "The Valice edition is built, validated and priced but not yet on sale — " +
+    "creating the payment product is a live write that is held behind a " +
+    "founder action. Everything on this page is free and works today regardless.",
+  intro:
+    "Free material for Falkener's Egyptian games: three boards at playing " +
+    "size to print, the register that separates the evidence from the " +
+    "reconstruction, the terms, and the three timelines this volume keeps apart.",
+  newsletterSource: "games-ancient-and-oriental-companion",
+  assetsHeading: "Print and play",
+  rightsNote:
+    "Edward Falkener died in 1896 and Dr Samuel Birch, whose 1864 paper the " +
+    "book prints, died in 1885, so their text is in the public domain " +
+    "everywhere (source: Internet Archive, gamesancientorie00falkuoft). None " +
+    "of the 1892 engravings is reproduced: they are unsigned, no illustrator " +
+    "is named, and an image with no identified creator has no death year to " +
+    "clear it with. Every board on these sheets was drawn for this edition " +
+    "from the descriptions in the text.",
+  assets: [
+    {
+      id: "boards",
+      title: "Three boards to print and play on",
+      description:
+        "The board of thirty compartments, Senat at five squares each way, " +
+        "and the concentric rings of Hab em Han — at playing size, on US " +
+        "Letter. Each carries the same mark it carries in the book: EVIDENCE " +
+        "where an ancient source describes the board, RECONSTRUCTION where " +
+        "Falkener inferred it. Counters or coins will do for men.",
+      kind: "static",
+      href: "/companion/games-ancient-and-oriental/boards.pdf",
+      meta: "PDF · US Letter · 3 pages",
+    },
+    {
+      id: "register-card",
+      title: "The Register of Reconstructions",
+      description:
+        "For each of the three games: what the evidence shows, what Falkener " +
+        "supplies, and what is known now — which in every case includes that " +
+        "the rules are still not known. The instrument the book is built " +
+        "around, on one sheet.",
+      kind: "static",
+      href: "/companion/games-ancient-and-oriental/register-card.pdf",
+      meta: "PDF · US Letter · 1 page",
+    },
+    {
+      id: "the-terms",
+      title: "The terms",
+      description:
+        "The games, dynasties and seventeenth-century antiquaries Falkener " +
+        "assumes you already know — sent, senet, mehen, latrunculi, Seega, " +
+        "Hyde, Birch — with what each one is and, where it differs, what it " +
+        "is called now.",
+      kind: "static",
+      href: "/companion/games-ancient-and-oriental/the-terms.pdf",
+      meta: "PDF · US Letter · 2 pages",
+    },
+    {
+      id: "chronology",
+      title: "Three timelines",
+      description:
+        "The Egyptian, which is deep and imprecise; the classical, which is " +
+        "shallow and better dated; and the antiquarian, which runs from " +
+        "Salmasius in 1620 to Falkener in 1892. Keeping them apart is most of " +
+        "what makes the book readable.",
+      kind: "static",
+      href: "/companion/games-ancient-and-oriental/chronology.pdf",
+      meta: "PDF · US Letter · 1 page",
+    },
+  ],
+};
+
+/**
  * ── SENECA: SELECTED DIALOGUES ────────────────────────────────────────────
  *
  * Valice Classics 4, built 2026-09-04 as Book 2 of the public-domain factory's
@@ -1067,6 +1157,7 @@ const COMPANIONS: readonly Companion[] = [
   CODEX_MYTHOLOGICA,
   MYTH_HUNTERS,
   EPICTETUS,
+  GAMES_ANCIENT,
   SENECA,
   GREEK,
   CHINA_GODS,

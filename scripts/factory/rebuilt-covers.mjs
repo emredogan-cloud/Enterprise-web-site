@@ -52,6 +52,15 @@ export const REBUILT_COVERS = {
       note: "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 176 — that is, after the companion leaf. Its spine and wrap agree with this pipeline's own arithmetic to four decimal places (0.396352 / 12.646352), so nothing had to be rebuilt after the splice.",
     },
   },
+  "games-ancient-and-oriental": {
+    paperback: {
+      built: true,
+      path: `${BOOKS}/PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/ASSETS/cover/paperback-wrap-v1.pdf`,
+      pageCount: 78, spineIn: 0.1757,
+      wrapIn: "12.4257 × 9.2500 (white)",
+      note: "built 2026-09-05 by the project's own BUILD/build_cover.py, which reads the FINAL page count out of QA/interior-main.json — that is, after the companion leaf — so the spine is computed from the count the book will actually have. The device is the board of thirty compartments, the EVIDENCE board; putting a reconstructed board on the cover would have stated the book's argument backwards.",
+    },
+  },
   "mythical-monsters": {
     paperback: {
       built: true,

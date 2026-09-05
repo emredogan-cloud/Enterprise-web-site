@@ -52,6 +52,14 @@ export const DIGITAL_EDITION_SOURCES = [
     epub: `${ROOT}/THE-PUZZLES-OF-HENRY-DUDENEY/OUTPUT/the-puzzles-of-henry-dudeney-main.epub`,
   },
   {
+    // Valice Classics 8 (2026-09-05), Phase 2 book 1. The interior carries five
+    // raster plates and nineteen rebuilt move tables, so the /ebook pass does
+    // downsample rather than merely normalise.
+    slug: "games-ancient-and-oriental",
+    printInterior: `${ROOT}/PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/OUTPUT/interior-main.pdf`,
+    epub: `${ROOT}/PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/OUTPUT/games-ancient-and-oriental.epub`,
+  },
+  {
     // Valice Classics 3 (2026-09-04). Text-only 6 × 9 interior with no plates,
     // so the /ebook pass is a normalising pass rather than a downsampling one.
     slug: "epictetus-discourses-and-enchiridion",

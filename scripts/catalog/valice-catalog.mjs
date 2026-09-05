@@ -1321,6 +1321,77 @@ export const BOOKS = [
   },
 
   {
+    slug: "games-ancient-and-oriental",
+    title: "Games Ancient and Oriental: The Egyptian Games",
+    subtitle:
+      "Edward Falkener's 1892 Reconstruction, Annotated \u2014 with Dr Samuel Birch's 1864 Paper, a Register of Reconstructions, Five Original Diagrams and Nineteen Rebuilt Move Tables",
+    language: "en",
+    pageCount: 78,
+    categories: ["games-and-play", "classics-and-philosophy"],
+    authors: ["emre-dogan"],
+    bisac: ["GAM001000", "HIS002030"],
+    series: { name: "Valice Classics", volume: 8 },
+    // PHASE 2, BOOK 1. Built from an Internet Archive SCAN rather than a proof-read
+    // transcription, which is a different kind of source and is treated as one: the
+    // running heads are found structurally, the 1892 folios are validated against a
+    // physical constraint before being printed, every correction was read off the page
+    // image, and the move tables are rebuilt from the OCR's own word coordinates.
+    // What could not be read is marked, not smoothed. QA/parse-report.json has the counts.
+    websiteStatus: "draft",
+    linkageDecision: null,
+    kdpSelect: false,
+    directSale: true,
+    // The product and price are written and priced; creating them on the live
+    // Paddle account is a write this environment's permission layer does not
+    // allow, and routing around that block would defeat it. FOUNDER F-019 holds
+    // the one command. Until it runs the ebook is `coming_soon`, not `available`,
+    // because a buy button with no price behind it is a lie.
+    directSaleBlockedBy: "paddle-not-provisioned",
+    paddlePriceId: null,
+    onelinePromise:
+      "The first serious attempt to make a dead game playable again \u2014 with the seam marked, for the first time, between what the evidence shows and what Falkener supplied.",
+    description:
+      "In 1892 an English architect did what no antiquary had done: he wrote down the rules. Two centuries of scholars had collected every classical passage about ancient board games and left them, as Falkener complained, a skeleton \u2014 \u201cthe bones of the entire skeleton have been put together, but there they remained; the game was not played.\u201d So he supplied the play. The ancient sources do not contain those rules. They are his, inferred from a board, a piece count and a few lines of Latin verse, and the book prints them in the imperative with worked games played to a finish and nothing marking where the evidence stops. This edition marks it. A Register of Reconstructions separates, for each of the three games, what the evidence shows, what Falkener supplies, and what is known now \u2014 which in every case includes that the rules are still not known. Sections I to VI complete: Falkener's introduction, the games of the ancient Egyptians, the Manchester relics, and Tau, Senat and Hab em Han. With the 1864 paper Dr Samuel Birch of the British Museum wrote for him \u2014 the best thing in the volume, and the place where a specialist marks his own uncertainty. Around them: five original diagrams, each marked EVIDENCE or RECONSTRUCTION on its face, a glossary of the terms, a chronology, an index of subjects generated from the text, and a note on the text that says exactly what a scan can and cannot give you. 78 pages, 6 \u00d7 9 in.",
+    idealReader:
+      "Someone who likes ancient games and would rather be told which parts of a reconstruction are evidence and which are the reconstructor.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(7.99),
+        pageCount: 78,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: "books/games-ancient-and-oriental/master/v1/master.pdf",
+        epubFileKey: "books/games-ancient-and-oriental/master/v1/master.epub",
+        priceBasis:
+          "price-engine.mjs 2026-09-05, direct ebook, public domain: recommended $6.99, and $7.99 nets $7.09 after Paddle. The Valice Classics band is $7.99\u20139.99 for the minimum apparatus standard. This edition measures 25.7% original matter (QA/differentiation.json) \u2014 above the 20% floor \u2014 but it is 78 pages against the 154\u2013176 of the other Classics titles, so it is priced at the bottom of the band rather than at the $9.99 the longer volumes carry.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(12.99),
+        pageCount: 78,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-05, 78 pp 6\u00d79 B&W: prints at $2.30 on the flat rate for 110 pages or under, KDP minimum list $3.84, recommended $9.99. $12.99 nets $5.49 (42.3%). The Classics band of $16.99\u201319.99 assumes a 150-page-plus volume and this is 78, so $12.99 is proposed instead. The Founder decides at Gate 8.",
+      },
+    ],
+    blockers: [
+      "The ebook is built, priced and ready but not yet on sale: creating the Paddle product and price is a live write that this environment's permission layer blocks, and working around it would defeat the block. One command, in FOUNDER F-019.",
+      "Not on KDP. The interior and wrap are built and packaged; the print upload is a Founder action \u2014 see the KDP upload handbook in PHASE-2-REPORT.",
+      "Nine of Falkener's tables are described rather than reproduced. The bowl game's form of throws and entries is read at 88% wrong or absent by the scan's text layer, and setting it would be worse than leaving it out. Each omission is marked in place with its size and its 1892 page. This is stated in the Note on the Text and in the product description's honesty, not hidden.",
+      "This is a short volume \u2014 78 pages against 154\u2013176 for the other Classics titles \u2014 because sections I to VI are where the Egyptian argument ends and section VII changes subject to the Greek hiera gramme. Both prices are set for the length rather than for the series.",
+      "No Kindle edition planned at launch: KDP caps public-domain content at the 35% royalty tier, and the Kindle store already carries free scans of this title. No hardcover: 78 pages is at the very bottom of KDP's 75\u2013550 hardcover range and would bind badly. No large print: the move tables do not enlarge usefully. Each decision is recorded rather than assumed.",
+    ],
+  },
+  {
     slug: "codex-enigmatica",
     title: "Codex Enigmatica",
     subtitle:

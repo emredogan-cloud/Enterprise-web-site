@@ -14,6 +14,66 @@ output while other work continues · **P2** is an inconvenience and never stops 
 ## Open
 
 
+### F-020 · P1 · Sign gates 2 and 5 for Falkener
+
+- **Date raised:** 2026-09-05 · **Phase:** 2 · **Book:** 1
+- **Blocker:** gates 2 (rights) and 5 (facts) are never-skip gates that require a person's
+  signature. `kill_gate.py --level release` refuses the book until they carry one, which is
+  correct. Recording them as passed from inside the factory would be forging the signature.
+- **Why the agent cannot do it:** it is a signature, not a check. Both checks are done.
+- **Already done — gate 2:** `rights-lint` clean over 60 ledger rows. RL-0017 is GREEN and
+  was founder-approved on 2026-09-02 for the work itself. Falkener died 17 December 1896
+  and Samuel Birch on 27 December 1885, both verified against the National Archives
+  authority record and the DNB. None of the 1892 engravings is reproduced: they are
+  unsigned, no illustrator is named anywhere, so there is no death year to clear them
+  against — the same finding that removed Werner's plates in Phase 1. Every figure is drawn
+  for this edition from the descriptions in the text.
+- **Already done — gate 5:** twelve claims registered in `CLAIMS.jsonl`, every one VERIFIED
+  against an external source, `claim-lint` clean. **The verification pass found and
+  corrected two errors before they shipped:** the imprint gave Falkener's death as 1908
+  when the ledger and every authority say 1896; and the introduction said Birch became
+  Keeper of Oriental Antiquities *after* the 1864 letter, when the DNB shows he had held
+  the keepership since the department was divided in 1861. The chronology was also widened
+  where it was too narrow (mehen) and dated where it was vague (Hatshepsut, and the
+  Manchester show, which is the Royal Jubilee Exhibition of 3 May 1887).
+- **The action:** read `CLAIMS.jsonl` and `RIGHTS.md`, then set gates 2 and 5 in
+  `gates.json` to `status: "passed"`, `approvedBy: "founder"`, as was done for Epictetus on
+  2026-09-04.
+
+---
+
+### F-019 · P1 · Create the Paddle product for Falkener (one command)
+
+- **Date raised:** 2026-09-05 · **Phase:** 2 · **Book:** 1
+- **Blocker:** `games-ancient-and-oriental` is built, priced, uploaded to R2 and validated,
+  but it has no Paddle product or price, so it cannot be sold. Everything else is done.
+- **Why the agent cannot do it:** the live write is refused by this environment's
+  permission layer. The dry run passes and shows exactly one product to create; the
+  `--commit --i-know-this-is-live` run is blocked. Routing around that block — copying the
+  key elsewhere, calling the API directly — would defeat the control, so it was not done.
+- **Already done:** `scripts/catalog/paddle-products.mjs` carries the entry at $7.99 with
+  its price basis. The dry run reports `games-ancient-and-oriental product=WOULD CREATE
+  price=WOULD CREATE $7.99`, and every other book resolves to its existing ids, so the
+  run will create one product and touch nothing else. The masters are in R2 and
+  content-verified. The catalogue entry holds the ebook at `coming_soon` with
+  `directSaleBlockedBy: "paddle-not-provisioned"`, because a buy button with no price
+  behind it is a lie.
+- **The action:**
+
+  ```
+  node scripts/catalog/provision-paddle.mjs --commit --i-know-this-is-live
+  ```
+
+  Then paste the new `pri_…` into the book's `paddlePriceId` in
+  `scripts/catalog/valice-catalog.mjs`, set the ebook format to `availability: "available"`,
+  set `directSaleBlockedBy: null`, set `websiteStatus: "published"`, and run
+  `load-catalog.mjs` against **`neondb`** — not the `bookstore` database the local env
+  files point at. See `docs/execution/public-domain/PHASE-2-REPORT`.
+- **Still open:** F-017 applies here too — Paddle will create this product under the
+  `standard` tax category, which over-collects VAT on an ebook.
+
+---
+
 ### F-003 · P1 · Take an Amazon market sample before the paperback price is fixed
 
 - **Date raised:** 2026-09-04 · **Phase:** 1 · **Book:** 1

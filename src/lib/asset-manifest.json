@@ -130,6 +130,14 @@
       "entity": "epictetus-discourses-and-enchiridion"
     },
     {
+      "path": "/images/books/games-ancient-and-oriental.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 69024,
+      "slot": "book-cover",
+      "entity": "games-ancient-and-oriental"
+    },
+    {
       "path": "/images/books/greek-alphabet-handwriting-workbook.webp",
       "width": 1067,
       "height": 1600,

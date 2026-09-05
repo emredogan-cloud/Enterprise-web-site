@@ -228,6 +228,21 @@ export const COMPANION_PAGE_COPY = {
       { asset: "the-names", term: "The names", gloss: "what the apostrophe and the breve are doing, after which the names stop being noise" },
     ],
   },
+  "games-ancient-and-oriental": {
+    companionSlug: "games-ancient-and-oriental",
+    imprint: "Valice Press",
+    headline: "Print the boards.\nPlay the games.",
+    promise:
+      "Falkener's complaint was that the game was never played. Everything you " +
+      "need to play it, free, for readers of this edition.",
+    listHeading: "WHAT IS WAITING FOR YOU",
+    bullets: [
+      { asset: "boards", term: "Three boards", gloss: "the thirty-square board, Senat and the bowl, at playing size, to print and play on" },
+      { asset: "register-card", term: "The Register", gloss: "for each game: what the evidence shows, what Falkener supplies, what is known now" },
+      { asset: "the-terms", term: "The terms", gloss: "the games, dynasties and antiquaries Falkener assumes you already know" },
+      { asset: "chronology", term: "Three timelines", gloss: "the Egyptian, the classical and the antiquarian, kept apart" },
+    ],
+  },
   "epictetus-discourses-and-enchiridion": {
     companionSlug: "epictetus",
     imprint: "Valice Press",
@@ -520,6 +535,20 @@ export const COMPANION_PAGE_PLAN = {
         // The interior is typeset from source without a companion page; this
         // pipeline appends the leaf and recalculates the spine.
         mode: "append", page: null, pagesBefore: 175, pagesAfter: 176, recto: true,
+        folio: { style: "centre", offset: 0, size: 8.6, baselineFromBottomPt: 28.8, outerMarginPt: 36 },
+        replacing: null,
+      },
+    },
+  },
+
+  "games-ancient-and-oriental": {
+    style: { fonts: TYPE.liberationSerif, marginIn: 0.62, rule: 0.7 },
+    editions: {
+      paperback: {
+        // Phase 2 book 1. The interior is typeset deliberately ODD at 77 pages so
+        // that this pipeline's appended leaf produces the even 78 KDP requires,
+        // and the cover was built from that final count, not from the pre-splice one.
+        mode: "append", page: null, pagesBefore: 77, pagesAfter: 78, recto: true,
         folio: { style: "centre", offset: 0, size: 8.6, baselineFromBottomPt: 28.8, outerMarginPt: 36 },
         replacing: null,
       },

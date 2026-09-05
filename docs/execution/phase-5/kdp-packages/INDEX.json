@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04",
+  "generatedAt": "2026-09-05",
   "editions": [
     {
       "generatedAt": "2026-09-04",
@@ -899,6 +899,138 @@
           "name": "pdf-metadata",
           "pass": true,
           "detail": "title=\"Epictetus: The Discourses and Enchiridion: The George Long Translation, Annotated — the Complete Enchiridion, 68 Discourses in Seven Thematic Parts, 120 Head-Notes, a Stoic Glossary and a Concordance to the Meditations\" author=\"Emre Doğan\""
+        }
+      ]
+    },
+    {
+      "generatedAt": "2026-09-05",
+      "book": "games-ancient-and-oriental",
+      "format": "paperback",
+      "title": "Games Ancient and Oriental: The Egyptian Games",
+      "asin": null,
+      "kdpState": "not_created",
+      "interior": {
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/OUTPUT/interior-main.pdf",
+        "sha256": "84ea1672c73ffad64722cd3f5f55464bb312dabf6decc9279ec3b5ee7d64d075",
+        "bytes": 895639,
+        "pagesBefore": 77,
+        "pagesAfter": 78,
+        "companionPage": 78,
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/OUTPUT/interior-main.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
+      },
+      "companion": {
+        "printedUrl": "valicepress.com/companion/games-ancient-and-oriental",
+        "qrUrl": "https://valicepress.com/companion/games-ancient-and-oriental",
+        "qr": {
+          "modules": 33,
+          "module_pt": 4.804992,
+          "module_mm": 1.6950944,
+          "version": 4,
+          "error": "M",
+          "side_pt": 158.564736,
+          "fraction_of_usable_height": 0.2838,
+          "x_pt": 136.717632,
+          "y_pt": 301.1247372434285
+        },
+        "dedicatedPage": true,
+        "emailWall": false
+      },
+      "spine": {
+        "pagesBefore": 77,
+        "pagesAfter": 78,
+        "paper": "white",
+        "binding": "paperback",
+        "trim": "6×9 in",
+        "before": {
+          "spineWidthIn": 0.173404,
+          "wrapWidthIn": 12.423404,
+          "wrapHeightIn": 9.25,
+          "spineTextAllowed": false
+        },
+        "after": {
+          "spineWidthIn": 0.175656,
+          "wrapWidthIn": 12.425656,
+          "wrapHeightIn": 9.25,
+          "spineTextAllowed": false
+        },
+        "deltaSpineIn": 0.002252,
+        "deltaWrapWidthIn": 0.002252,
+        "withinKdpTolerance": true,
+        "coverRebuildRequired": false,
+        "coverRebuildCorrect": true,
+        "hardcoverGeometryMustBeRead": false,
+        "barcodeZoneAffected": false,
+        "verdict": "wrap width moves 0.002252 in — inside KDP's ±0.0625 in tolerance, so the existing cover would be accepted, but the spine it states is now wrong by 0.002252 in and the house rule is that each edition's cover reads its own page count"
+      },
+      "cover": {
+        "built": true,
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/ASSETS/cover/paperback-wrap-v1.pdf",
+        "pageCount": 78,
+        "spineIn": 0.1757,
+        "wrapIn": "12.4257 × 9.2500 (white)",
+        "note": "built 2026-09-05 by the project's own BUILD/build_cover.py, which reads the FINAL page count out of QA/interior-main.json — that is, after the companion leaf — so the spine is computed from the count the book will actually have. The device is the board of thirty compartments, the EVIDENCE board; putting a reconstructed board on the cover would have stated the book's argument backwards."
+      },
+      "coverAction": "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior",
+      "uploadRequired": true,
+      "hold": null,
+      "proofRecommended": true,
+      "proofWhy": "the block changed thickness, so the wrap is new and unproved",
+      "verification": [
+        {
+          "name": "page-count",
+          "pass": true,
+          "detail": "78 pages (expected 78)"
+        },
+        {
+          "name": "printed-url",
+          "pass": true,
+          "detail": "valicepress.com/companion/games-ancient-and-oriental"
+        },
+        {
+          "name": "canonical-host",
+          "pass": true,
+          "detail": "no forbidden host on the page"
+        },
+        {
+          "name": "no-email-wall",
+          "pass": true,
+          "detail": "the page asks for nothing"
+        },
+        {
+          "name": "headline",
+          "pass": true,
+          "detail": "headline present"
+        },
+        {
+          "name": "eyebrow",
+          "pass": true,
+          "detail": "CONTINUE WITH VALICE PRESS"
+        },
+        {
+          "name": "fonts-embedded",
+          "pass": true,
+          "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
+        },
+        {
+          "name": "qr-floor",
+          "pass": true,
+          "detail": "28.4% of usable height"
+        },
+        {
+          "name": "qr-module-size",
+          "pass": true,
+          "detail": "1.70 mm per module"
+        },
+        {
+          "name": "pdf-metadata",
+          "pass": true,
+          "detail": "title=\"Games Ancient and Oriental: The Egyptian Games: Edward Falkener's 1892 Reconstruction, Annotated — with Dr Samuel Birch's 1864 Paper, a Register of Reconstructions, Five Original Diagrams and Nineteen Rebuilt Move Tables\" author=\"Emre Doğan\""
+        },
+        {
+          "name": "qr-matches-url",
+          "pass": true,
+          "detail": "33×33 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/games-ancient-and-oriental"
         }
       ]
     },

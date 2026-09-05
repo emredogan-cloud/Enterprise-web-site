@@ -65,6 +65,12 @@ export const PRINT_INTERIORS = {
     // to make 176, which is the even count KDP requires.
     paperback: `${ROOT}/PHASE-1-BOOK/01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pdf`,
   },
+  "games-ancient-and-oriental": {
+    // PHASE 2, BOOK 1 (2026-09-05). Valice Classics 8. Typeset deliberately ODD
+    // (77 pp) so the companion leaf appended by build-companion-pages.mjs makes
+    // the even 78 that KDP requires.
+    paperback: `${ROOT}/PHASE-2-BOOK/01-GAMES-ANCIENT-AND-ORIENTAL/OUTPUT/interior-main.pdf`,
+  },
   "seneca-selected-dialogues": {
     // Valice Classics 4 (2026-09-04). 156 pp — an odd 155 was padded to an even
     // count by the build, because KDP rejects an odd final page.
