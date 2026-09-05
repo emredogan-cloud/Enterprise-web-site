@@ -19,7 +19,12 @@
  *
  * `printInterior` points into the book production repositories, which are
  * NOT part of this repository. The build script fails loudly rather than
- * silently skipping when a path is absent.
+ * silently skipping when a path is absent — which is how the 2026-09-05 pass
+ * found that SIX of these paths had gone stale: the book repositories were
+ * reorganised into CODEX-SERIES/, GAMES-PUZZLE/, LANGUAGE-SERIES/ and
+ * PHASE-1-BOOK/ after these lines were written, and nothing had re-cut a
+ * digital edition since. Every path below was checked against the filesystem
+ * on 2026-09-05.
  */
 
 const ROOT = "/home/emre/Downloads/MY-DİGİTAL-BOOK";
@@ -27,29 +32,29 @@ const ROOT = "/home/emre/Downloads/MY-DİGİTAL-BOOK";
 export const DIGITAL_EDITION_SOURCES = [
   {
     slug: "codex-bestiarium",
-    printInterior: `${ROOT}/CODEX_BESTIARIUM/04_PRINT/PAPERBACK/CODEX_BESTIARIUM_INTERIOR_PAPERBACK.pdf`,
+    printInterior: `${ROOT}/CODEX-SERIES/CODEX-BESTIARIUM/04_PRINT/PAPERBACK/CODEX_BESTIARIUM_INTERIOR_PAPERBACK.pdf`,
   },
   {
     slug: "codex-enigmatica",
-    printInterior: `${ROOT}/CODEX-ENIGMATICA/08_OUTPUT/PAPERBACK/interior.pdf`,
+    printInterior: `${ROOT}/CODEX-SERIES/CODEX-ENIGMATICA/08_OUTPUT/PAPERBACK/interior.pdf`,
   },
   {
     slug: "the-great-book-of-world-games",
-    printInterior: `${ROOT}/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/PAPERBACK/GreatBookOfWorldGames_interior_paperback.pdf`,
+    printInterior: `${ROOT}/GAMES-PUZZLE/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/PAPERBACK/GreatBookOfWorldGames_interior_paperback.pdf`,
   },
   {
     slug: "the-great-book-of-world-myths",
-    printInterior: `${ROOT}/THE-GREAT-BOOK-OF-WORLD-MYTHS/08_OUTPUT/paperback/interior.pdf`,
+    printInterior: `${ROOT}/GAMES-PUZZLE/THE-GREAT-BOOK-OF-WORLD-MYTHS/08_OUTPUT/paperback/interior.pdf`,
   },
   {
     // Valice Classics 2 (2026-09-02). The 6 × 9 print interior is already
     // small (scan-resolution figures), so the /ebook pass mostly normalises.
     slug: "the-puzzles-of-henry-dudeney",
-    printInterior: `${ROOT}/THE-PUZZLES-OF-HENRY-DUDENEY/OUTPUT/interior-main.pdf`,
+    printInterior: `${ROOT}/GAMES-PUZZLE/THE-PUZZLES-OF-HENRY-DUDENEY/OUTPUT/interior-main.pdf`,
     // The second delivered artifact. One purchase, both files: the worker
     // watermarks the PDF page by page and the EPUB by appending a licence
     // leaf and writing the same line into the package metadata.
-    epub: `${ROOT}/THE-PUZZLES-OF-HENRY-DUDENEY/OUTPUT/the-puzzles-of-henry-dudeney-main.epub`,
+    epub: `${ROOT}/GAMES-PUZZLE/THE-PUZZLES-OF-HENRY-DUDENEY/OUTPUT/the-puzzles-of-henry-dudeney-main.epub`,
   },
   {
     // Valice Classics 8 (2026-09-05), Phase 2 book 1. The interior carries five
@@ -92,12 +97,12 @@ export const DIGITAL_EDITION_SOURCES = [
     // of once. The interior is vector at 0.4 MB, so the /ebook pass
     // normalises rather than downsamples.
     slug: "greek-alphabet-handwriting-workbook",
-    printInterior: `${ROOT}/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/interior.pdf`,
+    printInterior: `${ROOT}/LANGUAGE-SERIES/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/interior.pdf`,
     // Not the workbook as an ebook — a workbook's value is the empty box, and
     // an empty box cannot be written in on a screen. This is the other half:
     // a reflowable reference edition of the same material, 36 chapters with
     // the stroke diagrams as scalable SVG. One purchase, both files.
-    epub: `${ROOT}/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/EBOOK/greek-alphabet-reference.epub`,
+    epub: `${ROOT}/LANGUAGE-SERIES/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/EBOOK/greek-alphabet-reference.epub`,
   },
   {
     // Valice Classics 4 (2026-09-04).

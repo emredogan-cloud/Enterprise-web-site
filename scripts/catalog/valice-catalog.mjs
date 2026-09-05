@@ -713,18 +713,24 @@ export const BOOKS = [
       },
       {
         format: "hardcover",
-        // NOT PRODUCED. KDP hardcover requires 75 pages minimum, which this
-        // book clears at 100 \u2014 but the economics do not: see priceBasis.
-        availability: "unavailable",
+        // PRODUCED 2026-09-05, on a Founder instruction that overrode the
+        // earlier "not viable" reading — and the override turned out to be
+        // right on the numbers, not only on authority. See priceBasis.
+        //
+        // Built as its OWN interior at 8.25 × 11 (KDP has no 8.5 × 11
+        // case-laminate trim) and measured at 100 pages, and its wrap geometry
+        // was read out of KDP's Cover Calculator rather than derived, which is
+        // the house rule. Not uploaded, so no ASIN is invented.
+        availability: "coming_soon",
         fulfillment: "amazon",
-        priceCents: null,
-        pageCount: null,
+        priceCents: usd(24.99),
+        pageCount: 100,
         amazonAsin: null,
         amazonUrl: null,
         kdp: "not_created",
         masterFileKey: null,
         priceBasis:
-          "NOT PRODUCED. price-engine.mjs at 100 pp hardcover: a $19.99 list nets about 21 %, under the 35 % house floor, and a workbook is a consumable a reader writes in and finishes \u2014 the format a buyer wants for it is the cheap one they can replace. Revisit only if the paperback proves an audience.",
+          "price-engine.mjs 2026-09-05 at the MEASURED 100 pages, 8.25 × 11 hardcover, B&W, white: printing $5.65 — KDP's 75–108 page hardcover band is a flat fee with no per-page charge, which makes a short hardcover the cheapest one it prints — KDP minimum list $9.42, and $24.99 nets $9.34 (37.4 %). That is over the 35 % house floor and the best margin of any format this book has. The earlier decision not to produce it measured a $19.99 list at 21 % and drew the wrong conclusion from a correct number: $19.99 was the wrong price, not the format. The roadmap's $21.99 TEST position nets 34.3 % and misses the floor.",
       },
       {
         format: "large_print",
@@ -774,12 +780,13 @@ export const BOOKS = [
       // for an edition the storefront reasons about, not for a note.
     ],
     blockers: [
-      "COVER \u2014 the Founder supplied new artwork on 2026-09-04 and it is HELD, not live: its scroll prints a Greek alphabet with wrong letterforms (row 3 reads \u039d \u0395 \u039f \u03a0 \u03a1 \u03a3 for \u039d \u039e \u039f \u03a0 \u03a1 \u03a3, and \u0394 is an open \u039b with a detached bar). The artwork is upscaled, placed, preflighted and waiting at ASSETS/cover/front-ART-PENDING-GREEK-FIX.png; the vector cover stays canonical until corrected art arrives. See ASSETS/cover/README-COVERS.md.",
+      "NO PHYSICAL PROOF OF THE HARDCOVER — the hardcover interior and case wrap were built on 2026-09-05 and preflight clean, but this is their first print. A proof copy is recommended before publishing, and more so than for the paperback: the case wrap folds around board and the fold is not visible on screen.",
       "PADDLE TAX CATEGORY \u2014 the product was created as `standard` because this Paddle account is not approved for the `ebooks` category. That over-collects VAT where books are taxed at a reduced rate. Same pending request as the other six products.",
       "KDP UPLOAD \u2014 the paperback interior and cover are built, preflighted and packaged, but only the account holder can upload them. See OUTPUT/KDP/KDP_UPLOAD_GUIDE.html.",
       "AI DECLARATION \u2014 the manuscript text and the diagrams were produced by an AI agent; the fact is recorded in project_config.json \u2192 compliance.aiDisclosure with its evidence. Only the account holder can enter that declaration on the KDP form.",
       "ISBN \u2014 none assigned; the copyright page prints PENDING \u2014 KDP-PROVIDED ISBN until one is.",
-      "NO PHYSICAL PROOF \u2014 first print of this interior and this cover. A proof copy is recommended before publishing.",
+      "NO PHYSICAL PROOF \u2014 first print of the paperback interior and of this cover. A proof copy is recommended before publishing.",
+      "KDP UPLOAD (HARDCOVER) \u2014 the 8.25 \u00d7 11 hardcover interior and its case wrap are built and preflight clean; only the account holder can upload them.",
     ],
   },
   {

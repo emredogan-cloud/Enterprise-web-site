@@ -28,6 +28,11 @@ export const EDITION_GEOMETRY = {
     // wrap the cover builder produced for 100 pages: white paper, 0.002252 in
     // per page, spine 0.2252 in.
     paperback: { trimWidthIn: 8.5, trimHeightIn: 11, binding: "paperback", paper: "white", paperVerified: true },
+    // Added 2026-09-05. NOT 8.5 x 11: KDP has no 8.5 x 11 case-laminate trim,
+    // so the hardcover is its own build at 8.25 x 11 with a 0.875 in gutter.
+    // Measured off OUTPUT/KDP/HARDCOVER/interior.pdf; the wrap it pairs with is
+    // read from KDP's Cover Calculator (spine 0.414 in at 100 pp), never derived.
+    hardcover: { trimWidthIn: 8.25, trimHeightIn: 11, binding: "hardcover", paper: "white", paperVerified: true },
   },
   "codex-mythologica": {
     paperback: { trimWidthIn: 6, trimHeightIn: 9, binding: "paperback", paper: "cream", paperVerified: false },

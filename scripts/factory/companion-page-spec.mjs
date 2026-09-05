@@ -426,6 +426,20 @@ export const COMPANION_PAGE_PLAN = {
         folio: null,
         builtBy: "BUILD/backmatter.py — the book's own back-matter builder",
       },
+      // Added 2026-09-05 with the hardcover edition. Also `native`, and from
+      // the same back-matter builder: the hardcover is a separate build at
+      // 8.25 x 11 with a 0.875 in gutter, so it typesets its own leaf rather
+      // than inheriting the paperback's. It lands on the same page 99 because
+      // the two blocks came out at the same length.
+      hardcover: {
+        mode: "native",
+        page: 99,
+        pagesBefore: 100,
+        pagesAfter: 100,
+        recto: true,
+        folio: null,
+        builtBy: "BUILD/backmatter.py — the book's own back-matter builder",
+      },
     },
   },
 

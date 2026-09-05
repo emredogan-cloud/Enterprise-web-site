@@ -1,14 +1,14 @@
 {
   "generatedAt": "2026-09-05",
   "book": "greek-alphabet-handwriting-workbook",
-  "format": "paperback",
+  "format": "hardcover",
   "title": "The Greek Alphabet Handwriting Workbook",
   "asin": null,
   "kdpState": "not_created",
   "interior": {
-    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/LANGUAGE-SERIES/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/interior.pdf",
-    "sha256": "3230cc14bda3f366216ac620088fa22700c68a809e88e687e59ca8bf41b5f5ff",
-    "bytes": 495724,
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/LANGUAGE-SERIES/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/HARDCOVER/interior.pdf",
+    "sha256": "133fd418c0f4c8bb98137080e29d73377db856257eae68740a1c27afe04de635",
+    "bytes": 489065,
     "pagesBefore": 100,
     "pagesAfter": 100,
     "companionPage": 99,
@@ -23,14 +23,14 @@
       "found": true,
       "dpi": 200,
       "finders": 3,
-      "sidePt": 213.96,
-      "sideIn": 2.972,
-      "modulePx": 20.48,
-      "moduleMm": 2.6,
+      "sidePt": 213.72,
+      "sideIn": 2.968,
+      "modulePx": 20.45,
+      "moduleMm": 2.597,
       "modules": 29,
-      "pageWidthPt": 612,
+      "pageWidthPt": 594,
       "pageHeightPt": 792,
-      "fractionOfPageHeight": 0.2702
+      "fractionOfPageHeight": 0.2698
     },
     "dedicatedPage": true,
     "emailWall": false
@@ -39,17 +39,17 @@
     "pagesBefore": 100,
     "pagesAfter": 100,
     "paper": "white",
-    "binding": "paperback",
-    "trim": "8.5×11 in",
+    "binding": "hardcover",
+    "trim": "8.25×11 in",
     "before": {
       "spineWidthIn": 0.2252,
-      "wrapWidthIn": 17.4752,
+      "wrapWidthIn": 16.9752,
       "wrapHeightIn": 11.25,
       "spineTextAllowed": true
     },
     "after": {
       "spineWidthIn": 0.2252,
-      "wrapWidthIn": 17.4752,
+      "wrapWidthIn": 16.9752,
       "wrapHeightIn": 11.25,
       "spineTextAllowed": true
     },
@@ -63,12 +63,8 @@
     "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
   },
   "cover": {
-    "built": true,
-    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/cover.pdf",
-    "pageCount": 100,
-    "spineIn": 0.2252,
-    "wrapIn": "17.4752 × 11.2500 (white)",
-    "note": "Not rebuilt — built once, at the final page count, by the project's own BUILD/build_cover.py. Nothing was spliced into this book, so the block never changed thickness. It is listed here because this is where the packaging pipeline looks for a wrap, and an edition that has never been uploaded needs its cover NAMED rather than left null: `coverAction` says the Founder must upload one, and this is the file. Spine and wrap agree with spine-check.mjs to four decimal places, and `preflight.py --kind cover` passes 6/6. No spine text: 0.2252 in leaves a 0.100 in safe zone, which cannot carry legible type on a perfect-bound book."
+    "built": false,
+    "reason": "NOT PRODUCED, and not a gap. A $19.99 hardcover at 100 pages nets about 21 %, under the 35 % house floor, and a workbook is a consumable a reader writes in and finishes — the format a buyer wants for it is the cheap one they can replace. DECISIONS.md K8."
   },
   "coverAction": "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior",
   "uploadRequired": true,

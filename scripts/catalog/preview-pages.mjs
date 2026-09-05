@@ -42,7 +42,7 @@ export const PREVIEW_PAGES = [
   },
   {
     slug: "codex-mythologica",
-    source: `${ROOT}/CODEX_MYTHOLOGICA/04_PRINT/PAPERBACK/CODEX_MYTHOLOGICA_INTERIOR_PAPERBACK.pdf`,
+    source: `${ROOT}/CODEX-SERIES/CODEX-MYTHOLOGICA/04_PRINT/PAPERBACK/CODEX_MYTHOLOGICA_INTERIOR_PAPERBACK.pdf`,
     pages: [24, 27],
     note: "Inside the Greek sequence, mid-retelling, at full narrative length.",
   },
@@ -91,7 +91,7 @@ export const PREVIEW_PAGES = [
     // next unrelated run. The path is corrected here and the builder now
     // keeps an already-rendered preview instead of dropping it.
     // The page range is unaffected: the leaf was appended after p.124.
-    source: `${ROOT}/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_126pp.pdf`,
+    source: `${ROOT}/LANGUAGE-SERIES/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_126pp.pdf`,
     // Lesson 4 entire: the rule for where a letter goes inside the square,
     // the six words built from it, and both practice pages. It is the step
     // the book exists for, and the one a buyer wants to see done well before
@@ -101,7 +101,7 @@ export const PREVIEW_PAGES = [
   },
   {
     slug: "greek-alphabet-handwriting-workbook",
-    source: `${ROOT}/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/interior.pdf`,
+    source: `${ROOT}/LANGUAGE-SERIES/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/interior.pdf`,
     // Lesson 8, beta, as the spread is actually printed: teaching page on the
     // verso, practice on the recto. Beta is the deliberate choice rather than
     // the first letter — it is the letter the 1998 Travlos study found Greek
@@ -160,7 +160,7 @@ export const PREVIEW_PAGES = [
   },
   {
     slug: "the-myth-hunters-field-book",
-    source: `${ROOT}/THE-MYTH-HUNTERS-FIELD-BOOK/08_OUTPUT/PAPERBACK/interior.pdf`,
+    source: `${ROOT}/GAMES-PUZZLE/THE-MYTH-HUNTERS-FIELD-BOOK/08_OUTPUT/PAPERBACK/interior.pdf`,
     pages: [14, 17],
     note: "Two puzzle spreads as they are printed — deliberately without the answer key.",
   },

@@ -1,4 +1,4 @@
-# The Greek Alphabet Handwriting Workbook — paperback — KDP upload package
+# The Greek Alphabet Handwriting Workbook — hardcover — KDP upload package
 
 **Generated:** 2026-09-05 · **ASIN:** — (not listed) · **KDP state:** not_created
 
@@ -7,17 +7,17 @@
 This edition has never been uploaded. The file below is its first. A dedicated companion page stands on page **99**: a QR occupying 27 % of the page height, the address `valicepress.com/companion/greek` printed beneath it in display type, and a named list of what is waiting there — set by the book's own builder when it was typeset, not spliced in afterwards.
 
 - **Pages:** **100**
-- **Spine:** **0.2252 in** (white paper, 8.5×11 in)
-- **Wrap width:** **17.4752 in**
+- **Spine:** **0.2252 in** (white paper, 8.25×11 in)
+- **Wrap width:** **16.9752 in**
 - **Cover:** FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior
 - **Proof:** recommended — this edition has never been printed — first proof of this interior and this cover
 
 ## The file
 
 ```
-/home/emre/Downloads/MY-DİGİTAL-BOOK/LANGUAGE-SERIES/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/interior.pdf
-sha256 3230cc14bda3f366216ac620088fa22700c68a809e88e687e59ca8bf41b5f5ff
-495,724 bytes · 100 pages
+/home/emre/Downloads/MY-DİGİTAL-BOOK/LANGUAGE-SERIES/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/HARDCOVER/interior.pdf
+sha256 133fd418c0f4c8bb98137080e29d73377db856257eae68740a1c27afe04de635
+489,065 bytes · 100 pages
 ```
 
 Nothing was replaced: the companion leaf was set by `BUILD/backmatter.py — the book's own back-matter builder` when the book was typeset, so there is no earlier build.

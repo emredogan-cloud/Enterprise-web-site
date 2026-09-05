@@ -1035,15 +1035,121 @@
       ]
     },
     {
-      "generatedAt": "2026-09-04",
+      "generatedAt": "2026-09-05",
+      "book": "greek-alphabet-handwriting-workbook",
+      "format": "hardcover",
+      "title": "The Greek Alphabet Handwriting Workbook",
+      "asin": null,
+      "kdpState": "not_created",
+      "interior": {
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/LANGUAGE-SERIES/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/HARDCOVER/interior.pdf",
+        "sha256": "133fd418c0f4c8bb98137080e29d73377db856257eae68740a1c27afe04de635",
+        "bytes": 489065,
+        "pagesBefore": 100,
+        "pagesAfter": 100,
+        "companionPage": 99,
+        "previousBuildKept": null,
+        "builtBy": "BUILD/backmatter.py — the book's own back-matter builder"
+      },
+      "companion": {
+        "printedUrl": "valicepress.com/companion/greek",
+        "qrUrl": "https://valicepress.com/companion/greek",
+        "qr": {
+          "measuredOffThePage": true,
+          "found": true,
+          "dpi": 200,
+          "finders": 3,
+          "sidePt": 213.72,
+          "sideIn": 2.968,
+          "modulePx": 20.45,
+          "moduleMm": 2.597,
+          "modules": 29,
+          "pageWidthPt": 594,
+          "pageHeightPt": 792,
+          "fractionOfPageHeight": 0.2698
+        },
+        "dedicatedPage": true,
+        "emailWall": false
+      },
+      "spine": {
+        "pagesBefore": 100,
+        "pagesAfter": 100,
+        "paper": "white",
+        "binding": "hardcover",
+        "trim": "8.25×11 in",
+        "before": {
+          "spineWidthIn": 0.2252,
+          "wrapWidthIn": 16.9752,
+          "wrapHeightIn": 11.25,
+          "spineTextAllowed": true
+        },
+        "after": {
+          "spineWidthIn": 0.2252,
+          "wrapWidthIn": 16.9752,
+          "wrapHeightIn": 11.25,
+          "spineTextAllowed": true
+        },
+        "deltaSpineIn": 0,
+        "deltaWrapWidthIn": 0,
+        "withinKdpTolerance": true,
+        "coverRebuildRequired": false,
+        "coverRebuildCorrect": false,
+        "hardcoverGeometryMustBeRead": false,
+        "barcodeZoneAffected": false,
+        "verdict": "no page-count change: spine, wrap, cover and ISBN placement are untouched"
+      },
+      "cover": {
+        "built": false,
+        "reason": "NOT PRODUCED, and not a gap. A $19.99 hardcover at 100 pages nets about 21 %, under the 35 % house floor, and a workbook is a consumable a reader writes in and finishes — the format a buyer wants for it is the cheap one they can replace. DECISIONS.md K8."
+      },
+      "coverAction": "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior",
+      "uploadRequired": true,
+      "hold": null,
+      "proofRecommended": true,
+      "proofWhy": "this edition has never been printed — first proof of this interior and this cover",
+      "verification": [
+        {
+          "name": "page-count",
+          "pass": true,
+          "detail": "100 pages (expected 100)"
+        },
+        {
+          "name": "printed-url",
+          "pass": true,
+          "detail": "valicepress.com/companion/greek"
+        },
+        {
+          "name": "canonical-host",
+          "pass": true,
+          "detail": "no forbidden host on the page"
+        },
+        {
+          "name": "eyebrow",
+          "pass": true,
+          "detail": "CONTINUE WITH VÂLIÇE PRESS"
+        },
+        {
+          "name": "fonts-embedded",
+          "pass": true,
+          "detail": "5 faces: AAAAAA+Lato-Light, AAAAAA+DejaVuSans, AAAAAA+Lato-Bold, AAAAAA+Lato-Italic, AAAAAA+Lato-Regular"
+        },
+        {
+          "name": "pdf-metadata",
+          "pass": true,
+          "detail": "title=\"The Greek Alphabet Handwriting Workbook: Write all 24 letters in the modern and the classical forms, with a sourced stroke order for every one\" author=\"Emre Doğan\""
+        }
+      ]
+    },
+    {
+      "generatedAt": "2026-09-05",
       "book": "greek-alphabet-handwriting-workbook",
       "format": "paperback",
       "title": "The Greek Alphabet Handwriting Workbook",
       "asin": null,
       "kdpState": "not_created",
       "interior": {
-        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/interior.pdf",
-        "sha256": "2f963be76d95c25830990f66a2a836f4c30df5b2e645a20ee4295ddd3eb3b94d",
+        "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/LANGUAGE-SERIES/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/interior.pdf",
+        "sha256": "3230cc14bda3f366216ac620088fa22700c68a809e88e687e59ca8bf41b5f5ff",
         "bytes": 495724,
         "pagesBefore": 100,
         "pagesAfter": 100,

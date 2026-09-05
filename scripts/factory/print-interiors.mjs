@@ -9,53 +9,65 @@
  *
  * A missing entry is not an omission to be filled in with a plausible path: it
  * means no interior for that format has been built, and the lint says so.
+ *
+ * Every path here was re-checked against the filesystem on 2026-09-05, when
+ * the linkage lint reported twenty of twenty-six editions BLOCKED: the book
+ * repositories had been reorganised into CODEX-SERIES/, GAMES-PUZZLE/,
+ * LANGUAGE-SERIES/ and PHASE-1-BOOK/ and nothing had re-read these paths
+ * since. The lint failing loudly is what found it.
  */
 
 const ROOT = "/home/emre/Downloads/MY-DİGİTAL-BOOK";
 
 export const PRINT_INTERIORS = {
   "codex-mythologica": {
-    paperback: `${ROOT}/CODEX_MYTHOLOGICA/04_PRINT/PAPERBACK/CODEX_MYTHOLOGICA_INTERIOR_PAPERBACK.pdf`,
-    hardcover: `${ROOT}/CODEX_MYTHOLOGICA/04_PRINT/HARDCOVER/CODEX_MYTHOLOGICA_INTERIOR_HARDCOVER.pdf`,
-    large_print: `${ROOT}/CODEX_MYTHOLOGICA/04_PRINT/LARGEPRINT/CODEX_MYTHOLOGICA_INTERIOR_LARGEPRINT.pdf`,
+    paperback: `${ROOT}/CODEX-SERIES/CODEX-MYTHOLOGICA/04_PRINT/PAPERBACK/CODEX_MYTHOLOGICA_INTERIOR_PAPERBACK.pdf`,
+    hardcover: `${ROOT}/CODEX-SERIES/CODEX-MYTHOLOGICA/04_PRINT/HARDCOVER/CODEX_MYTHOLOGICA_INTERIOR_HARDCOVER.pdf`,
+    large_print: `${ROOT}/CODEX-SERIES/CODEX-MYTHOLOGICA/04_PRINT/LARGEPRINT/CODEX_MYTHOLOGICA_INTERIOR_LARGEPRINT.pdf`,
   },
   "codex-bestiarium": {
-    paperback: `${ROOT}/CODEX_BESTIARIUM/04_PRINT/PAPERBACK/CODEX_BESTIARIUM_INTERIOR_PAPERBACK.pdf`,
-    hardcover: `${ROOT}/CODEX_BESTIARIUM/04_PRINT/HARDCOVER/CODEX_BESTIARIUM_INTERIOR_HARDCOVER.pdf`,
-    large_print: `${ROOT}/CODEX_BESTIARIUM/04_PRINT/LARGEPRINT/CODEX_BESTIARIUM_INTERIOR_LARGEPRINT.pdf`,
+    paperback: `${ROOT}/CODEX-SERIES/CODEX-BESTIARIUM/04_PRINT/PAPERBACK/CODEX_BESTIARIUM_INTERIOR_PAPERBACK.pdf`,
+    hardcover: `${ROOT}/CODEX-SERIES/CODEX-BESTIARIUM/04_PRINT/HARDCOVER/CODEX_BESTIARIUM_INTERIOR_HARDCOVER.pdf`,
+    large_print: `${ROOT}/CODEX-SERIES/CODEX-BESTIARIUM/04_PRINT/LARGEPRINT/CODEX_BESTIARIUM_INTERIOR_LARGEPRINT.pdf`,
   },
   "codex-enigmatica": {
-    paperback: `${ROOT}/CODEX-ENIGMATICA/08_OUTPUT/PAPERBACK/interior.pdf`,
-    hardcover: `${ROOT}/CODEX-ENIGMATICA/08_OUTPUT/HARDCOVER/interior.pdf`,
+    paperback: `${ROOT}/CODEX-SERIES/CODEX-ENIGMATICA/08_OUTPUT/PAPERBACK/interior.pdf`,
+    hardcover: `${ROOT}/CODEX-SERIES/CODEX-ENIGMATICA/08_OUTPUT/HARDCOVER/interior.pdf`,
   },
   "the-great-book-of-world-games": {
-    paperback: `${ROOT}/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/PAPERBACK/GreatBookOfWorldGames_interior_paperback.pdf`,
-    hardcover: `${ROOT}/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/HARDCOVER/GreatBookOfWorldGames_interior_hardcover.pdf`,
-    large_print: `${ROOT}/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/LARGEPRINT/GreatBookOfWorldGames_interior_largeprint.pdf`,
+    paperback: `${ROOT}/GAMES-PUZZLE/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/PAPERBACK/GreatBookOfWorldGames_interior_paperback.pdf`,
+    hardcover: `${ROOT}/GAMES-PUZZLE/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/HARDCOVER/GreatBookOfWorldGames_interior_hardcover.pdf`,
+    large_print: `${ROOT}/GAMES-PUZZLE/THE-GREAT-BOOK-OF-WORLD-GAMES/08_OUTPUT/LARGEPRINT/GreatBookOfWorldGames_interior_largeprint.pdf`,
   },
   "the-great-book-of-world-myths": {
-    paperback: `${ROOT}/THE-GREAT-BOOK-OF-WORLD-MYTHS/08_OUTPUT/paperback/interior.pdf`,
-    hardcover: `${ROOT}/THE-GREAT-BOOK-OF-WORLD-MYTHS/08_OUTPUT/hardcover/interior.pdf`,
+    paperback: `${ROOT}/GAMES-PUZZLE/THE-GREAT-BOOK-OF-WORLD-MYTHS/08_OUTPUT/paperback/interior.pdf`,
+    hardcover: `${ROOT}/GAMES-PUZZLE/THE-GREAT-BOOK-OF-WORLD-MYTHS/08_OUTPUT/hardcover/interior.pdf`,
   },
   "the-myth-hunters-field-book": {
-    paperback: `${ROOT}/THE-MYTH-HUNTERS-FIELD-BOOK/08_OUTPUT/PAPERBACK/interior.pdf`,
+    paperback: `${ROOT}/GAMES-PUZZLE/THE-MYTH-HUNTERS-FIELD-BOOK/08_OUTPUT/PAPERBACK/interior.pdf`,
   },
   "greek-alphabet-handwriting-workbook": {
-    // Valice Script 2, built 2026-09-04. Paperback only: the hardcover is not
-    // produced (economics, DECISIONS.md K8) and the large-print edition would
-    // be this book at this size (K4).
-    paperback: `${ROOT}/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/interior.pdf`,
+    // Valice Script 2, built 2026-09-04; the hardcover added 2026-09-05.
+    //
+    // TWO SEPARATE BUILDS, not one file in two jackets. KDP has no 8.5 x 11
+    // case-laminate trim, so the hardcover is typeset at 8.25 x 11 with a
+    // 0.875 in gutter and measures its own page count (also 100 — the trim
+    // loses the same 0.25 in of column the wider gutter takes). The
+    // large-print edition would be this book at this size (DECISIONS.md K4)
+    // and is not produced.
+    paperback: `${ROOT}/LANGUAGE-SERIES/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/interior.pdf`,
+    hardcover: `${ROOT}/LANGUAGE-SERIES/GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/HARDCOVER/interior.pdf`,
   },
   "korean-hangul-handwriting-workbook": {
     // The REMEDIATED interiors of 2026-09-02, rebuilt on 2026-09-03 with the
     // companion page on p.125. The filename carries the page count and was
     // renamed from _124pp when the count changed — a file whose name states a
     // page count it no longer has is how the wrong interior gets uploaded.
-    paperback: `${ROOT}/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_126pp.pdf`,
-    hardcover: `${ROOT}/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/hardcover/hardcover_interior_8.25x11_126pp.pdf`,
+    paperback: `${ROOT}/LANGUAGE-SERIES/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/paperback/paperback_interior_8.5x11_126pp.pdf`,
+    hardcover: `${ROOT}/LANGUAGE-SERIES/KOREAN-HANGUL-HANDWRITING-WORKBOOK/09_OUTPUT/FINAL/hardcover/hardcover_interior_8.25x11_126pp.pdf`,
   },
   "the-puzzles-of-henry-dudeney": {
-    paperback: `${ROOT}/THE-PUZZLES-OF-HENRY-DUDENEY/OUTPUT/interior-main.pdf`,
+    paperback: `${ROOT}/GAMES-PUZZLE/THE-PUZZLES-OF-HENRY-DUDENEY/OUTPUT/interior-main.pdf`,
   },
   "epictetus-discourses-and-enchiridion": {
     // Valice Classics 3 (2026-09-04). The first build authored a companion page
