@@ -141,6 +141,13 @@ export const AUTHORS = [
     // nothing here is inferred. See the book project's CLAIMS.jsonl C-001 to C-003.
     bio: "English naturalist and writer on marine animals (1826\u20131888). F.L.S., F.G.S., F.Z.S., and \u2014 in the words of his own title page \u2014 sometime naturalist of the Brighton Aquarium, where he spent years watching octopus and cuttle through glass. He wrote The Octopus, or the Devil-fish of Fiction and Fact in 1873, and in the summer of 1883 produced two shilling handbooks for the International Fisheries Exhibition at South Kensington, signing their prefaces at the Savage Club seven weeks apart. In them he identified the kraken as a giant squid a decade before anyone could prove it.",
   },
+  {
+    slug: "sabine-baring-gould",
+    name: "Sabine Baring-Gould",
+    // Dates from PG bibrec 5324; the rest from the book's own pages and from Wikipedia,
+    // read 2026-09-06. See the book project's CLAIMS.jsonl C-001 and C-002.
+    bio: "English clergyman, antiquarian, novelist and collector of folk-song (1834\u20131924). Squire and parson of the same Devon parish, Lew Trenchard, which he had inherited and then presented himself to; author of the words of \u201cOnward, Christian Soldiers\u201d, of a very long series on the lives of the saints, and of well over a hundred other books. He had been to Iceland and could read Old Norse, which is why the middle chapters of The Book of Were-Wolves are so much better than the end. He went about Devon with a notebook collecting folk-songs from farm labourers before anyone else in England was doing it systematically.",
+  },
 ];
 
 /**
@@ -1690,6 +1697,98 @@ export const BOOKS = [
         + "ASIN is invented.",
       "The apparatus is 20.6% of the volume against a 20% floor, measured from the content "
         + "files by COMMON-AREA/checks/differentiation.py.",
+    ],
+  },
+
+  {
+    slug: "book-of-were-wolves",
+    title: "The Book of Were-Wolves",
+    subtitle:
+      "Baring-Gould\u2019s 1865 Account Complete, Annotated \u2014 with a Register of What He Construed, Transcribed and Only Theorised, and What Has Been Established Since",
+    language: "en",
+    pageCount: 196,
+    categories: ["myth-and-folklore", "classics-and-philosophy"],
+    authors: ["sabine-baring-gould", "emre-dogan"],
+    bisac: ["SOC011000", "OCC036000"],
+    series: { name: "Valice Classics", volume: 15 },
+    // PHASE 3, BOOK 3 (2026-09-06). All sixteen chapters entire, including the six that
+    // describe murders from the trial records \u2014 Article 18 forbids abridging to hide
+    // what a book contains, so the edition prints them and says at the front and again in
+    // each head-note exactly what is in them. No illustration layer: the 1865 book has no
+    // plates and this edition invents none.
+    websiteStatus: "draft",
+    linkageDecision: null,
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: "no Paddle product yet",
+    paddlePriceId: null,
+    onelinePromise:
+      "The Victorian clergyman who went and read the werewolf trial records \u2014 with a head-note on every chapter saying which of his explanations survived, and which of them are the reason the book is hard to read.",
+    description:
+      "In 1865 a young Devon curate could not hire anyone to walk him home across the fields: it was getting dark and there were loups-garoux abroad. Sabine Baring-Gould \u2014 antiquarian, folk-song collector, and the man who wrote the words of \u201cOnward, Christian Soldiers\u201d \u2014 went away and found out what those people were afraid of. What he produced is not the horror anthology it has been sold as; it is a piece of source criticism. He takes the werewolf backwards through the record \u2014 Herodotus and Petronius, then the Norse sagas, then the medieval chronicles, then the French trial transcripts \u2014 and at each step asks what the witnesses actually said. This edition prints all sixteen chapters entire. Around them: a head-note before each, every one ending in READING AGAINST HIM, which names the specific thing in that chapter to resist; a REGISTER OF EVIDENCE AND INFERENCE separating the four instruments he uses \u2014 a language he can construe, a document he transcribes, a story he repeats, and a theory he applies; a casebook of every trial; a who\u2019s-who; a glossary of the Norse his best chapters are built on; a chronology; and a plain account of what has been established since 1865. The verdict is uneven in a way worth knowing before you start: his philology held, his mythology was abandoned within his lifetime, and his medicine \u2014 an \u201cinnate cruelty\u201d \u2014 has been replaced by clinical lycanthropy, a rare delusional syndrome that explains the folklore well and the murders not at all. Six chapters describe murders, taken from the trial records: a note at the front says which and what is in them, and each of those head-notes opens by naming it. And the two most remarkable documents in the book are ones Baring-Gould prints without comment \u2014 in 1598 the Parlement of Paris sent a confessed werewolf to an asylum instead of the stake, and in 1603 the Parlement of Bordeaux declined to punish a boy of fourteen at all. 196 pages.",
+    idealReader:
+      "Someone who came to werewolves through folklore, horror or true crime, and would rather read the Victorian who collected the trial records himself \u2014 and be told, chapter by chapter, which of his explanations survived.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(8.99),
+        pageCount: 196,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_applicable",
+        masterFileKey: null,
+        epubFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-06, direct ebook, public domain: $8.99 nets $8.04 after Paddle at an 89.4% margin. Mid-band for Valice Classics, with Kwaidan \u2014 54,300 source words against Sea Monsters\u2019 62,000.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(15.99),
+        pageCount: 196,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-06, 196 pp 6\u00d79 B&W on white: prints at $3.35, KDP minimum list $5.59; $15.99 nets $6.24 (39.0%) at 60% royalty.",
+      },
+      {
+        format: "hardcover",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(32.99),
+        pageCount: 196,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-06, 196 pp 6\u00d79 hardcover: prints at $8.00, KDP minimum list $13.34; the engine\u2019s recommendation at the 35% target. $29.99 would net 33.3% and miss it.",
+      },
+    ],
+    blockers: [
+      "NOT DEPLOYED, AND THAT IS WHY THE ROW IS DRAFT. Phase 3 is not merged. Publishing this "
+        + "row would write a book into the production database whose page, cover and companion "
+        + "sheets are not deployed.",
+      "NO PADDLE PRODUCT, no R2 master and no KDP listing. `paddlePriceId`, `masterFileKey` and "
+        + "`epubFileKey` are null and `kdp` is \"not_created\"; no identifier is invented for "
+        + "any of them.",
+      "GATE 2 IS UNSIGNED. Three rows, and the simplest rights position of the phase: a text of "
+        + "1865 by an author who died in 1924, no illustration layer at all, and the author\u2019s "
+        + "own translations. FOUNDER F-033.",
+      "CONTENT DECISION, RECORDED RATHER THAN TAKEN QUIETLY. Six chapters describe murders and "
+        + "the killing of children, from the trial records. They are printed entire because "
+        + "Article 18 forbids abridging to hide what a book contains and because Baring-Gould\u2019s "
+        + "argument depends on them; the edition states this at the front and in each of the six "
+        + "head-notes. If the Founder wants a different answer, this is the decision to revisit. "
+        + "FOUNDER F-034.",
+      "COVER SERIES IDIOM: a painted cover where COVER_STANDARDS gives Valice Classics as "
+        + "typographic \u2014 the same open Founder decision as Kwaidan and Sea Monsters (F-031). "
+        + "Title band 14.4% of cover height against a 25% rule; 150 px thumbnail contrast 0.92.",
+      "The apparatus is 20.1% of the volume against a 20% floor, measured from the content files "
+        + "by COMMON-AREA/checks/differentiation.py.",
     ],
   },
 

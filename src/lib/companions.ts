@@ -1744,6 +1744,96 @@ const SEA_MONSTERS_UNMASKED: Companion = {
   ],
 };
 
+/**
+ * THE BOOK OF WERE-WOLVES — Phase 3, book 3.
+ *
+ * Baring-Gould's 1865 account, all sixteen chapters. The sheets carry the four things
+ * that work better beside the book than inside it: the casebook of trials, a scorecard of
+ * what survived, the Norse vocabulary his best chapters are built on, and a single page
+ * saying which chapters describe murders — so the book can be lent on with the warning
+ * attached.
+ */
+const BOOK_OF_WERE_WOLVES: Companion = {
+  slug: "book-of-were-wolves",
+  bookSlug: "book-of-were-wolves",
+  bookTitle: "The Book of Were-Wolves",
+  state: "book-not-yet-available",
+  stateNote:
+    "The Valice edition is built and validated \u2014 196 pages, all sixteen chapters \u2014 " +
+    "but its pages have not been deployed and no payment product exists for it yet, so the " +
+    "storefront row is deliberately held back. Everything on this page is free and works " +
+    "today regardless.",
+  intro:
+    "Free material for Sabine Baring-Gould's 1865 book: the casebook of every werewolf trial " +
+    "he describes, including the two in which a French court looked at a full confession and " +
+    "refused to execute; a scorecard of which of his explanations survived; the Norse words " +
+    "his best chapters are built on; and a page saying which chapters describe murders.",
+  newsletterSource: "book-of-were-wolves-companion",
+  assetsHeading: "Print and read",
+  rightsNote:
+    "Sabine Baring-Gould lived 1834\u20131924 and the book was published in London in 1865, " +
+    "so the text is in the public domain on two independent grounds. There is no illustration " +
+    "layer to assess: the 1865 book has no plates, and the only image in the Project Gutenberg " +
+    "transcription is Gutenberg's own generated cover, which this edition does not use. " +
+    "Baring-Gould's own translations \u2014 the 1508 sermon, the Norse verse, the French trial " +
+    "records \u2014 are part of the 1865 book and carry no separate right.",
+  assets: [
+    {
+      id: "casebook",
+      title: "The Casebook of Trials",
+      description:
+        "Every prosecution the book describes, with year, place, charge, court and sentence " +
+        "\u2014 Poligny 1521, Dole 1573, the Gandillons and Roulet in 1598, Jean Grenier at " +
+        "Bordeaux in 1603, the Mar\u00e9chal de Retz at Nantes in 1440. Two are set apart: in " +
+        "1598 the Parlement of Paris sent a confessed werewolf to an asylum instead of the " +
+        "stake, and in 1603 the Parlement of Bordeaux declined to punish a boy of fourteen at " +
+        "all. Both courts treated the confession as evidence about the man rather than about " +
+        "the crime.",
+      kind: "static",
+      href: "/companion/book-of-were-wolves/casebook.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "scorecard",
+      title: "Right, Wrong, Still Open",
+      description:
+        "Ten claims and what became of each. The philology held \u2014 his account of the " +
+        "berserk, and of a word that meant both wolf and outlaw, is still the standard " +
+        "reading. The mythology did not: chapter X is comparative mythology at its most " +
+        "confident and the school was demolished within his lifetime. And the medicine was " +
+        "replaced by something much narrower than his \u201cinnate cruelty\u201d.",
+      kind: "static",
+      href: "/companion/book-of-were-wolves/scorecard.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "norse-words",
+      title: "The Norse Words",
+      description:
+        "Berserkr, \u00falfhe\u00f0inn, hamr, hamrammr, vargr, eigi einhamr \u2014 the " +
+        "vocabulary the best chapters of the book are built on, with what each means and " +
+        "where the sagas use it. Baring-Gould read Old Norse and assumed a reader who could " +
+        "follow him; this sheet is for the reader who cannot.",
+      kind: "static",
+      href: "/companion/book-of-were-wolves/norse-words.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "what-is-in-it",
+      title: "What Is in Which Chapter",
+      description:
+        "Six of the sixteen chapters describe murders, taken from the trial records \u2014 " +
+        "the French prosecutions of the sixteenth century, the trial of a fourteen-year-old " +
+        "boy, the three chapters on the Mar\u00e9chal de Retz, a Galician case of 1849 and " +
+        "the Paris grave-violations of the same year. This page says which and what is in " +
+        "them, so the book can be given to somebody else with the warning attached.",
+      kind: "static",
+      href: "/companion/book-of-were-wolves/what-is-in-it.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+  ],
+};
+
 const COMPANIONS: readonly Companion[] = [
   HANGUL,
   WORLD_GAMES,
@@ -1766,6 +1856,7 @@ const COMPANIONS: readonly Companion[] = [
   THE_DRAGON,
   KWAIDAN,
   SEA_MONSTERS_UNMASKED,
+  BOOK_OF_WERE_WOLVES,
 ];
 
 export function listCompanions(): readonly Companion[] {
