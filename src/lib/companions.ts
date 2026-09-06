@@ -1786,8 +1786,8 @@ const BOOK_OF_WERE_WOLVES: Companion = {
         "\u2014 Poligny 1521, Dole 1573, the Gandillons and Roulet in 1598, Jean Grenier at " +
         "Bordeaux in 1603, the Mar\u00e9chal de Retz at Nantes in 1440. Two are set apart: in " +
         "1598 the Parlement of Paris sent a confessed werewolf to an asylum instead of the " +
-        "stake, and in 1603 the Parlement of Bordeaux declined to punish a boy of fourteen at " +
-        "all. Both courts treated the confession as evidence about the man rather than about " +
+        "stake, and in 1603 the Parlement of Bordeaux held that lycanthropy was not a punishable " +
+        "crime and sentenced a boy of thirteen to perpetual imprisonment in a monastery. Both courts treated the confession as evidence about the man rather than about " +
         "the crime.",
       kind: "static",
       href: "/companion/book-of-were-wolves/casebook.pdf",
@@ -1823,12 +1823,102 @@ const BOOK_OF_WERE_WOLVES: Companion = {
       title: "What Is in Which Chapter",
       description:
         "Six of the sixteen chapters describe murders, taken from the trial records \u2014 " +
-        "the French prosecutions of the sixteenth century, the trial of a fourteen-year-old " +
+        "the French prosecutions of the sixteenth century, the trial of a thirteen-year-old " +
         "boy, the three chapters on the Mar\u00e9chal de Retz, a Galician case of 1849 and " +
         "the Paris grave-violations of the same year. This page says which and what is in " +
         "them, so the book can be given to somebody else with the warning attached.",
       kind: "static",
       href: "/companion/book-of-were-wolves/what-is-in-it.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+  ],
+};
+
+/**
+ * British Goblins — Valice Classics 16.
+ *
+ * Sikes's 1880 book entire, four Books and thirty-two chapters. The sheets carry the four
+ * things that work better beside the book than inside it: the Welsh vocabulary he glosses
+ * once and then uses for a hundred pages, a scorecard of what became of each of his
+ * claims, the sourcing he never marks at the point of use, and the places the stories
+ * belong to.
+ */
+const BRITISH_GOBLINS: Companion = {
+  slug: "british-goblins",
+  bookSlug: "british-goblins",
+  bookTitle: "British Goblins",
+  state: "book-not-yet-available",
+  stateNote:
+    "The Valice edition is built and validated \u2014 388 pages, all four Books and " +
+    "thirty-two chapters, with twenty of T. H. Thomas's drawings \u2014 but its pages have " +
+    "not been deployed and no payment product exists for it yet, so the storefront row is " +
+    "deliberately held back. Everything on this page is free and works today regardless.",
+  intro:
+    "Free material for Wirt Sikes's 1880 book: the Welsh words it uses without explaining " +
+    "them, a scorecard of which of his claims survived, a sheet that marks his sources where " +
+    "he does not, and a gazetteer of the parishes the stories come from.",
+  newsletterSource: "british-goblins-companion",
+  assetsHeading: "Print and read",
+  rightsNote:
+    "Wirt Sikes lived 1836\u20131883 and the book was published in London in 1880, so the " +
+    "text is in the public domain on two independent grounds. The illustration layer was " +
+    "assessed separately and cleared: the twenty-one drawings are T. H. Thomas's " +
+    "(1839\u20131915), published in the same volume, and the edition sets twenty of them. " +
+    "The six music engravings in the Project Gutenberg transcription are NOT Thomas's " +
+    "\u2014 they were set in 2010 by Lesley Halamek, who transcribed the music \u2014 and " +
+    "this edition does not reproduce them. Each air is named and placed in the apparatus " +
+    "instead.",
+  assets: [
+    {
+      id: "welsh-words",
+      title: "The Welsh Words",
+      description:
+        "Twenty-six terms with how to say them and what they mean \u2014 tylwyth teg, " +
+        "ellyllon, gwragedd annwn, coblynau, canwyll corff, cyhyraeth, gwrach y rhibyn, " +
+        "cwn Annwn. Sikes glosses a word once and then uses it for a hundred pages as " +
+        "though the reader had it. This is the card to keep beside the book, with the " +
+        "letters that catch people out \u2014 w and y are vowels, dd is the th of this, ll " +
+        "has no English equivalent.",
+      kind: "static",
+      href: "/companion/british-goblins/welsh-words.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "scorecard",
+      title: "Right, Wrong, Still Open",
+      description:
+        "Eleven claims and what became of each. The collection held \u2014 the tales, the " +
+        "customs and the death-portent system are all confirmed by later Welsh collectors " +
+        "working in Welsh. The argument did not: the sourcing was condemned within a decade, " +
+        "the fairy-origin theories have no evidential support, and the rites he watched at " +
+        "Pontypridd and called Druidic had been started in about 1853 by a living Welshman.",
+      kind: "static",
+      href: "/companion/british-goblins/scorecard.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "who-told-him",
+      title: "Who Told Him",
+      description:
+        "The book's central defect is that it names a source once and then stops marking it, " +
+        "so four hundred pages arrive in one voice. This sheet does the marking for him, " +
+        "chapter group by chapter group \u2014 what is Edmund Jones's Monmouthshire of 1780, " +
+        "what is Giraldus, what is Lady Charlotte Guest, and the much smaller amount that is " +
+        "Sikes standing in a room watching.",
+      kind: "static",
+      href: "/companion/british-goblins/who-told-him.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "gazetteer",
+      title: "Where the Stories Are",
+      description:
+        "The parishes, valleys, lakes and wells the book names, with the county and what " +
+        "happens there \u2014 St Dogmell's, Cwm Llan, Llyn Barfog, the Pontypridd rocking " +
+        "stone, Holywell. Sikes gives a parish more often than he gives a source, and a " +
+        "parish is the best evidence in the book that a real person told him something.",
+      kind: "static",
+      href: "/companion/british-goblins/gazetteer.pdf",
       meta: "PDF \u00b7 US Letter \u00b7 1 page",
     },
   ],
@@ -1857,6 +1947,7 @@ const COMPANIONS: readonly Companion[] = [
   KWAIDAN,
   SEA_MONSTERS_UNMASKED,
   BOOK_OF_WERE_WOLVES,
+  BRITISH_GOBLINS,
 ];
 
 export function listCompanions(): readonly Companion[] {

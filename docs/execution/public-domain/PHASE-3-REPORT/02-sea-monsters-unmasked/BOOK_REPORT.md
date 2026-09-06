@@ -17,7 +17,7 @@ serpent he cannot solve, and says so — which is why that chapter has aged best
 |---|---|
 | Pages | **232**, 6 × 9, even, no filler leaf needed |
 | Lee's words printed | **62,018** — 8 chapters, 2 prefaces, 100 footnotes |
-| Editorial apparatus | **18,491 words, 23.3%** against a 20% floor |
+| Editorial apparatus | **18,491 words, 22.2%** against a 20% floor |
 | Figures | **68 of 68**, at the size their scans honestly support |
 | Coverage | 99.71% of the source body; **0 boilerplate leaks**; 10/10 pieces open and close as the source does |
 | Quotations | **21 checked against the source, 0 not his** |
