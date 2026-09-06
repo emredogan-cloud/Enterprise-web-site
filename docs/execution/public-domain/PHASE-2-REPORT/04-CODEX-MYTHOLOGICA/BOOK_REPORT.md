@@ -332,7 +332,94 @@ Declared to KDP as **images: generated**, which is the truthful answer.
   against a truncated digest. Not security: every answer is printed in the
   book. Tact — so that opening the page does not spoil a hundred puzzles.
 
-## 10 · What is left, and who has to do it
+## 10 · The merge, the deployment, and what is actually live
+
+**2026-09-06.** The Founder authorised the merge and production activation.
+
+### The merge
+
+`feature/public-domain-phase-2` → `main`, **fast-forward**, `2b16865..48d3e5f`.
+No squash, no force, no history rewritten, nothing overwritten: `origin/main`
+was an ancestor of the branch, so the merge could only add. The branch was
+pushed to its own remote first as a backup.
+
+The branch carries more than this book — it is the programme's integration
+branch, and `main` was 61 commits behind it. Merging therefore also advanced
+main to the finished Phase 1 and Phase 2 work. That work is not deployed
+*visibly*: all five Phase 2 public-domain books are `draft` in the catalogue and
+do not render a public page. The 16 published books are the 15 that were already
+live plus this one. Nothing was demoted.
+
+The other session's uncommitted work — four `src/components/*` files,
+`docs/execution/mobile/`, `images/assets/` and two phase-5 documents — was left
+exactly as found and is not in the merge.
+
+### The deployment
+
+Pushing `main` triggered Vercel's git integration, as the Phase 1 record
+describes. Production deployment **`dpl_GKN7PGPLBG2ogh6tLwuP292qbbTj`**, target
+`production`, state **READY**, from commit `48d3e5f`, aliased to
+`valicepress.com`.
+
+### What is live, measured on the public URL
+
+| Route | Status |
+|---|---|
+| `/` · `/ebooks` · `/books` · `/categories` · `/search` · `/cart` | **200** |
+| `/companion/codex-puzzles` | **200** — the page, its hints, the filled grids and the checker |
+| `/companion/codex-puzzles/answers.json` | **200** · 25,687 B · `application/json` |
+| `/companion/codex-puzzles/hint-cards.pdf` | **200** · 89,548 B · `application/pdf` |
+| `/companion/codex-puzzles/solution-grids.pdf` | **200** · 87,732 B · `application/pdf` |
+| `/companion/codex-puzzles/extra-puzzles.pdf` | **200** · 174,840 B · `application/pdf` |
+| `/books/codex-mythologica-the-puzzle-book` | **404 — see below** |
+
+Every companion byte count matches the built file exactly.
+
+`/account/library` returns 404 to an anonymous request because it is behind
+authentication; that is the route working, not failing.
+
+### Fulfilment, verified without a purchase
+
+| Link | Result |
+|---|---|
+| Paddle price `pri_01m1sbkq3qsjyfx3tzwctay664` | **200 · active · 1199 USD · one-time** on the live account |
+| R2 `books/codex-mythologica-the-puzzle-book/master/v1/` | both objects present |
+| Signed URL — same call shape and 600 s TTL as `src/lib/storage/index.ts` | **HTTP 200** on both |
+| The file a buyer receives | `master.epub` **1,920,020 B**, `application/epub+zip`, ZIP magic `PK` · `master.pdf` **374,701 B**, `application/pdf`, `%PDF` |
+
+No transaction was created and none is claimed.
+
+### The one thing standing between this book and its public page
+
+**The production catalogue row has not been written.** The site prerenders
+`/books/<slug>` from the database at build time, and there are two Neon
+databases on the same host and credentials: `bookstore`, which every local
+`.env` points at, and **`neondb`, which the site actually reads.** This trap has
+now caught three sessions and is recorded in the Phase 1 report.
+
+Everything up to the write is done and verified: the environment was pulled with
+`vercel env pull`, the loader confirms `target database : neondb`, and its dry
+run is clean — `catalog integrity : OK`, 21 books, 55 formats, this book
+`published · 4 formats · 1 buyable`, the five Phase 2 books `draft`, nothing
+demoted.
+
+The write itself was refused by this environment's permission classifier, which
+is correct behaviour for a production database. It is one command:
+
+```
+node scripts/catalog/load-catalog.mjs \
+  --env scripts/tmp/.env.production --commit --i-know-this-is-production
+```
+
+Then the deployment must be rebuilt so the page is prerendered against the new
+row — a redeploy of `48d3e5f`, which is how Phase 1 did it.
+
+Until that runs, this book is **merged and deployed but not publicly listed**,
+and this report does not call it live.
+
+---
+
+## 11 · What is left, and who has to do it
 
 Everything remaining is an account-holder action. Nothing waits on work.
 
