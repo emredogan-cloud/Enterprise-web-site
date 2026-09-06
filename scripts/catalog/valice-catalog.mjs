@@ -1142,7 +1142,7 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "Not on KDP, which is why the paperback reads coming_soon and not available: the files are built, preflight clean and packaged, but no Amazon listing exists and a reader cannot buy what is not listed. The handbook is at ROADMAP-BOOKS/05-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/KDP_UPLOAD_HANDBOOK.html. The upload is a Founder action. The direct ebook is on sale here regardless.",
+      "Not on KDP, which is why the paperback reads coming_soon and not available: the files are built, preflight clean and packaged, but no Amazon listing exists and a reader cannot buy what is not listed. The handbook is at ROADMAP-BOOKS/05-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/KDP_UPLOAD_GUIDE.html. The upload is a Founder action. The direct ebook is on sale here regardless.",
       "Gates 7 (cover) and 8 (interior/proof) are unsigned, so the proof is unseen. Gates 2 (rights), 4 (content), 5 (facts) and 9 (metadata) are signed. The cover was corrected on 2026-09-06: the title line now matches the listed title, and the barcode rectangle carries zero text.",
 
       "No Kindle edition and no hardcover or large print are planned at launch; each decision is recorded below rather than assumed.",
