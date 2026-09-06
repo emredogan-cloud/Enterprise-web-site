@@ -1706,7 +1706,7 @@ export const BOOKS = [
     subtitle:
       "Baring-Gould\u2019s 1865 Account Complete, Annotated \u2014 with a Register of What He Construed, Transcribed and Only Theorised, and What Has Been Established Since",
     language: "en",
-    pageCount: 196,
+    pageCount: 198,
     categories: ["myth-and-folklore", "classics-and-philosophy"],
     authors: ["sabine-baring-gould", "emre-dogan"],
     bisac: ["SOC011000", "OCC036000"],
@@ -1725,7 +1725,7 @@ export const BOOKS = [
     onelinePromise:
       "The Victorian clergyman who went and read the werewolf trial records \u2014 with a head-note on every chapter saying which of his explanations survived, and which of them are the reason the book is hard to read.",
     description:
-      "In 1865 a young Devon curate could not hire anyone to walk him home across the fields: it was getting dark and there were loups-garoux abroad. Sabine Baring-Gould \u2014 antiquarian, folk-song collector, and the man who wrote the words of \u201cOnward, Christian Soldiers\u201d \u2014 went away and found out what those people were afraid of. What he produced is not the horror anthology it has been sold as; it is a piece of source criticism. He takes the werewolf backwards through the record \u2014 Herodotus and Petronius, then the Norse sagas, then the medieval chronicles, then the French trial transcripts \u2014 and at each step asks what the witnesses actually said. This edition prints all sixteen chapters entire. Around them: a head-note before each, every one ending in READING AGAINST HIM, which names the specific thing in that chapter to resist; a REGISTER OF EVIDENCE AND INFERENCE separating the four instruments he uses \u2014 a language he can construe, a document he transcribes, a story he repeats, and a theory he applies; a casebook of every trial; a who\u2019s-who; a glossary of the Norse his best chapters are built on; a chronology; and a plain account of what has been established since 1865. The verdict is uneven in a way worth knowing before you start: his philology held, his mythology was abandoned within his lifetime, and his medicine \u2014 an \u201cinnate cruelty\u201d \u2014 has been replaced by clinical lycanthropy, a rare delusional syndrome that explains the folklore well and the murders not at all. Six chapters describe murders, taken from the trial records: a note at the front says which and what is in them, and each of those head-notes opens by naming it. And the two most remarkable documents in the book are ones Baring-Gould prints without comment \u2014 in 1598 the Parlement of Paris sent a confessed werewolf to an asylum instead of the stake, and in 1603 the Parlement of Bordeaux declined to punish a boy of fourteen at all. 196 pages.",
+      "In 1865 a young Devon curate could not hire anyone to walk him home across the fields: it was getting dark and there were loups-garoux abroad. Sabine Baring-Gould \u2014 antiquarian, folk-song collector, and the man who wrote the words of \u201cOnward, Christian Soldiers\u201d \u2014 went away and found out what those people were afraid of. What he produced is not the horror anthology it has been sold as; it is a piece of source criticism. He takes the werewolf backwards through the record \u2014 Herodotus and Petronius, then the Norse sagas, then the medieval chronicles, then the French trial transcripts \u2014 and at each step asks what the witnesses actually said. This edition prints all sixteen chapters entire. Around them: a head-note before each, every one ending in READING AGAINST HIM, which names the specific thing in that chapter to resist; a REGISTER OF EVIDENCE AND INFERENCE separating the four instruments he uses \u2014 a language he can construe, a document he transcribes, a story he repeats, and a theory he applies; a casebook of every trial; a who\u2019s-who; a glossary of the Norse his best chapters are built on; a chronology; and a plain account of what has been established since 1865. The verdict is uneven in a way worth knowing before you start: his philology held, his mythology was abandoned within his lifetime, and his medicine \u2014 an \u201cinnate cruelty\u201d \u2014 has been replaced by clinical lycanthropy, a rare delusional syndrome that explains the folklore well and the murders not at all. Six chapters describe murders, taken from the trial records: a note at the front says which and what is in them, and each of those head-notes opens by naming it. And the two most remarkable documents in the book are ones Baring-Gould prints without comment \u2014 in 1598 the Parlement of Paris sent a confessed werewolf to an asylum instead of the stake, and in 1603 the Parlement of Bordeaux declined to punish a boy of fourteen at all. 198 pages.",
     idealReader:
       "Someone who came to werewolves through folklore, horror or true crime, and would rather read the Victorian who collected the trial records himself \u2014 and be told, chapter by chapter, which of his explanations survived.",
     formats: [
@@ -1734,7 +1734,7 @@ export const BOOKS = [
         availability: "coming_soon",
         fulfillment: "direct",
         priceCents: usd(8.99),
-        pageCount: 196,
+        pageCount: 198,
         amazonAsin: null,
         amazonUrl: null,
         kdp: "not_applicable",
@@ -1748,24 +1748,24 @@ export const BOOKS = [
         availability: "coming_soon",
         fulfillment: "amazon",
         priceCents: usd(15.99),
-        pageCount: 196,
+        pageCount: 198,
         amazonAsin: null,
         amazonUrl: null,
         kdp: "not_created",
         priceBasis:
-          "price-engine.mjs 2026-09-06, 196 pp 6\u00d79 B&W on white: prints at $3.35, KDP minimum list $5.59; $15.99 nets $6.24 (39.0%) at 60% royalty.",
+          "price-engine.mjs 2026-09-06, 198 pp 6\u00d79 B&W on white: prints at $3.38, KDP minimum list $5.63; $15.99 nets $6.23 (39.0%) at 60% royalty.",
       },
       {
         format: "hardcover",
         availability: "coming_soon",
         fulfillment: "amazon",
         priceCents: usd(32.99),
-        pageCount: 196,
+        pageCount: 198,
         amazonAsin: null,
         amazonUrl: null,
         kdp: "not_created",
         priceBasis:
-          "price-engine.mjs 2026-09-06, 196 pp 6\u00d79 hardcover: prints at $8.00, KDP minimum list $13.34; the engine\u2019s recommendation at the 35% target. $29.99 would net 33.3% and miss it.",
+          "price-engine.mjs 2026-09-06, 198 pp 6\u00d79 hardcover: prints at $8.03, KDP minimum list $13.38; the engine\u2019s recommendation at the 35% target. $29.99 would net 33.3% and miss it.",
       },
     ],
     blockers: [
@@ -1787,7 +1787,7 @@ export const BOOKS = [
       "COVER SERIES IDIOM: a painted cover where COVER_STANDARDS gives Valice Classics as "
         + "typographic \u2014 the same open Founder decision as Kwaidan and Sea Monsters (F-031). "
         + "Title band 14.4% of cover height against a 25% rule; 150 px thumbnail contrast 0.92.",
-      "The apparatus is 20.1% of the volume against a 20% floor, measured from the content files "
+      "The apparatus is 21.3% of the volume against a 20% floor, measured from the content files "
         + "by COMMON-AREA/checks/differentiation.py.",
     ],
   },

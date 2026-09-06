@@ -1759,7 +1759,7 @@ const BOOK_OF_WERE_WOLVES: Companion = {
   bookTitle: "The Book of Were-Wolves",
   state: "book-not-yet-available",
   stateNote:
-    "The Valice edition is built and validated \u2014 196 pages, all sixteen chapters \u2014 " +
+    "The Valice edition is built and validated \u2014 198 pages, all sixteen chapters \u2014 " +
     "but its pages have not been deployed and no payment product exists for it yet, so the " +
     "storefront row is deliberately held back. Everything on this page is free and works " +
     "today regardless.",
