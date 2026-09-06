@@ -99,8 +99,8 @@ export const DIGITAL_EDITION_SOURCES = [
     // Valice Classics 3 (2026-09-04). Text-only 6 × 9 interior with no plates,
     // so the /ebook pass is a normalising pass rather than a downsampling one.
     slug: "epictetus-discourses-and-enchiridion",
-    printInterior: bookPath("01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION", "OUTPUT", "interior-main.pdf"),
-    epub: bookPath("01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION", "OUTPUT", "epictetus-discourses-and-enchiridion.epub"),
+    printInterior: bookPath("05-EPICTETUS-DISCOURSES-AND-ENCHIRIDION", "OUTPUT", "interior-main.pdf"),
+    epub: bookPath("05-EPICTETUS-DISCOURSES-AND-ENCHIRIDION", "OUTPUT", "epictetus-discourses-and-enchiridion.epub"),
   },
   {
     // Valice Classics 5 (2026-09-04). Volume one of two.

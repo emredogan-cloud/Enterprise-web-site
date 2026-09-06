@@ -51,7 +51,7 @@ export const REBUILT_COVERS = {
   "epictetus-discourses-and-enchiridion": {
     paperback: {
       built: true,
-      path: bookPath("01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION", "ASSETS", "cover", "paperback-wrap-v1.pdf"),
+      path: bookPath("05-EPICTETUS-DISCOURSES-AND-ENCHIRIDION", "ASSETS", "cover", "paperback-wrap-v1.pdf"),
       pageCount: 176, spineIn: 0.3964, wrapIn: "12.6464 × 9.2500 (white)",
       note: "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 176 — that is, after the companion leaf. Its spine and wrap agree with this pipeline's own arithmetic to four decimal places (0.396352 / 12.646352), so nothing had to be rebuilt after the splice.",
     },
