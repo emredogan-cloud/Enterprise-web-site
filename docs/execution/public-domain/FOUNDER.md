@@ -14,44 +14,6 @@ output while other work continues · **P2** is an inconvenience and never stops 
 ## Open
 
 
-### F-028 · P0 · One command to finish Book 04's production activation
-
-- **Date raised:** 2026-09-06 · **Book:** roadmap 4 · **Deployment:**
-  `dpl_GKN7PGPLBG2ogh6tLwuP292qbbTj` (READY, production, `48d3e5f`)
-- **Blocker:** the book is merged to `main` and deployed. `/companion/codex-puzzles`
-  and all four of its downloads are **200** on the public URL. The product page
-  `/books/codex-mythologica-the-puzzle-book` is still **404** for one reason: the
-  catalogue row has not been written to the database the site reads.
-- **The two-database trap, for the fourth time.** `bookstore` is what every local
-  `.env` and `.env.local` point at; **`neondb`** is what production reads — same
-  host, same credentials, different database. The row was written to `bookstore`.
-- **Why the agent cannot do it:** this environment's permission classifier refuses
-  the production-database write, which is correct behaviour for a production
-  write. Everything up to it is done: `vercel env pull` has fetched the
-  production environment to `scripts/tmp/.env.production` (gitignored), the
-  loader confirms `target database : neondb`, and the dry run is clean —
-  `catalog integrity : OK`, 21 books, 55 formats, this book `published · 4
-  formats · 1 buyable`, the five Phase 2 books `draft`, **nothing demoted**.
-- **The action, two steps:**
-
-  ```
-  node scripts/catalog/load-catalog.mjs \
-    --env scripts/tmp/.env.production --commit --i-know-this-is-production
-  ```
-
-  then redeploy `48d3e5f` so `/books/codex-mythologica-the-puzzle-book` is
-  prerendered against the new row — the same redeploy Phase 1 used.
-
-- **Then verify:** the product page 200s with the cover, $11.99 and the direct-sale
-  CTA, and `node scripts/catalog/validate-catalog.mjs --env .env` returns 81 pass ·
-  0 error (it currently reports 4, all of them this one cause).
-- **Standing fix worth making once:** point `load-catalog.mjs`'s default at the
-  database the site reads, or make it refuse to write a database no deployment
-  uses. Four sessions have now hit this.
-
----
-
-
 ### F-025 · P1 · Six account-holder actions for Codex Mythologica: The Puzzle Book
 
 - **Date raised:** 2026-09-05 · **Phase:** roadmap book 4 · **Branch:**

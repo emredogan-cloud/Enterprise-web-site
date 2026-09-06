@@ -389,33 +389,34 @@ authentication; that is the route working, not failing.
 
 No transaction was created and none is claimed.
 
-### The one thing standing between this book and its public page
+### Live
 
-**The production catalogue row has not been written.** The site prerenders
-`/books/<slug>` from the database at build time, and there are two Neon
-databases on the same host and credentials: `bookstore`, which every local
-`.env` points at, and **`neondb`, which the site actually reads.** This trap has
-now caught three sessions and is recorded in the Phase 1 report.
+The Founder ran the one command this environment refused — the production
+catalogue write — at 2026-09-06. The row went to **`neondb`**, the database the
+site reads, and not to `bookstore`, which is what every local `.env` points at
+and what nothing deploys. That trap has now caught four sessions and is worth
+fixing at the source.
 
-Everything up to the write is done and verified: the environment was pulled with
-`vercel env pull`, the loader confirms `target database : neondb`, and its dry
-run is clean — `catalog integrity : OK`, 21 books, 55 formats, this book
-`published · 4 formats · 1 buyable`, the five Phase 2 books `draft`, nothing
-demoted.
+Then `a829532` rebuilt production so the statically prerendered listings and the
+sitemap were generated against the new row. Deployment
+**`dpl_8L1UzBAtBDjECyJcvhHEXEyYbeLE`**, target `production`.
 
-The write itself was refused by this environment's permission classifier, which
-is correct behaviour for a production database. It is one command:
+**Measured on the public URL after the build published:**
 
-```
-node scripts/catalog/load-catalog.mjs \
-  --env scripts/tmp/.env.production --commit --i-know-this-is-production
-```
+| | |
+|---|---|
+| `/books/codex-mythologica-the-puzzle-book` | **200** |
+| Title, subtitle, author | *Codex Mythologica: The Puzzle Book* · *100 Myth Puzzles from 19 Civilizations* · Emre Doğan |
+| Prices on the page | **$11.99** ebook · $16.99 paperback · $33.99 hardcover · 156 pp |
+| Cover | **200** · 381,142 B · `image/webp` |
+| Direct-sale CTA | Buy / Add to cart present |
+| Companion link | `/companion/codex-puzzles` printed on the page |
+| Related Codex books | Codex Mythologica, World Games, World Myths, Field Book, Dudeney |
+| Listed on | `/ebooks` · `/books` · `/categories/puzzle-and-challenge` · `sitemap.xml` |
+| `/` `/ebooks` `/books` `/categories` `/search` `/cart` `/companion/codex-puzzles` | all **200** |
+| `validate-catalog --env .env` | **80 pass · 0 warn · 0 error** |
 
-Then the deployment must be rebuilt so the page is prerendered against the new
-row — a redeploy of `48d3e5f`, which is how Phase 1 did it.
-
-Until that runs, this book is **merged and deployed but not publicly listed**,
-and this report does not call it live.
+The book is live.
 
 ---
 
