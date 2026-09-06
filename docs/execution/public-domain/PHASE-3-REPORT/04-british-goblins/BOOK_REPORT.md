@@ -22,16 +22,16 @@ exactly that ground and cited him anyway. This edition exists to do the marking 
 
 | | |
 |---|---|
-| Pages | **388**, 6 × 9, even |
+| Pages | **390**, 6 × 9, even |
 | Sikes's words printed | **110,406** — 4 Books, 32 chapters, 194 footnotes, 44 passages of verse |
-| Editorial apparatus | **28,667 words, 20.1%** against a 20% floor |
+| Editorial apparatus | **29,222 words, 20.45%** against a 20% floor |
 | Illustrations | **20 of T. H. Thomas's 21 drawings set** — 17 captioned plates and 3 ornaments |
 | Illustrations refused | **6** — the music engravings, set in 2010 by Lesley Halamek. Not this edition's to reproduce |
 | Coverage | **32/32 chapters** open and close as the source does, in the content files and in the built PDF; 0 failures |
 | Quotations | **7 checked against the source, 0 not his** |
-| Claims | **27 registered — 25 verified, 2 marked unverifiable, 7 corrected by verification** |
-| Paperback | 13.124 × 9.25 in, 0.874 in spine — calculator row read for 388 pp |
-| Hardcover | 14.638 × 10.417 in, 1.063 in spine — calculator row read for 388 pp |
+| Claims | **37 registered — 33 verified, 4 marked unverifiable, 16 corrected by verification** |
+| Paperback | 13.128 × 9.25 in, 0.878 in spine — calculator row read for 390 pp |
+| Hardcover | 14.642 × 10.417 in, 1.067 in spine — calculator row read for 390 pp |
 | EPUB | 1.5 MB, 65 documents, **EPUBCheck 0 fatal / 0 error / 0 warning** |
 | Companion | 4 sheets, QR **2.31 in measured in the built PDF — 25.7% of page height, 36.4% of usable height** |
 
@@ -49,6 +49,9 @@ exactly that ground and cited him anyway. This edition exists to do the marking 
 - **What Has Been Established Since 1880** — eleven findings. Three sustained, four not
   sustained, one abandoned, one still disputed, one not a finding at all, and one true only
   with a large qualification.
+- **Two notes under Article 18** the first build did not write: that Sikes wrongly corrects
+  Keightley on the date of Edmund Jones's book, and that his fourth-century date for the
+  Sagranus stone is a century out.
 - A descriptive list of every plate, the six airs named and placed, a gazetteer of the
   parishes, a who's-who, a pronunciation guide, a chronology, editorial notes, and six essays.
 
@@ -149,6 +152,68 @@ at all.
   them English. Fifty-nine distinct Welsh terms are explained, across the glossary *and* the
   register of beings. Stated that way now.
 
+
+## What the adversarial review found
+
+An independent review was run against this book before it was called finished. It returned
+**eleven P0 findings**, and nine of them were contradicted by text this same volume prints.
+They are recorded here in full because the pattern matters more than any single error.
+
+**The edition's central claim was false.** Every part of the apparatus rested on the
+proposition that Sikes introduces Edmund Jones and then *stops marking him*. Counted in the
+parsed body: after Book I chapter VIII he names the Prophet Jones **eleven more times**, nine
+of them in Book II, and cites *Jones, 'Apparitions'* in **four further footnotes**. He marks
+Jones constantly. The claim appeared in four apparatus passages, the Register, both covers, a
+companion sheet and the catalogue description.
+
+The true criticism is Rhŷs's, and it is sharper. Of Sikes's **194 footnotes, 163 name a title
+and only 65 give a page**; six of the seven references to Jones are the bare words *Jones,
+'Apparitions.'*; and nothing in the book is dated. Rhŷs put it in one sentence — *he seems not
+to have been too anxious to leave anybody the means of testing his work, as one will find on
+verifying his references, when he gives any* — and that sentence, which is checkable, has
+replaced an italicised phrase that appears in neither volume of his *Celtic Folklore*.
+
+Also printed and false, each corrected against the source:
+
+| The edition said | The book says |
+|---|---|
+| Gwyn ap Nudd is a figure "whom Sikes does not name" | Named **twelve times**, with a section of Book I chapter I about him |
+| Rip Van Winkle, "which Sikes does not mention once" | A chapter section is *titled* "The Original of Rip van Winkle"; Washington Irving named twice |
+| Chronology: Olaus Magnus, 1555, "a source for Book II" | **Zero** occurrences — the row was imported from another book of the phase |
+| Chronology: Marie de France writes *Bisclavret* | **Zero** occurrences — likewise |
+| The pwca sketch was "copied from a drawing on a Welsh farmhouse wall" | A Welsh peasant "drew the above figure with a bit of coal". The wall was invented |
+| "Four years in Wales" | Consul June 1876 until his death in August 1883 — seven years, and the preface is signed August 1879 |
+| Edmund Jones, "one Baptist minister's collection" | Sikes calls him a dissenting minister; he was an **Independent**, who publicly debated against the Baptists |
+| "W. Howell" | Sikes prints **"W. Howells"** |
+| Sikes "names them", including Charles Redwood | *The Vale of Glamorgan* is cited **anonymously**, footnotes 15 and 95 |
+| "190 southern county mentions to 29 northern" | **191 to 36**. Carnarvonshire was never counted — Sikes spells it without the e |
+
+**The hardcover file was broken.** The back-panel blurb overran the imprint rule, which was
+drawn through a line of text, and *VALICE CLASSICS · 16* was printed on top of the last
+paragraph — on a print-ready file that had passed every check in the QA record, because
+nothing in the record looked at the back panel. The rule and the blurb were positioned from
+opposite edges with nothing holding them apart. `compose_cover.back_panel` now lays the block
+out, measures it, steps the type down until it clears the rule, and refuses to build if it
+cannot. That fix is in the shared instrument and protects every book.
+
+**A second printed artifact.** Seven `[Listen.]` labels — the 2010 transcriber's MIDI links —
+were set as body text, a few lines from the note explaining that her music is not reproduced.
+Stripped at parse time, as the HTML comment was.
+
+### The root cause, which is the finding that matters
+
+The source text was parsed carefully and the **facts about it** were taken from Wikipedia and
+never held against the parsed text. Eleven of the original twenty-five verified claims cited
+`en.wikipedia.org` as their only evidence, including material Wikipedia itself leaves
+uncited. The "W. Howell" typo is Wikipedia's. The Dorson quotations trace no further than
+Wikipedia and are now marked **UNVERIFIABLE** rather than carried as verified on a tertiary
+source.
+
+Every one of the nine self-contradicting P0s would have been caught by a check this factory
+does not have: **assert the apparatus's claims about the source against the source**, the way
+`check_quotes.py` already does for quotations. That check, not another proofread, is the fix,
+and it is the recommendation this book leaves to the phase.
+
 ## What is not done
 
 - **Not deployed.** Phase 3 is unmerged by instruction. The companion address is printed
@@ -162,11 +227,16 @@ at all.
   has no evidential support, and that the sin-eater remains disputed. Both are filed in the book
   as editorial interpretation under Article 6 rather than asserted as current fact, and the
   ledger records that no single citable authority was read for either.
-- **The apparatus clears the floor narrowly** — 20.14%, a margin of roughly 150 words. Recorded
-  rather than widened: Article 2 forbids padding to reach the number, and the book already has
-  twenty-seven back-matter sections. Any future cut must re-measure.
+- **The apparatus clears the floor by 20.45%**, a margin of about 1,100 words — wider than
+  before the review, because the review required two new Article 18 notes and the rewriting of
+  several false passages. It was not padded to raise it.
+- **A duplicate-prose finding is open.** The reviewer identified 28 near-duplicate sentence
+  pairs, some 751 words, across the head-notes, glossary, plates and creature register. Cutting
+  them is right under Article 2 and would take the share to about 19.7%, below the floor, so it
+  needs genuine apparatus written to replace them rather than a quiet decision either way. It is
+  recorded here rather than done in haste.
 - **Pricing is high and untested.** $22.99 paperback and $41.99 hardcover are the price engine's
-  own recommendations for 388 pages at the 35% target, and no book this press has sold is priced
+  own recommendations for 390 pages at the 35% target, and no book this press has sold is priced
   anywhere near them. **F-036.**
 - **Cover series idiom unresolved** — a painted cover where COVER_STANDARDS gives Valice
   Classics as typographic. Title band 17.8% of cover height against a 25% rule; recorded as

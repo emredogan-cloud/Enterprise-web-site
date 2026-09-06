@@ -1849,7 +1849,7 @@ const BRITISH_GOBLINS: Companion = {
   bookTitle: "British Goblins",
   state: "book-not-yet-available",
   stateNote:
-    "The Valice edition is built and validated \u2014 388 pages, all four Books and " +
+    "The Valice edition is built and validated \u2014 390 pages, all four Books and " +
     "thirty-two chapters, with twenty of T. H. Thomas's drawings \u2014 but its pages have " +
     "not been deployed and no payment product exists for it yet, so the storefront row is " +
     "deliberately held back. Everything on this page is free and works today regardless.",
@@ -1881,7 +1881,7 @@ const BRITISH_GOBLINS: Companion = {
         "has no English equivalent.",
       kind: "static",
       href: "/companion/british-goblins/welsh-words.pdf",
-      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+      meta: "PDF \u00b7 US Letter \u00b7 3 pages",
     },
     {
       id: "scorecard",
@@ -1907,7 +1907,7 @@ const BRITISH_GOBLINS: Companion = {
         "Sikes standing in a room watching.",
       kind: "static",
       href: "/companion/british-goblins/who-told-him.pdf",
-      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+      meta: "PDF \u00b7 US Letter \u00b7 2 pages",
     },
     {
       id: "gazetteer",
@@ -1919,7 +1919,7 @@ const BRITISH_GOBLINS: Companion = {
         "parish is the best evidence in the book that a real person told him something.",
       kind: "static",
       href: "/companion/british-goblins/gazetteer.pdf",
-      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+      meta: "PDF \u00b7 US Letter \u00b7 2 pages",
     },
   ],
 };

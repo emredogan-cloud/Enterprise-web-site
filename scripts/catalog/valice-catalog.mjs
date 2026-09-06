@@ -1718,9 +1718,9 @@ export const BOOKS = [
     slug: "british-goblins",
     title: "British Goblins",
     subtitle:
-      "Sikes\u2019s 1880 Book Complete, Annotated \u2014 All Four Books, Thirty-Two Chapters and Twenty Drawings by T. H. Thomas, with a Register of What He Watched, Was Told and Only Read",
+      "Sikes\u2019s 1880 Book Complete, Annotated \u2014 All Four Books, Thirty-Two Chapters and Seventeen Drawings by T. H. Thomas, with a Register of What He Watched, Was Told and Only Read",
     language: "en",
-    pageCount: 388,
+    pageCount: 390,
     categories: ["myth-and-folklore", "classics-and-philosophy"],
     authors: ["wirt-sikes", "t-h-thomas", "emre-dogan"],
     bisac: ["SOC011000", "OCC036000"],
@@ -1739,7 +1739,7 @@ export const BOOKS = [
     onelinePromise:
       "The largest book on Welsh folklore in English, complete \u2014 with the sources marked at the point of use, which is the one thing its author never did.",
     description:
-      "In June 1876 the United States sent a consul to Cardiff. Wirt Sikes was a New York journalist of thirty-nine who had written two novels and, by one account, used as many as thirty pseudonyms. He spent four years in Wales asking what people were afraid of after dark, and in 1880 he published the largest book on Welsh folklore in English \u2014 the book most of what English speakers know about the tylwyth teg still comes through, usually without their knowing it. This edition prints all four Books and all thirty-two chapters entire, with twenty of T. H. Thomas\u2019s drawings. Book I is the fairies and Sikes\u2019s five kinds of them; Book II is the spirit-world, where the book is at its strangest and its best \u2014 the corpse-candle, the cyhyraeth, the gwrach y rhibyn, the hounds of Annwn; Book III is the customs, from courtship to burial, including the most-quoted passage he ever wrote, on the sin-eater; Book IV is the bells, wells, stones and dragons. Richard Dorson called it the most substantial book of Welsh legendry in English and said in the same assessment what is wrong with it: Sikes leans on earlier compilations \u2014 above all on Edmund Jones\u2019s Monmouthshire collection of 1780 \u2014 and stops marking them at the point of use, so four hundred pages arrive in one voice and a reader cannot tell eighteenth-century Monmouthshire from the countryside he was living in. John Rh\u0177s and E. S. Hartland said the same in the 1880s, and cited him anyway. So the apparatus here does the marking for him: a head-note before every chapter ending in READING AGAINST HIM; an introduction to each of the four Books; a REGISTER OF EVIDENCE AND INFERENCE, by Book, separating what he watched from what he was told and what he read; a Welsh glossary and a register of the beings, some sixty terms between them, with how to say them; a descriptive list of every plate; a gazetteer of the parishes; a who\u2019s-who; the six airs named and placed; and a plain account, claim by claim, of what has been established since 1880. That account is not flattering and is not meant to be: the collection held and the argument did not. The sharpest instance is one he watched with his own eyes \u2014 the Druidic rites at the Pontypridd rocking stone, which he reports as an ancient survival and which had been started in about 1853 by Myfyr Morganwg, a living Welsh romantic, in a tradition invented a generation earlier by Iolo Morganwg. 388 pages.",
+      "In June 1876 the United States sent a consul to Cardiff. Wirt Sikes was a New York journalist of thirty-nine who had written two novels and, by one account, used as many as thirty pseudonyms. He spent seven years in Wales as consul, and in 1880 — after the first three of them — he published the largest book on Welsh folklore in English \u2014 the book most of what English speakers know about the tylwyth teg still comes through, usually without their knowing it. This edition prints all four Books and all thirty-two chapters entire, with twenty of T. H. Thomas\u2019s drawings. Book I is the fairies and Sikes\u2019s five kinds of them; Book II is the spirit-world, where the book is at its strangest and its best \u2014 the corpse-candle, the cyhyraeth, the gwrach y rhibyn, the hounds of Annwn; Book III is the customs, from courtship to burial, including the most-quoted passage he ever wrote, on the sin-eater; Book IV is the bells, wells, stones and dragons. Richard Dorson called it the most substantial book of Welsh legendry in English and said in the same assessment what is wrong with it: Sikes leans on earlier compilations \u2014 above all on Edmund Jones\u2019s Monmouthshire collection of 1780 \u2014 and although he names them he almost never gives a page and never gives a date, so four hundred pages arrive in one voice and a reader cannot tell eighteenth-century Monmouthshire from the countryside he was living in. John Rh\u0177s and E. S. Hartland said the same in the 1880s, and cited him anyway. So the apparatus here does the marking for him: a head-note before every chapter ending in READING AGAINST HIM; an introduction to each of the four Books; a REGISTER OF EVIDENCE AND INFERENCE, by Book, separating what he watched from what he was told and what he read; a Welsh glossary and a register of the beings, some sixty terms between them, with how to say them; a descriptive list of every plate; a gazetteer of the parishes; a who\u2019s-who; the six airs named and placed; and a plain account, claim by claim, of what has been established since 1880. That account is not flattering and is not meant to be: the collection held and the argument did not. The sharpest instance is one he watched with his own eyes \u2014 the Druidic rites at the Pontypridd rocking stone, which he reports as an ancient survival and which had been started in about 1853 by Myfyr Morganwg, a living Welsh romantic, in a tradition invented a generation earlier by Iolo Morganwg. 390 pages.",
     idealReader:
       "Someone who wants the Welsh fairy material entire and in one place, and would rather be told which parts of it are 1780 Monmouthshire, which are Sikes standing in a room watching, and which are a theory that did not survive its century.",
     formats: [
@@ -1748,38 +1748,38 @@ export const BOOKS = [
         availability: "coming_soon",
         fulfillment: "direct",
         priceCents: usd(11.99),
-        pageCount: 388,
+        pageCount: 390,
         amazonAsin: null,
         amazonUrl: null,
         kdp: "not_applicable",
         masterFileKey: null,
         epubFileKey: null,
         priceBasis:
-          "price-engine.mjs 2026-09-06, direct ebook, public domain: $11.99 nets $10.89 after Paddle at a 90.8% margin. Above every other Valice Classics title except Codex Bestiarium, and below it: 388 pages and 110,406 source words against Bestiarium\u2019s 435 pages, and against Traditional Games at 244 pages and $9.99.",
+          "price-engine.mjs 2026-09-07, direct ebook, public domain: $11.99 nets $10.89 after Paddle at a 90.8% margin. Above every other Valice Classics title except Codex Bestiarium, and below it: 390 pages and 110,406 source words against Bestiarium\u2019s 435 pages, and against Traditional Games at 244 pages and $9.99.",
       },
       {
         format: "paperback",
         availability: "coming_soon",
         fulfillment: "amazon",
         priceCents: usd(22.99),
-        pageCount: 388,
+        pageCount: 390,
         amazonAsin: null,
         amazonUrl: null,
         kdp: "not_created",
         priceBasis:
-          "price-engine.mjs 2026-09-06, 388 pp 6\u00d79 B&W on white: prints at $5.66, KDP minimum list $9.43; $22.99 nets $8.14 (35.4%) at 60% royalty \u2014 the engine\u2019s recommendation, and the first list price on the ladder that clears the 35% target.",
+          "price-engine.mjs 2026-09-07, 390 pp 6\u00d79 B&W on white: prints at $5.68, KDP minimum list $9.47; $22.99 nets $8.12 (35.3%) at 60% royalty \u2014 the engine\u2019s recommendation, and the first list price on the ladder that clears the 35% target.",
       },
       {
         format: "hardcover",
         availability: "coming_soon",
         fulfillment: "amazon",
         priceCents: usd(41.99),
-        pageCount: 388,
+        pageCount: 390,
         amazonAsin: null,
         amazonUrl: null,
         kdp: "not_created",
         priceBasis:
-          "price-engine.mjs 2026-09-06, 388 pp 6\u00d79 hardcover: prints at $10.31, KDP minimum list $17.18; $41.99 is the engine\u2019s recommendation at the 35% target. It is a high number and it is a 388-page case-bound book; the Founder decides at Gate 8.",
+          "price-engine.mjs 2026-09-07, 390 pp 6\u00d79 hardcover: prints at $10.33, KDP minimum list $17.22; $41.99 is the engine\u2019s recommendation at the 35% target. It is a high number and it is a 390-page case-bound book; the Founder decides at Gate 8.",
       },
     ],
     blockers: [
@@ -1797,15 +1797,15 @@ export const BOOKS = [
         + "typographic \u2014 the same open Founder decision as the other three books of the phase "
         + "(F-031). Title band 17.8% of cover height against a 25% rule; 150 px thumbnail "
         + "contrast 1.00.",
-      "THE APPARATUS CLEARS THE FLOOR NARROWLY. 28,667 words, 20.1% of the volume against a 20% "
-        + "floor, measured by COMMON-AREA/checks/differentiation.py \u2014 a margin of about 150 "
+      "THE APPARATUS CLEARS THE FLOOR NARROWLY. 29,222 words, 20.45% of the volume against a 20% "
+        + "floor, measured by COMMON-AREA/checks/differentiation.py \u2014 a margin of about 1,100 "
         + "words. It is recorded rather than widened: Article 2 forbids padding to reach the "
-        + "number, and the book has twenty-seven back-matter sections already. Any future cut to "
+        + "number, and the book has twenty-one back-matter sections already. Any future cut to "
         + "the apparatus must re-measure.",
       "TWO CLAIMS ARE MARKED UNVERIFIABLE, not verified: that the aboriginal-race theory of "
         + "fairy origins has no evidential support, and that the sin-eater remains disputed. Both "
         + "are filed in the book as editorial interpretation under Article 6 rather than asserted "
-        + "as current fact, and CLAIMS.jsonl C-026 and C-027 record that no single citable "
+        + "as current fact, and CLAIMS.jsonl records that no single citable "
         + "authority was read for either.",
       "PRICING IS HIGH AND UNTESTED. $22.99 paperback and $41.99 hardcover are the price "
         + "engine\u2019s own recommendations for 388 pages at the 35% target, but no book this "
