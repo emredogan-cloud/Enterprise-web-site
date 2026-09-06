@@ -18,10 +18,16 @@ import { formatPrice } from "@/lib/format";
  */
 export function CartSummary({
   totalCents,
+  subtotalCents,
+  bundleName,
+  bundleDiscountCents,
   currency,
   itemCount,
 }: {
   totalCents: number;
+  subtotalCents: number;
+  bundleName: string | null;
+  bundleDiscountCents: number;
   currency: string;
   itemCount: number;
 }) {
@@ -73,9 +79,21 @@ export function CartSummary({
           {itemCount} {itemCount === 1 ? "book" : "books"}
         </span>
         <span className="text-fg-hi tabular-nums">
-          {formatPrice(totalCents, currency)}
+          {formatPrice(subtotalCents, currency)}
         </span>
       </div>
+
+      {/* The bundle, when the cart holds every member of one. Shown as its own
+          line so the reader can see WHY the total is lower than the books
+          added up, and what it is called. */}
+      {bundleName && bundleDiscountCents > 0 && (
+        <div className="mt-4 flex items-baseline justify-between border-b border-emerald-bright/20 pb-4 text-sm">
+          <span className="text-emerald-bright">{bundleName}</span>
+          <span className="tabular-nums text-emerald-bright">
+            −{formatPrice(bundleDiscountCents, currency)}
+          </span>
+        </div>
+      )}
 
       {/* Tax note — Paddle handles tax at checkout, so we're explicit */}
       <p className="mt-3 text-xs text-fg-fade">

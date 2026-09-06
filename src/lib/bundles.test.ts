@@ -13,6 +13,7 @@ describe("reader bundles", () => {
       for (const slug of b.bookSlugs) {
         const book = BOOKS.find((x) => x.slug === slug);
         expect(book, `${b.slug} names an unknown book ${slug}`).toBeTruthy();
+        if (!book) continue;
         expect(book.websiteStatus, `${slug} is not published`).toBe("published");
         expect(book.directSale, `${slug} is not sold direct`).toBe(true);
         expect(book.paddlePriceId, `${slug} has no Paddle price`).toBeTruthy();
@@ -24,8 +25,9 @@ describe("reader bundles", () => {
     for (const b of BUNDLES) {
       const sum = b.bookSlugs.reduce((total, slug) => {
         const book = BOOKS.find((x) => x.slug === slug);
-        const ebook = book.formats.find((f) => f.format === "ebook");
-        return total + ebook.priceCents;
+        const ebook = book?.formats.find((f) => f.format === "ebook");
+        expect(ebook, `${slug} has no ebook format`).toBeTruthy();
+        return total + (ebook?.priceCents ?? 0);
       }, 0);
       expect(sum, `${b.slug} misstates what its books cost separately`).toBe(
         b.separatelyCents,
