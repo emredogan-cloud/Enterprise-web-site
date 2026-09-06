@@ -10,6 +10,7 @@ import { ExploreStrip } from "@/components/book-detail/explore-strip";
 import { DirectEditionPanel } from "@/components/book-detail/direct-edition-panel";
 import { FormatTable } from "@/components/book-detail/format-table";
 import { RelatedBooksShelf } from "@/components/book-detail/related-books-shelf";
+import { bundlesContaining } from "@/lib/bundles";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
 import { getCompanionForBook } from "@/lib/companions";
@@ -130,9 +131,34 @@ export default async function BookDetailPage({
     listPublishedBooks(),
   ]);
 
+  // The related shelf used to be "anything else published, first six", which
+  // put the Field Book next to Epictetus and left Meditations — the book
+  // Marcus wrote after reading him, and the other half of the Stoic Library
+  // bundle — off the page entirely. Rank by the relationships the catalogue
+  // actually knows about, strongest first:
+  //
+  //   1. a book this one is BUNDLED with (they are sold together and priced
+  //      together, so it is the strongest connection the shop can make);
+  //   2. a book in the same collection;
+  //   3. everything else, in the order the catalogue returned.
+  //
+  // Pure ranking over the list already fetched: no extra query, and a book
+  // with no relationships still fills its shelf exactly as before.
+  const bundlePartners = new Set(
+    bundlesContaining(slug).flatMap((b) => b.bookSlugs).filter((s) => s !== slug),
+  );
+  const rank = (b: (typeof allBooks)[number]) =>
+    bundlePartners.has(b.slug)
+      ? 0
+      : b.primaryCategory && b.primaryCategory === book.primaryCategory
+        ? 1
+        : 2;
   const relatedBooks = allBooks
     .filter((b) => b.slug !== slug)
-    .slice(0, 6);
+    .map((b, i) => ({ b, i, r: rank(b) }))
+    .sort((x, y) => x.r - y.r || x.i - y.i)
+    .slice(0, 6)
+    .map((x) => x.b);
 
   const aggregateRatingForJsonLd =
     ratingAggregate.count > 0 && ratingAggregate.average !== null

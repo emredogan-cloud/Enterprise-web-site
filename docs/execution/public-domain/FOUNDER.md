@@ -13,6 +13,52 @@ output while other work continues · **P2** is an inconvenience and never stops 
 
 ## Open
 
+
+### F-031 · P1 · Upload the Epictetus paperback (roadmap book 05)
+
+- **Date raised:** 2026-09-06 · **Book:** roadmap 05, Valice Classics 3 ·
+  **Branch:** `feature/book-05-production`, not merged
+- **Blocker:** the paperback is finished and packaged and cannot be listed by an agent.
+  Interior 176 pp preflight clean; wrap preflight clean with **zero text in the barcode
+  rectangle**; the cover title now matches the listed title; the guide carries every field,
+  both file hashes, the measured geometry and the files *not* to upload.
+- **Why the agent cannot do it:** it is an Amazon account action.
+- **The action:** work down
+  `ROADMAP-BOOKS/05-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/KDP_UPLOAD_GUIDE.html`. Two files
+  only — `OUTPUT/interior-main.pdf` and `ASSETS/cover/paperback-wrap-v4.pdf`. Type the
+  **(Annotated)** form into KDP's Title box; the guide says why. List at **$16.99**.
+  Order a proof: the spine is 0.396 in and narrow spines do not print the way they preview.
+- **Then:** put the ASIN into `valice-catalog.mjs` and move the paperback to `available`.
+  Until a listing exists it reads `coming_soon`, because a reader cannot buy what is not
+  listed.
+- **Not blocking anything else.** The ebook is live and selling, and the Stoic Library
+  bundle is live: Meditations + Epictetus in one cart is **$14.99** against $19.98
+  separately, verified against Paddle's pricing engine.
+
+---
+
+### F-029 addendum · the barcode collision has a fix that does not touch the artwork
+
+- **Date:** 2026-09-06 · raised by the Epictetus work
+- F-029 records that three repairs were tried on the eight affected covers and all three
+  were rejected, because each was an **inpaint** — smearing rock, foliage and the frame
+  rule, or leaving flat rectangles and ghost blobs.
+- A fourth approach works and was used on both Epictetus wraps: **do not paint anything,
+  move the type**. The back cover's lower half has slack in the gaps above the imprint
+  group; spending it lifts the wreath and the imprint block clear of the box while they
+  stay centred, at their own size, in their own type. Each block is cut with its
+  antialiasing, its old position refilled with ground interpolated **per column** (a
+  per-row median is what left the flat rectangles), and pasted higher.
+- Result on Epictetus, measured on the rendered final PDFs at 300 dpi: **0 glyph pixels**
+  in the barcode rectangle, paperback and hardcover. What remains is the border rule, which
+  KDP's white box overlays rather than cutting a word.
+- The module is `ROADMAP-BOOKS/05-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/BUILD/fix_barcode_zone.py`.
+  It takes per-file block coordinates and refuses to write unless the box measures zero
+  glyphs. **Not applied to the other eight books** — those are not this task's to touch —
+  but it is there, and F-029 no longer needs to be answered with "cannot be fixed safely".
+
+---
+
 ### F-028 · P0 · Create the five Phase 2 Paddle products (one command)
 
 - **Date raised:** 2026-09-06 · **Phase:** Phase 1/2 cover revision · **Branch:**
