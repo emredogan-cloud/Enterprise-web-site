@@ -1,13 +1,13 @@
 {
   "tool": "validate-catalog",
   "target": "https://valicepress.com",
-  "startedAt": "2026-09-05T22:27:09.244Z",
-  "finishedAt": "2026-09-05T22:29:00.665Z",
-  "ok": false,
+  "startedAt": "2026-09-06T02:40:30.431Z",
+  "finishedAt": "2026-09-06T02:41:45.826Z",
+  "ok": true,
   "counts": {
-    "pass": 44,
+    "pass": 54,
     "warn": 0,
-    "error": 33,
+    "error": 0,
     "skipped": 2
   },
   "findings": [
@@ -54,10 +54,10 @@
       "where": null
     },
     {
-      "level": "error",
+      "level": "pass",
       "check": "page",
-      "message": "https://valicepress.com/books/codex-mythologica-the-puzzle-book → 404",
-      "where": "codex-mythologica-the-puzzle-book"
+      "message": "https://valicepress.com/books/codex-mythologica-the-puzzle-book 200, canonical ok, JSON-LD parses",
+      "where": null
     },
     {
       "level": "pass",
@@ -108,9 +108,9 @@
       "where": null
     },
     {
-      "level": "error",
+      "level": "pass",
       "check": "sitemap",
-      "message": "missing /books/codex-mythologica-the-puzzle-book",
+      "message": "60 URLs",
       "where": null
     },
     {
@@ -156,16 +156,10 @@
       "where": null
     },
     {
-      "level": "error",
+      "level": "pass",
       "check": "cover-route",
-      "message": "listed on /books without its cover",
-      "where": "codex-mythologica-the-puzzle-book"
-    },
-    {
-      "level": "error",
-      "check": "cover-route",
-      "message": "listed on /ebooks without its cover",
-      "where": "codex-mythologica-the-puzzle-book"
+      "message": "same cover on every surface",
+      "where": null
     },
     {
       "level": "pass",
@@ -264,22 +258,22 @@
       "where": null
     },
     {
-      "level": "error",
+      "level": "pass",
       "check": "companion",
-      "message": "https://valicepress.com/companion/chess-and-playing-cards → 404",
-      "where": "chess-and-playing-cards"
+      "message": "/companion/chess-and-playing-cards 200",
+      "where": null
     },
     {
-      "level": "error",
+      "level": "pass",
       "check": "companion",
-      "message": "https://valicepress.com/companion/korean-games → 404",
-      "where": "korean-games"
+      "message": "/companion/korean-games 200",
+      "where": null
     },
     {
-      "level": "error",
+      "level": "pass",
       "check": "companion",
-      "message": "https://valicepress.com/companion/games-ancient-and-oriental → 404",
-      "where": "games-ancient-and-oriental"
+      "message": "/companion/games-ancient-and-oriental 200",
+      "where": null
     },
     {
       "level": "pass",
@@ -312,159 +306,27 @@
       "where": null
     },
     {
-      "level": "error",
+      "level": "pass",
       "check": "companion",
-      "message": "https://valicepress.com/companion/codex-puzzles → 404",
-      "where": "codex-puzzles"
+      "message": "/companion/codex-puzzles 200",
+      "where": null
     },
     {
-      "level": "error",
+      "level": "pass",
       "check": "companion",
-      "message": "https://valicepress.com/companion/mancala → 404",
-      "where": "mancala"
+      "message": "/companion/mancala 200",
+      "where": null
     },
     {
-      "level": "error",
+      "level": "pass",
       "check": "companion",
-      "message": "https://valicepress.com/companion/traditional-games → 404",
-      "where": "traditional-games"
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/chess-and-playing-cards/boards.pdf → 404",
+      "message": "/companion/traditional-games 200",
       "where": null
     },
     {
-      "level": "error",
+      "level": "pass",
       "check": "companion-asset",
-      "message": "/companion/chess-and-playing-cards/chess-compared.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/chess-and-playing-cards/register-card.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/chess-and-playing-cards/entry-finder.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/korean-games/boards.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/korean-games/spellings-card.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/korean-games/register-card.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/korean-games/how-to-play.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/games-ancient-and-oriental/boards.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/games-ancient-and-oriental/register-card.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/games-ancient-and-oriental/the-terms.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/games-ancient-and-oriental/chronology.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/codex-puzzles/extra-puzzles.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/codex-puzzles/hint-cards.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/codex-puzzles/solution-grids.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/mancala/boards.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/mancala/how-to-play.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/mancala/register-card.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/mancala/the-objects.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/traditional-games/tunes.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/traditional-games/how-to-play.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/traditional-games/register-card.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/traditional-games/gazetteer.pdf → 404",
+      "message": "69 companion assets answer 200",
       "where": null
     },
     {

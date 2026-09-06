@@ -13,6 +13,86 @@ output while other work continues · **P2** is an inconvenience and never stops 
 
 ## Open
 
+### F-028 · P0 · Create the five Phase 2 Paddle products (one command)
+
+- **Date raised:** 2026-09-06 · **Phase:** Phase 1/2 cover revision · **Branch:**
+  `feature/public-domain-phase-2`
+- **Blocker:** the five Phase 2 ebooks are the only thing standing between this branch and
+  five books on sale. Everything else is done: catalogue rows written, EPUBs valid and now
+  carrying the new cover, storefront images ingested, prices decided by `price-engine.mjs`.
+  The five rows stay `websiteStatus: "draft"` until the products exist, because the loader
+  refuses to publish a book it cannot charge for.
+- **What the dry run says is missing** (verified live against `api.paddle.com` on
+  2026-09-06; the webhook is active with 4/4 events subscribed and 0 missing):
+
+  | slug | list |
+  |---|---|
+  | `games-ancient-and-oriental` | $7.99 |
+  | `korean-games` | $8.99 |
+  | `chess-and-playing-cards` | $7.99 |
+  | `traditional-games` | $9.99 |
+  | `mancala` | $4.99 |
+
+  Epictetus additionally shows `name/description WOULD UPDATE`; the same command applies it.
+- **Why the agent cannot do it:** the sandbox classifier refuses the command that writes to
+  the live payment account. This is the third session it has stopped here (see F-022, F-024,
+  F-026, F-027), so it is an environment boundary and not a one-off. The credentials are
+  correct and the dry run is clean — nothing about the account needs fixing.
+- **The one-liner** — from the repository root:
+
+  ```
+  node scripts/catalog/provision-paddle.mjs --commit --i-know-this-is-live
+  ```
+
+  Then publish the five rows and load them:
+
+  ```
+  node scripts/catalog/load-catalog.mjs --commit    # confirm it targets neondb, not bookstore
+  ```
+- **After it runs:** re-run `node scripts/catalog/provision-paddle.mjs` (dry) and confirm no
+  row still says `WOULD CREATE`. This closes F-022, F-024, F-026 and F-027 as well.
+
+---
+
+### F-029 · P1 · The new back covers put lettering inside the KDP barcode box
+
+- **Date raised:** 2026-09-06 · **Phase:** Phase 1/2 cover revision
+- **Blocker:** KDP prints the barcode in a white **2.0 × 1.2 in** box at the lower right of
+  the back cover, 0.25 in inside the trim. The supplied wrap comps centre
+  `VALICE CLASSICS · n` and `VALICE PRESS` at the foot of the back cover, and on **eight of
+  the ten** that lettering runs into the box. The printed paperback would carry a white
+  rectangle through the end of the series line. Two are clear: Indian Myth and Legend, and
+  Korean Games.
+- **Why the agent did not fix it:** three automatic repairs were built and all three were
+  rejected on the proof, because each did more visible damage to the artwork than the
+  barcode does — an inpaint over the band smeared the rock, the foliage and the frame rule;
+  a per-row ground refill left flat rectangles across the marble; a tight glyph-mask inpaint
+  left ghost blobs. The artwork is the Founder's preferred artwork and it is shipped intact.
+  The measurement is recorded per book in `QA/cover.json → paperback.barcodeZone`.
+- **What is yours to decide** — any one of:
+  1. **Regenerate the back comp** with the lower-right 2.0 × 1.2 in of the back cover free of
+     lettering (move the series line up, or set it left of centre), drop it in as
+     `ASSETS/cover/new-paperback-wrap-cover.png`, and re-run
+     `COMMON-AREA/covers/build_book_covers.py`. Nothing else changes.
+  2. **Accept it** — the barcode covers a decorative series line, not title or author.
+  3. **Buy your own ISBNs**, which lets you supply the barcode and place it yourself.
+- **The ebooks are unaffected.** There is no barcode on an ebook cover.
+
+---
+
+### F-030 · P2 · Two titles cannot have a hardcover, and it is a page-count wall
+
+- **Date raised:** 2026-09-06 · **Phase:** Phase 1/2 cover revision
+- **Blocker:** the KDP Print Cover Calculator refuses a 6 × 9 hardcover outside **76–550
+  pages** — the exact words it returns for 74 are *"Page count must be between 76 - 550"*.
+  - **Mythical Monsters — 74 pp.** Two pages short. A hardcover needs the interior to grow
+    to 76, which is a content decision and therefore yours.
+  - **Mancala — 38 pp.** Far short, and already published ebook-only for the same reason.
+- **The other eight hardcovers are built** and their geometry is the calculator's own, read
+  per page count on 2026-09-06 and stored in `COMMON-AREA/covers/kdp_geometry.json`.
+
+---
+
 
 ### F-025 · P1 · Six account-holder actions for Codex Mythologica: The Puzzle Book
 
