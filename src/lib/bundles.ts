@@ -15,8 +15,19 @@
  * two is blocked from re-buying it by the existing ownership guard and simply
  * pays full price for the other, which is the correct behaviour.
  *
- * The discount is restricted to its member prices on Paddle's side as well, so
- * it cannot be applied to anything else even if this file were wrong.
+ * WHAT PADDLE'S `restrict_to` DOES AND DOES NOT DO
+ * It limits WHICH LINE ITEMS a discount may touch. It does NOT require that
+ * every restricted price be present. An adversarial review measured this
+ * against the live pricing preview: Epictetus alone plus the bundle discount
+ * id returns $9.99 − $4.99, half off a single book. So `restrict_to` is a
+ * blast radius, not a precondition, and an earlier version of this comment
+ * claimed a guarantee that does not exist.
+ *
+ * The precondition is `matchBundle` below, server-side, in the one action that
+ * can attach a discount id. Nothing client-side can supply one: the discount
+ * has `enabled_for_checkout: false` and no code, so it cannot be typed into a
+ * checkout, and `createCheckoutSession` is the only caller. The test suite
+ * pins the rule that every member must be in the cart.
  */
 
 export interface Bundle {
@@ -46,7 +57,7 @@ export const BUNDLES: Bundle[] = [
       "Marcus Aurelius read Epictetus — he says so in the first book of the " +
       "Meditations, thanking Junius Rusticus for lending him a copy. Both " +
       "editions together, and the concordance in the Epictetus lists the four " +
-      "passages he demonstrably read.",
+      "passages where Long's two translations touch.",
   },
 ];
 

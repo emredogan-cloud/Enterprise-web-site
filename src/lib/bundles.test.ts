@@ -71,3 +71,17 @@ describe("reader bundles", () => {
     }
   });
 });
+
+describe("the bundle's precondition is server-side, not Paddle's restrict_to", () => {
+  it("never matches a cart missing any member", () => {
+    for (const b of BUNDLES) {
+      for (const member of b.bookSlugs) {
+        const partial = b.bookSlugs.filter((s) => s !== member);
+        expect(
+          matchBundle(partial),
+          `${b.slug} matched without ${member} — Paddle's restrict_to would then take the full discount off a partial cart`,
+        ).toBeNull();
+      }
+    }
+  });
+});
