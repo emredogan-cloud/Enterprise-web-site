@@ -134,6 +134,13 @@ export const AUTHORS = [
     // Strange Things", read 2026-09-06; see the book project's CLAIMS.jsonl C-001…C-003.
     bio: "Writer and interpreter of Japan (1850\u20131904). Born on Lefkada to a Greek mother and an Irish father, raised in Dublin, and a newspaperman in Cincinnati and New Orleans for twenty years before he reached Japan in 1890. He married Koizumi Setsu, became a Japanese citizen in 1896 as Koizumi Yakumo, and taught at Tokyo Imperial University. Kwaidan, his book of ghost stories, was published six months before he died.",
   },
+  {
+    slug: "henry-lee",
+    name: "Henry Lee",
+    // Every clause is taken from the book's own title page and from PG bibrec 36677;
+    // nothing here is inferred. See the book project's CLAIMS.jsonl C-001 to C-003.
+    bio: "English naturalist and writer on marine animals (1826\u20131888). F.L.S., F.G.S., F.Z.S., and \u2014 in the words of his own title page \u2014 sometime naturalist of the Brighton Aquarium, where he spent years watching octopus and cuttle through glass. He wrote The Octopus, or the Devil-fish of Fiction and Fact in 1873, and in the summer of 1883 produced two shilling handbooks for the International Fisheries Exhibition at South Kensington, signing their prefaces at the Savage Club seven weeks apart. In them he identified the kraken as a giant squid a decade before anyone could prove it.",
+  },
 ];
 
 /**
@@ -1683,6 +1690,102 @@ export const BOOKS = [
         + "ASIN is invented.",
       "The apparatus is 20.6% of the volume against a 20% floor, measured from the content "
         + "files by COMMON-AREA/checks/differentiation.py.",
+    ],
+  },
+
+  {
+    slug: "sea-monsters-unmasked",
+    title: "Sea Monsters Unmasked, and Sea Fables Explained",
+    subtitle:
+      "Both 1883 Handbooks Complete, Annotated \u2014 All 68 Original Figures, a Register of What Lee Watched and What He Only Read, and What Has Been Established Since",
+    language: "en",
+    pageCount: 232,
+    categories: ["myth-and-folklore", "classics-and-philosophy"],
+    authors: ["henry-lee", "emre-dogan"],
+    bisac: ["SOC011000", "NAT017000"],
+    series: { name: "Valice Classics", volume: 14 },
+    // PHASE 3, BOOK 2 (2026-09-06). Both of Lee's shilling handbooks for the International
+    // Fisheries Exhibition, entire, with all 68 of his figures set where he set them \u2014
+    // including the two PAIRS he prints side by side under one shared caption, and the one
+    // that lives inside footnote 41. Nothing of his is dropped: the hundred footnotes are
+    // printed as their own section because the transcription gathers them at the end of the
+    // file, which had put every one of them inside the last chapter.
+    websiteStatus: "draft",
+    linkageDecision: null,
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: "no Paddle product yet",
+    paddlePriceId: null,
+    onelinePromise:
+      "The Victorian naturalist who explained the sea monsters away: the kraken is a giant squid, the mermaid a dugong, the hydra an octopus \u2014 and the sea serpent he could not solve, and says so.",
+    description:
+      "In the summer of 1883 the International Fisheries Exhibition filled the South Kensington grounds, and Henry Lee \u2014 sometime naturalist of the Brighton Aquarium, a man who had spent years watching octopus and cuttle through glass \u2014 wrote two shilling handbooks for the crowds going in. He took the sea monsters one at a time. The kraken is a giant squid, and Bishop Pontoppidan was mocked for a century for being right. The mermaid is a dugong. The hydra and Scylla are the octopus. Whales do not spout water; the blow is breath. The paper nautilus does not sail. And barnacle geese, believed for six hundred years to grow on trees, are geese. The great sea serpent he could not solve, and he says so \u2014 which is why that chapter has aged best of all. This edition prints both handbooks entire, with all 68 original figures in their places. Around them: an introduction; a head-note before each of the eight chapters, every one ending in READING AGAINST HIM, which names the specific thing in that chapter a modern reader should resist; a REGISTER OF EVIDENCE AND INFERENCE separating what Lee watched from what he was told, from what he read, from what he concluded, and closing on the two places where the instrument slipped; a descriptive list of all 68 plates saying of each whether it is evidence of an animal, evidence of a belief, or decoration; a note on the captions, because every figure is captioned twice and in nine places the two disagree \u2014 figure 24 is a skeleton, which only the List of Illustrations says; a casebook of the named sightings; a who's-who of his authorities; a glossary; a chronology; and a plain account of what has been established since 1883, including the first photograph of a living giant squid, taken a hundred and nineteen years after he wrote. Where this edition disagrees with Lee it says so and says why: the fish-god plates rest on a reading of Dagon that scholarship has abandoned, the dugong does not live in the seas most of the mermaid reports come from \u2014 and in his own footnote 41 he prints an engraving from the Roman catacombs and remarks that the creature in it is \u201capparently not a fish, but a seal\u201d, which is the mermaid's whole mechanism, noticed and filed under something else. 232 pages.",
+    idealReader:
+      "Someone who likes cryptids and would rather read the Victorian naturalist who explained most of them away \u2014 and be told, chapter by chapter, which of his explanations survived.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(9.99),
+        pageCount: 232,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_applicable",
+        masterFileKey: null,
+        epubFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-06, direct ebook, public domain: $9.99 nets $8.99 after Paddle at a 90.0% margin. Top of the Valice Classics band, with the 244 pp Singing Games at $9.99 \u2014 this is the second-longest annotated volume on the shelf.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(16.99),
+        pageCount: 232,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-06, 232 pp 6\u00d79 B&W on white: prints at $3.78, KDP minimum list $6.31; $16.99 nets $6.41 (37.7%) at 60% royalty.",
+      },
+      {
+        format: "hardcover",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(33.99),
+        pageCount: 232,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-06, 232 pp 6\u00d79 hardcover: prints at $8.43, KDP minimum list $14.06; $33.99 nets $11.96 (35.2%). $29.99 would net 32% and miss the 35% target.",
+      },
+    ],
+    blockers: [
+      "NOT DEPLOYED, AND THAT IS WHY THE ROW IS DRAFT. Phase 3 is not merged. Publishing this "
+        + "row would write a book into the production database whose page, cover and companion "
+        + "sheets are not deployed, and the reader would meet broken images and a 404 companion.",
+      "NO PADDLE PRODUCT. Unlike Kwaidan, this book has no Paddle product or price yet, so "
+        + "`paddlePriceId` is null and the ebook is coming_soon rather than available. No "
+        + "identifier is invented.",
+      "NO R2 MASTERS. The PDF and EPUB are built and validated locally \u2014 EPUBCheck 0/0/0 \u2014 "
+        + "but neither has been uploaded, so `masterFileKey` and `epubFileKey` are null.",
+      "GATE 2 IS UNSIGNED, and its table was rewritten during review. The first draft had five "
+        + "rows and got two wrong: it gave the FIELD's five cuts to the Illustrated London News, "
+        + "omitted Longman and Tennent entirely, and said the book had one named artist when "
+        + "Lee's preface names two. The corrected table has eleven rows, including Ellen Caroline "
+        + "Woodward (1859\u20131943), who drew the squid figures and whose dates nobody had "
+        + "looked up. FOUNDER F-032.",
+      "COVER SERIES IDIOM: a painted cover where COVER_STANDARDS gives Valice Classics as "
+        + "typographic with one engraved device \u2014 the same open Founder decision as Kwaidan "
+        + "(F-031). The title band is 15.2% of cover height against a 25% rule; 150 px thumbnail "
+        + "contrast is 0.99.",
+      "NO KDP LISTING YET. Paperback and hardcover are built \u2014 interior, companion leaf and "
+        + "both wraps, on calculator rows read for 232 pp \u2014 and neither has been uploaded; "
+        + "`kdp: \"not_created\"` says so and no ASIN is invented.",
+      "The apparatus is 23.3% of the volume against a 20% floor, measured from the content files "
+        + "by COMMON-AREA/checks/differentiation.py.",
     ],
   },
 
