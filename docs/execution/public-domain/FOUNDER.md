@@ -14,6 +14,58 @@ output while other work continues · **P2** is an inconvenience and never stops 
 ## Open
 
 
+### F-032 · P0 · Every book's sold PDF has a destroyed text layer — one command fixes them
+
+- **Date raised:** 2026-09-06 · found by the Book 05 adversarial review
+- **What is wrong:** `build-digital-editions.mjs` runs Ghostscript, whose `pdfwrite`
+  rebuilds every font and **drops the ToUnicode CMaps**. In the master a BUYER downloads,
+  every non-ASCII character extracts as nothing. Measured on Epictetus: **845 characters
+  gone** — every em dash, every curly quote, every `æ` and `ē`.
+
+  > printed: `proairesis — the will — as the place where all real work happens.`
+  > **sold:** `proairesis the will as the place where all real work happens.`
+  > printed: `copyright © 2026 Valice Press` · **sold:** `copyright 2026 Valice Press`
+
+  Copy and paste, in-PDF search and screen-reader output are all degraded, in the paid
+  artefact only — the print master was always clean. And the "compressed" file came out
+  **30 KB larger** than its source, because an interior with no plates has nothing to
+  downsample.
+
+- **Already fixed in the pipeline.** The derived file now has to earn its place: if it
+  loses text or fails to get smaller, the print interior is copied through unchanged.
+  Book 05's master has been rebuilt and re-uploaded and its 845 characters are back.
+
+- **Nine other books are still affected**, and the losses are not small:
+
+  | book | characters lost |
+  |---|---|
+  | traditional-games | 6,578 |
+  | myths-and-legends-of-china | 1,835 |
+  | greek-alphabet-handwriting-workbook | 1,914 |
+  | chess-and-playing-cards | 1,820 |
+  | indian-myth-and-legend | 1,597 |
+  | codex-mythologica-the-puzzle-book | 1,075 |
+  | seneca-selected-dialogues | 1,056 |
+  | mythical-monsters | 724 |
+  | mancala | 388 |
+
+- **Why this is yours and not the agent's:** re-uploading changes what buyers receive for
+  nine **live** books. That is a production decision, not a chore, and it was not this
+  task's to make.
+- **The action, two commands:**
+
+  ```
+  node scripts/catalog/build-digital-editions.mjs
+  node scripts/catalog/upload-masters.mjs --commit
+  ```
+
+  The first now refuses the lossy output on its own; the second writes only what changed.
+  Then spot-check one: download a master and run `pdftotext … - | grep -c '[^ -~]'` — it
+  should be a few hundred, not zero.
+
+---
+
+
 ### F-031 · P1 · Upload the Epictetus paperback (roadmap book 05)
 
 - **Date raised:** 2026-09-06 · **Book:** roadmap 05, Valice Classics 3 ·

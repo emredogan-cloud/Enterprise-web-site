@@ -95,7 +95,7 @@ in `dc:contributor`; restored.
 | | |
 |---|---|
 | EPUBCheck | **0 fatals / 0 errors / 0 warnings** |
-| Documents | 21 · **767 internal links, 0 broken** |
+| Documents | 20 text documents + nav · **767 internal links, 0 broken** |
 | Cover | declared, spine-first, sha256-identical to `ASSETS/cover/kindle-v3.jpg` |
 | `dc:title` | matches the canonical title exactly |
 
@@ -165,7 +165,7 @@ looked alive.
 | Paddle price | `pri_01m1pttdvakbj8p0vb8tc86nj5` · **active** · 999 USD · one-time |
 | Paddle product | `pro_01m1pttdjqtta5ryabvtvmtrcj` · active · `valice_slug` linked |
 | Corrected on the live account | product name carried "(Annotated)" where the store title does not; description advertised **"178 pages"** for a **176**-page book |
-| R2 | `master.pdf` 645,911 B · `master.epub` 1,481,835 B — uploaded and **read back byte-identical** |
+| R2 | `master.pdf` 615,797 B (the print interior, text layer intact) · `master.epub` 1,481,840 B — uploaded and **read back byte-identical** |
 | Fulfilment | signed URL (same call shape and TTL as `src/lib/storage`) returns the real EPUB: HTTP 200, `application/epub+zip`, ZIP magic |
 | Catalogue | written to **`neondb`**, the database the site reads · 21 books · integrity OK |
 | Public page | `/books/epictetus-discourses-and-enchiridion` **200** with the title, translator, $9.99, $16.99, 176 pp and the companion link |
@@ -180,7 +180,7 @@ looked alive.
 | Head-notes | **120** — one per chapter |
 | Glossary | **18** entries, each with Long's own rendering |
 | Concordance | the introduction's *"the four places … and the two places"* is exact: 4 in-selection, 2 cited-but-absent, plus one contextual row the page frames separately |
-| Apparatus share | **20.09 %** against the 20 % floor — passes, by 0.09 of a point |
+| Apparatus share | **20.18 %** against the 20 % floor, re-measured against the printed interior — see §10 |
 | Interior | preflight **ok** · 176 pp · 6.000 × 9.000 in |
 | Spine, recomputed | 176 × 0.002252 = **0.3964 in**; 0.25 + 12.0 + 0.3964 = **12.6464 in** = the built wrap width exactly |
 | Printed QR, page 176 | decoded by OpenCV at 300 dpi to exactly `https://valicepress.com/companion/epictetus` |
@@ -188,7 +188,107 @@ looked alive.
 | House lints | metadata **ok** · claim **ok** · rights **ok** · compliance **ok** (2 informational AI-disclosure warnings) |
 | Suite / lint / types / build | **391 tests pass** · eslint clean · `tsc` clean · build compiles |
 
-## 10 · What is left, and who has to do it
+## 10 · The second adversarial review
+
+A fresh reviewer with no history was given one instruction — **prove this book
+is not ready** — and nine surfaces to attack. Its verdict was **NOT READY**, and
+it was right on every count that mattered. Five blockers, seven serious, five
+minor, and nine things it checked and cleared. Everything below is fixed.
+
+### The one that reached buyers
+
+**Every book's sold PDF had its text layer destroyed.**
+`build-digital-editions.mjs` runs Ghostscript, whose `pdfwrite` rebuilds every
+font and drops the ToUnicode CMaps. In the master a buyer downloads, **845
+non-ASCII characters extracted as nothing** — every em dash, every curly quote,
+every `æ` and `ē`:
+
+> printed: `proairesis — the will — as the place where all real work happens.`
+> **sold:** `proairesis the will as the place where all real work happens.`
+
+Copy, in-PDF search and screen readers all degraded, in the paid artefact only.
+And the "compressed" file was **30 KB larger** than its source, because an
+interior with no plates has nothing to downsample.
+
+The derived file now has to earn its place: if it loses text or fails to get
+smaller, the print interior is copied through unchanged. Across the catalogue
+that keeps the interior for **ten books** — traditional-games was losing 6,578
+characters, chess-and-playing-cards 1,820, Codex Mythologica 1,075. Book 05's
+master is rebuilt and re-uploaded; the other nine are **F-032**, because
+re-uploading changes what buyers receive for nine live books and that is a
+decision, not a chore.
+
+### The other four blockers
+
+**The storefront served a two-generation-stale cover.** valicepress.com was
+showing `front-v1` — the superseded typographic cover — reading *"and **the**
+ENCHIRIDION"* beside an `<h1>` reading *"and Enchiridion"*. Re-ingested from v3.
+
+**The apparatus floor was measured over a book that does not exist.**
+`measure.py` counted 129 words of part blurbs that are never printed, 41
+invented by a hard-coded three-words-per-index-heading rule, and 1,015 words of
+Long's biographical note as *source* although that is not typeset either. Every
+component is now verified against `pdftotext` of the printed interior before it
+counts. The honest figure is **20.18 %**, and the sensitivity is published
+beside it:
+
+| reading | share | |
+|---|---|---|
+| printed words only — the convention used | **20.18 %** | passes |
+| + Long's 537 words of printed chapter titles as source | 20.04 % | passes |
+| + 436 words of verbatim Long moved out of the apparatus | 19.46 % | **fails** |
+
+The third is recorded and not used: an annotated edition quotes its text by
+definition, and if quotation transferred authorship of the surrounding
+commentary no apparatus could ever be measured.
+
+**RIGHTS.md and the KDP guide told the Founder the cover is typographic.** It is
+Founder-supplied **AI-generated** artwork, and the guide's AI section never said
+*generated* for images at all — following it, the account holder answers KDP
+wrongly on a mandatory declaration. `project_config`'s
+`aiDisclosure.$detail.images` still read *"No image model was used; the cover is
+typographic"* three lines under `images: "generated"`, and
+`kdp-handbook.mjs` renders that detail verbatim. All three corrected, along with
+the font row RIGHTS.md never had.
+
+### The concordance claim overstated by three quarters
+
+*"the four passages Marcus Aurelius demonstrably read"* — of the four VERIFIED
+rows, **three are anchored to George Long's own 1862 introduction and notes**,
+not to Marcus's text. Only *Meditations* XI.33 is unambiguously Marcus quoting
+Epictetus; and the two rows marked NOT PRESENT are genuine Marcus quotations.
+The printed concordance page's own headnote was already accurate. The sentence
+that shipped on the store, the checkout, the companion and three places in the
+interior was not. All now say what Long actually marks.
+
+### And the bundle's documented safety net did not exist
+
+`bundles.ts` claimed Paddle's `restrict_to` made a partial-cart discount
+impossible. Measured against the live pricing preview: Epictetus alone plus the
+discount id returns $9.99 − $4.99. `restrict_to` is a blast radius, not a
+precondition. The real precondition is `matchBundle`, server-side, in the only
+action that can attach a discount id — and there is now a test that every member
+must be present.
+
+### What it cleared
+
+Content counts exact and all of it printed · the introduction's concordance
+arithmetic · EPUBCheck 0/0/0 with the cover declared and byte-identical to v3 ·
+789 hrefs, 0 broken · print geometry exact to 0.00005 in · the barcode rectangle
+clear of text · Paddle correct · R2 byte-identical · the website · the
+`(Annotated)` two-field split · the rights arithmetic, Long 1800–1879 confirmed
+against three authorities.
+
+### After the fixes
+
+393 tests · eslint clean · `tsc` clean · build clean · metadata, claim, rights
+and compliance lints all **ok** · `selftest` ok · `validate-catalog` 80 pass,
+**0 error** · interior back to **176 pp** preflight clean with the QR decoding ·
+the buyer's PDF carrying its 845 characters again.
+
+---
+
+## 11 · What is left, and who has to do it
 
 **One action, and it is Amazon's account, not an agent's:** upload the
 paperback. `KDP_UPLOAD_GUIDE.html` carries every field, both file hashes, the
