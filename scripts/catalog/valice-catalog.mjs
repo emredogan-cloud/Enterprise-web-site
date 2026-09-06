@@ -1617,9 +1617,9 @@ export const BOOKS = [
     directSaleBlockedBy: null,
     paddlePriceId: "pri_01m1v4n80k6g2tba6wt8882ehf",
     onelinePromise:
-      "The book behind the film: seventeen Japanese ghost stories and three essays on insects, complete in the 1904 text, with the four tales whose origin Hearn states separated from the sixteen he leaves open.",
+      "The book behind the film: seventeen Japanese ghost stories and three essays on insects, complete in the 1904 text, with the three pieces whose origin Hearn states separated from the sixteen he leaves open.",
     description:
-      "In January 1904 Lafcadio Hearn finished a book of ghost stories in Tokyo and signed the note in front of it with his initials. He had eight months to live. Seventeen tales came out of it \u2014 the blind lute-player who plays for the drowned Heik\u00e9, the woman who is a willow and dies when it is felled, the face on the Akasaka road with nothing on it \u2014 and then, without changing his tone, three essays on butterflies, mosquitoes and ants. Readers have been complaining about the ants since 1904 and they are wrong: the insect studies ask the same question as the tales, on a subject that cannot be dismissed as superstition. This edition prints all twenty pieces and both of Takeuchi Keish\u016b's 1904 plates. Around them: an introduction of nearly three thousand words; a head-note before every piece; a REGISTER OF PROVENANCE that does what no other edition does \u2014 it separates the four pieces whose origin Hearn actually states (one Chinese, one told him by a farmer in Musashi, one that happened to him, one that is plainly autobiography) from the sixteen he leaves open, instead of assigning each tale to one of his five named books on a guess; a glossary of all 45 Japanese words he italicises and leaves unexplained; a Y\u014dkai Register naming the creatures by what folklore calls them rather than by his titles, which matters most for \u201cMujina\u201d, where the thing on the road is a noppera-b\u014d and the animal in the title never appears; a gazetteer of the ten old provinces against the prefectures they became, which catches an error the text has carried for a century (Niigata is in Echigo, not Echizen); a chronology; and a plain account of which of Hearn's claims have not survived \u2014 the Spencerian ant sociology, the racial explanations \u2014 and the one that was right, which is the mosquito. Readers arriving from Kobayashi's 1964 film are told, in the book, that only two of its four episodes are in it. 138 pages.",
+      "In January 1904 Lafcadio Hearn finished a book of ghost stories in Tokyo and signed the note in front of it with his initials. He had eight months to live. Seventeen tales came out of it \u2014 the blind lute-player who plays for the drowned Heik\u00e9, the woman who is a willow and dies when it is felled, the face on the Akasaka road with nothing on it \u2014 and then, without changing his tone, three essays on butterflies, mosquitoes and ants. Readers have been complaining about the ants since 1904 and they are wrong: the insect studies ask the same question as the tales, on a subject that cannot be dismissed as superstition. This edition prints all twenty pieces and both of Takeuchi Keish\u016b's 1904 plates. Around them: an introduction of nearly three thousand words; a head-note before every piece; a REGISTER OF PROVENANCE that does what no other edition does \u2014 it separates the three pieces whose origin Hearn actually states (one Chinese, one told him by a farmer in Musashi, one that happened to him) from the sixteen he leaves open, and marks a fourth as evident autobiography he never claims, instead of assigning each tale to one of his five named books on a guess; a glossary of all 45 Japanese words he italicises and leaves unexplained; a Y\u014dkai Register naming the creatures by what folklore calls them rather than by his titles, which matters most for \u201cMujina\u201d, where the thing on the road is a noppera-b\u014d and the animal in the title never appears; a gazetteer of the ten old provinces against the prefectures they became, which catches an error the text has carried for a century (Niigata is in Echigo, not Echizen); a chronology; and a plain account of which of Hearn's claims have not survived \u2014 the Spencerian ant sociology, the racial explanations \u2014 and the one that was right, which is the mosquito. Readers arriving from Kobayashi's 1964 film are told, in the book, that only two of its four episodes are in it. 138 pages.",
     idealReader:
       "Someone who has seen Kobayashi's film or met Yuki-Onna in a game, wants the book behind them, and would rather be told plainly which of these tales Hearn found in a Japanese book, which one a farmer told him, and which one he watched happen.",
     formats: [
@@ -1663,10 +1663,26 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "The ebook is built, priced and ready but not on sale: creating the Paddle product and price is a live write this environment's permission layer blocks. One command, in FOUNDER F-028.",
-      "NO KDP LISTING YET. Paperback and hardcover are built \u2014 interior, companion leaf and both wraps \u2014 and neither has been uploaded; `kdp: \"not_created\"` says so and no ASIN is invented.",
-      "The apparatus is 20.05% of the volume against a 20% floor. It is measured from the content files by COMMON-AREA/checks/differentiation.py, not estimated, and it is the tightest margin of any book this press has shipped.",
-      "THE UNSIGNED 1904 INTRODUCTION IS NOT PRINTED. It is not Hearn's, it carries no signature in the source, and its author is named in no authority record, so no rights position could be established. 677 words of publisher's puffery; the Source Note says so on the page.",
+      "NOT DEPLOYED, AND THAT IS WHY THE ROW IS DRAFT. The Paddle product and price are live "
+        + "(pri_01m1v4n80k6g2tba6wt8882ehf) and the R2 masters are uploaded and verified, but "
+        + "Phase 3 is not merged. Publishing this row would write a book into the production "
+        + "database whose page, cover and companion sheets are not deployed, and the reader "
+        + "would meet broken images and a 404 companion.",
+      "PADDLE TAX CATEGORY is 'standard', not 'ebooks': the account is not approved for the "
+        + "reduced-rate category, so VAT is over-collected in jurisdictions that tax books "
+        + "lower. FOUNDER F-029.",
+      "GATE 2 IS UNSIGNED. Two of its four rows are decisions that go against the roadmap's "
+        + "expectation \u2014 the plates ARE printed because the artist is datable after all, and "
+        + "the unsigned 1904 introduction is NOT printed because its author is not. FOUNDER F-030.",
+      "COVER SERIES IDIOM: this is a painted cover where COVER_STANDARDS gives Valice Classics "
+        + "as typographic with one engraved device, and \u00a72.6 makes a series identity a Founder "
+        + "decision. The title band is 23.7% of cover height against a 25% rule; 150 px "
+        + "thumbnail contrast is 1.0. FOUNDER F-031.",
+      "NO KDP LISTING YET. Paperback and hardcover are built \u2014 interior, companion leaf and "
+        + "both wraps \u2014 and neither has been uploaded; `kdp: \"not_created\"` says so and no "
+        + "ASIN is invented.",
+      "The apparatus is 20.6% of the volume against a 20% floor, measured from the content "
+        + "files by COMMON-AREA/checks/differentiation.py.",
     ],
   },
 

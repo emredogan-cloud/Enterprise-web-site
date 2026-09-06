@@ -1576,9 +1576,10 @@ const KWAIDAN: Companion = {
   bookTitle: "Kwaidan: Stories and Studies of Strange Things",
   state: "book-not-yet-available",
   stateNote:
-    "The Valice edition is built, validated and priced but not yet on sale — " +
-    "creating the payment product is a live write that is held behind a " +
-    "founder action. Everything on this page is free and works today regardless.",
+    "The Valice edition is built, validated and priced, and its payment product " +
+    "exists — what is left is that the edition's own pages have not been deployed " +
+    "yet, so the storefront row is deliberately still held back. Everything on " +
+    "this page is free and works today regardless.",
   intro:
     "Free material for Hearn's seventeen ghost stories and three insect essays: " +
     "the old provinces against the prefectures they became, the creatures named " +

@@ -13,6 +13,31 @@ output while other work continues · **P2** is an inconvenience and never stops 
 
 ## Open
 
+### F-031 · P2 · Two cover decisions for Kwaidan that are yours, not the factory's
+
+Both are recorded in `project_config.json → covers` and neither blocks anything; they are
+here because COVER_STANDARDS makes them Founder decisions and the factory should not make
+them by drifting.
+
+1. **The series idiom.** §1 gives Valice Classics as *"emerald/black, Noto Serif Display,
+   typographic + one fine engraved device"*, and Article 11 adds that the typographic cover
+   is the identity rather than a fallback. This cover keeps the emerald/black and the Noto
+   Serif Display, and sets every word in the layout — but where the engraved device would
+   be, there is a full-bleed painted night scene. Phases 1 and 2 already moved the series to
+   pictorial covers using your own supplied artwork, so this follows them rather than
+   breaking new ground; §2.6 still says a series identity is yours to approve.
+2. **The 25% title rule.** §2.1 asks for a title band of at least a quarter of the cover
+   height. Measured: **23.7%**. KWAIDAN is one word and cannot fill a quarter of a cover the
+   way two stacked lines do, and stacking it would print KWAI over DAN. The rule's purpose —
+   legibility at thumbnail size — is measured separately and the 150 px contrast is **1.0**,
+   the best of any cover this press has made. Recorded as a shortfall rather than closed by
+   making the cover worse.
+
+Either waive them on the record or say what you would rather have.
+
+---
+
+
 ### F-028 · RESOLVED 2026-09-06 · The six missing Paddle products now exist
 
 **This closes F-019, F-022, F-024, F-026 and F-027.** Three sessions had stopped at the
