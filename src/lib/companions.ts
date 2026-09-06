@@ -1626,10 +1626,11 @@ const KWAIDAN: Companion = {
       title: "The Register of Provenance",
       description:
         "What Hearn's own note establishes about where these tales came from, and " +
-        "what it leaves open. Four pieces have a stated origin — one Chinese, one " +
-        "told to him by a farmer in Musashi, one that happened to him, one that is " +
-        "plainly autobiography. Sixteen do not, and are shown as open rather than " +
-        "assigned to one of his five named books on a guess.",
+        "what it leaves open. THREE pieces have an origin he states — one Chinese, one " +
+        "told to him by a farmer of Chōfu in Musashi, one that happened to him. A " +
+        "fourth is not stated by him at all and is marked as evident rather than " +
+        "stated: it is plainly autobiography. The remaining sixteen are shown as open " +
+        "rather than assigned to one of his five named books on a guess.",
       kind: "static",
       href: "/companion/kwaidan/register-card.pdf",
       meta: "PDF · US Letter · 1 page",
@@ -1646,6 +1647,99 @@ const KWAIDAN: Companion = {
       kind: "static",
       href: "/companion/kwaidan/hundred-candles.pdf",
       meta: "PDF · US Letter · 2 pages",
+    },
+  ],
+};
+
+/**
+ * SEA MONSTERS UNMASKED — Phase 3, book 2.
+ *
+ * Two 1883 shilling handbooks written for one exhibition, printed complete with all 68
+ * of their figures. The sheets carry the four things that work better beside the book
+ * than inside it: the casebook of sightings the sea-serpent chapter assumes you are
+ * holding, an index to a plate sequence that restarts halfway through, a scorecard of
+ * what has held up, and the one argument in the book that was fully vindicated.
+ */
+const SEA_MONSTERS_UNMASKED: Companion = {
+  slug: "sea-monsters-unmasked",
+  bookSlug: "sea-monsters-unmasked",
+  bookTitle: "Sea Monsters Unmasked, and Sea Fables Explained",
+  state: "book-not-yet-available",
+  stateNote:
+    "The Valice edition is built and validated \u2014 230 pages, both handbooks entire, " +
+    "all 68 figures \u2014 but its pages have not been deployed and no payment product " +
+    "exists for it yet, so the storefront row is deliberately held back. Everything on " +
+    "this page is free and works today regardless.",
+  intro:
+    "Free material for Henry Lee's two 1883 handbooks, in which the kraken turns out to " +
+    "be a giant squid, the mermaid a dugong, the hydra an octopus, and the sea serpent " +
+    "stays unsolved: the casebook of named sightings, an index to all sixty-eight plates, " +
+    "a scorecard of which of his explanations survived, and the kraken's timeline from " +
+    "Olaus Magnus to the first film of a living giant squid.",
+  newsletterSource: "sea-monsters-unmasked-companion",
+  assetsHeading: "Print and read",
+  rightsNote:
+    "Henry Lee lived 1826\u20131888 and both handbooks were published in London in 1883, " +
+    "so the text is in the public domain on two independent grounds. The figures are a " +
+    "separate layer and each was assessed: the 1883 cuts lent by the Illustrated London " +
+    "News, the Graphic, the Leisure Hour and Land and Water are corporate publications of " +
+    "1883 whose term expired at the end of 1953; the second frontispiece is after a " +
+    "painting by Otto Sinding, 1842\u20131909; and the facsimiles of Olaus Magnus, " +
+    "Aldrovandus, Gerard and Pontoppidan were never in question. All sixty-eight are " +
+    "reproduced.",
+  assets: [
+    {
+      id: "casebook",
+      title: "The Casebook",
+      description:
+        "Every named sighting the two handbooks discuss \u2014 Egede's monster off " +
+        "Greenland in 1734, the Gloucester serpent, H.M.S. D\u00e6dalus in 1848, the " +
+        "Alecton's squid, the Pauline, the Osborne, the City of Baltimore \u2014 with " +
+        "what was reported and what Lee makes of it. The sea-serpent chapter moves " +
+        "between eight cases in forty pages and assumes you are holding all of them at " +
+        "once.",
+      kind: "static",
+      href: "/companion/sea-monsters-unmasked/casebook.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "plate-index",
+      title: "The Sixty-Eight Plates",
+      description:
+        "Every figure in both books, numbered as Lee numbers them \u2014 which means " +
+        "there are two figure 1s and two figure 24s, because the second handbook starts " +
+        "its sequence again. Each is marked as evidence of an animal, evidence of a " +
+        "belief, or decoration, which is the question worth asking of every picture in " +
+        "the book.",
+      kind: "static",
+      href: "/companion/sea-monsters-unmasked/plate-index.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 2 pages",
+    },
+    {
+      id: "scorecard",
+      title: "Right, Wrong, Still Open",
+      description:
+        "Lee's eight chapters, what each concludes, and how it has lasted \u2014 with " +
+        "the three places a modern reader should hold him to account: the surviving " +
+        "marine reptile he reports without endorsing, the fish-god plates that rest on a " +
+        "reading no longer accepted, and the dugong that does not live in the seas most " +
+        "of the mermaid sightings come from.",
+      kind: "static",
+      href: "/companion/sea-monsters-unmasked/scorecard.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "kraken-timeline",
+      title: "The Kraken, 1555 to now",
+      description:
+        "The one argument in the book that was fully vindicated, in order: Olaus Magnus, " +
+        "Pontoppidan's ridiculed bishopric, Steenstrup naming Architeuthis in 1857, the " +
+        "Alecton, the Newfoundland strandings Lee had only just heard about \u2014 and " +
+        "then nothing at all for a hundred and nineteen years, until a living giant squid " +
+        "was photographed in 2002 and finally filmed in its own water in 2012.",
+      kind: "static",
+      href: "/companion/sea-monsters-unmasked/kraken-timeline.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
     },
   ],
 };
@@ -1671,6 +1765,7 @@ const COMPANIONS: readonly Companion[] = [
   VEDIC_GODS,
   THE_DRAGON,
   KWAIDAN,
+  SEA_MONSTERS_UNMASKED,
 ];
 
 export function listCompanions(): readonly Companion[] {

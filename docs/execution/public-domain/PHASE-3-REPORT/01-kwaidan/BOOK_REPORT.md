@@ -69,9 +69,10 @@ The introduction runs 2,937 words, above the constitution's 1,500 minimum.
 - **A head-note before every one of the 20 pieces.**
 - **The Register of Provenance** — the thing no other edition has. Hearn's note says *most*
   of the tales came from old Japanese books and names five; it never says which tale came
-  from which. Four pieces have a stated origin (one Chinese, one told him by a farmer of
-  Chōfu, one that happened to him, one that is plainly autobiography). **Sixteen are shown
-  as open** rather than assigned to one of his five books on a guess.
+  from which. **Three** pieces have an origin he states (one Chinese, one told him by a
+  farmer of Chōfu in Musashi, one that happened to him); a **fourth** is not stated by him
+  and is marked EVIDENT rather than STATED, being plainly autobiography. **Sixteen are
+  shown as open** rather than assigned to one of his five books on a guess.
 - **A glossary of 45 terms** — every Japanese word he italicises and leaves unexplained.
 - **The Yōkai Register**, 15 entries, naming the creatures by what folklore calls them.
   "Mujina" is filed under *noppera-bō*: the animal in the title never appears.
