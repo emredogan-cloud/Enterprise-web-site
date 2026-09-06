@@ -13,6 +13,78 @@ output while other work continues · **P2** is an inconvenience and never stops 
 
 ## Open
 
+### F-028 · RESOLVED 2026-09-06 · The six missing Paddle products now exist
+
+**This closes F-019, F-022, F-024, F-026 and F-027.** Three sessions had stopped at the
+same place: the command that writes to the live Paddle account was refused by the sandbox,
+so five Phase 2 ebooks and then Kwaidan sat priced and ready with no product to sell.
+
+They were created on 2026-09-06 against the live account, using
+`scripts/tmp/.env.production`, and read back in a fresh dry run with no `WOULD CREATE`
+remaining anywhere in the catalogue:
+
+| slug | product | price | list |
+|---|---|---|---|
+| `games-ancient-and-oriental` | `pro_01m1v4n63z30ewtsyrya8jxfgf` | `pri_01m1v4n69wd2th3pf1cbw8an3n` | $7.99 |
+| `korean-games` | `pro_01m1v4n6rxp0cgvszpwc56xran` | `pri_01m1v4n6zery50yws32dpspqve` | $8.99 |
+| `kwaidan` | `pro_01m1v4n7tthzcxjvp08fzkkt5t` | `pri_01m1v4n80k6g2tba6wt8882ehf` | $8.99 |
+| `traditional-games` | `pro_01m1v4n8ep1s4j1ec94gerfxbh` | `pri_01m1v4n8mdw8dnnsdc2bqwf56d` | $9.99 |
+| `chess-and-playing-cards` | `pro_01m1v4n932w8vmtb1g8ctj733d` | `pri_01m1v4n991k3h8x20sbwp9455z` | $7.99 |
+| `mancala` | `pro_01m1v4n9rnkms9qgj604v00s77` | `pri_01m1v4n9ygd9z3vbgstcjbmvt0` | $4.99 |
+
+**What is still yours to do, and it is small.** Only Kwaidan's catalogue row carries its
+price id on this branch. **The five Phase 2 rows on `main` still say
+`paddlePriceId: null` and `directSaleBlockedBy: "paddle-not-provisioned"`, and they are
+now wrong** — the products exist. Phase 3 is not merged and must not be, so this branch
+deliberately left those five rows exactly as Phase 2 left them rather than editing another
+phase's data from here. On `main`, for each of the five: paste the price id above, set
+`directSaleBlockedBy: null`, set the ebook format's `availability` to `"available"`, set
+`websiteStatus` to `"published"`, then
+
+```
+node scripts/catalog/load-catalog.mjs --commit    # confirm it targets neondb, not bookstore
+```
+
+That is the last thing between those five books and being on sale.
+
+---
+
+### F-029 · P1 · Paddle tax category for the six new products
+
+**Extends F-017 to six more products.** All six were created as `standard` because this
+Paddle account is not approved for the `ebooks` tax category. The script says so on every
+run. `standard` over-collects VAT on ebook sales in jurisdictions that tax books at a
+reduced rate.
+
+Request approval in Paddle (Catalog → tax categories, or Paddle support), then PATCH each
+product's `tax_category` to `ebooks`. **Prices do not need recreating.** Nothing is broken
+until then; buyers in reduced-rate jurisdictions are simply charged too much VAT.
+
+---
+
+### F-030 · P2 · Gate 2 signature for Kwaidan
+
+`PHASE-3-BOOK/01-KWAIDAN/RIGHTS.md` sets out four layers and is prepared for signature.
+Two of them are decisions only you can ratify, and both go against the roadmap's
+expectation, so neither should be signed without reading the reasoning:
+
+1. **The two plates ARE printed.** The roadmap says Kwaidan's plates "remain unattributed
+   and are designed out". That is true of the source file, which labels them only
+   `[Illustration]`. It is not true of the artist: Wikipedia's article on the book names
+   Takeuchi Keishū and Wikidata Q11545824 dates him — born 13 November 1861, died 3 January
+   of 1942 **or** 1943. On either date life-plus-seventy expired more than a decade ago,
+   and the 1904 United States imprint settles the US independently. The edition reproduces
+   both plates at their true 300 DPI size, about three inches across.
+2. **The 1904 introduction is NOT printed.** The first edition's prefatory matter is two
+   pieces, not one. Hearn's own note, 154 words signed "L. H." and dated Tōkyō, 20 January
+   1904, is printed. A second piece of 677 words dated March 1904 — about the Russo-Japanese
+   war, quoting Paul Elmer More — is **unsigned in the source and named in no authority
+   record**, so no death year and therefore no rights position could be established. It is
+   omitted, and the Source Note says so on the page.
+
+---
+
+
 
 ### F-025 · P1 · Six account-holder actions for Codex Mythologica: The Puzzle Book
 

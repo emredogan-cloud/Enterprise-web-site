@@ -1564,6 +1564,91 @@ const TRADITIONAL_GAMES: Companion = {
   ],
 };
 
+/**
+ * PHASE 3, BOOK 1 (2026-09-06). Valice Classics 13, and the first of the Bestiarium
+ * expansion. The four sheets are the parts of the apparatus a reader wants beside the
+ * book rather than inside it: the provinces, the creatures, the provenance, and a way
+ * to play the hundred-candles game with seventeen tales instead of a hundred.
+ */
+const KWAIDAN: Companion = {
+  slug: "kwaidan",
+  bookSlug: "kwaidan",
+  bookTitle: "Kwaidan: Stories and Studies of Strange Things",
+  state: "book-not-yet-available",
+  stateNote:
+    "The Valice edition is built, validated and priced but not yet on sale — " +
+    "creating the payment product is a live write that is held behind a " +
+    "founder action. Everything on this page is free and works today regardless.",
+  intro:
+    "Free material for Hearn's seventeen ghost stories and three insect essays: " +
+    "the old provinces against the prefectures they became, the creatures named " +
+    "by what folklore calls them, the register of what Hearn took and what he was " +
+    "told, and a sheet for reading the book aloud by candlelight.",
+  newsletterSource: "kwaidan-companion",
+  assetsHeading: "Print and read",
+  rightsNote:
+    "Lafcadio Hearn died on 26 September 1904 and Kwaidan was published in Boston " +
+    "on 2 April 1904, so the text is in the public domain on two independent " +
+    "grounds. The two plates are by Takeuchi Keishū, born 13 November 1861 and " +
+    "dead on 3 January of 1942 or 1943 (Wikidata Q11545824); on either date the " +
+    "term expired more than a decade ago, and the edition reproduces both. The " +
+    "unsigned introduction of March 1904 that stands in the first edition is not " +
+    "by Hearn, names no author anywhere, and is not printed.",
+  assets: [
+    {
+      id: "provinces-card",
+      title: "The Provinces",
+      description:
+        "The ten old provinces Hearn names — Musashi, Iyo, Mutsu, Tamba, Noto and " +
+        "the rest — against the modern prefectures they became, with the tale each " +
+        "belongs to. It also carries the correction: the text places Niigata in " +
+        "Echizen, and Niigata is in Echigo. That slip has been reprinted for a " +
+        "century and the edition leaves Hearn's sentence alone and tells you instead.",
+      kind: "static",
+      href: "/companion/kwaidan/provinces-card.pdf",
+      meta: "PDF · US Letter · 1 page",
+    },
+    {
+      id: "yokai-cards",
+      title: "The Yōkai Cards",
+      description:
+        "Fifteen cards, one for each creature and apparition in the book, named by " +
+        "what folklore calls it rather than by Hearn's title — which matters most " +
+        "for \u201cMujina\u201d, where the thing on the road is a noppera-bō and the " +
+        "animal in the title never appears.",
+      kind: "static",
+      href: "/companion/kwaidan/yokai-cards.pdf",
+      meta: "PDF · US Letter · 1 page",
+    },
+    {
+      id: "register-card",
+      title: "The Register of Provenance",
+      description:
+        "What Hearn's own note establishes about where these tales came from, and " +
+        "what it leaves open. Four pieces have a stated origin — one Chinese, one " +
+        "told to him by a farmer in Musashi, one that happened to him, one that is " +
+        "plainly autobiography. Sixteen do not, and are shown as open rather than " +
+        "assigned to one of his five named books on a guess.",
+      kind: "static",
+      href: "/companion/kwaidan/register-card.pdf",
+      meta: "PDF · US Letter · 1 page",
+    },
+    {
+      id: "hundred-candles",
+      title: "The Hundred Candles",
+      description:
+        "Hyakumonogatari kaidankai is the Edo game the genre is named after: a " +
+        "hundred lamps, a tale each, one lamp out after every one, and the thing " +
+        "the tales have been summoning arrives when the last goes dark. Companies " +
+        "stopped at ninety-nine. This sheet plays it with the seventeen tales of " +
+        "this book, in an order that works, and tells you to stop at sixteen.",
+      kind: "static",
+      href: "/companion/kwaidan/hundred-candles.pdf",
+      meta: "PDF · US Letter · 2 pages",
+    },
+  ],
+};
+
 const COMPANIONS: readonly Companion[] = [
   HANGUL,
   WORLD_GAMES,
@@ -1584,6 +1669,7 @@ const COMPANIONS: readonly Companion[] = [
   CHINA_GODS,
   VEDIC_GODS,
   THE_DRAGON,
+  KWAIDAN,
 ];
 
 export function listCompanions(): readonly Companion[] {

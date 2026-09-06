@@ -72,6 +72,13 @@ export const DIGITAL_EDITION_SOURCES = [
     epub: bookPath("02-KOREAN-GAMES", "OUTPUT", "korean-games.epub"),
   },
   {
+    // Valice Classics 13 (2026-09-06). PHASE 3 book 1. Two 1904 plates and no other
+    // raster matter, so the /ebook pass normalises rather than downsamples.
+    slug: "kwaidan",
+    printInterior: bookPath("01-KWAIDAN", "OUTPUT", "interior-main.pdf"),
+    epub: bookPath("01-KWAIDAN", "OUTPUT", "kwaidan.epub"),
+  },
+  {
     // Valice Classics 12 (2026-09-06). Phase 2 book 5, and the largest: 244 pages with
     // 78 engraved staves. The print interior is also the ebook's PDF — a book set with
     // music on the page is one a reader wants as a page rather than as reflowed text —

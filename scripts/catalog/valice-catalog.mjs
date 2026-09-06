@@ -127,6 +127,13 @@ export const AUTHORS = [
     // 2026-09-02; see the book project's CLAIMS.jsonl C-001…C-011.
     bio: "English puzzle-maker (1857–1930). A Civil Service clerk from the age of thirteen, he wrote puzzles for The Strand Magazine for more than thirty years and published The Canterbury Puzzles (1907) and Amusements in Mathematics (1917). The Haberdasher's four-piece triangle and the spider and the fly are his.",
   },
+  {
+    slug: "lafcadio-hearn",
+    name: "Lafcadio Hearn",
+    // Facts from Wikipedia, "Lafcadio Hearn" and "Kwaidan: Stories and Studies of
+    // Strange Things", read 2026-09-06; see the book project's CLAIMS.jsonl C-001…C-003.
+    bio: "Writer and interpreter of Japan (1850\u20131904). Born on Lefkada to a Greek mother and an Irish father, raised in Dublin, and a newspaperman in Cincinnati and New Orleans for twenty years before he reached Japan in 1890. He married Koizumi Setsu, became a Japanese citizen in 1896 as Koizumi Yakumo, and taught at Tokyo Imperial University. Kwaidan, his book of ghost stories, was published six months before he died.",
+  },
 ];
 
 /**
@@ -1581,6 +1588,85 @@ export const BOOKS = [
       "Thirty-six passages \u2014 about 598 words \u2014 are the scanner's reading of a line figure, or of the ghost a tissue guard prints onto the facing page, and are marked rather than set as Culin's prose. Every one is listed with what the scanner made of it in QA/debris.json, so the refusal can be checked. Three of Culin's tables are described rather than reproduced for the same reason.",
       "Games I to LXIX are not in this volume. They are 20,648 words of children's amusements in one-paragraph entries, and they carry none of the argument the book is built on. The scope was decided and recorded before any apparatus was written, which is the order Phase 1 taught.",
       "No Kindle edition planned at launch: KDP caps public-domain content at the 35% royalty tier, and the Kindle store already carries free scans of this title. No hardcover and no large print at launch: both are open decisions rather than refusals, and neither is claimed as planned until it is built.",
+    ],
+  },
+
+  {
+    slug: "kwaidan",
+    title: "Kwaidan: Stories and Studies of Strange Things",
+    subtitle:
+      "The Complete 1904 Text, Annotated \u2014 17 Stories and 3 Insect Studies, with a Register of What Hearn Took, Was Told and Lived, a Y\u014dkai Index and a Glossary",
+    language: "en",
+    pageCount: 138,
+    categories: ["myth-and-folklore", "classics-and-philosophy"],
+    authors: ["lafcadio-hearn", "emre-dogan"],
+    bisac: ["FIC012000", "SOC011000"],
+    series: { name: "Valice Classics", volume: 13 },
+    // PHASE 3, BOOK 1 (2026-09-06), and the first of the Codex Bestiarium expansion.
+    // The whole of Hearn is printed \u2014 seventeen tales, three insect studies, his own
+    // notes and his own prefatory note. The ONE omission is a rights finding and not a
+    // scope decision: the first edition's second prefatory piece, dated March 1904, is
+    // unsigned and its author is named nowhere, so no death year can be established and
+    // it is not printed. Both Takeuchi Keish\u016b plates ARE printed: the roadmap expected
+    // them to be unattributable, and an authority record (Wikidata Q11545824) names and
+    // dates him, which clears them.
+    websiteStatus: "draft",
+    linkageDecision: null,
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m1v4n80k6g2tba6wt8882ehf",
+    onelinePromise:
+      "The book behind the film: seventeen Japanese ghost stories and three essays on insects, complete in the 1904 text, with the four tales whose origin Hearn states separated from the sixteen he leaves open.",
+    description:
+      "In January 1904 Lafcadio Hearn finished a book of ghost stories in Tokyo and signed the note in front of it with his initials. He had eight months to live. Seventeen tales came out of it \u2014 the blind lute-player who plays for the drowned Heik\u00e9, the woman who is a willow and dies when it is felled, the face on the Akasaka road with nothing on it \u2014 and then, without changing his tone, three essays on butterflies, mosquitoes and ants. Readers have been complaining about the ants since 1904 and they are wrong: the insect studies ask the same question as the tales, on a subject that cannot be dismissed as superstition. This edition prints all twenty pieces and both of Takeuchi Keish\u016b's 1904 plates. Around them: an introduction of nearly three thousand words; a head-note before every piece; a REGISTER OF PROVENANCE that does what no other edition does \u2014 it separates the four pieces whose origin Hearn actually states (one Chinese, one told him by a farmer in Musashi, one that happened to him, one that is plainly autobiography) from the sixteen he leaves open, instead of assigning each tale to one of his five named books on a guess; a glossary of all 45 Japanese words he italicises and leaves unexplained; a Y\u014dkai Register naming the creatures by what folklore calls them rather than by his titles, which matters most for \u201cMujina\u201d, where the thing on the road is a noppera-b\u014d and the animal in the title never appears; a gazetteer of the ten old provinces against the prefectures they became, which catches an error the text has carried for a century (Niigata is in Echigo, not Echizen); a chronology; and a plain account of which of Hearn's claims have not survived \u2014 the Spencerian ant sociology, the racial explanations \u2014 and the one that was right, which is the mosquito. Readers arriving from Kobayashi's 1964 film are told, in the book, that only two of its four episodes are in it. 138 pages.",
+    idealReader:
+      "Someone who has seen Kobayashi's film or met Yuki-Onna in a game, wants the book behind them, and would rather be told plainly which of these tales Hearn found in a Japanese book, which one a farmer told him, and which one he watched happen.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "available",
+        fulfillment: "direct",
+        priceCents: usd(8.99),
+        pageCount: 138,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: "books/kwaidan/master/v1/master.pdf",
+        epubFileKey: "books/kwaidan/master/v1/master.epub",
+        priceBasis:
+          "price-engine.mjs 2026-09-06, direct ebook, public domain: recommended $6.99; $8.99 nets $8.04 after Paddle at an 89.4% margin. Mid-band for Valice Classics \u2014 45,900 words, between Chess and Playing Cards at $7.99 and The Singing Games at $9.99.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(14.99),
+        pageCount: 138,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-06, 138 pp 6\u00d79 B&W on white: prints at $2.66, KDP minimum list $4.43, recommended $10.99; $14.99 nets $6.34 (42.3%) at 60% royalty.",
+      },
+      {
+        format: "hardcover",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(29.99),
+        pageCount: 138,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-06, 138 pp 6\u00d79 hardcover: prints at $7.31 \u2014 case binding is expensive at this extent \u2014 KDP minimum list $12.18, recommended $29.99, which nets $10.68 (35.6%). $24.99 would net 30.7% and miss the 35% target; the format is priced as the gift object it is, with both period plates.",
+      },
+    ],
+    blockers: [
+      "The ebook is built, priced and ready but not on sale: creating the Paddle product and price is a live write this environment's permission layer blocks. One command, in FOUNDER F-028.",
+      "NO KDP LISTING YET. Paperback and hardcover are built \u2014 interior, companion leaf and both wraps \u2014 and neither has been uploaded; `kdp: \"not_created\"` says so and no ASIN is invented.",
+      "The apparatus is 20.05% of the volume against a 20% floor. It is measured from the content files by COMMON-AREA/checks/differentiation.py, not estimated, and it is the tightest margin of any book this press has shipped.",
+      "THE UNSIGNED 1904 INTRODUCTION IS NOT PRINTED. It is not Hearn's, it carries no signature in the source, and its author is named in no authority record, so no rights position could be established. 677 words of publisher's puffery; the Source Note says so on the page.",
     ],
   },
 
