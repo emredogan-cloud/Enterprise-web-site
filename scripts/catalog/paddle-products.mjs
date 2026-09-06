@@ -107,13 +107,13 @@ export const DIRECT_SALE_EBOOKS = [
   },
   {
     slug: "epictetus-discourses-and-enchiridion",
-    name: "Epictetus: The Discourses and Enchiridion (Annotated)",
+    name: "Epictetus: The Discourses and Enchiridion",
     description:
       // Both files, and the sentence names only what the fulfillment worker
       // actually produces: `master.pdf` from the print interior and
       // `master.epub`, both uploaded and content-verified under
       // books/epictetus-discourses-and-enchiridion/master/v1/.
-      "Arrian's complete Enchiridion — all fifty-two chapters — followed by the sixty-eight Discourses George Long selected in 1877, arranged into seven thematic parts. Around them, original to this edition: an introduction, a head-note on every one of the 120 chapters, a glossary of the eighteen terms Epictetus uses technically, a biographical index, a chronology, an index of subjects, and a concordance listing the four passages Marcus Aurelius demonstrably read — and the two Long cites that are not in this selection. 178 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included.",
+      "Arrian's complete Enchiridion — all fifty-two chapters — followed by the sixty-eight Discourses George Long selected in 1877, arranged into seven thematic parts. Around them, original to this edition: an introduction, a head-note on every one of the 120 chapters, a glossary of the eighteen terms Epictetus uses technically, a biographical index, a chronology, an index of subjects, and a concordance listing the four passages Marcus Aurelius demonstrably read — and the two Long cites that are not in this selection. 176 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included.",
     // price-engine.mjs 2026-09-04: $9.99 nets $8.99 after Paddle (90%). The
     // Valice Classics band is $7.99–9.99 for the minimum apparatus standard;
     // this edition measures 20.1% original matter, which is the floor rather

@@ -558,6 +558,7 @@ export async function getCartBooks(bookIds: string[]): Promise<BookCardData[]> {
 // -----------------------------------------------------------------------------
 export interface CheckoutItem {
   id: string;
+  slug: string;
   title: string;
   priceCents: number;
   currency: string;
@@ -576,6 +577,10 @@ export async function getCheckoutItems(
           and(eq(b.status, "published"), inArray(b.id, bookIds)),
         columns: {
           id: true,
+          // The slug is what a bundle is defined in terms of: `src/lib/bundles.ts`
+          // names its members by catalogue slug, not by database uuid, so that
+          // the definition survives a reseed.
+          slug: true,
           title: true,
           priceCents: true,
           currency: true,

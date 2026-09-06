@@ -1138,12 +1138,12 @@ export const BOOKS = [
         kdp: "not_created",
         masterFileKey: null,
         priceBasis:
-          "price-engine.mjs 2026-09-04, 176 pp 6\u00d79 B&W public domain: prints at $3.11, KDP minimum list $5.19. $16.99 nets $7.08 (41.7%); the engine's recommended list is $12.99 and the Valice Classics bible's band is $16.99\u201319.99 once an edition has proved itself. Proposed at $16.99; the Founder decides at Gate 8.",
+          "price-engine.mjs 2026-09-04, 176 pp 6\u00d79 B&W public domain: prints at $3.11, KDP minimum list $5.19. $16.99 nets $7.08 (41.7%); the engine's recommended list is $12.99 and the Valice Classics bible's band is $16.99\u201319.99 once an edition has proved itself. DECIDED at $16.99 on 2026-09-06: the price-engine was re-run at the MEASURED 176 pages and the files are built, preflight clean and packaged. What is left is the upload itself.",
       },
     ],
     blockers: [
-      "Not on KDP. These editions are built and packaged, and the print upload is a Founder action \u2014 see the KDP upload handbook in PHASE-1-REPORT. The direct ebook is on sale here regardless.",
-      "Gates 7 (cover) and 8 (interior/proof) are unsigned, so the paperback list price is proposed rather than decided. Gates 2 (rights), 4 (content), 5 (facts) and 9 (metadata) are signed.",
+      "Not on KDP, which is why the paperback reads coming_soon and not available: the files are built, preflight clean and packaged, but no Amazon listing exists and a reader cannot buy what is not listed. The handbook is at ROADMAP-BOOKS/05-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/KDP_UPLOAD_HANDBOOK.html. The upload is a Founder action. The direct ebook is on sale here regardless.",
+      "Gates 7 (cover) and 8 (interior/proof) are unsigned, so the proof is unseen. Gates 2 (rights), 4 (content), 5 (facts) and 9 (metadata) are signed. The cover was corrected on 2026-09-06: the title line now matches the listed title, and the barcode rectangle carries zero text.",
 
       "No Kindle edition and no hardcover or large print are planned at launch; each decision is recorded below rather than assumed.",
       "No Kindle edition planned at launch: KDP caps public-domain content at the 35% royalty tier and the Kindle store already carries several free Epictetus editions. It is a discovery channel, not a revenue one, and the decision is recorded rather than assumed.",
