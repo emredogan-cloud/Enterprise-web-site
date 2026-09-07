@@ -51,11 +51,31 @@ function* walk(dir, depth = 0) {
   }
 }
 
-/** The folders searched, named for the error message. */
+/**
+ * The folders searched, named for the error message.
+ *
+ * THIS RUNS ONLY WHILE BUILDING AN ERROR, so it must not be able to raise one of its
+ * own. It used to call readdirSync unguarded, so when the whole book tree was absent —
+ * on any machine that is not the Founder's — the ENOENT from here escaped INSTEAD of the
+ * "no book directory named X" message that was being assembled, and the caller was told
+ * about a missing directory scan rather than about the book it asked for.
+ */
 function parents() {
-  return readdirSync(BOOKS_ROOT)
+  let entries;
+  try {
+    entries = readdirSync(BOOKS_ROOT);
+  } catch {
+    return [`(none — ${BOOKS_ROOT} is not present on this machine)`];
+  }
+  return entries
     .filter((d) => !d.startsWith(".") && !SKIP.has(d))
-    .filter((d) => statSync(join(BOOKS_ROOT, d)).isDirectory());
+    .filter((d) => {
+      try {
+        return statSync(join(BOOKS_ROOT, d)).isDirectory();
+      } catch {
+        return false;
+      }
+    });
 }
 
 const cache = new Map();
