@@ -29,6 +29,28 @@ jobs:
           node-version: "24"
           cache: "npm"
 
+      # poppler-utils gives pdftotext and pdfinfo. The print-linkage lint and the
+      # companion-page suite READ BUILT PDFs BACK — they assert on what a KDP
+      # reviewer's copy actually contains, not on what a generator was asked to
+      # write — so without these binaries every audit returns BLOCKED ("pdftotext
+      # /pdfinfo failed: install poppler-utils", which is the lint's own advice).
+      # This was invisible until the tests started running: they had been dying at
+      # import time on a missing directory and never reached the assertions.
+      - name: Install poppler-utils
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+
+      # The print-linkage lint measures a printed QR by rendering the page with
+      # pdftoppm and looking for the 1:1:3:1:1 finder signature — the same thing a
+      # decoder looks for. It runs that through ./.venv-factory/bin/python, and
+      # without it reports "unmeasured", which is honest but is not a measurement.
+      # The script needs Pillow and nothing else, so CI can measure for real rather
+      # than skip: the alternative was asserting a weaker claim on the runner than
+      # on the Founder's machine.
+      - name: Python venv for the print factory (Pillow — QR measurement)
+        run: |
+          python3 -m venv .venv-factory
+          ./.venv-factory/bin/pip install --quiet --disable-pip-version-check Pillow
+
       - name: Install dependencies
         run: npm ci
 

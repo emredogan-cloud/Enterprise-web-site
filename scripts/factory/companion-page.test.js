@@ -7,6 +7,7 @@ import { describe, expect, it } from "vitest";
 import { BOOKS } from "../catalog/valice-catalog.mjs";
 import { COMPANION_PAGE_COPY, COMPANION_PAGE_PLAN, editions, printedUrl, qrUrl } from "./companion-page-spec.mjs";
 import { EDITION_GEOMETRY, MEASURED_MEDIABOX_PT } from "./edition-geometry.mjs";
+import { BOOKS_ROOT } from "./book-dirs.mjs";
 import { PRINT_INTERIORS } from "./print-interiors.mjs";
 import { assess, spineWidthIn, wrapIn, KDP_TOLERANCE_IN } from "./spine-check.mjs";
 
@@ -22,7 +23,10 @@ import { assess, spineWidthIn, wrapIn, KDP_TOLERANCE_IN } from "./spine-check.mj
  * an empty directory would be the most expensive kind of lie here.
  */
 
-const HAVE_BOOKS = existsSync("/home/emre/Downloads/MY-DİGİTAL-BOOK");
+// Ask the SAME question the resolver asks. This was a hardcoded literal, so the test's
+// idea of "are the books mounted" could disagree with `bookPath`'s — and VALICE_BOOKS_ROOT,
+// which exists precisely so this can be pointed elsewhere, was invisible to it.
+const HAVE_BOOKS = existsSync(BOOKS_ROOT);
 const describeBooks = HAVE_BOOKS ? describe : describe.skip;
 
 function pdfPages(file) {
@@ -122,19 +126,24 @@ describeBooks("the printed companion pages", () => {
   });
 
   for (const row of rows) {
-    const file = PRINT_INTERIORS[row.bookSlug]?.[row.format];
+    // RESOLVED INSIDE EACH TEST, NOT HERE. Vitest executes a describe body even when the
+    // suite is skipped — it has to, to register the names it is skipping — so reading a
+    // path here walked the book tree on a machine that has none, and the suite that had
+    // carefully guarded itself failed anyway, one line above the guard.
+    const interior = () => PRINT_INTERIORS[row.bookSlug]?.[row.format];
     const label = `${row.bookSlug}/${row.format}`;
     // `native` and `replace` both name the page outright; `append` puts the
     // leaf one past the old last page.
     const page = row.mode === "append" ? row.pagesBefore + 1 : row.page;
 
     it(`${label}: the interior is the page count the plan produced`, () => {
+      const file = interior();
       expect(existsSync(file), file).toBe(true);
       expect(pdfPages(file)).toBe(row.pagesAfter);
     });
 
     it(`${label}: page ${page} is a dedicated companion page`, () => {
-      const text = pageText(file, page).replace(/\s+/g, " ");
+      const text = pageText(interior(), page).replace(/\s+/g, " ");
       const imprint = COMPANION_PAGE_COPY[row.bookSlug].imprint.toUpperCase();
       expect(text).toContain(`CONTINUE WITH ${imprint}`);
       expect(text).toContain(printedUrl(row.bookSlug));
@@ -147,7 +156,7 @@ describeBooks("the printed companion pages", () => {
     it(`${label}: the new leaf is cut to the book's own trim`, () => {
       const expected = MEASURED_MEDIABOX_PT[row.bookSlug]?.[row.format];
       if (!expected) return;
-      expect(mediaBox(file, page)).toEqual(expected);
+      expect(mediaBox(interior(), page)).toEqual(expected);
     });
   }
 });

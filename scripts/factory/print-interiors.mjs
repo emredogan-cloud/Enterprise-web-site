@@ -20,32 +20,54 @@
  */
 import { bookPath } from "./book-dirs.mjs";
 
-export const PRINT_INTERIORS = {
+/**
+ * THE TABLE IS DATA; RESOLVING IT IS BEHAVIOUR, AND MIXING THE TWO BROKE CI.
+ *
+ * Every entry below used to be a `bookPath(...)` call evaluated AT MODULE SCOPE, so
+ * merely importing this file walked `/home/emre/Downloads/MY-DİGİTAL-BOOK` thirty
+ * times. That directory is the Founder's local book tree; it does not exist on a CI
+ * runner and never will. The import threw ENOENT before any code ran, which took down
+ * three test files — including `kdp-linkage-lint.test.js`, which builds its own tiny
+ * PDFs in a temp dir and needs no book tree at all. It had never once run in CI.
+ *
+ * `companion-page.test.js` had already guarded itself properly
+ * (`HAVE_BOOKS ? describe : describe.skip`, with a comment explaining that a green run
+ * against an empty directory would be the most expensive kind of lie). That guard was
+ * correct and never reached: the import above it threw first. A guard on line 26 cannot
+ * save you from line 10.
+ *
+ * So the specs are held as path SEGMENTS and resolved on access. Importing this module
+ * now touches no filesystem. Reading a path still resolves it exactly as before, and
+ * still throws loudly when a book has moved — which is the behaviour `kdp-linkage-lint`
+ * depends on.
+ */
+
+const SPECS = {
   "codex-mythologica": {
-    paperback: bookPath("CODEX-MYTHOLOGICA", "04_PRINT", "PAPERBACK", "CODEX_MYTHOLOGICA_INTERIOR_PAPERBACK.pdf"),
-    hardcover: bookPath("CODEX-MYTHOLOGICA", "04_PRINT", "HARDCOVER", "CODEX_MYTHOLOGICA_INTERIOR_HARDCOVER.pdf"),
-    large_print: bookPath("CODEX-MYTHOLOGICA", "04_PRINT", "LARGEPRINT", "CODEX_MYTHOLOGICA_INTERIOR_LARGEPRINT.pdf"),
+    paperback: ["CODEX-MYTHOLOGICA", "04_PRINT", "PAPERBACK", "CODEX_MYTHOLOGICA_INTERIOR_PAPERBACK.pdf"],
+    hardcover: ["CODEX-MYTHOLOGICA", "04_PRINT", "HARDCOVER", "CODEX_MYTHOLOGICA_INTERIOR_HARDCOVER.pdf"],
+    large_print: ["CODEX-MYTHOLOGICA", "04_PRINT", "LARGEPRINT", "CODEX_MYTHOLOGICA_INTERIOR_LARGEPRINT.pdf"],
   },
   "codex-bestiarium": {
-    paperback: bookPath("CODEX-BESTIARIUM", "04_PRINT", "PAPERBACK", "CODEX_BESTIARIUM_INTERIOR_PAPERBACK.pdf"),
-    hardcover: bookPath("CODEX-BESTIARIUM", "04_PRINT", "HARDCOVER", "CODEX_BESTIARIUM_INTERIOR_HARDCOVER.pdf"),
-    large_print: bookPath("CODEX-BESTIARIUM", "04_PRINT", "LARGEPRINT", "CODEX_BESTIARIUM_INTERIOR_LARGEPRINT.pdf"),
+    paperback: ["CODEX-BESTIARIUM", "04_PRINT", "PAPERBACK", "CODEX_BESTIARIUM_INTERIOR_PAPERBACK.pdf"],
+    hardcover: ["CODEX-BESTIARIUM", "04_PRINT", "HARDCOVER", "CODEX_BESTIARIUM_INTERIOR_HARDCOVER.pdf"],
+    large_print: ["CODEX-BESTIARIUM", "04_PRINT", "LARGEPRINT", "CODEX_BESTIARIUM_INTERIOR_LARGEPRINT.pdf"],
   },
   "codex-enigmatica": {
-    paperback: bookPath("CODEX-ENIGMATICA", "08_OUTPUT", "PAPERBACK", "interior.pdf"),
-    hardcover: bookPath("CODEX-ENIGMATICA", "08_OUTPUT", "HARDCOVER", "interior.pdf"),
+    paperback: ["CODEX-ENIGMATICA", "08_OUTPUT", "PAPERBACK", "interior.pdf"],
+    hardcover: ["CODEX-ENIGMATICA", "08_OUTPUT", "HARDCOVER", "interior.pdf"],
   },
   "the-great-book-of-world-games": {
-    paperback: bookPath("THE-GREAT-BOOK-OF-WORLD-GAMES", "08_OUTPUT", "PAPERBACK", "GreatBookOfWorldGames_interior_paperback.pdf"),
-    hardcover: bookPath("THE-GREAT-BOOK-OF-WORLD-GAMES", "08_OUTPUT", "HARDCOVER", "GreatBookOfWorldGames_interior_hardcover.pdf"),
-    large_print: bookPath("THE-GREAT-BOOK-OF-WORLD-GAMES", "08_OUTPUT", "LARGEPRINT", "GreatBookOfWorldGames_interior_largeprint.pdf"),
+    paperback: ["THE-GREAT-BOOK-OF-WORLD-GAMES", "08_OUTPUT", "PAPERBACK", "GreatBookOfWorldGames_interior_paperback.pdf"],
+    hardcover: ["THE-GREAT-BOOK-OF-WORLD-GAMES", "08_OUTPUT", "HARDCOVER", "GreatBookOfWorldGames_interior_hardcover.pdf"],
+    large_print: ["THE-GREAT-BOOK-OF-WORLD-GAMES", "08_OUTPUT", "LARGEPRINT", "GreatBookOfWorldGames_interior_largeprint.pdf"],
   },
   "the-great-book-of-world-myths": {
-    paperback: bookPath("THE-GREAT-BOOK-OF-WORLD-MYTHS", "08_OUTPUT", "paperback", "interior.pdf"),
-    hardcover: bookPath("THE-GREAT-BOOK-OF-WORLD-MYTHS", "08_OUTPUT", "hardcover", "interior.pdf"),
+    paperback: ["THE-GREAT-BOOK-OF-WORLD-MYTHS", "08_OUTPUT", "paperback", "interior.pdf"],
+    hardcover: ["THE-GREAT-BOOK-OF-WORLD-MYTHS", "08_OUTPUT", "hardcover", "interior.pdf"],
   },
   "the-myth-hunters-field-book": {
-    paperback: bookPath("THE-MYTH-HUNTERS-FIELD-BOOK", "08_OUTPUT", "PAPERBACK", "interior.pdf"),
+    paperback: ["THE-MYTH-HUNTERS-FIELD-BOOK", "08_OUTPUT", "PAPERBACK", "interior.pdf"],
   },
   "greek-alphabet-handwriting-workbook": {
     // Valice Script 2, built 2026-09-04; the hardcover added 2026-09-05.
@@ -56,19 +78,19 @@ export const PRINT_INTERIORS = {
     // loses the same 0.25 in of column the wider gutter takes). The
     // large-print edition would be this book at this size (DECISIONS.md K4)
     // and is not produced.
-    paperback: bookPath("02-GREEK-ALPHABET-HANDWRITING-WORKBOOK", "OUTPUT", "KDP", "PAPERBACK", "interior.pdf"),
-    hardcover: bookPath("02-GREEK-ALPHABET-HANDWRITING-WORKBOOK", "OUTPUT", "KDP", "HARDCOVER", "interior.pdf"),
+    paperback: ["02-GREEK-ALPHABET-HANDWRITING-WORKBOOK", "OUTPUT", "KDP", "PAPERBACK", "interior.pdf"],
+    hardcover: ["02-GREEK-ALPHABET-HANDWRITING-WORKBOOK", "OUTPUT", "KDP", "HARDCOVER", "interior.pdf"],
   },
   "korean-hangul-handwriting-workbook": {
     // The REMEDIATED interiors of 2026-09-02, rebuilt on 2026-09-03 with the
     // companion page on p.125. The filename carries the page count and was
     // renamed from _124pp when the count changed — a file whose name states a
     // page count it no longer has is how the wrong interior gets uploaded.
-    paperback: bookPath("01-KOREAN-HANGUL-HANDWRITING-WORKBOOK", "09_OUTPUT", "FINAL", "paperback", "paperback_interior_8.5x11_126pp.pdf"),
-    hardcover: bookPath("01-KOREAN-HANGUL-HANDWRITING-WORKBOOK", "09_OUTPUT", "FINAL", "hardcover", "hardcover_interior_8.25x11_126pp.pdf"),
+    paperback: ["01-KOREAN-HANGUL-HANDWRITING-WORKBOOK", "09_OUTPUT", "FINAL", "paperback", "paperback_interior_8.5x11_126pp.pdf"],
+    hardcover: ["01-KOREAN-HANGUL-HANDWRITING-WORKBOOK", "09_OUTPUT", "FINAL", "hardcover", "hardcover_interior_8.25x11_126pp.pdf"],
   },
   "the-puzzles-of-henry-dudeney": {
-    paperback: bookPath("03-THE-PUZZLES-OF-HENRY-DUDENEY", "OUTPUT", "interior-main.pdf"),
+    paperback: ["03-THE-PUZZLES-OF-HENRY-DUDENEY", "OUTPUT", "interior-main.pdf"],
   },
   "epictetus-discourses-and-enchiridion": {
     // Valice Classics 3 (2026-09-04). The first build authored a companion page
@@ -76,58 +98,91 @@ export const PRINT_INTERIORS = {
     // pipeline's verification and it was removed. The interior is now typeset
     // deliberately ODD (175 pp) and build-companion-pages.mjs appends the leaf
     // to make 176, which is the even count KDP requires.
-    paperback: bookPath("05-EPICTETUS-DISCOURSES-AND-ENCHIRIDION", "OUTPUT", "interior-main.pdf"),
+    paperback: ["05-EPICTETUS-DISCOURSES-AND-ENCHIRIDION", "OUTPUT", "interior-main.pdf"],
   },
   "traditional-games": {
     // PHASE 2, BOOK 5 (2026-09-06). Valice Classics 12, and the longest book of the
     // phase: 243 pp, typeset deliberately ODD so the companion leaf appended by
     // build-companion-pages.mjs makes the even 244 that KDP requires. Its 78 engraved
     // staves are vector, drawn into the page by the book's own engraver.
-    paperback: bookPath("05-TRADITIONAL-GAMES", "OUTPUT", "interior-main.pdf"),
+    paperback: ["05-TRADITIONAL-GAMES", "OUTPUT", "interior-main.pdf"],
   },
   "chess-and-playing-cards": {
     // PHASE 2, BOOK 3 (2026-09-05). Valice Classics 10. Typeset deliberately ODD
     // (119 pp) so the companion leaf appended by build-companion-pages.mjs makes
     // the even 120 that KDP requires.
-    paperback: bookPath("03-CHESS-AND-PLAYING-CARDS", "OUTPUT", "interior-main.pdf"),
+    paperback: ["03-CHESS-AND-PLAYING-CARDS", "OUTPUT", "interior-main.pdf"],
   },
   "korean-games": {
     // PHASE 2, BOOK 2 (2026-09-05). Valice Classics 9. Typeset deliberately ODD
     // (143 pp) so the companion leaf appended by build-companion-pages.mjs makes
     // the even 144 that KDP requires.
-    paperback: bookPath("02-KOREAN-GAMES", "OUTPUT", "interior-main.pdf"),
+    paperback: ["02-KOREAN-GAMES", "OUTPUT", "interior-main.pdf"],
   },
   "games-ancient-and-oriental": {
     // PHASE 2, BOOK 1 (2026-09-05). Valice Classics 8. Typeset deliberately ODD
     // (77 pp) so the companion leaf appended by build-companion-pages.mjs makes
     // the even 78 that KDP requires.
-    paperback: bookPath("01-GAMES-ANCIENT-AND-ORIENTAL", "OUTPUT", "interior-main.pdf"),
+    paperback: ["01-GAMES-ANCIENT-AND-ORIENTAL", "OUTPUT", "interior-main.pdf"],
   },
   "seneca-selected-dialogues": {
     // Valice Classics 4 (2026-09-04). 156 pp — an odd 155 was padded to an even
     // count by the build, because KDP rejects an odd final page.
-    paperback: bookPath("02-SENECA-SELECTED-DIALOGUES", "OUTPUT", "interior-main.pdf"),
+    paperback: ["02-SENECA-SELECTED-DIALOGUES", "OUTPUT", "interior-main.pdf"],
   },
   "myths-and-legends-of-china": {
     // Valice Classics 5 (2026-09-04). Volume one of two. Typeset ODD (107 pp)
     // so the appended companion leaf makes 108.
-    paperback: bookPath("03-MYTHS-AND-LEGENDS-OF-CHINA", "OUTPUT", "interior-main.pdf"),
+    paperback: ["03-MYTHS-AND-LEGENDS-OF-CHINA", "OUTPUT", "interior-main.pdf"],
   },
   "indian-myth-and-legend": {
     // Valice Classics 6 (2026-09-04). Volume one of four. Typeset ODD (93 pp)
     // so the appended companion leaf makes 94.
-    paperback: bookPath("04-INDIAN-MYTH-AND-LEGEND", "OUTPUT", "interior-main.pdf"),
+    paperback: ["04-INDIAN-MYTH-AND-LEGEND", "OUTPUT", "interior-main.pdf"],
   },
   "codex-mythologica-the-puzzle-book": {
     // Roadmap book 4 (2026-09-05). TWO SEPARATE BUILDS: KDP has no 8.5 x 11
     // case laminate, so the hardcover is typeset at 8.25 x 11 with a 0.95 in
     // gutter and measures its own page count.
-    paperback: bookPath("04-CODEX-MYTHOLOGICA-THE-PUZZLE-BOOK", "OUTPUT", "PAPERBACK", "interior.pdf"),
-    hardcover: bookPath("04-CODEX-MYTHOLOGICA-THE-PUZZLE-BOOK", "OUTPUT", "HARDCOVER", "interior.pdf"),
+    paperback: ["04-CODEX-MYTHOLOGICA-THE-PUZZLE-BOOK", "OUTPUT", "PAPERBACK", "interior.pdf"],
+    hardcover: ["04-CODEX-MYTHOLOGICA-THE-PUZZLE-BOOK", "OUTPUT", "HARDCOVER", "interior.pdf"],
   },
   "mythical-monsters": {
     // Valice Classics 7 (2026-09-04). Volume one of three. Typeset ODD (73 pp)
     // so the appended companion leaf makes 74.
-    paperback: bookPath("05-MYTHICAL-MONSTERS", "OUTPUT", "interior-main.pdf"),
+    paperback: ["05-MYTHICAL-MONSTERS", "OUTPUT", "interior-main.pdf"],
   },
 };
+
+/**
+ * Where each printed edition's built interior lives, resolved on first read.
+ *
+ * The slug keys enumerate without touching the disk, so `Object.keys` and
+ * `Object.entries` are safe anywhere. Each FORMAT is a getter: it resolves through
+ * `bookPath` when read, and throws with `book-dirs`' own message when the book has been
+ * renamed or moved. Values are memoised, so a repeated read costs one walk, not thirty.
+ */
+export const PRINT_INTERIORS = Object.fromEntries(
+  Object.entries(SPECS).map(([slug, formats]) => {
+    const resolved = {};
+    for (const [format, segments] of Object.entries(formats)) {
+      Object.defineProperty(resolved, format, {
+        enumerable: true,
+        configurable: true,
+        get() {
+          const path = bookPath(...segments);
+          // Replace the getter with the value: the walk happens once per format.
+          Object.defineProperty(this, format, { value: path, enumerable: true, configurable: true });
+          return path;
+        },
+      });
+    }
+    return [slug, resolved];
+  }),
+);
+
+/** The path segments for a format, without resolving them. For tooling that wants to
+ *  report what SHOULD exist on a machine that does not have the book tree. */
+export function interiorSpec(slug, format) {
+  return SPECS[slug]?.[format] ?? null;
+}

@@ -1,13 +1,13 @@
 {
   "tool": "validate-catalog",
   "target": "https://valicepress.com",
-  "startedAt": "2026-09-07T04:26:44.044Z",
-  "finishedAt": "2026-09-07T04:30:42.606Z",
-  "ok": false,
+  "startedAt": "2026-09-07T09:22:03.404Z",
+  "finishedAt": "2026-09-07T09:23:32.843Z",
+  "ok": true,
   "counts": {
-    "pass": 53,
-    "warn": 1,
-    "error": 32,
+    "pass": 60,
+    "warn": 0,
+    "error": 0,
     "skipped": 2
   },
   "findings": [
@@ -110,7 +110,7 @@
     {
       "level": "pass",
       "check": "sitemap",
-      "message": "60 URLs",
+      "message": "66 URLs",
       "where": null
     },
     {
@@ -324,201 +324,45 @@
       "where": null
     },
     {
-      "level": "error",
+      "level": "pass",
       "check": "companion",
-      "message": "https://valicepress.com/companion/kwaidan → 404",
-      "where": "kwaidan"
+      "message": "/companion/kwaidan 200",
+      "where": null
     },
     {
-      "level": "error",
+      "level": "pass",
       "check": "companion",
-      "message": "https://valicepress.com/companion/sea-monsters-unmasked → 404",
-      "where": "sea-monsters-unmasked"
+      "message": "/companion/sea-monsters-unmasked 200",
+      "where": null
     },
     {
-      "level": "error",
+      "level": "pass",
       "check": "companion",
-      "message": "https://valicepress.com/companion/book-of-were-wolves → 404",
-      "where": "book-of-were-wolves"
+      "message": "/companion/book-of-were-wolves 200",
+      "where": null
     },
     {
-      "level": "error",
+      "level": "pass",
       "check": "companion",
-      "message": "https://valicepress.com/companion/british-goblins → 404",
-      "where": "british-goblins"
+      "message": "/companion/british-goblins 200",
+      "where": null
     },
     {
-      "level": "error",
+      "level": "pass",
       "check": "companion",
-      "message": "https://valicepress.com/companion/fairy-mythology-vol-1 → 404",
-      "where": "fairy-mythology-vol-1"
+      "message": "/companion/fairy-mythology-vol-1 200",
+      "where": null
     },
     {
-      "level": "error",
+      "level": "pass",
       "check": "companion",
-      "message": "https://valicepress.com/companion/fairy-mythology-vol-2 → 404",
-      "where": "fairy-mythology-vol-2"
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/kwaidan/provinces-card.pdf → 404",
+      "message": "/companion/fairy-mythology-vol-2 200",
       "where": null
     },
     {
-      "level": "error",
+      "level": "pass",
       "check": "companion-asset",
-      "message": "/companion/kwaidan/yokai-cards.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/kwaidan/register-card.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/kwaidan/hundred-candles.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/sea-monsters-unmasked/casebook.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/sea-monsters-unmasked/plate-index.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/sea-monsters-unmasked/scorecard.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/sea-monsters-unmasked/kraken-timeline.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/book-of-were-wolves/casebook.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/book-of-were-wolves/scorecard.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/book-of-were-wolves/norse-words.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/book-of-were-wolves/what-is-in-it.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/british-goblins/welsh-words.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/british-goblins/scorecard.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/british-goblins/who-told-him.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/british-goblins/gazetteer.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/fairy-mythology-vol-1/words.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/fairy-mythology-vol-1/who-collected-it.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/fairy-mythology-vol-1/scorecard.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/fairy-mythology-vol-1/motifs.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/fairy-mythology-vol-1/the-letters-he-set.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/fairy-mythology-vol-2/words.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/fairy-mythology-vol-2/who-collected-it.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/fairy-mythology-vol-2/scorecard.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/fairy-mythology-vol-2/motifs.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "error",
-      "check": "companion-asset",
-      "message": "/companion/fairy-mythology-vol-2/the-letters-he-set.pdf → 404",
-      "where": null
-    },
-    {
-      "level": "warn",
-      "check": "fabrication",
-      "message": "/ → 0 (not checked)",
+      "message": "95 companion assets answer 200",
       "where": null
     },
     {

@@ -1716,11 +1716,15 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "NOT DEPLOYED, AND THAT IS WHY THE ROW IS DRAFT. The Paddle product and price are live "
-        + "(pri_01m1v4n80k6g2tba6wt8882ehf) and the R2 masters are uploaded and verified, but "
-        + "Phase 3 is not merged. Publishing this row would write a book into the production "
-        + "database whose page, cover and companion sheets are not deployed, and the reader "
-        + "would meet broken images and a 404 companion.",
+      "DEPLOYED 2026-09-07 (PR #22). The Paddle product and price are live "
+        + "(pri_01m1v4n80k6g2tba6wt8882ehf, verified active against api.paddle.com). The R2 "
+        + "masters were uploaded and verified in an earlier session and are recorded in "
+        + "`masterFileKey`; that is UNVERIFIED as of 2026-09-07 because this environment's "
+        + "R2_* values are placeholders (F-044), and an unverifiable claim is not a false one. "
+        + "The companion page and all four sheets resolve on production — verified by HTTP, with "
+        + "the served PDFs byte-for-byte the built files. The row stays DRAFT for one reason "
+        + "only: GATE 2 (RIGHTS) IS UNSIGNED, which is a Founder signature, not a technical "
+        + "state. The earlier text here said Phase 3 was not merged; it is.",
       "PADDLE TAX CATEGORY is 'standard', not 'ebooks': the account is not approved for the "
         + "reduced-rate category, so VAT is over-collected in jurisdictions that tax books "
         + "lower. FOUNDER F-029.",
@@ -1808,8 +1812,10 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "NOT DEPLOYED, AND THAT IS WHY THE ROW IS DRAFT. Phase 3 is not merged. The companion "
-        + "address is printed permanently in the book and 404s until this branch ships.",
+      "DEPLOYED 2026-09-07 (PR #22). The companion page and every free sheet resolve on "
+        + "production — verified by HTTP against valicepress.com, and the served PDFs are "
+        + "byte-for-byte the built files. The row stays DRAFT for one reason only: GATE 2 "
+        + "(RIGHTS) IS UNSIGNED, which is a Founder signature and not a technical state.",
       "NO PADDLE PRODUCT, no R2 master and no KDP listing. `paddlePriceId`, `masterFileKey` "
         + "and `epubFileKey` are null and `kdp` is \"not_created\"; no identifier is invented.",
       "GATE 2 IS UNSIGNED. Five rights rows \u2014 the most of any book in the phase \u2014 "
@@ -1900,8 +1906,10 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "NOT DEPLOYED, AND THAT IS WHY THE ROW IS DRAFT. Phase 3 is not merged. The companion "
-        + "address is printed permanently in the book and 404s until this branch ships.",
+      "DEPLOYED 2026-09-07 (PR #22). The companion page and every free sheet resolve on "
+        + "production — verified by HTTP against valicepress.com, and the served PDFs are "
+        + "byte-for-byte the built files. The row stays DRAFT for one reason only: GATE 2 "
+        + "(RIGHTS) IS UNSIGNED, which is a Founder signature and not a technical state.",
       "NO PADDLE PRODUCT, no R2 master and no KDP listing. `paddlePriceId`, `masterFileKey` "
         + "and `epubFileKey` are null and `kdp` is \"not_created\"; no identifier is invented.",
       "GATE 2 IS UNSIGNED. Five rights rows \u2014 the most of any book in the phase \u2014 "
@@ -1992,10 +2000,10 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "NOT DEPLOYED, AND THAT IS WHY THE ROW IS DRAFT. Phase 3 is not merged. Publishing this "
-        + "row would write a book into the production database whose page, cover and companion "
-        + "sheets are not deployed. The companion address is printed permanently in the book and "
-        + "404s until this branch ships.",
+      "DEPLOYED 2026-09-07 (PR #22). The companion page and every free sheet resolve on "
+        + "production — verified by HTTP against valicepress.com, and the served PDFs are "
+        + "byte-for-byte the built files. The row stays DRAFT for one reason only: GATE 2 "
+        + "(RIGHTS) IS UNSIGNED, which is a Founder signature and not a technical state.",
       "NO PADDLE PRODUCT, no R2 master and no KDP listing. `paddlePriceId`, `masterFileKey` and "
         + "`epubFileKey` are null and `kdp` is \"not_created\"; no identifier is invented for "
         + "any of them.",
@@ -2091,9 +2099,10 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "NOT DEPLOYED, AND THAT IS WHY THE ROW IS DRAFT. Phase 3 is not merged. Publishing this "
-        + "row would write a book into the production database whose page, cover and companion "
-        + "sheets are not deployed.",
+      "DEPLOYED 2026-09-07 (PR #22). The companion page and every free sheet resolve on "
+        + "production — verified by HTTP against valicepress.com, and the served PDFs are "
+        + "byte-for-byte the built files. The row stays DRAFT for one reason only: GATE 2 "
+        + "(RIGHTS) IS UNSIGNED, which is a Founder signature and not a technical state.",
       "NO PADDLE PRODUCT, no R2 master and no KDP listing. `paddlePriceId`, `masterFileKey` and "
         + "`epubFileKey` are null and `kdp` is \"not_created\"; no identifier is invented for "
         + "any of them.",
@@ -2184,9 +2193,10 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "NOT DEPLOYED, AND THAT IS WHY THE ROW IS DRAFT. Phase 3 is not merged. Publishing this "
-        + "row would write a book into the production database whose page, cover and companion "
-        + "sheets are not deployed, and the reader would meet broken images and a 404 companion.",
+      "DEPLOYED 2026-09-07 (PR #22). The companion page and every free sheet resolve on "
+        + "production — verified by HTTP against valicepress.com, and the served PDFs are "
+        + "byte-for-byte the built files. The row stays DRAFT for one reason only: GATE 2 "
+        + "(RIGHTS) IS UNSIGNED, which is a Founder signature and not a technical state.",
       "NO PADDLE PRODUCT. Unlike Kwaidan, this book has no Paddle product or price yet, so "
         + "`paddlePriceId` is null and the ebook is coming_soon rather than available. No "
         + "identifier is invented.",
