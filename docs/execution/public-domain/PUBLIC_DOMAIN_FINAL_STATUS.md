@@ -55,6 +55,25 @@ a KDP upload handbook generated from its own QA records, with no invented figure
 **No ASIN. No ISBN. No KDP listing. No price that anyone has agreed.** None of these has been
 invented anywhere in this repository, and the tests forbid it.
 
+## Where the code stands
+
+`main` is 41 commits behind the reconciled tree. Three branches were merged in order —
+`feature/public-domain-phase-3`, `feature/book-05-production`, `feature/mobile-optimization` —
+with lint, typecheck, the full test suite and a production build after each. All green: **404
+tests pass**.
+
+**The direct push to `main` was refused by this environment's policy**, so the reconciled tree
+is on `integration/phase-3-reconciliation` and open as **PR #22**. Merging it deploys, and
+deploying resolves the 32 companion 404s that are the only thing `validate-catalog` still
+reports.
+
+## What could not be done from here
+
+**R2, Inngest, Resend and the Paddle webhook secret are placeholders** in the production env
+file — the literal string `[SENSITIVE]`. No master can be uploaded and fulfillment cannot be
+proved end to end (**F-044**). It is also the right order: an R2 master is the file a paying
+customer downloads, and none of these books can be bought.
+
 ## The two instruments this programme leaves behind
 
 **`check_source_claims.py`** asserts the apparatus's claims *about* the source against the

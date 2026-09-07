@@ -979,3 +979,35 @@ Two details worth your eye, both in `$detail`:
 answered with, and the handbook renders them verbatim so that the form cannot be answered from
 memory — which is the failure this field exists to prevent, and which has happened here before
 (the Epictetus handbook once said "AI-assisted" while its config said "generated").
+
+---
+
+### F-044 · P0 · R2, Inngest, Resend and the Paddle webhook cannot be reached from this environment
+
+`scripts/tmp/.env.production` carries the literal placeholder `[SENSITIVE]` where these values
+should be:
+
+| | |
+|---|---|
+| **R2** | all six — `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_ENDPOINT`, `R2_BUCKET_MASTERS`, `R2_BUCKET_ARTIFACTS`, `R2_PUBLIC_BASE_URL` |
+| **Inngest** | `INNGEST_EVENT_KEY`, `INNGEST_SIGNING_KEY` |
+| **Resend** | `RESEND_API_KEY`, `RESEND_AUDIENCE_ID` |
+| **Paddle** | `PADDLE_WEBHOOK_SECRET` (the API key itself is real and was used) |
+
+Real and used: `DATABASE_URL`, `CLERK_SECRET_KEY`, `PADDLE_API_KEY`, `OPENAI_API_KEY`.
+
+**What this stops.** No master can be uploaded to R2 for any Phase 3 book, and the fulfillment
+path — buy, watermark, deliver — cannot be exercised end to end. Both were on the Phase 3
+list; neither was skipped, and neither can be done from here.
+
+**It is also the right order.** An R2 master is the file a paying customer downloads. Putting
+one there for a book whose rights signature has not been given is backwards, and all six Phase
+3 books are held at Gate 2.
+
+**The ask:** if you want the masters uploaded and fulfillment proved before Gate 2, supply the
+six R2 values. Otherwise this waits behind the signature, which is where it belongs.
+
+The presence checks were not trusted, per the house rule: each value was tested by whether it
+is the placeholder string, not by whether the variable is defined. Four of the five providers
+in this file were once configured with a wrong-but-plausible value that `process.env.X !==
+undefined` accepted.
