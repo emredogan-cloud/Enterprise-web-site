@@ -1,0 +1,573 @@
+<meta charset="utf-8">
+<title>KDP Finalist Pazar Yeniden-Doğrulaması 2026</title>
+<style>
+:root{
+  --bg:#f7f5f1; --surface:#ffffff; --surface-2:#f0ede6; --text:#1e1c18; --muted:#5c574d;
+  --border:#ddd6c9; --accent:#8a5a2b; --accent-2:#2b5a8a;
+  --green:#2f7a3d; --green-bg:#e6f2e6; --yellow:#8a6d1a; --yellow-bg:#f7f0d8;
+  --red:#a3312a; --red-bg:#f6e4e2; --blue:#2b5a8a; --blue-bg:#e3edf6;
+  --tag-obs:#2f7a3d; --tag-obs-bg:#e6f2e6; --tag-est:#8a6d1a; --tag-est-bg:#f7f0d8;
+  --tag-unv:#a3312a; --tag-unv-bg:#f6e4e2; --tag-acc:#2f7a3d; --tag-acc-bg:#e6f2e6;
+  --tag-reb:#2b5a8a; --tag-reb-bg:#e3edf6; --tag-unr:#8a6d1a; --tag-unr-bg:#f7f0d8;
+  --code-bg:#efe9dc;
+  color-scheme: light;
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme: dark){
+    --bg:#17140f; --surface:#211d17; --surface-2:#2a251d; --text:#ecE6d8; --muted:#b3a892;
+    --border:#443c2c; --accent:#d19a5c; --accent-2:#7fb0e0;
+    --green:#7fcf8f; --green-bg:#1e2f1f; --yellow:#e0c56a; --yellow-bg:#332c14;
+    --red:#e8938c; --red-bg:#3a2220; --blue:#7fb0e0; --blue-bg:#1c2a38;
+    --tag-obs:#7fcf8f; --tag-obs-bg:#1e2f1f; --tag-est:#e0c56a; --tag-est-bg:#332c14;
+    --tag-unv:#e8938c; --tag-unv-bg:#3a2220; --tag-acc:#7fcf8f; --tag-acc-bg:#1e2f1f;
+    --tag-reb:#7fb0e0; --tag-reb-bg:#1c2a38; --tag-unr:#e0c56a; --tag-unr-bg:#332c14;
+    --code-bg:#2a251d;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17140f; --surface:#211d17; --surface-2:#2a251d; --text:#ece6d8; --muted:#b3a892;
+  --border:#443c2c; --accent:#d19a5c; --accent-2:#7fb0e0;
+  --green:#7fcf8f; --green-bg:#1e2f1f; --yellow:#e0c56a; --yellow-bg:#332c14;
+  --red:#e8938c; --red-bg:#3a2220; --blue:#7fb0e0; --blue-bg:#1c2a38;
+  --tag-obs:#7fcf8f; --tag-obs-bg:#1e2f1f; --tag-est:#e0c56a; --tag-est-bg:#332c14;
+  --tag-unv:#e8938c; --tag-unv-bg:#3a2220; --tag-acc:#7fcf8f; --tag-acc-bg:#1e2f1f;
+  --tag-reb:#7fb0e0; --tag-reb-bg:#1c2a38; --tag-unr:#e0c56a; --tag-unr-bg:#332c14;
+  --code-bg:#2a251d;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;line-height:1.62;margin:0;padding:0}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px 80px}
+.grid{display:grid;grid-template-columns:250px 1fr;gap:36px;align-items:start}
+@media (max-width:920px){.grid{grid-template-columns:1fr}.toc{position:static !important}}
+header.hero{padding:56px 0 32px;border-bottom:3px double var(--border)}
+header.hero .kicker{font-family:Arial,Helvetica,sans-serif;letter-spacing:.14em;text-transform:uppercase;font-size:.75rem;color:var(--accent);font-weight:700}
+header.hero h1{font-size:2.35rem;margin:.35em 0 .2em;line-height:1.18}
+header.hero p.sub{color:var(--muted);font-size:1.08rem;max-width:64ch}
+.meta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.pill{font-family:Arial,Helvetica,sans-serif;font-size:.78rem;background:var(--surface-2);border:1px solid var(--border);border-radius:999px;padding:4px 12px;color:var(--muted)}
+.toc{position:sticky;top:24px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;font-family:Arial,Helvetica,sans-serif;font-size:.86rem;max-height:88vh;overflow-y:auto}
+.toc h2{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:0 0 10px}
+.toc ol{margin:0;padding-left:1.15em}
+.toc li{margin:5px 0}
+.toc a{color:var(--text);text-decoration:none;opacity:.86}
+.toc a:hover{opacity:1;color:var(--accent)}
+main section{padding:40px 0;border-bottom:1px solid var(--border)}
+main section:last-of-type{border-bottom:none}
+h2.sect-title{font-size:1.55rem;margin:0 0 .2em;display:flex;align-items:baseline;gap:.5em}
+h2.sect-title .n{font-family:Arial,Helvetica,sans-serif;color:var(--accent);font-size:.95rem;font-weight:700}
+h3{font-size:1.18rem;margin:1.6em 0 .5em;color:var(--text)}
+h4{font-size:1.02rem;margin:1.3em 0 .4em;color:var(--accent)}
+p{margin:.75em 0}
+.lead{font-size:1.08rem;color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin:1.1em 0;font-size:.92rem}
+caption{text-align:left;font-family:Arial,Helvetica,sans-serif;font-size:.78rem;color:var(--muted);margin-bottom:6px}
+th,td{border:1px solid var(--border);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--surface-2);font-family:Arial,Helvetica,sans-serif;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+tbody tr:nth-child(even){background:var(--surface-2)}
+.tablewrap{overflow-x:auto;border-radius:8px}
+.tag{display:inline-block;font-family:Arial,Helvetica,sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:2px 7px;border-radius:5px;white-space:nowrap}
+.tag-obs{color:var(--tag-obs);background:var(--tag-obs-bg)}
+.tag-est{color:var(--tag-est);background:var(--tag-est-bg)}
+.tag-unv{color:var(--tag-unv);background:var(--tag-unv-bg)}
+.tag-acc{color:var(--tag-acc);background:var(--tag-acc-bg)}
+.tag-reb{color:var(--tag-reb);background:var(--tag-reb-bg)}
+.tag-unr{color:var(--tag-unr);background:var(--tag-unr-bg)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 22px;margin:1.2em 0}
+.card.accent{border-left:4px solid var(--accent)}
+.card.green{border-left:4px solid var(--green)}
+.card.red{border-left:4px solid var(--red)}
+.card.blue{border-left:4px solid var(--blue)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:720px){.two-col{grid-template-columns:1fr}}
+.badge-verdict{display:inline-block;font-family:Arial,Helvetica,sans-serif;font-weight:800;font-size:.95rem;letter-spacing:.02em;padding:10px 18px;border-radius:8px;margin:.4em 0}
+.badge-verdict.B{color:var(--yellow);background:var(--yellow-bg);border:1px solid var(--yellow)}
+.badge-verdict.A{color:var(--green);background:var(--green-bg);border:1px solid var(--green)}
+.badge-verdict.C{color:var(--red);background:var(--red-bg);border:1px solid var(--red)}
+.badge-verdict.D{color:var(--blue);background:var(--blue-bg);border:1px solid var(--blue)}
+.rankbig{font-family:Arial,Helvetica,sans-serif;font-weight:800;font-size:2.4rem;color:var(--accent)}
+.small{font-size:.86rem;color:var(--muted)}
+blockquote{margin:1em 0;padding:.6em 1.2em;border-left:3px solid var(--accent);background:var(--surface-2);font-style:italic;color:var(--text)}
+code{background:var(--code-bg);padding:1px 5px;border-radius:4px;font-family:Consolas,Monaco,monospace;font-size:.9em}
+.footnote{font-size:.82rem;color:var(--muted)}
+.divider-note{font-family:Arial,Helvetica,sans-serif;font-size:.82rem;color:var(--muted);background:var(--surface-2);border:1px dashed var(--border);border-radius:8px;padding:12px 16px;margin:1em 0}
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.85rem}
+.arrow-up{color:var(--green)}
+.arrow-down{color:var(--red)}
+</style>
+
+<div class="wrap">
+<header class="hero">
+  <div class="kicker">Vâliçe Press · Ticari Karar Belgesi</div>
+  <h1>KDP Finalist Pazar Yeniden-Doğrulaması 2026</h1>
+  <p class="sub">Sigorta/mesleki lisans sınavı hazırlığının hâlâ en güçlü KDP fırsatı olup olmadığını, dört gerçek alternatifle simetrik derinlikte karşılaştırarak sınayan bağımsız bir ticari kilit-kapı kararı.</p>
+  <div class="meta-row">
+    <span class="pill">24 Ağustos 2026</span>
+    <span class="pill">5 finalist, eşit derinlik</span>
+    <span class="pill">Bağımsız çelişmeli inceleme tamamlandı</span>
+    <span class="pill">Kitap İÇERİĞİ ÜRETİLMEDİ</span>
+  </div>
+</header>
+
+<div class="grid">
+<nav class="toc">
+  <h2>İçindekiler</h2>
+  <ol>
+    <li><a href="#ozet">Yönetici Özeti</a></li>
+    <li><a href="#s1">1 · Neden Yeniden Doğrulama Gerekti</a></li>
+    <li><a href="#s2">2 · Araştırma Yöntemi</a></li>
+    <li><a href="#s3">3 · Finalist #1 — Sigorta</a></li>
+    <li><a href="#s4">4 · Finalist #2 — Korece Hangıl</a></li>
+    <li><a href="#s5">5 · Finalist #3 — CompTIA Security+</a></li>
+    <li><a href="#s6">6 · Finalist #4 — Astronomi Günlüğü</a></li>
+    <li><a href="#s7">7 · Finalist #5 — Bahçecilik Referansı</a></li>
+    <li><a href="#s8">8 · Yan Yana Karşılaştırma</a></li>
+    <li><a href="#s9">9 · Rekabet Analizi</a></li>
+    <li><a href="#s10">10 · Birim Ekonomisi</a></li>
+    <li><a href="#s11">11 · AI İkame / Hendek Analizi</a></li>
+    <li><a href="#s12">12 · Eskime / Evergreen</a></li>
+    <li><a href="#s13">13 · Katalog Ölçeklenebilirliği</a></li>
+    <li><a href="#s14">14 · Üretim Fizibilitesi</a></li>
+    <li><a href="#s15">15 · Risk Analizi</a></li>
+    <li><a href="#s16">16 · Ağırlıklı Sıralama</a></li>
+    <li><a href="#s17">17 · Ticari Kilit-Kapı</a></li>
+    <li><a href="#s18">18 · Ne İnşa Etmeliyiz</a></li>
+    <li><a href="#s19">19 · İkinci Sıradaki</a></li>
+    <li><a href="#s20">20 · Diğerlerini Neden Reddediyoruz</a></li>
+    <li><a href="#s21">21 · Sonraki Eylem</a></li>
+    <li><a href="#s22">22 · Kaynaklar</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<section id="ozet">
+<h2 class="sect-title">Yönetici Özeti</h2>
+<p class="lead">Sigorta/mesleki lisans sınavı hazırlığı kategorisi <strong>hayatta kaldı ama kazanmadı.</strong> Beş finalist — sigorta (kontrol grubu), Korece Hangıl el yazısı çalışma kitabı, CompTIA Security+ sertifika hazırlığı, amatör astronomi gözlem günlüğü, bölgeye-özel küçük-alan bahçecilik referansı — aynı 12 ölçütlü çerçeveyle, gerçek Amazon/inceleme araştırmasıyla ve yaklaşık eşit derinlikte incelendi. Bağımsız bir çelişmeli inceleme ajanı, kendi hiçbir sonucu önceden bilmeden, beş bulguyu da yıkmaya çalıştı.</p>
+
+<div class="card accent">
+<p><strong>Sonuç:</strong> <strong>Korece Hangıl el yazısı çalışma kitabı</strong> ağırlıklı modelde açık ara önde (7,61/10) — ve bu liderlik, çelişmeli incelemenin en agresif düzeltmesinden sonra bile sağlam kaldı (7,37'ye kadar indirilse dahi hâlâ 2. sıradan 1,0+ puan önde). <strong>Sigorta</strong>, çelişmeli inceleme sonrası <strong>2. sıraya yükseldi</strong> (6,22 → 6,32) — ilk hesaplamada görünenin aksine, kanıt sigortaya karşı değil, lehine bir düzeltme getirdi. En çarpıcı bulgu: ilk hesaplamada 2. sırada görünen <strong>astronomi</strong>, çelişmeli incelemenin tespit ettiği bir puanlama tutarsızlığı düzeltildiğinde <strong>4. sıraya düştü</strong> (6,29 → 5,97).</p>
+</div>
+
+<div class="two-col">
+<div class="card">
+<p class="small" style="margin-bottom:2px">DÜZELTİLMİŞ NİHAİ SIRALAMA</p>
+<table style="margin:.4em 0">
+<tr><td><strong>1</strong></td><td>Korece Hangıl</td><td style="text-align:right"><strong>7,61</strong></td></tr>
+<tr><td><strong>2</strong></td><td>Sigorta (CA)</td><td style="text-align:right"><strong>6,32</strong></td></tr>
+<tr><td><strong>3</strong></td><td>Bahçecilik</td><td style="text-align:right">6,04</td></tr>
+<tr><td><strong>4</strong></td><td>Astronomi</td><td style="text-align:right">5,97</td></tr>
+<tr><td><strong>5</strong></td><td>CompTIA Sec+</td><td style="text-align:right">5,84</td></tr>
+</table>
+</div>
+<div class="card">
+<p class="small" style="margin-bottom:6px">TİCARİ KİLİT-KAPI KARARI</p>
+<span class="badge-verdict B">B · SİGORTAYI DURAKLAT / ALTERNATİFİ TEST ET</span>
+<p class="small" style="margin-top:10px">Sigorta canlı ve savunulabilir bir #2'dir — TERK EDİLMİYOR. Ama Korece Hangıl, yapısal olarak daha az rekabetçi, daha düşük bakım yüklü ve daha büyük, daha sağlam bir marjla önde. Ayrıntı: § 17.</p>
+</div>
+</div>
+
+<p>Bu rapor bir kitap, bir manüskript veya bir üretim planı DEĞİLDİR — yalnızca bir pazar-düzeyi ticari karar belgesidir. Mevcut sigorta projesinin deposu, yol haritası veya kaynak dosyaları bu turda dokunulmadan bırakıldı.</p>
+</section>
+
+<section id="s1">
+<h2 class="sect-title"><span class="n">1</span> Neden Yeniden Doğrulama Gerekti</h2>
+<p>Önceki KDP pazar araştırması sertifika/mesleki lisans sınavı hazırlığını en güçlü fırsat olarak seçmişti (7,18/10, yedi aday arasında). Ardından yürütülen "License &amp; Launch" projesinin Faz 1'i (California sigorta acenteliği lisansı, doğrudan Amazon/birincil-kaynak araştırmasıyla) bu ilk sonucu birkaç yönden düzeltti:</p>
+<ul>
+<li><strong>Rekabet daha aktif ve kalabalık çıktı.</strong> Aynı Amazon sorgusu aynı gün 153-232 arasında değişen sonuç sayıları döndürdü — kesin ölçüm değil, kaba bağlam olarak okunmalı.</li>
+<li><strong>Birden fazla çok-eyaletli sigorta yayıncısı zaten var</strong> — 36 kitaplık bir replikatör serisi, 1-2 günde bir yeni eyalet kitabı yayımlayan bir yazar, denetimden günler önce piyasaya giren yeni rakipler.</li>
+<li><strong>"Sınav hazırlığı + kariyer başlangıcı" konsepti zaten denenmiş.</strong> Üç doğrudan-doğrulanmış rakip başlık ~3 yıldır piyasada ve hiçbiri traksiyon göstermiyor (0 yorum, BSR 1-5 milyon bandı).</li>
+<li><strong>California kanıtlanmış-en-iyi DEĞİL, yalnızca kanıtlanmış-uygun.</strong> Bağımsız bir çelişmeli inceleme, California'nın her testten geçmesinin "araştırma-tamlığı eseri" olabileceğini, TX/FL'nin aynı derinlikte hiç incelenmediğini tespit etti.</li>
+<li>Birkaç aday eyalet birincil-kaynak derinliğinde hiç araştırılmadı.</li>
+</ul>
+<p>Bu nedenle görev talimatı açıktı: <strong>sigortayı savunmayın.</strong> Bu raporun işi, sigortanın hâlâ makul olarak takip edilebilecek en iyi fırsatlardan biri olup olmadığını belirlemektir — ne onu otomatik kazandırarak (batık maliyet yanlılığı), ne de yalnızca ilk raporun yanlış çıkması nedeniyle cezalandırarak (aşırı düzeltme yanlılığı).</p>
+</section>
+
+<section id="s2">
+<h2 class="sect-title"><span class="n">2</span> Araştırma Yöntemi</h2>
+<h3>Beş paralel, simetrik araştırma hattı</h3>
+<p>Sigorta kontrol grubu dahil beş finalist, <strong>beş ayrı, taze (fork olmayan) ajan</strong> tarafından paralel olarak araştırıldı — hiçbiri diğerinin bulgularını görmedi. Sigorta ajanına önceki "License &amp; Launch" projesinin Faz 1 bulguları arka plan olarak verildi ama "bunu savunma" talimatıyla; diğer dört ajana ise sigortanın zaten gerçek bir proje/deposu olduğu ama bunun onu otomatik kazandırmaması gerektiği açıkça belirtildi. Her ajan aynı 12 ölçütlü çerçeveyi, aynı puanlama ölçeğini ve aynı çıktı biçimini kullandı — <em>yaklaşık simetrik derinlik</em> hedefiyle (bkz. görev talimatı § 6).</p>
+<h3>Kanıt disiplini</h3>
+<p>Her rakamsal iddia üç etiketten biriyle işaretlendi:</p>
+<p><span class="tag tag-obs">OBSERVED</span> bu oturumda tarayıcıyla doğrudan görüldü · <span class="tag tag-est">ESTIMATE</span> hesaplandı/çıkarsandı · <span class="tag tag-unv">UNVERIFIED</span> ikincil kaynak iddia etti, bağımsızca doğrulanamadı.</p>
+<p>WebSearch aracı bu oturumda tükenmiş durumdaydı (200/200) — tüm beş ajan da Chrome tarayıcı otomasyonu üzerinden gerçek Amazon arama sonuçlarına, ürün sayfalarına ve müşteri yorumlarına doğrudan gitti. Amazon sonuç-sayısı başlıkları güvenilmez bulundu (§ 9) ve hiçbir yerde birincil rekabet ölçütü olarak kullanılmadı — bunun yerine gerçek görünür rakip başlıkların sayılması/incelenmesi tercih edildi.</p>
+<h3>Ağırlıklı puanlama modeli</h3>
+<div class="tablewrap"><table>
+<caption>12 ölçüt, 0-10, ağırlıklı — görev talimatı § 16'nın önerdiği ağırlıklarla, değişikliksiz</caption>
+<tr><th>Ölçüt</th><th>Ağırlık</th><th>Ölçüt</th><th>Ağırlık</th></tr>
+<tr><td>Satın alma niyeti</td><td>%12</td><td>Katalog potansiyeli</td><td>%8</td></tr>
+<tr><td>Talep</td><td>%10</td><td>Evergreen potansiyeli</td><td>%8</td></tr>
+<tr><td>Rekabet çekiciliği</td><td>%12</td><td>Üretim fizibilitesi</td><td>%7</td></tr>
+<tr><td>Rakip kalite açığı</td><td>%10</td><td>AI ikame direnci</td><td>%5</td></tr>
+<tr><td>Parasallaştırma/birim ekonomisi</td><td>%10</td><td>Araştırma/olgu riski</td><td>%4</td></tr>
+<tr><td>Farklılaşma</td><td>%10</td><td>Güncelleme yükü</td><td>%4</td></tr>
+</table></div>
+<h3>Bağımsız çelişmeli inceleme</h3>
+<p>Birincil sentez tamamlandıktan sonra, <strong>ayrı, taze bir ajan</strong> — beş ajanın hiçbirinin sonucunu önceden bilmeyen, yalnızca ham bulgularla beslenen — sıralamayı yıkmaya çalıştı: gözden kaçan rakipler, sahte talep varsayımları, zayıf kaynaklar, fiyatlama hataları, bayat veri, gizli uzman gereksinimleri, zayıf katalog potansiyeli, AI-ticarileşmesi, sahte farklılaşma. Bu ajan bir oturum-limiti kesintisinden sonra kaldığı yerden devam ettirildi (ilerleme korunmuştu) ve gerçek tarayıcı doğrulamasıyla tamamlandı.</p>
+<div class="divider-note"><strong>Metodolojik uyarı — paylaşılan tarayıcı sekmesi:</strong> Beş paralel ajan aynı Chrome sekme grubunu paylaştı; en az bir ajan (CompTIA) oturum ortasında sekme "ele geçirmeleri" bildirdi ve açık sekme kimlikleriyle kendini düzeltti. Çelişmeli inceleme ajanı bunu bizzat yeniden üretti (bir sigorta ürün sayfasında CompTIA/astronomi/bahçecilik önerileri karışık çıktı) ve mekanizmanın gerçek olduğunu doğruladı — ama kontrol ettiği HİÇBİR rakam bu şekilde bozulmuş çıkmadı. Kalan, doğrulanmamış bir artık risk olarak not ediliyor, sıralamayı geçersiz kılan bir bulgu olarak değil.</div>
+</section>
+
+<section id="s3">
+<h2 class="sect-title"><span class="n">3</span> Finalist #1 — Sigorta / Mesleki Lisans Sınavı Hazırlığı (Kontrol Grubu)</h2>
+<p><strong>Seçilen ürün:</strong> California Life &amp; Health sigorta acenteliği lisansı sınav hazırlığı — TX/FL/P&amp;C/TX All-Lines Adjuster ile karşılaştırıldıktan sonra, California yeniden teyit edildi (ama dar bir marjla, otomatik varsayılarak değil).</p>
+<h4>Bu turda doğrulanan / bulunan</h4>
+<ul>
+<li>California'nın %60 geçme barajı, TX'in resmî Pearson VUE aday el kitabından çekilen %70 barajıyla ve gerçek başarı-oranı verisiyle (Life Agent %46,1, General Lines L&amp;H %58,4 ilk-deneme geçme <span class="tag tag-obs">OBSERVED</span>) iki bağımsız yoldan karşılaştırıldı — California gerçek, doğrulanmış bir istatistiksel aykırı değer.</li>
+<li><strong>En önemli yeni bulgu:</strong> Lider CA rakibinin (Leland Chant, 115 yorum) kendi ürün sayfası, nişin AI-üretilmiş içerikle "kaçırılmış/yağmalanmış" içerikle taşırıldığını ve bu yüzden yalnızca ciltsiz baskıya geçtiğini <span class="tag tag-obs">OBSERVED</span> doğrudan itiraf ediyor.</li>
+<li>TX'in karşılaştırılabilir rakibi (aynı yayıncı, aynı şablon) 474 yorumla CA'nın 115'ine karşı <strong>4 kat daha fazla</strong> satış hacmi gösteriyor — "CA daha kolay, dolayısıyla daha çekici" tezine doğrudan bir karşı-kanıt (§ 17'de tartışılıyor).</li>
+</ul>
+<h4>12 ölçüt puanı (çelişmeli inceleme sonrası düzeltilmiş)</h4>
+<div class="tablewrap"><table>
+<tr><th>Satın alma niyeti</th><td>8</td><th>Katalog</th><td>8</td></tr>
+<tr><th>Talep</th><td>7</td><th>Evergreen</th><td>5</td></tr>
+<tr><th>Rekabet çekiciliği</th><td>4</td><th>Üretim fizibilitesi</th><td>7</td></tr>
+<tr><th>Rakip kalite açığı</th><td>6</td><th>AI direnci</th><td>5</td></tr>
+<tr><th>Parasallaştırma</th><td>8 <span class="tag tag-acc">düzeltildi (7→8)</span></td><th>Araştırma riski</th><td>6</td></tr>
+<tr><th>Farklılaşma</th><td>6</td><th>Güncelleme yükü</th><td>4</td></tr>
+</table></div>
+<p class="small">Parasallaştırma düzeltmesi: resmî KDP formülüyle yeniden hesaplandığında (320 syf, $24,99 ciltsiz) birim telif $8,07 değil <strong>$10,15</strong> çıktı — orijinal araştırmacının rakamı muhafazakârdı, şişirilmiş değil. Bkz. § 10 ve § 16.</p>
+<h4>En büyük 3 rakip</h4>
+<div class="tablewrap"><table>
+<tr><th>Başlık/Yazar</th><th>Yorum</th><th>Fiyat</th><th>Not</th></tr>
+<tr><td>Leland Chant — CA L&amp;H</td><td>115 <span class="tag tag-obs">OBSERVED</span></td><td>$23,99</td><td>Gerçek NPN lisanslı incelemeci, yıllık güncelleme, AI-seli karşısında savunma pozisyonunda</td></tr>
+<tr><td>Daniel R. Carter — TX/CA/FL kombine</td><td>51 <span class="tag tag-obs">OBSERVED</span></td><td>$35,99</td><td>Hızlı 2026 yükselişi, jenerik AI-tarzı satış metni, doğrulanabilir yazar kimliği yok</td></tr>
+<tr><td>Mometrix — L&amp;H Exam Secrets</td><td>576 <span class="tag tag-obs">OBSERVED</span></td><td>$45,49</td><td>En büyük oyuncu, jenerik/ulusal, CA'ya özgü değil</td></tr>
+</table></div>
+<p class="footnote">Ayrıca bulundu: Ashton Rotten'ın 11 kitaplık, Ryan Essington'ın 10 kitaplık çok-eyaletli replikatör serileri — çelişmeli inceleme tarafından ilk raporun bildirdiğinden DAHA GENİŞ bir rekabet alanı olarak doğrulandı.</p>
+</section>
+
+<section id="s4">
+<h2 class="sect-title"><span class="n">4</span> Finalist #2 — Korece Hangıl El Yazısı Çalışma Kitabı</h2>
+<p><strong>Seçilen ürün:</strong> Yetişkin dil öğrencileri için Korece Hangıl alfabesi el yazısı pratik çalışma kitabı — Japonca kana (Tuttle Publishing'in 6.094 yorumlu başlığıyla kesin biçimde domine edilmiş, REDDEDİLDİ) ve Arapça alfabe (daha zayıf talep sinyali + "yetişkin" hedefiyle uyumsuz, çocuk kitabı algısı, REDDEDİLDİ) ile doğrudan karşılaştırıldıktan sonra seçildi.</p>
+<h4>Neden Korece kazandı</h4>
+<p>Tuttle'ın Korece'ye özgü ÜÇ ayrı girişimi (2020/2022/2023) toplamda yalnızca ~67 yorum topladı — buna karşılık üç farklı bağımsız rakip her biri 1.121-2.086 yorumla <span class="tag tag-obs">OBSERVED</span> gerçek, tekrarlanan talep gösteriyor. Hiçbir tek dev domine etmiyor, ama pazar da boş değil. Üç rakibin ÜÇÜNDE de aynı şikâyetler tekrarlanıyor: ses/telaffuz eksik, tutarlı bir vuruş-sırası referans sayfası yok, yetersiz bağımsız derinlik — ve bir rakipte doğrulanmış gerçek bir çeviri hatası bulundu (밥 "yemek" yerine yanlış etiketlenmiş).</p>
+<h4>12 ölçüt puanı</h4>
+<div class="tablewrap"><table>
+<tr><th>Satın alma niyeti</th><td>8</td><th>Katalog</th><td>8</td></tr>
+<tr><th>Talep</th><td>8</td><th>Evergreen</th><td>8</td></tr>
+<tr><th>Rekabet çekiciliği</th><td>7</td><th>Üretim fizibilitesi</th><td>9</td></tr>
+<tr><th>Rakip kalite açığı</th><td>8</td><th>AI direnci</th><td>6</td></tr>
+<tr><th>Parasallaştırma</th><td>6</td><th>Araştırma riski</th><td>6</td></tr>
+<tr><th>Farklılaşma</th><td>8</td><th>Güncelleme yükü</th><td>9</td></tr>
+</table></div>
+<p class="small">Çelişmeli inceleme bu skorları canlı verilerle doğrudan yeniden kontrol etti (Dahye Go'nun listesi tam olarak "2K yorum/4,7★/$9,99" olarak doğrulandı; Tuttle'ın iki görünür Korece başlığı 14+39=53 yorumla "~67 toplam" iddiasını destekledi) — <span class="tag tag-reb">REBUTTED</span>, yani orijinal bulgu sağlam çıktı.</p>
+<h4>En büyük 3 rakip</h4>
+<div class="tablewrap"><table>
+<tr><th>Başlık/Yazar</th><th>Yorum</th><th>Fiyat</th><th>Not</th></tr>
+<tr><td>Dahye Go — Korean Alphabet Vol.1</td><td>2.086 <span class="tag tag-obs">OBSERVED</span></td><td>$9,99</td><td>En çok satan ama sade — "mutlak başlangıç için editoryal rehberlik yok"</td></tr>
+<tr><td>Lilas Lingvo — Hangul Crash Course</td><td>1.121 <span class="tag tag-obs">OBSERVED</span></td><td>$9,99</td><td>Konsolide vuruş-sırası referansı ve daha fazla derinlik isteniyor</td></tr>
+<tr><td>Fandom Media — Easy Learning</td><td>1.243 <span class="tag tag-obs">OBSERVED</span></td><td>$12,99</td><td>Doğrulanmış gerçek çeviri hatası içeriyor</td></tr>
+</table></div>
+<p>Önemli dürüstlük notu: bu konseptin özgün moat iddiası — el yazısının tuşlamaya göre daha iyi hafıza kodlaması ürettiğine dair hakemli araştırma — bu turda <span class="tag tag-unv">UNVERIFIED</span> olarak işaretlendi (önceki araştırma turundan devralındı, bu oturumda yeniden doğrulanmadı). Gerçek moat, araştırmacının kendi ifadesiyle, "atıfın kendisi değil, doğrulanmış dilbilimsel doğruluk ve doğru sıralı vuruş-sırası çizgi sanatı."</p>
+</section>
+
+<section id="s5">
+<h2 class="sect-title"><span class="n">5</span> Finalist #3 — CompTIA Security+ Sertifika Hazırlığı</h2>
+<p><strong>Seçilen ürün:</strong> CompTIA Security+ (güncel sınav SY0-701) — PMP ($94 fiyatlı, kök salmış bir rakip + zaten gözlemlenen jenerik AI-kapak klonları nedeniyle REDDEDİLDİ) ile karşılaştırıldıktan sonra seçildi. A+/Network+/AWS gerçek katalog-genişletme adayları olarak konumlandırıldı, birincil bahis olarak değil.</p>
+<h4>En kritik bulgu — ve çelişmeli incelemenin doğrudan doğruladığı</h4>
+<p>Ardıl sınavın (SY0-801) Ekim 2026'da (~2 ay sonra) önizleme başlatması bekleniyordu — orijinal araştırmacı bunu üçüncü-taraf sertifika sitelerinden <span class="tag tag-unv">UNVERIFIED</span> olarak işaretlemişti. <strong>Çelişmeli inceleme bunu comptia.org'un kendi sayfasından birinci-taraf olarak doğrudan doğruladı</strong> <span class="tag tag-acc">ACCEPTED, daha güçlü</span>: "Retirement: usually three years after launch (estimated 2026)" ve aktif bir "DRAFT Security+ V8 Exam Objectives" belgesi bulundu. Bu, zaten en düşük olan Evergreen (3) ve Güncelleme Yükü (2) puanlarını güçlendiriyor, zayıflatmıyor.</p>
+<p>"1M+ sertifikalı, 2019'dan bu yana ikiye katlandı" iddiası çelişmeli inceleme tarafından tam olarak görev talimatının uyardığı zayıf-kaynak deseni olarak tespit edildi <span class="tag tag-acc">ACCEPTED</span>: beş "bağımsız" kaynak aslında tek bir basın bülteninin tel-servisi dağıtımıydı, beş ayrı doğrulama değil.</p>
+<h4>12 ölçüt puanı</h4>
+<div class="tablewrap"><table>
+<tr><th>Satın alma niyeti</th><td>8</td><th>Katalog</th><td>9</td></tr>
+<tr><th>Talep</th><td>8</td><th>Evergreen</th><td>3</td></tr>
+<tr><th>Rekabet çekiciliği</th><td>4</td><th>Üretim fizibilitesi</th><td>8</td></tr>
+<tr><th>Rakip kalite açığı</th><td>5</td><th>AI direnci</th><td>4</td></tr>
+<tr><th>Parasallaştırma</th><td>6</td><th>Araştırma riski</th><td>5</td></tr>
+<tr><th>Farklılaşma</th><td>5</td><th>Güncelleme yükü</th><td>2</td></tr>
+</table></div>
+<h4>En büyük 3 rakip</h4>
+<div class="tablewrap"><table>
+<tr><th>Başlık/Yazar</th><th>Yorum</th><th>Fiyat</th><th>Not</th></tr>
+<tr><td>Ian Neil — Packt</td><td>859 <span class="tag tag-obs">OBSERVED</span></td><td>$25,53</td><td>Mükemmel, gerçek DoD/ordu eğitim geçmişi</td></tr>
+<tr><td>Chapple &amp; Seidl — Sybex/Wiley</td><td>781 <span class="tag tag-obs">OBSERVED</span></td><td>$41,83</td><td>#1 Best Seller, akademik/CISO yazarlar</td></tr>
+<tr><td>Shelley &amp; Gibson — Certification Experts LLC</td><td>476 <span class="tag tag-obs">OBSERVED</span></td><td>$37,99</td><td>Tek yazarın önceki baskıları 2.095 ve 4.779 yorum topladı — küçük operatörün kazanabileceğinin kanıtı</td></tr>
+</table></div>
+<p class="footnote">Ayrıca doğrudan gözlemlendi: 123 sayfalık, "Bağımsız yayımlandı," AI/emoji-pazarlamalı ince bir başlık ZATEN 159 yorum/4,6★ topladı — bu nişte AI-tarzı girişin ticari olarak işe yaradığının somut kanıtı.</p>
+</section>
+
+<section id="s6">
+<h2 class="sect-title"><span class="n">6</span> Finalist #4 — Amatör Astronomi Gözlem Günlüğü</h2>
+<p><strong>Seçilen ürün:</strong> Başlangıç/amatör gözlemevi + çıplak-göz yıldız gözlem günlüğü ve referans çalışma kitabı. Özellikle iki spesifik tuzağa karşı test edildi: lif-sanatları'nın düştüğü üretim-hattı uyumsuzluğu (fotoğraf gereksinimi) ve mevcut mitoloji/oyun kataloğuyla makro-kategori çakışması.</p>
+<h4>İki tuzak da temizlendi — ama koşullu</h4>
+<p>"Turn Left At Orion" (Cambridge University Press, 1989'dan beri basımda, 150.000+ satış <span class="tag tag-obs">OBSERVED</span>) siyah-beyaz/çizgi-sanatı doğal bir arketipin var olduğunu ve müşterilerin bunu fotoğrafa TERCİH ettiğini kanıtlıyor. Kategori yerleşimi Bilim &amp; Matematik &gt; Astronomi — mevcut mitoloji/oyun kataloğundan gerçekten ayrı.</p>
+<h4>⚠ Çelişmeli inceleme tarafından düşürülen puan — sıralamayı değiştiren tek düzeltme</h4>
+<div class="card red">
+<p>Orijinal araştırmacı, Evergreen (7) ve Güncelleme Yükü (7) puanlarını AÇIKÇA <strong>en iyi-durum, koşullu</strong> bir varsayıma dayandırdı: "Vâliçe Press'in bilinçli olarak daha zor, daha az bariz evergreen yapıyı seçmesine KOŞULLU" — kendi sözleriyle, "ilk kez giren biri kolayca 'bu yılın' çerçevesine varsayılan olarak yönelebilir." Diğer dört finalistin TAMAMI kendini gerçekçi/varsayılan yürütmeye göre puanladı, yalnızca astronomi en-iyi-durum senaryosuna göre. Çelişmeli inceleme bu tutarsızlığı <span class="tag tag-acc">ACCEPTED, en yüksek güvenli bulgu</span> olarak sınıflandırdı ve Evergreen'i 7→4, Güncelleme Yükü'nü 7→5'e düzeltti — toplam skoru <strong>6,29'dan 5,97'ye</strong> düşürdü, bu da onu sigortanın (6,22→6,32) ALTINA indirdi.</p>
+</div>
+<h4>12 ölçüt puanı (düzeltilmiş)</h4>
+<div class="tablewrap"><table>
+<tr><th>Satın alma niyeti</th><td>7</td><th>Katalog</th><td>9</td></tr>
+<tr><th>Talep</th><td>6</td><th>Evergreen</th><td>4 <span class="tag tag-acc">düzeltildi (7→4)</span></td></tr>
+<tr><th>Rekabet çekiciliği</th><td>4</td><th>Üretim fizibilitesi</th><td>8</td></tr>
+<tr><th>Rakip kalite açığı</th><td>5</td><th>AI direnci</th><td>5</td></tr>
+<tr><th>Parasallaştırma</th><td>6</td><th>Araştırma riski</th><td>5</td></tr>
+<tr><th>Farklılaşma</th><td>7</td><th>Güncelleme yükü</th><td>5 <span class="tag tag-acc">düzeltildi (7→5)</span></td></tr>
+</table></div>
+<h4>En büyük 3 rakip</h4>
+<div class="tablewrap"><table>
+<tr><th>Başlık/Yazar</th><th>Yorum</th><th>Fiyat</th><th>Not</th></tr>
+<tr><td>John A Read — 50 Things (Kids)</td><td>8.161 <span class="tag tag-obs">OBSERVED</span></td><td>$12,44</td><td>Tam bağımsız yayıncı — "ilk kitap testi"nin doğrudan kanıtı</td></tr>
+<tr><td>Consolmagno &amp; Davis — Turn Left At Orion</td><td>2.331 <span class="tag tag-obs">OBSERVED</span></td><td>$30,26</td><td>36 yıllık evergreen klasik, S/B doğal</td></tr>
+<tr><td>Dean Regas — 100 Things (Adams Media)</td><td>731 <span class="tag tag-obs">OBSERVED</span></td><td>$12,81</td><td>Belgelenmiş zayıflık: pratik gökyüzü-bulma navigasyonu eksik</td></tr>
+</table></div>
+</section>
+
+<section id="s7">
+<h2 class="sect-title"><span class="n">7</span> Finalist #5 — Bölgeye-Özel Küçük-Alan Bahçecilik Referansı</h2>
+<p><strong>Seçilen ürün:</strong> USDA bölgesine özel, küçük-alan/kap bahçeciliğine odaklı sebze bahçeciliği referansı ve mevsimsel planlayıcı — tekrarlayan yıllık kullanım ekonomisi test edildi.</p>
+<h4>Kısmen doğrulandı, tam doğrulanmadı</h4>
+<p>Gerçek bir boşluk bulundu: en iyi bölgesel rakibin (Ira Wallace/Timber Press, 601 yorum) en çok oy alan (37 oy) yorumu, kitabın "küçük yükseltilmiş yataklara değil, büyük bahçelerde bulunan sıra bahçeciliğine yönelik" olduğunu açıkça söylüyor. Ama önerilen konumlandırmayı neredeyse birebir işgal eden tek başlık (UNC Press) yalnızca 5 yorum ve #3.020.580 satış sırasına sahip — kalite yürütmeye rağmen gerçek bir talep-inceliği uyarısı.</p>
+<h4>⚠ En büyük risk — çelişmeli inceleme tarafından 7 kat büyütüldü</h4>
+<div class="card red">
+<p>Orijinal rapor "Barrett Williams and ChatGPT ChatGPT" imzalı, 19 kitaplık planlı bir seriden BİR başlık buldu. Çelişmeli inceleme aynı yazar imzasının <strong>en az sekiz paralel seri</strong> boyunca çalıştığını buldu — Urban Eden (19), Greenthumb Delights (20), Urban Green Oasis (20), Urban Harvest (5), Tiny Marvels (19), Art &amp; Science of Horticulture (18), Harvest Harmony (20), Urban Homestead Haven (20) — toplam <strong>~140+ başlık</strong>, hepsi tam bu küçük-alan/kap-bahçeciliği nişinde, Aralık 2023-2024 penceresinde <span class="tag tag-acc">ACCEPTED, 7 kat daha büyük</span>. Henüz hiçbiri anlamlı yorum sayısına ulaşmadı (her biri 0-2) — bu yüzden kanıtlanmış bir satış tehdidinden çok bir kategori-doldurma/arama-alanı riski, ama görünenden çok daha büyük bir risk.</p>
+</div>
+<h4>12 ölçüt puanı</h4>
+<div class="tablewrap"><table>
+<tr><th>Satın alma niyeti</th><td>6</td><th>Katalog</th><td>8</td></tr>
+<tr><th>Talep</th><td>6</td><th>Evergreen</th><td>8</td></tr>
+<tr><th>Rekabet çekiciliği</th><td>3</td><th>Üretim fizibilitesi</th><td>8</td></tr>
+<tr><th>Rakip kalite açığı</th><td>6</td><th>AI direnci</th><td>4</td></tr>
+<tr><th>Parasallaştırma</th><td>6</td><th>Araştırma riski</th><td>6</td></tr>
+<tr><th>Farklılaşma</th><td>6</td><th>Güncelleme yükü</th><td>7</td></tr>
+</table></div>
+<h4>En büyük 3 rakip</h4>
+<div class="tablewrap"><table>
+<tr><th>Başlık/Yazar</th><th>Yorum</th><th>Fiyat</th><th>Not</th></tr>
+<tr><td>Ira Wallace — Timber Press Southeast</td><td>601 <span class="tag tag-obs">OBSERVED</span></td><td>$14,24</td><td>En iyi bölgesel otorite, ama küçük-alan şikâyeti belgelendi</td></tr>
+<tr><td>Old Farmer's Almanac — Container Gardener's</td><td>213 <span class="tag tag-obs">OBSERVED</span></td><td>$11,50</td><td>Marka gücüyle en iyi satış sırası (#37.064)</td></tr>
+<tr><td>Andrea Bellamy — Small-Space Vegetable Gardens</td><td>110 <span class="tag tag-obs">OBSERVED</span></td><td>$11,63</td><td>Bölgeye özel değil, on yıllık orta-liste satıcı</td></tr>
+</table></div>
+</section>
+
+<section id="s8">
+<h2 class="sect-title"><span class="n">8</span> Yan Yana Karşılaştırma</h2>
+<div class="tablewrap"><table>
+<tr><th></th><th>Sigorta (CA)</th><th>Korece Hangıl</th><th>CompTIA Sec+</th><th>Astronomi</th><th>Bahçecilik</th></tr>
+<tr><th>Ağırlıklı skor (düzeltilmiş)</th><td><strong>6,32</strong></td><td><strong>7,61</strong></td><td>5,84</td><td>5,97</td><td>6,04</td></tr>
+<tr><th>Sıra</th><td>2</td><td>1</td><td>5</td><td>4</td><td>3</td></tr>
+<tr><th>En güçlü nokta</th><td>Satın alma niyeti (8), birim ekonomisi (8)</td><td>Üretim fizibilitesi (9), güncelleme yükü (9)</td><td>Katalog (9), talep (8)</td><td>Katalog (9)</td><td>Evergreen (8)</td></tr>
+<tr><th>En zayıf nokta</th><td>Rekabet çekiciliği (4), güncelleme yükü (4)</td><td>Parasallaştırma (6)</td><td>Güncelleme yükü (2), evergreen (3)</td><td>Rekabet çekiciliği (4)</td><td>Rekabet çekiciliği (3)</td></tr>
+<tr><th>Lider rakip yorumu</th><td>115 (CA) / 474 (TX eşdeğeri)</td><td>2.086</td><td>859</td><td>8.161</td><td>601</td></tr>
+<tr><th>Hâkim tek yayıncı var mı</th><td>Hayır, parçalı + AI-seli</td><td>Hayır, parçalı</td><td>İki güçlü (Packt, Sybex)</td><td>Hayır, ama üst kademe kredibiliteli</td><td>Hayır, ama en iyi rakip zaten güçlü</td></tr>
+<tr><th>AI-taşırma somut kanıt</th><td>Evet — lider rakibin kendi itirafı</td><td>Kısmi — şablon katmanı</td><td>Evet — 159 yorumlu AI-marka başlık</td><td>Evet — 8 başlıklık jurnal değirmeni</td><td>Evet — ~140+ başlıklık AI seri</td></tr>
+<tr><th>Üretim arketipi</th><td>Metin + doğrulama-yoğun</td><td>Çizgi sanatı, S/B</td><td>Diyagram-yoğun, S/B</td><td>Çizgi sanatı, S/B (doğru arketipte)</td><td>Duoton, fotoğrafsız</td></tr>
+<tr><th>Kilit belirsizlik</th><td>A11: TX/FL eşit derinlikte hiç incelenmedi</td><td>Moat iddiası (el yazısı-hafıza) bu turda yeniden doğrulanmadı</td><td>SY0-801 geçişinin tam zamanlaması</td><td>Evergreen yapı seçimi bilinçli yapılmazsa risk gerçek</td><td>Talep-inceliği (5 yorumlu doğrudan rakip)</td></tr>
+</table></div>
+</section>
+
+<section id="s9">
+<h2 class="sect-title"><span class="n">9</span> Rekabet Analizi — Stok + Akış + Kalite Açığı</h2>
+<p>Görev talimatının açık uyarısı doğrulandı: Amazon sonuç-sayısı başlıkları kesin rekabet ölçütü olarak KULLANILAMAZ. Sigorta ajanının aynı sorguda aynı gün 153→232 arası gördüğü dalgalanma, önceki "License &amp; Launch" Faz 1 turunda da (153/154/218/232) bağımsızca gözlemlenmişti.</p>
+<div class="tablewrap"><table>
+<tr><th>Finalist</th><th>Stok (gerçek ciddi rakip)</th><th>Akış (son 12-18 ay yeni giriş)</th><th>Kalite açığı</th></tr>
+<tr><td>Sigorta</td><td>Orta-yüksek: Leland Chant, Mometrix ailesi (4 varyant), Kaplan + 2 yeni çok-eyalet replikatör serisi</td><td>Yüksek — günlük yeni giriş gözlemlendi, AI-seli lider rakibin kendi ifadesiyle aktif</td><td>Orta (6/10) — lider rakip meşru ve iyi yürütülüyor</td></tr>
+<tr><td>Korece Hangıl</td><td>Düşük-orta: 3 gerçek rakip, hiçbiri dev değil</td><td>Orta — yeni girişler var ama parçalı kalıyor</td><td>Yüksek (8/10) — 3/3 rakipte aynı somut şikâyetler</td></tr>
+<tr><td>CompTIA Sec+</td><td>Yüksek: 15+ gerçek rakip, ağır sponsorlu reklam</td><td>Yüksek — 6+ yeni başlık ~12 ayda</td><td>Düşük-orta (5/10) — en iyi 2 rakip "gerçekten mükemmel"</td></tr>
+<tr><td>Astronomi</td><td>İki katmanlı: üstte 15-20 köklü yayıncı, altta boş-günlük değirmeni</td><td>Üst katmanda düşük/istikrarlı, alt katmanda yüksek/değirmen</td><td>Orta (5/10) — en iyiler zaten iyi, ama belgelenmiş boşluklar var</td></tr>
+<tr><td>Bahçecilik</td><td>Yüksek: köklü bölgesel yayıncılar + ~140 AI-seri başlığı</td><td>Çok yüksek — 2023-2024'te toplu AI-seri girişi</td><td>Orta (6/10) — en iyi rakipte belgelenmiş, somut boşluk var</td></tr>
+</table></div>
+</section>
+
+<section id="s10">
+<h2 class="sect-title"><span class="n">10</span> Birim Ekonomisi</h2>
+<div class="divider-note"><strong>Platform düzeltmesi:</strong> KDP'nin güncel Kindle %70 telif bandı <strong>$2,99–$12,99</strong>'dur (7 Temmuz 2026'dan beri yürürlükte, bu operasyonun önceki bir turunda doğrudan doğrulandı). Bu turun paralel ajanlarından ikisi (Sigorta, CompTIA) daha eski $2,99–$9,99 bandını temkinli/doğrulanamamış varsayım olarak kullandı ve bunu açıkça işaretledi. Bu, hiçbir sıralamayı değiştirmez ama burada düzeltiliyor.</div>
+<div class="tablewrap"><table>
+<tr><th>Finalist</th><th>Ciltsiz fiyat/telif (birim)</th><th>Kindle telif (birim)</th><th>Harmanlanmış telif (ESTIMATE)</th><th>100 satış/ay net kâr (ESTIMATE)</th></tr>
+<tr><td>Sigorta</td><td>$24,99 → $10,15 <span class="tag tag-acc">düzeltildi</span></td><td>~$6,94</td><td>~$8,07–10,15</td><td>Sağlam kârlı</td></tr>
+<tr><td>Korece Hangıl</td><td>$11,99 → $4,63-4,79</td><td>Zayıf format uyumu</td><td>~$4,78</td><td>+$384,67</td></tr>
+<tr><td>CompTIA Sec+</td><td>$24,99 → $10,15</td><td>~$6,93</td><td>~$8,70</td><td>+$5.940/yıl (yıl 1)</td></tr>
+<tr><td>Astronomi</td><td>$13,99 → $5,23</td><td>~$4,83</td><td>~$5,11</td><td>+$261,00</td></tr>
+<tr><td>Bahçecilik</td><td>$13,99 → $5,47</td><td>~$4,14</td><td>~$5,07</td><td>+$411,00</td></tr>
+</table></div>
+<p class="small">Tüm rakamlar birim ÜRÜN TELİFİDİR, NET KÂR değildir — her finalistin kendi raporu üretim/güncelleme maliyetini ayrı amortize etti (bkz. § 3-7). 10/ay senaryosu her beş finalist için de yıl-1'de zarar veya başabaş civarındadır — gerçekçi taban senaryo 50-100 satış/aydır, 500 değil.</p>
+</section>
+
+<section id="s11">
+<h2 class="sect-title"><span class="n">11</span> AI İkame / Hendek Analizi</h2>
+<div class="tablewrap"><table>
+<tr><th>Finalist</th><th>Somut AI-taşırma kanıtı</th><th>Gerçek hendek</th><th>AI direnci puanı</th></tr>
+<tr><td>Sigorta</td><td>Lider rakibin KENDİ itirafı: içeriği kazınıp AI'ye yediriliyor</td><td>Doğrulama-gated metodoloji, ama "kanıtlanmalı, varsayılmamalı"</td><td>5/10</td></tr>
+<tr><td>Korece Hangıl</td><td>Temel izleme ızgaraları ucuza AI-üretilebilir (gözlemlenen ince, düşük-yorumlu yeni girişler)</td><td>Doğrulanmış dilbilimsel doğruluk + doğru sıralı vuruş-sırası çizgi sanatı — 3/3 rakipte gerçek hatalar bulundu</td><td>6/10 (en yüksek)</td></tr>
+<tr><td>CompTIA Sec+</td><td>159 yorumlu, AI/emoji-markalı 123 sayfalık başlık ZATEN başarılı</td><td>Resmî, sürümlü sınav hedefleri gerçek bir doğrulama iskeleti sağlıyor ama AI-çiftliğine de açık</td><td>4/10 (en düşük, CompTIA/bahçecilikle eşit)</td></tr>
+<tr><td>Astronomi</td><td>8 başlıklık boş-günlük değirmeni doğrudan gözlemlendi</td><td>Alan-doğrulanmış gerçek gözlem içeriği — "kazanılmış, otomatik değil"</td><td>5/10</td></tr>
+<tr><td>Bahçecilik</td><td>~140+ başlıklık AI-imzalı seri ailesi doğrudan gözlemlendi</td><td>Gerçek bölge-özel doğruluk — ama kanıtlanmış satış yok</td><td>4/10 (en düşük)</td></tr>
+</table></div>
+<p>Beş finalistin BEŞİNDE de somut, gözlemlenmiş AI-taşırma kanıtı bulundu — bu 2026 KDP piyasasının genel bir özelliği, tek bir finalistin özel zayıflığı değil. Hiçbiri "AI ucuza yeterli bir ikame üretebilir" testinden tam anlamıyla geçemiyor ama hiçbiri de bu tek başına diskalifiye edici değil (görev talimatı § 12: yalnızca AI'nin ucuza YETERLİ bir ikame üretebildiği durumlarda reddedin).</p>
+</section>
+
+<section id="s12">
+<h2 class="sect-title"><span class="n">12</span> Eskime / Evergreen</h2>
+<div class="tablewrap"><table>
+<tr><th>Finalist</th><th>6 ay</th><th>12 ay</th><th>24 ay</th><th>36 ay</th></tr>
+<tr><td>Sigorta</td><td>8</td><td>7</td><td>5</td><td>4</td></tr>
+<tr><td>Korece Hangıl</td><td>9</td><td>9</td><td>8</td><td>7</td></tr>
+<tr><td>CompTIA Sec+</td><td>8</td><td>5</td><td>2</td><td>2</td></tr>
+<tr><td>Astronomi (düzeltilmiş, gerçekçi-varsayılan)</td><td>~8</td><td>~6</td><td>~4</td><td>~3</td></tr>
+<tr><td>Bahçecilik</td><td>10</td><td>10</td><td>9</td><td>8</td></tr>
+</table></div>
+<p class="footnote">Astronomi'nin orijinal raporu 6/12/24/36 ay için ayrı ayrı 10/9/8/7 (evergreen yapı seçilirse) veya 5/1/0/0 (tarih-özel yıllık ephemeris seçilirse) verdi — yukarıdaki satır, çelişmeli incelemenin "gerçekçi-varsayılan yürütme" düzeltmesiyle orantılı bir ara değerdir, kesin ölçüm değil <span class="tag tag-est">ESTIMATE</span>.</p>
+<p>Korece Hangıl ve Bahçecilik en evergreen ikili — alfabe ve USDA bölge verisi insan zaman ölçeğinde neredeyse hiç değişmiyor. CompTIA Sec+ açık ara en kırılgan — ~3 yıllık tam-revizyon döngüsü artık birinci-taraf kaynaktan doğrulandı.</p>
+</section>
+
+<section id="s13">
+<h2 class="sect-title"><span class="n">13</span> Katalog Ölçeklenebilirliği</h2>
+<div class="tablewrap"><table>
+<tr><th>Finalist</th><th>Somut Kitap #2</th><th>Somut Kitap #5</th><th>Kanıtlanmış model var mı</th></tr>
+<tr><td>Sigorta</td><td>Texas L&amp;H</td><td>CA L&amp;H + "kariyer başlangıcı" gelişmiş baskı</td><td>Evet — Leland Chant zaten çok-eyaletli çalıştırıyor</td></tr>
+<tr><td>Korece Hangıl</td><td>Hangıl Cilt 2 (birleşik ünsüz/karmaşık ünlüler)</td><td>K-pop/K-drama temalı Hangıl pratiği</td><td>Evet — Dahye Go zaten 2-ciltlik model çalıştırıyor</td></tr>
+<tr><td>CompTIA Sec+</td><td>CompTIA A+</td><td>CompTIA SecurityX/CASP+</td><td>Evet — Sybex'in kendi 78-kitaplık franchise'ı</td></tr>
+<tr><td>Astronomi</td><td>Güney Yarımküre baskısı</td><td>Enlem-bantlı bölgesel baskı</td><td>Evet — Royal Observatory Greenwich zaten 3 bölgesel baskı çalıştırıyor</td></tr>
+<tr><td>Bahçecilik</td><td>Bölge 8-9 (Derin Güney) baskısı</td><td>Pasifik Kuzeybatı baskısı</td><td>Evet — Timber Press zaten 5-bölgeli seri çalıştırıyor</td></tr>
+</table></div>
+<p>Beş finalistin BEŞİ de somut, piyasada zaten kanıtlanmış bir çok-kitaplık model gösteriyor — katalog potansiyeli hiçbirinde diskalifiye edici bir zayıflık değil. CompTIA (9) ve Astronomi (9, düzeltme sonrası da değişmedi) en yüksek puanlı, ama Korece'nin gerekçe zinciri çelişmeli incelemede en ince bulunanlardan biri <span class="tag tag-unr">UNRESOLVED, düşük etkili</span> — %8 ağırlık, tek başına hiçbir sıralamayı değiştirmiyor.</p>
+</section>
+
+<section id="s14">
+<h2 class="sect-title"><span class="n">14</span> Üretim Fizibilitesi</h2>
+<p>Vâliçe Press'in gerçek üretim gücü disiplinli metin/çizgi-sanatı (siyah-beyaz gravür-tarzı illüstrasyon) ve doğrulama-gated metodolojidir — fotoğraf veya renk-yoğun üretim DEĞİL. Beş finalist de bu mercekten test edildi:</p>
+<div class="tablewrap"><table>
+<tr><th>Finalist</th><th>Puan</th><th>Gerekçe</th></tr>
+<tr><td>Korece Hangıl</td><td><strong>9</strong></td><td>Saf S/B metin/ızgara/vuruş-sırası diyagramı — fotoğraf hiç gerekmiyor</td></tr>
+<tr><td>CompTIA Sec+</td><td>8</td><td>Ağ/PKI/saldırı-yüzeyi diyagramları doğal olarak çizgi-sanatına uygun</td></tr>
+<tr><td>Astronomi</td><td>8</td><td>Doğru arketip (Turn Left At Orion) seçilirse S/B doğal ve müşteri-tercihli</td></tr>
+<tr><td>Bahçecilik</td><td>8</td><td>En iyi rakip duoton/fotoğrafsız basılıyor — üretim hattıyla uyumlu</td></tr>
+<tr><td>Sigorta</td><td>7</td><td>Metin+doğrulama-yoğun, illüstrasyon-hafif — mevcut kardeş projelerden bilinçli çeşitlenme</td></tr>
+</table></div>
+<p>Fiber sanatlarının düştüğü tuzak (fotoğraf/hassas şema gereksinimi, mevcut S/B hattıyla çelişki) hiçbir finalist içinde tekrarlanmadı — beşi de üretim gücüyle gerçek uyum gösteriyor.</p>
+</section>
+
+<section id="s15">
+<h2 class="sect-title"><span class="n">15</span> Risk Analizi</h2>
+<div class="tablewrap"><table>
+<tr><th>Finalist</th><th>En büyük risk</th><th>İkinci risk</th></tr>
+<tr><td>Sigorta</td><td>AI-seli/IP erozyonu — lider rakip tarafından doğrudan itiraf edildi</td><td>Yıllık güncelleme endüstri normu, isteğe bağlı değil</td></tr>
+<tr><td>Korece Hangıl</td><td>Dilbilimsel/olgu riski — Korece fonoloji gerçekten karmaşık, rakiplerde gerçek hatalar bulundu</td><td>Font/tipografi lisanslama (ticari kullanım Korece fontları)</td></tr>
+<tr><td>CompTIA Sec+</td><td>Güncelleme/eskime riski — SY0-801 geçişi artık birinci-taraf doğrulandı, ~2 ay uzaklıkta</td><td>Rakip kalite riski — en iyi 2 rakip gerçekten mükemmel</td></tr>
+<tr><td>Astronomi</td><td>Olgu/doğrulama riski — ayrıntı-odaklı bir kitle astronomik hataları yakalar</td><td>Güncelleme riski — KOŞULLU, yanlış yapısal seçimle gerçek ve ciddi</td></tr>
+<tr><td>Bahçecilik</td><td>Talep-inceliği — tam konumlandırmayı işgal eden tek başlık yalnızca 5 yorum topladı</td><td>Rekabetçi-kalabalıklaşma — ~140+ AI-seri başlığı zaten niş içinde</td></tr>
+</table></div>
+</section>
+
+<section id="s16">
+<h2 class="sect-title"><span class="n">16</span> Ağırlıklı Sıralama</h2>
+<h3>Orijinal (çelişmeli inceleme öncesi, ajanların kendi bildirdiği skorlar)</h3>
+<div class="tablewrap"><table>
+<tr><th>Sıra</th><th>Finalist</th><th>Skor</th></tr>
+<tr><td>1</td><td>Korece Hangıl</td><td>7,61</td></tr>
+<tr><td>2</td><td>Astronomi</td><td>6,29</td></tr>
+<tr><td>3</td><td>Sigorta (CA)</td><td>6,22</td></tr>
+<tr><td>4</td><td>Bahçecilik</td><td>6,04</td></tr>
+<tr><td>5</td><td>CompTIA Sec+</td><td>5,84</td></tr>
+</table></div>
+<h3>Çelişmeli inceleme sonrası uygulanan düzeltmeler</h3>
+<div class="tablewrap"><table>
+<tr><th>Finalist</th><th>Düzeltme</th><th>Sınıflandırma</th><th>Etki</th></tr>
+<tr><td>Astronomi</td><td>Evergreen 7→4, Güncelleme yükü 7→5 — en-iyi-durum koşullu varsayım yerine gerçekçi-varsayılan yürütme standardına getirildi</td><td><span class="tag tag-acc">ACCEPTED</span> (en yüksek güvenli bulgu)</td><td><span class="arrow-down">−0,32</span></td></tr>
+<tr><td>Sigorta</td><td>Parasallaştırma 7→8 — resmî KDP formülüyle yeniden hesaplanan birim telif ($10,15) orijinal $8,07 tahmininden ~%25 yüksek çıktı</td><td><span class="tag tag-acc">ACCEPTED</span></td><td><span class="arrow-up">+0,10</span></td></tr>
+<tr><td>Korece Hangıl</td><td>Rekabet/kalite-açığı ölçütlerinin aynı kanıtı iki kez saydığı endişesi kontrol edildi — agresif kesintiyle bile (7→5) skor 7,37'de kalıyor, hâlâ rahat #1</td><td><span class="tag tag-acc">ACCEPTED, düşük etkili</span></td><td>Değişiklik yapılmadı (duyarlılık testi geçti)</td></tr>
+<tr><td>CompTIA Sec+</td><td>SY0-801 geçişi birinci-taraf doğrulandı — zaten en düşük olan puanlar korundu, düşürülmedi (taban zaten en-düşük-tier)</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Değişiklik yok (puan zaten alt sınırda)</td></tr>
+<tr><td>Bahçecilik</td><td>AI-taşırma 7 kat daha büyük bulundu — ama henüz kanıtlanmış satış tehdidi değil, zaten en-düşük AI-direnci (4) tier'ında</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Değişiklik yok (puan zaten alt sınırda)</td></tr>
+<tr><td>Sigorta</td><td>"CA daha kolay = daha çekici" farklılaşma tezinin, aynı yayıncının TX'te 4× daha fazla sattığı gerçeğiyle çelişmesi</td><td><span class="tag tag-unr">UNRESOLVED</span></td><td>Skor değiştirilmedi — kesin yönü belirsiz, § 19'da açık soru olarak taşındı</td></tr>
+</table></div>
+<h3>Düzeltilmiş nihai sıralama</h3>
+<div class="tablewrap"><table>
+<tr><th>Sıra</th><th>Finalist</th><th>Skor</th><th>Değişim</th></tr>
+<tr><td><strong>1</strong></td><td>Korece Hangıl</td><td><strong>7,61</strong></td><td>—</td></tr>
+<tr><td><strong>2</strong></td><td>Sigorta (CA)</td><td><strong>6,32</strong></td><td><span class="arrow-up">↑ 3.'ten (+0,10)</span></td></tr>
+<tr><td><strong>3</strong></td><td>Bahçecilik</td><td>6,04</td><td><span class="arrow-up">↑ 4.'ten</span></td></tr>
+<tr><td><strong>4</strong></td><td>Astronomi</td><td>5,97</td><td><span class="arrow-down">↓ 2.'den (−0,32)</span></td></tr>
+<tr><td><strong>5</strong></td><td>CompTIA Sec+</td><td>5,84</td><td>—</td></tr>
+</table></div>
+</section>
+
+<section id="s17">
+<h2 class="sect-title"><span class="n">17</span> Ticari Kilit-Kapı</h2>
+<h3>Görev talimatının kendi karar kuralı (§ 23) uygulanıyor</h3>
+<p>Sigorta yalnızca şu beşi karşılıyorsa devam etmelidir: (i) en iyi 2'de kalıyor mu, (ii) skoru büyük doğrulanmamış bir varsayım mı taşıyor, (iii) rekabet yönetilebilir mi, (iv) ürünün savunulabilir bir kalite açığı var mı, (v) ekonomi çekici kalıyor mu, (vi) üretim riski gerçekçi mi.</p>
+<div class="tablewrap"><table>
+<tr><th>Koşul</th><th>Durum</th></tr>
+<tr><td>En iyi 2'de mi</td><td>✅ Evet — 2./5</td></tr>
+<tr><td>Büyük doğrulanmamış varsayım taşıyor mu</td><td>⚠ Kısmen — "CA daha kolay = daha çekici" tezi UNRESOLVED bir karşı-kanıtla karşı karşıya (§ 16)</td></tr>
+<tr><td>Rekabet yönetilebilir mi</td><td>❌ En zayıf nokta — Rekabet çekiciliği 4/10, kendi en düşük ölçütü, ve genişletilmiş rakip listesiyle daha da doğrulandı</td></tr>
+<tr><td>Savunulabilir kalite açığı var mı</td><td>⚠ Orta (6/10) — gerçek ama lider rakip zaten meşru ve iyi yürütülüyor</td></tr>
+<tr><td>Ekonomi çekici mi</td><td>✅ Evet — düzeltme sonrası en güçlü noktası (8/10)</td></tr>
+<tr><td>Üretim riski gerçekçi mi</td><td>✅ Evet (7/10)</td></tr>
+</table></div>
+<p>Karışık bir tablo: temiz bir GEÇ değil, temiz bir KAL de değil. Sigorta 3/6 koşulu net geçiyor, 1'inde belirsiz, 1'inde orta, yalnızca 1'inde (rekabet) gerçekten zayıf.</p>
+<h3>Karar</h3>
+<div class="card blue">
+<span class="badge-verdict B">B · SİGORTAYI DURAKLAT / ALTERNATİFİ TEST ET</span>
+<p style="margin-top:14px"><strong>Sigorta canlı ve savunulabilir kalıyor — TERK EDİLMİYOR (C değil).</strong> Çelişmeli inceleme, sigortanın haksız yere sert puanlandığına dair HİÇBİR kanıt bulamadı — tam tersine, kendi araştırmacısı kendi olumsuz rekabet maruziyetini eksik bildirmiş ve kendi ekonomisini muhafazakâr tahmin etmişti (§ 16). Bu, batık-maliyet yanlılığının OLMADIĞININ kanıtıdır, ama aynı zamanda aşırı-düzeltme yanlılığının da olmadığının kanıtıdır.</p>
+<p><strong>Ama sigorta artık en iyi sıradaki bahis DEĞİL (A değil).</strong> Korece Hangıl, düzeltilmiş modelde 1,29 puanlık sağlam, agresif duyarlılık testine dayanıklı bir marjla önde — VE yapısal olarak daha az rekabetçi (7 vs 4), çok daha düşük bakım yüklü (9 vs 4), ve mevcut illüstrasyon-hafif/doğrulama-ağır üretim gücüyle en az sigorta kadar uyumlu.</p>
+<p><strong>Kanıt yetersiz de değil (D değil).</strong> Beş finalist de gerçek, canlı Amazon/inceleme verisiyle araştırıldı ve bağımsız bir çelişmeli inceleme tarafından stres testine tabi tutuldu — bu, sorumlu bir karar için yeterli bir kanıt tabanı.</p>
+</div>
+</section>
+
+<section id="s18">
+<h2 class="sect-title"><span class="n">18</span> Ne İnşa Etmeliyiz</h2>
+<div class="card green">
+<p class="rankbig">#1 — Korece Hangıl El Yazısı Çalışma Kitabı</p>
+<p>Yetişkin öğrenciler için, K-pop/K-drama güdümlü gerçek ve güncel satın alma niyetiyle desteklenen, hiçbir tek devin domine etmediği ama gerçek talebin kanıtlandığı bir sub-niş. Üç rakipte de tekrarlanan somut şikâyetler (ses/telaffuz eksik, konsolide vuruş-sırası referansı yok, yetersiz derinlik, bir rakipte doğrulanmış çeviri hatası) doğrudan, ürün-düzeyinde bir farklılaşma yol haritası sunuyor. Üretim, Vâliçe Press'in mevcut S/B gravür-tarzı gücüyle neredeyse mükemmel uyumlu — fotoğraf hiç gerekmiyor. Güncelleme yükü pratik olarak sıfır (alfabe değişmiyor). Tek gerçek zayıflık, birim telifin sigorta/CompTIA'dan düşük olması (~$4,78 vs ~$8-10) — ama bu, %12 ağırlıklı satın-alma-niyeti ve %10 ağırlıklı farklılaşma ölçütlerindeki güçlü performansla fazlasıyla dengeleniyor.</p>
+</div>
+</section>
+
+<section id="s19">
+<h2 class="sect-title"><span class="n">19</span> İkinci Sıradaki</h2>
+<div class="card accent">
+<p class="rankbig" style="font-size:1.7rem">#2 — Sigorta (California Life &amp; Health)</p>
+<p>Mevcut "License &amp; Launch" projesi <strong>durdurulmuyor, arşivlenmiyor, terk edilmiyor.</strong> Faz 1'in gerçek çıktıları (doğrulanmış blueprint, kaynak kayıtları, karar günlüğü) canlı ve yeniden başlatılabilir kalıyor. Bu, "sigortayı bırakalım" değil, "önce Korece Hangıl'ı test edelim, sigorta ikinci sırada güvenle bekliyor" kararı.</p>
+<p><strong>Sigortayı yeniden #1'e yükseltecek olan:</strong> (a) A11'in kapanması — TX/FL'nin CA-derinliğinde araştırılması, "CA daha kolay = daha çekici" tezinin TX'in 4× daha yüksek gerçek satış hacmiyle nasıl uzlaştığının çözülmesi (§ 16'daki UNRESOLVED bulgu); (b) rekabet çekiciliği puanının (4/10, en zayıf noktası) gerçekten iyileştiğine dair yeni kanıt — ör. AI-seli rakiplerinin gerçekten düşük kaliteli/kısa ömürlü olduğunun doğrulanması.</p>
+</div>
+</section>
+
+<section id="s20">
+<h2 class="sect-title"><span class="n">20</span> Diğerlerini Neden Reddediyoruz</h2>
+<h4>CompTIA Security+ (5. sıra, 5,84)</h4>
+<p>En yüksek katalog potansiyeli (9/10) ve gerçek talep (8/10) taşımasına rağmen, SY0-801 geçişinin artık birinci-taraf doğrulanmış olması (§ 5) onu yapısal olarak en kırılgan finalist yapıyor — 2 ay içinde başlayacak, geçmişte iki kez tam yeniden-yazım gerektirmiş bir revizyon döngüsü. En iyi 2 rakip (859 ve 781 yorum) "gerçekten mükemmel" — kolay bir giriş değil.</p>
+<h4>Astronomi Gözlem Günlüğü (4. sıra, 5,97 — düzeltilmiş)</h4>
+<p>Gerçek, kanıtlanmış bir arketip (Turn Left At Orion, 150.000+ satış) ve güçlü bir "ilk kitap testi" kanıtı (John A Read, 8.161 yorum, sıfırdan) taşıyor — bu bir zayıf aday değil. Ama düzeltilmiş puanlama, evergreen/güncelleme-yükü avantajının gerçekten KAZANILMASI için bilinçli, zorlu bir yapısal seçim (tarih-özel DEĞİL, evergreen yapı) gerektirdiğini ve bunun garanti olmadığını gösteriyor. Bu turda "kanıtlanmış en iyi" değil, "koşullu olarak güçlü" bir adaydır.</p>
+<h4>Bahçecilik Referansı (3. sıra, 6,04)</h4>
+<p>En yüksek evergreen puanı (8/10) ve gerçek, belgelenmiş bir farklılaşma boşluğu (küçük-alan şikâyeti) taşıyor. Ama iki uyarı ağır basıyor: önerilen konumlandırmayı neredeyse birebir işgal eden tek başlık yalnızca 5 yorumla talep-inceliği riskini somutlaştırıyor, ve ~140+ başlıklık AI-seri ailesi (§ 7) niş içindeki arama alanını zaten dolduruyor.</p>
+</section>
+
+<section id="s21">
+<h2 class="sect-title"><span class="n">21</span> Sonraki Eylem</h2>
+<ol>
+<li><strong>Bu turda KİTAP İÇERİĞİ üretilmiyor.</strong> Ne Korece Hangıl'ın ne sigortanın manüskripti, sorusu, kapağı veya KDP dosyaları bu raporun kapsamındadır.</li>
+<li><strong>Mevcut "License &amp; Launch" (sigorta) projesi olduğu gibi bırakılıyor.</strong> Deposu, yol haritası, `.gate` durumu, `DECISIONS.md`'si bu turda dokunulmadı ve dokunulmayacak. Faz 2'ye (SME tedariki) geçiş bu raporla OTOMATİK OLARAK tetiklenmiyor — kurucu kararı bekliyor.</li>
+<li><strong>Önerilen sonraki adım (kurucu onayına bağlı):</strong> Korece Hangıl için, tam üretim taahhüdünden ÖNCE, orantılı bir doğrulama turu — ör. içerik-taslağı/üretilebilirlik testi veya küçük ölçekli bir pilot — çünkü bu, mevcut hiçbir proje altyapısı olmayan tamamen yeni bir adaydır (sigortanın aksine, ki onun zaten tamamlanmış bir Faz 1'i var).</li>
+<li><strong>A11 (sigorta içi açık karar) bu raporla kapanmadı</strong> — TX/FL'nin CA-derinliğinde araştırılması hâlâ ayrı bir kurucu kararı gerektiriyor, sigorta ne zaman yeniden ele alınırsa alınsın.</li>
+<li>Bu rapor, kurucunun A/B/C/D arasından NİHAİ kararı vermesi için kanıt tabanını sağlar — karar bu ajan tarafından dayatılmadı, yalnızca B tavsiye edildi.</li>
+</ol>
+</section>
+
+<section id="s22">
+<h2 class="sect-title"><span class="n">22</span> Kaynaklar</h2>
+<h4>Birincil (bu oturumda doğrudan gözlemlendi)</h4>
+<ul>
+<li>Amazon.com — canlı arama sonuçları ve ürün sayfaları, 5 finalist boyunca, USD/ABD teslimat konumu doğrulanarak (~40+ ürün sayfası, ~30+ gerçek müşteri yorumu doğrudan okundu)</li>
+<li>kdp.amazon.com — resmî "Paperback Printing Cost" ve "eBook Royalties" yardım sayfaları (birden fazla ajan tarafından bağımsızca doğrulandı)</li>
+<li>comptia.org — resmî Security+ sertifika sayfası ve "Exam Objectives Under Development" sayfası (çelişmeli inceleme tarafından birinci-taraf olarak doğrulandı)</li>
+<li>Pearson VUE — "Texas Department of Insurance Examination Pass Rates: May 2025" resmî PDF tablosu</li>
+</ul>
+<h4>İkincil <span class="tag tag-unv">UNVERIFIED</span> (tek-kaynak veya tel-servisi dağıtımı, bağımsızca doğrulanmadı)</h4>
+<ul>
+<li>"CompTIA Security+ 1M+ sertifikalı, 2019'dan bu yana ikiye katlandı" — PR Newswire kaynaklı, birden fazla site tarafından yeniden yayımlandı (tek kaynak, beş bağımsız kaynak DEĞİL — çelişmeli inceleme bunu açıkça not etti)</li>
+<li>SY0-801 kesin geçiş tarihi — üçüncü-taraf sertifika sitelerinden, CompTIA'nın kendi "tahmini 2026" ifadesiyle tutarlı ama kesin tarih birinci-taraftan teyit edilmedi</li>
+<li>El yazısı-hafıza kodlaması araştırması (Korece Hangıl'ın özgün moat iddiası) — önceki araştırma turundan devralındı, bu turda yeniden doğrulanmadı</li>
+<li>Ev/kap bahçeciliği büyüme trendi — bu oturumda doğrudan doğrulanamadı (WebSearch/Trends erişilemedi), yalnızca dolaylı kanıt (yayın hacmi) toplandı</li>
+</ul>
+<h4>Metodolojik</h4>
+<ul>
+<li>Önceki "License &amp; Launch" Faz 1 araştırması ve bağımsız çelişmeli incelemesi (24 Ağustos 2026) — bu raporun sigorta bölümü için arka plan/başlangıç kaynağı olarak kullanıldı, sonuç olarak DEĞİL</li>
+<li>Bu operasyonun kendi bağımsız çelişmeli inceleme ajanı (24 Ağustos 2026, bir oturum-limiti kesintisinden sonra devam ettirildi) — § 16'daki tüm düzeltmelerin doğrudan kaynağı</li>
+</ul>
+</section>
+
+</main>
+</div>
+</div>
+
+<footer>Vâliçe Press · KDP Finalist Pazar Yeniden-Doğrulaması · 24 Ağustos 2026 · Bu belge bir ticari karar aracıdır, yatırım tavsiyesi değildir.</footer>

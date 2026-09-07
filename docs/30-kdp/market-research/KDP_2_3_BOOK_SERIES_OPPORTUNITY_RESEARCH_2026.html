@@ -1,0 +1,1802 @@
+<meta charset="utf-8">
+<title>KDP 2–3 Kitaplık Seri Fırsatı Araştırması 2026</title>
+<style>
+:root{
+  --bg:#f7f5f1; --surface:#ffffff; --surface-2:#f0ede6; --text:#1e1c18; --muted:#5c574d;
+  --border:#ddd6c9; --accent:#8a5a2b; --accent-2:#2b5a8a;
+  --green:#2f7a3d; --green-bg:#e6f2e6; --yellow:#8a6d1a; --yellow-bg:#f7f0d8;
+  --red:#a3312a; --red-bg:#f6e4e2; --blue:#2b5a8a; --blue-bg:#e3edf6;
+  --tag-obs:#2f7a3d; --tag-obs-bg:#e6f2e6; --tag-est:#8a6d1a; --tag-est-bg:#f7f0d8;
+  --tag-unv:#a3312a; --tag-unv-bg:#f6e4e2; --tag-acc:#2f7a3d; --tag-acc-bg:#e6f2e6;
+  --tag-reb:#2b5a8a; --tag-reb-bg:#e3edf6; --tag-unr:#8a6d1a; --tag-unr-bg:#f7f0d8;
+  --code-bg:#efe9dc;
+  color-scheme: light;
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme: dark){
+    --bg:#17140f; --surface:#211d17; --surface-2:#2a251d; --text:#ecE6d8; --muted:#b3a892;
+    --border:#443c2c; --accent:#d19a5c; --accent-2:#7fb0e0;
+    --green:#7fcf8f; --green-bg:#1e2f1f; --yellow:#e0c56a; --yellow-bg:#332c14;
+    --red:#e8938c; --red-bg:#3a2220; --blue:#7fb0e0; --blue-bg:#1c2a38;
+    --tag-obs:#7fcf8f; --tag-obs-bg:#1e2f1f; --tag-est:#e0c56a; --tag-est-bg:#332c14;
+    --tag-unv:#e8938c; --tag-unv-bg:#3a2220; --tag-acc:#7fcf8f; --tag-acc-bg:#1e2f1f;
+    --tag-reb:#7fb0e0; --tag-reb-bg:#1c2a38; --tag-unr:#e0c56a; --tag-unr-bg:#332c14;
+    --code-bg:#2a251d;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17140f; --surface:#211d17; --surface-2:#2a251d; --text:#ece6d8; --muted:#b3a892;
+  --border:#443c2c; --accent:#d19a5c; --accent-2:#7fb0e0;
+  --green:#7fcf8f; --green-bg:#1e2f1f; --yellow:#e0c56a; --yellow-bg:#332c14;
+  --red:#e8938c; --red-bg:#3a2220; --blue:#7fb0e0; --blue-bg:#1c2a38;
+  --tag-obs:#7fcf8f; --tag-obs-bg:#1e2f1f; --tag-est:#e0c56a; --tag-est-bg:#332c14;
+  --tag-unv:#e8938c; --tag-unv-bg:#3a2220; --tag-acc:#7fcf8f; --tag-acc-bg:#1e2f1f;
+  --tag-reb:#7fb0e0; --tag-reb-bg:#1c2a38; --tag-unr:#e0c56a; --tag-unr-bg:#332c14;
+  --code-bg:#2a251d;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;line-height:1.62;margin:0;padding:0}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px 80px}
+.grid{display:grid;grid-template-columns:250px 1fr;gap:36px;align-items:start}
+@media (max-width:920px){.grid{grid-template-columns:1fr}.toc{position:static !important}}
+header.hero{padding:56px 0 32px;border-bottom:3px double var(--border)}
+header.hero .kicker{font-family:Arial,Helvetica,sans-serif;letter-spacing:.14em;text-transform:uppercase;font-size:.75rem;color:var(--accent);font-weight:700}
+header.hero h1{font-size:2.35rem;margin:.35em 0 .2em;line-height:1.18}
+header.hero p.sub{color:var(--muted);font-size:1.08rem;max-width:64ch}
+.meta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.pill{font-family:Arial,Helvetica,sans-serif;font-size:.78rem;background:var(--surface-2);border:1px solid var(--border);border-radius:999px;padding:4px 12px;color:var(--muted)}
+.toc{position:sticky;top:24px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;font-family:Arial,Helvetica,sans-serif;font-size:.86rem;max-height:88vh;overflow-y:auto}
+.toc h2{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:0 0 10px}
+.toc ol{margin:0;padding-left:1.15em}
+.toc li{margin:5px 0}
+.toc a{color:var(--text);text-decoration:none;opacity:.86}
+.toc a:hover{opacity:1;color:var(--accent)}
+main section{padding:40px 0;border-bottom:1px solid var(--border)}
+main section:last-of-type{border-bottom:none}
+h2.sect-title{font-size:1.55rem;margin:0 0 .2em;display:flex;align-items:baseline;gap:.5em}
+h2.sect-title .n{font-family:Arial,Helvetica,sans-serif;color:var(--accent);font-size:.95rem;font-weight:700}
+h3{font-size:1.18rem;margin:1.6em 0 .5em;color:var(--text)}
+h4{font-size:1.02rem;margin:1.3em 0 .4em;color:var(--accent)}
+p{margin:.75em 0}
+.lead{font-size:1.08rem;color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin:1.1em 0;font-size:.92rem}
+caption{text-align:left;font-family:Arial,Helvetica,sans-serif;font-size:.78rem;color:var(--muted);margin-bottom:6px}
+th,td{border:1px solid var(--border);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--surface-2);font-family:Arial,Helvetica,sans-serif;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+tbody tr:nth-child(even){background:var(--surface-2)}
+.tablewrap{overflow-x:auto;border-radius:8px}
+.tag{display:inline-block;font-family:Arial,Helvetica,sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:2px 7px;border-radius:5px;white-space:nowrap}
+.tag-obs{color:var(--tag-obs);background:var(--tag-obs-bg)}
+.tag-est{color:var(--tag-est);background:var(--tag-est-bg)}
+.tag-unv{color:var(--tag-unv);background:var(--tag-unv-bg)}
+.tag-acc{color:var(--tag-acc);background:var(--tag-acc-bg)}
+.tag-reb{color:var(--tag-reb);background:var(--tag-reb-bg)}
+.tag-unr{color:var(--tag-unr);background:var(--tag-unr-bg)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 22px;margin:1.2em 0}
+.card.accent{border-left:4px solid var(--accent)}
+.card.green{border-left:4px solid var(--green)}
+.card.red{border-left:4px solid var(--red)}
+.card.blue{border-left:4px solid var(--blue)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:720px){.two-col{grid-template-columns:1fr}}
+.badge-verdict{display:inline-block;font-family:Arial,Helvetica,sans-serif;font-weight:800;font-size:.95rem;letter-spacing:.02em;padding:10px 18px;border-radius:8px;margin:.4em 0}
+.badge-verdict.B{color:var(--yellow);background:var(--yellow-bg);border:1px solid var(--yellow)}
+.badge-verdict.A{color:var(--green);background:var(--green-bg);border:1px solid var(--green)}
+.badge-verdict.C{color:var(--red);background:var(--red-bg);border:1px solid var(--red)}
+.badge-verdict.D{color:var(--blue);background:var(--blue-bg);border:1px solid var(--blue)}
+.rankbig{font-family:Arial,Helvetica,sans-serif;font-weight:800;font-size:2.4rem;color:var(--accent)}
+.small{font-size:.86rem;color:var(--muted)}
+blockquote{margin:1em 0;padding:.6em 1.2em;border-left:3px solid var(--accent);background:var(--surface-2);font-style:italic;color:var(--text)}
+code{background:var(--code-bg);padding:1px 5px;border-radius:4px;font-family:Consolas,Monaco,monospace;font-size:.9em}
+.footnote{font-size:.82rem;color:var(--muted)}
+.divider-note{font-family:Arial,Helvetica,sans-serif;font-size:.82rem;color:var(--muted);background:var(--surface-2);border:1px dashed var(--border);border-radius:8px;padding:12px 16px;margin:1em 0}
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.85rem}
+.arrow-up{color:var(--green)}
+.arrow-down{color:var(--red)}
+
+.scorebar{display:flex;align-items:center;gap:8px;font-family:Arial,Helvetica,sans-serif;font-size:.8rem}
+.scorebar .bar{flex:1;height:9px;background:var(--surface-2);border:1px solid var(--border);border-radius:5px;overflow:hidden}
+.scorebar .fill{height:100%;background:var(--accent)}
+.rank-row{display:flex;align-items:center;gap:14px;padding:9px 14px;border:1px solid var(--border);border-radius:8px;margin:7px 0;background:var(--surface);font-family:Arial,Helvetica,sans-serif}
+.rank-row .pos{font-weight:800;font-size:1.1rem;color:var(--accent);min-width:1.6em}
+.rank-row .nm{flex:1;font-weight:600}
+.rank-row .sc{font-weight:800;font-size:1.05rem}
+.rank-row.win{border-left:4px solid var(--green);background:var(--green-bg)}
+.rank-row.two{border-left:4px solid var(--blue)}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:1em 0}
+.flow .n{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-family:Arial,Helvetica,sans-serif;font-size:.85rem;text-align:center}
+.flow .n b{display:block;font-size:1.35rem;color:var(--accent);margin-bottom:3px}
+.funnel{font-family:Consolas,Monaco,monospace;font-size:.86rem;background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:16px 18px;white-space:pre;overflow-x:auto;line-height:1.5}
+ul.tight li{margin:.3em 0}
+.kv{font-family:Arial,Helvetica,sans-serif;font-size:.86rem}
+.kv b{color:var(--accent)}
+</style>
+
+<div class="wrap">
+<header class="hero">
+  <div class="kicker">Vâliçe Press · Ticari Karar Belgesi</div>
+  <h1>KDP 2–3 Kitaplık Seri Fırsatı Araştırması 2026</h1>
+  <p class="sub">Küçük, kalite odaklı bağımsız bir yayınevi için <strong>tek bir kitap değil, kompakt ve savunulabilir bir 2–3 kitaplık seri</strong> kurmaya en uygun KDP fırsatını bulan; talebi kârlılıkla, sonuç sayısını rekabetle, telifi kârla karıştırmamak üzere tasarlanmış bağımsız bir pazar keşif çalışması.</p>
+  <div class="meta-row">
+    <span class="pill">27 Ağustos 2026</span>
+    <span class="pill">13 aday taranması → 5 finalist</span>
+    <span class="pill">Seri-önce, kitap-sonra analiz</span>
+    <span class="pill">Bağımsız çelişmeli inceleme</span>
+    <span class="pill">Kitap İÇERİĞİ ÜRETİLMEDİ</span>
+  </div>
+</header>
+
+<div class="grid">
+<nav class="toc">
+  <h2>İçindekiler</h2>
+  <ol>
+    <li><a href="#ozet">Yönetici Özeti</a></li>
+    <li><a href="#s1">1 · Bu Araştırma Neden Yapıldı</a></li>
+    <li><a href="#s2">2 · Önceki Araştırmalardan Dersler</a></li>
+    <li><a href="#s3">3 · Araştırma Metodolojisi</a></li>
+    <li><a href="#s4">4 · İlk Fırsat Taraması</a></li>
+    <li><a href="#s5">5 · Finalist #1 — Amatör Telsiz</a></li>
+    <li><a href="#s6">6 · Finalist #2 — Hemşirelik Doz Hesabı</a></li>
+    <li><a href="#s7">7 · Finalist #3 — Satranç</a></li>
+    <li><a href="#s8">8 · Finalist #4 — ASL İşaret Dili</a></li>
+    <li><a href="#s9">9 · Finalist #5 — Noter / LSA</a></li>
+    <li><a href="#s10">10 · Rekabet: Stok + Akış</a></li>
+    <li><a href="#s11">11 · Amazon Ads Analizi</a></li>
+    <li><a href="#s12">12 · Birim Ekonomisi</a></li>
+    <li><a href="#s13">13 · Seri Ekonomisi</a></li>
+    <li><a href="#s14">14 · Evergreen / Eskime</a></li>
+    <li><a href="#s15">15 · AI İkame Riski</a></li>
+    <li><a href="#s16">16 · Üretim Fizibilitesi</a></li>
+    <li><a href="#s17">17 · Puanlama Modeli</a></li>
+    <li><a href="#s18">18 · Duyarlılık Testleri</a></li>
+    <li><a href="#s19">19 · Çelişmeli İnceleme</a></li>
+    <li><a href="#s20">20 · Nihai Sıralama</a></li>
+    <li><a href="#s21">21 · Kazanan Pazar</a></li>
+    <li><a href="#s22">22 · Üç Kitaplık Seri</a></li>
+    <li><a href="#s23">23 · Amazon Ads Stratejisi</a></li>
+    <li><a href="#s24">24 · Seri Ekonomisi (Kazanan)</a></li>
+    <li><a href="#s25">25 · Bu Neden Başarısız Olabilir</a></li>
+    <li><a href="#s26">26 · İkinci Sıradaki</a></li>
+    <li><a href="#s27">27 · Diğerlerini Neden Reddediyoruz</a></li>
+    <li><a href="#s28">28 · Tam Olarak Sonraki Eylem</a></li>
+    <li><a href="#s29">29 · Sınırlamalar</a></li>
+    <li><a href="#s30">30 · Kaynaklar</a></li>
+  </ol>
+</nav>
+
+<main>
+<section id="ozet">
+<h2 class="sect-title">Yönetici Özeti</h2>
+<p class="lead">On üç aday pazar tarandı, beşi aynı 12 ölçütlü modelle simetrik derinlikte incelendi, sıralama üç stres testinden geçirildi — ve sonra bağımsız bir çelişmeli inceleme <strong>birinci sıradaki adayı sonuncu sıraya düşürdü.</strong> Bu raporun en değerli çıktısı, kazanan kadar, kazananın nasıl değiştiğidir.</p>
+
+<div class="card accent">
+<p><strong>KAZANAN: Hemşirelik ilaç doz hesabı serisi — 6,70/10.</strong> Üç kitap: <em>Doz Hesabı</em> → <em>IV, Damla Hızı ve Kritik Bakım Hesapları</em> → <em>Lisans Sınavı İlaç Matematiği</em>. Aynı öğrenci, 2–3 yıllık bir program boyunca, müfredatın dayattığı üç ayrı sınav kapısı.</p>
+<p><strong>İKİNCİ: Satranç gelişim serisi — 6,34/10.</strong> Fark yalnızca 0,36 puan — modelin ölçüm hassasiyetinin sınırında. İkisini ayıran şey puan değil, tek bir yapısal kısıt.</p>
+</div>
+
+<div class="tablewrap">
+<table>
+<caption>Çelişmeli inceleme öncesi → sonrası</caption>
+<thead><tr><th>Aday</th><th>Önce</th><th>Sonra</th><th>Sıra</th></tr></thead>
+<tbody>
+<tr><td><strong>Hemşirelik doz hesabı</strong></td><td>6,50</td><td><strong>6,70</strong></td><td>2. → <strong>1. KAZANAN</strong></td></tr>
+<tr><td><strong>Satranç</strong></td><td>6,24</td><td><strong>6,34</strong></td><td>3. → <strong>2. İKİNCİ</strong></td></tr>
+<tr><td>ASL işaret dili</td><td>5,86</td><td>6,06</td><td>4. → 3.</td></tr>
+<tr><td>Noter / LSA</td><td>5,57</td><td>5,47</td><td>5. → 4.</td></tr>
+<tr><td><strong>Amatör telsiz</strong></td><td><strong>7,44</strong></td><td><strong>4,58</strong></td><td><strong>1. → 5. (sonuncu)</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Birinci sıradaki aday neden çöktü</h3>
+<p>Amatör telsiz lisans serisi ilk analizde her testi geçti: yasal olarak zorunlu bir sınav, kamu malı soru havuzu, dışarıdan dayatılmış üç basamaklı bir merdiven, kategori liderinin <strong>BSR #4.136</strong>'sı. Bağımsız inceleme dört tanesi tek başına yeterli olan sebeple bunu yıktı:</p>
+<ul class="tight">
+<li><strong>Giriş penceresi zaten kapanmıştı.</strong> Technician soru havuzu 1 Temmuz 2026'da yürürlüğe girdi ve <strong>30 Haziran 2030'a kadar donduruldu</strong>. Yeni girenin yerleşiği devirdiği tek mekanizma — havuz yenilemesi — iki ay önce yaşandı ve yerleşikler Haziran 2026'da o pencereye girdiler.</li>
+<li><strong>Mutlak pazar hiç hesaplanmamıştı.</strong> Yıllık adreslenebilir alıcı havuzu ~25–30.000 kişi <em>ve küçülüyor</em>; ARRL'in kendisi bunun ~18.000'ini satıyor ve yayın cirosunun <strong>%54'ü KDP'nin erişemediği bayi kanalından</strong> geçiyor.</li>
+<li><strong>Kalite açığı tek bir zayıf sayıya dayanıyordu:</strong> n=41'de 4,2 yıldız. Aynı yayıncının diğer ürünleri 4,7–4,8★ / 3.189 yorum. Tezi destekleyen tek sayı seçilmiş, onu yıkan üçü göz ardı edilmişti.</li>
+<li><strong>Aynı stratejiyi deneyen bağımsız yayıncı zaten başarısız olmuştu:</strong> markasız, "jargonsuz sade dil" konumlandırmalı bir rakip (Mayıs 2026) <strong>BSR #227.749</strong>'da. Üstelik 6–27 Ağustos 2026 arasında <strong>15 yeni rakip</strong> daha girdi — hepsi 0 yorumda.</li>
+</ul>
+<p>Ve modelin göremediği yapısal gerçek: <strong>ARRL aynı anda soru havuzunu yazan kurumun içinde, sınavların %68'ini uygulayan merci, ücretsiz seçeneğin sağlayıcısı ve ücretli pazarın lideri.</strong> On iki ölçütlü bir modelde bu dört rolü birden oynayan rakibi yakalayacak ölçüt yoktur.</p>
+
+<h3>Kazananı belirleyen tek metodolojik düzeltme</h3>
+<p>İnceleme, kalite açığı puanlarının <strong>tutarsız kanıt eşikleriyle</strong> verildiğini gösterdi: kazanan adaya n=41'de 7 puan verilirken, diğer adayların yüksek-n yorum özetlerine hiç bakılmamıştı. <strong>Asgari-n kuralı</strong> (bir kalite açığı ancak n≥200'de bir sinyalle veya mekanik olarak doğrulanabilir bir kusurla desteklenebilir) beş adayın tamamına uygulandığında daha önce görülmemiş olumsuz sinyaller ortaya çıktı — ve sıralama değişti:</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Aday</th><th>n</th><th>Amazon'un kendi yorum özeti</th><th>Kalite açığı</th></tr></thead>
+<tbody>
+<tr><td><strong>Hemşirelik</strong></td><td>2.034</td><td><em>"…some find it confusing… lacks detailed instructions… value for money divided"</em></td><td>5 → <strong>7</strong></td></tr>
+<tr><td><strong>Satranç</strong></td><td>1.936</td><td><em>"…confusing and difficult to see"</em></td><td>6 → <strong>7</strong></td></tr>
+<tr><td>ASL</td><td>4.553</td><td><em>"image quality receives negative feedback… pictures are not clear"</em></td><td>5 → <strong>7</strong></td></tr>
+<tr><td>Noter</td><td>1.516</td><td>Olumsuz sinyal yok</td><td>5 → <strong>4</strong></td></tr>
+<tr><td>Amatör telsiz</td><td>41 <span class="small">(yetersiz)</span></td><td>Yıldız kanıtı diskalifiye</td><td>7 → <strong>5</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Kazananın gerekçesi — ve tek kilit kapısı</h3>
+<div class="two-col">
+<div class="card green"><h4>Neden hemşirelik doz hesabı</h4><ul class="tight">
+<li><strong>Kapılı satın alma niyeti:</strong> yeterlilik sınavından kalmak programda ilerlemeyi durdurur; alternatif "dersi tekrar almak"tır.</li>
+<li><strong>En iyi birim ekonomisi:</strong> $9,91–$10,77 birim telif (beş finalistin en genişi).</li>
+<li><strong>Doğrulanmış, yüksek-n kalite açığı:</strong> liderin zayıflığı tam da bir çalışma kitabının satılma sebebinde — adım adım netlik.</li>
+<li><strong>Seri modeli bu pazarda kanıtlı:</strong> aynı yazar ikilisi dört kitapta 5.500+ yorum topladı.</li>
+<li><strong>Kitap 2'nin segmenti çok ince:</strong> "IV drip rate" sorgusu yalnızca <strong>86 sonuç</strong>.</li>
+<li><strong>Dört stres testinin dördünde de birinci.</strong></li>
+</ul></div>
+<div class="card red"><h4>Tek kilit kapı</h4>
+<p><strong>Lisanslı klinisyen inceleyici zorunludur.</strong> Bir doz hesabı hatası hasta zararına yol açabilir; kategorinin normu adı ve klinik unvanı açık yazarlıktır. Risk puanı 3/10 — beş finalistin en düşüğü.</p>
+<p>Bu, Vâliçe Press için soyut değil: önceki lisans-sınavı projesi <em>tam olarak</em> uzman tedarik edilemediği için duraklatıldı.</p>
+<p><strong>Karar kuralı:</strong> Kitap 1 üretimi, inceleyici sözleşmelenmeden başlamaz. <strong>60–90 gün</strong> içinde makul bir ücretle sözleşmelenemezse, ikinci sıradaki (<strong>Satranç</strong>) devreye girer — satranç hiçbir uzman gerektirmez, çünkü doğrulayıcı bir satranç motorudur.</p>
+</div>
+</div>
+
+<div class="divider-note"><strong>Kapsam:</strong> Bu belge yalnızca pazar-düzeyi bir ticari karar belgesidir. Kitap içeriği, manüskript, kapak veya KDP dosyası üretilmedi; Korece Hangıl projesine ve duraklatılmış sigorta projesine dokunulmadı.</div>
+</section>
+<section id="s1">
+<h2 class="sect-title"><span class="n">1</span> Bu Araştırma Neden Yapıldı</h2>
+<p class="lead">Vâliçe Press'in elindeki soru artık "hangi kitap?" değil. Soru şu: <strong>aynı müşterinin üç kez para bırakacağı bir raf nasıl kurulur?</strong></p>
+<p>Mevcut katalog (mitoloji, illüstrasyonlu referans, oyun ve bulmaca kitapları) tek tek iyi ürünlerden oluşuyor, ama bir <em>ürün ailesi</em> mantığıyla değil, tek tek başlıklar mantığıyla büyüdü. Tek kitaplık bir ürün, Amazon'da üç yapısal dezavantaj taşır:</p>
+<ul class="tight">
+  <li>Müşteri edinme maliyetinin tamamını tek bir satışa yüklemek zorundadır.</li>
+  <li>Amazon'un öneri motoruna ("bu ürünü alanlar şunu da aldı") besleyecek ikinci bir ürünü yoktur.</li>
+  <li>Yayıncı markası birikmez; her başlık sıfırdan güven kurar.</li>
+</ul>
+<p>Bu belge, tam da bu üç dezavantajı tersine çevirebilecek <strong>tek bir pazar</strong> ve <strong>tek bir üç kitaplık seri</strong> öneriyor. Aranan şey en büyük KDP kategorisi değil; küçük bir yayıncının gerçekten kazanabileceği, savunabileceği ve tekrarlayabileceği bir fırsat.</p>
+<div class="divider-note"><strong>Kapsam sınırı:</strong> Bu görev yalnızca araştırmadır. Hiçbir manüskript, kapak veya KDP dosyası üretilmedi; Korece Hangıl projesine ve duraklatılmış sigorta projesine dokunulmadı.</div>
+</section>
+
+<section id="s2">
+<h2 class="sect-title"><span class="n">2</span> Önceki KDP Araştırmalarından Dersler</h2>
+<p>Bu çalışma sıfırdan başlamıyor. Aynı operasyon için daha önce yürütülen iki tur araştırma (12 Ağustos, 24 Ağustos 2026) bir dizi <strong>somut hata</strong> ortaya çıkardı. Aşağıdaki kurallar bu turda bağlayıcı sayıldı — her biri, önceki turda gerçekten yapılmış bir hataya karşılık geliyor.</p>
+<div class="tablewrap">
+<table>
+<caption>Önceki turlarda tespit edilen hatalar ve bu turdaki karşı önlem</caption>
+<thead><tr><th>Hata deseni</th><th>Bu turda uygulanan karşı önlem</th></tr></thead>
+<tbody>
+<tr><td>Amazon sonuç sayısını rekabetin ölçüsü sanmak</td><td>Sonuç sayısı yalnızca kaba bağlam olarak raporlandı. Rekabet, <em>gerçek rakip başlıkların</em> BSR'ı, yorum sayısı, fiyatı ve yayın tarihiyle ölçüldü.</td></tr>
+<tr><td>Düşük sonuç sayısını düşük rekabet sanmak</td><td>Amatör Extra sorgusu yalnızca 41 sonuç döndürdü — ama bu "boş pazar" değil, <em>küçük pazar</em> olarak yorumlandı.</td></tr>
+<tr><td>Yüksek yorum sayısını yalnızca güçlü talep sanmak</td><td>Yorum sayısı <strong>ömür boyu</strong> birikimidir. Noter kategorisinin lideri 1.516 yoruma sahip ama BSR'ı #425.554 — yani bugün neredeyse satmıyor. Bu tam olarak bu tuzağın kanıtı ve Noter'in Talep puanını 4/10'a indiren nedendir.</td></tr>
+<tr><td>Telifi net kâr sanmak</td><td>Gelir / telif / üretim maliyeti / reklam gideri / katkı ayrı ayrı gösterildi (§12–13). Hiçbir yerde "kâr" denmedi.</td></tr>
+<tr><td>Bir rakibi pazar kanıtı saymak</td><td>Her finalist için en az 3 rakip doğrudan incelendi; kazananda 6 rakip + 6 komşu segment ürünü.</td></tr>
+<tr><td>Adaylardan birini iyimser, diğerlerini gerçekçi varsayımla puanlamak</td><td>Beş finalist de tek bir <em>gerçekçi-varsayılan</em> disiplinle puanlandı; iyimser senaryo yalnızca duyarlılık testinde ayrı gösterildi (§18).</td></tr>
+<tr><td>Altyapısı zaten var diye bir projeyi kazandırmak (batık maliyet)</td><td>Hâlihazırda üretimde olan Korece Hangıl projesi ve duraklatılmış sigorta projesi <strong>aday listesine alınmadı</strong>. Bu tur yalnızca <em>yeni</em> fırsat arıyor.</td></tr>
+<tr><td>AI incelemesini insan uzman doğrulaması saymak</td><td>Kazanan pazar, özellikle <strong>insan uzman kapısı gerektirmediği</strong> için seçildi (§16). Bu bir kolaylık tercihi değil, önceki sigorta projesini fiilen durduran darboğazın çözümü.</td></tr>
+<tr><td>Bir konu popüler diye evergreen saymak</td><td>Her finalist için 6/12/24/36 aylık bakım yükü ayrı tahmin edildi (§14). Kazananın soru havuzu yenileme takvimi açıkça bir <em>zayıflık</em> olarak puanlandı.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card red">
+<p><strong>Ayrıca kaçınılan iki yeni tuzak:</strong> (1) <em>"Kimse bunu yapmıyor"</em> — Parkinson el yazısı kategorisi tam da böyle görünüyordu; sistematik tarama, Aralık 2025–Temmuz 2026 arasında piyasaya giren neredeyse tüm başlıkların 0–1 yorumda takılı kaldığını gösterdi. Boşluğu herkes bulmuş, kimse kazanamamış. (2) <em>"Büyük pazar = kazanılabilir pazar"</em> — demans aktivite kitapları 10.000'den fazla sonuç ve 11.800 yorumlu bir lider barındırıyor; bu bir fırsat değil, bir emtia savaşı.</p>
+</div>
+</section>
+
+<section id="s3">
+<h2 class="sect-title"><span class="n">3</span> Araştırma Metodolojisi</h2>
+<h3>Analiz birimi: seri, kitap değil</h3>
+<p>Bu araştırmanın birimi bir kategori (ör. "eğitim", "hobi") ya da tek bir kitap değil; <strong>gerçekçi bir ilk ticari kitap ve onun doğal iki devamı</strong>. Bir aday, Kitap 2 ve Kitap 3 yapay biçimde uydurulmuş görünüyorsa puan kaybetti.</p>
+<h3>Kanıt disiplini</h3>
+<p>Her sayısal iddia altı etiketten biriyle işaretlendi:</p>
+<p>
+<span class="tag tag-obs">OBSERVED</span> bu oturumda tarayıcıyla doğrudan görüldü ·
+<span class="tag tag-est">ESTIMATE</span> açık varsayımlarla hesaplandı ·
+<span class="tag tag-unv">UNVERIFIED</span> ikincil kaynak iddia etti, bağımsız doğrulanamadı ·
+<span class="tag tag-reb">FACT</span> birincil/resmî kaynak ·
+<span class="tag tag-unr">INFERENCE</span> kanıttan çıkarım ·
+<span class="tag tag-est">HYPOTHESIS</span> sınanmamış varsayım
+</p>
+<h3>Kaynak hiyerarşisi</h3>
+<ol class="tight">
+<li><strong>Tier 1</strong> — Resmî KDP/Amazon dokümantasyonu, FCC/NCVEC, ARRL'in FCC veri raporu.</li>
+<li><strong>Tier 2</strong> — Amazon pazar yeri gözlemi (ürün sayfası, BSR, yorum histogramı, yayın tarihi).</li>
+<li><strong>Tier 3</strong> — Birincil sektör verisi.</li>
+<li><strong>Tier 4</strong> — İtibarlı pazar/yayıncılık araştırması.</li>
+<li><strong>Tier 5</strong> — Topluluk tartışmaları. <em>Hiçbir Tier 4–5 malzemesi sert pazar istatistiği gibi sunulmadı.</em></li>
+</ol>
+<h3>Süreç</h3>
+<div class="funnel">13 aday pazar (hızlı kanıt taraması)
+        ↓  8 eleme
+5 finalist (simetrik derinlik: aynı 12 ölçüt, aynı ölçek)
+        ↓
+Standart ağırlıklı puanlama (gerçekçi-varsayılan)
+        ↓
+3 stres testi + 1 bileşik en-kötü senaryo
+        ↓
+Bağımsız çelişmeli inceleme (ayrı, taze ajan — sıralamayı yıkma görevli)
+        ↓
+Puanlama düzeltmesi → nihai sıralama → seri tasarımı</div>
+<h3>Bu turda kasıtlı olarak yapılmayan şey</h3>
+<p>Amazon'un <code>/product-reviews/</code> sayfaları oturum açma istiyor; bu nedenle 1–2 yıldızlı yorum <em>metinlerine</em> sistematik erişilemedi. Bunun yerine <strong>yorum yıldız histogramları</strong> (ürün sayfasında oturumsuz görünür) memnuniyetsizlik ölçüsü olarak kullanıldı. Bu bir sınırlamadır ve §29'da açıkça listelenmiştir. Şikâyet metni uydurulmadı.</p>
+</section>
+
+<section id="s4">
+<h2 class="sect-title"><span class="n">4</span> İlk Fırsat Taraması</h2>
+<p class="lead">Önceden tanımlı bir aday listesi kullanılmadı. Tarama, seri mantığı güçlü olabilecek 13 spesifik <em>ürün fırsatı</em> üzerinde yürüdü; 8'i elendi.</p>
+<div class="tablewrap">
+<table>
+<caption>13 aday — hızlı kanıt taraması (tüm Amazon rakamları <span class="tag tag-obs">OBSERVED</span> 27 Ağustos 2026)</caption>
+<thead><tr><th>Aday ürün fırsatı</th><th>Hızlı kanıt</th><th>Karar</th></tr></thead>
+<tbody>
+<tr><td><strong>Amatör telsiz lisans merdiveni</strong> (Technician → General → Extra)</td><td>ARRL el kitabı <strong>BSR #4.136</strong> (tüm Kitaplar); 730.275 aktif lisans; komşu "telsizi kullanma" segmentinde 2.626 / 1.820 / 1.100 yorumlu bağımsız kitaplar</td><td><strong>FİNALİST</strong></td></tr>
+<tr><td><strong>Hemşirelik doz hesabı</strong></td><td>Kanıtlanmış 2 kitaplık bağımsız seri: 2.034 + 1.400 yorum; lider BSR #41.831; $17,95–$24,80</td><td><strong>FİNALİST</strong></td></tr>
+<tr><td><strong>Satranç gelişim serisi</strong> (puan bandına göre)</td><td>Polgár 1.936 yorum / BSR #19.075 / 1.104 sayfa $15,60; bağımsız seriler mevcut; kurallar değişmez</td><td><strong>FİNALİST</strong></td></tr>
+<tr><td><strong>ASL (Amerikan İşaret Dili)</strong></td><td>Lider 4.553 yorum, BSR #20.026 (Kindle); 2.800 / 1.300 / 1.000 yorumlu diğer başlıklar</td><td><strong>FİNALİST</strong></td></tr>
+<tr><td><strong>Noter + Loan Signing Agent</strong></td><td>Lider 1.516 yorum ama <strong>BSR #425.554</strong>; 50 eyalet katalog yüzeyi; gelir vaadi başlıkları norm</td><td><strong>FİNALİST</strong></td></tr>
+<tr><td>Demans / kıdemli hafıza aktivite kitapları</td><td>10.000+ sonuç; 11.800 / 8.200 / 6.200 / 4.000 yorumlu devler; 16 ve 71 kitaplık replikatör serileri; $9,95–$17,99 emtia fiyatı</td><td>ELENDİ — emtia savaşı + sağlık iddiası riski</td></tr>
+<tr><td>Parkinson / titreme el yazısı çalışma kitabı</td><td>233 sonuç; girenlerin neredeyse tamamı Ara 2025–Tem 2026 ve <strong>0–1 yorum</strong></td><td>ELENDİ — boşluğu herkes buldu, kimse kazanmadı</td></tr>
+<tr><td>Konserve / gıda saklama</td><td>745 sonuç; "BIBLE"/"MASTERY" kalıplı, aynı yazarın aynı gün çıkan birden çok başlığı</td><td>ELENDİ — AI seli + gıda güvenliği sorumluluğu</td></tr>
+<tr><td>Konuşma terapisi / artikülasyon</td><td>531 sonuç ama liderler yalnızca 13–37 yorum</td><td>ELENDİ — talep var, ödeme niyeti yok (materyal SLP'den ücretsiz geliyor)</td></tr>
+<tr><td>Tığ işi ilmek sözlüğü</td><td>11.800 / 4.600 / 2.600 yorumlu devler; fiziksel örnek + fotoğraf üretimi gerekiyor</td><td>ELENDİ — üretim uyumsuzluğu</td></tr>
+<tr><td>Arıcılık</td><td>3.000+ sonuç; 2.600 / 2.500 / 2.500 / 1.800 yorumlu devler; tek-kitap satın alma deseni</td><td>ELENDİ — zayıf seri mantığı</td></tr>
+<tr><td>EMT / NREMT sertifikasyonu</td><td>501 sonuç; gerçek bağımsız traksiyon (197/124/403/556 yorum)</td><td>ELENDİ — tıbbi sorumluluk + merdiven EMT'den sonra çöküyor + NREMT® markası</td></tr>
+<tr><td>Özel pilot FAA bilgi sınavı</td><td>451 sonuç; Gleim/ASA/Jeppesen yazılım paketiyle geliyor; FAA'nın kamu malı yayınları $11–14 taban fiyat kuruyor</td><td>ELENDİ — yerleşik profesyonel yayıncılar + fiyat tabanı</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card blue">
+<p><strong>Taramanın en öğretici bulgusu:</strong> Elenen adayların çoğu "talep yok" diye elenmedi. Demans aktivite kitaplarında talep <em>muazzam</em>; Parkinson el yazısında talep <em>makul</em>; arıcılıkta talep <em>gerçek</em>. Hepsi <strong>kazanılabilirlik</strong> testinde elendi. Bu, brief'in "yüksek talep ≠ yüksek satın alma niyeti" ve "büyük pazar ≠ kazanılabilir pazar" uyarısının pratikteki karşılığıdır.</p>
+</div>
+</section>
+<section id="s5">
+<h2 class="sect-title"><span class="n">5</span> Finalist #1 — Amatör Telsiz Lisans + Kullanım Serisi</h2>
+<p class="lead">Seçilen ürün fırsatı: ABD FCC amatör telsiz lisans merdiveni (Technician → General → Extra) ve bunun etrafındaki "artık telsizi gerçekten kullan" segmenti.</p>
+<div class="card red">
+<p><strong>⚠ OKUMA UYARISI — bu bölüm çelişmeli inceleme ÖNCESİ analizdir.</strong></p>
+<p>Bu aday ilk hesaplamada <strong>7,44 ile birinci</strong> çıkmıştı. Bağımsız çelişmeli inceleme (§19) onu <strong>4,58 ile sonuncu sıraya</strong> düşürdü. Aşağıdaki analiz, hataları da dâhil olmak üzere <em>olduğu gibi</em> bırakılmıştır — çünkü raporun asıl değeri, bir tezin nasıl kurulduğunu <strong>ve nasıl yıkıldığını</strong> birlikte göstermesindedir.</p>
+<p>Bu bölümdeki şu iddialar sonradan çürütülmüştür: "taze havuz bir fırsat penceresidir" (pencere 01.07.2026'da kapandı, 2030'a kadar yenisi yok) · "talep güçlü" (yıllık adreslenebilir havuz ~25–30.000 ve küçülüyor; ARRL'in kendisi ~18.000 satıyor, cironun %54'ü Amazon dışı) · "ölçülebilir kalite açığı" (tek dayanak n=41'de bir puandı) · "uzman gerekmez" (RF maruziyet güvenliği hesabı gerektiriyor) · "$22,99 savunulabilir" (fiyat tabanı fiilen $0). Ayrıntı için <a href="#s19">§19</a> ve <a href="#s27">§27</a>.</p>
+</div>
+
+<h3>A · Talep</h3>
+<p>Bu, beş finalist içinde <strong>en güçlü doğrudan satış hızı kanıtına</strong> sahip olan pazar.</p>
+<ul class="tight">
+<li><span class="tag tag-obs">OBSERVED</span> <strong>ARRL Ham Radio License Manual 6. Baskı</strong> (ASIN 1625952392): <strong>BSR #4.136 — tüm Kitaplar içinde.</strong> Kategorilerinde #1 (Radio Communications, Radio Operation, Mobile &amp; Wireless Telecommunications). Karşılaştırma: satrancın efsanevi lideri Polgár #19.075, ASL lideri #20.026 (Kindle), hemşirelik doz lideri #41.831, noter lideri #425.554.</li>
+<li><span class="tag tag-reb">FACT</span> ARRL'in FCC verisi raporu, <em>"FCC actions through Tuesday, 25-Aug-2026"</em>: Technician 358.483 · General 184.226 · Amateur Extra 157.639 · Advanced 25.789 · Novice 4.138 · <strong>TOPLAM 730.275</strong> aktif ABD lisansı.</li>
+<li><span class="tag tag-obs">OBSERVED</span> Bağımsız bir yayıncı olan Ham Radio Prep'in Technician kitabı, yayından <strong>yalnızca ~2,5 ay sonra</strong> BSR #31.928'e ulaşmış durumda. Bu, kategorinin bağımsız yayıncıya kapalı olmadığının canlı kanıtı.</li>
+</ul>
+<div class="card red">
+<p><strong>Talep lehine değil, aleyhine bir dürüstlük notu:</strong> İkincil bir kaynak Eylül 2025 için ~737.000 lisans bildiriyor <span class="tag tag-unv">UNVERIFIED</span>. Bu doğruysa, Ağustos 2026'daki 730.275 ile birlikte lisanslı nüfus <strong>yatay ya da hafif düşüşte</strong> demektir — "amatör telsiz patlaması" anlatısı bu veriyle desteklenmiyor. Talep puanı bu yüzden 9 değil <strong>8</strong> verildi.</p>
+</div>
+
+<h3>B · Satın alma niyeti</h3>
+<p>"Neden internette aramak yerine bu kitaba para versin?" sorusunun en net cevabı burada:</p>
+<ul class="tight">
+<li>ABD'de yayın yapmak <strong>yasal olarak lisans gerektirir</strong>; lisans, gözetmenli bir sınavla alınır. Bu, isteğe bağlı bir öz-gelişim değil, <strong>kapılı bir sonuç</strong>.</li>
+<li>Alıcı çoğunlukla <em>zaten telsiz satın almış ya da almak üzere</em>; kitap, yapılmış bir donanım yatırımını kullanılabilir kılıyor.</li>
+<li>Sınav tarihi bir <strong>son tarih</strong> yaratır — bu, dönüşümü en çok artıran tek etmendir.</li>
+</ul>
+<p>Puan: <strong>9/10</strong> — beş finalist içinde en yüksek.</p>
+
+<h3>C · Rekabet: stok ve akış</h3>
+<div class="flow">
+<div class="n"><b>686</b>toplam sonuç<br><span class="small">"ham radio license study guide"</span></div>
+<div class="n"><b>216</b>son 90 günde yayımlanan<br><span class="small">= %31,5 akış oranı</span></div>
+<div class="n"><b>41</b>son 30 günde<br><span class="small">yayımlanan</span></div>
+<div class="n"><b>8+</b>yeni Technician başlığı<br><span class="small">Haz–Ağu 2026</span></div>
+</div>
+<p><strong>Bu, kazananın en zayıf yönü ve raporun en dürüst olması gereken yeri.</strong> Soru havuzu 1 Temmuz 2026'da yenilendi ve bu pencere bir sır değil: herkes aynı anda girdi. Ayrıca seri konumu da boş değil — Ham Radio Prep açıkça "Book 1 of 3 · Ham Radio License Package" etiketiyle satıyor, Craig Buck (K4IA) ise 9 kitaplık bir seri işletiyor.</p>
+<div class="tablewrap">
+<table>
+<caption>Doğrudan gözlemlenen başlıca rakipler <span class="tag tag-obs">OBSERVED</span> 27 Ağustos 2026</caption>
+<thead><tr><th>Başlık / Yayıncı</th><th>Tarih</th><th>Sayfa</th><th>Fiyat</th><th>Puan / Yorum</th><th>BSR</th></tr></thead>
+<tbody>
+<tr><td><strong>ARRL Ham Radio License Manual 6. Bs.</strong> (spiral)</td><td>01.06.2026</td><td>256</td><td>$32,95</td><td>4,2★ / 41</td><td><strong>#4.136</strong></td></tr>
+<tr><td>ARRL Ham Radio License Manual 5. Bs. <em>(eski havuz)</em></td><td>16.06.2022</td><td>—</td><td>$32,95</td><td>4,7★ / 2.000</td><td>—</td></tr>
+<tr><td>Ham Radio Prep Technician <em>(Book 1 of 3)</em></td><td>09.06.2026</td><td>340</td><td>$17,03 / K $7,99</td><td>4,8★ / 18</td><td>#31.928</td></tr>
+<tr><td>Morse Code Publishing <em>(Book 1 of 2)</em></td><td>15.09.2024</td><td>266</td><td>$14,99</td><td>4,7★ / 330</td><td>#131.088</td></tr>
+<tr><td>Gordon West Technician 11. Bs. 2026–2030</td><td>15.06.2026</td><td>—</td><td>$32,95</td><td>5,0★ / 7</td><td>—</td></tr>
+<tr><td>ARRL's Tech Q&amp;A 9. Bs.</td><td>01.06.2026</td><td>—</td><td>$14,95</td><td><strong>3,3★</strong> / 5</td><td>—</td></tr>
+<tr><td>ARRL General Class Manual 10. Bs.</td><td>15.05.2023</td><td>—</td><td>$32,95</td><td>4,8★ / 765</td><td>—</td></tr>
+<tr><td>ARRL Extra Class Manual</td><td>02.05.2024</td><td>—</td><td>$28,74</td><td>4,8★ / 352</td><td>—</td></tr>
+</tbody>
+</table>
+</div>
+
+<p class="footnote"><strong>Veri tutarsızlığı kaydı:</strong> ARRL 6. Baskı için Amazon'un arama listesi <em>30.06.2026</em>, ürün sayfasının "Product details" bölümü ise <em>01.06.2026</em> gösteriyor. Tabloda ürün sayfası değeri kullanıldı. Amazon'un kendi meta verisi kendi içinde çelişebiliyor — bu, sonuç sayıları için olduğu gibi tarihler için de dikkat gerektirdiğinin somut bir örneği.</p>
+<h4>Rakip kalite açığı — gözlemlenebilir, uydurulmamış</h4>
+<ul class="tight">
+<li><span class="tag tag-obs">OBSERVED</span> <strong>Kategori liderinin memnuniyet açığı ölçülebilir.</strong> ARRL 6. Baskı yorum histogramı: 5★ %63 · 4★ %13 · 3★ %11 · 2★ %8 · 1★ %5 — yani <strong>puanların %24'ü 3 yıldız ve altında.</strong> Aynı kategoride bağımsız rakipler 4,7–4,8★ alıyor. Resmî kurumun ürünü, bağımsızların altında puanlanıyor.</li>
+<li><span class="tag tag-obs">OBSERVED</span> ARRL'in kendi hızlı-hazırlık ürünü <em>Tech Q&amp;A 9. Baskı</em> <strong>3,3★</strong>.</li>
+<li><span class="tag tag-obs">OBSERVED</span> <strong>Şu anda satılan lider bağımsız kitap süresi dolmuş havuza dayanıyor.</strong> Morse Code Publishing'in 330 yorumlu kitabı 2022–2026 havuzuna göre yazılmış; o havuz 1 Temmuz 2026'da geçersiz oldu. Bugün satın alan aday, güncelliğini yitirmiş soru setiyle çalışıyor.</li>
+<li><span class="tag tag-obs">OBSERVED</span> Aynı kitabın editoryal sayfası doğrulanamaz persona referanslarıyla dolu ("Mike R. – New Technician &amp; Emergency Prepper", "Linda P. – Extra-Class Elmer", "Derrick S. – Volunteer Firefighter", "Emily K. – Maker-Space Tinkerer"); en üstteki müşteri yorumu da AI kalıbında ("Here's a review highlighting its key features and benefits: Content Overview / Structured Learning:") ve yorumcu adı <em>Fred Bloggs</em> (İngilizce'de "John Doe" muadili bir yer tutucu isim).</li>
+</ul>
+
+<div class="card green">
+<h4>Bu araştırmanın en değerli tek bulgusu: soru havuzları <em>yaşayan belgeler</em> ve rakipler bayatlıyor <span class="tag tag-reb">FACT</span></h4>
+<p>NCVEC'in kendi sayfalarından doğrudan doğrulandı. İki ayrı havuzda, sürekli errata yayımlanıyor:</p>
+<div class="tablewrap">
+<table>
+<caption>NCVEC errata geçmişi — birincil kaynak, ncvec.org</caption>
+<thead><tr><th>Havuz</th><th>Errata</th><th>Tarih</th><th>Değişiklik</th></tr></thead>
+<tbody>
+<tr><td rowspan="2"><strong>Technician 2026–2030</strong></td><td>İlk yayın</td><td>18.12.2025</td><td>—</td></tr>
+<tr><td>Errata</td><td><strong>19.02.2026</strong></td><td><strong>4 soru değiştirildi:</strong> <code>T1C01</code>, <code>T5A05</code>, <code>T7A09</code>, <code>T0A10</code></td></tr>
+<tr><td rowspan="3"><strong>General 2023–2027</strong></td><td>4. Errata</td><td>06.03.2024</td><td><code>G1E09</code> kullanımdan çekildi</td></tr>
+<tr><td>5. Errata</td><td>08.11.2024</td><td><code>G8C01</code> kullanımdan çekildi</td></tr>
+<tr><td><strong>6. Errata</strong></td><td><strong>04.02.2026</strong></td><td><code>G1A04</code> ve <code>G1C09</code> kullanımdan çekildi</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>General havuzu için bu, altıncı errata'dır.</strong> Yani havuz dört yıllık ömrü boyunca en az altı kez revize edilmiş; Şubat 2026 itibarıyla en az dört soru (<code>G1E09</code>, <code>G8C01</code>, <code>G1A04</code>, <code>G1C09</code>) sınavdan çekilmiştir.</p>
+<p><strong>Ticari sonuç, kategori liderini doğrudan ilgilendiriyor:</strong> ARRL General Class License Manual <strong>10. Baskı, 15 Mayıs 2023</strong> tarihli; 304 sayfa, $32,95, 4,8★/765 yorum, BSR #23.394 <span class="tag tag-obs">OBSERVED</span>. Daha yeni bir baskı görünmüyor — yani baskı tarihi 4., 5. ve 6. errata'dan <em>önce</em>.</p>
+<p class="footnote"><strong>Dikkatli ifade (aşırı iddiadan kaçınma):</strong> Amazon'un "publication date" alanı baskının ilk çıkış tarihini gösterir; yayıncı, ASIN veya baskı numarasını değiştirmeden sonraki matbaa turlarında düzeltme yapmış olabilir. Bu nedenle "bugün satın alınan kopya çekilmiş soruları içeriyor" <strong>iddia edilmiyor</strong>; bu <span class="tag tag-unv">UNVERIFIED</span> kalıyor ve §28'de <em>satın alıp kontrol etme</em> eylemi olarak listeleniyor. İddia edilen şey daha dar ve kanıtlı: <em>havuz altı kez değişti, lider ürünün baskı tarihi bu değişikliklerin öncesinde, ve bu mekanik olarak denetlenebilir.</em></p>
+<p>Bu, öznel bir "daha iyi yazarız" iddiası değil. <strong>İkili, makineyle tespit edilebilir bir kusurdur</strong> — ve evin <em>doğrulama kapısı</em> metodolojisinin tam olarak yakalamak için tasarlandığı şeydir. Rakip ürünün kusuru iddia edilmez, <em>gösterilir</em>.</p>
+<p class="footnote"><strong>Ama madalyonun diğer yüzü:</strong> errata sürekli geliyorsa <em>bizim</em> kitabımız da bayatlar. Bu bulgu farklılaşma lehine bir silah <strong>ve aynı zamanda</strong> sürekli bir bakım yükümlülüğüdür — bu yüzden Evergreen puanı 5'te tutuldu, yükseltilmedi. Dört yılda bir yeniden yazım <em>artı</em> yılda bir-iki errata güncellemesi gerçekçi bakım profilidir.</p>
+<p class="footnote"><strong>Ayrıca doğrudan doğrulandı:</strong> NCVEC sayfası havuzu açık ifadeyle <em>"hereby releases into public domain"</em> diyerek yayımlıyor — bu, raporun "IP riski yok / uzman kapısı yok" tezinin birincil kaynak dayanağıdır.</p>
+</div>
+<h4>Yapısal bulgu: sosyal kanıt her havuz döngüsünde sıfırlanıyor</h4>
+<p><span class="tag tag-obs">OBSERVED</span> ARRL 5. Baskı 2.000 yoruma sahip; 6. Baskı 41. Yorumlar <strong>baskılar arasında taşınmıyor.</strong> Bu, yerleşik oyuncunun en büyük avantajını dört yılda bir sıfırlayan yapısal bir olgudur <span class="tag tag-unr">INFERENCE</span>. Yeni giren için nadir bir pencere — ama §10'da gösterildiği gibi bu pencereyi 8+ rakip aynı anda fark etti.</p>
+
+<h4>Yerleşik oyuncu havuz sıfırlamasına aktif olarak karşılık veriyor <span class="tag tag-obs">OBSERVED</span></h4>
+<p>ARRL yalnızca yeni baskılar çıkarmakla kalmadı; <strong>3 Ağustos 2026</strong>'da iki yeni paket ürün listeledi: <em>"ARRL License Manual Bundle for Ham Radio"</em> ve <em>"ARRL Technician Class License Bundle for Ham Radio"</em>. Ayrıca kendi marka terimlerinde Sponsored Products reklamı veriyor. Bu, yerleşik oyuncunun pencereyi fark ettiğini ve fiyat/paket tarafında konum güçlendirdiğini gösteriyor — yeni giren için rekabet baskısını artıran bir işaret.</p>
+<h4>Merdivenin üst basamakları çok daha ince</h4>
+<div class="flow">
+<div class="n"><b>571</b>Technician sorgusu<br><span class="small">sonuç sayısı</span></div>
+<div class="n"><b>515</b>General sorgusu<br><span class="small">sonuç sayısı</span></div>
+<div class="n"><b>41</b>Amateur Extra sorgusu<br><span class="small">sonuç sayısı</span></div>
+</div>
+<p>Rekabet merdiveni tırmandıkça <strong>dramatik biçimde inceliyor</strong>, müşterinin bağlılığı ve ödeme isteği ise artıyor. Bu, serinin sonraki kitaplarının ilk kitaptan <em>daha kolay</em> bir rekabet ortamına girdiği anlamına gelir — tek kitaplık bir üründe imkânsız olan bir avantaj.</p>
+
+<h3>D · Seri genişleme testi</h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Test</th><th>Sonuç</th></tr></thead>
+<tbody>
+<tr><td>Aynı müşteri mi?</td><td><strong>Evet</strong> — Technician sahibi, General adayının tanımı gereği ta kendisidir.</td></tr>
+<tr><td>Sıra dışarıdan mı dayatılıyor?</td><td><strong>Evet</strong> — ABD düzenlemesi Technician → General → Extra sırasını zorunlu kılar. Sıra uydurulmuş değil, yasal.</td></tr>
+<tr><td>Ayrı müşteri ihtiyacı mı?</td><td><strong>Evet</strong> — "sınavı geç" ≠ "telsizi programla ve kullan" ≠ "HF ayrıcalıkları için yükselt".</td></tr>
+<tr><td>İkinci kitabı almak için gerçek sebep?</td><td><strong>Kanıtlı.</strong> Komşu "telsizi kullanma" segmentinde bağımsız yayıncılar 2.626 / 1.820 / 1.100 / 619 / 447 yorum toplamış. Aynı alıcı ikinci kitabı fiilen satın alıyor.</td></tr>
+<tr><td>Aynı anahtar kelime ekosistemi?</td><td><strong>Evet</strong> — "ham radio", "amateur radio", "FCC exam", "technician class" terimleri üç kitapta da geçerli.</td></tr>
+<tr><td>Araştırma yeniden kullanılıyor mu?</td><td><strong>Evet</strong> — düzenleme, band planı, RF güvenliği ve anten temelleri üç kitapta ortak.</td></tr>
+</tbody>
+</table>
+</div>
+<p><span class="tag tag-obs">OBSERVED</span> Komşu segment kanıtı: Eliot J. Hawke <em>"The Baofeng Radio Bible"</em> 2.626 yorum / $23,95 (#1 Best Seller rozetli) · NC Scout <em>"The Guerrilla's Guide To The Baofeng Radio"</em> 1.820 / $19,99 · Jefferson K. Barret 1.100 / $21,90 · Brian Schell <em>CHIRP programlama</em> 619 / $9,99 · Bob C. Wind 447 · <em>Ham Radio Jargon and Q-Codes</em> 257 / $2,99. K4IA'nın 9 kitaplık serisindeki <em>"Prepper Communications"</em> 251 yorum.</p>
+<div class="card red">
+<h4>Kitap 2'nin segmenti klon başlık seliyle dolu <span class="tag tag-obs">OBSERVED</span></h4>
+<p>Tek bir sorgu (<code>baofeng radio bible</code>, 313 sonuç) neredeyse aynı başlığı taşıyan, farklı yazarlara ait bir yığın ürün döndürüyor:</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Başlık deseni</th><th>Yazar / yayıncı</th><th>Tarih</th><th>Yorum</th></tr></thead>
+<tbody>
+<tr><td>The Baofeng Radio Bible</td><td>Eliot J. Hawke</td><td>25.08.2024</td><td><strong>2.626</strong></td></tr>
+<tr><td>The Guerrilla's Guide To The Baofeng Radio</td><td>NC Scout</td><td>01.12.2022</td><td><strong>1.820</strong></td></tr>
+<tr><td>All-In-One Baofeng Radio Preparedness</td><td>Jefferson K. Barret</td><td>14.11.2024</td><td><strong>1.100</strong></td></tr>
+<tr><td>The Ultimate Baofeng Radio Bible…</td><td>Joseph Maxwell / Chameleon Publications</td><td>—</td><td>248</td></tr>
+<tr><td>The Complete Baofeng Radio Bible…</td><td>Eliab Barnet / EchoWords Publishing</td><td>16.02.2026</td><td>221</td></tr>
+<tr><td>Baofeng &amp; Quansheng Radio Bible</td><td>Barry Harper</td><td>07.05.2024</td><td>75</td></tr>
+<tr><td>The Baofeng Radio Bible: 15 in 1</td><td>Thomas Martin</td><td>09.11.2023</td><td>41</td></tr>
+<tr><td>The Baofeng Radio Bible: The Ultimate…</td><td>Michael Goggans</td><td>23.05.2026</td><td>9</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Dürüst okuma iki yönlü:</strong> Klonlama gerçek ve yoğun — ama <em>klonlar kazanmıyor.</em> 2026 girişleri 9 ve 221 yorumda; kütle hâlâ 2022–2024 tarihli özgün başlıklarda (2.626 / 1.820 / 1.100). Yani segmentin <strong>talebi</strong> kanıtlı, <strong>ama giriş penceresi Kitap 1'inkinden daha dar değil, daha da dar.</strong> Bu, Kitap 2'yi "kolay ikinci kitap" olarak görmenin yanlış olduğunu gösteriyor; farklılaşma (marka-bağımsızlık, gerçek saha testi, sorun giderme akış şemaları) Kitap 1'dekinden daha az değil <em>daha çok</em> gerekiyor.</p>
+</div>
+<div class="card red">
+<p><strong>Komşu segmentte doğrulanan bir karşı-bulgu:</strong> <span class="tag tag-obs">OBSERVED</span> Kurumsal yerleşik oyuncu <em>bu segmente zaten girmiş durumda</em> — ARRL Inc. ve John Leonardelli (VE3IP), <em>"Using the Baofeng® Radio – Your Guide to Handheld Ham Radio"</em> (ASIN 1625952244), $19,95, 4,4★, 34 yorum. Yani Kitap 2'nin alanı boş değil ve rakip, Kitap 1'deki aynı kurumsal marka. Olumlu okuma: kurum bile bu segmentin gerçek olduğunu doğrulamış ve yalnızca 34 yorumda kalmış. Olumsuz okuma: kuruma karşı iki cephede birden savaşmak gerekecek. Ayrıca aynı sayfada 21 Ağustos 2026 tarihli yeni bir CHIRP rehberi görüldü — bu segmentte de akış canlı.</p>
+</div>
+<p>Seri potansiyeli puanı: <strong>9/10</strong> — beş finalist içinde en yüksek, çünkü merdiven <em>dışarıdan zorunlu</em>, ikinci kitap talebi ise <em>gözlemlenmiş</em>.</p>
+
+<h3>E · Amazon Ads uygunluğu</h3>
+<ul class="tight">
+<li><span class="tag tag-obs">OBSERVED</span> Kategoride aktif Sponsored Products reklamı var — <strong>ARRL'in kendisi reklam veriyor.</strong></li>
+<li><span class="tag tag-obs">OBSERVED</span> <strong>Kademeler arası hedefleme zaten uygulanıyor:</strong> "general class" sorgusunda ARRL'in <em>Technician</em> el kitabı sponsorlu olarak çıkıyor.</li>
+<li>Anahtar kelimeler açık sınav niyeti taşıyor: <em>"technician class license study guide 2026-2030"</em>, <em>"ham radio license manual"</em>, <em>"amateur radio exam prep"</em>. Bunlar gezinme değil, hazırlık sorgularıdır.</li>
+<li>Ürün hedefleme için net ASIN kümesi var (ARRL, Gordon West, Ham Radio Prep, K4IA).</li>
+<li>Kategori tutarlı: Radio Communications / Radio Operation / Study &amp; Test-Taking Skills.</li>
+</ul>
+<p class="footnote">CPC gözlemlenmedi ve <strong>uydurulmadı</strong>. Reklam ekonomisi §11 ve §24'te senaryo tablosu olarak sunuluyor.</p>
+
+<h3>F · Birim ekonomisi</h3>
+<p>Resmî KDP formülüyle (60% telif, ABD, siyah mürekkep, normal trim ≤6,12×9″: $1,00 + sayfa×$0,012):</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Kitap</th><th>Sayfa</th><th>Liste fiyatı</th><th>Baskı maliyeti</th><th>Birim telif</th></tr></thead>
+<tbody>
+<tr><td>Kitap 1 — Technician</td><td>300</td><td>$22,99</td><td>$4,60</td><td><strong>$9,19</strong></td></tr>
+<tr><td>Kitap 2 — Telsizi kullanma</td><td>220</td><td>$21,99</td><td>$3,64</td><td><strong>$9,55</strong></td></tr>
+<tr><td>Kitap 3 — General</td><td>340</td><td>$24,99</td><td>$5,08</td><td><strong>$9,91</strong></td></tr>
+</tbody>
+</table>
+</div>
+<p>Fiyat bandı gözlemle destekleniyor: piyasada $14,99 (Morse Code) – $32,95 (ARRL/Gordon West) aralığı fiilen çalışıyor. ARRL'in $32,95'i <strong>yukarıdan bir çıpa</strong> kuruyor; $22,99 agresif değil, ortanın altı bir konum.</p>
+
+<h3>G · Evergreen / eskime — kazananın en net zayıflığı</h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Ufuk</th><th>Durum</th></tr></thead>
+<tbody>
+<tr><td>6 ay</td><td>Stabil. Technician havuzu 2030'a kadar geçerli.</td></tr>
+<tr><td>12 ay</td><td><strong>Kırılma:</strong> General havuzu 30.06.2027'de doluyor → Kitap 3'ün yeniden yazımı gerekir.</td></tr>
+<tr><td>24 ay</td><td>Extra havuzu 30.06.2028'de doluyor (katalog genişlemesi planlanırsa).</td></tr>
+<tr><td>36 ay</td><td>Technician hâlâ geçerli (2030'a kadar). Kitap 1 dört yıl boyunca dokunulmadan durabilir.</td></tr>
+</tbody>
+</table>
+</div>
+<p>Bakım yükü <strong>öngörülebilir ve takvimli</strong> — sürpriz değil. Ama gerçek: Kitap 3, yayımlandıktan sonra yaklaşık bir yıl içinde yeniden yazılmalı. Evergreen puanı bu yüzden yalnızca <strong>5/10</strong>.</p>
+
+<h3>H · AI ikame riski</h3>
+<p>Bu pazarın en rahatsız edici gerçeği: <strong>soru havuzu kamu malı olduğu için AI yayıncısı için en kolay hedeflerden biri.</strong> Haz–Ağu 2026 arasındaki 8+ yeni giriş bunun kanıtı. Hendek, içeriğin <em>gizliliği</em> değil; açıklama kalitesi, doğrulanmış diyagramlar ve marka birikimi olabilir. AI direnci puanı düşük: <strong>4/10</strong>.</p>
+
+<h3>I · Üretim fizibilitesi ve uzman bağımlılığı</h3>
+<p><strong>Bu, kazananın belirleyici avantajıdır.</strong> NCVEC soru havuzları kamu malıdır <strong>ve doğru cevaplar resmî olarak yayımlanır.</strong> Yani:</p>
+<ul class="tight">
+<li>Doğrulama <strong>mekaniktir</strong>: her sorunun doğru şıkkı birincil kaynaktan makineyle karşılaştırılabilir — tam olarak evin mevcut "doğrulama kapısı" metodolojisinin yapmak için tasarlandığı iş.</li>
+<li><strong>Lisanslı uzman kapısı yok.</strong> Sigorta projesini fiilen durduran darboğaz (SME tedarik ilişkisi kurulamaması) burada mevcut değil.</li>
+<li>Görsel ihtiyaç: siyah-beyaz şematik, band planı ve anten diyagramları — fotoğraf yok, mevcut deterministik render hattına uygun.</li>
+</ul>
+<p class="footnote"><strong>Dürüst kayıt:</strong> "Uzman gerekmez" iddiası <em>soru–cevap doğruluğu</em> için geçerlidir. Açıklama metinleri (RF maruziyet güvenliği, düzenleme yorumu) hâlâ teknik doğruluk gerektirir; bu bir SME sözleşmesi değil, ciddi bir editoryal doğrulama yükümlülüğüdür.</p>
+
+<h3>J · IP / politika riski</h3>
+<ul class="tight">
+<li>Soru havuzu: <strong>kamu malı</strong> — telif riski yok.</li>
+<li><strong>"ARRL" tescilli bir markadır</strong>; başlıkta, seri adında veya kapakta kullanılamaz. Aynı şekilde "Baofeng" da tescillidir — Kitap 2 marka-bağımsız konumlanmalıdır.</li>
+<li><strong>Kitap 2 için gerçek risk düzenleyici değil, marka riskidir</strong> — ve bu, bir doğrulama turunda <em>düzeltilmiş</em> bir bulgudur. İlk taramada, komşu segmentin baskın donanım markasına yönelik yakın tarihli bir FCC yaptırımı olduğu izlenimi doğmuştu. Doğrudan doğrulama bunu çürüttü: ilgili FCC işlemi <span class="tag tag-reb">FACT</span> <strong>2 Ağustos 2018</strong> tarihlidir (ARRL duyurusu; Amcrest Industries, LLC hakkında <em>Citation and Order</em> DA-18-801) ve <strong>hiçbir para cezası kesilmemiştir</strong>. Ekim 2025'te kabul edilip 26.12.2025'te yürürlüğe giren FCC ekipman yetkilendirme kuralları gerçektir, ancak bunlar ulusal güvenlik "Covered List" düzenlemeleridir ve amatör telsizle ya da bu markayla ilgili değildir. <strong>"Marka yasaklanacak" tezi kanıtsızdır ve bu rapordan çıkarılmıştır.</strong></li>
+<li><strong>Yerine geçen, çok daha sağlam gerekçe:</strong> <span class="tag tag-reb">FACT</span> KDP Metadata Guidelines, başlık alanında yasaklananlar arasında <em>"Unauthorized reference to a trademarked term"</em> ifadesini açıkça sayar ve alt başlığın <em>"başlıkla aynı kurallara tabi"</em> olduğunu belirtir. Söz konusu donanım markası tescillidir. Dolayısıyla Kitap 2'nin marka-bağımsız yazılması bir tahmine değil, <strong>yayımlanmış platform politikasına</strong> dayanan zorunlu bir karardır.</li>
+</ul>
+
+<h3>K · İnşa et / etme testi</h3>
+<div class="two-col">
+<div class="card green"><h4>Neden inşa etmeliyiz</h4>
+<ul class="tight"><li>Beş finalist içinde en yüksek doğrudan satış hızı kanıtı (BSR #4.136).</li><li>Merdiven yasal olarak dayatılmış — seri mantığı uydurma değil.</li><li>İkinci kitap talebi gözlemlenmiş (2.626 yorumlu komşu ürün).</li><li>Uzman kapısı yok; doğrulama mekanik.</li><li>Kategori lideri 4,2★ — ölçülebilir memnuniyet açığı.</li><li>Üst basamaklarda rekabet çok daha ince.</li></ul></div>
+<div class="card red"><h4>Neden inşa etmemeliyiz</h4>
+<ul class="tight"><li>Akış çok yüksek: 90 günde 216 yeni başlık (%31,5).</li><li>ARRL kurumsal bir yerleşik: #1 kategori konumları, spiral cilt, çevrimiçi kaynak paketi.</li><li>Seri konumu zaten iki rakip tarafından tutuluyor (Ham Radio Prep 3 kitap, K4IA 9 kitap).</li><li>Havuz kamu malı → AI seli için ideal hedef.</li><li>Kitap 3 bir yıl içinde yeniden yazım gerektirecek.</li><li>Lisanslı nüfus yatay/hafif düşüşte olabilir.</li></ul></div>
+</div>
+<h4>Başarı için neyin doğru olması gerekir?</h4>
+<ol class="tight">
+<li>Ürünün, 8+ yeni rakipten <strong>gözle görülür biçimde</strong> ayrışması (doğrulanmış diyagram kalitesi + açıklama derinliği + gerçek yazar kimliği).</li>
+<li>Kitap 1'in ilk 90 günde en az bir avuç doğrulanmış yorum toplayarak organik görünürlük kazanması.</li>
+<li>Kitap 2'nin marka-bağımsız yazılıp yine de "telsizi kullanma" aramalarını yakalayabilmesi.</li>
+</ol>
+<h4>Bu fırsatın yanlış olduğunu ne kanıtlar? <span class="small">(zorunlu falsifikasyon testi)</span></h4>
+<ul class="tight">
+<li>Haz–Ağu 2026'da giren 8+ yeni Technician başlığından <strong>hiçbiri</strong> 6 ay içinde anlamlı yorum/BSR kazanamazsa → pencere zaten kapanmış demektir.</li>
+<li>ARRL 6. Baskı'nın puanı 4,6★+ seviyesine çıkarsa → kalite açığı iddiası çöker.</li>
+<li>ARRL/FCC lisans sayımı 2027'de belirgin düşerse → talep tezi çöker.</li>
+<li>Ham Radio Prep'in "Book 1 of 3" serisi 12 ay içinde her üç kitapta da 500+ yoruma ulaşırsa → seri konumu kapanmış demektir.</li>
+</ul>
+</section>
+<section id="s6">
+<h2 class="sect-title"><span class="n">6</span> Finalist #2 — Hemşirelik Doz Hesabı Serisi</h2>
+<p class="lead">Seçilen ürün fırsatı: hemşirelik öğrencileri için ilaç doz hesabı çalışma kitabı ve devamı (farmakoloji → NCLEX matematiği).</p>
+
+<h3>A · Talep</h3>
+<ul class="tight">
+<li><span class="tag tag-obs">OBSERVED</span> Chase Hassen &amp; Bradley J. Wojcik, <em>Dosage Calculations for Nursing Students</em> (ASIN 1096128748), Mayıs 2019, 219 sayfa, $24,80: <strong>2.034 yorum / 4,5★ / BSR #41.831</strong>; #25 Nursing Reviews &amp; Study Guides.</li>
+<li><span class="tag tag-obs">OBSERVED</span> Aynı serinin 2. kitabı <em>Nursing Dosage Calculation Workbook</em> $17,95 — <strong>1.400 yorum / 4,6★</strong>.</li>
+<li><span class="tag tag-obs">OBSERVED</span> Kaplan Nursing'in kendi doz hesabı kitabı 216 yorum / $19,32.</li>
+</ul>
+<p><strong>Bu, brief'in aradığı "kanıtlanmış 2 kitaplık seri"nin canlı örneği:</strong> aynı yayıncı, aynı müşteri, iki kitap, toplam 3.400+ yorum. Seri modelinin bu pazarda <em>çalıştığı</em> kanıtlı. Sorun şu ki bu konumu <em>başkası</em> tutuyor.</p>
+
+<h3>B · Satın alma niyeti</h3>
+<p>Güçlü ve son tarihli: hemşirelik öğrencileri doz hesabı yeterlilik sınavlarını geçmek zorundadır; kalmak programda ilerlemeyi durdurur. Ücretsiz internet kaynağı yerine kitaba para verilmesinin sebebi, <em>yapılandırılmış tekrar pratiği</em> ve fiziksel çalışma formatı. Puan: <strong>8/10</strong>.</p>
+
+<h3>C · Rekabet: stok ve akış</h3>
+<div class="flow">
+<div class="n"><b>961</b>toplam sonuç<br><span class="small">"nursing dosage calculation"</span></div>
+<div class="n"><b>281</b>son 90 günde<br><span class="small">= %29,2 akış oranı</span></div>
+<div class="n"><b>3.400+</b>lider serinin<br><span class="small">toplam yorumu</span></div>
+</div>
+<p><span class="tag tag-obs">OBSERVED</span> Çok kitaplı replikatör seriler yoğun: <em>"Nursing School Essentials"</em> (19 kitap), <em>"NCLEX Nursing…"</em> (23 kitap), <em>"Starr Clinical Press Nursing"</em> (8 kitap). 2026 girişleri hızlı: Anthony Miles (29.06.2026, 19 yorum), Ethan Prescott (11.06.2026, $43,84), Norlan March (21.04.2026).</p>
+<h4>Rakip kalite açığı — <strong>beş finalist içinde en zayıf</strong></h4>
+<p>Lider 4,5★ ve yazarları <strong>gerçek, adı ve unvanı doğrulanabilir</strong> kişiler: bir hemşire ve emekli bir eczacı. Sistematik bir kusur gözlemlenemedi. Uydurulmuş bir açık iddia edilmiyor. Puan: <strong>5/10</strong>.</p>
+
+<h3>D · Seri genişleme testi</h3>
+<p>Kitap 1 doz hesabı → Kitap 2 farmakoloji → Kitap 3 NCLEX sınav matematiği. Aynı müşteri, aynı anahtar kelime ailesi, gerçek ilerleme. <strong>Ama:</strong> her basamak bir öncekinden <em>daha kalabalık</em> bir pazara giriyor (NCLEX, Kaplan/Saunders/UWorld'ün kurumsal alanı). Merdiven yukarı çıktıkça zorlaşıyor — kazananın tam tersi. Puan: <strong>7/10</strong>.</p>
+
+<h3>E · Amazon Ads uygunluğu</h3>
+<p>Yüksek niyetli anahtar kelimeler ("dosage calculation practice", "nursing math"), net rakip ASIN kümesi, tutarlı kategori. Öğrenci alıcı fiyat duyarlılığı düşük. Puan: <strong>7/10</strong>.</p>
+
+<h3>F · Birim ekonomisi — <strong>beş finalist içinde en iyisi</strong></h3>
+<p>Büyük trim (8,5×11″) gerekli: $1,00 + sayfa×$0,017. 220 sayfa, $24,80 → baskı $4,74 → <strong>birim telif $10,14</strong>. Gözlemlenen bir rakip $43,84'e kadar çıkabiliyor. Puan: <strong>9/10</strong>.</p>
+
+<h3>G · Evergreen</h3>
+<p>Matematik sabit; ilaç adları ve protokoller yavaş değişir. 6/12/24 ay stabil; 36 ayda kısmi içerik tazeleme. Puan: <strong>7/10</strong>.</p>
+
+<h3>H · AI ikame riski</h3>
+<p>AI, matematik alıştırması üretebilir. Hatalar tehlikelidir ama <strong>satın alma anında alıcıya görünmez</strong> — bu, kalite hendeğini pazarlama açısından zayıflatır. Puan: <strong>5/10</strong>.</p>
+
+<h3>I · Üretim fizibilitesi ve uzman bağımlılığı</h3>
+<p>Dizgi kolay; içerik doğrulaması değil. Klinik olarak doğru çalışılmış örnekler gerekir. Puan: <strong>5/10</strong>.</p>
+
+<h3>J · IP / politika riski — <strong>beş finalist içinde en yüksek</strong></h3>
+<p>Bir doz hesabı hatası hasta zararına yol açabilir. Kategori normu, <strong>adı ve klinik unvanı açık yazarlıktır.</strong> Bu, lisanslı bir klinisyen inceleyici gerektirir — yani <em>sigorta projesini durduran SME darboğazının aynısı.</em> Risk puanı: <strong>3/10</strong>.</p>
+
+<h3>K · İnşa et / etme testi</h3>
+<div class="two-col">
+<div class="card green"><h4>Neden inşa etmeliyiz</h4><ul class="tight"><li>En iyi birim ekonomisi ($10,14).</li><li>Seri modelinin çalıştığı kanıtlı (3.400+ yorum, 2 kitap).</li><li>Güçlü, son tarihli satın alma niyeti.</li><li>Sabit, yavaş eskiyen içerik.</li></ul></div>
+<div class="card red"><h4>Neden inşa etmemeliyiz</h4><ul class="tight"><li>Gözlemlenebilir kalite açığı yok — lider iyi ve güvenilir.</li><li>Lisanslı klinisyen inceleyici zorunlu; bu darboğaz operasyonu daha önce durdurdu.</li><li>Merdiven yukarı çıktıkça rekabet ağırlaşıyor.</li><li>Hasta güvenliği sorumluluğu.</li></ul></div>
+</div>
+<h4>Bu fırsatın yanlış olduğunu ne kanıtlar?</h4>
+<ul class="tight"><li>Klinisyen inceleyici 60 gün içinde makul bir ücretle sözleşmelenebilirse → Risk puanı yükselir ve bu aday yeniden yarışır.</li><li>Lider serinin puanı 4,2★ altına düşerse → kalite açığı açılır.</li></ul>
+</section>
+
+<section id="s7">
+<h2 class="sect-title"><span class="n">7</span> Finalist #3 — Satranç Gelişim Serisi (motorla doğrulanmış)</h2>
+<p class="lead">Seçilen ürün fırsatı: puan bandına göre kademelenmiş, her pozisyonu satranç motoruyla doğrulanmış taktik/final çalışma kitapları.</p>
+
+<h3>A · Talep</h3>
+<ul class="tight">
+<li><span class="tag tag-obs">OBSERVED</span> Polgár, <em>Chess: 5334 Problems</em> (1579125549): 1.104 sayfa, $15,60, <strong>1.936 yorum / 4,7★ / BSR #19.075</strong> (#9 Chess).</li>
+<li><span class="tag tag-obs">OBSERVED</span> Bobby Fischer Teaches Chess 10.400 yorum; GothamChess <em>How to Win at Chess</em> 3.700; Silman 2.300; Capablanca 2.100.</li>
+<li><span class="tag tag-obs">OBSERVED</span> <strong>Ama başlangıç seviyesi bulmaca çalışma kitabı alt segmenti çok daha zayıf:</strong> <em>Chess Puzzles &amp; Tactics Blueprint</em> (Checkmate Labs, Eki 2025, 273 sf, $26,97) BSR #89.245 / 55 yorum; <em>500 Chess Puzzles Mate in 1</em> (52 sf, $9,99, 2021) BSR <strong>#546.576</strong> / 126 yorum.</li>
+</ul>
+<p>Büyük yorum sayıları <em>öğretici</em> klasiklerde; bizim gireceğimiz <em>çalışma kitabı</em> segmentinde satış hızı belirgin biçimde düşük. Puan: <strong>6/10</strong>.</p>
+
+<h3>B · Satın alma niyeti — <strong>beş finalist içinde en zayıf</strong></h3>
+<p>Sınav yok, son tarih yok, yasal zorunluluk yok. Dahası <strong>ücretsiz alternatif fiilen daha iyidir</strong>: Lichess ve Chess.com sonsuz, kişiselleştirilmiş, anında geri bildirimli bulmaca sunar. Basılı kitabın savunması yalnızca "ekransız çalışma" ve "yapılandırılmış ilerleme". Puan: <strong>5/10</strong>.</p>
+
+<h3>C · Rekabet: stok ve akış</h3>
+<div class="flow">
+<div class="n"><b>2.000+</b>toplam sonuç<br><span class="small">(tavan değeri, kesin değil)</span></div>
+<div class="n"><b>849</b>son 90 günde<br><span class="small">≈ %42 akış oranı</span></div>
+<div class="n"><b>$15,60</b>1.104 sayfa için<br><span class="small">Polgár değer çıpası</span></div>
+</div>
+<p><strong>Polgár çıpası ezicidir:</strong> 5.334 problem, 1.104 sayfa, $15,60. Yeni bir çalışma kitabının sayfa başına değer algısında bunu yenmesi neredeyse imkânsız. Geleneksel yayıncılar da aktif (New in Chess, Batsford, Everyman; <em>1001 Chess Endgame Exercises</em> Şub 2027, <em>Chess Endgames For Dummies</em> Kas 2026).</p>
+<h4>Rakip kalite açığı</h4>
+<p><span class="tag tag-obs">OBSERVED</span> Somut bir üretim kusuru gözlendi: bir video yorumu, satın alınan kitabın içine <em>alakasız başka bir kitabın</em> ("Art of Mewing") fiziksel olarak ciltlendiğini bildiriyor. <span class="tag tag-unv">UNVERIFIED</span> AI üretimi satranç kitaplarında yasadışı pozisyon / yanlış çözüm sorunu yaygın olarak tartışılıyor, ancak <strong>bu oturumda doğrudan doğrulanamadı</strong> — bu yüzden kalite açığı 6/10'da tutuldu, daha yükseğe çıkarılmadı.</p>
+
+<h3>D · Seri genişleme testi</h3>
+<p>Kitap 1 taktikler (0–1000) → Kitap 2 finaller → Kitap 3 strateji/açılış prensipleri. Aynı müşteri, aynı ekosistem. <strong>Ama merdiven dışarıdan dayatılmıyor</strong>, kendi kendine ilan edilmiş; üstelik alıcı üç kitap yerine tek bir Polgár cildini alabilir. Puan: <strong>7/10</strong>.</p>
+
+<h3>E · Amazon Ads uygunluğu</h3>
+<p>Anahtar kelimeler var, ASIN'ler hedeflenebilir, kategori tutarlı — ama arama niyeti gezinmeye yakın ve düşük satın alma niyeti dönüşümü aşağı çeker. Puan: <strong>6/10</strong>.</p>
+
+<h3>F · Birim ekonomisi — <strong>beş finalist içinde en kötüsü</strong></h3>
+<p>Diyagram yoğunluğu büyük trim gerektirir ($0,017/sayfa) <em>ve</em> fiyat tavanı Polgár tarafından bastırılır. 180 sayfa, $16,99 → baskı $4,06 → <strong>birim telif $6,13</strong>. $14,99'da yalnızca $4,93. Puan: <strong>4/10</strong>.</p>
+
+<h3>G · Evergreen — <strong>beş finalist içinde en iyisi</strong></h3>
+<p>Satranç kuralları pratikte değişmez. 6/12/24/36 ayın tamamında bakım yükü ≈ 0. Puan: <strong>10/10</strong>.</p>
+
+<h3>H · AI ikame direnci — <strong>beş finalist içinde en iyisi</strong></h3>
+<p>Doğru bulmaca üretmek <strong>motor doğrulaması</strong> gerektirir; yalnızca metin üreten bir AI görünür biçimde başarısız olur (yasadışı pozisyon, çoklu çözüm, yanlış mat). Bu, mekanik olarak kanıtlanabilir bir hendektir. Puan: <strong>7/10</strong>.</p>
+
+<h3>I · Üretim fizibilitesi — <strong>mevcut hatta en uygun aday</strong></h3>
+<p>Deterministik diyagram render'ı, Stockfish ile betiklenebilir otomatik QA, siyah-beyaz çizgi sanatı, yeniden kullanılabilir şablonlar. Evin bulmaca/oyun üretim yetkinliğiyle doğrudan örtüşür. Uzman bağımlılığı yok — motor <em>uzmandır</em>. Puan: <strong>9/10</strong>.</p>
+
+<h3>J · IP / politika riski</h3>
+<p>Satranç pozisyonları olgudur, telifle korunmaz. Yayımlanmış <em>kompozisyonların</em> kopyalanmasından kaçınmak ve CC0 veri tabanlarından (Lichess açık veritabanı) motorla doğrulanmış pozisyon türetmek gerekir. Risk düşük: <strong>7/10</strong>.</p>
+
+<h3>K · İnşa et / etme testi</h3>
+<div class="two-col">
+<div class="card green"><h4>Neden inşa etmeliyiz</h4><ul class="tight"><li>Mutlak evergreen — bir kez yaz, on yıl sat.</li><li>Mevcut üretim hattına en uygun aday.</li><li>Motorla doğrulama gerçek, kanıtlanabilir bir hendek.</li><li>Uzman bağımlılığı sıfır.</li></ul></div>
+<div class="card red"><h4>Neden inşa etmemeliyiz</h4><ul class="tight"><li>En zayıf satın alma niyeti — ücretsiz alternatif daha iyi.</li><li>En kötü birim ekonomisi ($6,13).</li><li>Polgár değer çıpası fiyatı bastırıyor.</li><li>Çalışma kitabı alt segmentinde satış hızı düşük (#89K–#546K).</li><li>En yüksek akış oranı (~%42).</li></ul></div>
+</div>
+<h4>Bu fırsatın yanlış olduğunu ne kanıtlar?</h4>
+<ul class="tight"><li>Yeni bir bağımsız satranç çalışma kitabı 12 ay içinde BSR #50.000 altına yerleşemezse → segment ölçeklenmiyor demektir.</li><li>Motorla doğrulama iddiası pazarlamada dönüşüme yansımazsa (alıcı umursamıyorsa) → hendek ticari değil, yalnızca teknik demektir.</li></ul>
+</section>
+<section id="s8">
+<h2 class="sect-title"><span class="n">8</span> Finalist #4 — ASL (Amerikan İşaret Dili) Öğrenme Serisi</h2>
+<p class="lead">Seçilen ürün fırsatı: yetişkin başlangıç seviyesi ASL öğrenme kitabı ve seviye tabanlı devamı.</p>
+
+<h3>A · Talep</h3>
+<ul class="tight">
+<li><span class="tag tag-obs">OBSERVED</span> Rochelle Barlow, <em>ASL for Beginners</em> (B0DB9L49SM), Callisto (Sourcebooks imprint), 345 sayfa: <strong>4.553 yorum / 4,6★ / BSR #20.026 (Kindle Store)</strong>; #1 Sign Language Instruction.</li>
+<li><span class="tag tag-obs">OBSERVED</span> Aynı yazarın <em>ASL Workbook</em>'u 1.100 yorum. Diğerleri: ASL Dictionary 3. Bs. 2.800 · Basic Course in ASL 1.300 · Barron's ASL 1.000 · Sign Language for Kids 739 · Nora Hollis / ASL Bridge Institute 507 ($24,97) · Natasha R. Sheeley 362.</li>
+</ul>
+<p>Talep gerçek ve derin — beş finalist içinde ham yorum kütlesi en yüksek olanlardan biri. Puan: <strong>8/10</strong>.</p>
+
+<h3>B · Satın alma niyeti</h3>
+<p>Çoğunlukla isteğe bağlı. Bir azınlık için (Sağır aile üyesi, iş gereksinimi) güçlü. <strong>Karşı-argüman ciddi:</strong> ASL hareket ve yüz dilbilgisi içeren görsel bir dildir; YouTube video dersleri basılı kitaptan <em>yapısal olarak üstündür</em> ve ücretsizdir. Puan: <strong>6/10</strong>.</p>
+
+<h3>C · Rekabet: stok ve akış</h3>
+<div class="flow">
+<div class="n"><b>1.000+</b>toplam sonuç<br><span class="small">(tavan değeri, kesin değil)</span></div>
+<div class="n"><b>488</b>son 90 günde<br><span class="small">≈ %49 — <strong>en yüksek akış</strong></span></div>
+<div class="n"><b>4.553</b>liderin yorumu<br><span class="small">ticari yayıncı</span></div>
+</div>
+<p>#1 konumu bir <strong>ticari yayıncı</strong> (Callisto/Sourcebooks) elinde ve yazarı gerçek kimlik bilgilerine sahip: 15+ yıl ASL öğretmenliği, Ogden (Utah) Sağır ve Körler Okulu'nda çalışma, Utah State'te Sağır Eğitimi. Bu, bağımsız bir yayıncının kolayca eşleyemeyeceği bir güvenilirlik katmanı.</p>
+<h4>Rakip kalite açığı</h4>
+<p>Lider 4,6★ / 4.553 yorum; sistematik kusur gözlemlenmedi. Puan: <strong>5/10</strong>.</p>
+
+<h3>D · Seri genişleme testi</h3>
+<p>Seviye 1 → 2 → 3 makul. <strong>Ama yerleşik oyuncu kitap + çalışma kitabı ikilisini zaten işletiyor</strong> ve seviye ilerlemesi dışarıdan dayatılmıyor. Puan: <strong>6/10</strong>.</p>
+
+<h3>E · Amazon Ads uygunluğu</h3>
+<p>Anahtar kelime hacmi iyi, ASIN hedefleme mümkün, kategori tutarlı; ancak niyet karışık (hediye alımı yaygın). Puan: <strong>6/10</strong>.</p>
+
+<h3>F · Birim ekonomisi</h3>
+<p>Büyük trim, illüstrasyon yoğun. 200 sayfa, $24,97 → baskı $4,40 → <strong>birim telif $10,58</strong>. Rakam iyi; ancak yüzlerce doğru el şekli illüstrasyonunun üretim maliyeti bu telifi fiilen aşındırır. Puan: <strong>7/10</strong>.</p>
+
+<h3>G · Evergreen</h3>
+<p>ASL yavaş değişir; bakım yükü düşük. Puan: <strong>8/10</strong>.</p>
+
+<h3>H · AI ikame riski</h3>
+<p>Metin AI ile üretilebilir; doğru el şekli illüstrasyonu üretilemez. Orta. Puan: <strong>5/10</strong>.</p>
+
+<h3>I · Üretim fizibilitesi — <strong>beş finalist içinde en kötüsü</strong></h3>
+<p>Yüzlerce anatomik olarak doğru, hareket yönü belirtilmiş el/kol illüstrasyonu gerekir. Bu, evin deterministik render hattının kapsamı dışındadır ve <em>en pahalı</em> görsel üretim yükünü taşır. Ayrıca basılı statik format, hareket dilini aktarmak için yapısal olarak yetersizdir. Puan: <strong>3/10</strong>.</p>
+
+<h3>J · IP / politika ve kültürel risk</h3>
+<p>Telif riski düşük, ancak <strong>kültürel özgünlük riski yüksek</strong>: Sağır topluluğun katılımı olmadan bir ASL kursu yayımlamak hem etik açıdan sorunlu hem de pazar güvenilirliği açısından zayıftır — üstelik lider rakibin gerçek Sağır eğitimi kimlik bilgileri varken. Bu, bir Sağır danışman/inceleyici gerektirir: yani <em>gizli bir uzman kapısı</em>. Puan: <strong>4/10</strong>.</p>
+
+<h3>K · İnşa et / etme testi</h3>
+<div class="two-col">
+<div class="card green"><h4>Neden inşa etmeliyiz</h4><ul class="tight"><li>Derin, kanıtlanmış talep (4.553 yorum).</li><li>Sağlıklı fiyat toleransı ($24,97 çalışıyor).</li><li>Düşük eskime.</li></ul></div>
+<div class="card red"><h4>Neden inşa etmemeliyiz</h4><ul class="tight"><li>En yüksek akış oranı (~%49).</li><li>En kötü üretim uyumu — illüstrasyon yükü.</li><li>Basılı format, hareket dili için yanlış ortam; ücretsiz video daha iyi.</li><li>Sağır topluluk danışmanlığı gerektirir — gizli uzman kapısı.</li><li>Ticari yayıncı + kimlik bilgili yazar yerleşik.</li></ul></div>
+</div>
+<h4>Bu fırsatın yanlış olduğunu ne kanıtlar?</h4>
+<ul class="tight"><li>Bir Sağır ASL eğitmeni makul koşullarla ortak yazar olarak katılırsa → kültürel risk ve kalite açığı puanları birlikte yükselir, aday yeniden yarışır.</li><li>Yeni ASL başlıklarının ortalama puanı 4,2★ altına düşerse → kalite açığı açılır.</li></ul>
+</section>
+
+<section id="s9">
+<h2 class="sect-title"><span class="n">9</span> Finalist #5 — Noter / Loan Signing Agent Serisi</h2>
+<p class="lead">Seçilen ürün fırsatı: eyalet noter yetkisi → loan signing agent uzmanlaşması → mobil noter işletmesi.</p>
+
+<h3>A · Talep — <strong>bu raporun en öğretici tuzak örneği</strong></h3>
+<ul class="tight">
+<li><span class="tag tag-obs">OBSERVED</span> Bill Soroka, <em>Sign and Thrive</em> (1734183306), Notary Coach, Kasım 2019, 317 sayfa, $21,20: <strong>1.516 yorum / 4,8★</strong> — ama <strong>BSR #425.554</strong>.</li>
+<li><span class="tag tag-obs">OBSERVED</span> LSAUSA Education 643 yorum / $16,99 · <em>How to Make $1000 a Week as a Notary Public</em> 431 · Tiffany Kuhn 332 · <em>SIX FIGURE NOTARY</em> 197 · Soroka'nın 2. kitabı 290.</li>
+</ul>
+<div class="card red">
+<p><strong>Kategori liderinin 1.516 yorumu var ve bugün neredeyse satmıyor.</strong> Yorum sayısı <em>ömür boyu</em> birikimidir; BSR <em>şu anki</em> hızdır. Bu aday listeye tam olarak bu ayrımı somutlaştırdığı için alındı. Talep puanı: <strong>4/10</strong> — beş finalist içinde en düşük.</p>
+</div>
+
+<h3>B · Satın alma niyeti</h3>
+<p>Alıcı bir iş fırsatı arıyor; niyet güçlü ama ürün-bağımsız (kurs, koçluk, YouTube ile ikame edilebilir). Çoğu eyalette noter sınavı ya yok ya da önemsiz — yani "kapılı sonuç" mantığı zayıf. Puan: <strong>7/10</strong>.</p>
+
+<h3>C · Rekabet: stok ve akış</h3>
+<div class="flow">
+<div class="n"><b>3.000+</b>toplam sonuç<br><span class="small">(tavan değeri, kesin değil)</span></div>
+<div class="n"><b>326</b>son 90 günde<br><span class="small">≈ %11 — <strong>en düşük akış</strong></span></div>
+<div class="n"><b>#425.554</b>liderin BSR'ı<br><span class="small">1.516 yoruma rağmen</span></div>
+</div>
+<p>İlginç profil: <strong>yüksek stok, düşük akış.</strong> Brief'in "150 rakip ama neredeyse yeni giriş yok, 50 rakip ama ayda düzinelerce yeni başlıktan daha iyi olabilir" kuralı gereği bu bir artıdır. Ancak burada düşük akışın sebebi büyük olasılıkla pazarın <em>çekiciliğini yitirmesi</em> — lider bile satmıyor. Rekabet çekiciliği: <strong>5/10</strong>.</p>
+<h4>Rakip kalite açığı</h4>
+<p>Yerleşikler gerçek uygulayıcılar; topluluk, kurs ve marka sahibiler (Notary Coach). Gözlemlenebilir sistematik kusur yok. Puan: <strong>5/10</strong>.</p>
+
+<h3>D · Seri genişleme testi</h3>
+<p>Yetki al → loan signing uzmanlaş → işletmeyi büyüt. <strong>Temiz bir ilerleme</strong> ve komşu ürün kanıtı da var: noter jurnali (<span class="tag tag-obs">OBSERVED</span> 582 ve 364 yorum) — düşük içerikli, yüksek marjlı bir katalog uzantısı. Puan: <strong>7/10</strong>.</p>
+
+<h3>E · Amazon Ads uygunluğu</h3>
+<p>Anahtar kelimeler gelir vaadi ağırlıklı ("make money as a notary"). Dönüşüm, <em>zenginleş</em> vaadine bağlı — bu, yapmak istemediğimiz bir vaat. Puan: <strong>5/10</strong>.</p>
+
+<h3>F · Birim ekonomisi</h3>
+<p>250 sayfa, normal trim, $16,99 → baskı $4,00 → <strong>birim telif $6,19</strong>. Puan: <strong>6/10</strong>.</p>
+
+<h3>G · Evergreen</h3>
+<p>Eyalet noter mevzuatı değişir; uzaktan çevrimiçi noterlik (RON) kuralları eyalet eyalet aktif olarak evriliyor. 50 eyaletlik bir katalog, 50 kanallı bir bakım yükü demektir. Puan: <strong>4/10</strong>.</p>
+
+<h3>H · AI ikame riski</h3>
+<p>İş tavsiyesi metni son derece emtialaştırılabilir. Puan: <strong>3/10</strong>.</p>
+
+<h3>I · Üretim fizibilitesi</h3>
+<p>Görsel yük düşük; ancak 50 eyaletlik hukuki doğruluk yükü yüksek. Puan: <strong>6/10</strong>.</p>
+
+<h3>J · IP / politika riski — <strong>en yüksek politika riski</strong></h3>
+<p>Kategori normu gelir iddiasıdır ("Six Figures", "$1000 a Week"). Bu, FTC gelir-iddiası ve KDP içerik politikası açısından riskli bölgedir; ayrıca evin kanıt disiplinine aykırıdır. Kazanmak için rakiplerin kullandığı vaadi kullanmamak gerekir — bu da rekabet dezavantajı yaratır. Ek olarak hukuki doğruluk sorumluluğu var. Puan: <strong>3/10</strong>.</p>
+
+<h3>K · İnşa et / etme testi</h3>
+<div class="two-col">
+<div class="card green"><h4>Neden inşa etmeliyiz</h4><ul class="tight"><li>En düşük rakip akışı (~%11).</li><li>Temiz üç basamaklı ilerleme.</li><li>50 eyalet × el kitabı + jurnal = geniş katalog yüzeyi.</li><li>Kanıtlı komşu ürün (jurnal, 582 yorum).</li></ul></div>
+<div class="card red"><h4>Neden inşa etmemeliyiz</h4><ul class="tight"><li>Kategori liderinin BSR'ı #425.554 — pazar bugün sönük.</li><li>Gelir iddiası olmadan rekabet etmek zor; iddiayla rekabet etmek politika riski.</li><li>50 eyaletlik mevzuat bakımı.</li><li>En yüksek AI emtialaşma riski.</li></ul></div>
+</div>
+<h4>Bu fırsatın yanlış olduğunu ne kanıtlar?</h4>
+<ul class="tight"><li>Kategoride herhangi bir başlık BSR #100.000 altına yerleşirse → "pazar sönük" tezi çöker ve aday yeniden yarışır.</li><li>RON mevzuatı federal düzeyde standartlaşırsa → 50 eyaletlik bakım yükü çöker, Evergreen puanı yükselir.</li></ul>
+</section>
+<section id="s10">
+<h2 class="sect-title"><span class="n">10</span> Rekabet: Stok + Akış</h2>
+<p class="lead">Brief'in kuralı: <em>"150 rakip ama neredeyse hiç yeni giriş yok" bir niş, "50 rakip ama ayda düzinelerce yeni başlık" olan bir nişten daha çekici olabilir.</em> Bu yüzden her finalist için hem stok hem akış aynı yöntemle, aynı gün ölçüldü.</p>
+<div class="tablewrap">
+<table>
+<caption>Rakip stok ve akış — Amazon yayın-tarihi filtresiyle, 27 Ağustos 2026 <span class="tag tag-obs">OBSERVED</span></caption>
+<thead><tr><th>Pazar</th><th>Sorgu</th><th>Toplam sonuç (stok)</th><th>Son 90 gün (akış)</th><th>Akış oranı</th><th>Yorum</th></tr></thead>
+<tbody>
+<tr><td><strong>Amatör telsiz</strong></td><td>ham radio license study guide</td><td><strong>686</strong> <span class="small">(kesin)</span></td><td>216</td><td><strong>%31,5</strong></td><td>Havuz sıfırlaması stampedi. Son 30 günde 41.</td></tr>
+<tr><td><strong>Hemşirelik doz</strong></td><td>nursing dosage calculation</td><td><strong>961</strong> <span class="small">(kesin)</span></td><td>281</td><td><strong>%29,2</strong></td><td>Sürekli, istikrarlı giriş.</td></tr>
+<tr><td>Satranç</td><td>chess puzzle book for beginners</td><td>2.000+ <span class="small">(tavan)</span></td><td>849</td><td>≈%42</td><td>Oran güvenilmez (tavan), mutlak akış çok yüksek.</td></tr>
+<tr><td>ASL</td><td>american sign language for beginners</td><td>1.000+ <span class="small">(tavan)</span></td><td>488</td><td>≈%49</td><td>En yüksek akış.</td></tr>
+<tr><td>Noter / LSA</td><td>notary public loan signing agent</td><td>3.000+ <span class="small">(tavan)</span></td><td>326</td><td>≈%11</td><td>Yüksek stok, düşük akış — ama liderin BSR'ı sönük.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card red">
+<p><strong>Bu tablonun sınırları (dürüstlük kaydı):</strong> Amazon sonuç sayıları kararsızdır, gevşek ilişkili başlıkları da sayar ve "over 1.000 / over 3.000" gibi <em>tavan</em> değerleri kesin değildir. Bu nedenle yalnızca <strong>amatör telsiz (686) ve hemşirelik (961)</strong> oranları güvenilir sayılmalıdır; diğer üç oran yön göstergesidir, ölçüm değil. Hiçbir puanlama kararı yalnızca bu tabloya dayandırılmadı.</p>
+</div>
+<h3>Stok–akış yorumu</h3>
+<p>Kazananın <strong>akış problemi gerçektir ve raporda gizlenmemiştir.</strong> Ancak üç niteleyici var:</p>
+<ol class="tight">
+<li><strong>Akış tek biçimli değil.</strong> 216 yeni başlığın çoğu Technician kademesinde. Amateur Extra sorgusu toplam 41 sonuç döndürüyor — serinin üst basamakları neredeyse boş.</li>
+<li><strong>Akışın çoğu traksiyon kazanmıyor.</strong> Haz–Ağu 2026 girişlerinin gözlemlenen yorum sayıları: 15, 10, 1, 1, 0, 0, 0, 0. Kalabalık, kazanan değil.</li>
+<li><strong>Yüksek akış geçicidir, yüksek stok kalıcıdır.</strong> Havuz sıfırlaması 4 yılda bir olur; stampede penceresi kapandığında geriye kalıcı bir katalog kalır.</li>
+</ol>
+</section>
+
+<section id="s11">
+<h2 class="sect-title"><span class="n">11</span> Amazon Ads Analizi</h2>
+<p class="lead">"Amazon Ads yardımcı olabilir" demek analiz değildir. Aşağıda her finalist beş somut boyutta değerlendirildi — ve <strong>hiçbir CPC rakamı uydurulmadı.</strong></p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Boyut</th><th>Amatör telsiz</th><th>Hemşirelik doz</th><th>Satranç</th><th>ASL</th><th>Noter/LSA</th></tr></thead>
+<tbody>
+<tr><td><strong>Anahtar kelime niyeti</strong></td><td>Sınav + tarih odaklı; "technician class license study guide 2026-2030"</td><td>Sınav odaklı; "dosage calculation practice"</td><td>Gezinmeye yakın; "chess puzzles"</td><td>Karışık; hediye alımı yaygın</td><td>Gelir vaadi odaklı</td></tr>
+<tr><td><strong>Ürün hedefleme</strong></td><td>Net ASIN kümesi: ARRL, Gordon West, Ham Radio Prep, K4IA</td><td>Net: Hassen/Wojcik, Kaplan</td><td>Net: Polgár, GothamChess</td><td>Net: Barlow, Barron's</td><td>Net: Soroka, LSAUSA</td></tr>
+<tr><td><strong>Kategori tutarlılığı</strong></td><td>Yüksek — Radio Communications / Radio Operation</td><td>Yüksek — Nursing Reviews &amp; Study Guides</td><td>Orta — Chess / Puzzles karışıyor</td><td>Yüksek — Sign Language Instruction</td><td>Orta — Starting a Business</td></tr>
+<tr><td><strong>Gözlemlenen reklam varlığı</strong></td><td><span class="tag tag-obs">OBSERVED</span> ARRL sponsorlu reklam veriyor; <strong>kademeler arası hedefleme uyguluyor</strong></td><td><span class="tag tag-obs">OBSERVED</span> sponsorlu sonuçlar var</td><td><span class="tag tag-obs">OBSERVED</span> sponsorlu sonuçlar var</td><td><span class="tag tag-obs">OBSERVED</span> sponsorlu sonuçlar var</td><td><span class="tag tag-obs">OBSERVED</span> sponsorlu sonuçlar var</td></tr>
+<tr><td><strong>Reklam marjı (birim telif)</strong></td><td>$9,19–$9,91</td><td>$10,14</td><td>$4,93–$6,13</td><td>$10,58</td><td>$6,19</td></tr>
+<tr><td><strong>Değerlendirme</strong></td><td><strong>8/10</strong></td><td>7/10</td><td>6/10</td><td>6/10</td><td>5/10</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Reklamın başabaş mantığı — CPC uydurmadan</h3>
+<p>CPC gözlemlenemez (canlı kampanya olmadan). Bu yüzden ters yönde çalışıldı: <strong>ürün, satış başına ne kadar reklam harcamasını tolere edebilir?</strong> Telifin %60'ının reklama ayrılabileceği (yani %40 katkı payı korunacağı) varsayımıyla:</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Finalist</th><th>Birim telif (Kitap 1)</th><th>Tolere edilebilir reklam / satış</th><th>Yorum</th></tr></thead>
+<tbody>
+<tr><td>Hemşirelik doz</td><td>$10,14</td><td>$6,08</td><td>En geniş marj</td></tr>
+<tr><td>ASL</td><td>$10,58</td><td>$6,35</td><td>Ama illüstrasyon maliyeti telifi aşındırır</td></tr>
+<tr><td><strong>Amatör telsiz</strong></td><td><s>$9,19</s> → <strong>$6,19</strong></td><td><s>$5,51</s> → <strong>$3,71</strong></td><td><strong>Düzeltildi (§19):</strong> $22,99 piyasanın ödemediği bir fiyat; gerçekten satan kitaplar $14,99–$17,03 bandında. $17,99'da telif $6,19'a iner ve bu aday <em>en dar marja</em> düşer.</td></tr>
+<tr><td>Noter/LSA</td><td>$6,19</td><td>$3,71</td><td>Dar</td></tr>
+<tr><td>Satranç</td><td>$6,13</td><td>$3,68</td><td>En dar — ücretli edinme zor</td></tr>
+</tbody>
+</table>
+</div>
+<p class="footnote"><span class="tag tag-est">ESTIMATE</span> %60 oranı bir <em>varsayımdır</em>, gözlem değil. Farklı bir katkı hedefi seçilirse tüm satır orantılı olarak değişir.</p>
+</section>
+
+<section id="s12">
+<h2 class="sect-title"><span class="n">12</span> Birim Ekonomisi</h2>
+<p class="lead">Bu bölümde <strong>gelir, telif, üretim maliyeti, reklam gideri ve katkı ayrı ayrı</strong> tutulmuştur. Hiçbiri "kâr" olarak adlandırılmamıştır.</p>
+<h3>Resmî KDP formülü <span class="tag tag-reb">FACT</span></h3>
+<div class="tablewrap">
+<table>
+<caption>kdp.amazon.com — Amazon.com pazar yeri, ciltsiz, siyah mürekkep, beyaz/krem kâğıt</caption>
+<thead><tr><th>Trim</th><th>24–110 sayfa</th><th>110–828 sayfa</th></tr></thead>
+<tbody>
+<tr><td>Normal (≤ 6,12 × 9 inç)</td><td>$2,30 sabit</td><td>$1,00 + (sayfa × $0,012)</td></tr>
+<tr><td>Büyük (&gt; 6,12 × 9 inç)</td><td>$2,84 sabit</td><td>$1,00 + (sayfa × $0,017)</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Telif = (Liste fiyatı × 0,60) − baskı maliyeti.</strong></p>
+<h3>Finalistlerin karşılaştırmalı birim ekonomisi</h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Finalist / Kitap 1</th><th>Trim</th><th>Sayfa</th><th>Liste</th><th>Baskı</th><th>Telif</th><th>Telif / liste</th></tr></thead>
+<tbody>
+<tr><td>ASL</td><td>Büyük</td><td>200</td><td>$24,97</td><td>$4,40</td><td>$10,58</td><td>%42,4</td></tr>
+<tr><td>Hemşirelik doz</td><td>Büyük</td><td>220</td><td>$24,80</td><td>$4,74</td><td>$10,14</td><td>%40,9</td></tr>
+<tr><td><strong>Amatör telsiz</strong> <span class="small">(düzeltildi)</span></td><td>Normal</td><td>300</td><td><s>$22,99</s> $17,99</td><td>$4,60</td><td><s>$9,19</s> <strong>$6,19</strong></td><td>%34,4</td></tr>
+<tr><td>Noter/LSA</td><td>Normal</td><td>250</td><td>$16,99</td><td>$4,00</td><td>$6,19</td><td>%36,4</td></tr>
+<tr><td>Satranç</td><td>Büyük</td><td>180</td><td>$16,99</td><td>$4,06</td><td>$6,13</td><td>%36,1</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card red">
+<p><strong>Düzeltme kaydı (çelişmeli inceleme sonrası):</strong> Bu tablonun ilk hâli amatör telsizi $22,99'dan modellemişti. İnceleme, o fiyat bandının (<em>$29,99+</em>) tam olarak <strong>0-yorumlu churn kohortuna</strong> ait olduğunu, gerçekten satan kitapların ise $14,99 / $17,03 / $32,95 bandında toplandığını gösterdi — ve $32,95 yalnızca kurumsal marka gücüyle mümkün. Ayrıca fiyat tabanı fiilen <strong>$0</strong>'dır: HamStudy.org, HamBook.org ve KB6NU açıklamalı çalışma materyalini ücretsiz veriyor. Gerçekçi fiyatla amatör telsiz, <strong>en iyi ikinci ekonomiden en dar ikinci ekonomiye</strong> düşer.</p>
+<p class="footnote">Bu satır, bir birim ekonomisi modelinin <em>fiyat varsayımı doğrulanmadıkça</em> ne kadar yanıltıcı olabileceğinin somut örneği olarak bırakılmıştır.</p>
+</div>
+<h3>Kindle</h3>
+<p><span class="tag tag-est">ESTIMATE</span> $9,99 liste, %70 telif, ~2 MB dosya (teslimat ≈ $0,30) → birim telif ≈ <strong>$6,69</strong>. Amatör telsizde rakipler Kindle'ı $7,99'a kadar indiriyor <span class="tag tag-obs">OBSERVED</span>, bu da Kindle'ın burada bir <em>giriş ürünü</em> olarak kullanıldığını gösteriyor.</p>
+<div class="card red">
+<h4>Gözden kaçırılmaması gereken bir fiyat baskısı: Kindle Unlimited</h4>
+<p><span class="tag tag-obs">OBSERVED</span> Kazanan pazardaki yeni girenlerin belirgin bir kısmı Kindle sürümünü <strong>Kindle Unlimited'a dahil ederek fiilen $0,00</strong> sunuyor (gözlemlenenler arasında Grant T. Sinclair, Nathaniel Cross, ZACK TUTORS, Denvey Easton). KU aboneleri için bu kitaplar <em>marjinal maliyetsizdir</em>.</p>
+<p>Bunun iki sonucu var: (a) $9,99'luk bir Kindle fiyatı, KU'daki alternatiflere karşı savunmasızdır ve yukarıdaki $6,69 birim telif tahmini <strong>iyimser olabilir</strong>; (b) buna karşılık ciltsiz baskı KU'dan etkilenmez — bu, serinin ağırlığını <strong>basılı ürüne</strong> vermesi gerektiğini gösterir. Model zaten ciltsiz üzerinden kurulmuştur; Kindle bir ek gelir kalemi olarak ele alınmalı, ana kanal olarak değil.</p>
+</div>
+<h3>Üretim ve bakım yükü</h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Finalist</th><th>Üretim yükü</th><th>Revizyon / bakım yükü</th></tr></thead>
+<tbody>
+<tr><td>Amatör telsiz</td><td>Orta — S/B şematik, band planı, anten diyagramı; soru havuzu kamu malı</td><td><strong>Takvimli:</strong> General 2027, Extra 2028, Technician 2030</td></tr>
+<tr><td>Hemşirelik doz</td><td>Orta — dizgi kolay, klinik doğrulama zor</td><td>Düşük–orta; ilaç/protokol tazeleme</td></tr>
+<tr><td>Satranç</td><td>Düşük — motorla otomatik üretilebilir/doğrulanabilir</td><td><strong>Neredeyse sıfır</strong></td></tr>
+<tr><td>ASL</td><td><strong>Çok yüksek</strong> — yüzlerce el/hareket illüstrasyonu</td><td>Düşük</td></tr>
+<tr><td>Noter/LSA</td><td>Orta — 50 eyalet hukuki doğruluk</td><td><strong>Yüksek</strong> — eyalet mevzuatı + RON değişimi</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Başabaş adet <span class="tag tag-est">ESTIMATE</span></h3>
+<p>Kazananın Kitap 1 telifiyle ($9,19), <em>reklam hariç</em>, bir üretim bütçesini karşılamak için gereken adet:</p>
+<div class="flow">
+<div class="n"><b>109</b>$1.000 bütçe</div>
+<div class="n"><b>272</b>$2.500 bütçe</div>
+<div class="n"><b>544</b>$5.000 bütçe</div>
+<div class="n"><b>871</b>$8.000 bütçe</div>
+</div>
+<p class="footnote">Üretim bütçesi rakamları <strong>senaryodur</strong>, evin gerçek maliyet yapısı bu belgede modellenmemiştir.</p>
+</section>
+
+<section id="s13">
+<h2 class="sect-title"><span class="n">13</span> Seri Ekonomisi ve Ads Çarkı</h2>
+<p class="lead">Tek kitaplık bir ürünün ekonomisi zayıfken üç kitaplık bir katalog çalışabilir. Bu bölüm o farkı sayısallaştırıyor.</p>
+<h3>Çark</h3>
+<div class="funnel">Amazon araması ("technician class license study guide")
+        ↓
+Kitap 1 reklamı  ─────────────────────────┐
+        ↓                                 │
+Kitap 1 satın alma ($9,19 telif)          │  organik görünürlük
+        ↓                                 │  + "birlikte alınanlar"
+Kitap 2 görünürlüğü (aynı marka, aynı raf)│
+        ↓                                 │
+Kitap 2 satın alma ($9,55 telif)          │
+        ↓                                 │
+Kitap 3 satın alma ($9,91 telif)  ────────┘
+        ↓
+Katalog LTV + daha düşük harmanlanmış edinme maliyeti</div>
+<h3>Alıcı senaryoları</h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Alıcı tipi</th><th>Brüt telif katkısı</th></tr></thead>
+<tbody>
+<tr><td>Yalnızca Kitap 1</td><td>$9,19</td></tr>
+<tr><td>Kitap 1 + Kitap 2</td><td>$18,74</td></tr>
+<tr><td>Kitap 1 + 2 + 3</td><td><strong>$28,65</strong></td></tr>
+</tbody>
+</table>
+</div>
+<h3>Harmanlanmış telif / edinilen müşteri</h3>
+<div class="tablewrap">
+<table>
+<caption>Bağlanma oranları <span class="tag tag-est">ESTIMATE</span> — gözlemlenmedi, senaryo olarak sunuluyor</caption>
+<thead><tr><th>Senaryo</th><th>Kitap 2 bağlanma</th><th>Kitap 3 bağlanma</th><th>Harmanlanmış telif</th><th>Tolere edilebilir reklam/satış (%60)</th><th>Tek kitaba göre</th></tr></thead>
+<tbody>
+<tr><td>Muhafazakâr</td><td>%12</td><td>%5</td><td>$10,83</td><td>$6,50</td><td><span class="arrow-up">+%17,9</span></td></tr>
+<tr><td>Temel</td><td>%20</td><td>%8</td><td>$11,89</td><td>$7,14</td><td><span class="arrow-up">+%29,4</span></td></tr>
+<tr><td>İyimser</td><td>%30</td><td>%15</td><td>$13,54</td><td>$8,12</td><td><span class="arrow-up">+%47,4</span></td></tr>
+<tr><td><em>Tek kitap (referans)</em></td><td>—</td><td>—</td><td><em>$9,19</em></td><td><em>$5,51</em></td><td>—</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Tolere edilebilir CPC — senaryo tablosu, uydurma rakam yok</h3>
+<p>Tolere edilebilir CPC = (satış başına maksimum reklam harcaması) × (dönüşüm oranı). <strong>Gerçek CPC ve gerçek dönüşüm oranı bilinmiyor;</strong> aşağıdaki tablo yalnızca hangi kombinasyonların ekonomik olarak mümkün olduğunu gösterir.</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Dönüşüm oranı</th><th>Muhafazakâr seri</th><th>Temel seri</th><th>İyimser seri</th><th>Tek kitap</th></tr></thead>
+<tbody>
+<tr><td>%5</td><td>$0,32</td><td>$0,36</td><td>$0,41</td><td>$0,28</td></tr>
+<tr><td>%8</td><td>$0,52</td><td>$0,57</td><td>$0,65</td><td>$0,44</td></tr>
+<tr><td>%10</td><td>$0,65</td><td>$0,71</td><td>$0,81</td><td>$0,55</td></tr>
+<tr><td>%15</td><td>$0,97</td><td>$1,07</td><td>$1,22</td><td>$0,83</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card accent">
+<p><strong>Serinin asıl ekonomik işlevi budur:</strong> tek kitapla tolere edilebilir CPC $0,28–$0,83 bandındayken, üç kitaplık seriyle $0,32–$1,22 bandına çıkar. Reklam maliyeti sabitken <strong>kazanılabilir kelime kümesi genişler.</strong> Tek kitapta reklamla alınamayacak bir anahtar kelime, seride alınabilir hâle gelir.</p>
+</div>
+<h3>Üçüncü kitap ilk ikisinin ekonomisini nasıl değiştirir?</h3>
+<ul class="tight">
+<li><strong>Harmanlanmış edinme maliyeti düşer</strong> — aynı reklam harcaması artık üç ürünün gelirine dağılır.</li>
+<li><strong>Amazon'un öneri motoruna gerçek sinyal gider</strong> — "bu ürünü alanlar bunu da aldı" ilişkisi ancak ikinci ve üçüncü ürünle kurulur.</li>
+<li><strong>Anahtar kelime yüzeyi genişler</strong> — Technician, General, Extra, telsiz programlama, acil durum haberleşmesi ayrı arama kümeleridir.</li>
+<li><strong>Defansif hedefleme mümkün olur</strong> — kendi kitaplarımızın ürün sayfalarında kendi diğer kitaplarımızı hedefleyerek rakip reklamının yerini doldurabiliriz.</li>
+<li><strong>Yayıncı markası birikir</strong> — üç kitapta tutarlı bir seri kimliği, tek kitapta imkânsız olan bir güven sinyali üretir.</li>
+</ul>
+<p class="footnote">Bu mekanizmaların tümü mantıksal olarak desteklenmektedir; hiçbiri ölçülmüş bir sonuç olarak sunulmamaktadır.</p>
+</section>
+
+<section id="s14">
+<h2 class="sect-title"><span class="n">14</span> Evergreen / Eskime</h2>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Finalist</th><th>6 ay</th><th>12 ay</th><th>24 ay</th><th>36 ay</th><th>Eskime kaynağı</th></tr></thead>
+<tbody>
+<tr><td>Satranç</td><td>Stabil</td><td>Stabil</td><td>Stabil</td><td>Stabil</td><td>Yok — kurallar değişmez</td></tr>
+<tr><td>ASL</td><td>Stabil</td><td>Stabil</td><td>Stabil</td><td>Yavaş dil evrimi</td><td>Dil kullanımı</td></tr>
+<tr><td>Hemşirelik doz</td><td>Stabil</td><td>Stabil</td><td>Kısmi tazeleme</td><td>İlaç/protokol güncelleme</td><td>Klinik protokol</td></tr>
+<tr><td><strong>Amatör telsiz</strong></td><td>Errata riski sürekli</td><td><strong>Kitap 3 yeniden yazım</strong> (General havuzu 30.06.2027)</td><td>Extra havuzu 30.06.2028</td><td>Kitap 1 hâlâ geçerli (2030)</td><td><strong>İki katmanlı:</strong> 4 yılda bir havuz yenilemesi <em>artı</em> sürekli errata (General havuzunda 4 yılda <strong>6 errata</strong>)</td></tr>
+<tr><td>Noter/LSA</td><td>Eyalet değişiklikleri</td><td>Eyalet değişiklikleri</td><td>RON kuralları</td><td>Sürekli</td><td><strong>50 kanallı mevzuat</strong> — öngörülemez</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card blue">
+<div class="card red">
+<p><strong>Kazananın eskime profili ilk göründüğünden daha ağır.</strong> Havuz döngüsü dört yıllık olduğu için "dört yılda bir bakım" varsaymak cazip — ama birincil kaynak bunu çürütüyor: General 2023–2027 havuzu dört yıllık ömründe <strong>altı errata</strong> aldı (en son 04.02.2026'da iki soru çekildi). Gerçekçi bakım profili: <em>dört yılda bir yeniden yazım + yılda bir-iki errata güncellemesi.</em> Evergreen puanı bu yüzden 5'te tutuldu ve errata bulgusu puanı <strong>yükseltmek için kullanılmadı.</strong></p>
+</div>
+<p><strong>Kritik ayrım:</strong> Amatör telsizin eskimesi <em>takvimlidir</em> — tarihi bugünden bilinir, planlanabilir, bütçelenebilir. Noterin eskimesi <em>rastlantısaldır</em> — hangi eyaletin ne zaman ne değiştireceği bilinemez. İkisi de "5 civarı" puan alsa da yönetilebilirlikleri aynı değildir. Bu yüzden telsize 5, notere 4 verildi.</p>
+</div>
+<p class="footnote">Hiçbir aday yalnızca konusu popüler olduğu için evergreen sayılmadı. Platform bağımlılığı: beş adayın hiçbiri Amazon dışında bir platforma bağımlı değil; ancak hepsi KDP politika değişikliklerine eşit ölçüde açıktır.</p>
+</section>
+
+<section id="s15">
+<h2 class="sect-title"><span class="n">15</span> AI İkame Riski</h2>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Boyut</th><th>Amatör telsiz</th><th>Hemşirelik</th><th>Satranç</th><th>ASL</th><th>Noter</th></tr></thead>
+<tbody>
+<tr><td>AI emtialaşma riski</td><td><strong>Yüksek</strong> — havuz kamu malı</td><td>Orta–yüksek</td><td>Düşük</td><td>Orta</td><td><strong>Çok yüksek</strong></td></tr>
+<tr><td>Kanıt avantajı</td><td>Yüksek — birincil kaynak doğrulaması</td><td>Yüksek</td><td>Yüksek</td><td>Orta</td><td>Düşük</td></tr>
+<tr><td>Uzman veri avantajı</td><td>Düşük — veri herkese açık</td><td>Yüksek</td><td>Orta</td><td>Yüksek</td><td>Düşük</td></tr>
+<tr><td>Görsel/tasarım avantajı</td><td>Orta — şematik kalitesi</td><td>Düşük</td><td><strong>Yüksek</strong> — diyagram doğruluğu</td><td><strong>Yüksek</strong></td><td>Düşük</td></tr>
+<tr><td>Fiziksel ürün avantajı</td><td>Orta (spiral cilt rakipte)</td><td>Yüksek (çalışma kitabı)</td><td>Yüksek</td><td>Orta</td><td>Düşük</td></tr>
+<tr><td>Doğrulama avantajı</td><td><strong>Yüksek</strong> — mekanik</td><td>Yüksek ama uzman gerektirir</td><td><strong>Çok yüksek</strong> — motor</td><td>Orta</td><td>Düşük</td></tr>
+<tr><td>Marka/katalog avantajı</td><td>Yüksek</td><td>Orta</td><td>Orta</td><td>Orta</td><td>Orta</td></tr>
+<tr><td><strong>AI direnci puanı</strong></td><td><strong>4/10</strong></td><td>5/10</td><td><strong>7/10</strong></td><td>5/10</td><td>3/10</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card red">
+<p><strong>Kazananın en rahatsız edici gerçeği:</strong> Soru havuzunun kamu malı olması hem en büyük üretim avantajı hem de en büyük AI riskidir. Aynı özellik hem "uzman gerekmez" hem de "herkes kopyalayabilir" anlamına gelir. Haz–Ağu 2026'daki 8+ giriş bunun canlı kanıtıdır. <strong>Bu kazananın puanını yükseltmedi, düşürdü</strong> (4/10) — ve yine de genel sıralamada birinci kaldı, çünkü ağırlığı yalnızca %3'tür.</p>
+<p>Karşı-argüman şu olabilir: <em>havuz kopyalanabilir ama açıklama, diyagram ve öğretim tasarımı kopyalanamaz.</em> Bu makul ama <strong>kanıtlanmamış bir hipotezdir</strong> <span class="tag tag-est">HYPOTHESIS</span> — ürün pazara çıkmadan doğrulanamaz.</p>
+</div>
+</section>
+
+<section id="s16">
+<h2 class="sect-title"><span class="n">16</span> Üretim Fizibilitesi ve Uzman Bağımlılığı</h2>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Finalist</th><th>Araştırma yükü</th><th>Görsel karmaşıklık</th><th>Otomatik QA mümkün mü?</th><th>Kitaplar arası yeniden kullanım</th><th>İnsan uzman kapısı</th><th>Puan</th></tr></thead>
+<tbody>
+<tr><td><strong>Amatör telsiz</strong></td><td>Orta — birincil kaynak var</td><td>S/B şematik, band planı</td><td><strong>Evet</strong> — cevaplar resmî yayımlı</td><td>Yüksek — düzenleme, RF güvenliği, anten ortak</td><td><strong>Hayır</strong> (soru–cevap için); editoryal teknik doğrulama gerekir</td><td><strong>8</strong></td></tr>
+<tr><td>Satranç</td><td>Düşük</td><td>Deterministik diyagram</td><td><strong>Evet</strong> — Stockfish</td><td>Çok yüksek</td><td>Hayır — motor uzmandır</td><td><strong>9</strong></td></tr>
+<tr><td>Noter/LSA</td><td>Yüksek — 50 eyalet</td><td>Düşük</td><td>Kısmen</td><td>Orta</td><td>Hukuki inceleme önerilir</td><td>6</td></tr>
+<tr><td>Hemşirelik doz</td><td>Orta</td><td>Düşük</td><td>Hesap doğrulaması evet, klinik uygunluk hayır</td><td>Orta</td><td><strong>Evet</strong> — lisanslı klinisyen</td><td>5</td></tr>
+<tr><td>ASL</td><td>Orta</td><td><strong>Çok yüksek</strong> — yüzlerce el illüstrasyonu</td><td>Hayır</td><td>Orta</td><td><strong>Evet</strong> — Sağır topluluk danışmanı</td><td>3</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card accent">
+<p><strong>Bu tablo, kazananın seçilmesindeki en operasyonel gerekçedir.</strong> Vâliçe Press'in daha önceki lisans-sınavı projesi bir pazar hatası yüzünden değil, <strong>lisanslı bir konu uzmanı tedarik edilemediği için</strong> duraklatıldı. Amatör telsiz, aynı "zorunlu sınav" satın alma niyetini <em>o darboğaz olmadan</em> sunuyor: NCVEC soru havuzu kamu malıdır <strong>ve doğru cevapları resmî olarak yayımlanır</strong>, dolayısıyla doğrulama bir sözleşmeye değil, bir betiğe bağlıdır.</p>
+</div>
+<div class="card green">
+<p><strong>Doğrulama kapısının somut hedefi belli:</strong> NCVEC 2026–2030 Technician havuzu 18 Aralık 2025'te yayımlandı ve <strong>19 Şubat 2026'da errata ile 4 sorusu değiştirildi</strong> (T1C01, T5A05, T7A09, T0A10) <span class="tag tag-reb">FACT</span>. Yazılacak QA betiğinin ilk görevi, her soru metnini <em>Şubat 2026 sürümüne</em> karşı doğrulamaktır. Bu, "iyi editörlük" gibi ölçülemez bir vaat değil; geçti/kaldı üreten mekanik bir kapıdır.</p>
+</div>
+<h3>Üretim uyumu — mevcut hatla örtüşme</h3>
+<p>Brief'in §37 kuralı: üretim uyumu bir ölçüttür ama <em>pazar kalitesi her zaman önce gelir</em>. Bu değerlendirmede:</p>
+<ul class="tight">
+<li><strong>Satranç</strong> mevcut hatla en yüksek uyumu gösteriyor (9/10) — ama pazar kalitesi zayıf olduğu için kazanmadı. Bu, kuralın doğru uygulandığının kanıtıdır.</li>
+<li><strong>Amatör telsiz</strong> 8/10 ile çok yakın: siyah-beyaz çizgi sanatı, yapılandırılmış dizgi, deterministik render, otomatik QA, araştırma-yoğun iş akışı — hepsi mevcut.</li>
+<li><strong>ASL</strong> 3/10 ile en düşük; talebi güçlü olmasına rağmen üretim gerçekliği onu geriye çekti.</li>
+</ul>
+</section>
+<section id="s17">
+<h2 class="sect-title"><span class="n">17</span> Puanlama Modeli</h2>
+<p class="lead">Beş finalistin tamamı <strong>tek bir standart ağırlıklı modelle</strong> ve <strong>tek bir gerçekçi-varsayılan uygulama disipliniyle</strong> puanlandı. Hiçbir aday "her şey mükemmel giderse" varsayımıyla, başkası "normal gerçekçi uygulama" varsayımıyla değerlendirilmedi.</p>
+<h3>Ağırlıklar</h3>
+<p>Brief §27'de önerilen ağırlıklar <strong>değiştirilmeden</strong> kullanıldı.</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Ölçüt</th><th>Ağırlık</th><th>Ölçüt</th><th>Ağırlık</th></tr></thead>
+<tbody>
+<tr><td>Satın alma niyeti</td><td>%12</td><td>Katalog / çapraz satış</td><td>%8</td></tr>
+<tr><td>Talep</td><td>%10</td><td>Evergreen potansiyeli</td><td>%6</td></tr>
+<tr><td>Rekabet çekiciliği</td><td>%10</td><td>Üretim fizibilitesi</td><td>%5</td></tr>
+<tr><td>Rakip kalite açığı</td><td>%10</td><td>AI ikame direnci</td><td>%3</td></tr>
+<tr><td>Seri potansiyeli</td><td>%12</td><td>Risk</td><td>%4</td></tr>
+<tr><td>Amazon Ads uygunluğu</td><td>%10</td><td colspan="2"><strong>Toplam %100</strong></td></tr>
+<tr><td>Birim ekonomisi</td><td>%10</td><td colspan="2"></td></tr>
+</tbody>
+</table>
+</div>
+<h3>Puan matrisi</h3>
+<div class="tablewrap">
+<table>
+<caption>0–10 ölçek, gerçekçi-varsayılan uygulama, tüm finalistler için aynı disiplin</caption>
+<thead><tr><th>Ölçüt</th><th>Ağırlık</th><th>Amatör telsiz</th><th>Hemşirelik doz</th><th>Satranç</th><th>ASL</th><th>Noter/LSA</th></tr></thead>
+<tbody>
+<tr><td>Satın alma niyeti</td><td>%12</td><td><strong>9</strong></td><td>8</td><td>5</td><td>6</td><td>7</td></tr>
+<tr><td>Talep</td><td>%10</td><td><strong>8</strong></td><td>7</td><td>6</td><td><strong>8</strong></td><td>4</td></tr>
+<tr><td>Rekabet çekiciliği</td><td>%10</td><td>4</td><td>4</td><td>5</td><td>4</td><td>5</td></tr>
+<tr><td>Rakip kalite açığı</td><td>%10</td><td><strong>7</strong></td><td>5</td><td>6</td><td>5</td><td>5</td></tr>
+<tr><td>Seri potansiyeli</td><td>%12</td><td><strong>9</strong></td><td>7</td><td>7</td><td>6</td><td>7</td></tr>
+<tr><td>Amazon Ads uygunluğu</td><td>%10</td><td><strong>8</strong></td><td>7</td><td>6</td><td>6</td><td>5</td></tr>
+<tr><td>Birim ekonomisi</td><td>%10</td><td>8</td><td><strong>9</strong></td><td>4</td><td>7</td><td>6</td></tr>
+<tr><td>Katalog / çapraz satış</td><td>%8</td><td><strong>9</strong></td><td>7</td><td>7</td><td>6</td><td>8</td></tr>
+<tr><td>Evergreen</td><td>%6</td><td>5</td><td>7</td><td><strong>10</strong></td><td>8</td><td>4</td></tr>
+<tr><td>Üretim fizibilitesi</td><td>%5</td><td>8</td><td>5</td><td><strong>9</strong></td><td>3</td><td>6</td></tr>
+<tr><td>AI ikame direnci</td><td>%3</td><td>4</td><td>5</td><td><strong>7</strong></td><td>5</td><td>3</td></tr>
+<tr><td>Risk</td><td>%4</td><td>6</td><td>3</td><td><strong>7</strong></td><td>4</td><td>3</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Ağırlıklı sonuç — <span style="color:var(--red)">çelişmeli inceleme ÖNCESİ, geçersiz</span></h3>
+<p class="footnote">Nihai sıralama için <a href="#s20">§20</a>. Aşağıdaki tablo süreç şeffaflığı için bırakılmıştır.</p>
+<div class="rank-row win"><span class="pos">1</span><span class="nm">Amatör telsiz lisans + kullanım serisi</span><span class="sc">7,44</span></div>
+<div class="rank-row two"><span class="pos">2</span><span class="nm">Hemşirelik doz hesabı serisi</span><span class="sc">6,50</span></div>
+<div class="rank-row"><span class="pos">3</span><span class="nm">Satranç gelişim serisi</span><span class="sc">6,24</span></div>
+<div class="rank-row"><span class="pos">4</span><span class="nm">ASL öğrenme serisi</span><span class="sc">5,86</span></div>
+<div class="rank-row"><span class="pos">5</span><span class="nm">Noter / Loan Signing Agent serisi</span><span class="sc">5,57</span></div>
+<h3>Puanların gerekçe özeti — nerede cömert, nerede sert davranıldı</h3>
+<ul class="tight">
+<li><strong>Kazanan cömert puan almadı.</strong> Rekabet çekiciliğinde 4/10 aldı — beş finalistin en düşükleriyle aynı. Evergreen'de 5/10, AI direncinde 4/10 aldı. Kazanması bu zayıflıklara <em>rağmen</em> gerçekleşti.</li>
+<li><strong>Satranç, uyum avantajı yüzünden şişirilmedi.</strong> Üretim fizibilitesinde 9/10 ve evergreen'de 10/10 aldığı hâlde, satın alma niyeti (5) ve birim ekonomisi (4) onu üçüncülüğe çekti. Bu, "kolay üretilebilir diye zayıf pazarı seçme" kuralının uygulanmasıdır.</li>
+<li><strong>Noter'in talep puanı (4) tek bir gözleme dayanıyor ama o gözlem belirleyici:</strong> lider 1.516 yorumla BSR #425.554'te. Yorum sayısı ile güncel satış hızı arasındaki fark bu kadar açıkken daha yüksek bir puan savunulamazdı.</li>
+<li><strong>ASL'in talep puanı (8) kazananla eşit tutuldu</strong> — yorum kütlesi gerçekten çok güçlü. ASL'i geriye çeken üretim (3) ve risk (4) oldu, talep değil.</li>
+</ul>
+</section>
+
+<section id="s18">
+<h2 class="sect-title"><span class="n">18</span> Duyarlılık Testleri</h2>
+<p class="lead">Sıralama hafif baskı altında çökerse kazanan kırılgandır. Üç zorunlu stres testi ve bir bileşik en-kötü senaryo uygulandı.</p>
+<h3>Stres Testi 1 — Rekabet %25 kötüleşir</h3>
+<p><em>Yöntem: "rekabet çekiciliği" ve "rakip kalite açığı" puanları tüm adaylar için ×0,75.</em></p>
+<div class="rank-row win"><span class="pos">1</span><span class="nm">Amatör telsiz</span><span class="sc">7,17</span></div>
+<div class="rank-row two"><span class="pos">2</span><span class="nm">Hemşirelik doz</span><span class="sc">6,28</span></div>
+<div class="rank-row"><span class="pos">3</span><span class="nm">Satranç</span><span class="sc">5,96</span></div>
+<div class="rank-row"><span class="pos">4</span><span class="nm">ASL</span><span class="sc">5,63</span></div>
+<div class="rank-row"><span class="pos">5</span><span class="nm">Noter/LSA</span><span class="sc">5,32</span></div>
+<p class="footnote">Kazananın farkı: <strong>0,89 puan.</strong> Sıralama değişmedi.</p>
+
+<h3>Stres Testi 2 — Telif katkısı %20 kötüleşir</h3>
+<p><em>Yöntem: "birim ekonomisi" puanı tüm adaylar için ×0,80.</em></p>
+<div class="rank-row win"><span class="pos">1</span><span class="nm">Amatör telsiz</span><span class="sc">7,28</span></div>
+<div class="rank-row two"><span class="pos">2</span><span class="nm">Hemşirelik doz</span><span class="sc">6,32</span></div>
+<div class="rank-row"><span class="pos">3</span><span class="nm">Satranç</span><span class="sc">6,16</span></div>
+<div class="rank-row"><span class="pos">4</span><span class="nm">ASL</span><span class="sc">5,72</span></div>
+<div class="rank-row"><span class="pos">5</span><span class="nm">Noter/LSA</span><span class="sc">5,45</span></div>
+<p class="footnote">Kazananın farkı: <strong>0,96 puan.</strong> Sıralama değişmedi. Not: bu test hemşireliği (en iyi ekonomi) orantısal olarak en çok cezalandırır, yine de sıra korunuyor.</p>
+
+<h3>Stres Testi 3 — Seri çapraz satışı beklenenden çok daha düşük</h3>
+<p><em>Yöntem: "seri potansiyeli" ve "katalog/çapraz satış" puanları tüm adaylar için ×0,60 — yani serinin ana tezi %40 oranında yanlış çıkarsa.</em></p>
+<div class="rank-row win"><span class="pos">1</span><span class="nm">Amatör telsiz</span><span class="sc">6,72</span></div>
+<div class="rank-row two"><span class="pos">2</span><span class="nm">Hemşirelik doz</span><span class="sc">5,94</span></div>
+<div class="rank-row"><span class="pos">3</span><span class="nm">Satranç</span><span class="sc">5,68</span></div>
+<div class="rank-row"><span class="pos">4</span><span class="nm">ASL</span><span class="sc">5,38</span></div>
+<div class="rank-row"><span class="pos">5</span><span class="nm">Noter/LSA</span><span class="sc">4,98</span></div>
+<p class="footnote">Kazananın farkı: <strong>0,78 puan.</strong> Bu, kazananın en çok kaybettiği testtir (seri potansiyeli en yüksek puanıydı) — ve yine de birinci kalıyor.</p>
+
+<h3>Bileşik en-kötü senaryo — üç testin hepsi aynı anda</h3>
+<div class="rank-row win"><span class="pos">1</span><span class="nm">Amatör telsiz</span><span class="sc">6,29</span></div>
+<div class="rank-row two"><span class="pos">2</span><span class="nm">Hemşirelik doz</span><span class="sc">5,54</span></div>
+<div class="rank-row"><span class="pos">3</span><span class="nm">Satranç</span><span class="sc">5,33</span></div>
+<div class="rank-row"><span class="pos">4</span><span class="nm">ASL</span><span class="sc">5,02</span></div>
+<div class="rank-row"><span class="pos">5</span><span class="nm">Noter/LSA</span><span class="sc">4,61</span></div>
+<div class="card red">
+<p><strong>⚠ Bu bölümün sonucu çelişmeli inceleme tarafından geçersiz kılınmıştır.</strong> Aşağıdaki değerlendirme, <em>inceleme öncesi</em> puanlara dayanır ve tam olarak stres testlerinin neyi yakalayamayacağını gösterdiği için burada bırakılmıştır. Düzeltilmiş duyarlılık testleri için <a href="#s20">§20</a>.</p>
+</div>
+<div class="card green">
+<p><strong>Sonuç (inceleme öncesi): kazanan kırılgan görünmüyordu.</strong> Dört senaryonun tamamında birinci sırada kaldı ve ikinciyle arasındaki fark hiçbir zaman <strong>0,75 puanın</strong> altına inmedi. Sıralamanın 2.–5. sıraları da hiçbir testte yer değiştirmedi — bu, modelin gürültüye değil, gerçek puan farklarına dayandığını gösterir.</p>
+<p><strong>Ama dikkat — ve bu uyarı gerçekleşti:</strong> stres testleri modelin <em>içindeki</em> puanları oynatır. Modelin <em>dışındaki</em> bir varsayım yanlışsa hiçbir stres testi bunu yakalayamaz. Dört senaryonun dördünde de birinci kalan aday, girdileri sorgulandığında <strong>sonuncu sıraya düştü</strong>. Sağlamlık, yalnızca sorgulanmamış girdiler üzerinde ölçülmüştü.</p>
+<p class="footnote"><strong>Kalıcı metodoloji dersi:</strong> duyarlılık testi bir <em>kırılganlık</em> testidir, bir <em>doğruluk</em> testi değil. Yanlış girdilerle yapılan stres testi, yanlış cevabın ne kadar sağlam biçimde yanlış olduğunu ölçer.</p>
+</div>
+</section>
+<section id="s19">
+<h2 class="sect-title"><span class="n">19</span> Çelişmeli İnceleme</h2>
+<p class="lead">Birincil analiz tamamlandıktan sonra, <strong>ayrı ve taze bir ajan</strong> — yalnızca ham bulgular ve sıralamayla beslenen, görevlendirmesi açıkça "bu sıralamayı yık" olan bir inceleyici — devreye alındı. Sonuç, bu raporun en önemli bölümü oldu: <strong>sıralama ayakta kalmadı.</strong></p>
+<div class="card red">
+<p><strong>Bu bölüm bir formalite değildir.</strong> Çelişmeli inceleme, birincil araştırmacının (yani bu raporun ilk 18 bölümünün) <em>kazananı yanlış seçtiğini</em> gösterdi. Aşağıda 13 itirazın tamamı, her biri için verilen karar ve puan etkisiyle listeleniyor. Görev talimatı §31 gereği hiçbir itiraz körü körüne kabul edilmedi — üçü kısmen ya da tamamen <strong>çürütüldü</strong>.</p>
+</div>
+
+<h3>İtiraz listesi ve kararlar</h3>
+<div class="tablewrap">
+<table>
+<caption><span class="tag tag-acc">ACCEPTED</span> itiraz geçerli · <span class="tag tag-reb">REBUTTED</span> saldırıya rağmen orijinal iddia ayakta · <span class="tag tag-unr">UNRESOLVED</span> belirlenemedi · <span class="tag tag-est">FOUNDER</span> kurucu kararı gerektirir</caption>
+<thead><tr><th>#</th><th>İtiraz</th><th>Belirleyici kanıt</th><th>Karar</th><th>Puan etkisi</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>"Kitap 2 talebi kanıtlı" iddiası aslında 2024'te kapanmış bir ilk-giren tekelidir</td><td>Schell CHIRP kitabı: 619 yorum ama <strong>BSR #1.021.057</strong>. Barret #117.042. Eylül 2025'ten sonra giren <em>her</em> başlık ≤9 yorum (Goggans 23.05.2026 → BSR #275.558, 9 yorum). Hawke'ın 2.626 yorumu ≥4 format ASIN'i arasında <strong>paylaşılan havuz</strong>.</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Seri potansiyeli 9→5</td></tr>
+<tr><td>2</td><td>Kitap 2 farklı bir müşteriye satıyor; marka-bağımsızlık tek hacimli terimi feda ediyor</td><td>Kategori yerleşimleri tamamen ayrışıyor: Hawke #1 <em>Antique &amp; Collectible Radios</em>, NC Scout #1 <em>Antenna Engineering</em> — hiçbiri <em>Study &amp; Test-Taking Skills</em>'te değil. Kazanan Kitap-2 başlıklarının hepsi marka adını içeriyor.</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Katalog 9→5</td></tr>
+<tr><td>3</td><td>BSR #4.136 bir döngü zirvesidir, kalıcı durum değil</td><td>Orta-döngü karşılaştırıcı ARRL General 10. Bs. = #23.394. Eski 5. Baskı #62.001 (havuzu doldu).</td><td><span class="tag tag-acc">ACCEPTED</span> (kısmen <span class="tag tag-reb">REBUTTED</span>: rakamlar doğruydu)</td><td>Talep 8→(5)</td></tr>
+<tr><td>4</td><td>Kalite açığı 7, ARRL kataloğundaki <em>en zayıf</em> tek veri noktasına dayanıyor</td><td>n=41'de 4,2★ gürültüdür. Aynı yayıncı: 5. Bs. 4,7★/2.072 · General 4,8★/765 · Extra 4,8★/352. Tezi destekleyen tek sayı seçilmiş, onu yıkan üçü göz ardı edilmiş.</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Kalite açığı 7→5</td></tr>
+<tr><td>5</td><td>Technician kademesi yeni giren için kazanılabilir değil</td><td><strong>Bu raporun tek en belirleyici verisi:</strong> Vertex Prep Academy (markasız bağımsız, <em>tam olarak bizim planladığımız</em> "jargonsuz, sade dil" konumlandırması, 23.05.2026) → <strong>BSR #227.749</strong>, 24 yorum. Ayrıca 6–27 Ağustos 2026 arasında <strong>15 ayrı yeni giren</strong> (~1,4 günde bir), hepsi 0 yorumda.</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Rekabet 4→2 · Ads 8→4</td></tr>
+<tr><td>6</td><td>Fiyat tabanı $0; $22,99 varsayımı piyasanın ödemediği bir fiyat</td><td>HamStudy.org, HamBook.org ve KB6NU <strong>açıklamalı</strong> çalışma materyalini ücretsiz veriyor. Gerçekten satan kitaplar $14,99 / $17,03 / $32,95 bandında; $29,99+ bandı tam olarak 0-yorumlu churn kohortu.</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Birim ekonomisi 8→5</td></tr>
+<tr><td>7</td><td>"Uzman gerekmez" iddiası yanlış; kamu malı statüsü uzman ihtiyacını <em>artırıyor</em></td><td>Kamu malı iddiası <strong>doğrulandı</strong>. Ama havuz RF maruziyet güvenliği içeriyor (T0C alt-elemanı; 47 CFR 97.13(c), geçiş 03.05.2023'te bitti) ve bu bir <em>tuzaklı hesaptır</em>, bakılıp yazılacak bir tablo değil.</td><td><span class="tag tag-acc">ACCEPTED</span> · telif kısmı <span class="tag tag-reb">REBUTTED</span></td><td>Risk 6→4 · Üretim 8→6</td></tr>
+<tr><td>8</td><td>Kitap 3'ün pazarı Kitap 1'in ~üçte biri</td><td>İki bağımsız yöntem aynı yere çıkıyor: ARRL ömür-boyu yorumları Tech 2.072 : General 765 = <strong>0,37</strong>; ARRL VEC yükseltme/yeni-lisans oranı 2015–2018 boyunca <strong>0,30–0,35</strong>.</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Seri/Katalog içinde</td></tr>
+<tr><td>9</td><td>Puanlama tutarsızlığı denetimi</td><td>(a) Talep 8 vs 4 <strong>tutarlıydı</strong> — Noter lideri BSR #487.573'te doğrulandı. (b) Ama "ömür-boyu yorum yanılsaması" testi Noter'in Talebine uygulanıp Amatör Telsiz'in Seri/Katalog kanıtına uygulanmamış. (c) Kalite açığı kanıt eşiği tutarsız: n=41'e 7 verilirken n=2.034'teki olumsuz sinyal görülmemiş.</td><td>(a) <span class="tag tag-reb">REBUTTED</span> · (b)(c) <span class="tag tag-acc">ACCEPTED</span></td><td>Model yeniden çalıştırıldı</td></tr>
+<tr><td>10</td><td>SME kapısı Hemşirelik'e uygulanıp Amatör Telsiz'e muaf tutulmuş</td><td>Her ikisi de "yanlış bir sayı birine zarar verir" alanı. Risk 3 ve 6 farkı bu kanıtla savunulamaz.</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Amatör Telsiz Risk 6→4</td></tr>
+<tr><td>11</td><td>Technician giriş penceresi 1 Temmuz 2026'da <em>kapandı</em>; 2030'a kadar yenisi yok</td><td>Doğrudan doğrulandı (arrl.org/question-pools): Element 2 yürürlük 01.07.2026, <strong>bitiş 30.06.2030</strong>. Yenileme olayı — yeni girenin yerleşiği devirdiği <em>tek mekanizma</em> — iki ay önce yaşandı ve ARRL, Gordon West ve Ham Radio Prep Haziran 2026'da o pencereye girdiler.</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Satın alma niyeti 9→6</td></tr>
+<tr><td>12</td><td>Adreslenebilir pazar yılda ~30.000 alıcı; ARRL'in kendisi bunun ~18.000'ini satıyor ve yarıdan fazlası Amazon dışında</td><td><strong>ARRL 2025 Yıllık Raporu (10.08.2026):</strong> en çok satan başlık <em>"nearly 18,000 copies"</em>; yayın geliri $2,26M, <strong>%54 bayi kanalı</strong> (KDP'nin erişemediği kanal); ARRL VEC pazar payı <strong>%68</strong>, 2025'te &gt;29.000 lisans başvurusu; ARRL VEC yeni lisansları 2025'te <strong>%20 düştü</strong>.</td><td><span class="tag tag-acc">ACCEPTED</span> — <em>incelemenin en belirleyici bulgusu</em></td><td>Talep →5</td></tr>
+<tr><td>13</td><td>Pazar dört yıldır üst üste küçülüyor ve düşüş tam da Technician kademesinde</td><td>ARRL'in kendi ifadesi (2025 Yıllık Rapor s.17): lisans sayısı <em>"declined for the fourth consecutive year."</em> Ara 2018 → Ağu 2026: toplam −%3,3, <strong>Technician −%6,7</strong>. Technician bugün (358.483) Aralık 2014'e (357.236) göre <strong>fiilen yatay</strong>.</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Evergreen 5→3</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Körü körüne kabul edilmeyenler — birincil analizin karşı çıktığı üç nokta</h3>
+<div class="card blue">
+<h4>1 · KDP kamu malı politikası riski — <span class="tag tag-reb">KISMEN ÇÜRÜTÜLDÜ</span></h4>
+<p>İnceleyici, KDP'nin kamu malı politikasının (<code>G200743940</code>) kitabı doğrudan reddedebileceğini öne sürdü. <strong>Politika metni bağımsız olarak doğrulandı ve gerçek:</strong> <em>"If a free version of a public domain title is available in our store, we will only allow you to publish a differentiated version"</em>; farklılaştırma yalnızca özgün çeviri, özgün açıklama veya 10+ özgün illüstrasyonla sağlanır ve <em>"freely available Internet content"</em> farklılaştırma sayılmaz.</p>
+<p><strong>Ancak iddia fazla ileri götürülmüştür.</strong> Bu politika, kamu malı bir <em>eserin yeniden basımını</em> hedefler (ör. klasik bir roman) — kamu malı bir soru havuzundan alıntı yapan özgün bir çalışma kılavuzunu değil. Karşı kanıt gözlemseldir ve ezicidir: ARRL'in kendi el kitapları, Gordon West, Ham Radio Prep, K4IA'nın 9 kitaplık serisi ve son 22 günde giren 15 başlık <em>hepsi</em> KDP'de canlı. Politika bu ürün sınıfına uygulanıyor olsaydı bu katalog var olamazdı.</p>
+<p><strong>Karar:</strong> gerçek ama düşük olasılıklı bir risk; diskalifiye edici değil. Yine de §28'de kurucu kontrolü olarak listelendi.</p>
+</div>
+<div class="card blue">
+<h4>2 · Satın alma niyeti 9→6, ama inceleyicinin gerekçesiyle değil</h4>
+<p>İnceleyici satın alma niyetini <em>rekabet gerekçesiyle</em> düşürmek istedi (5'e). Bu bir <strong>ölçüt karıştırmasıdır</strong>: satın alma niyeti kategorinin talep tarafı özelliğidir; bizim kazanma kabiliyetimiz zaten "Rekabet çekiciliği" ölçütünde fiyatlanmıştır. Aynı kanıtı iki ölçütte birden cezalandırmak çifte sayımdır.</p>
+<p>Buna karşılık <strong>ücretsiz katman bulgusu geçerli bir satın alma niyeti argümanıdır</strong> — ARRL'in kendisi ücretsiz çalışma PDF'i ve sınav simülatörü veriyorsa "neden kitap alayım?" sorusu gerçekten zayıflar. Puan bu gerekçeyle 6'ya indirildi, 5'e değil.</p>
+</div>
+<div class="card blue">
+<h4>3 · Kalite açığı tamamen çökmedi — 3 değil 5</h4>
+<p>İnceleyici n=41 gerekçesiyle kalite açığını 3'e indirmek istedi. Yıldız kanıtının diskalifiye edilmesi <strong>kabul edildi</strong>. Ancak yıldıza dayanmayan iki kusur ayakta kaldı ve ikisi de mekanik olarak doğrulanabilir:</p>
+<ul class="tight">
+<li>NCVEC havuzları <em>yaşayan belgelerdir</em>: Technician havuzu 18.12.2025'te yayımlanıp <strong>19.02.2026'da errata ile</strong> düzeltildi (T1C01, T5A05, T7A09, T0A10); General havuzu dört yılda <strong>altı errata</strong> aldı. İnceleyici bu bulguyu bağımsız olarak <em>doğruladı</em>.</li>
+<li>Şu anda 330 yorumla satan lider bağımsız kitap, <strong>süresi dolmuş 2022–2026 havuzuna</strong> dayanıyor.</li>
+</ul>
+<p><strong>Karar:</strong> 5. Kanıt gerçek ama kazananı kurtaracak büyüklükte değil.</p>
+</div>
+
+<h3>Tutarlılık kuralları — modele eklenip <em>beş adayın tamamına</em> uygulandı</h3>
+<ol class="tight">
+<li><strong>Ömür-boyu yorum yanılsaması testi:</strong> Yorum sayısı güncel talebin kanıtı sayılamaz; BSR ile birlikte okunmalıdır. (Noter'in Talebine uygulanmıştı; artık Amatör Telsiz'in Seri/Katalog kanıtına da uygulanıyor.)</li>
+<li><strong>Kalite açığı için asgari-n kuralı:</strong> Bir kalite açığı puanı ancak (a) n≥200'de bir puan sinyaliyle <em>veya</em> (b) puana dayanmayan, mekanik olarak doğrulanabilir bir kusurla desteklenebilir.</li>
+<li><strong>Tek ve tutarlı SME/Risk kapısı:</strong> "Yanlış bir sayı birine zarar verir" alanlarında uzman inceleme ihtiyacı tüm adaylarda aynı ölçekle fiyatlanır.</li>
+</ol>
+<div class="card accent">
+<p><strong>2. kuralın sonucu, kazananı belirleyen tek hamle oldu.</strong> Asgari-n kuralı beş adayın hepsine uygulandığında, daha önce hiç bakılmamış <em>olumsuz</em> sinyaller ortaya çıktı:</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Aday</th><th>Lider ürün (n)</th><th>Amazon'un kendi "Customers say" özeti — doğrudan gözlem</th><th>Kalite açığı</th></tr></thead>
+<tbody>
+<tr><td><strong>Hemşirelik</strong></td><td>n=2.034</td><td><em>"clarity and step-by-step approach receive mixed feedback… some find it confusing… lacks detailed instructions… opinions on value for money are divided"</em></td><td>5 → <strong>7</strong></td></tr>
+<tr><td><strong>Satranç</strong></td><td>n=1.936</td><td><em>"The content receives mixed feedback regarding clarity and readability, with some finding it easy to understand while others say it's <strong>confusing and difficult to see</strong>"</em></td><td>6 → <strong>7</strong></td></tr>
+<tr><td><strong>ASL</strong></td><td>n=4.553</td><td><em>"the <strong>image quality receives negative feedback</strong>, with multiple customers noting that the pictures are not clear and difficult to see"</em> (Image quality 44 kez anılmış)</td><td>5 → <strong>7</strong></td></tr>
+<tr><td>Noter/LSA</td><td>n=1.516</td><td>Olumsuz sinyal yok — özet baştan sona olumlu</td><td>5 → <strong>4</strong></td></tr>
+<tr><td>Amatör telsiz</td><td>n=41 <span class="small">(diskalifiye)</span></td><td>Yıldız kanıtı yetersiz; yalnızca errata/bayat-havuz kusurları sayıldı</td><td>7 → <strong>5</strong></td></tr>
+</tbody>
+</table>
+</div>
+<p>Birincil analiz bu üç olumsuz sinyali <strong>hiç aramamıştı</strong> — çünkü kalite açığını yalnızca kazanan adayda kanıtlamaya çalışmıştı. Bu, incelemenin ortaya çıkardığı en somut metodolojik hatadır.</p>
+</div>
+</section>
+
+<section id="s20">
+<h2 class="sect-title"><span class="n">20</span> Nihai Sıralama</h2>
+<p class="lead">Üç tutarlılık kuralı beş adayın tamamına uygulandıktan sonra model yeniden çalıştırıldı. Sıralama tamamen değişti.</p>
+<div class="tablewrap">
+<table>
+<caption>Çelişmeli inceleme öncesi → sonrası</caption>
+<thead><tr><th>Aday</th><th>Önce</th><th>Sonra</th><th>Değişim</th><th>Sıra değişimi</th></tr></thead>
+<tbody>
+<tr><td><strong>Hemşirelik doz hesabı</strong></td><td>6,50</td><td><strong>6,70</strong></td><td><span class="arrow-up">+0,20</span></td><td>2. → <strong>1.</strong></td></tr>
+<tr><td><strong>Satranç gelişim serisi</strong></td><td>6,24</td><td><strong>6,34</strong></td><td><span class="arrow-up">+0,10</span></td><td>3. → <strong>2.</strong></td></tr>
+<tr><td>ASL öğrenme serisi</td><td>5,86</td><td>6,06</td><td><span class="arrow-up">+0,20</span></td><td>4. → 3.</td></tr>
+<tr><td>Noter / LSA serisi</td><td>5,57</td><td>5,47</td><td><span class="arrow-down">−0,10</span></td><td>5. → 4.</td></tr>
+<tr><td><strong>Amatör telsiz</strong></td><td><strong>7,44</strong></td><td><strong>4,58</strong></td><td><span class="arrow-down">−2,86</span></td><td><strong>1. → 5. (sonuncu)</strong></td></tr>
+</tbody>
+</table>
+</div>
+<div class="rank-row win"><span class="pos">1</span><span class="nm">Hemşirelik doz hesabı serisi — <strong>KAZANAN</strong></span><span class="sc">6,70</span></div>
+<div class="rank-row two"><span class="pos">2</span><span class="nm">Satranç gelişim serisi — <strong>İKİNCİ</strong></span><span class="sc">6,34</span></div>
+<div class="rank-row"><span class="pos">3</span><span class="nm">ASL öğrenme serisi</span><span class="sc">6,06</span></div>
+<div class="rank-row"><span class="pos">4</span><span class="nm">Noter / Loan Signing Agent serisi</span><span class="sc">5,47</span></div>
+<div class="rank-row"><span class="pos">5</span><span class="nm">Amatör telsiz lisans + kullanım serisi</span><span class="sc">4,58</span></div>
+
+<h3>Düzeltilmiş puan matrisi</h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Ölçüt</th><th>Ağırlık</th><th>Hemşirelik</th><th>Satranç</th><th>ASL</th><th>Noter</th><th>Amatör telsiz</th></tr></thead>
+<tbody>
+<tr><td>Satın alma niyeti</td><td>%12</td><td><strong>8</strong></td><td>5</td><td>6</td><td>7</td><td>6 <span class="small">(9)</span></td></tr>
+<tr><td>Talep</td><td>%10</td><td>7</td><td>6</td><td><strong>8</strong></td><td>4</td><td>5 <span class="small">(8)</span></td></tr>
+<tr><td>Rekabet çekiciliği</td><td>%10</td><td>4</td><td><strong>5</strong></td><td>4</td><td><strong>5</strong></td><td>2 <span class="small">(4)</span></td></tr>
+<tr><td>Rakip kalite açığı</td><td>%10</td><td><strong>7</strong></td><td><strong>7</strong></td><td><strong>7</strong></td><td>4</td><td>5 <span class="small">(7)</span></td></tr>
+<tr><td>Seri potansiyeli</td><td>%12</td><td><strong>7</strong></td><td><strong>7</strong></td><td>6</td><td><strong>7</strong></td><td>5 <span class="small">(9)</span></td></tr>
+<tr><td>Amazon Ads uygunluğu</td><td>%10</td><td><strong>7</strong></td><td>6</td><td>6</td><td>5</td><td>4 <span class="small">(8)</span></td></tr>
+<tr><td>Birim ekonomisi</td><td>%10</td><td><strong>9</strong></td><td>4</td><td>7</td><td>6</td><td>5 <span class="small">(8)</span></td></tr>
+<tr><td>Katalog / çapraz satış</td><td>%8</td><td>7</td><td>7</td><td>6</td><td><strong>8</strong></td><td>5 <span class="small">(9)</span></td></tr>
+<tr><td>Evergreen</td><td>%6</td><td>7</td><td><strong>10</strong></td><td>8</td><td>4</td><td>3 <span class="small">(5)</span></td></tr>
+<tr><td>Üretim fizibilitesi</td><td>%5</td><td>5</td><td><strong>9</strong></td><td>3</td><td>6</td><td>6 <span class="small">(8)</span></td></tr>
+<tr><td>AI ikame direnci</td><td>%3</td><td>5</td><td><strong>7</strong></td><td>5</td><td>3</td><td>4</td></tr>
+<tr><td>Risk</td><td>%4</td><td>3</td><td><strong>7</strong></td><td>4</td><td>3</td><td>4 <span class="small">(6)</span></td></tr>
+<tr><th>TOPLAM</th><th>%100</th><th><strong>6,70</strong></th><th>6,34</th><th>6,06</th><th>5,47</th><th>4,58</th></tr>
+</tbody>
+</table>
+</div>
+<p class="footnote">Parantez içindeki değerler amatör telsizin <em>inceleme öncesi</em> puanlarıdır.</p>
+
+<h3>Yeniden çalıştırılan duyarlılık testleri</h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Senaryo</th><th>Hemşirelik</th><th>Satranç</th><th>ASL</th><th>Noter</th><th>Amatör telsiz</th><th>Kazanan farkı</th></tr></thead>
+<tbody>
+<tr><td>Temel</td><td><strong>6,70</strong></td><td>6,34</td><td>6,06</td><td>5,47</td><td>4,58</td><td>+0,36</td></tr>
+<tr><td>ST1 · Rekabet %25 kötüleşir</td><td><strong>6,42</strong></td><td>6,04</td><td>5,79</td><td>5,25</td><td>4,41</td><td>+0,38</td></tr>
+<tr><td>ST2 · Telif katkısı %20 kötüleşir</td><td><strong>6,52</strong></td><td>6,26</td><td>5,92</td><td>5,35</td><td>4,48</td><td>+0,26</td></tr>
+<tr><td>ST3 · Çapraz satış çok daha düşük</td><td><strong>6,14</strong></td><td>5,78</td><td>5,58</td><td>4,88</td><td>4,18</td><td>+0,36</td></tr>
+<tr><td>ST4 · Bileşik en-kötü</td><td><strong>5,69</strong></td><td>5,40</td><td>5,17</td><td>4,53</td><td>3,91</td><td>+0,29</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card accent">
+<p><strong>Yeni kazanan dört senaryonun tamamında birinci kalıyor — ama liderliği eskisinden çok daha dar.</strong> Önceki kazananın farkı hiçbir testte 0,75'in altına inmiyordu; yeni kazananınki <strong>0,26–0,38</strong> bandında. Bu dürüstçe söylenmelidir: Hemşirelik ile Satranç arasındaki fark, modelin ölçüm hassasiyetinin sınırında. İki adayı ayıran şey puan farkı değil, <strong>§21'de tartışılan tek yapısal kısıttır.</strong></p>
+</div>
+</section>
+<section id="s21">
+<h2 class="sect-title"><span class="n">21</span> Kazanan Pazar</h2>
+<div class="card accent">
+<p class="rankbig">Hemşirelik ilaç doz hesabı</p>
+<p class="lead">Hemşirelik öğrencilerinin, programda ilerleyebilmek için geçmek zorunda oldukları doz hesabı yeterlilik sınavları ve bunları izleyen iki ayrı klinik matematik kapısı.</p>
+<div class="badge-verdict A">KAZANAN · 6,70 / 10 · dört stres testinin dördünde de birinci</div>
+</div>
+
+<h3>Neden bu pazar kazandı</h3>
+<ol class="tight">
+<li><strong>Güçlü, son tarihli, kapılı satın alma niyeti (8/10).</strong> Hemşirelik öğrencisi doz hesabı yeterliliğinden kalırsa programda ilerleyemez. Bu, isteğe bağlı bir öz-gelişim değil, bir mezuniyet koşuludur — ve genellikle %90–100 geçme barajı uygulanır.</li>
+<li><strong>Beş finalist içinde en iyi birim ekonomisi (9/10).</strong> Lider ürün $24,80'den satıyor; gözlemlenen bir rakip $43,84'e kadar çıkıyor. Öğrenci alıcı fiyat duyarlılığı düşük çünkü kitabın alternatifi dersi tekrar almaktır.</li>
+<li><strong>Doğrulanmış, yüksek-n kalite açığı (7/10).</strong> Amazon'un kendi yorum özeti, <strong>2.034 yorumlu</strong> lider ürün için şunu söylüyor <span class="tag tag-obs">OBSERVED</span>: <em>"clarity and step-by-step approach receive mixed feedback… some find it confusing… others say it lacks detailed instructions… opinions on value for money are divided."</em> Bu, tam olarak bir çalışma kitabının satılma sebebine — adım adım netliğe — dair bir memnuniyetsizliktir.</li>
+<li><strong>Seri modelinin bu pazarda çalıştığı kanıtlı.</strong> Aynı bağımsız yayıncının iki kitabı 2.034 + 1.400 = <strong>3.400+ yorum</strong> topladı.</li>
+<li><strong>Üç basamaklı merdiven, öğrencinin takvimi tarafından dayatılıyor</strong> — uydurulmuş değil (§22).</li>
+<li><strong>Kitap 2'nin segmenti şaşırtıcı derecede ince:</strong> "IV drip rate critical care calculations nursing" sorgusu yalnızca <strong>86 sonuç</strong> döndürüyor <span class="tag tag-obs">OBSERVED</span> — beş finalistin tüm alt segmentleri içinde en az kalabalık olanı.</li>
+<li><strong>Dört stres testinin dördünde de birinci kaldı</strong> (§20).</li>
+</ol>
+
+<h3>Rekabetin gerçek yapısı — bu bir tek-kitap yazarı değil, bir katalog operatörü</h3>
+<p>Kazanan pazarın lideri, iki gerçek ve kimliği doğrulanabilir kişidir: <strong>Chase Hassen</strong> (hemşire) ve <strong>Bradley J. Wojcik</strong> (emekli eczacı, University of the Pacific eczacılık okulu). Bu ikili yalnızca iki doz hesabı kitabı yazmadı — komşu nişlerde de katalog kurdu <span class="tag tag-obs">OBSERVED</span>:</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Başlık</th><th>Yazar</th><th>Fiyat</th><th>Puan / Yorum</th></tr></thead>
+<tbody>
+<tr><td>Dosage Calculations for Nursing Students <em>(Book 1 of 2)</em></td><td>Hassen &amp; Wojcik</td><td>$24,80</td><td>4,5★ / <strong>2.034</strong></td></tr>
+<tr><td>Nursing Dosage Calculation Workbook <em>(Book 2 of 2)</em></td><td>Hassen &amp; Wojcik</td><td>$17,95</td><td>4,6★ / <strong>1.400</strong></td></tr>
+<tr><td>Pharmacy Calculations for Pharmacy Technicians</td><td>Bradley J. Wojcik PharmD</td><td>$17,61</td><td>4,6★ / <strong>1.200</strong></td></tr>
+<tr><td>EKG Interpretation: 24 Hours or Less</td><td>Chase Hassen</td><td>$14,95</td><td>4,4★ / <strong>881</strong></td></tr>
+</tbody>
+</table>
+</div>
+<div class="card red">
+<p><strong>Bu bulgu iki yönlüdür ve her iki yön de raporlanmalıdır.</strong> Olumlu: bu, "aynı müşteriye birden çok kitap satmak" tezinin bu pazarda <em>fiilen işlediğinin</em> en güçlü kanıtıdır — dört kitap, 5.500'den fazla yorum. Olumsuz: karşımızdaki rakip tek kitaplık bir amatör değil, <strong>gerçek klinik kimlik bilgilerine sahip, deneyimli bir katalog operatörüdür.</strong> Onu "kolayca geçilir" saymak, bu raporun ilk turunda amatör telsiz için yapılan hatanın aynısı olur.</p>
+</div>
+
+<h3>Pazarın ölçüsü ve rekabet akışı</h3>
+<div class="flow">
+<div class="n"><b>961</b>toplam sonuç<br><span class="small">"nursing dosage calculation"</span></div>
+<div class="n"><b>281</b>son 90 günde<br><span class="small">= %29,2 akış oranı</span></div>
+<div class="n"><b>#41.831</b>liderin BSR'ı<br><span class="small">7 yıldır satıyor</span></div>
+<div class="n"><b>86</b>Kitap 2 segmenti<br><span class="small">sonuç sayısı — çok ince</span></div>
+</div>
+<p>Karşılaştırma için: kaybeden adayın (amatör telsiz) alt segmentinde son <strong>22 günde 15 yeni giren</strong> vardı. Hemşirelikte akış istikrarlı ve lider ürün <strong>2019'dan beri</strong> satıyor — yedi yıllık dayanıklılık, dört yıllık bir soru havuzu takvimine bağlı olmayan bir istikrar.</p>
+
+<h3>Kazananın tek yapısal kısıtı — ve bunun neden gizlenmediği</h3>
+<div class="card red">
+<p><strong>Bu pazar, lisanslı bir klinisyen inceleyici gerektirir.</strong> Bir doz hesabı hatası hasta zararına yol açabilir; kategorinin normu, adı ve klinik unvanı açık yazarlıktır. Risk puanı bu yüzden <strong>3/10</strong> — beş finalistin en düşüğü — ve model bu cezayı zaten içeriyor.</p>
+<p><strong>Bu, Vâliçe Press için soyut bir risk değildir.</strong> Daha önceki lisans-sınavı projesi (sigorta) tam olarak bu nedenle duraklatıldı: konu uzmanı tedarik ilişkisi kurulamadı. Aynı duvara ikinci kez toslamak gerçek bir olasılıktır.</p>
+<p><strong>Buna rağmen kazanan olarak seçilmesinin gerekçesi:</strong> (a) model, kuralları tutarlı uygulandığında bu sonucu veriyor ve sonucu gördükten <em>sonra</em> bir ölçütü diskalifiye edici kapıya çevirmek, brief'in açıkça uyardığı post-hoc model manipülasyonu olur; (b) bu kapı sigortadakinden <strong>maddi olarak daha kolaydır</strong> — doz hesabı içeriğini denetleyecek bir hemşirelik öğretim üyesi veya klinik eczacı, saatlik danışmanlık piyasasında bulunabilir; eyalet-lisanslı bir sigorta acentesi bulup sınav sorularını denetletmekten çok daha az egzotiktir.</p>
+<p><strong>Karar kuralı (§28'de tarihli eylem olarak):</strong> Kitap 1 üretimi, lisanslı bir klinisyen inceleyici <em>sözleşmelenmeden</em> başlamaz. 60–90 gün içinde makul bir ücretle sözleşmelenemezse, ikinci sıradaki (<strong>Satranç, 6,34</strong>) devreye alınır. Bu bir "duruma bağlı" cevap değil; tarihli ve ölçülebilir bir kilit-kapıdır.</p>
+</div>
+</section>
+
+<section id="s22">
+<h2 class="sect-title"><span class="n">22</span> Üç Kitaplık Seri</h2>
+<div class="card accent">
+<p><strong>Seri markası (çalışma adı): <span class="rankbig" style="font-size:1.6rem">SAFE DOSE</span></strong></p>
+<p>Kısa, telaffuzu kolay, numaralandırılabilir ve ürünün tek vaadini taşıyor: <em>güvenli doz</em>. Mevcut "Codex" / "The Great Book of…" hatlarından görsel ve isimsel olarak tamamen ayrı.</p>
+<p class="footnote"><strong>Uyarı:</strong> "Safe Dose" ifadesinin kitap kategorisinde marka çakışması §28'de zorunlu kontrol maddesidir. Ayrıca <strong>NCLEX-RN®</strong> tescilli bir markadır (NCSBN); başlıkta izinsiz kullanılamaz — KDP Metadata Guidelines başlıkta <em>"unauthorized reference to a trademarked term"</em> kullanımını açıkça yasaklıyor <span class="tag tag-reb">FACT</span>. Kitap 3 bu nedenle marka adını başlıkta taşımadan konumlandırılmalıdır.</p>
+</div>
+
+<h3>KİTAP 1 — <em>Safe Dose 1: Dosage Calculations for Nursing Students</em></h3>
+<div class="tablewrap">
+<table>
+<tbody>
+<tr><th style="width:22%">Alt başlık</th><td>"Every Problem Worked Step by Step — Dimensional Analysis, Ratio-Proportion and Formula Methods, With Nothing Skipped."</td></tr>
+<tr><th>Hedef okur</th><td>1.–2. dönem hemşirelik öğrencisi (ADN veya BSN), ilk ilaç matematiği yeterlilik sınavına hazırlanıyor.</td></tr>
+<tr><th>Çözdüğü problem</th><td>Genellikle %90–100 geçme barajlı, kapılı bir matematik sınavı. Kalmak, programda ilerlemeyi durdurur.</td></tr>
+<tr><th>Ürün vaadi</th><td><strong>Atlanan adım yok.</strong> Doğrudan liderin doğrulanmış zayıflığını hedefler: <em>"some find it confusing… lacks detailed instructions."</em></td></tr>
+<tr><th>Sayfa / format</th><td>~220–260 sayfa · 8,5×11 inç büyük trim · siyah-beyaz · ciltsiz</td></tr>
+<tr><th>Fiyat aralığı</th><td><strong>$22,99 – $26,99</strong> (model: $24,99) — lider $24,80'de, yani bu agresif değil, eşleşen bir konum</td></tr>
+<tr><th>İçerik mimarisi</th><td>1) Matematik tazeleme (kesir, ondalık, oran) · 2) Ölçü birimleri ve dönüşümler · 3) Üç yöntem yan yana: boyut analizi, oran-orantı, formül — <em>aynı problem üç yöntemle çözülür</em> · 4) Oral dozlar · 5) Parenteral dozlar · 6) Yeniden sulandırma (reconstitution) · 7) Ağırlığa göre dozlama · 8) Yaygın hata desenleri ve nasıl yakalanır · 9) Tam uzunlukta yeterlilik denemeleri</td></tr>
+<tr><th>Farklılaşma</th><td>(a) <strong>Her problem tam çözümlü</strong> — ara adım atlanmaz; (b) üç yöntemin karşılaştırmalı sunumu (öğrenci kendi programının istediği yöntemi seçebilir); (c) lisanslı klinisyen tarafından doğrulanmış ve bu doğrulama künyede açıkça belirtilmiş</td></tr>
+<tr><th>Ana anahtar kelimeler</th><td>dosage calculations for nursing students · nursing math workbook · dimensional analysis nursing · medication calculation practice · nursing dosage calculation practice problems</td></tr>
+<tr><th>Ads hedefleme mantığı</th><td>Anahtar kelime: sınav niyetli tam eşleşmeler. Ürün: lider serinin iki ASIN'i + Kaplan'ın doz hesabı kitabı. Kategori: Nursing Reviews &amp; Study Guides · Nursing Pharmacology.</td></tr>
+<tr><th>Rakip ASIN tipleri</th><td>Bağımsız kanıtlanmış seri ($17,95–$24,80) · kurumsal test-prep (Kaplan $19,32) · çok kitaplı replikatör seriler (8–23 kitap) · yeni 2026 girişleri ($20,90–$43,84)</td></tr>
+<tr><th>Çapraz satış ilişkisi</th><td>Kitap 1'i bitiren öğrenci, 2–3 dönem sonra <strong>zorunlu olarak</strong> IV ve kritik bakım hesaplarıyla karşılaşır — Kitap 2.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>KİTAP 2 — <em>Safe Dose 2: IV Therapy, Drip Rates &amp; Critical Care Calculations</em></h3>
+<div class="tablewrap">
+<table>
+<tbody>
+<tr><th style="width:22%">Alt başlık</th><td>"Flow Rates, Titration, Weight-Based Infusions and Pediatric Dosing — Worked Step by Step for Students and New Nurses."</td></tr>
+<tr><th>Hedef okur</th><td>3.–4. dönem öğrencisi ve yeni mezun hemşire; IV tedavi ve kritik bakım hesaplarıyla ilk kez karşılaşıyor.</td></tr>
+<tr><th>Çözdüğü problem</th><td>Doz hesabının belirgin biçimde daha zor ikinci kapısı: damla hızı, titrasyon, ağırlığa göre infüzyon, pediatrik dozlama. Hata payı burada klinik olarak en dar.</td></tr>
+<tr><th>Sayfa / format</th><td>~200–240 sayfa · 8,5×11 inç · siyah-beyaz · ciltsiz</td></tr>
+<tr><th>Fiyat aralığı</th><td><strong>$22,99 – $26,99</strong> (model: $24,99)</td></tr>
+<tr><th>İçerik mimarisi</th><td>1) IV sistemleri ve ekipman temelleri · 2) Damla faktörü ve akış hızı · 3) İnfüzyon pompası hesapları · 4) mcg/kg/dk titrasyon · 5) Ağırlığa göre kritik bakım ilaçları · 6) Pediatrik ve neonatal dozlama · 7) Güvenli doz aralığı doğrulaması · 8) Klinik senaryo setleri · 9) Tam denemeler</td></tr>
+<tr><th>Farklılaşma ve <strong>rekabet avantajı</strong></th><td><strong>Bu, serinin en iyi rekabet konumudur.</strong> "IV drip rate critical care calculations nursing" sorgusu yalnızca <strong>86 sonuç</strong> döndürüyor <span class="tag tag-obs">OBSERVED</span>. Mevcut oyuncular ya çok pahalı ders kitapları ($42–$105) ya da genel "For Dummies" formatı ($11, 699 yorum) — <em>ikisinin arasında adanmış bir çalışma kitabı boşluğu var.</em></td></tr>
+<tr><th>Ana anahtar kelimeler</th><td>IV drip rate calculations · critical care math nursing · titration calculations nursing · weight based dosage calculation · pediatric dosage calculation</td></tr>
+<tr><th>Ads hedefleme mantığı</th><td>Ürün hedefleme: pahalı ders kitaplarının ASIN'leri (fiyat avantajımız görünür olur) + <strong>kendi Kitap 1'imiz</strong>. Kategori: Nursing Reviews &amp; Study Guides · Critical Care Nursing.</td></tr>
+<tr><th>Rakip ASIN tipleri</th><td>Kurumsal ders kitapları ($42,08–$105,20) · genel hesaplama kitapları ($9,99–$21,28) · <em>adanmış IV çalışma kitabı: neredeyse yok</em></td></tr>
+<tr><th>Çapraz satış ilişkisi</th><td>Kitap 1'in doğrudan devamı. <strong>Ayrıca bağımsız giriş kapısı:</strong> doz hesabını başka bir kitapla öğrenmiş her öğrenci bu kitabın potansiyel alıcısıdır.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>KİTAP 3 — <em>Safe Dose 3: Medication Math for the Licensing Exam</em></h3>
+<div class="tablewrap">
+<table>
+<tbody>
+<tr><th style="width:22%">Alt başlık</th><td>"Dosage and Pharmacology Calculations for Your RN Licensing Exam — Timed Practice, Full Solutions, No Skipped Steps."</td></tr>
+<tr><th>Hedef okur</th><td>Mezuniyet aşamasındaki öğrenci; lisans sınavına hazırlanıyor.</td></tr>
+<tr><th>Çözdüğü problem</th><td>Son ve en yüksek bahisli kapı. Genel sınav hazırlık kitapları doz matematiğine yalnızca birkaç bölüm ayırır; adanmış, zamanlı pratik ihtiyacı karşılanmaz.</td></tr>
+<tr><th>Sayfa / format</th><td>~240–280 sayfa · 8,5×11 inç · ciltsiz</td></tr>
+<tr><th>Fiyat aralığı</th><td><strong>$24,99 – $29,99</strong> (model: $26,99)</td></tr>
+<tr><th>Konumlandırma uyarısı</th><td><strong>Dar konumlandırma bilinçlidir.</strong> Genel lisans sınavı hazırlığı Kaplan/Saunders/NURSING.com'un (807–1.100 yorum) alanıdır ve doğrudan girilmez. Bu kitap yalnızca <em>ilaç matematiği</em> dikeyini alır — 601 sonuçlu geniş sorgunun içindeki dar, savunulabilir şerit.</td></tr>
+<tr><th>Farklılaşma</th><td>Zamanlı, sınav formatında pratik + her sorunun tam çözümü; Kitap 1 ve 2'nin yöntem diliyle birebir tutarlı</td></tr>
+<tr><th>Ana anahtar kelimeler</th><td>dosage calculation practice questions · medication math practice test · pharmacology calculations review · nursing licensing exam math</td></tr>
+<tr><th>Ads hedefleme mantığı</th><td>Ürün hedefleme önceliği: <strong>kendi Kitap 1 ve 2 sayfalarımız</strong> — en nitelikli kitle tam olarak orada. Ardından genel sınav hazırlık kitaplarının ASIN'leri (dar uzmanlığımız yanlarında farklılaşır).</td></tr>
+<tr><th>Çapraz satış ilişkisi</th><td>Kitap 1 ve 2'nin mezunu için <strong>tanım gereği</strong> son adım. Amazon'un öneri motoruna verilecek en temiz sinyal.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Seri genişleme testi — beş soru, beş kanıtlı cevap</h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Test</th><th>Cevap</th></tr></thead>
+<tbody>
+<tr><td>Aynı müşteri mi?</td><td><strong>Evet.</strong> Üç kitap da aynı bireyi 2–3 yıllık bir program boyunca takip eder.</td></tr>
+<tr><td>Sıra dışarıdan mı dayatılıyor?</td><td><strong>Evet</strong> — müfredat takvimi tarafından. Temel doz hesabı IV/kritik bakımdan önce, o da lisans sınavından önce gelir. Sıra uydurulmuş değil.</td></tr>
+<tr><td>Ayrı müşteri ihtiyacı mı?</td><td><strong>Evet.</strong> "Yeterlilik sınavını geç" ≠ "titrasyon hesapla" ≠ "lisans sınavında zamanlı çöz". Farklı içerik, farklı zorluk, farklı sınav.</td></tr>
+<tr><td>Sonraki kitabı almak için gerçek sebep?</td><td><strong>Evet</strong> — ve rakip bunu kanıtlamış: aynı yazar ikilisinin iki doz kitabı 3.400+, dört kitaplık kataloğu 5.500+ yorum topladı.</td></tr>
+<tr><td>Aynı anahtar kelime ekosistemi ve üretim varlıkları?</td><td><strong>Evet.</strong> Aynı kategori ağacı, aynı dizgi şablonu, aynı çözüm-adımı biçimi, aynı klinisyen inceleyici ilişkisi üç kitapta da yeniden kullanılır.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Neden bu sıra?</h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Karar</th><th>Gerekçe</th></tr></thead>
+<tbody>
+<tr><td><strong>Kitap 1 neden temel doz hesabı?</strong></td><td>En büyük arama hacmi, en erken müfredat kapısı, en düşük giriş bariyeri. 961 sonuçlu ana sorgu buradadır — huninin en geniş ağzı.</td></tr>
+<tr><td><strong>Kitap 2 neden IV/kritik bakım?</strong></td><td>Üç sebep: (a) öğrencinin <em>bir sonraki gerçek problemi</em>; (b) <strong>en iyi rekabet konumu</strong> — 86 sonuçlu ince segment; (c) pahalı ders kitapları ile yüzeysel genel kitaplar arasındaki boşluk gözlemlenmiş.</td></tr>
+<tr><td><strong>Kitap 3 neden en sona?</strong></td><td>En yüksek bahisli ama en kalabalık kapı. Kurumsal oyuncularla ancak <em>önceki iki kitabın kurduğu marka ve öneri sinyaliyle</em> rekabet edilebilir. İlk kitap olarak girilseydi sıfır destekle Kaplan'ın karşısına çıkılırdı.</td></tr>
+<tr><td><strong>Neden Extra bir 4. kitap yok?</strong></td><td>Var — ama bu turun kapsamı dışında. Rakibin kendi kataloğu (eczane teknisyeni hesapları, EKG yorumlama) doğal genişleme yönlerini zaten gösteriyor.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Seri markalaşma testi</h3>
+<ul class="tight">
+<li><strong>Tutarlı kapak mimarisi:</strong> numaralandırılmış cilt (1/2/3), sabit tipografi, sabit renk kodu, ortak "çözüm adımı" grafik motifi.</li>
+<li><strong>Numaralandırma uygun:</strong> evet — sıra müfredat sırasıdır, okur bunu bilmelidir.</li>
+<li><strong>Çapraz tanıtım:</strong> her kitabın arkasında diğer ikisi; Amazon Series sayfası; ortak seri şeridi.</li>
+<li><strong>Marka birikimi:</strong> "atlanan adım yok + klinisyen doğrulamalı" konumlandırması üç kitapta tekrarlandığında, tek kitapta imkânsız bir güven sinyali üretir.</li>
+</ul>
+<p class="footnote">Brief §39 gereği kapak ve A+ içeriği <strong>kesinleştirilmedi</strong>; manüskript yazılmadı.</p>
+</section>
+<section id="s23">
+<h2 class="sect-title"><span class="n">23</span> Seri için Amazon Ads Stratejisi</h2>
+<p class="lead">Üst düzey reklam mimarisi. <strong>Hiçbir CPC rakamı verilmiyor</strong> — canlı kampanya olmadan gözlemlenemez. Bunun yerine her hedefin neden ticari olarak anlamlı olduğu ve reklamı neyin uygulanabilir kılacağı açıklanıyor.</p>
+
+<h3>Kitap 1 — Doz Hesabı</h3>
+<div class="tablewrap">
+<table>
+<tbody>
+<tr><th style="width:24%">Anahtar kelime ailesi</th><td><em>Sınav niyeti:</em> "dosage calculations for nursing students", "nursing math practice problems", "dimensional analysis nursing", "medication calculation workbook". <strong>Neden alıcı niyeti:</strong> bu sorgular bir konuyu değil, <em>geçilmesi zorunlu bir yeterlilik sınavını</em> ifade eder. Arayan kişi zaten satın alma kararının içindedir ve alternatifi dersi tekrar almaktır.</td></tr>
+<tr><th>Ürün hedefleme ailesi</th><td>Lider serinin iki ASIN'i (2.034 ve 1.400 yorumlu) · Kaplan'ın doz hesabı kitabı (216 yorum) · 2026 girişleri. Konumlandırma: liderin doğrulanmış zayıflığı (<em>"lacks detailed instructions"</em>) bizim vaadimizin (<em>atlanan adım yok</em>) tam karşılığıdır — bu, ürün hedeflemenin en verimli çalıştığı durumdur.</td></tr>
+<tr><th>Kategori hedefleme</th><td>Nursing Reviews &amp; Study Guides · Nursing Pharmacology · Pharmacy. Üçü de dar ve tutarlı.</td></tr>
+<tr><th>Çapraz tanıtım</th><td>Henüz yok. Kitap 2 yayımlandığında Kitap 1'in sayfası en değerli reklam envanteri olur.</td></tr>
+<tr><th>Defansif hedefleme</th><td>Kendi ASIN'imizi hedefleyerek rakip reklamının ürün sayfamızdaki yerini doldurmak.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Kitap 2 — IV / Kritik Bakım</h3>
+<div class="tablewrap">
+<table>
+<tbody>
+<tr><th style="width:24%">Anahtar kelime ailesi</th><td>"IV drip rate calculations", "titration calculations nursing", "weight based dosage", "pediatric dosage calculation", "critical care math". <strong>Neden alıcı niyeti:</strong> bunlar spesifik, teknik, problem-odaklı sorgulardır — gezinme değil, çözüm arama.</td></tr>
+<tr><th>Ürün hedefleme ailesi</th><td><strong>Asimetrik fırsat:</strong> bu segmentteki rakiplerin çoğu $42–$105 bandındaki kurumsal ders kitapları. Onların ürün sayfalarında $24,99'luk adanmış bir çalışma kitabı reklamı, fiyat ve odak avantajını aynı anda gösterir. Ayrıca <strong>kendi Kitap 1'imiz</strong>.</td></tr>
+<tr><th>Kategori hedefleme</th><td>Critical Care Nursing · Nursing Reviews &amp; Study Guides.</td></tr>
+<tr><th>Çapraz tanıtım</th><td><strong>Serinin motoru burada.</strong> Kitap 1 alıcısı Kitap 2 için en yüksek niyetli kitledir; Amazon'un organik öneri motoru bu ilişkiyi ancak iki ürün varken kurabilir.</td></tr>
+<tr><th>Defansif hedefleme</th><td>Kitap 1 ve 2 sayfalarında karşılıklı hedefleme.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Kitap 3 — Lisans Sınavı İlaç Matematiği</h3>
+<div class="tablewrap">
+<table>
+<tbody>
+<tr><th style="width:24%">Anahtar kelime ailesi</th><td>"dosage calculation practice questions", "medication math practice test", "pharmacology calculations review". <strong>Dar tutulur</strong> — genel lisans sınavı terimlerinde kurumsal oyuncularla teklif yarışına girilmez.</td></tr>
+<tr><th>Ürün hedefleme ailesi</th><td><strong>Öncelik: kendi Kitap 1 ve Kitap 2 sayfalarımız.</strong> Dünyadaki en nitelikli alıcı kitlesi tam olarak orada. İkincil: genel sınav hazırlık kitapları — yanlarında dar uzmanlığımız farklılaşır.</td></tr>
+<tr><th>Kategori hedefleme</th><td>Nursing Reviews &amp; Study Guides · Nursing Pharmacology.</td></tr>
+<tr><th>Çapraz tanıtım</th><td>Üç yönlü: her kitap diğer ikisini taşır.</td></tr>
+<tr><th>Defansif hedefleme</th><td>Üç ASIN'in tamamında karşılıklı kapatma.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Reklamı neyin uygulanabilir ya da uygulanamaz kılacağı</h3>
+<div class="two-col">
+<div class="card green"><h4>Uygulanabilir kılar</h4><ul class="tight"><li>Birim telif $9,91–$10,77 — beş finalistin en genişi. Satış başına $5,95–$6,46 reklam tolere edilebilir.</li><li>Seri tamamlandığında tolere edilebilir edinme maliyeti <strong>%22–%56</strong> artar (§24).</li><li>Öğrenci alıcı fiyat duyarlılığı düşük; alternatif maliyeti (ders tekrarı) çok yüksek.</li><li>Liderin doğrulanmış zayıflığı, ürün hedeflemede kullanılabilecek somut bir mesaj verir.</li></ul></div>
+<div class="card red"><h4>Uygulanamaz kılar</h4><ul class="tight"><li>Dönüşüm %5'in altında kalırsa tolere edilebilir CPC $0,30–$0,46'ya iner.</li><li>Kurumsal test-prep yayıncıları (Kaplan) tek kitap ekonomisinin tolere edemeyeceği CPC'ye dayanabilir — kurs satıyorlar, kitap değil.</li><li>Akış %29,2; yeni girenler aynı dar kelime kümesine teklif verirse CPC yükselir.</li></ul></div>
+</div>
+<p class="footnote"><strong>Bu bir tahmin değil, bir sınama planıdır.</strong> Gerçek CPC yalnızca küçük bütçeli bir test kampanyasıyla öğrenilir ve §28'de üretim kararından önce gelen adımlar arasındadır.</p>
+</section>
+
+<section id="s24">
+<h2 class="sect-title"><span class="n">24</span> Seri Ekonomisi — Kazanan</h2>
+<p class="lead">Tüm rakamlar <strong>illüstratiftir</strong>. Hiçbiri garanti gelir değildir; satış adedi tahmini yapılmamıştır.</p>
+<h3>Kitap düzeyinde <span class="small">(resmî KDP formülü, büyük trim: $1,00 + sayfa × $0,017)</span></h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Kitap</th><th>Sayfa</th><th>Liste = GELİR</th><th>ÜRETİM/BASKI</th><th>TELİF</th><th>Telif / liste</th></tr></thead>
+<tbody>
+<tr><td>Kitap 1 — Doz Hesabı</td><td>240</td><td>$24,99</td><td>$5,08</td><td><strong>$9,91</strong></td><td>%39,7</td></tr>
+<tr><td>Kitap 2 — IV / Kritik Bakım</td><td>220</td><td>$24,99</td><td>$4,74</td><td><strong>$10,25</strong></td><td>%41,0</td></tr>
+<tr><td>Kitap 3 — Lisans Sınavı Matematiği</td><td>260</td><td>$26,99</td><td>$5,42</td><td><strong>$10,77</strong></td><td>%39,9</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Alıcı senaryoları</h3>
+<div class="tablewrap">
+<table>
+<caption>Reklam gideri illüstratif olarak Kitap 1 telifinin %40'ı; edinme yalnızca <strong>bir kez</strong> ödenir</caption>
+<thead><tr><th>Alıcı tipi</th><th>Brüt telif</th><th>İllüstratif reklam gideri</th><th>Reklam sonrası katkı</th><th>Tek kitaba göre</th></tr></thead>
+<tbody>
+<tr><td>Yalnızca Kitap 1</td><td>$9,91</td><td>$3,96</td><td>$5,95</td><td>—</td></tr>
+<tr><td>Kitap 1 + 2</td><td>$20,16</td><td>$3,96</td><td><strong>$16,20</strong></td><td><span class="arrow-up">2,7×</span></td></tr>
+<tr><td>Kitap 1 + 2 + 3</td><td>$30,93</td><td>$3,96</td><td><strong>$26,97</strong></td><td><span class="arrow-up">4,5×</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Harmanlanmış telif / edinilen müşteri</h3>
+<div class="tablewrap">
+<table>
+<caption>Bağlanma oranları <span class="tag tag-est">ESTIMATE</span> — gözlemlenmedi, senaryo olarak sunuluyor</caption>
+<thead><tr><th>Senaryo</th><th>Kitap 2</th><th>Kitap 3</th><th>Harmanlanmış telif</th><th>Tolere edilebilir reklam/satış (%60)</th><th>Tek kitaba göre</th></tr></thead>
+<tbody>
+<tr><td><strong>Çok kötümser</strong> <span class="small">(seri tezi büyük ölçüde yanlış)</span></td><td>%5</td><td>%2</td><td>$10,64</td><td>$6,38</td><td><span class="arrow-up">+%7,3</span></td></tr>
+<tr><td>Muhafazakâr</td><td>%15</td><td>%6</td><td>$12,09</td><td>$7,26</td><td><span class="arrow-up">+%22,0</span></td></tr>
+<tr><td>Temel</td><td>%25</td><td>%10</td><td>$13,55</td><td>$8,13</td><td><span class="arrow-up">+%36,7</span></td></tr>
+<tr><td>İyimser</td><td>%35</td><td>%18</td><td>$15,44</td><td>$9,26</td><td><span class="arrow-up">+%55,8</span></td></tr>
+<tr><td><em>Tek kitap (referans)</em></td><td>—</td><td>—</td><td><em>$9,91</em></td><td><em>$5,95</em></td><td>—</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Kritik gözlem:</strong> seri tezi neredeyse tamamen yanlış çıksa bile (%5/%2 bağlanma) harmanlanmış telif tek kitabın üzerinde kalıyor — çünkü Kitap 2 ve 3 kendi arama trafiği olan <em>bağımsız ürünlerdir</em>. Seri, yukarı yönlü bir bahis; aşağı yönlü riski sınırlı.</p>
+
+<h3>Tolere edilebilir CPC — senaryo tablosu, uydurma rakam yok</h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Dönüşüm oranı</th><th>Çok kötümser</th><th>Muhafazakâr</th><th>Temel</th><th>İyimser</th><th>Tek kitap</th></tr></thead>
+<tbody>
+<tr><td>%5</td><td>$0,32</td><td>$0,36</td><td>$0,41</td><td>$0,46</td><td>$0,30</td></tr>
+<tr><td>%8</td><td>$0,51</td><td>$0,58</td><td>$0,65</td><td>$0,74</td><td>$0,48</td></tr>
+<tr><td>%10</td><td>$0,64</td><td>$0,73</td><td>$0,81</td><td>$0,93</td><td>$0,59</td></tr>
+<tr><td>%15</td><td>$0,96</td><td>$1,09</td><td>$1,22</td><td>$1,39</td><td>$0,89</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card accent">
+<p><strong>Serinin ekonomik işlevi:</strong> tek kitapla tolere edilebilir CPC $0,30–$0,89 bandındayken üç kitaplık seriyle $0,32–$1,39 bandına çıkar. Reklam maliyeti sabitken <strong>kazanılabilir anahtar kelime kümesi genişler</strong> — tek kitapta alınamayacak bir kelime, seride alınabilir hâle gelir.</p>
+</div>
+
+<h3>Üçüncü kitap ilk ikisinin ekonomisini nasıl değiştirir?</h3>
+<ul class="tight">
+<li><strong>Harmanlanmış edinme maliyeti düşer</strong> — aynı reklam harcaması üç ürünün gelirine dağılır.</li>
+<li><strong>Öneri motoruna gerçek sinyal gider</strong> — "bu ürünü alanlar bunu da aldı" ilişkisi ancak ikinci ve üçüncü ürünle kurulur.</li>
+<li><strong>Anahtar kelime yüzeyi genişler</strong> — temel doz, IV/titrasyon ve lisans sınavı matematiği ayrı arama kümeleridir.</li>
+<li><strong>Defansif hedefleme mümkün olur</strong> — kendi sayfalarımızda kendi kitaplarımızı hedefleyerek rakip reklamının yerini doldururuz.</li>
+<li><strong>Klinisyen inceleyici maliyeti amortize olur</strong> — tek bir inceleme ilişkisi üç kitaba bölünür. Bu, kazananın <em>en pahalı kısıtını</em> seri sayesinde ucuzlatan mekanizmadır.</li>
+</ul>
+<p class="footnote">Bu mekanizmaların tümü mantıksal olarak desteklenmektedir; hiçbiri ölçülmüş bir sonuç olarak sunulmamaktadır.</p>
+
+<h3>Başabaş adet <span class="tag tag-est">ESTIMATE</span></h3>
+<div class="flow">
+<div class="n"><b>101</b>$1.000 bütçe</div>
+<div class="n"><b>252</b>$2.500 bütçe</div>
+<div class="n"><b>505</b>$5.000 bütçe</div>
+<div class="n"><b>807</b>$8.000 bütçe</div>
+</div>
+<p class="footnote">Kitap 1 telifiyle, reklam hariç. Üretim bütçesi rakamları senaryodur; evin gerçek maliyet yapısı bu belgede modellenmemiştir.</p>
+</section>
+
+<section id="s25">
+<h2 class="sect-title"><span class="n">25</span> Bu Seri Neden Başarısız Olabilir</h2>
+<p class="lead">Zorunlu bölüm — ve bu raporun en önemli bölümlerinden biri. Önceki turda kazanan aday tam olarak bu tür bir sorgulamayla birinci sıradan sonuncuya düştü.</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Risk</th><th>Nasıl gerçekleşir</th><th>Ciddiyet</th></tr></thead>
+<tbody>
+<tr><td><strong>Uzman tedarik riski</strong></td><td><strong>En büyük risk.</strong> Lisanslı klinisyen inceleyici bulunamaz ya da maliyeti projeyi ekonomik olmaktan çıkarır. Bu, aynı operasyonu daha önce bir kez durdurmuş somut bir darboğazdır — teorik değil.</td><td><strong>Çok yüksek</strong></td></tr>
+<tr><td><strong>Sorumluluk riski</strong></td><td>Bir doz hesabı hatası hasta zararına yol açabilir. Bu, "dikkatli yazarız" ile geçiştirilebilecek bir risk değildir; sigorta, sorumluluk reddi metni ve inceleme zinciri gerektirir.</td><td><strong>Çok yüksek</strong></td></tr>
+<tr><td><strong>Yerleşik oyuncu riski</strong></td><td>Lider, tek kitaplık bir amatör değil; gerçek klinik kimlik bilgilerine sahip, dört kitap ve 5.500+ yorumluk bir katalog kurmuş bir operatör. Yedi yıldır satıyor.</td><td>Yüksek</td></tr>
+<tr><td><strong>Farklılaşma riski</strong></td><td>"Atlanan adım yok" konumlandırması, liderin doğrulanmış zayıflığına dayanıyor — ama alıcının bunu <em>satın alma anında fark edip fark etmeyeceği</em> kanıtlanmamış bir hipotezdir <span class="tag tag-est">HYPOTHESIS</span>.</td><td>Orta–yüksek</td></tr>
+<tr><td><strong>Rekabet riski</strong></td><td>%29,2 akış oranı; 8–23 kitaplık replikatör seriler mevcut; 2026 girişleri hızlı.</td><td>Orta–yüksek</td></tr>
+<tr><td><strong>Talep riski</strong></td><td>Hemşirelik programı kayıtları düşerse alıcı havuzu daralır. Bu turda <strong>yıllık hemşirelik öğrencisi sayısı doğrulanmadı</strong> — kazananın talep tezindeki en büyük boşluk (bkz. §29).</td><td>Orta</td></tr>
+<tr><td><strong>Reklam riski</strong></td><td>Dönüşüm %5 altında kalırsa tolere edilebilir CPC $0,30–$0,46'ya iner; kurumsal test-prep oyuncuları kurs ekonomisiyle daha yüksek CPC'ye dayanabilir.</td><td>Orta</td></tr>
+<tr><td><strong>Kitap 3 riski</strong></td><td>En kalabalık kapı. Dar konumlandırma (yalnızca ilaç matematiği) işe yaramazsa Kitap 3, Kaplan/Saunders'ın gölgesinde kalır.</td><td>Orta</td></tr>
+<tr><td><strong>AI ikame riski</strong></td><td>AI matematik alıştırması üretebilir; hatalar tehlikelidir ama <strong>satın alma anında alıcıya görünmez</strong> — bu, kalite hendeğini pazarlama açısından zayıflatır.</td><td>Orta</td></tr>
+<tr><td><strong>Marka/politika riski</strong></td><td>Lisans sınavının adı tescillidir; KDP başlıkta izinsiz marka kullanımını açıkça yasaklıyor <span class="tag tag-reb">FACT</span>. Kitap 3 marka adı olmadan konumlanmak zorunda — bu, arama hacmi kaybıdır.</td><td>Orta</td></tr>
+<tr><td><strong>Fiyat riski</strong></td><td>Lider $24,80'de; seri ikinci kitabı $17,95'te. $24,99 savunulabilir ama garanti değil.</td><td>Düşük–orta</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Bu fırsatın yanlış olduğunu ne kanıtlar? <span class="small">(falsifikasyon testleri — zorunlu)</span></h3>
+<ol class="tight">
+<li><strong>60–90 gün içinde makul bir ücretle lisanslı klinisyen inceleyici sözleşmelenemezse</strong> → kazanan uygulanabilir değildir ve ikinci sıradaki (Satranç) devreye girer. <em>Bu, listedeki en belirleyici testtir.</em></li>
+<li><strong>Liderin puanı 4,7★ üzerine çıkar ve "confusing / lacks detailed instructions" sinyali yorum özetinden kaybolursa</strong> → kalite açığı iddiası çöker.</li>
+<li><strong>Bağımsız bir hemşirelik öğrencisi, örnek bölümümüzle liderin aynı bölümünü karşılaştırdığında farkı fark etmezse</strong> → farklılaşma hipotezi çürür.</li>
+<li><strong>"IV drip rate" segmentine 6 ay içinde 5+ adanmış çalışma kitabı girerse</strong> → Kitap 2'nin en iyi rekabet konumu kapanmıştır.</li>
+<li><strong>Küçük bütçeli test kampanyasında dönüşüm %5 altında kalırsa</strong> → ücretli edinme uygulanamaz; ürün yalnızca organiğe bağımlı kalır.</li>
+<li><strong>Lider serinin BSR'ı 12 ay içinde #150.000 üzerine çıkarsa</strong> → pazar sönüyor demektir (Noter dersi).</li>
+</ol>
+<div class="divider-note"><strong>Altı testin beşi üretim başlamadan önce, düşük maliyetle ölçülebilir</strong> — ve birincisi mutlak bir ön koşuldur. §28 tam olarak bunun üzerine kuruludur.</div>
+</section>
+<section id="s26">
+<h2 class="sect-title"><span class="n">26</span> İkinci Sıradaki — ve Neden Kaybetti</h2>
+<div class="card blue">
+<p class="rankbig" style="font-size:1.7rem">Satranç gelişim serisi — 6,34 / 10</p>
+<p>Kitap 1: taktikler (başlangıç bandı) · Kitap 2: finaller · Kitap 3: strateji ve açılış prensipleri — her pozisyon satranç motoruyla doğrulanmış.</p>
+</div>
+<h3>Neden ticari olarak güvenilir bir aday — ve neden çelişmeli incelemeden <em>güçlenerek</em> çıktı</h3>
+<ul class="tight">
+<li><strong>Asgari-n kuralı satrancın lehine çalıştı.</strong> Polgár'ın 1.936 yorumlu klasiğinin Amazon yorum özeti şunu söylüyor <span class="tag tag-obs">OBSERVED</span>: <em>"The content receives mixed feedback regarding clarity and readability, with some finding it easy to understand while others say it's <strong>confusing and difficult to see</strong>."</em> Kalite açığı 6'dan <strong>7</strong>'ye çıktı.</li>
+<li><strong>Ve bu açık, tam olarak evin güçlü olduğu yerde:</strong> "okunaksız / görülmesi zor" şikâyeti bir <em>dizgi ve diyagram render kalitesi</em> sorunudur. 1.104 sayfaya sıkıştırılmış 5.334 küçük diyagramın alternatifi, deterministik render ve tipografi disiplinidir — bu, Vâliçe Press'in mevcut üretim hattının doğrudan yaptığı iştir.</li>
+<li><strong>Mutlak evergreen (10/10):</strong> satranç kuralları pratikte değişmez. Bakım yükü ≈ 0.</li>
+<li><strong>Beş finalist içinde en iyi üretim uyumu (9/10)</strong> ve <strong>en iyi AI direnci (7/10):</strong> doğru bulmaca üretmek motor doğrulaması gerektirir; yalnızca metin üreten bir AI görünür biçimde başarısız olur.</li>
+<li><strong>Uzman kapısı YOK.</strong> Beş finalist içinde bunu söyleyebilen tek aday — motor <em>uzmandır</em>. Bu, kazananın en büyük zayıflığının tam tersidir.</li>
+<li><strong>En düşük risk puanı bakımından en iyi ikinci (7/10):</strong> pozisyonlar olgudur, telifle korunmaz; sorumluluk yok, mevzuat yok, sınav takvimi yok.</li>
+</ul>
+<h3>Neden buna rağmen kaybetti — üç somut sebep</h3>
+<ol class="tight">
+<li><strong>En zayıf satın alma niyeti (5/10).</strong> Sınav yok, son tarih yok, yasal zorunluluk yok — ve ücretsiz alternatif <em>yapısal olarak üstündür</em>: Lichess ve Chess.com sonsuz, kişiselleştirilmiş, anında geri bildirimli bulmaca sunar. Kazananda alıcının alternatifi "dersi tekrar almak"tır; satrançta alternatif "telefonu açmak".</li>
+<li><strong>En kötü birim ekonomisi (4/10).</strong> $6,13 birim telif. Diyagram yoğunluğu büyük trim zorunlu kılıyor ($0,017/sayfa) <em>ve</em> Polgár'ın 1.104 sayfa / $15,60 çıpası fiyat tavanını eziyor. Kazananın $9,91'ine karşı %38 daha düşük.</li>
+<li><strong>Çalışma kitabı alt segmentinde satış hızı düşük.</strong> Gözlemlenen BSR'lar #89.245 ve #546.576 — kazananın #41.831'inin gerisinde.</li>
+</ol>
+<div class="card accent">
+<p><strong>Satranç, bu raporun "yedek plan" adayı değil, gerçek bir alternatiftir.</strong> Aradaki fark yalnızca <strong>0,36 puan</strong> ve bu, modelin ölçüm hassasiyetinin sınırında. İki adayı ayıran şey puan değil, <em>tek bir yapısal kısıttır</em>: kazanan lisanslı klinisyen inceleyici gerektirir, satranç hiçbir uzman gerektirmez.</p>
+<p><strong>Doğrudan sonuç:</strong> §28'deki 60–90 günlük klinisyen tedarik kapısı geçilemezse, satranç <em>otomatik olarak</em> devreye girer. Bu bir "duruma bağlı" cevap değil; önceden yazılmış, tarihli bir yedek karardır.</p>
+</div>
+</section>
+
+<section id="s27">
+<h2 class="sect-title"><span class="n">27</span> Diğerlerini Neden Reddediyoruz</h2>
+
+<h3>3. ASL öğrenme serisi — 6,06</h3>
+<ul class="tight">
+<li><strong>Talebi beş finalistin en güçlülerinden (8/10)</strong> — 4.553 yorumlu bir lider gerçek bir pazardır. Reddedilme sebebi talep değil.</li>
+<li><strong>Kalite açığı çelişmeli incelemede 5'ten 7'ye yükseldi</strong> <span class="tag tag-obs">OBSERVED</span>: <em>"the image quality receives negative feedback, with multiple customers noting that the pictures are not clear and difficult to see"</em> — "Image quality" 44 kez anılmış.</li>
+<li><strong>Ama bu, kapatamayacağımız bir açıktır.</strong> Kusur <em>illüstrasyon kalitesindedir</em> ve ASL, üretim fizibilitesinde 3/10 ile beş finalistin en kötüsüdür: yüzlerce anatomik olarak doğru, hareket yönü belirtilmiş el/kol illüstrasyonu gerekir. Açığı görmek yetmez; kapatacak kapasitenin olması gerekir.</li>
+<li><strong>Ortam uyumsuzluğu:</strong> ASL hareket ve yüz dilbilgisi içerir; basılı statik format bunun için yapısal olarak yanlış ortamdır ve ücretsiz video daha iyi hizmet verir.</li>
+<li><strong>Gizli uzman kapısı:</strong> Sağır topluluğun katılımı olmadan ASL kursu yayımlamak hem etik açıdan sorunlu hem de pazar güvenilirliği açısından zayıftır — özellikle lider rakibin gerçek Sağır eğitimi kimlik bilgileri varken. Yani kazananın uzman kapısından kaçılıp <em>başka bir uzman kapısına</em> girilmiş olur.</li>
+</ul>
+
+<h3>4. Noter / Loan Signing Agent serisi — 5,47</h3>
+<ul class="tight">
+<li><strong>Belirleyici bulgu:</strong> kategori lideri 1.516 yorumla <strong>BSR #487.573</strong>'te <span class="tag tag-obs">OBSERVED</span>. Ömür boyu yorum kütlesi büyük, güncel satış hızı sönük. Talep 4/10.</li>
+<li><strong>Kalite açığı incelemede 5'ten 4'e <em>düştü</em>:</strong> asgari-n kuralı uygulandığında liderin 1.516 yorumluk özeti baştan sona olumlu çıktı — saldırılacak bir kusur yok.</li>
+<li><strong>En düşük akış oranı bir tuzak:</strong> yeni giriş azlığı normalde çekicilik işaretidir; burada muhtemelen pazarın çekiciliğini yitirdiğinin işaretidir.</li>
+<li><strong>Politika riski:</strong> kategori normu gelir iddiasıdır ("Six Figures", "$1000 a Week"). Bu iddiayı kullanmak FTC/KDP açısından riskli ve evin kanıt disiplinine aykırı; kullanmamak rekabet dezavantajı.</li>
+<li><strong>50 eyaletlik mevzuat bakımı</strong> ve aktif evrilen RON kuralları — öngörülemez eskime (Evergreen 4/10).</li>
+</ul>
+
+<h3>5. Amatör telsiz lisans + kullanım serisi — 4,58 <span class="small">(inceleme öncesi 7,44 ile 1. sıradaydı)</span></h3>
+<div class="card red">
+<p><strong>Bu, raporun en önemli reddidir</strong> — çünkü ilk 18 bölüm boyunca kazanan olarak analiz edilen aday budur. Çelişmeli inceleme onu birinci sıradan <strong>sonuncu sıraya</strong> düşürdü. Sebepler tek tek doğrulanmış ve ezicidir:</p>
+</div>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Çöken iddia</th><th>Onu çökerten kanıt</th></tr></thead>
+<tbody>
+<tr><td>"Taze soru havuzu bir fırsat penceresi"</td><td><strong>Pencere 1 Temmuz 2026'da kapandı ve 30 Haziran 2030'a kadar yenisi yok</strong> <span class="tag tag-reb">FACT</span> (arrl.org/question-pools). Yenileme olayı — yeni girenin yerleşiği devirdiği tek mekanizma — iki ay önce yaşandı; ARRL, Gordon West ve Ham Radio Prep Haziran 2026'da o pencereye girdiler. Biz geç kaldık.</td></tr>
+<tr><td>"Talep güçlü — lider BSR #4.136"</td><td>Mutlak pazar hiç hesaplanmamıştı. <strong>ARRL 2025 Yıllık Raporu:</strong> en çok satan başlık <em>"nearly 18,000 copies"</em>; yayın gelirinin <strong>%54'ü bayi kanalından</strong> (KDP'nin giremediği kanal); ARRL VEC pazar payı <strong>%68</strong>; ARRL VEC yeni lisansları 2025'te <strong>%20 düştü</strong>. Yıllık adreslenebilir alıcı havuzu ~25–30.000 <em>ve küçülüyor</em>; ARRL bunun ~18.000'ini kendisi satıyor.</td></tr>
+<tr><td>"Pazar istikrarlı"</td><td>ARRL'in kendi ifadesi: lisans sayısı <em>"declined for the <strong>fourth consecutive year</strong>."</em> Ara 2018 → Ağu 2026: Technician <strong>−%6,7</strong>. Technician bugün (358.483) Aralık 2014'e (357.236) göre fiilen yatay.</td></tr>
+<tr><td>"Ölçülebilir kalite açığı var"</td><td>Tek dayanak <strong>n=41</strong>'de 4,2★ idi — istatistiksel gürültü. Aynı yayıncının diğer ürünleri 4,7–4,8★ / 3.189 yorum. Tezi destekleyen tek sayı seçilmiş, onu yıkan üçü göz ardı edilmişti.</td></tr>
+<tr><td>"Bağımsız yayıncı kazanabilir"</td><td><strong>Tek en belirleyici veri:</strong> Vertex Prep Academy — markasız bağımsız, <em>tam olarak bizim planladığımız</em> "jargonsuz, sade dil" konumlandırması, 23.05.2026 → <strong>BSR #227.749</strong>. Ayrıca 6–27 Ağustos 2026 arasında <strong>15 yeni giren</strong> (~1,4 günde bir), hepsi 0 yorumda.</td></tr>
+<tr><td>"Kitap 2 talebi kanıtlı"</td><td>Kanıt olarak gösterilen kitaplardan biri (CHIRP programlama) <strong>619 yoruma rağmen BSR #1.021.057</strong> — yani fiilen satmıyor. Bu, Noter'i 4/10'a düşüren <em>ömür-boyu yorum yanılsamasının</em> birebir aynısıdır ve birincil analiz onu kendi kazananında görememiştir.</td></tr>
+<tr><td>"Uzman gerekmez"</td><td>Havuzun kamu malı olduğu <strong>doğru</strong> (çürütüldü). Ama havuz RF maruziyet güvenliği içeriyor (T0C; 47 CFR 97.13(c), geçiş 03.05.2023'te bitti) ve bu tuzaklı bir <em>hesaptır</em>. Doğru cevabın yayımlanmış olması, açıklamanın doğru olduğunu garanti etmez.</td></tr>
+<tr><td>"$22,99 savunulabilir fiyat"</td><td>Fiyat tabanı <strong>$0</strong>: HamStudy.org, HamBook.org ve KB6NU açıklamalı çalışma materyalini ücretsiz veriyor — <em>ve ARRL'in kendisi de ücretsiz çalışma PDF'i ve sınav simülatörü dağıtıyor.</em> Gerçekten satan kitaplar $14,99–$17,03 bandında; $29,99+ bandı tam olarak 0-yorumlu churn kohortu. Gerçekçi telif $9,19 değil <strong>~$6,19</strong>.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card red">
+<p><strong>Yapısal sonuç — modelin göremediği şey:</strong> ARRL aynı anda <em>soru havuzunu yazan kurumun içinde</em> (VEC yöneticisi NCVEC soru havuzu komitesinde), <em>sınavların %68'ini uygulayan sınav merci</em>, <em>ücretsiz seçeneğin sağlayıcısı</em> ve <em>ücretli pazarın lideri</em>. On iki ölçütlü modelde bu dört rolü aynı anda oynayan bir rakibi yakalayacak bir ölçüt yoktur. Bu, gelecekteki araştırmalar için kalıcı bir metodoloji dersidir.</p>
+</div>
+
+<h3>İlk taramada elenen sekiz aday — özet gerekçe</h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Aday</th><th>Reddin tek cümlelik gerekçesi</th></tr></thead>
+<tbody>
+<tr><td>Demans / hafıza aktivite kitapları</td><td>10.000+ sonuç, 11.800 yorumlu lider, $9,95 emtia fiyatı ve sağlık faydası iddiası riski — talep muazzam ama kazanılamaz.</td></tr>
+<tr><td>Parkinson / titreme el yazısı</td><td>Girenlerin neredeyse tamamı 0–1 yorumda takılı: boşluğu herkes bulmuş, kimse kazanamamış.</td></tr>
+<tr><td>Konserve / gıda saklama</td><td>AI imzalı başlık seli ve gıda güvenliği sorumluluğu.</td></tr>
+<tr><td>Konuşma terapisi / artikülasyon</td><td>531 sonuç ama liderler yalnızca 13–37 yorum — talep var, ödeme niyeti yok.</td></tr>
+<tr><td>Tığ işi ilmek sözlüğü</td><td>11.800 / 4.600 / 2.600 yorumlu devler + fiziksel örnek ve fotoğraf üretim zorunluluğu.</td></tr>
+<tr><td>Arıcılık</td><td>Tek-kitap satın alma deseni; seri mantığı zayıf.</td></tr>
+<tr><td>EMT / NREMT</td><td>Tıbbi sorumluluk + merdiven EMT'den sonra çöküyor + tescilli marka.</td></tr>
+<tr><td>Özel pilot FAA</td><td>Yazılım paketiyle gelen yerleşik profesyonel yayıncılar; kamu malı FAA yayınları $11–14 fiyat tabanı kuruyor.</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="s28">
+<h2 class="sect-title"><span class="n">28</span> Tam Olarak Sonraki Eylem</h2>
+<p class="lead">Bu bir üretim emri <strong>değildir.</strong> 1. madde mutlak bir ön koşuldur; geçilemezse ikinci sıradaki devreye girer.</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>#</th><th>Eylem</th><th>Neden şimdi</th><th>Geçme kriteri</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td><strong>KİLİT KAPI — Lisanslı klinisyen inceleyici sözleşmele.</strong> Hemşirelik öğretim üyesi, klinik eczacı veya doz hesabı eğitmeni. Kapsam: her hesabın ve her klinik bağlamın doğrulanması.</td><td>Kazananın tek yapısal kısıtı budur ve aynı operasyonu daha önce bir kez durdurmuştur. Bu kapı geçilmeden hiçbir üretim adımı başlamamalıdır.</td><td><strong>60–90 gün içinde imzalı sözleşme.</strong> Aksi hâlde § 26 gereği <em>Satranç serisine geçilir.</em></td></tr>
+<tr><td>2</td><td><strong>Farklılaşma hipotezini sına.</strong> Kitap 1'den tek bir bölüm (10–15 problem, tam çözümlü) üret ve liderin aynı konudaki bölümüyle yan yana, gerçek bir hemşirelik öğrencisine okut.</td><td>"Atlanan adım yok" konumlandırması bu raporun <strong>kanıtlanmamış hipotezidir</strong>. Alıcı farkı görmüyorsa tüm tez zayıflar.</td><td>Bağımsız okuyucu farkı kendiliğinden fark ediyor</td></tr>
+<tr><td>3</td><td><strong>Talep boşluğunu kapat:</strong> ABD'de yıllık hemşirelik programı kayıt/mezun sayısını birincil kaynaktan (AACN / NCSBN) doğrula.</td><td>Bu turda doğrulanamadı ve kazananın talep tezindeki en büyük boşluk. Amatör telsizi devirenin tam olarak bu tür bir mutlak-pazar hesabı olduğu unutulmamalı.</td><td>Yıllık aday havuzu için tek, kaynaklı rakam</td></tr>
+<tr><td>4</td><td><strong>Kitap 2 segmentini yeniden ölç:</strong> "IV drip rate" alt segmentinin 86 sonuçluk inceliği ve liderlerinin BSR'ı doğrulanmalı.</td><td>Serinin en iyi rekabet konumu buraya dayanıyor; yorum sayıları ömür-boyu birikimdir (Noter dersi).</td><td>En az bir başlık BSR &lt;150.000</td></tr>
+<tr><td>5</td><td><strong>Marka/hukuk taraması:</strong> "Safe Dose" adının kitap kategorisinde çakışma kontrolü + lisans sınavı marka adının başlıkta kullanılmayacağının yazılı teyidi.</td><td>Seri adı üç kitabı bağlar; KDP başlıkta izinsiz marka kullanımını açıkça yasaklıyor.</td><td>Çakışma yok</td></tr>
+<tr><td>6</td><td><strong>Sorumluluk çerçevesi:</strong> sorumluluk reddi metni, inceleme zinciri kaydı ve gerekiyorsa yayıncı sorumluluk sigortası araştırması.</td><td>Hasta zararı riski taşıyan içerik yayımlanıyor. Bu, üretim değil <em>yönetişim</em> adımıdır.</td><td>Yazılı çerçeve mevcut</td></tr>
+<tr><td>7</td><td><strong>Küçük bütçeli Ads sınama planını yaz</strong> (henüz çalıştırma — ürün yok): kelime kümesi ve tolere edilebilir CPC eşiği.</td><td>Reklam ekonomisi bu raporda <em>senaryo</em> olarak duruyor; gerçek CPC yalnızca testle öğrenilir.</td><td>Yazılı eşik: dönüşüm %5 altındaysa ücretli edinme iptal</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card red">
+<p><strong>Bu araştırma burada durur.</strong> Kitap üretilmedi, manüskript yazılmadı, kapak tasarlanmadı, KDP dosyası oluşturulmadı. Korece Hangıl projesine ve duraklatılmış sigorta projesine dokunulmadı. Yeni bir yayın projesi başlatılmadı.</p>
+</div>
+</section>
+
+<section id="s29">
+<h2 class="sect-title"><span class="n">29</span> Sınırlamalar</h2>
+<ol class="tight">
+<li><strong>Kazananın talep tezinde doğrulanmamış bir boşluk var.</strong> ABD'de yıllık hemşirelik programı kayıt sayısı bu turda birincil kaynaktan doğrulanamadı. Kaybeden adayı deviren şeyin tam olarak bu tür bir mutlak-pazar hesabı olduğu göz önüne alınırsa, bu <strong>bilinen ve kabul edilen en büyük zayıflıktır</strong> — §28'in 3. maddesi.</li>
+<li><strong>Yorum metinlerine sistematik erişilemedi.</strong> Amazon'un <code>/product-reviews/</code> sayfaları oturum açma istiyor. Bunun yerine ürün sayfasında oturumsuz görünen <strong>yıldız histogramları</strong> ve Amazon'un kendi AI-üretimi <em>"Customers say"</em> özetleri kullanıldı. Şikâyet metni uydurulmadı. Not: bu özetler Amazon tarafından AI ile üretilir; ham yorum değil, <em>türetilmiş</em> veridir.</li>
+<li><strong>Amazon sonuç sayıları kesin değildir.</strong> Kararsızdır, gevşek ilişkili başlıkları sayar ve "over 1.000" gibi tavan değerleri gerçek sayıyı gizler. Yalnızca kesin sayı dönen pazarlarda (686, 961, 86, 601) oranlar güvenilir sayıldı.</li>
+<li><strong>BSR birim satış değildir.</strong> Bir sıralamadır. Karşılaştırmalar aynı gün, aynı yöntemle yapıldığı için <em>göreli</em> olarak anlamlıdır; mutlak satış tahminine çevrilmedi.</li>
+<li><strong>Amazon'un kendi meta verisi çelişebiliyor.</strong> Somut örnek: ARRL 6. Baskı için arama listesi 30.06.2026, ürün sayfası 01.06.2026 gösteriyor.</li>
+<li><strong>CPC, dönüşüm oranı ve bağlanma oranları gözlemlenmedi.</strong> Hepsi açıkça etiketlenmiş senaryolardır.</li>
+<li><strong>Üretim maliyeti modellenmedi.</strong> Evin gerçek saat/maliyet yapısı bu belgede yok; yalnızca başabaş adet tabloları verildi.</li>
+<li><strong>Klinisyen inceleyici maliyeti bilinmiyor.</strong> Kazananın kilit kapısının <em>fiyatı</em> tahmin edilmedi — bu, §28'in 1. maddesinin cevaplaması gereken sorudur.</li>
+<li><strong>Tek pazar yeri, tek gün.</strong> Tüm gözlemler Amazon.com (ABD) ve 27 Ağustos 2026 tarihlidir. BSR günlük dalgalanır.</li>
+<li><strong>Çelişmeli incelemenin bazı kanıtları bağımsız olarak yeniden doğrulanmadı.</strong> ARRL 2025 Yıllık Raporu'ndan alınan rakamlar (18.000 kopya, %54 bayi payı, %68 VEC payı, %20 düşüş) ve Vertex Prep Academy'nin BSR'ı inceleyici tarafından raporlandı; birincil analiz bunların bir kısmını (havuz tarihleri, errata, ARRL General baskı tarihi, Noter BSR'ı) bağımsız doğruladı, tamamını değil. Kazananı değiştiren argüman <em>birden çok bağımsız kanıt hattına</em> dayandığı için bu artık risk kabul edilebilir sayıldı — ama sıfır değildir.</li>
+<li><strong>Bir kalite açığı iddiası doğrulanamadı.</strong> Satrançta "AI üretimi kitaplarda yasadışı pozisyon" iddiası doğrudan doğrulanamadı ve puanı yükseltmek için kullanılmadı.</li>
+</ol>
+</section>
+<section id="s30">
+<h2 class="sect-title"><span class="n">30</span> Kaynaklar</h2>
+<h3>Tier 1 — Resmî / birincil kaynaklar</h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Kaynak</th><th>Bu raporda ne için kullanıldı</th></tr></thead>
+<tbody>
+<tr><td><a href="https://kdp.amazon.com/en_US/help/topic/G201834340">kdp.amazon.com — Printing Cost &amp; Royalty (G201834340)</a></td><td>Tüm birim ekonomisi hesapları. Normal trim $2,30 / $1,00+$0,012×sayfa; büyük trim $2,84 / $1,00+$0,017×sayfa; telif = liste×0,60 − baskı.</td></tr>
+<tr><td><a href="https://kdp.amazon.com/en_US/help/topic/G201097560">kdp.amazon.com — Metadata Guidelines (G201097560)</a></td><td>Başlıkta "Unauthorized reference to a trademarked term" yasağı ve alt başlığın aynı kurallara tabi olması. Kitap 2'nin marka-bağımsız tasarlanma gerekçesi.</td></tr>
+<tr><td><a href="https://www.arrl.org/fcc-license-counts">arrl.org — FCC License Counts</a></td><td>"FCC actions through Tuesday, 25-Aug-2026": Technician 358.483 · General 184.226 · Extra 157.639 · Advanced 25.789 · Novice 4.138 · Toplam 730.275.</td></tr>
+<tr><td><a href="https://www.arrl.org/news/fcc-cites-baofeng-importer-for-illegally-marketing-unauthorized-rf-devices">arrl.org — FCC Cites Baofeng Importer…</a></td><td><strong>Düzeltme kaynağı.</strong> Yayın tarihi <strong>2 Ağustos 2018</strong>; Amcrest Industries, LLC; DA-18-801; para cezası kesilmedi. Bu, "yakın tarihli FCC yaptırımı" izleniminin çürütülmesini sağladı.</td></tr>
+<tr><td><a href="https://www.ncvec.org/index.php/2026-2030-technician-question-pool">ncvec.org — 2026-2030 Technician Question Pool Release</a></td><td><strong>Bu turun en değerli birincil kaynağı.</strong> Havuz ilk yayın <strong>18 Aralık 2025</strong>; <strong>19 Şubat 2026 tarihli ERRATA</strong> ile 4 soru değiştirildi (<code>T1C01</code>, <code>T5A05</code>, <code>T7A09</code>, <code>T0A10</code>), düzeltilmiş metinler resmî olarak yayımlandı. Geçerli belge: "…Public Release Feb 19 2026". Bu, rakip ürünlerdeki kusurun <em>gösterilebilir</em> olmasını sağlar (§5, §16, §28).</td></tr>
+<tr><td><a href="https://www.ncvec.org/index.php/2023-2027-general-question-pool-release">ncvec.org — 2023-2027 General Question Pool Release</a></td><td><strong>Altı errata</strong> doğrulandı: 4. (06.03.2024, <code>G1E09</code>), 5. (08.11.2024, <code>G8C01</code>), 6. (04.02.2026, <code>G1A04</code> + <code>G1C09</code>). Ayrıca havuzun <em>"hereby releases into public domain"</em> ifadesiyle kamu malı olarak yayımlandığının birincil kaynak teyidi.</td></tr>
+<tr><td><a href="https://www.ncvec.org/">ncvec.org — Amateur Question Pools</a></td><td>Havuz döngüleri doğrudan doğrulandı: Technician 2026–2030 · General 2023–2027 · Extra 2024–2028. <span class="tag tag-unv">UNVERIFIED</span> Havuzdaki tam soru sayısı ikincil kaynaklarda çelişkili (397 / 409 / 428); birincil PDF'ten kilitlenmesi §28'in ilk eylemidir.</td></tr>
+<tr><td><a href="https://www.arrl.org/question-pools">arrl.org — Question Pools</a></td><td><strong>Kazananı değiştiren bulgulardan biri.</strong> Element 2 (Technician) yürürlük 01.07.2026, <strong>bitiş 30.06.2030</strong>; Element 3 (General) bitiş 30.06.2027; Element 4 (Extra) bitiş 30.06.2028. Giriş penceresinin kapandığını doğrular (§19, İtiraz 11).</td></tr>
+<tr><td><a href="https://kdp.amazon.com/en_US/help/topic/G200743940">kdp.amazon.com — Public Domain Content (G200743940)</a></td><td>Çelişmeli incelemenin öne sürdüğü risk: <em>"If a free version of a public domain title is available in our store, we will only allow you to publish a differentiated version."</em> Politika metni doğrulandı; ancak iddia <strong>kısmen çürütüldü</strong> (§19).</td></tr>
+<tr><td>ARRL 2025 Yıllık Raporu (yayın 10.08.2026)</td><td>Çelişmeli inceleme tarafından raporlandı <span class="tag tag-unv">bağımsız yeniden doğrulanmadı</span>: en çok satan başlık <em>"nearly 18,000 copies"</em>; yayın geliri $2,26M, %46 doğrudan / <strong>%54 bayi</strong>; ARRL VEC pazar payı %68; &gt;29.000 lisans başvurusu; lisans sayısı <em>"declined for the fourth consecutive year."</em></td></tr>
+<tr><td>HamStudy.org · HamBook.org · KB6NU No-Nonsense</td><td>Ücretsiz, açıklamalı çalışma materyali — kaybeden adayın fiyat tabanını fiilen $0 yapan kanıt (§19, İtiraz 6).</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Tier 2 — Amazon pazar yeri gözlemleri <span class="small">(tümü 27 Ağustos 2026, Amazon.com/ABD)</span></h3>
+<h4>Doğrudan incelenen ürün sayfaları</h4>
+<div class="tablewrap">
+<table>
+<thead><tr><th>ASIN</th><th>Ürün</th><th>Gözlenen ana veri</th></tr></thead>
+<tbody>
+<tr><td>1625952392</td><td>ARRL Ham Radio License Manual 6. Bs.</td><td>256 sf, $32,95, 4,2★/41, <strong>BSR #4.136</strong>, histogram 63/13/11/8/5</td></tr>
+<tr><td>1625951558</td><td>ARRL Ham Radio License Manual 5. Bs.</td><td>$32,95, 4,7★/2.000 — baskılar arası yorum sıfırlanmasının kanıtı</td></tr>
+<tr><td>B0H4NNK83T</td><td>Ham Radio Prep Technician (Book 1 of 3)</td><td>340 sf, $17,03, 4,8★/18, BSR #31.928, 09.06.2026</td></tr>
+<tr><td>1963142055</td><td>Morse Code Publishing Technician (Book 1 of 2)</td><td>266 sf, $14,99, 4,7★/330, BSR #131.088, süresi dolmuş havuz; doğrulanamaz persona referansları</td></tr>
+<tr><td>1625952244</td><td>ARRL / Leonardelli — Using the Baofeng® Radio</td><td>$19,95, 4,4★/34 — kurumun komşu segmente girişi</td></tr>
+<tr><td>1096128748</td><td>Hassen &amp; Wojcik — Dosage Calculations (Book 1 of 2)</td><td>219 sf, $24,80, 4,5★/2.034, BSR #41.831</td></tr>
+<tr><td>1579125549</td><td>Polgár — Chess: 5334 Problems</td><td>1.104 sf, $15,60, 4,7★/1.936, BSR #19.075</td></tr>
+<tr><td>1805563793</td><td>Chess Puzzles &amp; Tactics Blueprint</td><td>273 sf, $26,97, 4,6★/55, BSR #89.245</td></tr>
+<tr><td>B09179QS6G</td><td>500 Chess Puzzles, Mate in 1 (Book 1 of 6)</td><td>52 sf, $9,99, 4,5★/126, BSR #546.576</td></tr>
+<tr><td>B0DB9L49SM</td><td>Barlow — ASL for Beginners (Callisto)</td><td>345 sf, 4,6★/4.553, BSR #20.026 (Kindle)</td></tr>
+<tr><td>1734183306</td><td>Soroka — Sign and Thrive (Notary Coach)</td><td>317 sf, $21,20, 4,8★/1.516, <strong>BSR #425.554</strong> (aynı gün ikinci ölçümde #487.573 — BSR günlük dalgalanır)</td></tr>
+<tr><td>162595171X</td><td>ARRL General Class Manual 10. Bs.</td><td>304 sf, $32,95, 4,8★/765, BSR #23.394, <strong>baskı tarihi 15.05.2023</strong> (4./5./6. errata öncesi)</td></tr>
+<tr><td>1625952244</td><td>ARRL / Leonardelli — Using the Baofeng® Radio</td><td>$19,95, 4,4★/34 — kurumun komşu segmente girişi</td></tr>
+<tr><td colspan="3"><strong>Asgari-n kuralı için doğrudan okunan "Customers say" özetleri:</strong> 1096128748 (n=2.034, olumsuz: <em>confusing / lacks detailed instructions / value divided</em>) · 1579125549 (n=1.936, olumsuz: <em>confusing and difficult to see</em>) · B0DB9L49SM (n=4.553, olumsuz: <em>image quality… not clear</em>) · 1734183306 (n=1.516, olumsuz sinyal yok)</td></tr>
+<tr><td colspan="3"><strong>Kazananın komşu segment doğrulaması:</strong> Wojcik <em>Pharmacy Calculations for Pharmacy Technicians</em> $17,61 / 4,6★ / 1.200 · Hassen <em>EKG Interpretation</em> $14,95 / 4,4★ / 881 — aynı yazar ikilisinin katalog kanıtı</td></tr>
+</tbody>
+</table>
+</div>
+<h4>Yürütülen arama sorguları <span class="small">(sonuç sayıları kesin pazar ölçüsü değildir)</span></h4>
+<p class="small"><code>ham radio technician license study guide</code> (571) · <code>ham radio license study guide</code> (686; son 90 gün 216; son 30 gün 41) · <code>ham radio general class license study guide</code> (515) · <code>amateur extra class license study guide</code> (41) · <code>baofeng radio guide</code> (481) · <code>emergency communications radio preppers book</code> (325) · <code>nursing dosage calculation</code> (961; son 90 gün 281) · <code>nursing dosage calculation practice workbook</code> (474) · <code>chess puzzle book for beginners</code> (2.000+; son 90 gün 849) · <code>chess tactics puzzles for beginners</code> (1.000+) · <code>american sign language for beginners</code> (1.000+; son 90 gün 488) · <code>american sign language workbook for adults</code> (615) · <code>notary public loan signing agent</code> (3.000+; son 90 gün 326) · <code>notary public loan signing agent guide</code> (870) · <code>dementia activity book for seniors</code> (10.000+) · <code>handwriting practice for adults parkinsons tremor</code> (233) · <code>canning and preserving for beginners…</code> (745) · <code>speech therapy articulation workbook kids</code> (531) · <code>crochet stitch dictionary for beginners</code> (564) · <code>beekeeping for beginners</code> (3.000+) · <code>music theory workbook for adults</code> (1.000+) · <code>latin for beginners homeschool workbook</code> (398) · <code>EMT NREMT exam prep study guide</code> (501) · <code>private pilot FAA knowledge test prep 2026</code> (451) · <code>IV drip rate critical care calculations nursing</code> (<strong>86</strong>) · <code>NCLEX pharmacology dosage calculation review</code> (601) · <code>baofeng radio bible</code> (313) · <code>baofeng radio guide</code> (481)</p>
+
+<h3>Tier 4–5 — İkincil / topluluk kaynakları <span class="small">(sert istatistik olarak kullanılmadı)</span></h3>
+<ul class="tight">
+<li>KDP niş rehberleri (wiseppc, kdpbuilder, automateed vb.) — yalnızca 2026 pazar duyarlılığı için arka plan; hiçbir rakam bu raporda kullanılmadı.</li>
+<li>Amatör telsiz çalışma kaynakları (hamstudy.org, hamradioprep.com, kb6nu.com vb.) — havuz döngüsü tarihlerinin çapraz kontrolü.</li>
+<li>Demans bakım ürünleri pazar raporları — yalnızca kategori büyüme bağlamı; adaylık kararında belirleyici olmadı.</li>
+<li><span class="tag tag-unv">UNVERIFIED</span> Eylül 2025 için ~737.000 amatör lisans bildiren ikincil kaynak — trend çıkarımı için kullanıldı ve <em>kazananın talep puanını düşürmek</em> yönünde işletildi.</li>
+</ul>
+
+<h3>Yöntem notu — bu raporda bilerek yapılmayanlar</h3>
+<ul class="tight">
+<li>Hiçbir satış adedi, CPC, dönüşüm oranı, pazar büyüklüğü veya gelir rakamı uydurulmadı.</li>
+<li>BSR hiçbir yerde birim satışa çevrilmedi.</li>
+<li>Amazon sonuç sayısı hiçbir yerde birincil rekabet ölçütü olarak kullanılmadı.</li>
+<li>Okunamayan yorum metinleri için şikâyet uydurulmadı; yalnızca gözlemlenebilir yıldız histogramları kullanıldı.</li>
+</ul>
+</section>
+</main>
+</div>
+
+<footer>
+  <p><strong>Vâliçe Press · KDP 2–3 Kitaplık Seri Fırsatı Araştırması</strong><br>
+  27 Ağustos 2026 · Tüm Amazon gözlemleri aynı gün, Amazon.com (ABD) üzerinde yapılmıştır.</p>
+  <p class="small">Bu belge bir pazar-düzeyi ticari karar belgesidir. Kitap içeriği, manüskript, kapak ve KDP dosyası üretilmemiştir.<br>
+  Hiçbir satış adedi, CPC, dönüşüm oranı veya gelir rakamı uydurulmamıştır; tüm senaryolar etiketlenmiştir.</p>
+</footer>
+</div>

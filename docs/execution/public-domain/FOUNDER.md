@@ -1278,3 +1278,40 @@ That is F-048 arriving as a prompt from Amazon rather than an observation from u
 prompt would entrench the wrong shelf**, exactly as F-048 argues: the field should stay blank and
 the categories should move. None of the three response buttons was pressed, because each submits
 a response about a live listing and the right one depends on the categorisation decision above.
+
+---
+
+## F-051 — the Myth Hunter's hardcover is promised on a live page and decided against in the project
+
+`the-myth-hunters-field-book` shows a **Hardcover — Not yet available** row on
+valicepress.com. There is no hardcover interior, no hardcover cover, and no hardcover
+directory anywhere in the project. That is not an oversight, and the project says so twice.
+
+`project_config.json`, `production.$comment`:
+
+> **TEK FORMAT: ciltsiz. Aktivite kitabı ÜZERİNE YAZILIR.**
+> Kindle ÖNERİLMEZ — e-okuyucuda üzerine yazılamaz ve kötü yorum üretir.
+> Bu bir gelir kaybı değil, bir **İTİBAR KORUMASIDIR**.
+> Ciltli hediye sürümü Faz 6 sonrası, 6. ayda değerlendirilir (A5).
+
+`DECISIONS.md`, row A5:
+
+| A5 | Ciltli hediye sürümü v1.0'a girecek mi | DÜŞÜK | Faz 4 | **AÇIK (varsayım: hayır)** |
+
+So the book is single-format by design — an activity book is written in — and the hardcover is
+an **open decision whose working assumption is no**, deferred to month 6.
+
+**This is the one F-049 edition that is BLOCKED, and it is blocked on a decision, not a build.**
+The other eight now have complete, preflight-clean packages.
+
+**The ask — answer A5.** Either answer is one line of work:
+
+* **No** (the recorded assumption): set the hardcover row to `kdp: "not_applicable"` in
+  `valice-catalog.mjs` and the *Not yet available* line comes off the page at the next load. The
+  page stops promising a book nobody is building.
+* **Yes**: the hardcover needs its own 8.25 × 11 interior build — KDP has no 8.5 × 11 case
+  laminate — plus a wrap sized from KDP's calculator at the measured page count. The paperback
+  is 156 pp at 8.5 × 11, so the hardcover interior is a re-typeset, not a re-jacket.
+
+I did not answer it. A5 is explicitly a Founder decision and the catalogue's promise is the only
+thing making it urgent.

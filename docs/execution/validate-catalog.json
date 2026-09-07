@@ -1,8 +1,8 @@
 {
   "tool": "validate-catalog",
   "target": "https://valicepress.com",
-  "startedAt": "2026-09-07T15:36:41.545Z",
-  "finishedAt": "2026-09-07T15:37:42.267Z",
+  "startedAt": "2026-09-07T15:57:25.220Z",
+  "finishedAt": "2026-09-07T15:58:29.883Z",
   "ok": true,
   "counts": {
     "pass": 83,
