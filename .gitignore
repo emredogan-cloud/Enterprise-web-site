@@ -96,3 +96,5 @@ gcp-*.json
 
 # Python bytecode from the OCR tooling
 scripts/factory/ocr/__pycache__/
+.venv-factory/
+scripts/factory/__pycache__/
