@@ -30,7 +30,11 @@ interface Format {
   pageCount: number | null;
   amazonAsin: string | null;
   amazonUrl: string | null;
-  kdp: "live" | "in_review" | "not_created" | "not_applicable";
+  // "publishing" is KDP's state between submission and sale: the title has been
+  // accepted, Amazon has ISSUED THE ASIN and the product page exists, but the
+  // listing is not yet purchasable. It is distinct from "in_review", where no ASIN
+  // has been issued at all.
+  kdp: "live" | "publishing" | "in_review" | "not_created" | "not_applicable";
   masterFileKey: string | null;
 }
 
@@ -178,15 +182,25 @@ describe("Amazon destinations", () => {
     }
   });
 
-  it("only carries an ASIN for an edition that is actually live", () => {
-    // Amazon issues an ASIN at publication. An ASIN on a title that is still
-    // in review or was never created is, by definition, made up.
+  it("only carries an ASIN for an edition Amazon has actually issued one for", () => {
+    // Amazon issues an ASIN when it accepts a title, not when the listing becomes
+    // purchasable. An ASIN on a title that is still in review, was never created, or
+    // has no Amazon edition at all is, by definition, made up — and that is what this
+    // guards. "publishing" is admitted because it is the state between the two: the
+    // ASIN exists and resolves to a real product page, the price simply is not up yet.
+    //
+    // Widened on 2026-09-07 for B0HJ2TPX4T (the Puzzle Book paperback), whose page was
+    // loaded and checked before the state was written: right title, ISBN 979-8172268281
+    // matching KDP's assignment, 156 pages matching the built interior. Refusing a
+    // verified ASIN would have meant deleting a true fact to satisfy a narrow rule.
+    const ISSUED = ["live", "publishing"];
     for (const b of books) {
       for (const f of b.formats) {
         if (!f.amazonAsin) continue;
-        expect(f.kdp, `${b.slug}/${f.format} has an ASIN but kdp="${f.kdp}"`).toBe(
-          "live",
-        );
+        expect(
+          ISSUED,
+          `${b.slug}/${f.format} has an ASIN but kdp="${f.kdp}"`,
+        ).toContain(f.kdp);
       }
     }
   });
