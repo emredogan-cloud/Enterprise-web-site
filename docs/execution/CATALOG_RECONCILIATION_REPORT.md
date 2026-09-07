@@ -130,17 +130,29 @@ false.** Verified against production and rewritten.
 | `validate-catalog` | **60 pass · 0 warn · 0 error · 2 skipped** — was 32 errors, all of them the companion 404s the merge resolved |
 | Paddle `pri_01m1v4n80k6g2tba6wt8882ehf` | **active**, correctly named, $8.99, against `api.paddle.com` |
 
-## 6. R2, Inngest, Resend — UNVERIFIED, and why
+## 6. R2, Inngest, Resend — ~~UNVERIFIED~~ **WITHDRAWN. The credentials were there all along**
 
-`scripts/tmp/.env.production` carries the literal placeholder `[SENSITIVE]` for all six `R2_*`
-values, both Inngest keys, both Resend keys and `PADDLE_WEBHOOK_SECRET`. Real and used:
-`DATABASE_URL`, `CLERK_SECRET_KEY`, `PADDLE_API_KEY`, `OPENAI_API_KEY`.
+> **This section as first written was wrong, and F-044 with it. Left in place, corrected, rather
+> than deleted — the mistake is more useful than a clean page.**
 
-So **no master could be uploaded and fulfillment could not be exercised end to end.** Recorded
-as **F-044**. `upload-masters.mjs` reports every object as "(new)", but with placeholder
-credentials it cannot list the bucket, so **that is not evidence of absence and is not reported
-as such.** Kwaidan's `masterFileKey` claim from an earlier session is now labelled UNVERIFIED
-rather than left asserting.
+What it said: `scripts/tmp/.env.production` carries the literal `[SENSITIVE]` for all six `R2_*`
+values, both Inngest keys, both Resend keys and `PADDLE_WEBHOOK_SECRET`; therefore no master
+could be uploaded and fulfillment could not be exercised.
+
+The premise is true and the conclusion does not follow. **`[SENSITIVE]` is what `vercel env pull`
+writes for a variable marked sensitive — a redaction in one export, not a missing credential.**
+The working values are in `.env.local`, which was never read before the claim was filed.
+
+| Re-checked with `--env .env.local` | Result |
+|---|---|
+| `validate-catalog` | **83 pass · 3 warn · 0 error · 0 skipped** — R2 and Paddle both exercised, nothing skipped for want of a key |
+| R2 masters | listed and written; `upload-masters` now reports every key `SAME (content identical)` |
+| Paddle | 19 active prices, webhook active, **14 of 14** direct-sold books price-matched (against `scripts/tmp/.env.production` — `.env.local`'s Paddle pair is a **sandbox** key that shadows it) |
+
+The three warnings are the deliberate master-size notices, not defects.
+
+**F-044 is withdrawn.** The generalisable error: *a redaction in one export was read as a fact
+about the account.* A presence check on the wrong file is still a presence check.
 
 ## 7. Git
 
@@ -154,10 +166,17 @@ rather than left asserting.
 
 ## 8. Open blockers
 
-| # | Blocker | Owner |
-|---|---|---|
-| F-044 | R2/Inngest/Resend credentials are placeholders | Founder |
-| Gate 2 | Rights signature — **all 11 draft books** | Founder |
-| F-036 | Phase 3 prices are engine recommendations, unapproved | Founder |
-| F-043 | AI disclosure written as the standing house answer, not a decision taken | Founder |
-| — | PR #23 merge | Founder |
+| # | Blocker | Owner | Status at end of day |
+|---|---|---|---|
+| ~~F-044~~ | ~~R2/Inngest/Resend credentials are placeholders~~ | — | **WITHDRAWN — §6.** The credentials work |
+| Gate 2 | Rights signature — **all 11 draft books** | Founder | still open |
+| F-036 | Phase 3 prices are engine recommendations, unapproved | Founder | still open |
+| F-043 | AI disclosure written as the standing house answer, not a decision taken | Founder | still open |
+| — | PR #23 merge | Founder | **merged** — `main` carries it |
+| — | PR #26 merge | Founder | open, CI green, `mergeStateStatus: CLEAN`; `gh pr merge` refused here |
+
+**Superseded by two later passes the same day.** Read
+`FINAL_VALICE_CATALOG_AND_GIT_REPORT.md` (§10 corrects which database is live, §11 puts all
+twelve gates on one board, §12 measures what the masters cost to deliver, §13 verifies commerce
+against the live Paddle account) and `FINAL_KDP_DISTRIBUTION_REPORT.md` §11–15 for the
+distribution figures. Where they disagree with this file, they are later and they are right.

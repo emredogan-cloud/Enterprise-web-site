@@ -1203,3 +1203,78 @@ should stay blank.
 **Check the siblings too.** *The Puzzles of Henry Dudeney* and the World Games large print are
 filed under Teen & Young Adult as well, and Dudeney's own subtitle says *annotated, with a
 glossary of old money and a chronology*. The same reasoning almost certainly applies to both.
+
+---
+
+## F-049 — nine print editions are promised on live pages and do not exist anywhere
+
+**Nine formats are advertised to readers as *coming soon*, at a price, on a page serving 200.**
+None of them has a complete package on disk, so none can be uploaded to KDP — the blocker is
+upstream of Amazon entirely.
+
+| Book | Format | Price shown | Interior | Cover |
+|---|---|---|---|---|
+| Greek Alphabet Workbook | paperback | $12.99 | missing | missing |
+| Greek Alphabet Workbook | hardcover | $24.99 | missing | none |
+| Codex Mythologica: The Puzzle Book | hardcover | $33.99 | **built, 421 K** | **none** |
+| Epictetus — Discourses & Enchiridion | paperback | $16.99 | missing | missing |
+| Seneca — Selected Dialogues | paperback | $15.99 | missing | missing |
+| Myths and Legends of China | paperback | $13.99 | missing | missing |
+| Indian Myth and Legend | paperback | $12.99 | missing | missing |
+| Mythical Monsters | paperback | $11.99 | missing | missing |
+| Greek Alphabet Workbook | large print | *(no price)* | missing | missing |
+
+The Puzzle Book hardcover is one cover wrap away. The other eight need the interior built first.
+
+**The ask is a choice, not a task.** Either these editions get built, or the *coming soon* label
+comes off the pages until they do. What is not defensible is a priced promise with nothing behind
+it — a reader who returns in a month finds the same eight prices and the same empty shelf. The
+catalogue can withdraw a format in one edit.
+
+**Note on four editions that *are* ready.** `games-ancient-and-oriental`, `korean-games`,
+`chess-and-playing-cards` and `traditional-games` each have a finished interior *and* cover on
+disk. **They were deliberately not uploaded.** All four are `websiteStatus: draft`, so publishing
+them would put a book on Amazon that Valice Press does not list; and their gates 7 (Cover),
+8 (Interior/proof) and 10 (KDP compliance) have never been run. Those three gates exist to be
+passed *before* a KDP upload. Say the word and they go up — after those gates, not instead of
+them.
+
+## F-050 — ten book projects were never entered into the gate system, and five are selling
+
+The twelve gates run on thirteen projects. **Ten more book projects have no `gates.json` at
+all**, so they are not failing the gates — they were never entered into them:
+
+| Project | On sale? |
+|---|---|
+| The Great Book of World Games | **live, all four formats** |
+| The Great Book of World Myths | **live, all three** |
+| The Myth Hunter's Field Book | **live** |
+| Codex Enigmatica | **live, all three** |
+| Korean Hangul Handwriting Workbook | **live, both print formats** |
+| Kwaidan · Sea Monsters Unmasked · Book of Were-Wolves · British Goblins · Fairy Mythology | draft |
+
+Codex Bestiarium and Codex Mythologica have no `project_config.json` either — they predate the
+factory. **Seven live, revenue-earning books have no gate record of any kind.**
+
+Related, and the same shape: **gate 12, Founder publication approval, has never been passed for
+any book** — including the twelve already selling. The final approval is not currently part of
+how this house publishes.
+
+**The ask:** decide whether the gate board is meant to describe the whole catalogue or only books
+built after it existed. If the former, the ten need `gates.json` generating and back-filling from
+the evidence that already exists (covers, interiors, KDP records, live pages). If the latter, say
+so in `valice-house/workflows/gates.json` so the board stops reading as though seven books are
+missing their homework.
+
+## F-048 — corroborated from Amazon's own side
+
+The KDP quality queue was read on 2026-09-07. **0 suppressed, 0 quality warnings, 1 open item:**
+
+> **Codex Enigmatica (Kindle, `B0HGRZ3BRC`) — Metadata: Reading Interest Age is missing.**
+> *"To improve the discoverability of books in the Juvenile book categories on Amazon, choose an
+> appropriate age range for your title."*
+
+That is F-048 arriving as a prompt from Amazon rather than an observation from us. **Answering the
+prompt would entrench the wrong shelf**, exactly as F-048 argues: the field should stay blank and
+the categories should move. None of the three response buttons was pressed, because each submits
+a response about a live listing and the right one depends on the categorisation decision above.
