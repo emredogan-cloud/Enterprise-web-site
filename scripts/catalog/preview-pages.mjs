@@ -235,4 +235,55 @@ export const PREVIEW_PAGES = [
     pages: [14, 17],
     note: "Two puzzle spreads as they are printed — deliberately without the answer key.",
   },
+  {
+    // Phase 3 book 1. The head-note on p.18 and the opening of the longest tale.
+    // Chosen because the head-note IS the edition: Hearn's text is free everywhere,
+    // and what a buyer pays for here is the paragraph in front of it.
+    slug: "kwaidan",
+    source: `${BUILT}/kwaidan.pdf`,
+    pages: [18, 21],
+    note: "The edition's head-note to Mimi-Nashi-Hōïchi, and the opening of the tale it introduces.",
+  },
+  {
+    // Phase 3 book 2. The Kwaidan of this book: the Kraken chapter, which Lee's
+    // reputation rests on, with the edition's head-note in front of it. 4 of 232 = 1.7%.
+    slug: "sea-monsters-unmasked",
+    source: `${BUILT}/sea-monsters-unmasked.pdf`,
+    pages: [20, 23],
+    note: "The Kraken: the edition's head-note, then Lee reasoning his way from Pontoppidan's monster to a real animal.",
+  },
+  {
+    // Phase 3 book 3. Chapter III, where the book changes gear into the sagas — and
+    // where the typography has to carry Old Norse verse beside its translation.
+    slug: "book-of-were-wolves",
+    source: `${BUILT}/book-of-were-wolves.pdf`,
+    pages: [27, 30],
+    note: "The Were-Wolf in the North: the edition's head-note, and the saga verse set beside its translation.",
+  },
+  {
+    // Phase 3 book 4. Deliberately includes p.32, ROWLI AND THE ELLYLL — one of the
+    // twenty T. H. Thomas drawings, which are half of what this edition offers over the
+    // free scan. 4 pages of 390 is 1.0%.
+    slug: "british-goblins",
+    source: `${BUILT}/british-goblins.pdf`,
+    pages: [30, 33],
+    note: "Sikes on the ellyllon, with T. H. Thomas's drawing of Rowli and the Ellyll on the page it belongs to.",
+  },
+  {
+    // Phase 3 book 5a. The philology chapter, which the edition's own head-note calls the
+    // best-argued in the volume — so a reader sees the apparatus judging the book, not
+    // only praising it.
+    slug: "fairy-mythology-vol-1",
+    source: `${BUILT}/fairy-mythology-vol-1.pdf`,
+    pages: [23, 26],
+    note: "Origin of the Word Fairy: the edition's head-note and Keightley's best-argued chapter.",
+  },
+  {
+    // Phase 3 book 5b. England — a quarter of this volume, and the section that shows
+    // what the second half of Keightley is for.
+    slug: "fairy-mythology-vol-2",
+    source: `${BUILT}/fairy-mythology-vol-2.pdf`,
+    pages: [15, 18],
+    note: "England: the longest section in the whole work, with the edition's head-note in front of it.",
+  },
 ];

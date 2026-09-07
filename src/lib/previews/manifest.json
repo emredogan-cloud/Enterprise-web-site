@@ -403,5 +403,131 @@
         "page": 78
       }
     ]
+  },
+  "kwaidan": {
+    "note": "The edition's head-note to Mimi-Nashi-Hōïchi, and the opening of the tale it introduces.",
+    "pages": [
+      {
+        "src": "/images/previews/kwaidan/p18.webp",
+        "page": 18
+      },
+      {
+        "src": "/images/previews/kwaidan/p19.webp",
+        "page": 19
+      },
+      {
+        "src": "/images/previews/kwaidan/p20.webp",
+        "page": 20
+      },
+      {
+        "src": "/images/previews/kwaidan/p21.webp",
+        "page": 21
+      }
+    ]
+  },
+  "sea-monsters-unmasked": {
+    "note": "The Kraken: the edition's head-note, then Lee reasoning his way from Pontoppidan's monster to a real animal.",
+    "pages": [
+      {
+        "src": "/images/previews/sea-monsters-unmasked/p20.webp",
+        "page": 20
+      },
+      {
+        "src": "/images/previews/sea-monsters-unmasked/p21.webp",
+        "page": 21
+      },
+      {
+        "src": "/images/previews/sea-monsters-unmasked/p22.webp",
+        "page": 22
+      },
+      {
+        "src": "/images/previews/sea-monsters-unmasked/p23.webp",
+        "page": 23
+      }
+    ]
+  },
+  "book-of-were-wolves": {
+    "note": "The Were-Wolf in the North: the edition's head-note, and the saga verse set beside its translation.",
+    "pages": [
+      {
+        "src": "/images/previews/book-of-were-wolves/p27.webp",
+        "page": 27
+      },
+      {
+        "src": "/images/previews/book-of-were-wolves/p28.webp",
+        "page": 28
+      },
+      {
+        "src": "/images/previews/book-of-were-wolves/p29.webp",
+        "page": 29
+      },
+      {
+        "src": "/images/previews/book-of-were-wolves/p30.webp",
+        "page": 30
+      }
+    ]
+  },
+  "british-goblins": {
+    "note": "Sikes on the ellyllon, with T. H. Thomas's drawing of Rowli and the Ellyll on the page it belongs to.",
+    "pages": [
+      {
+        "src": "/images/previews/british-goblins/p30.webp",
+        "page": 30
+      },
+      {
+        "src": "/images/previews/british-goblins/p31.webp",
+        "page": 31
+      },
+      {
+        "src": "/images/previews/british-goblins/p32.webp",
+        "page": 32
+      },
+      {
+        "src": "/images/previews/british-goblins/p33.webp",
+        "page": 33
+      }
+    ]
+  },
+  "fairy-mythology-vol-1": {
+    "note": "Origin of the Word Fairy: the edition's head-note and Keightley's best-argued chapter.",
+    "pages": [
+      {
+        "src": "/images/previews/fairy-mythology-vol-1/p23.webp",
+        "page": 23
+      },
+      {
+        "src": "/images/previews/fairy-mythology-vol-1/p24.webp",
+        "page": 24
+      },
+      {
+        "src": "/images/previews/fairy-mythology-vol-1/p25.webp",
+        "page": 25
+      },
+      {
+        "src": "/images/previews/fairy-mythology-vol-1/p26.webp",
+        "page": 26
+      }
+    ]
+  },
+  "fairy-mythology-vol-2": {
+    "note": "England: the longest section in the whole work, with the edition's head-note in front of it.",
+    "pages": [
+      {
+        "src": "/images/previews/fairy-mythology-vol-2/p15.webp",
+        "page": 15
+      },
+      {
+        "src": "/images/previews/fairy-mythology-vol-2/p16.webp",
+        "page": 16
+      },
+      {
+        "src": "/images/previews/fairy-mythology-vol-2/p17.webp",
+        "page": 17
+      },
+      {
+        "src": "/images/previews/fairy-mythology-vol-2/p18.webp",
+        "page": 18
+      }
+    ]
   }
 }
