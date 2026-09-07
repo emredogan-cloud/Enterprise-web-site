@@ -905,19 +905,22 @@ export const BOOKS = [
         // book's own text says holds "three to each, exactly". Fixed in BUILD (long
         // tables now split across pages, header repeated); the corrected interior is
         // uploaded and the previewer is clean.
-        availability: "coming_soon",
+        availability: "available",
         fulfillment: "amazon",
         priceCents: usd(16.99),
         pageCount: 156,
         isbn13: "9798172268281",
-        // SUBMITTED TO KDP 2026-09-07 and PUBLISHING. Verified on the bookshelf
-        // (status "Publishing", $16.99) and on the product page, which exists and
-        // carries ISBN 979-8172268281 and 156 pages — both matching the corrected
-        // interior exactly. NOT yet "live": the page does not show a price, which is
-        // what a book still in KDP's publishing pipeline looks like. Up to 72 hours.
+        // LIVE. Submitted to KDP 2026-09-07 and watched through the pipeline the same
+        // day. It was "publishing" for part of that day — the product page existed and
+        // carried ISBN 979-8172268281 and 156 pages, both matching the corrected
+        // interior, but printed "—" where the price goes, which is what a book still in
+        // KDP's pipeline looks like. Re-checked later on 2026-09-07: the bookshelf reads
+        // Live and the product page now prints "Paperback from $16.99" with an offer
+        // beneath it. (The page also says the item cannot ship to the account's own
+        // address in Turkey; that is a shipping-destination limit, not a listing state.)
         amazonAsin: "B0HJ2TPX4T",
         amazonUrl: "https://www.amazon.com/dp/B0HJ2TPX4T",
-        kdp: "publishing",
+        kdp: "live",
         masterFileKey: null,
         priceBasis:
           "STAGED AT $16.99 at KDP 2026-09-07; the form shows printing $3.65 and royalty $6.54 at 60%, which is the figure below, confirmed by KDP itself. price-engine.mjs 2026-09-05 at the MEASURED 156 pages, 8.5 \u00d7 11 large trim, B&W, white: printing $3.65, KDP minimum list $6.09. $16.99 nets $6.54 (38.5 %). The roadmap said $14.99 against a planned 130 pages; at the built 156 that nets 35.6 %, six tenths of a point over the house floor and inside the noise of a KDP printing-rate change.",
