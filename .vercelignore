@@ -1,0 +1,20 @@
+# What must not travel to Vercel.
+#
+# WHY THIS FILE EXISTS
+# `vercel --prod` failed on 2026-09-07 with "File size limit exceeded (100 MB)"
+# after uploading 322 MB. The offender was `scripts/tmp/digital-editions/`,
+# the staging directory `build-digital-editions.mjs` writes into: Codex
+# Bestiarium's master is 109 MB and Vercel's per-file ceiling is 100. The
+# directory is in `.gitignore`, which the CLI does not read once a
+# `.vercelignore` could exist — and none did.
+#
+# Nothing listed here is read at build time or at runtime. The book
+# repositories, the staging masters and the reports are inputs to the scripts
+# that generate `public/` and the catalogue, and those outputs ARE committed.
+scripts/tmp/
+docs/
+images/
+assets/
+e-book/
+sub-pr-report/
+tsconfig.tsbuildinfo
