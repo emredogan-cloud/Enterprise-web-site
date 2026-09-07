@@ -592,18 +592,34 @@ export const BOOKS = [
         // on the shelf as of 2026-09-03 (author-wide Amazon search). The ASIN
         // lands here only when the listing is live, never before.
         format: "large_print",
-        availability: "coming_soon",
+        // VERIFIED LIVE 2026-09-07: $31.99, 232 pp, 8.5 x 11 in, In Stock,
+        // published 2026-09-02. It is on KDP as a second "paperback" entry, which
+        // is why an earlier check reading formats by name did not find it.
+        //
+        // THREE DEFECTS ON THE LIVE LISTING, none of them fixable from here — see
+        // F-045. They are recorded on the row because a reader meets them:
+        //   1. the title reads "39 Cultıres" — a Turkish dotless i for the u in
+        //      Cultures, in the product title, on Amazon, now;
+        //   2. the title never says LARGE PRINT, so this $31.99 8.5x11 edition and
+        //      the $22.99 6x9 paperback (B0HG3KMK9L) are indistinguishable to a
+        //      buyer reading titles. Codex Mythologica and Codex Bestiarium both
+        //      carry "(Large Print Edition)" in theirs;
+        //   3. the description is unescaped: literal backslash-n pairs print as
+        //      text — "A reference book you play from.\\n\\nThe Great Book...".
+        availability: "available",
         fulfillment: "amazon",
         priceCents: usd(31.99),
         pageCount: 232,
         pendingPageCount: 233,
         pendingPageCountReason: "the companion page of 2026-09-03; `pageCount` stays at what the listing sells until the file is uploaded",
-        amazonAsin: null,
-        amazonUrl: null,
-        kdp: "in_review",
+        isbn13: "979-8171397371",
+        amazonAsin: "B0HHNCVQVX",
+        amazonUrl: "https://www.amazon.com/dp/B0HHNCVQVX",
+        kdp: "live",
+        listingDefects: ["title-typo-cultires", "title-omits-large-print", "description-literal-newlines"],
         masterFileKey: null,
         priceBasis:
-          "price-engine.mjs 2026-09-02 — 232 pp large trim B&W prints at $4.94; $31.99 nets $14.25 (44.5%), $3 under the hardcover. Founder may move it at Gate 8. See 06_REPORTS/LARGEPRINT_BUILD_REPORT.md.",
+          "LIVE AT $31.99 since 2026-09-02. price-engine.mjs 2026-09-02 — 232 pp large trim B&W prints at $4.94; $31.99 nets $14.25 (44.5%), $3 under the hardcover. See 06_REPORTS/LARGEPRINT_BUILD_REPORT.md.",
       },
     ],
     blockers: [
@@ -875,16 +891,31 @@ export const BOOKS = [
     formats: [
       {
         format: "paperback",
+        // STAGED AT KDP AND READY TO PUBLISH, 2026-09-07. The listing is complete —
+        // Details, Content and Rights & Pricing all filled, preview approved, price
+        // $16.99 saved and showing on the bookshelf. It is DRAFT because the last
+        // click, "Publish Your Paperback Book", carries the KDP Terms agreement and
+        // belongs to the account owner. See F-046.
+        //
+        // KDP's Print Previewer failed it twice on p. 152 — "This text is outside the
+        // margins" and "This object is outside the margins" — and the cause was worse
+        // than a margin: the fifty-seven-creature reference table drew straight off
+        // the bottom of the page, so THREE ROWS NEVER PRINTED AT ALL. The whole
+        // Arabian civilization — Ghul, Ifrit, Rukh — was missing from a table the
+        // book's own text says holds "three to each, exactly". Fixed in BUILD (long
+        // tables now split across pages, header repeated); the corrected interior is
+        // uploaded and the previewer is clean.
         availability: "coming_soon",
         fulfillment: "amazon",
         priceCents: usd(16.99),
         pageCount: 156,
+        isbn13: "9798172268281",
         amazonAsin: null,
         amazonUrl: null,
-        kdp: "not_created",
+        kdp: "ready_to_publish",
         masterFileKey: null,
         priceBasis:
-          "price-engine.mjs 2026-09-05 at the MEASURED 156 pages, 8.5 \u00d7 11 large trim, B&W, white: printing $3.65, KDP minimum list $6.09. $16.99 nets $6.54 (38.5 %). The roadmap said $14.99 against a planned 130 pages; at the built 156 that nets 35.6 %, six tenths of a point over the house floor and inside the noise of a KDP printing-rate change.",
+          "STAGED AT $16.99 at KDP 2026-09-07; the form shows printing $3.65 and royalty $6.54 at 60%, which is the figure below, confirmed by KDP itself. price-engine.mjs 2026-09-05 at the MEASURED 156 pages, 8.5 \u00d7 11 large trim, B&W, white: printing $3.65, KDP minimum list $6.09. $16.99 nets $6.54 (38.5 %). The roadmap said $14.99 against a planned 130 pages; at the built 156 that nets 35.6 %, six tenths of a point over the house floor and inside the noise of a KDP printing-rate change.",
       },
       {
         format: "hardcover",
@@ -1006,20 +1037,28 @@ export const BOOKS = [
       },
       {
         format: "hardcover",
-        // Not on the shelf: an author-wide Amazon search on 2026-09-02
-        // returned the paperback and no hardcover. Still in KDP review, or
-        // never submitted. No ASIN is invented while that is true.
-        availability: "coming_soon",
+        // WAS: "Not on the shelf — an author-wide Amazon search on 2026-09-02
+        // returned the paperback and no hardcover." That was true on 2026-09-02
+        // and it went live the next day, on 2026-09-03. The search was the right
+        // instrument and nobody ran it again, which is how a row keeps saying
+        // "coming soon" about a book that is In Stock.
+        availability: "available",
         fulfillment: "amazon",
         priceCents: usd(21.99),
         pageCount: 124,
         pendingPageCount: 126,
         pendingPageCountReason: "the companion page of 2026-09-03; `pageCount` stays at what the listing sells until the file is uploaded",
-        amazonAsin: null,
-        amazonUrl: null,
-        kdp: "in_review",
+        // VERIFIED LIVE 2026-09-07 on the KDP bookshelf and on the listing itself:
+        // hardcover, $21.99, 124 pp, In Stock. The row had said coming_soon /
+        // in_review / asin: null since the submission, and nobody had gone back to
+        // look. KDP shows "Live · Updates in review", which means the EDITION is
+        // live and a metadata change is pending — not that the book is unpublished.
+        isbn13: "979-8170927647",
+        amazonAsin: "B0HHLZ31CV",
+        amazonUrl: "https://www.amazon.com/dp/B0HHLZ31CV",
+        kdp: "live",
         masterFileKey: null,
-        priceBasis: "FOUNDER-APPROVED (K43, 2026-08-29) and submitted to KDP at this price.",
+        priceBasis: "FOUNDER-APPROVED (K43, 2026-08-29); the live listing charges exactly this.",
       },
       {
         format: "ebook",
@@ -1104,16 +1143,23 @@ export const BOOKS = [
       },
       {
         format: "paperback",
-        availability: "coming_soon",
+        // VERIFIED LIVE 2026-09-07 on the KDP bookshelf and on the listing:
+        // paperback, $14.99, 144 pp, 6 x 9 in, In Stock, submitted 2026-09-04.
+        // The row said coming_soon / not_created / asin: null — written before
+        // the upload and never revisited. The proposed price became the charged
+        // price, so priceBasis below is now a record of a decision taken, not of
+        // one pending.
+        availability: "available",
         fulfillment: "amazon",
         priceCents: usd(14.99),
         pageCount: 144,
-        amazonAsin: null,
-        amazonUrl: null,
-        kdp: "not_created",
+        isbn13: "979-8171876937",
+        amazonAsin: "B0HHS2JW9N",
+        amazonUrl: "https://www.amazon.com/dp/B0HHS2JW9N",
+        kdp: "live",
         masterFileKey: null,
         priceBasis:
-          "price-engine.mjs 2026-09-02, 144 pp 6×9 B&W public domain: prints at $2.73; $12.99 nets $5.07 (39%), $14.99 nets $6.27 (41.8%), $16.99 nets $7.47. $14.99 proposed for a 144-page annotated edition; Founder decides at Gate 8. Interior and full-wrap cover are built (OUTPUT/interior-main.pdf, OUTPUT/KDP/PAPERBACK/cover.pdf \u2014 the cover was rebuilt from the Founder's artwork on 2026-09-04; the typographic one it replaced is in 09_ARCHIVE/covers-superseded-2026-09-04/).",
+          "LIVE AT $14.99 since 2026-09-04. price-engine.mjs 2026-09-02, 144 pp 6×9 B&W public domain: prints at $2.73; $12.99 nets $5.07 (39%), $14.99 nets $6.27 (41.8%), $16.99 nets $7.47. $14.99 was proposed for a 144-page annotated edition and is what the listing charges. Interior and full-wrap cover are built (OUTPUT/interior-main.pdf, OUTPUT/KDP/PAPERBACK/cover.pdf \u2014 the cover was rebuilt from the Founder's artwork on 2026-09-04; the typographic one it replaced is in 09_ARCHIVE/covers-superseded-2026-09-04/).",
       },
     ],
     blockers: [
