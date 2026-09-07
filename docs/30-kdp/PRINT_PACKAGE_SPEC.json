@@ -16,7 +16,7 @@
   "trimW": 8.5,
   "trimH": 11,
   "interior": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/02-GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/interior.pdf",
-  "cover": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/02-GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/cover.pdf",
+  "cover": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/02-GREEK-ALPHABET-HANDWRITING-WORKBOOK/ASSETS/cover/paperback-wrap-v1.pdf",
   "config": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/02-GREEK-ALPHABET-HANDWRITING-WORKBOOK/project_config.json"
  },
  {
@@ -26,7 +26,7 @@
   "trimW": 8.25,
   "trimH": 11,
   "interior": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/02-GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/HARDCOVER/interior.pdf",
-  "cover": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/02-GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/HARDCOVER/cover.pdf",
+  "cover": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/02-GREEK-ALPHABET-HANDWRITING-WORKBOOK/ASSETS/cover/hardcover-wrap-v1.pdf",
   "config": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/02-GREEK-ALPHABET-HANDWRITING-WORKBOOK/project_config.json"
  },
  {
@@ -36,7 +36,7 @@
   "trimW": 8.25,
   "trimH": 11,
   "interior": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/04-CODEX-MYTHOLOGICA-THE-PUZZLE-BOOK/OUTPUT/HARDCOVER/interior.pdf",
-  "cover": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/04-CODEX-MYTHOLOGICA-THE-PUZZLE-BOOK/OUTPUT/HARDCOVER/cover.pdf",
+  "cover": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/04-CODEX-MYTHOLOGICA-THE-PUZZLE-BOOK/ASSETS/cover/hardcover-wrap-v1.pdf",
   "config": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/04-CODEX-MYTHOLOGICA-THE-PUZZLE-BOOK/project_config.json"
  },
  {
