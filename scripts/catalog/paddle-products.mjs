@@ -163,6 +163,19 @@ export const DIRECT_SALE_EBOOKS = [
     priceCents: 899,
   },
   {
+    // PHASE 3, BOOK 1 (2026-09-06). Valice Classics 13, the first of the Bestiarium
+    // expansion. No Kindle edition and no KDP listing, so no Select exclusivity can
+    // apply; the price comes from price-engine.mjs and the apparatus share is the
+    // justification, measured at 21.0% by COMMON-AREA/checks/differentiation.py.
+    slug: "kwaidan",
+    name: "Kwaidan: Stories and Studies of Strange Things (Annotated)",
+    description:
+      "Lafcadio Hearn's 1904 collection complete \u2014 seventeen Japanese ghost stories and three essays on insects \u2014 with both of Takeuchi Keish\u016b's original plates. Original to this edition: an introduction; a head-note before every piece; a Register of Provenance separating the three pieces whose origin Hearn states from the sixteen he leaves open, instead of guessing; a glossary of all 45 Japanese terms he italicises; a Y\u014dkai Register naming the creatures by what folklore calls them rather than by his titles; a gazetteer of the ten old provinces against the modern prefectures, which catches an error the text has carried for a century; a chronology; and an account of which of his claims have not survived and which one was right. 138 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included.",
+    priceCents: 899,
+    priceBasis:
+      "price-engine.mjs 2026-09-06, direct ebook, public domain: recommended $6.99; $8.99 nets $8.04 after Paddle at an 89.4% margin. Mid-band for Valice Classics \u2014 45,900 words, between Chess and Playing Cards at the floor and The Singing Games at the top.",
+  },
+  {
     slug: "traditional-games",
     name: "The Singing Games of England, Scotland, and Ireland (Annotated)",
     description:

@@ -98,6 +98,22 @@
       "entity": "world-mythology-traditions"
     },
     {
+      "path": "/images/books/book-of-were-wolves.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 102524,
+      "slot": "book-cover",
+      "entity": "book-of-were-wolves"
+    },
+    {
+      "path": "/images/books/british-goblins.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 69828,
+      "slot": "book-cover",
+      "entity": "british-goblins"
+    },
+    {
       "path": "/images/books/codex-bestiarium.webp",
       "width": 1000,
       "height": 1600,
@@ -138,6 +154,22 @@
       "entity": "epictetus-discourses-and-enchiridion"
     },
     {
+      "path": "/images/books/fairy-mythology-vol-1.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 56282,
+      "slot": "book-cover",
+      "entity": "fairy-mythology-vol-1"
+    },
+    {
+      "path": "/images/books/fairy-mythology-vol-2.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 48018,
+      "slot": "book-cover",
+      "entity": "fairy-mythology-vol-2"
+    },
+    {
       "path": "/images/books/games-ancient-and-oriental.webp",
       "width": 1067,
       "height": 1600,
@@ -170,6 +202,14 @@
       "entity": "korean-hangul-handwriting-workbook"
     },
     {
+      "path": "/images/books/kwaidan.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 47800,
+      "slot": "book-cover",
+      "entity": "kwaidan"
+    },
+    {
       "path": "/images/books/meditations.webp",
       "width": 1024,
       "height": 1536,
@@ -192,6 +232,14 @@
       "bytes": 58180,
       "slot": "book-cover",
       "entity": "myths-and-legends-of-china"
+    },
+    {
+      "path": "/images/books/sea-monsters-unmasked.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 92344,
+      "slot": "book-cover",
+      "entity": "sea-monsters-unmasked"
     },
     {
       "path": "/images/books/seneca-selected-dialogues.webp",
@@ -322,6 +370,38 @@
       "entity": "order/order_lantern_scene"
     },
     {
+      "path": "/images/previews/chess-and-playing-cards/p28.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 137830,
+      "slot": "book-preview",
+      "entity": "chess-and-playing-cards"
+    },
+    {
+      "path": "/images/previews/chess-and-playing-cards/p29.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 63374,
+      "slot": "book-preview",
+      "entity": "chess-and-playing-cards"
+    },
+    {
+      "path": "/images/previews/chess-and-playing-cards/p30.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 166094,
+      "slot": "book-preview",
+      "entity": "chess-and-playing-cards"
+    },
+    {
+      "path": "/images/previews/chess-and-playing-cards/p31.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 129810,
+      "slot": "book-preview",
+      "entity": "chess-and-playing-cards"
+    },
+    {
       "path": "/images/previews/codex-bestiarium/p39.webp",
       "width": 900,
       "height": 1350,
@@ -421,7 +501,7 @@
       "path": "/images/previews/codex-mythologica-the-puzzle-book/p59.webp",
       "width": 1100,
       "height": 1424,
-      "bytes": 52472,
+      "bytes": 52458,
       "slot": "book-preview",
       "entity": "codex-mythologica-the-puzzle-book"
     },
@@ -429,7 +509,7 @@
       "path": "/images/previews/codex-mythologica-the-puzzle-book/p60.webp",
       "width": 1100,
       "height": 1424,
-      "bytes": 50178,
+      "bytes": 50202,
       "slot": "book-preview",
       "entity": "codex-mythologica-the-puzzle-book"
     },
@@ -437,7 +517,7 @@
       "path": "/images/previews/codex-mythologica-the-puzzle-book/p61.webp",
       "width": 1100,
       "height": 1424,
-      "bytes": 60010,
+      "bytes": 60020,
       "slot": "book-preview",
       "entity": "codex-mythologica-the-puzzle-book"
     },
@@ -616,6 +696,14 @@
       "bytes": 27058,
       "slot": "book-preview",
       "entity": "korean-hangul-handwriting-workbook"
+    },
+    {
+      "path": "/images/previews/mancala/p19.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 77754,
+      "slot": "book-preview",
+      "entity": "mancala"
     },
     {
       "path": "/images/previews/meditations/p21.webp",
@@ -848,6 +936,38 @@
       "bytes": 66170,
       "slot": "book-preview",
       "entity": "the-puzzles-of-henry-dudeney"
+    },
+    {
+      "path": "/images/previews/traditional-games/p75.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 58048,
+      "slot": "book-preview",
+      "entity": "traditional-games"
+    },
+    {
+      "path": "/images/previews/traditional-games/p76.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 41422,
+      "slot": "book-preview",
+      "entity": "traditional-games"
+    },
+    {
+      "path": "/images/previews/traditional-games/p77.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 43094,
+      "slot": "book-preview",
+      "entity": "traditional-games"
+    },
+    {
+      "path": "/images/previews/traditional-games/p78.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 37010,
+      "slot": "book-preview",
+      "entity": "traditional-games"
     },
     {
       "path": "/images/settings/settings_desk_scene.webp",

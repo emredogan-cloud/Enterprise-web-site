@@ -41,9 +41,26 @@ export function resolveSource(slug, explicit) {
   return candidates.find((c) => existsSync(c)) ?? null;
 }
 
-export function latestFront(dir) {
+/**
+ * The highest-numbered front in `dir`, for a slug.
+ *
+ * A ONE-VOLUME BOOK KEEPS ITS FRONTS AS `front-v<n>.png`; A MULTI-VOLUME BOOK
+ * BUILDS ONE ASSETS/cover FOR THE WHOLE WORK and names them
+ * `front-vol<N>-v<n>.png`, because two volumes cannot both be `front-v1.png`.
+ * This matched only the first shape, so Keightley's two volumes could not be
+ * ingested at all; their storefront webps were made by hand instead, and went
+ * stale the moment the covers were rebuilt — a volume mark was added to both
+ * fronts and neither webp showed it. A convention the tools do not know about
+ * is a convention that will be worked around.
+ *
+ * `volume` is taken from the slug's own `-vol-<N>` suffix, so nothing new has
+ * to be passed in and a single-volume slug behaves exactly as before.
+ */
+export function latestFront(dir, slug = "") {
+  const vol = slug.match(/-vol-(\d+)$/)?.[1];
+  const re = vol ? new RegExp(`^front-vol${vol}-v(\\d+)\\.png$`) : /^front-v(\d+)\.png$/;
   const fronts = readdirSync(dir)
-    .map((f) => ({ f, m: f.match(/^front-v(\d+)\.png$/) }))
+    .map((f) => ({ f, m: f.match(re) }))
     .filter((x) => x.m)
     .map((x) => ({ file: x.f, version: Number(x.m[1]) }))
     .sort((a, b) => b.version - a.version);
@@ -76,9 +93,9 @@ function main() {
     report.error("source", `no cover directory found for ${args.slug} (looked in assets/${args.slug}/cover and the project's ASSETS/cover)`);
     return finish(report, { json: Boolean(args.json) });
   }
-  const front = latestFront(source);
+  const front = latestFront(source, args.slug);
   if (!front) {
-    report.error("front", `no front-v<n>.png in ${source}`);
+    report.error("front", `no ${args.slug.match(/-vol-(\d+)$/) ? `front-vol${args.slug.match(/-vol-(\d+)$/)[1]}-v<n>` : "front-v<n>"}.png in ${source}`);
     return finish(report, { json: Boolean(args.json) });
   }
   const srcPath = join(source, front.file);

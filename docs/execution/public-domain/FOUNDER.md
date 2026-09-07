@@ -13,6 +13,103 @@ output while other work continues · **P2** is an inconvenience and never stops 
 
 ## Open
 
+### F-031 · P2 · Two cover decisions for Kwaidan that are yours, not the factory's
+
+Both are recorded in `project_config.json → covers` and neither blocks anything; they are
+here because COVER_STANDARDS makes them Founder decisions and the factory should not make
+them by drifting.
+
+1. **The series idiom.** §1 gives Valice Classics as *"emerald/black, Noto Serif Display,
+   typographic + one fine engraved device"*, and Article 11 adds that the typographic cover
+   is the identity rather than a fallback. This cover keeps the emerald/black and the Noto
+   Serif Display, and sets every word in the layout — but where the engraved device would
+   be, there is a full-bleed painted night scene. Phases 1 and 2 already moved the series to
+   pictorial covers using your own supplied artwork, so this follows them rather than
+   breaking new ground; §2.6 still says a series identity is yours to approve.
+2. **The 25% title rule.** §2.1 asks for a title band of at least a quarter of the cover
+   height. Measured: **23.7%**. KWAIDAN is one word and cannot fill a quarter of a cover the
+   way two stacked lines do, and stacking it would print KWAI over DAN. The rule's purpose —
+   legibility at thumbnail size — is measured separately and the 150 px contrast is **1.0**,
+   the best of any cover this press has made. Recorded as a shortfall rather than closed by
+   making the cover worse.
+
+Either waive them on the record or say what you would rather have.
+
+---
+
+
+### F-028 · RESOLVED 2026-09-06 · The six missing Paddle products now exist
+
+**This closes F-019, F-022, F-024, F-026 and F-027.** Three sessions had stopped at the
+same place: the command that writes to the live Paddle account was refused by the sandbox,
+so five Phase 2 ebooks and then Kwaidan sat priced and ready with no product to sell.
+
+They were created on 2026-09-06 against the live account, using
+`scripts/tmp/.env.production`, and read back in a fresh dry run with no `WOULD CREATE`
+remaining anywhere in the catalogue:
+
+| slug | product | price | list |
+|---|---|---|---|
+| `games-ancient-and-oriental` | `pro_01m1v4n63z30ewtsyrya8jxfgf` | `pri_01m1v4n69wd2th3pf1cbw8an3n` | $7.99 |
+| `korean-games` | `pro_01m1v4n6rxp0cgvszpwc56xran` | `pri_01m1v4n6zery50yws32dpspqve` | $8.99 |
+| `kwaidan` | `pro_01m1v4n7tthzcxjvp08fzkkt5t` | `pri_01m1v4n80k6g2tba6wt8882ehf` | $8.99 |
+| `traditional-games` | `pro_01m1v4n8ep1s4j1ec94gerfxbh` | `pri_01m1v4n8mdw8dnnsdc2bqwf56d` | $9.99 |
+| `chess-and-playing-cards` | `pro_01m1v4n932w8vmtb1g8ctj733d` | `pri_01m1v4n991k3h8x20sbwp9455z` | $7.99 |
+| `mancala` | `pro_01m1v4n9rnkms9qgj604v00s77` | `pri_01m1v4n9ygd9z3vbgstcjbmvt0` | $4.99 |
+
+**What is still yours to do, and it is small.** Only Kwaidan's catalogue row carries its
+price id on this branch. **The five Phase 2 rows on `main` still say
+`paddlePriceId: null` and `directSaleBlockedBy: "paddle-not-provisioned"`, and they are
+now wrong** — the products exist. Phase 3 is not merged and must not be, so this branch
+deliberately left those five rows exactly as Phase 2 left them rather than editing another
+phase's data from here. On `main`, for each of the five: paste the price id above, set
+`directSaleBlockedBy: null`, set the ebook format's `availability` to `"available"`, set
+`websiteStatus` to `"published"`, then
+
+```
+node scripts/catalog/load-catalog.mjs --commit    # confirm it targets neondb, not bookstore
+```
+
+That is the last thing between those five books and being on sale.
+
+---
+
+### F-029 · P1 · Paddle tax category for the six new products
+
+**Extends F-017 to six more products.** All six were created as `standard` because this
+Paddle account is not approved for the `ebooks` tax category. The script says so on every
+run. `standard` over-collects VAT on ebook sales in jurisdictions that tax books at a
+reduced rate.
+
+Request approval in Paddle (Catalog → tax categories, or Paddle support), then PATCH each
+product's `tax_category` to `ebooks`. **Prices do not need recreating.** Nothing is broken
+until then; buyers in reduced-rate jurisdictions are simply charged too much VAT.
+
+---
+
+### F-030 · P2 · Gate 2 signature for Kwaidan
+
+`PHASE-3-BOOK/01-KWAIDAN/RIGHTS.md` sets out four layers and is prepared for signature.
+Two of them are decisions only you can ratify, and both go against the roadmap's
+expectation, so neither should be signed without reading the reasoning:
+
+1. **The two plates ARE printed.** The roadmap says Kwaidan's plates "remain unattributed
+   and are designed out". That is true of the source file, which labels them only
+   `[Illustration]`. It is not true of the artist: Wikipedia's article on the book names
+   Takeuchi Keishū and Wikidata Q11545824 dates him — born 13 November 1861, died 3 January
+   of 1942 **or** 1943. On either date life-plus-seventy expired more than a decade ago,
+   and the 1904 United States imprint settles the US independently. The edition reproduces
+   both plates at their true 300 DPI size, about three inches across.
+2. **The 1904 introduction is NOT printed.** The first edition's prefatory matter is two
+   pieces, not one. Hearn's own note, 154 words signed "L. H." and dated Tōkyō, 20 January
+   1904, is printed. A second piece of 677 words dated March 1904 — about the Russo-Japanese
+   war, quoting Paul Elmer More — is **unsigned in the source and named in no authority
+   record**, so no death year and therefore no rights position could be established. It is
+   omitted, and the Source Note says so on the page.
+
+---
+
+
 
 ### F-025 · P1 · Six account-holder actions for Codex Mythologica: The Puzzle Book
 
@@ -476,3 +573,195 @@ This is research, not production, and it does not block Phase 1.
 **RESOLVED 2026-09-04.** The Founder approved the split. Volume one is the eight chapters in which Werner sets out the divine order (31,210 words) and measures **22.4%** against the 20% floor. The four legend cycles (31,744 words) are scoped as volume two. Built end to end; see `PHASE-1-REPORT/03-myths-and-legends-of-china/`.
 
 ---
+
+---
+
+### F-033 · P0 · Sign Gate 2 for *The Book of Were-Wolves*
+
+Three rows, and the simplest rights position of the phase: a text of 1865 by an author who
+died in 1924, **no illustration layer at all** — the 1865 book has no plates and this edition
+invents none — and Baring-Gould's own translations, which are part of the 1865 book and carry
+no separate right. Evidence in `PHASE-3-BOOK/03-BOOK-OF-WERE-WOLVES/RIGHTS/RIGHTS.md`.
+
+*(Referenced by that book's report and catalogue row since 2026-09-06; recorded here
+2026-09-07, when the gap between reference and record was noticed.)*
+
+---
+
+### F-034 · P1 · Confirm that seven chapters of murder are printed entire
+
+Chapters VI, VII, IX and XI–XV of *The Book of Were-Wolves* describe the killing and
+mutilation of children, grave-robbing and cannibalism, at length and in the language of the
+trial records Baring-Gould was reading.
+
+They are printed entire, because Article 18 forbids abridging a book to hide what it contains
+and because his argument depends on them. What the edition does instead is say plainly, at the
+front and in each of the seven head-notes, what is in those chapters, so a reader chooses
+knowingly rather than turning a page and meeting it.
+
+**This is the decision to revisit if the Founder wants a different answer.** It is recorded
+rather than taken quietly.
+
+---
+
+### F-035 · P0 · Sign Gate 2 for *British Goblins*
+
+Four rights rows, and the first illustration layer of Phase 3 that is actually **used**:
+twenty of T. H. Thomas's twenty-one drawings are set. One row is **refused** — the six music
+engravings in the Gutenberg file are Lesley Halamek's of 2010, not Sikes's of 1880, and the
+airs are named and placed in the apparatus instead. Evidence is in
+`PHASE-3-BOOK/04-BRITISH-GOBLINS/RIGHTS/RIGHTS.md`, rows S-1 to S-4.
+
+---
+
+### F-036 · P1 · Confirm the price of a 390-page book
+
+$22.99 paperback and $41.99 hardcover for *British Goblins*, $19.99 and $38.99 for each
+Fairy Mythology volume, are `price-engine.mjs`'s own recommendations at the 35% margin target
+for those page counts. No book this press has sold is priced anywhere near them. The engine is
+not wrong; the question is whether the market is there, and that is a Founder call.
+
+---
+
+### F-037 · P0 · Sign Gate 2 for *The Fairy Mythology* (both volumes)
+
+**Five rights rows — the most of any book in the phase, and one of them refused.**
+
+- S-1 text: Keightley 1789–1872, enlarged edition 1850, reprinted 1892. Clear.
+- S-2 the frontispiece: **George Cruikshank, 1792–1878**. Bohn's 1850 issue replaced W. H.
+  Brooke's 1828 plates with a new Cruikshank frontispiece. Clear. **Note the honest limit:**
+  the plate carries a signature but it is not legible at the resolution of the source scan
+  (376 × 600), so the attribution rests on the bibliographic record of the 1850 issue, not on
+  reading the signature. Either candidate — Cruikshank d. 1878, Brooke d. 1860 — is long out
+  of copyright, so nothing turns on it, but the edition says so rather than implying it read
+  the signature.
+- S-3 the seven engraved script blocks (Persian and Sanskrit): anonymous, published 1850.
+  Clear on publication terms.
+- S-4 the Gutenberg transcription of 2012: faithful transcription, no new right.
+- **S-5 REFUSED:** the ~150 one-letter images the 2012 transcribers made to stand for insular
+  Anglo-Saxon and Gaelic letterforms. Their work, not Keightley's. All 141 in the printed text
+  are replaced by their Unicode characters, and the build refuses to run if it meets an image
+  it cannot account for.
+
+Evidence: `PHASE-3-BOOK/05-FAIRY-MYTHOLOGY/RIGHTS/RIGHTS.md` and `SOURCE/glyph-map.json`.
+
+---
+
+### F-038 · P1 · The apparatus of both Fairy Mythology volumes is below the 20% floor
+
+Measured, not padded: **12.5%** in Volume I (14,303 words) and **8.7%** in Volume II (10,661).
+Every other Valice Classic has cleared 20%.
+
+The Founder's standing instruction is that the floor is a **quality floor and not a
+word-count target**, and that where genuine apparatus falls short the measured result is
+documented rather than faked. Article 2 forbids filler. What the volumes carry is a head-note
+for every one of their fifty-one sections, a Register of Evidence and Inference — with a
+fifth column in Volume II that no other book of this phase has needed, *what the author had a
+hand in making* — ninety glossary entries, forty-four beings, thirty-three authorities,
+twenty-nine editorial notes, nine essays, a tale index and a motif concordance measured across
+both volumes.
+
+Reaching 20% would mean writing some 25,000 more words with nothing left to say. **This is the
+decision to revisit if the Founder wants the floor held absolutely**; the alternative is to
+commission genuinely new scholarly matter rather than to pad.
+
+---
+
+### F-039 · P0 · Five Phase 2 books are complete and provisioned, and still not on sale
+
+*Games Ancient and Oriental*, *Korean Games*, *Traditional Games*, *Chess and Playing Cards*
+and *Mancala* are built, priced, their R2 masters uploaded, and — as of a check against
+api.paddle.com on 2026-09-07 — **their Paddle products and prices are live**. The blocker text
+in the catalogue said the environment prevented the Paddle write; that was true when it was
+written and is false now, and has been corrected.
+
+What actually holds all five is **Gate 2 (Rights) and Gate 5 (Facts) — Founder signatures**,
+which no agent can give. `status.mjs` shows all five at QA, 2 of 12 gates passed.
+
+The live price ids are recorded in each row's blockers and are deliberately **not** written
+into `paddlePriceId`: `valice-catalog.test.ts` forbids a price id on a row whose ebook is not
+`available`, and that test is right — a live id on a row that is not for sale fails at the
+till rather than at load. Signing the gates and flipping `websiteStatus` is one action; the
+ids are ready for it.
+
+---
+
+### F-040 · P1 · Four books shipped with an under-measured apparatus, because the measuring instrument was wrong
+
+`differentiation.py` — the instrument Article 2 is judged by — counted **every string** in a
+content file. Two things followed that nobody had looked for:
+
+* each block's `kind` (the word `p`, or `verse`) scored as a word of the book — 552 to 1,489
+  per volume;
+* a verse block, which carries both a joined `text` for the matchers and its `lines` for the
+  typesetter, was counted **twice** — 10,175 words of Keightley's verse in Volume I alone.
+
+All of it landed in the **SOURCE denominator**, so every editor share this phase reported was
+**understated**. It failed safe, which is why it survived four books: it never reported a floor
+breach that was not real. But the direction of an error stops being safe the moment it is used
+to justify a decision, and it was about to be — *"these two volumes are below the floor, record
+it"* is exactly that decision.
+
+Corrected and all six volumes re-measured. Every share rose; every book that met the floor
+still meets it. Nine regression tests now hold the counter.
+
+**Nothing is asked of the Founder here.** It is recorded because the lesson is not about verse
+blocks: *a measuring instrument that errs in the safe direction is still a broken instrument,
+and it will be found late, by someone writing the report.*
+
+---
+
+### F-041 · P0 · The Fairy Mythology was printing 3,363 words short, and four checks could not see it
+
+An adversarial review found that both Keightley volumes were **discarding continuation
+paragraphs of footnotes** — 61 notes truncated, 19 printing as nothing at all — while Volume I
+page 4 told the reader in print that *nothing is abridged*.
+
+The reason no check caught it is worth the Founder's attention, because it generalises:
+
+* the parse report counted footnotes **found** — containers matched to an anchor — and stayed
+  at 604 the whole time. **A count of containers is not a count of contents.**
+* `coverage.py` compares each section's first and last **prose** paragraph, and a footnote is
+  neither;
+* `check_quotes.py` reads the apparatus, not the source;
+* the word-count reconciliation used the same lossy extractor on both sides, so both sides
+  agreed.
+
+Fixed at the parser, with two shapes it had never met — a note whose whole body is a poem, and
+one whose body is a two-column table. The build now **refuses to complete** if a note would
+reach the page empty, which is what the front matter had been claiming all along. A new
+source-claim asserts the **words**, as a floor, with the broken extractor's own figure as its
+regression test.
+
+**The ask:** none, but this is the finding to remember when the next book is signed off. Both
+volumes' page counts moved — 332 → 336 and 322 → 326 — which sent the covers back to the KDP
+calculator.
+
+---
+
+### F-042 · P0 · A fabricated authority reached print in both volumes, and an essay was built on him
+
+*William Hone* was given fourteen citations in Volume I, twenty-six in Volume II, an entry in
+both who's-whos, a glossary entry, a row in the Register, an editorial note, a line in the
+companion copy, a claim in the ledger marked **VERIFIED**, and **a whole essay** in Volume II —
+*England and the Every-Day Book* — whose opening sentence was *"Hone is cited twenty-six times
+here — more than Grimm, more than Scott."*
+
+**Keightley never names him.** Not once, in either volume. Neither *Every-Day Book* nor *Table
+Book* appears anywhere in the source.
+
+Every other count in the same table was exact against the text — Grimm, Thiele, Chaucer,
+Milton, Gervase, Giraldus. This one number was invented and then everything else was built on
+top of it. Two further counts in the same tables were also wrong: Walter Scott's (fifteen and
+sixteen claimed; the name occurs seven and six times, and not all of them are the same man),
+and a book — the *Letters on Demonology and Witchcraft* — that Keightley never cites at all.
+
+All of it is removed, and what is genuinely there was worth having: the English section rests
+on **poets rather than collectors**, and on Brand's *Popular Antiquities*, itself a compilation
+of earlier print. Three new source-claims now hold the book to the corrected statements.
+
+**The ask:** this is the second phase running in which a confident, specific, checkable number
+turned out to be invented — British Goblins had eleven. Both times the same thing was true:
+**the number was never held against the text the book actually prints.** `check_source_claims.py`
+exists because of the first; it now carries the second's negative claims too. If the Founder
+wants one rule enforced above the others at Gate 5, it is this one.

@@ -1564,6 +1564,502 @@ const TRADITIONAL_GAMES: Companion = {
   ],
 };
 
+/**
+ * PHASE 3, BOOK 1 (2026-09-06). Valice Classics 13, and the first of the Bestiarium
+ * expansion. The four sheets are the parts of the apparatus a reader wants beside the
+ * book rather than inside it: the provinces, the creatures, the provenance, and a way
+ * to play the hundred-candles game with seventeen tales instead of a hundred.
+ */
+const KWAIDAN: Companion = {
+  slug: "kwaidan",
+  bookSlug: "kwaidan",
+  bookTitle: "Kwaidan: Stories and Studies of Strange Things",
+  state: "book-not-yet-available",
+  stateNote:
+    "The Valice edition is built, validated and priced, and its payment product " +
+    "exists — what is left is that the edition's own pages have not been deployed " +
+    "yet, so the storefront row is deliberately still held back. Everything on " +
+    "this page is free and works today regardless.",
+  intro:
+    "Free material for Hearn's seventeen ghost stories and three insect essays: " +
+    "the old provinces against the prefectures they became, the creatures named " +
+    "by what folklore calls them, the register of what Hearn took and what he was " +
+    "told, and a sheet for reading the book aloud by candlelight.",
+  newsletterSource: "kwaidan-companion",
+  assetsHeading: "Print and read",
+  rightsNote:
+    "Lafcadio Hearn died on 26 September 1904 and Kwaidan was published in Boston " +
+    "on 2 April 1904, so the text is in the public domain on two independent " +
+    "grounds. The two plates are by Takeuchi Keishū, born 13 November 1861 and " +
+    "dead on 3 January of 1942 or 1943 (Wikidata Q11545824); on either date the " +
+    "term expired more than a decade ago, and the edition reproduces both. The " +
+    "unsigned introduction of March 1904 that stands in the first edition is not " +
+    "by Hearn, names no author anywhere, and is not printed.",
+  assets: [
+    {
+      id: "provinces-card",
+      title: "The Provinces",
+      description:
+        "The ten old provinces Hearn names — Musashi, Iyo, Mutsu, Tamba, Noto and " +
+        "the rest — against the modern prefectures they became, with the tale each " +
+        "belongs to. It also carries the correction: the text places Niigata in " +
+        "Echizen, and Niigata is in Echigo. That slip has been reprinted for a " +
+        "century and the edition leaves Hearn's sentence alone and tells you instead.",
+      kind: "static",
+      href: "/companion/kwaidan/provinces-card.pdf",
+      meta: "PDF · US Letter · 1 page",
+    },
+    {
+      id: "yokai-cards",
+      title: "The Yōkai Cards",
+      description:
+        "Fifteen cards, one for each creature and apparition in the book, named by " +
+        "what folklore calls it rather than by Hearn's title — which matters most " +
+        "for \u201cMujina\u201d, where the thing on the road is a noppera-bō and the " +
+        "animal in the title never appears.",
+      kind: "static",
+      href: "/companion/kwaidan/yokai-cards.pdf",
+      meta: "PDF · US Letter · 1 page",
+    },
+    {
+      id: "register-card",
+      title: "The Register of Provenance",
+      description:
+        "What Hearn's own note establishes about where these tales came from, and " +
+        "what it leaves open. THREE pieces have an origin he states — one Chinese, one " +
+        "told to him by a farmer of Chōfu in Musashi, one that happened to him. A " +
+        "fourth is not stated by him at all and is marked as evident rather than " +
+        "stated: it is plainly autobiography. The remaining sixteen are shown as open " +
+        "rather than assigned to one of his five named books on a guess.",
+      kind: "static",
+      href: "/companion/kwaidan/register-card.pdf",
+      meta: "PDF · US Letter · 1 page",
+    },
+    {
+      id: "hundred-candles",
+      title: "The Hundred Candles",
+      description:
+        "Hyakumonogatari kaidankai is the Edo game the genre is named after: a " +
+        "hundred lamps, a tale each, one lamp out after every one, and the thing " +
+        "the tales have been summoning arrives when the last goes dark. Companies " +
+        "stopped at ninety-nine. This sheet plays it with the seventeen tales of " +
+        "this book, in an order that works, and tells you to stop at sixteen.",
+      kind: "static",
+      href: "/companion/kwaidan/hundred-candles.pdf",
+      meta: "PDF · US Letter · 2 pages",
+    },
+  ],
+};
+
+/**
+ * SEA MONSTERS UNMASKED — Phase 3, book 2.
+ *
+ * Two 1883 shilling handbooks written for one exhibition, printed complete with all 68
+ * of their figures. The sheets carry the four things that work better beside the book
+ * than inside it: the casebook of sightings the sea-serpent chapter assumes you are
+ * holding, an index to a plate sequence that restarts halfway through, a scorecard of
+ * what has held up, and the one argument in the book that was fully vindicated.
+ */
+const SEA_MONSTERS_UNMASKED: Companion = {
+  slug: "sea-monsters-unmasked",
+  bookSlug: "sea-monsters-unmasked",
+  bookTitle: "Sea Monsters Unmasked, and Sea Fables Explained",
+  state: "book-not-yet-available",
+  stateNote:
+    "The Valice edition is built and validated \u2014 230 pages, both handbooks entire, " +
+    "all 68 figures \u2014 but its pages have not been deployed and no payment product " +
+    "exists for it yet, so the storefront row is deliberately held back. Everything on " +
+    "this page is free and works today regardless.",
+  intro:
+    "Free material for Henry Lee's two 1883 handbooks, in which the kraken turns out to " +
+    "be a giant squid, the mermaid a dugong, the hydra an octopus, and the sea serpent " +
+    "stays unsolved: the casebook of named sightings, an index to all sixty-eight plates, " +
+    "a scorecard of which of his explanations survived, and the kraken's timeline from " +
+    "Olaus Magnus to the first film of a living giant squid.",
+  newsletterSource: "sea-monsters-unmasked-companion",
+  assetsHeading: "Print and read",
+  rightsNote:
+    "Henry Lee lived 1826\u20131888 and both handbooks were published in London in 1883, " +
+    "so the text is in the public domain on two independent grounds. The figures are a " +
+    "separate layer and each was assessed: the 1883 cuts lent by the Illustrated London " +
+    "News, the Graphic, the Leisure Hour and Land and Water are corporate publications of " +
+    "1883 whose term expired at the end of 1953; the second frontispiece is after a " +
+    "painting by Otto Sinding, 1842\u20131909; and the facsimiles of Olaus Magnus, " +
+    "Aldrovandus, Gerard and Pontoppidan were never in question. All sixty-eight are " +
+    "reproduced.",
+  assets: [
+    {
+      id: "casebook",
+      title: "The Casebook",
+      description:
+        "Every named sighting the two handbooks discuss \u2014 Egede's monster off " +
+        "Greenland in 1734, the Gloucester serpent, H.M.S. D\u00e6dalus in 1848, the " +
+        "Alecton's squid, the Pauline, the Osborne, the City of Baltimore \u2014 with " +
+        "what was reported and what Lee makes of it. The sea-serpent chapter moves " +
+        "between eight cases in forty pages and assumes you are holding all of them at " +
+        "once.",
+      kind: "static",
+      href: "/companion/sea-monsters-unmasked/casebook.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "plate-index",
+      title: "The Sixty-Eight Plates",
+      description:
+        "Every figure in both books, numbered as Lee numbers them \u2014 which means " +
+        "there are two figure 1s and two figure 24s, because the second handbook starts " +
+        "its sequence again. Each is marked as evidence of an animal, evidence of a " +
+        "belief, or decoration, which is the question worth asking of every picture in " +
+        "the book.",
+      kind: "static",
+      href: "/companion/sea-monsters-unmasked/plate-index.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 2 pages",
+    },
+    {
+      id: "scorecard",
+      title: "Right, Wrong, Still Open",
+      description:
+        "Lee's eight chapters, what each concludes, and how it has lasted \u2014 with " +
+        "the three places a modern reader should hold him to account: the surviving " +
+        "marine reptile he reports without endorsing, the fish-god plates that rest on a " +
+        "reading no longer accepted, and the dugong that does not live in the seas most " +
+        "of the mermaid sightings come from.",
+      kind: "static",
+      href: "/companion/sea-monsters-unmasked/scorecard.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "kraken-timeline",
+      title: "The Kraken, 1555 to now",
+      description:
+        "The one argument in the book that was fully vindicated, in order: Olaus Magnus, " +
+        "Pontoppidan's ridiculed bishopric, Steenstrup naming Architeuthis in 1857, the " +
+        "Alecton, the Newfoundland strandings Lee had only just heard about \u2014 and " +
+        "then nothing at all for a hundred and nineteen years, until a living giant squid " +
+        "was photographed in 2002 and finally filmed in its own water in 2012.",
+      kind: "static",
+      href: "/companion/sea-monsters-unmasked/kraken-timeline.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+  ],
+};
+
+/**
+ * THE BOOK OF WERE-WOLVES — Phase 3, book 3.
+ *
+ * Baring-Gould's 1865 account, all sixteen chapters. The sheets carry the four things
+ * that work better beside the book than inside it: the casebook of trials, a scorecard of
+ * what survived, the Norse vocabulary his best chapters are built on, and a single page
+ * saying which chapters describe murders — so the book can be lent on with the warning
+ * attached.
+ */
+const BOOK_OF_WERE_WOLVES: Companion = {
+  slug: "book-of-were-wolves",
+  bookSlug: "book-of-were-wolves",
+  bookTitle: "The Book of Were-Wolves",
+  state: "book-not-yet-available",
+  stateNote:
+    "The Valice edition is built and validated \u2014 198 pages, all sixteen chapters \u2014 " +
+    "but its pages have not been deployed and no payment product exists for it yet, so the " +
+    "storefront row is deliberately held back. Everything on this page is free and works " +
+    "today regardless.",
+  intro:
+    "Free material for Sabine Baring-Gould's 1865 book: the casebook of every werewolf trial " +
+    "he describes, including the two in which a French court looked at a full confession and " +
+    "refused to execute; a scorecard of which of his explanations survived; the Norse words " +
+    "his best chapters are built on; and a page saying which chapters describe murders.",
+  newsletterSource: "book-of-were-wolves-companion",
+  assetsHeading: "Print and read",
+  rightsNote:
+    "Sabine Baring-Gould lived 1834\u20131924 and the book was published in London in 1865, " +
+    "so the text is in the public domain on two independent grounds. There is no illustration " +
+    "layer to assess: the 1865 book has no plates, and the only image in the Project Gutenberg " +
+    "transcription is Gutenberg's own generated cover, which this edition does not use. " +
+    "Baring-Gould's own translations \u2014 the 1508 sermon, the Norse verse, the French trial " +
+    "records \u2014 are part of the 1865 book and carry no separate right.",
+  assets: [
+    {
+      id: "casebook",
+      title: "The Casebook of Trials",
+      description:
+        "Every prosecution the book describes, with year, place, charge, court and sentence " +
+        "\u2014 Poligny 1521, Dole 1573, the Gandillons and Roulet in 1598, Jean Grenier at " +
+        "Bordeaux in 1603, the Mar\u00e9chal de Retz at Nantes in 1440. Two are set apart: in " +
+        "1598 the Parlement of Paris sent a confessed werewolf to an asylum instead of the " +
+        "stake, and in 1603 the Parlement of Bordeaux held that lycanthropy was not a punishable " +
+        "crime and sentenced a boy of thirteen to perpetual imprisonment in a monastery. Both courts treated the confession as evidence about the man rather than about " +
+        "the crime.",
+      kind: "static",
+      href: "/companion/book-of-were-wolves/casebook.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "scorecard",
+      title: "Right, Wrong, Still Open",
+      description:
+        "Ten claims and what became of each. The philology held \u2014 his account of the " +
+        "berserk, and of a word that meant both wolf and outlaw, is still the standard " +
+        "reading. The mythology did not: chapter X is comparative mythology at its most " +
+        "confident and the school was demolished within his lifetime. And the medicine was " +
+        "replaced by something much narrower than his \u201cinnate cruelty\u201d.",
+      kind: "static",
+      href: "/companion/book-of-were-wolves/scorecard.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "norse-words",
+      title: "The Norse Words",
+      description:
+        "Berserkr, \u00falfhe\u00f0inn, hamr, hamrammr, vargr, eigi einhamr \u2014 the " +
+        "vocabulary the best chapters of the book are built on, with what each means and " +
+        "where the sagas use it. Baring-Gould read Old Norse and assumed a reader who could " +
+        "follow him; this sheet is for the reader who cannot.",
+      kind: "static",
+      href: "/companion/book-of-were-wolves/norse-words.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "what-is-in-it",
+      title: "What Is in Which Chapter",
+      description:
+        "Six of the sixteen chapters describe murders, taken from the trial records \u2014 " +
+        "the French prosecutions of the sixteenth century, the trial of a thirteen-year-old " +
+        "boy, the three chapters on the Mar\u00e9chal de Retz, a Galician case of 1849 and " +
+        "the Paris grave-violations of the same year. This page says which and what is in " +
+        "them, so the book can be given to somebody else with the warning attached.",
+      kind: "static",
+      href: "/companion/book-of-were-wolves/what-is-in-it.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+  ],
+};
+
+/**
+ * British Goblins — Valice Classics 16.
+ *
+ * Sikes's 1880 book entire, four Books and thirty-two chapters. The sheets carry the four
+ * things that work better beside the book than inside it: the Welsh vocabulary he glosses
+ * once and then uses for a hundred pages, a scorecard of what became of each of his
+ * claims, the sourcing he never marks at the point of use, and the places the stories
+ * belong to.
+ */
+const BRITISH_GOBLINS: Companion = {
+  slug: "british-goblins",
+  bookSlug: "british-goblins",
+  bookTitle: "British Goblins",
+  state: "book-not-yet-available",
+  stateNote:
+    "The Valice edition is built and validated \u2014 390 pages, all four Books and " +
+    "thirty-two chapters, with twenty of T. H. Thomas's drawings \u2014 but its pages have " +
+    "not been deployed and no payment product exists for it yet, so the storefront row is " +
+    "deliberately held back. Everything on this page is free and works today regardless.",
+  intro:
+    "Free material for Wirt Sikes's 1880 book: the Welsh words it uses without explaining " +
+    "them, a scorecard of which of his claims survived, a sheet that marks his sources where " +
+    "he does not, and a gazetteer of the parishes the stories come from.",
+  newsletterSource: "british-goblins-companion",
+  assetsHeading: "Print and read",
+  rightsNote:
+    "Wirt Sikes lived 1836\u20131883 and the book was published in London in 1880, so the " +
+    "text is in the public domain on two independent grounds. The illustration layer was " +
+    "assessed separately and cleared: the twenty-one drawings are T. H. Thomas's " +
+    "(1839\u20131915), published in the same volume, and the edition sets twenty of them. " +
+    "The six music engravings in the Project Gutenberg transcription are NOT Thomas's " +
+    "\u2014 they were set in 2010 by Lesley Halamek, who transcribed the music \u2014 and " +
+    "this edition does not reproduce them. Each air is named and placed in the apparatus " +
+    "instead.",
+  assets: [
+    {
+      id: "welsh-words",
+      title: "The Welsh Words",
+      description:
+        "Twenty-six terms with how to say them and what they mean \u2014 tylwyth teg, " +
+        "ellyllon, gwragedd annwn, coblynau, canwyll corff, cyhyraeth, gwrach y rhibyn, " +
+        "cwn Annwn. Sikes glosses a word once and then uses it for a hundred pages as " +
+        "though the reader had it. This is the card to keep beside the book, with the " +
+        "letters that catch people out \u2014 w and y are vowels, dd is the th of this, ll " +
+        "has no English equivalent.",
+      kind: "static",
+      href: "/companion/british-goblins/welsh-words.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 3 pages",
+    },
+    {
+      id: "scorecard",
+      title: "Right, Wrong, Still Open",
+      description:
+        "Eleven claims and what became of each. The collection held \u2014 the tales, the " +
+        "customs and the death-portent system are all confirmed by later Welsh collectors " +
+        "working in Welsh. The argument did not: the sourcing was condemned within a decade, " +
+        "the fairy-origin theories have no evidential support, and the rites he watched at " +
+        "Pontypridd and called Druidic had been started in about 1853 by a living Welshman.",
+      kind: "static",
+      href: "/companion/british-goblins/scorecard.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "who-told-him",
+      title: "Who Told Him",
+      description:
+        "The book's central defect is that it names a source once and then stops marking it, " +
+        "so four hundred pages arrive in one voice. This sheet does the marking for him, " +
+        "chapter group by chapter group \u2014 what is Edmund Jones's Monmouthshire of 1780, " +
+        "what is Giraldus, what is Lady Charlotte Guest, and the much smaller amount that is " +
+        "Sikes standing in a room watching.",
+      kind: "static",
+      href: "/companion/british-goblins/who-told-him.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 2 pages",
+    },
+    {
+      id: "gazetteer",
+      title: "Where the Stories Are",
+      description:
+        "The parishes, valleys, lakes and wells the book names, with the county and what " +
+        "happens there \u2014 St Dogmell's, Cwm Llan, Llyn Barfog, the Pontypridd rocking " +
+        "stone, Holywell. Sikes gives a parish more often than he gives a source, and a " +
+        "parish is the best evidence in the book that a real person told him something.",
+      kind: "static",
+      href: "/companion/british-goblins/gazetteer.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 2 pages",
+    },
+  ],
+};
+
+/**
+ * The Fairy Mythology, Volume I — Valice Classics 17.
+ *
+ * One roadmap title, two product volumes, split at Keightley's own Great Britain division.
+ * The sheets differ per volume because the volumes do.
+ */
+const FAIRY_MYTHOLOGY_VOL_1: Companion = {
+  slug: "fairy-mythology-vol-1",
+  bookSlug: "fairy-mythology-vol-1",
+  bookTitle: "The Fairy Mythology, Volume I",
+  state: "book-not-yet-available",
+  stateNote:
+    "The Valice edition is built and validated \u2014 332 pages, thirty sections, all of Keightley from his preface to the end of Switzerland \u2014 but its pages have not been deployed and no payment product exists for it yet, so the storefront row is deliberately held back. Everything on this page is free and works today regardless.",
+  intro:
+    "Free material for the first volume of Keightley\u2019s 1850 Fairy Mythology: the northern vocabulary the book uses without explaining, a reading list of the collectors he translates, a scorecard of what became of his claims, a measured concordance of the motifs he compares, and the insular alphabet the original was set in.",
+  newsletterSource: "fairy-mythology-vol-1-companion",
+  assetsHeading: "Print and read",
+  rightsNote:
+    "Thomas Keightley lived 1789\u20131872 and this text is the enlarged edition of 1850, reprinted in 1892, so it is in the public domain on two independent grounds. The illustration layer was assessed separately. This volume carries the frontispiece of the 1850 Bohn issue, attributed to George Cruikshank (1792\u20131878) on the bibliographic record of that issue \u2014 the mark on the plate is not legible at source resolution and this edition does not claim to have read it \u2014 and six of the seven engraved script blocks, which are anonymous work published in 1850. All clear. One layer is REFUSED: the 141 one-letter images the 2012 transcribers made to stand for the insular and Gaelic letterforms are their work, not Keightley's, and this edition replaces every one with its Unicode character instead.",
+  assets: [
+    {
+      id: "words",
+      title: "The Northern Words",
+      description:
+        "Twenty-seven terms — <i>alfar</i>, <i>duergar</i>, <i>elle-folk</i>, <i>nis</i>, <i>tomte</i>, <i>kobold</i>, <i>nix</i>, <i>Servan</i> — with what each means and which language it is. Keightley writes for a reader who has Danish, German and a little Norse; this is the card for the reader who has none of them.",
+      kind: "static",
+      href: "/companion/fairy-mythology-vol-1/words.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 2 pages",
+    },
+    {
+      id: "who-collected-it",
+      title: "Who Collected It",
+      description:
+        "Thiele, Faye, Afzelius, Arndt and Grimm, with what each of them published, when, and which parts of the volume are theirs. Keightley names his sources, which for 1828 is the remarkable thing about him; this sheet turns those citations into a reading list.",
+      kind: "static",
+      href: "/companion/fairy-mythology-vol-1/who-collected-it.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 2 pages",
+    },
+    {
+      id: "scorecard",
+      title: "Right, Wrong, Still Open",
+      description:
+        "Ten claims and what became of each. The collectors, the etymology of <i>fairy</i>, Oberon\u2019s descent from Alberich and the Norse survival in Shetland all held. The Persian derivation, the Eddic elf-orders and the identity of the German and Scandinavian dwarfs did not.",
+      kind: "static",
+      href: "/companion/fairy-mythology-vol-1/scorecard.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 2 pages",
+    },
+    {
+      id: "motifs",
+      title: "A Concordance of Motifs",
+      description:
+        "The changeling, the egg-shell test, the stolen bride, the midwife fetched to the hill, the fairy ointment, the gift of clothes — counted section by section across both volumes. The book is a comparison and never indexes what it compares; this is a measurement, not an argument.",
+      kind: "static",
+      href: "/companion/fairy-mythology-vol-1/motifs.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "the-letters-he-set",
+      title: "The Letters He Set",
+      description:
+        "The insular Anglo-Saxon and Gaelic type of the original, letter by letter, with the word that identifies each one — <i>Munt-ælfen</i>, <i>Wulfes-fist</i>, <i>daine maiṫ</i>, <i>siaḃra</i>. The transcription this edition works from set them as pictures; here they are characters.",
+      kind: "static",
+      href: "/companion/fairy-mythology-vol-1/the-letters-he-set.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+  ],
+};
+
+/**
+ * The Fairy Mythology, Volume II — Valice Classics 18.
+ *
+ * One roadmap title, two product volumes, split at Keightley's own Great Britain division.
+ * The sheets differ per volume because the volumes do.
+ */
+const FAIRY_MYTHOLOGY_VOL_2: Companion = {
+  slug: "fairy-mythology-vol-2",
+  bookSlug: "fairy-mythology-vol-2",
+  bookTitle: "The Fairy Mythology, Volume II",
+  state: "book-not-yet-available",
+  stateNote:
+    "The Valice edition is built and validated \u2014 322 pages, twenty-one sections, Keightley from his Great Britain division to the end of the Appendix \u2014 but its pages have not been deployed and no payment product exists for it yet, so the storefront row is deliberately held back. Everything on this page is free and works today regardless.",
+  intro:
+    "Free material for the second volume: the western vocabulary, the collectors — and the collaborators — behind the English and Irish material, a scorecard of what became of his claims, the shared motif concordance, and the insular and Gaelic alphabet.",
+  newsletterSource: "fairy-mythology-vol-2-companion",
+  assetsHeading: "Print and read",
+  rightsNote:
+    "Thomas Keightley lived 1789\u20131872 and this text is the enlarged edition of 1850, reprinted in 1892, so it is in the public domain on two independent grounds. The illustration layer was assessed separately. This volume has no frontispiece \u2014 it is in Volume I \u2014 and carries one engraved block, the word Keightley says is called in the Arabic language znoon. Anonymous work published in 1850, and clear. One layer is REFUSED: the 141 one-letter images the 2012 transcribers made to stand for the insular and Gaelic letterforms are their work, not Keightley's, and this edition replaces every one with its Unicode character instead.",
+  assets: [
+    {
+      id: "words",
+      title: "The Words of the West",
+      description:
+        "Twenty-six terms — <i>pouke</i>, <i>pixy</i>, <i>brownie</i>, <i>sidhe</i>, <i>banshee</i>, <i>korrigan</i>, <i>lutin</i>, <i>duende</i> — with what each means and which language it is, and where a being also appears in Volume I under a northern name.",
+      kind: "static",
+      href: "/companion/fairy-mythology-vol-2/words.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 2 pages",
+    },
+    {
+      id: "who-collected-it",
+      title: "Who Collected It",
+      description:
+        "Croker, Hone, Scott, the Grimms and the rest — with what each published, which parts of the volume are theirs, and which of them Keightley worked with rather than merely read. That last distinction is why this volume needs the sheet more than Volume I does.",
+      kind: "static",
+      href: "/companion/fairy-mythology-vol-2/who-collected-it.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "scorecard",
+      title: "Right, Wrong, Still Open",
+      description:
+        "Ten claims and what became of each — including one the author withdrew himself. The house-spirit family, the death-warners and the mine-spirits held. Celtic unity did not, and the Irish material is unusable as a record on Keightley\u2019s own evidence.",
+      kind: "static",
+      href: "/companion/fairy-mythology-vol-2/scorecard.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 2 pages",
+    },
+    {
+      id: "motifs",
+      title: "A Concordance of Motifs",
+      description:
+        "The same measured concordance as Volume I, counted across both, so a reader of either can see where a thread begins and where it runs on.",
+      kind: "static",
+      href: "/companion/fairy-mythology-vol-2/motifs.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "the-letters-he-set",
+      title: "The Letters He Set",
+      description:
+        "The insular and Gaelic type of the original. The Irish letters matter most in this volume: <i>daine maiṫ</i> and <i>siaḃra</i>, restored with the séimhiú dot Keightley printed.",
+      kind: "static",
+      href: "/companion/fairy-mythology-vol-2/the-letters-he-set.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+  ],
+};
+
 const COMPANIONS: readonly Companion[] = [
   HANGUL,
   WORLD_GAMES,
@@ -1584,6 +2080,12 @@ const COMPANIONS: readonly Companion[] = [
   CHINA_GODS,
   VEDIC_GODS,
   THE_DRAGON,
+  KWAIDAN,
+  SEA_MONSTERS_UNMASKED,
+  BOOK_OF_WERE_WOLVES,
+  BRITISH_GOBLINS,
+  FAIRY_MYTHOLOGY_VOL_1,
+  FAIRY_MYTHOLOGY_VOL_2,
 ];
 
 export function listCompanions(): readonly Companion[] {

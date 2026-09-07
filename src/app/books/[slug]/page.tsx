@@ -12,6 +12,7 @@ import { FormatTable } from "@/components/book-detail/format-table";
 import { RelatedBooksShelf } from "@/components/book-detail/related-books-shelf";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
+import { relatedBooks } from "@/lib/related-books";
 import { getCompanionForBook } from "@/lib/companions";
 import {
   getPublishedBookBySlug,
@@ -130,9 +131,7 @@ export default async function BookDetailPage({
     listPublishedBooks(),
   ]);
 
-  const relatedBooks = allBooks
-    .filter((b) => b.slug !== slug)
-    .slice(0, 6);
+  const related = relatedBooks(book, allBooks);
 
   const aggregateRatingForJsonLd =
     ratingAggregate.count > 0 && ratingAggregate.average !== null
@@ -311,7 +310,7 @@ export default async function BookDetailPage({
             "related shelf follow-up" carry-forward. ExploreStrip stays
             below as the closing quiet line; both surfaces complement
             each other (catalog discovery + brand closer). */}
-        <RelatedBooksShelf books={relatedBooks} />
+        <RelatedBooksShelf books={related} />
 
         <ExploreStrip />
 

@@ -127,6 +127,48 @@ export const AUTHORS = [
     // 2026-09-02; see the book project's CLAIMS.jsonl C-001…C-011.
     bio: "English puzzle-maker (1857–1930). A Civil Service clerk from the age of thirteen, he wrote puzzles for The Strand Magazine for more than thirty years and published The Canterbury Puzzles (1907) and Amusements in Mathematics (1917). The Haberdasher's four-piece triangle and the spider and the fly are his.",
   },
+  {
+    slug: "lafcadio-hearn",
+    name: "Lafcadio Hearn",
+    // Facts from Wikipedia, "Lafcadio Hearn" and "Kwaidan: Stories and Studies of
+    // Strange Things", read 2026-09-06; see the book project's CLAIMS.jsonl C-001…C-003.
+    bio: "Writer and interpreter of Japan (1850\u20131904). Born on Lefkada to a Greek mother and an Irish father, raised in Dublin, and a newspaperman in Cincinnati and New Orleans for twenty years before he reached Japan in 1890. He married Koizumi Setsu, became a Japanese citizen in 1896 as Koizumi Yakumo, and taught at Tokyo Imperial University. Kwaidan, his book of ghost stories, was published six months before he died.",
+  },
+  {
+    slug: "henry-lee",
+    name: "Henry Lee",
+    // Every clause is taken from the book's own title page and from PG bibrec 36677;
+    // nothing here is inferred. See the book project's CLAIMS.jsonl C-001 to C-003.
+    bio: "English naturalist and writer on marine animals (1826\u20131888). F.L.S., F.G.S., F.Z.S., and \u2014 in the words of his own title page \u2014 sometime naturalist of the Brighton Aquarium, where he spent years watching octopus and cuttle through glass. He wrote The Octopus, or the Devil-fish of Fiction and Fact in 1873, and in the summer of 1883 produced two shilling handbooks for the International Fisheries Exhibition at South Kensington, signing their prefaces at the Savage Club seven weeks apart. In them he identified the kraken as a giant squid a decade before anyone could prove it.",
+  },
+  {
+    slug: "sabine-baring-gould",
+    name: "Sabine Baring-Gould",
+    // Dates from PG bibrec 5324; the rest from the book's own pages and from Wikipedia,
+    // read 2026-09-06. See the book project's CLAIMS.jsonl C-001 and C-002.
+    bio: "English clergyman, antiquarian, novelist and collector of folk-song (1834\u20131924). Squire and parson of the same Devon parish, Lew Trenchard, which he had inherited and then presented himself to; author of the words of \u201cOnward, Christian Soldiers\u201d, of a very long series on the lives of the saints, and of well over a hundred other books. He had been to Iceland and could read Old Norse, which is why the middle chapters of The Book of Were-Wolves are so much better than the end. He went about Devon with a notebook collecting folk-songs from farm labourers before anyone else in England was doing it systematically.",
+  },
+  {
+    slug: "thomas-keightley",
+    name: "Thomas Keightley",
+    // Dates from PG bibrec 41006; the career and the Croker connection from Keightley's own
+    // preface, which is the primary source. See CLAIMS.jsonl C-001 and C-002.
+    bio: "Irish writer and folklorist (1789\u20131872), born in Dublin and settled in London from 1824. He came to literature, by his own account, because his fortune was gone and ill health shut him out of the professions, and he lived by writing school histories. Helping T. Crofton Croker gather the Fairy Legends of the South of Ireland led him to write The Fairy Mythology (1828), the first attempt in English to set the fairy beliefs of Europe side by side. It was translated into German at once; Jacob Grimm wrote commending it. He is also, unusually for his century, a collector who admitted in print that some of the material he helped produce had been improved for effect.",
+  },
+  {
+    slug: "wirt-sikes",
+    name: "Wirt Sikes",
+    // Dates from PG bibrec 34704; the appointment, the novels and the pseudonyms from
+    // Wikipedia, read 2026-09-06. See the book project's CLAIMS.jsonl C-001 and C-005.
+    bio: "American journalist and writer (1836\u20131883), United States Consul at Cardiff from June 1876 until his death. He had worked on newspapers in Utica, Chicago and New York, written two novels, and \u2014 by one account \u2014 used as many as thirty pseudonyms, one of them for a dime novel. Four years in Wales produced British Goblins (1880), still the largest book on Welsh folklore in English, and Rambles and Studies in Old South Wales (1881). Richard Dorson called the first the most substantial book of Welsh legendry in English, and in the same assessment faulted it for leaning on earlier compilations rather than on collecting of its own.",
+  },
+  {
+    slug: "t-h-thomas",
+    name: "T. H. Thomas",
+    // Dates and the museum role from PG bibrec 34704 and Wikipedia; the bardic name from
+    // the Dictionary of Welsh Biography, all read 2026-09-06. CLAIMS.jsonl C-006.
+    bio: "Welsh artist and antiquary (1839\u20131915), known in Wales by the bardic name Arlunydd Penygarn. He settled in Cardiff in 1866, worked for the Daily Graphic, helped found the Royal Cambrian Academy, and was a leading force behind the founding of the National Museum of Wales, to which his thousand-odd prints, drawings and watercolours went after his death. His twenty-one drawings for British Goblins are the only illustrations the book has, and he is the only other person named on its title page.",
+  },
 ];
 
 /**
@@ -1464,7 +1506,7 @@ export const BOOKS = [
     // allow, and routing around that block would defeat it. FOUNDER F-019 holds
     // the one command. Until it runs the ebook is `coming_soon`, not `available`,
     // because a buy button with no price behind it is a lie.
-    directSaleBlockedBy: "paddle-not-provisioned",
+    directSaleBlockedBy: "gate-2-rights-signature",
     paddlePriceId: null,
     onelinePromise:
       "The first serious attempt to make a dead game playable again \u2014 with the seam marked, for the first time, between what the evidence shows and what Falkener supplied.",
@@ -1502,7 +1544,16 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "The ebook is built, priced and ready but not yet on sale: creating the Paddle product and price is a live write that this environment's permission layer blocks, and working around it would defeat the block. One command, in FOUNDER F-019.",
+      "NOT ON SALE, AND PADDLE IS NOT THE REASON ANY MORE. The product and price are live "
+        + "on the Paddle account, verified 2026-09-07 by provision-paddle.mjs against "
+        + "api.paddle.com, and the R2 masters are uploaded. What holds this book is the "
+        + "FOUNDER'S GATE 2 (Rights) AND GATE 5 (Facts) SIGNATURES, which no agent can "
+        + "give. The earlier blocker text said this environment blocked the Paddle write; "
+        + "that was true when it was written and is false now. The live price is "
+        + "pri_01m1v4n69wd2th3pf1cbw8an3n; it is deliberately NOT written into paddlePriceId, because "
+        + "valice-catalog.test.ts forbids a price id on a row whose ebook is not "
+        + "available, and that test is right \u2014 a live id on a row that is not "
+        + "for sale fails at the till rather than at load.",
       "Not on KDP. The interior and wrap are built and packaged; the print upload is a Founder action \u2014 see the KDP upload handbook in PHASE-2-REPORT.",
       "Nine of Falkener's tables are described rather than reproduced. The bowl game's form of throws and entries is read at 88% wrong or absent by the scan's text layer, and setting it would be worse than leaving it out. Each omission is marked in place with its size and its 1892 page. This is stated in the Note on the Text and in the product description's honesty, not hidden.",
       "This is a short volume \u2014 78 pages against 154\u2013176 for the other Classics titles \u2014 because sections I to VI are where the Egyptian argument ends and section VII changes subject to the Greek hiera gramme. Both prices are set for the length rather than for the series.",
@@ -1537,7 +1588,7 @@ export const BOOKS = [
     // live Paddle account is a write this environment's permission layer blocks, and
     // routing around that block would defeat it. FOUNDER F-022 holds the one command.
     // Until it runs the ebook is `coming_soon`, not `available`.
-    directSaleBlockedBy: "paddle-not-provisioned",
+    directSaleBlockedBy: "gate-2-rights-signature",
     paddlePriceId: null,
     onelinePromise:
       "The book that made games evidence \u2014 with the line drawn, for the first time, between what Culin watched and what he concluded, and his Korean made searchable again.",
@@ -1575,12 +1626,587 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "The ebook is built, priced and ready but not yet on sale: creating the Paddle product and price is a live write that this environment's permission layer blocks, and working around it would defeat the block. One command, in FOUNDER F-022.",
+      "NOT ON SALE, AND PADDLE IS NOT THE REASON ANY MORE. The product and price are live "
+        + "on the Paddle account, verified 2026-09-07 by provision-paddle.mjs against "
+        + "api.paddle.com, and the R2 masters are uploaded. What holds this book is the "
+        + "FOUNDER'S GATE 2 (Rights) AND GATE 5 (Facts) SIGNATURES, which no agent can "
+        + "give. The earlier blocker text said this environment blocked the Paddle write; "
+        + "that was true when it was written and is false now. The live price is "
+        + "pri_01m1v4n6zery50yws32dpspqve; it is deliberately NOT written into paddlePriceId, because "
+        + "valice-catalog.test.ts forbids a price id on a row whose ebook is not "
+        + "available, and that test is right \u2014 a live id on a row that is not "
+        + "for sale fails at the till rather than at load.",
       "Not on KDP. The interior and wrap are built and packaged; the print upload is a Founder action \u2014 see the KDP upload handbook in PHASE-2-REPORT.",
       "About a third of Culin's text quotes Korean, Chinese and Japanese in their own scripts, and this scan's text layer reads none of it. Those runs are marked where they stand rather than guessed at: 502 markers in the finished book. The page images are free and are the place to go for them. This is stated in the Note on the Text, not hidden.",
       "Thirty-six passages \u2014 about 598 words \u2014 are the scanner's reading of a line figure, or of the ghost a tissue guard prints onto the facing page, and are marked rather than set as Culin's prose. Every one is listed with what the scanner made of it in QA/debris.json, so the refusal can be checked. Three of Culin's tables are described rather than reproduced for the same reason.",
       "Games I to LXIX are not in this volume. They are 20,648 words of children's amusements in one-paragraph entries, and they carry none of the argument the book is built on. The scope was decided and recorded before any apparatus was written, which is the order Phase 1 taught.",
       "No Kindle edition planned at launch: KDP caps public-domain content at the 35% royalty tier, and the Kindle store already carries free scans of this title. No hardcover and no large print at launch: both are open decisions rather than refusals, and neither is claimed as planned until it is built.",
+    ],
+  },
+
+  {
+    slug: "kwaidan",
+    title: "Kwaidan: Stories and Studies of Strange Things",
+    subtitle:
+      "The Complete 1904 Text, Annotated \u2014 17 Stories and 3 Insect Studies, with a Register of What Hearn Took, Was Told and Lived, a Y\u014dkai Index and a Glossary",
+    language: "en",
+    pageCount: 138,
+    categories: ["myth-and-folklore", "classics-and-philosophy"],
+    authors: ["lafcadio-hearn", "emre-dogan"],
+    bisac: ["FIC012000", "SOC011000"],
+    series: { name: "Valice Classics", volume: 13 },
+    // PHASE 3, BOOK 1 (2026-09-06), and the first of the Codex Bestiarium expansion.
+    // The whole of Hearn is printed \u2014 seventeen tales, three insect studies, his own
+    // notes and his own prefatory note. The ONE omission is a rights finding and not a
+    // scope decision: the first edition's second prefatory piece, dated March 1904, is
+    // unsigned and its author is named nowhere, so no death year can be established and
+    // it is not printed. Both Takeuchi Keish\u016b plates ARE printed: the roadmap expected
+    // them to be unattributable, and an authority record (Wikidata Q11545824) names and
+    // dates him, which clears them.
+    websiteStatus: "draft",
+    linkageDecision: null,
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m1v4n80k6g2tba6wt8882ehf",
+    onelinePromise:
+      "The book behind the film: seventeen Japanese ghost stories and three essays on insects, complete in the 1904 text, with the three pieces whose origin Hearn states separated from the sixteen he leaves open.",
+    description:
+      "In January 1904 Lafcadio Hearn finished a book of ghost stories in Tokyo and signed the note in front of it with his initials. He had eight months to live. Seventeen tales came out of it \u2014 the blind lute-player who plays for the drowned Heik\u00e9, the woman who is a willow and dies when it is felled, the face on the Akasaka road with nothing on it \u2014 and then, without changing his tone, three essays on butterflies, mosquitoes and ants. Readers have been complaining about the ants since 1904 and they are wrong: the insect studies ask the same question as the tales, on a subject that cannot be dismissed as superstition. This edition prints all twenty pieces and both of Takeuchi Keish\u016b's 1904 plates. Around them: an introduction of nearly three thousand words; a head-note before every piece; a REGISTER OF PROVENANCE that does what no other edition does \u2014 it separates the three pieces whose origin Hearn actually states (one Chinese, one told him by a farmer in Musashi, one that happened to him) from the sixteen he leaves open, and marks a fourth as evident autobiography he never claims, instead of assigning each tale to one of his five named books on a guess; a glossary of all 45 Japanese words he italicises and leaves unexplained; a Y\u014dkai Register naming the creatures by what folklore calls them rather than by his titles, which matters most for \u201cMujina\u201d, where the thing on the road is a noppera-b\u014d and the animal in the title never appears; a gazetteer of the ten old provinces against the prefectures they became, which catches an error the text has carried for a century (Niigata is in Echigo, not Echizen); a chronology; and a plain account of which of Hearn's claims have not survived \u2014 the Spencerian ant sociology, the racial explanations \u2014 and the one that was right, which is the mosquito. Readers arriving from Kobayashi's 1964 film are told, in the book, that only two of its four episodes are in it. 138 pages.",
+    idealReader:
+      "Someone who has seen Kobayashi's film or met Yuki-Onna in a game, wants the book behind them, and would rather be told plainly which of these tales Hearn found in a Japanese book, which one a farmer told him, and which one he watched happen.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "available",
+        fulfillment: "direct",
+        priceCents: usd(8.99),
+        pageCount: 138,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        masterFileKey: "books/kwaidan/master/v1/master.pdf",
+        epubFileKey: "books/kwaidan/master/v1/master.epub",
+        priceBasis:
+          "price-engine.mjs 2026-09-06, direct ebook, public domain: recommended $6.99; $8.99 nets $8.04 after Paddle at an 89.4% margin. Mid-band for Valice Classics \u2014 45,900 words, between Chess and Playing Cards at $7.99 and The Singing Games at $9.99.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(14.99),
+        pageCount: 138,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-06, 138 pp 6\u00d79 B&W on white: prints at $2.66, KDP minimum list $4.43, recommended $10.99; $14.99 nets $6.34 (42.3%) at 60% royalty.",
+      },
+      {
+        format: "hardcover",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(29.99),
+        pageCount: 138,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-06, 138 pp 6\u00d79 hardcover: prints at $7.31 \u2014 case binding is expensive at this extent \u2014 KDP minimum list $12.18, recommended $29.99, which nets $10.68 (35.6%). $24.99 would net 30.7% and miss the 35% target; the format is priced as the gift object it is, with both period plates.",
+      },
+    ],
+    blockers: [
+      "NOT DEPLOYED, AND THAT IS WHY THE ROW IS DRAFT. The Paddle product and price are live "
+        + "(pri_01m1v4n80k6g2tba6wt8882ehf) and the R2 masters are uploaded and verified, but "
+        + "Phase 3 is not merged. Publishing this row would write a book into the production "
+        + "database whose page, cover and companion sheets are not deployed, and the reader "
+        + "would meet broken images and a 404 companion.",
+      "PADDLE TAX CATEGORY is 'standard', not 'ebooks': the account is not approved for the "
+        + "reduced-rate category, so VAT is over-collected in jurisdictions that tax books "
+        + "lower. FOUNDER F-029.",
+      "GATE 2 IS UNSIGNED. Two of its four rows are decisions that go against the roadmap's "
+        + "expectation \u2014 the plates ARE printed because the artist is datable after all, and "
+        + "the unsigned 1904 introduction is NOT printed because its author is not. FOUNDER F-030.",
+      "COVER SERIES IDIOM: this is a painted cover where COVER_STANDARDS gives Valice Classics "
+        + "as typographic with one engraved device, and \u00a72.6 makes a series identity a Founder "
+        + "decision. The title band is 23.7% of cover height against a 25% rule; 150 px "
+        + "thumbnail contrast is 1.0. FOUNDER F-031.",
+      "NO KDP LISTING YET. Paperback and hardcover are built \u2014 interior, companion leaf and "
+        + "both wraps \u2014 and neither has been uploaded; `kdp: \"not_created\"` says so and no "
+        + "ASIN is invented.",
+      "The apparatus is 20.6% of the volume against a 20% floor, measured from the content "
+        + "files by COMMON-AREA/checks/differentiation.py.",
+    ],
+  },
+
+  {
+    slug: "fairy-mythology-vol-1",
+    title: "The Fairy Mythology, Volume I",
+    subtitle:
+      "Volume I · Persia, Romance, the Eddas, Scandinavia, Germany \u2014 Keightley\u2019s 1850 Text, Annotated, with a Register of What He Translated, Collected, Read and Only Concluded",
+    language: "en",
+    pageCount: 336,
+    categories: ["myth-and-folklore", "classics-and-philosophy"],
+    authors: ["thomas-keightley", "emre-dogan"],
+    bisac: ["SOC011000", "OCC036000"],
+    series: { name: "Valice Classics", volume: 17 },
+    // PHASE 3, BOOK 5 (2026-09-07). ONE ROADMAP TITLE, TWO PRODUCT VOLUMES. The work runs to
+    // ~200,000 words; in one volume it would exceed KDP\u2019s 550-page hardcover limit and
+    // price the paperback near $38. The seam is Keightley\u2019s own GREAT BRITAIN division
+    // and the halves come out within three hundred words of each other. Nothing is abridged.
+    // Volume II is fairy-mythology-vol-2.
+    websiteStatus: "draft",
+    linkageDecision: null,
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: "no Paddle product yet",
+    paddlePriceId: null,
+    onelinePromise:
+      "The first attempt in English to put the fairy beliefs of Europe side by side — the North, from the Persian peri to the Swiss Alps, with the collectors named.",
+    description:
+      "Thomas Keightley's 1850 Fairy Mythology, volume I of two: where the belief and the word come from, the Persian peri and the Arabian jinn, Oberon traced back to Alberich, the alfar and duergar of the Eddas, and the fairy beliefs of Denmark, Norway, Sweden, Iceland, Shetland, the Orkneys, Rügen, Germany and Switzerland. With a head-note and a criticism for every section, a Register of Evidence and Inference, a glossary of the northern words, a register of the beings, a who's-who of the collectors he translates, a concordance of motifs measured across both volumes, and a plain account of what has been established since 1850.",
+    idealReader:
+      "Someone who wants the Scandinavian and German fairy material in one place, in English, and would rather be told which collector each tale comes from than be handed it anonymously.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(9.99),
+        pageCount: 336,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_applicable",
+        masterFileKey: null,
+        epubFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-07, direct ebook, public domain: $9.99 nets $8.99 after Paddle at a 90% margin. Each volume is priced as a complete book because each is one; the pair at $19.98 sits below Codex Bestiarium at $12.99 for a comparable total length, which is the concession the two-volume format makes to the reader.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(19.99),
+        pageCount: 336,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-07, 332 pp 6\u00d79 B&W on white: prints at $4.98, KDP minimum list $8.31; $19.99 is the engine\u2019s recommendation at the 35% target.",
+      },
+      {
+        format: "hardcover",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(38.99),
+        pageCount: 336,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-07, 332 pp 6\u00d79 hardcover: prints at $9.63, KDP minimum list $16.06; $38.99 is the engine\u2019s recommendation at the 35% target. FOUNDER F-036 applies here as to British Goblins: no book this press has sold is priced near it.",
+      },
+    ],
+    blockers: [
+      "NOT DEPLOYED, AND THAT IS WHY THE ROW IS DRAFT. Phase 3 is not merged. The companion "
+        + "address is printed permanently in the book and 404s until this branch ships.",
+      "NO PADDLE PRODUCT, no R2 master and no KDP listing. `paddlePriceId`, `masterFileKey` "
+        + "and `epubFileKey` are null and `kdp` is \"not_created\"; no identifier is invented.",
+      "GATE 2 IS UNSIGNED. Five rights rows \u2014 the most of any book in the phase \u2014 "
+        + "including one that is REFUSED: the ~150 one-letter images the 2012 transcribers made "
+        + "for the insular and Gaelic letterforms. FOUNDER F-037.",
+      "THE APPARATUS IS BELOW THE 20% HISTORICAL FLOOR and is recorded rather than padded. "
+        + "Article 2 forbids filler and the Founder\u2019s standing instruction is that the "
+        + "floor is a quality floor, not a word-count target. Measured in "
+        + "QA/differentiation-vol1.json.",
+      "COVER SERIES IDIOM: a painted cover where COVER_STANDARDS gives Valice Classics as "
+        + "typographic \u2014 the same open Founder decision as the rest of the phase (F-031).",
+      "TWO VOLUMES, ONE ROADMAP TITLE. The pair must be sold and shelved as a pair: a reader "
+        + "who buys one and not the other gets half of Keightley. The related-products link "
+        + "between the two rows is DONE (2026-09-07): a book page's shelf was \"the six most "
+        + "recently published books\", which gave a reader on Volume I no route to Volume II. "
+        + "It now orders by shared author, discounting the house credit that sits on every "
+        + "row, so each volume leads the other's shelf \u2014 src/lib/related-books.ts, eight "
+        + "tests. What is still open here is the PRICE of the pair, which is a Founder call.",
+    ],
+  },
+
+  {
+    slug: "fairy-mythology-vol-2",
+    title: "The Fairy Mythology, Volume II",
+    subtitle:
+      "Volume II · Britain, Ireland, Brittany, France and the South \u2014 Keightley\u2019s 1850 Text, Annotated, with a Register of What He Translated, Collected, Read and Only Concluded",
+    language: "en",
+    pageCount: 326,
+    categories: ["myth-and-folklore", "classics-and-philosophy"],
+    authors: ["thomas-keightley", "emre-dogan"],
+    bisac: ["SOC011000", "OCC036000"],
+    series: { name: "Valice Classics", volume: 18 },
+    // PHASE 3, BOOK 5 (2026-09-07). ONE ROADMAP TITLE, TWO PRODUCT VOLUMES. The work runs to
+    // ~200,000 words; in one volume it would exceed KDP\u2019s 550-page hardcover limit and
+    // price the paperback near $38. The seam is Keightley\u2019s own GREAT BRITAIN division
+    // and the halves come out within three hundred words of each other. Nothing is abridged.
+    // Volume I is fairy-mythology-vol-1.
+    websiteStatus: "draft",
+    linkageDecision: null,
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: "no Paddle product yet",
+    paddlePriceId: null,
+    onelinePromise:
+      "Britain, Ireland and the West — and the passage in which Keightley admits that some of the most admired traits of the Irish fairies were invented by their collectors, himself among them.",
+    description:
+      "Thomas Keightley's 1850 Fairy Mythology, volume II of two: England, the Scottish Lowlands and Highlands, Ireland, the Isle of Man, Wales, Brittany, Greece, Italy, Spain, France, the Finns and the Jews, with the Conclusion and the Appendix. It is the half of the book in which Keightley handles material he helped to make, and admits in print that some of the most admired traits of the Irish fairies were invented by their collectors. With a head-note and a criticism for every section, a Register of Evidence and Inference, a glossary, a register of the beings, a who's-who, a motif concordance, and a plain account of what has been established since 1850.",
+    idealReader:
+      "Someone interested in how a national folklore canon gets made — and unmade — and who wants the British, Irish and Breton material with its sourcing marked.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(9.99),
+        pageCount: 326,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_applicable",
+        masterFileKey: null,
+        epubFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-07, direct ebook, public domain: $9.99 nets $8.99 after Paddle at a 90% margin. Each volume is priced as a complete book because each is one; the pair at $19.98 sits below Codex Bestiarium at $12.99 for a comparable total length, which is the concession the two-volume format makes to the reader.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(19.99),
+        pageCount: 326,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-07, 322 pp 6\u00d79 B&W on white: prints at $4.86, KDP minimum list $8.11; $19.99 is the engine\u2019s recommendation at the 35% target.",
+      },
+      {
+        format: "hardcover",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(38.99),
+        pageCount: 326,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-07, 322 pp 6\u00d79 hardcover: prints at $9.51, KDP minimum list $15.86; $38.99 is the engine\u2019s recommendation at the 35% target. FOUNDER F-036 applies here as to British Goblins: no book this press has sold is priced near it.",
+      },
+    ],
+    blockers: [
+      "NOT DEPLOYED, AND THAT IS WHY THE ROW IS DRAFT. Phase 3 is not merged. The companion "
+        + "address is printed permanently in the book and 404s until this branch ships.",
+      "NO PADDLE PRODUCT, no R2 master and no KDP listing. `paddlePriceId`, `masterFileKey` "
+        + "and `epubFileKey` are null and `kdp` is \"not_created\"; no identifier is invented.",
+      "GATE 2 IS UNSIGNED. Five rights rows \u2014 the most of any book in the phase \u2014 "
+        + "including one that is REFUSED: the ~150 one-letter images the 2012 transcribers made "
+        + "for the insular and Gaelic letterforms. FOUNDER F-037.",
+      "THE APPARATUS IS BELOW THE 20% HISTORICAL FLOOR and is recorded rather than padded. "
+        + "Article 2 forbids filler and the Founder\u2019s standing instruction is that the "
+        + "floor is a quality floor, not a word-count target. Measured in "
+        + "QA/differentiation-vol2.json.",
+      "COVER SERIES IDIOM: a painted cover where COVER_STANDARDS gives Valice Classics as "
+        + "typographic \u2014 the same open Founder decision as the rest of the phase (F-031).",
+      "TWO VOLUMES, ONE ROADMAP TITLE. The pair must be sold and shelved as a pair: a reader "
+        + "who buys one and not the other gets half of Keightley. The related-products link "
+        + "between the two rows is DONE (2026-09-07): a book page's shelf was \"the six most "
+        + "recently published books\", which gave a reader on Volume I no route to Volume II. "
+        + "It now orders by shared author, discounting the house credit that sits on every "
+        + "row, so each volume leads the other's shelf \u2014 src/lib/related-books.ts, eight "
+        + "tests. What is still open here is the PRICE of the pair, which is a Founder call.",
+    ],
+  },
+
+  {
+    slug: "british-goblins",
+    title: "British Goblins",
+    subtitle:
+      "Sikes\u2019s 1880 Book Complete, Annotated \u2014 All Four Books, Thirty-Two Chapters and Seventeen Drawings by T. H. Thomas, with a Register of What He Watched, Was Told and Only Read",
+    language: "en",
+    pageCount: 390,
+    categories: ["myth-and-folklore", "classics-and-philosophy"],
+    authors: ["wirt-sikes", "t-h-thomas", "emre-dogan"],
+    bisac: ["SOC011000", "OCC036000"],
+    series: { name: "Valice Classics", volume: 16 },
+    // PHASE 3, BOOK 4 (2026-09-06). The first book of the phase with an illustration layer
+    // that is used, and the first with a layer that is refused: twenty of T. H. Thomas\u2019s
+    // twenty-one drawings are set, and the six music engravings in the Gutenberg file are
+    // NOT reproduced because they were made in 2010 by a named transcriber, Lesley Halamek.
+    // The airs are named and placed in the apparatus instead. RIGHTS.md rows S-1 to S-4.
+    websiteStatus: "draft",
+    linkageDecision: null,
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: "no Paddle product yet",
+    paddlePriceId: null,
+    onelinePromise:
+      "The largest book on Welsh folklore in English, complete \u2014 with the sources marked at the point of use, which is the one thing its author never did.",
+    description:
+      "In June 1876 the United States sent a consul to Cardiff. Wirt Sikes was a New York journalist of thirty-nine who had written two novels and, by one account, used as many as thirty pseudonyms. He spent seven years in Wales as consul, and in 1880 — after the first three of them — he published the largest book on Welsh folklore in English \u2014 the book most of what English speakers know about the tylwyth teg still comes through, usually without their knowing it. This edition prints all four Books and all thirty-two chapters entire, with twenty of T. H. Thomas\u2019s drawings. Book I is the fairies and Sikes\u2019s five kinds of them; Book II is the spirit-world, where the book is at its strangest and its best \u2014 the corpse-candle, the cyhyraeth, the gwrach y rhibyn, the hounds of Annwn; Book III is the customs, from courtship to burial, including the most-quoted passage he ever wrote, on the sin-eater; Book IV is the bells, wells, stones and dragons. Richard Dorson called it the most substantial book of Welsh legendry in English and said in the same assessment what is wrong with it: Sikes leans on earlier compilations \u2014 above all on Edmund Jones\u2019s Monmouthshire collection of 1780 \u2014 and although he names them he almost never gives a page and never gives a date, so four hundred pages arrive in one voice and a reader cannot tell eighteenth-century Monmouthshire from the countryside he was living in. John Rh\u0177s and E. S. Hartland said the same in the 1880s, and cited him anyway. So the apparatus here does the marking for him: a head-note before every chapter ending in READING AGAINST HIM; an introduction to each of the four Books; a REGISTER OF EVIDENCE AND INFERENCE, by Book, separating what he watched from what he was told and what he read; a Welsh glossary and a register of the beings, some sixty terms between them, with how to say them; a descriptive list of every plate; a gazetteer of the parishes; a who\u2019s-who; the six airs named and placed; and a plain account, claim by claim, of what has been established since 1880. That account is not flattering and is not meant to be: the collection held and the argument did not. The sharpest instance is one he watched with his own eyes \u2014 the Druidic rites at the Pontypridd rocking stone, which he reports as an ancient survival and which had been started in about 1853 by Myfyr Morganwg, a living Welsh romantic, in a tradition invented a generation earlier by Iolo Morganwg. 390 pages.",
+    idealReader:
+      "Someone who wants the Welsh fairy material entire and in one place, and would rather be told which parts of it are 1780 Monmouthshire, which are Sikes standing in a room watching, and which are a theory that did not survive its century.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(11.99),
+        pageCount: 390,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_applicable",
+        masterFileKey: null,
+        epubFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-07, direct ebook, public domain: $11.99 nets $10.89 after Paddle at a 90.8% margin. Above every other Valice Classics title except Codex Bestiarium, and below it: 390 pages and 110,406 source words against Bestiarium\u2019s 435 pages, and against Traditional Games at 244 pages and $9.99.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(22.99),
+        pageCount: 390,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-07, 390 pp 6\u00d79 B&W on white: prints at $5.68, KDP minimum list $9.47; $22.99 nets $8.12 (35.3%) at 60% royalty \u2014 the engine\u2019s recommendation, and the first list price on the ladder that clears the 35% target.",
+      },
+      {
+        format: "hardcover",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(41.99),
+        pageCount: 390,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-07, 390 pp 6\u00d79 hardcover: prints at $10.33, KDP minimum list $17.22; $41.99 is the engine\u2019s recommendation at the 35% target. It is a high number and it is a 390-page case-bound book; the Founder decides at Gate 8.",
+      },
+    ],
+    blockers: [
+      "NOT DEPLOYED, AND THAT IS WHY THE ROW IS DRAFT. Phase 3 is not merged. Publishing this "
+        + "row would write a book into the production database whose page, cover and companion "
+        + "sheets are not deployed. The companion address is printed permanently in the book and "
+        + "404s until this branch ships.",
+      "NO PADDLE PRODUCT, no R2 master and no KDP listing. `paddlePriceId`, `masterFileKey` and "
+        + "`epubFileKey` are null and `kdp` is \"not_created\"; no identifier is invented for "
+        + "any of them.",
+      "GATE 2 IS UNSIGNED. Four rows, and the first illustration layer of the phase that is "
+        + "actually used \u2014 T. H. Thomas, died 1915 \u2014 plus one that is refused: the six "
+        + "music engravings set in 2010 by Lesley Halamek, which are not reproduced. FOUNDER F-035.",
+      "COVER SERIES IDIOM: a painted cover where COVER_STANDARDS gives Valice Classics as "
+        + "typographic \u2014 the same open Founder decision as the other three books of the phase "
+        + "(F-031). Title band 17.8% of cover height against a 25% rule; 150 px thumbnail "
+        + "contrast 1.00.",
+      "THE APPARATUS CLEARS THE FLOOR NARROWLY. 29,222 words, 20.45% of the volume against a 20% "
+        + "floor, measured by COMMON-AREA/checks/differentiation.py \u2014 a margin of about 1,100 "
+        + "words. It is recorded rather than widened: Article 2 forbids padding to reach the "
+        + "number, and the book has twenty-one back-matter sections already. Any future cut to "
+        + "the apparatus must re-measure.",
+      "TWO CLAIMS ARE MARKED UNVERIFIABLE, not verified: that the aboriginal-race theory of "
+        + "fairy origins has no evidential support, and that the sin-eater remains disputed. Both "
+        + "are filed in the book as editorial interpretation under Article 6 rather than asserted "
+        + "as current fact, and CLAIMS.jsonl records that no single citable "
+        + "authority was read for either.",
+      "PRICING IS HIGH AND UNTESTED. $22.99 paperback and $41.99 hardcover are the price "
+        + "engine\u2019s own recommendations for 388 pages at the 35% target, but no book this "
+        + "press has sold is priced anywhere near them. FOUNDER F-036.",
+    ],
+  },
+
+  {
+    slug: "book-of-were-wolves",
+    title: "The Book of Were-Wolves",
+    subtitle:
+      "Baring-Gould\u2019s 1865 Account Complete, Annotated \u2014 with a Register of What He Construed, Transcribed and Only Theorised, and What Has Been Established Since",
+    language: "en",
+    pageCount: 198,
+    categories: ["myth-and-folklore", "classics-and-philosophy"],
+    authors: ["sabine-baring-gould", "emre-dogan"],
+    bisac: ["SOC011000", "OCC036000"],
+    series: { name: "Valice Classics", volume: 15 },
+    // PHASE 3, BOOK 3 (2026-09-06). All sixteen chapters entire, including the six that
+    // describe murders from the trial records \u2014 Article 18 forbids abridging to hide
+    // what a book contains, so the edition prints them and says at the front and again in
+    // each head-note exactly what is in them. No illustration layer: the 1865 book has no
+    // plates and this edition invents none.
+    websiteStatus: "draft",
+    linkageDecision: null,
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: "no Paddle product yet",
+    paddlePriceId: null,
+    onelinePromise:
+      "The Victorian clergyman who went and read the werewolf trial records \u2014 with a head-note on every chapter saying which of his explanations survived, and which of them are the reason the book is hard to read.",
+    description:
+      "In 1865 a young Devon curate could not hire anyone to walk him home across the fields: it was getting dark and there were loups-garoux abroad. Sabine Baring-Gould \u2014 antiquarian, folk-song collector, and the man who wrote the words of \u201cOnward, Christian Soldiers\u201d \u2014 went away and found out what those people were afraid of. What he produced is not the horror anthology it has been sold as; it is a piece of source criticism. He takes the werewolf backwards through the record \u2014 Herodotus and Petronius, then the Norse sagas, then the medieval chronicles, then the French trial transcripts \u2014 and at each step asks what the witnesses actually said. This edition prints all sixteen chapters entire. Around them: a head-note before each, every one ending in READING AGAINST HIM, which names the specific thing in that chapter to resist; a REGISTER OF EVIDENCE AND INFERENCE separating the four instruments he uses \u2014 a language he can construe, a document he transcribes, a story he repeats, and a theory he applies; a casebook of every trial; a who\u2019s-who; a glossary of the Norse his best chapters are built on; a chronology; and a plain account of what has been established since 1865. The verdict is uneven in a way worth knowing before you start: his philology held, his mythology was abandoned within his lifetime, and his medicine \u2014 an \u201cinnate cruelty\u201d \u2014 has been replaced by clinical lycanthropy, a rare delusional syndrome that explains the folklore well and the murders not at all. Six chapters describe murders, taken from the trial records: a note at the front says which and what is in them, and each of those head-notes opens by naming it. And the two most remarkable documents in the book are ones Baring-Gould prints without comment \u2014 in 1598 the Parlement of Paris sent a confessed werewolf to an asylum instead of the stake, and in 1603 the Parlement of Bordeaux held that lycanthropy existed only in a disordered brain and was not a punishable crime, sentencing a beggar boy of thirteen to perpetual imprisonment in a monastery instead. 198 pages.",
+    idealReader:
+      "Someone who came to werewolves through folklore, horror or true crime, and would rather read the Victorian who collected the trial records himself \u2014 and be told, chapter by chapter, which of his explanations survived.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(8.99),
+        pageCount: 198,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_applicable",
+        masterFileKey: null,
+        epubFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-06, direct ebook, public domain: $8.99 nets $8.04 after Paddle at an 89.4% margin. Mid-band for Valice Classics, with Kwaidan \u2014 54,300 source words against Sea Monsters\u2019 62,000.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(15.99),
+        pageCount: 198,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-06, 198 pp 6\u00d79 B&W on white: prints at $3.38, KDP minimum list $5.63; $15.99 nets $6.23 (39.0%) at 60% royalty.",
+      },
+      {
+        format: "hardcover",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(32.99),
+        pageCount: 198,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-06, 198 pp 6\u00d79 hardcover: prints at $8.03, KDP minimum list $13.38; the engine\u2019s recommendation at the 35% target. $29.99 would net 33.3% and miss it.",
+      },
+    ],
+    blockers: [
+      "NOT DEPLOYED, AND THAT IS WHY THE ROW IS DRAFT. Phase 3 is not merged. Publishing this "
+        + "row would write a book into the production database whose page, cover and companion "
+        + "sheets are not deployed.",
+      "NO PADDLE PRODUCT, no R2 master and no KDP listing. `paddlePriceId`, `masterFileKey` and "
+        + "`epubFileKey` are null and `kdp` is \"not_created\"; no identifier is invented for "
+        + "any of them.",
+      "GATE 2 IS UNSIGNED. Three rows, and the simplest rights position of the phase: a text of "
+        + "1865 by an author who died in 1924, no illustration layer at all, and the author\u2019s "
+        + "own translations. FOUNDER F-033.",
+      "CONTENT DECISION, RECORDED RATHER THAN TAKEN QUIETLY. Six chapters describe murders and "
+        + "the killing of children, from the trial records. They are printed entire because "
+        + "Article 18 forbids abridging to hide what a book contains and because Baring-Gould\u2019s "
+        + "argument depends on them; the edition states this at the front and in each of the six "
+        + "head-notes. If the Founder wants a different answer, this is the decision to revisit. "
+        + "FOUNDER F-034.",
+      "COVER SERIES IDIOM: a painted cover where COVER_STANDARDS gives Valice Classics as "
+        + "typographic \u2014 the same open Founder decision as Kwaidan and Sea Monsters (F-031). "
+        + "Title band 14.4% of cover height against a 25% rule; 150 px thumbnail contrast 0.92.",
+      "The apparatus is 21.3% of the volume against a 20% floor, measured from the content files "
+        + "by COMMON-AREA/checks/differentiation.py.",
+    ],
+  },
+
+  {
+    slug: "sea-monsters-unmasked",
+    title: "Sea Monsters Unmasked, and Sea Fables Explained",
+    subtitle:
+      "Both 1883 Handbooks Complete, Annotated \u2014 All 68 Original Figures, a Register of What Lee Watched and What He Only Read, and What Has Been Established Since",
+    language: "en",
+    pageCount: 232,
+    categories: ["myth-and-folklore", "classics-and-philosophy"],
+    authors: ["henry-lee", "emre-dogan"],
+    bisac: ["SOC011000", "NAT017000"],
+    series: { name: "Valice Classics", volume: 14 },
+    // PHASE 3, BOOK 2 (2026-09-06). Both of Lee's shilling handbooks for the International
+    // Fisheries Exhibition, entire, with all 68 of his figures set where he set them \u2014
+    // including the two PAIRS he prints side by side under one shared caption, and the one
+    // that lives inside footnote 41. Nothing of his is dropped: the hundred footnotes are
+    // printed as their own section because the transcription gathers them at the end of the
+    // file, which had put every one of them inside the last chapter.
+    websiteStatus: "draft",
+    linkageDecision: null,
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: "no Paddle product yet",
+    paddlePriceId: null,
+    onelinePromise:
+      "The Victorian naturalist who explained the sea monsters away: the kraken is a giant squid, the mermaid a dugong, the hydra an octopus \u2014 and the sea serpent he could not solve, and says so.",
+    description:
+      "In the summer of 1883 the International Fisheries Exhibition filled the South Kensington grounds, and Henry Lee \u2014 sometime naturalist of the Brighton Aquarium, a man who had spent years watching octopus and cuttle through glass \u2014 wrote two shilling handbooks for the crowds going in. He took the sea monsters one at a time. The kraken is a giant squid, and Bishop Pontoppidan was mocked for a century for being right. The mermaid is a dugong. The hydra and Scylla are the octopus. Whales do not spout water; the blow is breath. The paper nautilus does not sail. And barnacle geese, believed for six hundred years to grow on trees, are geese. The great sea serpent he could not solve, and he says so \u2014 which is why that chapter has aged best of all. This edition prints both handbooks entire, with all 68 original figures in their places. Around them: an introduction; a head-note before each of the eight chapters, every one ending in READING AGAINST HIM, which names the specific thing in that chapter a modern reader should resist; a REGISTER OF EVIDENCE AND INFERENCE separating what Lee watched from what he was told, from what he read, from what he concluded, and closing on the two places where the instrument slipped; a descriptive list of all 68 plates saying of each whether it is evidence of an animal, evidence of a belief, or decoration; a note on the captions, because every figure is captioned twice and in nine places the two disagree \u2014 figure 24 is a skeleton, which only the List of Illustrations says; a casebook of the named sightings; a who's-who of his authorities; a glossary; a chronology; and a plain account of what has been established since 1883, including the first photograph of a living giant squid, taken a hundred and nineteen years after he wrote. Where this edition disagrees with Lee it says so and says why: the fish-god plates rest on a reading of Dagon that scholarship has abandoned, the dugong does not live in the seas most of the mermaid reports come from \u2014 and in his own footnote 41 he prints an engraving from the Roman catacombs and remarks that the creature in it is \u201capparently not a fish, but a seal\u201d, which is the mermaid's whole mechanism, noticed and filed under something else. 232 pages.",
+    idealReader:
+      "Someone who likes cryptids and would rather read the Victorian naturalist who explained most of them away \u2014 and be told, chapter by chapter, which of his explanations survived.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(9.99),
+        pageCount: 232,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_applicable",
+        masterFileKey: null,
+        epubFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-06, direct ebook, public domain: $9.99 nets $8.99 after Paddle at a 90.0% margin. Top of the Valice Classics band, with the 244 pp Singing Games at $9.99 \u2014 this is the second-longest annotated volume on the shelf.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(16.99),
+        pageCount: 232,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-06, 232 pp 6\u00d79 B&W on white: prints at $3.78, KDP minimum list $6.31; $16.99 nets $6.41 (37.7%) at 60% royalty.",
+      },
+      {
+        format: "hardcover",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(33.99),
+        pageCount: 232,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-06, 232 pp 6\u00d79 hardcover: prints at $8.43, KDP minimum list $14.06; $33.99 nets $11.96 (35.2%). $29.99 would net 32% and miss the 35% target.",
+      },
+    ],
+    blockers: [
+      "NOT DEPLOYED, AND THAT IS WHY THE ROW IS DRAFT. Phase 3 is not merged. Publishing this "
+        + "row would write a book into the production database whose page, cover and companion "
+        + "sheets are not deployed, and the reader would meet broken images and a 404 companion.",
+      "NO PADDLE PRODUCT. Unlike Kwaidan, this book has no Paddle product or price yet, so "
+        + "`paddlePriceId` is null and the ebook is coming_soon rather than available. No "
+        + "identifier is invented.",
+      "NO R2 MASTERS. The PDF and EPUB are built and validated locally \u2014 EPUBCheck 0/0/0 \u2014 "
+        + "but neither has been uploaded, so `masterFileKey` and `epubFileKey` are null.",
+      "GATE 2 IS UNSIGNED, and its table was rewritten during review. The first draft had five "
+        + "rows and got two wrong: it gave the FIELD's five cuts to the Illustrated London News, "
+        + "omitted Longman and Tennent entirely, and said the book had one named artist when "
+        + "Lee's preface names two. The corrected table has eleven rows, including Ellen Caroline "
+        + "Woodward (1859\u20131943), who drew the squid figures and whose dates nobody had "
+        + "looked up. FOUNDER F-032.",
+      "COVER SERIES IDIOM: a painted cover where COVER_STANDARDS gives Valice Classics as "
+        + "typographic with one engraved device \u2014 the same open Founder decision as Kwaidan "
+        + "(F-031). The title band is 15.2% of cover height against a 25% rule; 150 px thumbnail "
+        + "contrast is 0.99.",
+      "NO KDP LISTING YET. Paperback and hardcover are built \u2014 interior, companion leaf and "
+        + "both wraps, on calculator rows read for 232 pp \u2014 and neither has been uploaded; "
+        + "`kdp: \"not_created\"` says so and no ASIN is invented.",
+      "The apparatus is 22.2% of the volume against a 20% floor, measured from the content files "
+        + "by COMMON-AREA/checks/differentiation.py.",
     ],
   },
 
@@ -1604,7 +2230,7 @@ export const BOOKS = [
     linkageDecision: null,
     kdpSelect: false,
     directSale: true,
-    directSaleBlockedBy: "paddle-not-provisioned",
+    directSaleBlockedBy: "gate-2-rights-signature",
     paddlePriceId: null,
     onelinePromise:
       "The book that wrote down the tunes: forty-three singing games as children sang them in the 1890s, with every version's county and collector, and seventy-eight melodies engraved for this edition.",
@@ -1641,7 +2267,16 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "The ebook is built, priced and ready but not yet on sale: creating the Paddle product and price is a live write that this environment's permission layer blocks. One command, in FOUNDER F-027.",
+      "NOT ON SALE, AND PADDLE IS NOT THE REASON ANY MORE. The product and price are live "
+        + "on the Paddle account, verified 2026-09-07 by provision-paddle.mjs against "
+        + "api.paddle.com, and the R2 masters are uploaded. What holds this book is the "
+        + "FOUNDER'S GATE 2 (Rights) AND GATE 5 (Facts) SIGNATURES, which no agent can "
+        + "give. The earlier blocker text said this environment blocked the Paddle write; "
+        + "that was true when it was written and is false now. The live price is "
+        + "pri_01m1v4n8mdw8dnnsdc2bqwf56d; it is deliberately NOT written into paddlePriceId, because "
+        + "valice-catalog.test.ts forbids a price id on a row whose ebook is not "
+        + "available, and that test is right \u2014 a live id on a row that is not "
+        + "for sale fails at the till rather than at load.",
       "NO KDP LISTING YET. The paperback is built \u2014 interior, companion leaf and wrap \u2014 and has never been uploaded; `kdp: \"not_created\"` says so and no ASIN is invented.",
       "The apparatus is 20.3% of the volume against a 20% floor, which is the tightest margin of the five books of this phase. It is measured from the manuscript by BUILD/measure.py at build time, not estimated.",
       "THE COMPARATIVE TABLES ARE NOT REPRODUCED. 23 of the 43 entries carry one in the original, up to eighteen columns wide and printed sideways; there is no honest way to set them on a 6\u00d79 page. The gazetteer prints what they encode and A Note on the Text says so plainly.",
@@ -1669,7 +2304,7 @@ export const BOOKS = [
     linkageDecision: null,
     kdpSelect: false,
     directSale: true,
-    directSaleBlockedBy: "paddle-not-provisioned",
+    directSaleBlockedBy: "gate-2-rights-signature",
     paddlePriceId: null,
     onelinePromise:
       "A museum catalogue whose ORDER is an argument \u2014 and the first edition to say so, entry group by entry group, so the objects can be read apart from the theory they were arranged to prove.",
@@ -1707,7 +2342,16 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "The ebook is built, priced and ready but not yet on sale: creating the Paddle product and price is a live write that this environment's permission layer blocks. One command, in FOUNDER F-024.",
+      "NOT ON SALE, AND PADDLE IS NOT THE REASON ANY MORE. The product and price are live "
+        + "on the Paddle account, verified 2026-09-07 by provision-paddle.mjs against "
+        + "api.paddle.com, and the R2 masters are uploaded. What holds this book is the "
+        + "FOUNDER'S GATE 2 (Rights) AND GATE 5 (Facts) SIGNATURES, which no agent can "
+        + "give. The earlier blocker text said this environment blocked the Paddle write; "
+        + "that was true when it was written and is false now. The live price is "
+        + "pri_01m1v4n991k3h8x20sbwp9455z; it is deliberately NOT written into paddlePriceId, because "
+        + "valice-catalog.test.ts forbids a price id on a row whose ebook is not "
+        + "available, and that test is right \u2014 a live id on a row that is not "
+        + "for sale fails at the till rather than at load.",
       "Not on KDP. The interior and wrap are built and packaged; the print upload is a Founder action \u2014 see the KDP upload handbook in PHASE-2-REPORT.",
       "Five of the seventy-six entries could not have their headings recovered from the scan, so their descriptions stand within the entry above them. They are printed in their place with their number and title from Culin's own table of contents and a line saying so. Nothing is missing from the text; what is missing is the seam, and it is marked rather than guessed.",
       "Entries 1 to 44 \u2014 the dice, the boards and the race games, 68,849 words \u2014 are not in this volume. They carry the collection but not the thesis and are scoped as a second volume. The decision was recorded before any apparatus was written.",
@@ -1737,7 +2381,7 @@ export const BOOKS = [
     linkageDecision: null,
     kdpSelect: false,
     directSale: true,
-    directSaleBlockedBy: "paddle-not-provisioned",
+    directSaleBlockedBy: "gate-2-rights-signature",
     paddlePriceId: null,
     onelinePromise:
       "The paper that started the study of mancala \u2014 five thousand words, three complete games you can play tonight, and an informant who became the first African diplomat in modern Europe.",
@@ -1762,7 +2406,16 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "The ebook is built, priced and ready but not yet on sale: creating the Paddle product and price is a live write that this environment's permission layer blocks. One command, in FOUNDER F-026.",
+      "NOT ON SALE, AND PADDLE IS NOT THE REASON ANY MORE. The product and price are live "
+        + "on the Paddle account, verified 2026-09-07 by provision-paddle.mjs against "
+        + "api.paddle.com, and the R2 masters are uploaded. What holds this book is the "
+        + "FOUNDER'S GATE 2 (Rights) AND GATE 5 (Facts) SIGNATURES, which no agent can "
+        + "give. The earlier blocker text said this environment blocked the Paddle write; "
+        + "that was true when it was written and is false now. The live price is "
+        + "pri_01m1v4n9ygd9z3vbgstcjbmvt0; it is deliberately NOT written into paddlePriceId, because "
+        + "valice-catalog.test.ts forbids a price id on a row whose ebook is not "
+        + "available, and that test is right \u2014 a live id on a row that is not "
+        + "for sale fails at the till rather than at load.",
       "NO PAPERBACK, and that is a decision rather than an omission. The volume is 38 pages; with the blank leaf a printed edition needs to keep the block even it would run to 40, giving a spine of 0.090 in. A perfect-bound book that thin is a bad object, it cannot carry spine text, and it invites exactly the review it would deserve. The interior and a cover wrap are built so the arithmetic exists if this is ever revisited, and both are marked not for use.",
       "The source paper is 4,885 words and the apparatus is longer than it \u2014 54.8% of the finished volume against a 20% floor. That inversion is unusual for this series and is stated in the Note on the Text and here rather than discovered on the page.",
       "None of the paper's five plates or fifteen text figures is reproduced (22 captioned pictures in all, since Plates 2 and 4 carry two figures each): no photographer and no draughtsman is named for any of them. All 22 captions are printed where the figures stood, because the caption carries the provenance, and the three boards are drawn for this edition from Culin's descriptions.",
