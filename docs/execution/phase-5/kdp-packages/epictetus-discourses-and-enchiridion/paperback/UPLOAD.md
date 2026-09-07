@@ -1,6 +1,6 @@
 # Epictetus: The Discourses and Enchiridion — paperback — KDP upload package
 
-**Generated:** 2026-09-04 · **ASIN:** — (not listed) · **KDP state:** not_created
+**Generated:** 2026-09-07 · **ASIN:** — (not listed) · **KDP state:** not_created
 
 ## What this is
 
@@ -15,12 +15,12 @@ This edition has never been uploaded. The file below is its first. A dedicated c
 ## The file
 
 ```
-/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pdf
-sha256 17d885aed6eaf7ed9425c62099089326ff3684b0b6aaefb7e1e5d77aa61b1068
-615,771 bytes · 176 pages
+/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/05-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pdf
+sha256 cfe8e1fe2c558a11e960ad5fbc469ec68e5278b1ea48c8ecc4e8b0281e4262b8
+615,814 bytes · 176 pages
 ```
 
-The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pre-companion.pdf` and is never deleted.
+The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/05-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pre-companion.pdf` and is never deleted.
 
 ## In KDP
 
@@ -34,8 +34,13 @@ The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1
 - PASS · **page-count** — 176 pages (expected 176)
 - PASS · **printed-url** — valicepress.com/companion/epictetus
 - PASS · **canonical-host** — no forbidden host on the page
+- PASS · **no-email-wall** — the page asks for nothing
+- PASS · **headline** — headline present
 - PASS · **eyebrow** — CONTINUE WITH VALICE PRESS
 - PASS · **fonts-embedded** — 3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif
-- PASS · **pdf-metadata** — title="Epictetus: The Discourses and Enchiridion: The George Long Translation, Annotated — the Complete Enchiridion, 68 Discourses in Seven Thematic Parts, 120 Head-Notes, a Stoic Glossary and a Concordance to the Meditations" author="Emre Doğan"
+- PASS · **qr-floor** — 28.4% of usable height
+- PASS · **qr-module-size** — 1.70 mm per module
+- PASS · **pdf-metadata** — title="Epictetus: The Discourses and Enchiridion: The George Long Translation, Annotated — the Complete Enchiridion, 68 Discourses in Seven Thematic Parts, 120 Head-Notes, a Stoic Glossary and a Concordance to the Meditations" author="Epictetus · translated by George Long · edited by Emre Dogan"
+- PASS · **qr-matches-url** — 33×33 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/epictetus
 
 Regenerate with `node scripts/factory/build-companion-pages.mjs --commit --slug epictetus-discourses-and-enchiridion`.
