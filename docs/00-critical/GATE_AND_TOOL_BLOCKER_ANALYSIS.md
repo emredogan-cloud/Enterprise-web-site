@@ -247,7 +247,7 @@ The same shape appeared twice more this pass:
 | Check | What it compared | What it missed |
 |---|---|---|
 | `cover-check` | the filename | three geometrically correct covers it errored on and then never read |
-| `upload-masters` | size, ETag, content hash | which file was **newer** — three staged masters were about to overwrite newer ones in R2 |
+| `upload-masters` | size, ETag, content hash | which file was **newer** — one staged master was about to overwrite a newer one in R2 |
 
 All three are fixed, and each fix is a comparison the check was not making.
 

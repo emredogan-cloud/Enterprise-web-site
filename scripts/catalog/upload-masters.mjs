@@ -88,7 +88,27 @@ async function upload({ file, key, contentType, missingHint }) {
     /* not present — first upload */
   }
 
-  // WHICH ONE IS NEWER? This tool uploads whatever is in the staging directory, and on
+  // Same size is NOT the same file. A re-cut edition can come out byte-different
+  // at an identical length — both Epictetus masters did on 2026-09-04 — and a
+  // size-only check silently left the stale object in the bucket under buyers who
+  // would then be watermarked a superseded text. Compare content, not length.
+  // R2 returns a plain MD5 ETag for single-part uploads, which is what these are.
+  if (existing === size && remoteEtag && !remoteEtag.includes("-")) {
+    const localMd5 = createHash("md5").update(readFileSync(file)).digest("hex");
+    if (localMd5 === remoteEtag) {
+      console.log(`SAME  ${key.padEnd(52)} ${mb(size).padStart(9)}  (already present, content identical — skipped)`);
+      return;
+    }
+    console.log(`DIFFERS  ${key.padEnd(49)} ${mb(size).padStart(9)}  (same size, different content — will replace)`);
+  } else if (existing === size) {
+    console.log(`SAME  ${key.padEnd(52)} ${mb(size).padStart(9)}  (already present, same size — skipped)`);
+    return;
+  }
+
+  // WHICH ONE IS NEWER? Asked only once the content is known to DIFFER. Asking it before
+  // the identity checks made this refuse 27 objects whose bytes already matched R2 — if
+  // there is nothing to upload there is nothing to downgrade. This tool uploads whatever
+  // sits in the staging directory, and on
   // 2026-09-07 that was about to DOWNGRADE a live master: the Puzzle Book's staged
   // digital edition was 429,015 bytes from 09-06, while R2 already held 429,205 bytes
   // built from the current interior on 09-07. Content differed, so every check passed
@@ -114,22 +134,6 @@ async function upload({ file, key, contentType, missingHint }) {
     }
   }
 
-  // Same size is NOT the same file. A re-cut edition can come out byte-different
-  // at an identical length — both Epictetus masters did on 2026-09-04 — and a
-  // size-only check silently left the stale object in the bucket under buyers who
-  // would then be watermarked a superseded text. Compare content, not length.
-  // R2 returns a plain MD5 ETag for single-part uploads, which is what these are.
-  if (existing === size && remoteEtag && !remoteEtag.includes("-")) {
-    const localMd5 = createHash("md5").update(readFileSync(file)).digest("hex");
-    if (localMd5 === remoteEtag) {
-      console.log(`SAME  ${key.padEnd(52)} ${mb(size).padStart(9)}  (already present, content identical — skipped)`);
-      return;
-    }
-    console.log(`DIFFERS  ${key.padEnd(49)} ${mb(size).padStart(9)}  (same size, different content — will replace)`);
-  } else if (existing === size) {
-    console.log(`SAME  ${key.padEnd(52)} ${mb(size).padStart(9)}  (already present, same size — skipped)`);
-    return;
-  }
 
   // A MASTER THAT GETS DRAMATICALLY BIGGER IS A DECISION, NOT A DETAIL.
   // On 2026-09-07 this replaced a 4.62 MB Codex Bestiarium master with a 103.91 MB

@@ -32,10 +32,16 @@ past KDP's 72-hour lock, so it is a new edition or a decision to live with it.
 pass, and this pass found why it could happen: the cover builder read a page count out of a
 config instead of measuring the interior. It measures now and refuses when the two disagree.
 
-**Three staged masters were about to overwrite newer ones in R2.** The Puzzle Book's PDF and
-both Seneca files were staged on 09-06; R2 already held 09-07 builds, Seneca's from the same
-afternoon its interior was corrected. Every existing check passed — content genuinely differed —
-because none of them asked which was newer. `upload-masters` now refuses to downgrade.
+**A staged master was about to overwrite a newer one in R2.** The Puzzle Book's staged PDF is
+429,015 bytes from 09-06; R2 holds 429,205 bytes built from the current interior on 09-07. Size,
+ETag and content hash all agreed there was something to upload; none of them asked which was
+**newer**. `upload-masters` now refuses to downgrade.
+
+> The first version of that guard ran *before* the content-identity checks and reported 27
+> objects as stale — including 26 whose bytes already matched R2 exactly. If there is nothing to
+> upload there is nothing to downgrade. Moved after the identity checks, it reports **one**, and
+> that one is real. Third time in this session a new check of mine fired on correct behaviour;
+> the failure mode is always the same, and so is the fix — ask the question in the right place.
 
 **Four Phase-3 public-domain titles carried the wrong KDP title.** KDP requires a public-domain
 edition to be differentiated in the title field; theirs had lost the `(Annotated)` tag.
