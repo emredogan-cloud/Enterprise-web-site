@@ -910,9 +910,14 @@ export const BOOKS = [
         priceCents: usd(16.99),
         pageCount: 156,
         isbn13: "9798172268281",
-        amazonAsin: null,
-        amazonUrl: null,
-        kdp: "ready_to_publish",
+        // SUBMITTED TO KDP 2026-09-07 and PUBLISHING. Verified on the bookshelf
+        // (status "Publishing", $16.99) and on the product page, which exists and
+        // carries ISBN 979-8172268281 and 156 pages — both matching the corrected
+        // interior exactly. NOT yet "live": the page does not show a price, which is
+        // what a book still in KDP's publishing pipeline looks like. Up to 72 hours.
+        amazonAsin: "B0HJ2TPX4T",
+        amazonUrl: "https://www.amazon.com/dp/B0HJ2TPX4T",
+        kdp: "publishing",
         masterFileKey: null,
         priceBasis:
           "STAGED AT $16.99 at KDP 2026-09-07; the form shows printing $3.65 and royalty $6.54 at 60%, which is the figure below, confirmed by KDP itself. price-engine.mjs 2026-09-05 at the MEASURED 156 pages, 8.5 \u00d7 11 large trim, B&W, white: printing $3.65, KDP minimum list $6.09. $16.99 nets $6.54 (38.5 %). The roadmap said $14.99 against a planned 130 pages; at the built 156 that nets 35.6 %, six tenths of a point over the house floor and inside the noise of a KDP printing-rate change.",

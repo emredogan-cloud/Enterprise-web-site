@@ -1,6 +1,12 @@
-# KDP distribution — audited 2026-09-07
+# KDP distribution — audited 2026-09-07 (second pass)
 
-**12 titles on the bookshelf · 22 live ASINs · 1 staged and awaiting the owner's click.**
+> **Second pass, later the same day.** Since the first pass: the Puzzle Book paperback was
+> **published and has a real ASIN**, Gate 11 was given an instrument and passed on seven books,
+> and the World Games description fix was confirmed saved in KDP but **not yet on Amazon**.
+> Changes are marked ▲.
+
+
+**12 titles on the bookshelf · 22 live ASINs · 1 publishing (`B0HJ2TPX4T`).**
 Audited through the KDP web UI. No KDP API was called. Every ASIN below was read off the
 bookshelf and confirmed on its own Amazon product page.
 
@@ -12,7 +18,7 @@ bookshelf and confirmed on its own Amazon product page.
 |---|---|---|---|
 | Codex Mythologica (main) | **live** $6.99 `B0HD8121RR` | **live** $21.99 `B0HCY8KY3X` | **live** $32.99 `B0HDBFZRQ4` |
 | Codex Mythologica — Large Print | — | **live** $27.99 `B0HDDR84MF` | — |
-| Codex Mythologica: The Puzzle Book | — | **DRAFT — ready to publish** $16.99 | — |
+| Codex Mythologica: The Puzzle Book | — | ▲ **PUBLISHING** $16.99 `B0HJ2TPX4T` | ▲ ready, blocked at create |
 | Codex Bestiarium (main) | **live** $12.99 `B0HDLS4W8Q` | **live** $24.99 `B0HDLQHQ7H` | **live** $37.99 `B0HDLLPG5M` |
 | Codex Bestiarium — Large Print | — | **live** $29.99 `B0HDLT1V3P` | — |
 | Codex Enigmatica | **live** $9.99 `B0HGRZ3BRC` | **live** $19.99 `B0HGSVF15Q` | **live**¹ $29.99 `B0HH3B4HQ7` |
@@ -37,6 +43,30 @@ from the catalogue.**
 | ASINs in the catalogue but not on KDP | **none** |
 | Malformed ASINs anywhere | **none** — 22 of 22 match `B0` + 8 |
 | Invented ASINs / ISBNs | **none** |
+
+## 2b. ▲ The Puzzle Book paperback is PUBLISHING, not live
+
+`B0HJ2TPX4T`. Verified before being written down anywhere:
+
+| Evidence | |
+|---|---|
+| KDP bookshelf | status **Publishing**, $16.99, modified 2026-09-07 |
+| `amazon.com/dp/B0HJ2TPX4T` | resolves — right title, **ISBN 979-8172268281** (KDP's own assignment), **156 pages** matching the corrected interior |
+| Price on the Amazon page | **absent** — which is what a title still in KDP's pipeline looks like |
+
+So its state is **IN REVIEW / publishing**, and it is recorded that way. It is not LIVE and is
+not reported as LIVE. Amazon typically completes this within 72 hours.
+
+Recording it broke `valice-catalog.test.ts`, and the test was right to fire: its rule was
+*ASIN implies `kdp: "live"`*. That rule has a gap this case found — **Amazon issues an ASIN when
+it accepts a title, not when the listing becomes purchasable.** The type union now models
+`publishing` and the invariant admits it. It is not weakened: an ASIN on `not_created`,
+`in_review` or `not_applicable` still fails. Proved by temporarily setting `kdp: "not_created"`
+on the real ASIN and watching the test fail.
+
+**The hardcover is built and ready** — 156 pp at 8.25 × 11 (KDP has no 8.5 × 11 case laminate),
+preflight 11/11 pass, and carrying the same table fix. Creating the format at KDP is refused by
+this environment.
 
 ## 3. The Puzzle Book paperback — worked end to end
 
@@ -93,7 +123,7 @@ search was never run again.
 | 1 | Puzzle Book paperback — **Publish** | staged, previewer clean | **Founder** |
 | 2 | World Games LP — title typo **"39 Cultıres"** | live, uncorrected — **KDP: "Subtitle can no longer be edited… publish a new edition"** | **Founder** |
 | 3 | World Games LP — title omits "Large Print" | mitigated: the description now names the edition; the title still cannot | **Founder** |
-| 4 | World Games LP — description printed literal `\n\n` | **SAVED IN KDP 2026-09-07** (verified across a reload); also corrected "160 pages" → 232 and named the edition. **NOT yet on Amazon** — metadata takes up to 72 h (F-047) | propagating |
+| 4 | World Games LP — description printed literal `\n\n` | **SAVED IN KDP** (verified across a reload); also corrected "160 pages" → 232 and named the edition. ▲ **Re-checked on Amazon at 14:4x — still the old text.** Metadata takes up to 72 h (F-047) | propagating |
 | 5 | Codex Enigmatica — three **Teen & Young Adult** categories on a book whose config says ages 16–99 | evidence gathered, change refused by this environment (F-048) | **Founder** |
 | 6 | Phase 2 + Phase 3 books — no KDP listing | 11 books, Gate 2 unsigned | **Founder** |
 

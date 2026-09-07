@@ -145,15 +145,67 @@ different file on the same day.
 Merging PR #23 and pushing to `main` are both refused by this environment's policy, so both
 arrive as pull requests.
 
+## 7b. Gate 11 now has an instrument, and the database is stale
+
+**Gate 11 — "Website product QA" — is the one gate an agent owns, and it had never been run for
+any book.** There was nothing to run it with. `scripts/factory/website-product-qa.mjs` now
+asserts against bytes returned by production — HTTP 200, catalogue title present, the book's own
+cover file, every on-sale price printed, a working CTA, every Amazon-fulfilled ASIN linked.
+
+**Result: 13 of 27 rows pass; gate 11 recorded passed on 7 books** with `QA/website-qa.json` as
+evidence. The 11 failures that are 404s are all `draft` rows — correct, not defects.
+
+The rule needed correcting once, and that is the useful part. The first version demanded every
+recorded ASIN appear on the page and failed four books **for doing the right thing**: a book whose
+ebook is sold direct still has a Kindle ASIN, and its page correctly shows a cart button rather
+than an Amazon link. Requiring all of them would have buried the three that are genuinely wrong.
+
+### The three genuine failures, and why
+
+`the-great-book-of-world-games/large_print`, `korean-hangul-handwriting-workbook/hardcover` and
+`the-puzzles-of-henry-dudeney/paperback` carry ASINs their pages do not link. **These are exactly
+the three ASINs recorded earlier today.** The reason is not the pages — it is the database.
+
+| | |
+|---|---|
+| Live database | **`bookstore`** — 20 books against the catalogue's 27 |
+| Its rows for those three | `amazon_asin: null`, `coming_soon` — **exactly what the site serves** |
+| Fix | `load-catalog.mjs --env .env.local --commit --i-know-this-is-production` |
+| Status | **BLOCKED** by this environment. Dry run is clean: *catalog integrity : OK*, 27 books, 73 formats |
+
+A memory note had claimed the site reads `neondb` and that the loader targets the wrong database.
+**Both halves were wrong** — all three `DATABASE_URL` entries point at `bookstore`, the loader
+reports `target database : bookstore`, and the database contents match the served pages field for
+field. The note has been corrected. The database is *stale*, not wrong-targeted.
+
 ## 8. Everything still open, and who owns it
 
-| # | Item | Owner | Why it is not done |
-|---|---|---|---|
-| **Gates 2 & 5** | Rights + Factual, five Phase 2 books | Founder | `gate.mjs` needs `--approved-by founder`; this environment refuses an agent making that signature. **The exact commands are in `FOUNDER_GATE_COMMANDS.md`** — five books × two gates, one line each |
-| F-036 | Phase 3 prices are engine recommendations, unapproved | Founder | a pricing decision |
-| F-043 | AI disclosure is the standing house answer, not a decision taken | Founder | needs confirming, not deciding |
-| **F-044** | ~~credentials are placeholders~~ **WITHDRAWN — I was wrong** | — | R2 and Paddle are verified. What remains is to **de-duplicate `.env.local`**, which holds a sandbox Paddle pair and a production one |
-| F-045 / F-047 | World Games LP: description **fixed**; the "39 Cultıres" typo needs a **new edition** | Founder | KDP locks title and subtitle after 72 hours and says so on the page |
-| F-046 | Puzzle Book **Publish** click | Founder | carries the KDP Terms agreement |
-| F-048 | Codex Enigmatica sits in 3 Teen & Young Adult categories; its config says ages **16–99** | Founder | recategorising a live listing is refused here; evidence gathered, modal cancelled without saving |
-| — | Merge **PR #24** | Founder | PR #23 already merged; CI green on main |
+Every row here was attempted and refused by this environment, or is a decision only the Founder
+can take. Nothing is listed as blocked without having been tried.
+
+| # | Item | Why it is not done |
+|---|---|---|
+| **DB load** | `load-catalog --commit` — would fix the three unlinked ASINs and take the live DB from 20 books to 27 | refused by the sandbox; dry run clean (*catalog integrity : OK*) |
+| **R2 upload** | 18 digital-edition PDFs built and staged; the EPUBs are already in the bucket | `upload-masters` ran twice, then began being refused |
+| **Gates 2 & 5** | ✅ **DONE by the Founder at 12:05** on all five Phase 2 books | — |
+| **Gate 11** | ✅ **DONE — 7 books**, with production evidence | — |
+| **Gates 4 & 9** | ✅ **DONE** on the Puzzle Book from existing QA | — |
+| Gates 1, 3, 6 | Market fit, originality, editorial | **no evidence exists** — the work behind them has not been done, and `gate.mjs` correctly refuses |
+| Gates 7, 8 | Cover, Interior/proof — founder sign-off | **no physical proof ordered** |
+| Gate 10 | KDP compliance — founder sign-off | `compliance-lint` fails on *"disclosure recorded without decidedBy=founder"* (F-043) |
+| Gate 12 | Founder publication approval | comes last, by design |
+| **Puzzle Book hardcover** | built, 156 pp at 8.25 × 11, preflight 11/11 | creating a KDP format is refused here |
+| F-047 | World Games subtitle typo **"39 Cultıres"** | KDP locks title/subtitle after 72 h and says so on the page — needs a new edition |
+| F-048 | Codex Enigmatica in 3 Teen & Young Adult categories; its config says ages **16–99** | recategorising a live listing is refused here |
+| — | Merge `fix/gate11-and-puzzlebook-asin` | `gh pr merge` and `push origin HEAD:main` both refused |
+
+## 9. Branch classification (§27)
+
+| Class | Branches |
+|---|---|
+| **ALREADY IN MAIN** | 31 of 35 — every `feat/cinematic-*`, `feat/seo-*` (bar two), `feature/*`, `fix/*` and `integration/*` |
+| **UNRELATED — not merged** | `feat/commerce-foundation` (1 ahead), `feat/seo-category-descriptions` (2 ahead, PR #20, one commit marked *"GATED, not applied"*), `feat/seo-cluster4` (1 ahead) — another agent's SEO workstream, 133–155 commits behind main |
+| **COMPLETE, awaiting merge** | `fix/gate11-and-puzzlebook-asin` |
+| **STALE local ref** | `main` is 146 behind `origin/main` and checked out in `enterprise-seo-wt`; left alone |
+
+No branch was deleted and no other agent's work was touched.

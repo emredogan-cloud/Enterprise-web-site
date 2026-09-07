@@ -102,9 +102,16 @@ for (const b of BOOKS) {
     if (f.amazonUrl && !f.amazonAsin) {
       problems.push(`${b.slug}/${f.format}: amazonUrl without an ASIN.`);
     }
-    if (f.amazonAsin && f.kdp !== "live") {
+    // Amazon issues an ASIN when it ACCEPTS a title, not when the listing becomes
+    // purchasable, so "publishing" legitimately carries one. This said "an ASIN only
+    // exists once a title is live", which is not true and refused a verified ASIN:
+    // B0HJ2TPX4T was issued for the Puzzle Book paperback on 2026-09-07 and its product
+    // page resolves — right title, KDP's own ISBN, the built page count — while the
+    // listing still shows no price. What the rule is actually for is an ASIN on a title
+    // that was never created or is still in review, and it still catches those.
+    if (f.amazonAsin && f.kdp !== "live" && f.kdp !== "publishing") {
       problems.push(
-        `${b.slug}/${f.format}: has an ASIN but kdp="${f.kdp}". An ASIN only exists once a title is live.`,
+        `${b.slug}/${f.format}: has an ASIN but kdp="${f.kdp}". An ASIN exists only once Amazon has accepted the title (live or publishing).`,
       );
     }
     if (f.fulfillment === "amazon" && f.availability === "available" && !f.amazonUrl) {
