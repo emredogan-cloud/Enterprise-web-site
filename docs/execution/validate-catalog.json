@@ -1,11 +1,11 @@
 {
   "tool": "validate-catalog",
   "target": "https://valicepress.com",
-  "startedAt": "2026-09-07T17:15:25.790Z",
-  "finishedAt": "2026-09-07T17:16:33.413Z",
+  "startedAt": "2026-09-07T19:52:01.889Z",
+  "finishedAt": "2026-09-07T19:53:09.582Z",
   "ok": true,
   "counts": {
-    "pass": 83,
+    "pass": 127,
     "warn": 3,
     "error": 0,
     "skipped": 0
@@ -104,13 +104,145 @@
     {
       "level": "pass",
       "check": "page",
+      "message": "https://valicepress.com/books/games-ancient-and-oriental 200, canonical ok, JSON-LD parses",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "page",
+      "message": "https://valicepress.com/books/korean-games 200, canonical ok, JSON-LD parses",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "page",
+      "message": "https://valicepress.com/books/kwaidan 200, canonical ok, JSON-LD parses",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "page",
+      "message": "https://valicepress.com/books/fairy-mythology-vol-1 200, canonical ok, JSON-LD parses",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "page",
+      "message": "https://valicepress.com/books/fairy-mythology-vol-2 200, canonical ok, JSON-LD parses",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "page",
+      "message": "https://valicepress.com/books/british-goblins 200, canonical ok, JSON-LD parses",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "page",
+      "message": "https://valicepress.com/books/book-of-were-wolves 200, canonical ok, JSON-LD parses",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "page",
+      "message": "https://valicepress.com/books/sea-monsters-unmasked 200, canonical ok, JSON-LD parses",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "page",
+      "message": "https://valicepress.com/books/traditional-games 200, canonical ok, JSON-LD parses",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "page",
+      "message": "https://valicepress.com/books/chess-and-playing-cards 200, canonical ok, JSON-LD parses",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "page",
+      "message": "https://valicepress.com/books/mancala 200, canonical ok, JSON-LD parses",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "page",
       "message": "https://valicepress.com/books/codex-enigmatica 200, canonical ok, JSON-LD parses",
       "where": null
     },
     {
       "level": "pass",
       "check": "sitemap",
-      "message": "72 URLs",
+      "message": "83 URLs",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "cover-route",
+      "message": "same cover on every surface",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "cover-route",
+      "message": "same cover on every surface",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "cover-route",
+      "message": "same cover on every surface",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "cover-route",
+      "message": "same cover on every surface",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "cover-route",
+      "message": "same cover on every surface",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "cover-route",
+      "message": "same cover on every surface",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "cover-route",
+      "message": "same cover on every surface",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "cover-route",
+      "message": "same cover on every surface",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "cover-route",
+      "message": "same cover on every surface",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "cover-route",
+      "message": "same cover on every surface",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "cover-route",
+      "message": "same cover on every surface",
       "where": null
     },
     {
@@ -446,6 +578,72 @@
     {
       "level": "pass",
       "check": "paddle",
+      "message": "pri_01m1v4n69wd2th3pf1cbw8an3n active, 799 USD",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "paddle",
+      "message": "pri_01m1v4n6zery50yws32dpspqve active, 899 USD",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "paddle",
+      "message": "pri_01m1v4n80k6g2tba6wt8882ehf active, 899 USD",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "paddle",
+      "message": "pri_01m1ygdhj80yaesd4xzsf05hby active, 999 USD",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "paddle",
+      "message": "pri_01m1ygdm5f4zfcsh3zd4a1pv1s active, 999 USD",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "paddle",
+      "message": "pri_01m1ygdfd1x5hv5ps20c5zzkg1 active, 1199 USD",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "paddle",
+      "message": "pri_01m1ygdddc64qsn9kervbdz2kk active, 899 USD",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "paddle",
+      "message": "pri_01m1ygdbp4rk8vb0b87tebaq09 active, 999 USD",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "paddle",
+      "message": "pri_01m1v4n8mdw8dnnsdc2bqwf56d active, 999 USD",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "paddle",
+      "message": "pri_01m1v4n991k3h8x20sbwp9455z active, 799 USD",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "paddle",
+      "message": "pri_01m1v4n9ygd9z3vbgstcjbmvt0 active, 499 USD",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "paddle",
       "message": "pri_01m1btjc0bp4phgs7vrqhq4g18 active, 999 USD",
       "where": null
     },
@@ -519,6 +717,72 @@
       "level": "pass",
       "check": "r2",
       "message": "books/mythical-monsters/master/v1/master.pdf 0.29 MB",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "r2",
+      "message": "books/games-ancient-and-oriental/master/v1/master.pdf 0.86 MB",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "r2",
+      "message": "books/korean-games/master/v1/master.pdf 0.82 MB",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "r2",
+      "message": "books/kwaidan/master/v1/master.pdf 1.34 MB",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "r2",
+      "message": "books/fairy-mythology-vol-1/master/v1/master.pdf 0.97 MB",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "r2",
+      "message": "books/fairy-mythology-vol-2/master/v1/master.pdf 0.79 MB",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "r2",
+      "message": "books/british-goblins/master/v1/master.pdf 1.77 MB",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "r2",
+      "message": "books/book-of-were-wolves/master/v1/master.pdf 0.47 MB",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "r2",
+      "message": "books/sea-monsters-unmasked/master/v1/master.pdf 4.06 MB",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "r2",
+      "message": "books/traditional-games/master/v1/master.pdf 0.62 MB",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "r2",
+      "message": "books/chess-and-playing-cards/master/v1/master.pdf 0.81 MB",
+      "where": null
+    },
+    {
+      "level": "pass",
+      "check": "r2",
+      "message": "books/mancala/master/v1/master.pdf 0.56 MB",
       "where": null
     },
     {
