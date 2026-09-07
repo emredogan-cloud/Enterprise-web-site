@@ -1823,7 +1823,11 @@ export const BOOKS = [
         + "typographic \u2014 the same open Founder decision as the rest of the phase (F-031).",
       "TWO VOLUMES, ONE ROADMAP TITLE. The pair must be sold and shelved as a pair: a reader "
         + "who buys one and not the other gets half of Keightley. The related-products link "
-        + "between the two rows is not optional.",
+        + "between the two rows is DONE (2026-09-07): a book page's shelf was \"the six most "
+        + "recently published books\", which gave a reader on Volume I no route to Volume II. "
+        + "It now orders by shared author, discounting the house credit that sits on every "
+        + "row, so each volume leads the other's shelf \u2014 src/lib/related-books.ts, eight "
+        + "tests. What is still open here is the PRICE of the pair, which is a Founder call.",
     ],
   },
 
@@ -1911,7 +1915,11 @@ export const BOOKS = [
         + "typographic \u2014 the same open Founder decision as the rest of the phase (F-031).",
       "TWO VOLUMES, ONE ROADMAP TITLE. The pair must be sold and shelved as a pair: a reader "
         + "who buys one and not the other gets half of Keightley. The related-products link "
-        + "between the two rows is not optional.",
+        + "between the two rows is DONE (2026-09-07): a book page's shelf was \"the six most "
+        + "recently published books\", which gave a reader on Volume I no route to Volume II. "
+        + "It now orders by shared author, discounting the house credit that sits on every "
+        + "row, so each volume leads the other's shelf \u2014 src/lib/related-books.ts, eight "
+        + "tests. What is still open here is the PRICE of the pair, which is a Founder call.",
     ],
   },
 
