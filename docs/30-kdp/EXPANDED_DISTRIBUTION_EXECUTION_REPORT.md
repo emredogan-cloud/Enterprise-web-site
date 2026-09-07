@@ -430,5 +430,166 @@ not a build step, so it was not added.
 
 ---
 
+# Session 2 — 2026-09-07/08 · the sign-in wall came down
+
+**KDP session restored. File upload works. The Previewer ran, found a real fault, the fault
+was fixed at its root, and the re-run is clean. One book is staged to the Terms line. Ten
+more are unblocked by a Founder answer but not yet driven through the UI.**
+
+## S2.1 What the restored session actually unblocked
+
+Both blockers from session 1 are gone, and each was verified rather than assumed:
+
+| | Session 1 | Now |
+|---|---|---|
+| KDP content page | redirected to a password form | **loads** |
+| `file_upload` to KDP | never reached | **works** — 601 KB manuscript, 4.9 MB cover, both accepted |
+| Print Previewer | never ran | **ran, failed, was fixed, re-ran clean, approved** |
+
+## S2.2 Pre-upload re-validation found four stale artifacts
+
+§3 of the brief says not to assume the thirteen are unchanged. They were not.
+
+**Four Phase-2 wraps carried `Title='paperback-wrap-v1'` and no author** — the filename as
+the title, which is what a library catalogue reads. `preflight.py --kind cover` fails all
+four. Re-emitted through `COMMON-AREA/covers/rewrap_clean.py` with the book's real title,
+subtitle and author; the new wrap widths are also exact where two had been 0.0010 in out.
+
+**Three Phase-2 interiors credited the annotator alone for somebody else's text.** Korean
+Games and Chess and Playing Cards said *Emre Doğan* for Stewart Culin's surveys; The Singing
+Games said the same for Alice Gomme's collection. Volume 8 of the same phase already carried
+the full form. Corrected in each `project_config.json` from that project's own rights ledger,
+then written into the three PDFs **without touching a printed page** — every page's content
+stream hashed before and after, all identical.
+
+After the fixes: **13/13 packages pass geometry, trim, fonts and file-size preflight. 0
+failures.**
+
+## S2.3 The Previewer found what nothing local could
+
+Epictetus paperback, first upload. KDP returned:
+
+> **ERROR** — *This text is outside the margins.* Pages **34** and **96**.
+
+Every local check was green and each was right about what it measured. `pdftotext -bbox`
+reports **advance** boxes, and by that measure every line on every page sat at exactly
+0.5000 in. Rasterised at 300 dpi and measured as **ink**, the two flagged lines carried to
+0.4867 in of the trim edge while every other line stopped at 0.4967 — 0.0133 in further out.
+
+The cause is the italic terminal of the last glyph. A right-leaning face puts ink outside its
+own advance width, and a **justified** line ends its advance exactly on the frame edge. Body
+text never trips it because the body face is upright; only the head-notes are justified
+italic.
+
+> A margin measured in advance widths is not the margin the printer sees.
+
+`S["note"]` now ends 2 pt short of the frame — 0.0278 in, twice the measured overhang,
+invisible at 8.8 pt. Rebuilt, companion leaf re-spliced, re-uploaded. **Previewer clean,
+approved.** Page count unchanged at 176, so the wrap built for 176 pages is still right —
+checked, not assumed. Visual QA passed on the cover, the spine, the barcode zone, pages
+174–175 and the companion page at 176.
+
+## S2.4 The blocker that stopped the other ten, and the answer
+
+KDP's Content page **will not save** without naming the tool that generated the AI images —
+verified by attempting the save and reading the refusal. Nine of the thirteen declare
+`images: generated` (your supplied cover artwork) and **no project file recorded the
+generator**; a tenth, the Myth Hunter's, had no `compliance.aiDisclosure` block at all and
+its config reserved the choice to you.
+
+Naming a generator I had no record of would be a false statement to Amazon in your name, so
+I asked. Your answers, now written into all ten `project_config.json` files so the
+declaration and the repository say the same thing:
+
+* **Image tool: `gpt-image-1`** — consistent with the two covers this house generated itself
+  and logged (Puzzle Book, RIGHTS.md S-CP-03, $0.4992 in the cost ledger; and Kwaidan).
+* **The Myth Hunter's Field Book**: texts *some sections, extensive editing*; images *yes*.
+  `founderConfirmed` is now true, dated, with the KDP mapping recorded.
+
+## S2.5 Epictetus paperback — the one driven end to end
+
+| Step | State |
+|---|---|
+| Title | created, KDP id `EKPMDVEAJMZ` |
+| Details | title, subtitle, Epictetus as author, George Long as Translator, Emre Doğan as Editor, catalogue description, **public domain work**, adult content No, 7 keywords, 3 categories under Politics & Social Sciences › Philosophy |
+| ISBN | **9798172626982** — free KDP ISBN, assigned this session, printed in the barcode on the uploaded wrap |
+| Content | manuscript + cover uploaded, 6×9, no bleed, white, matte |
+| AI declaration | Texts *some sections, extensive editing* (Claude) · Images *one or a few, extensive editing* (gpt-image-1) · Translations *None* |
+| Previewer | **clean and approved** after the margin fix |
+| Pricing | **$16.99**, worldwide rights. KDP's own calculator: printing $3.11, royalty **$7.08** — the exact figure the catalogue's price basis recorded |
+| Publish | **PENDING OWNER CONFIRMATION** |
+
+The Publish button carries: *"By clicking publish I confirm that I agree to and am in
+compliance with the KDP Terms and Conditions."* §15 of the brief says finish everything
+before that step and record it. Done, and recorded.
+
+## S2.6 Where the other twelve stand
+
+Nothing is blocked by a missing file or a missing answer any more. What remains is UI work.
+
+* **Puzzle Book hardcover** — Details inherit correctly from the live paperback (title,
+  subtitle, author, description, keywords, categories, rights all pre-filled and verified),
+  but *Save and Continue* will not advance and KDP surfaces no error. The Content page 404s,
+  so the format record does not yet exist. **BLOCKED — KDP UI, cause not yet identified.**
+* **Greek paperback** — new title, Details filled (title, subtitle, author, description, 7
+  keywords); the two rights radios would not register after the description editor updated.
+  **IN PROGRESS.**
+* **The other ten** — files validated, AI declaration now answerable, not yet started at KDP.
+
+## S2.7 Independent end-to-end audit — run fresh, not read off the log
+
+| # | System | Checked | Result |
+|---|---|---|---|
+| 1 | Local files | 13 interiors + 13 covers, sha256 each | **26/26 present**, page counts and geometry as recorded |
+| 2 | Preflight | fonts, metadata, trim, page count, 40 MB cover cap | **0 failures** (was 4 before S2.2) |
+| 3 | Print geometry | wrap width vs measured page count, all 13 | **13/13 OK**, every spine exact |
+| 4 | R2 | 42 objects: HEAD, size, **sha256 of retrieved bytes vs local**, signed URL | **41 OK, 1 mismatch — found and closed** |
+| 5 | Paddle | live account vs catalogue | 24 products, **0 to create**, no duplicates, webhook active 4/4 |
+| 6 | Production DB | the rows checkout actually reads | **24 buyable, 0 would fail** |
+| 7 | Website | `/`, `/books`, `/ebooks`, `/categories`, `/cart`, companion | all 200 |
+| 8 | Book pages | all 27, status + cover | **27/27 200 with their cover**, 27 in sitemap |
+| 9 | KDP bookshelf | read fresh, 24 format rows | 23 live + 1 draft (Epictetus $16.99) |
+| 10 | Amazon | B0HDLS4W8Q product page opened | live, correct title, author and series |
+| 11 | Gates | 25 projects | 190 passed · 40 in_progress · 70 not_started — **unchanged**; no gate was written by an agent |
+| 12 | Git | status, branches, worktrees, secret scan over 6 commits | clean, one worktree, **0 credential matches** |
+| 13 | CI | lint, tsc, 409 tests, build | **all green** |
+
+**The one mismatch, and why it was not "fixed" on the wrong side.** R2 held
+`codex-mythologica-the-puzzle-book/master.pdf` at 429,205 B; the local staging copy was
+429,015 B and differed. R2 was **right**: its object matches the current print interior
+(429,205 B, built 2026-09-07 12:41) while the staging file was the 09-06 build.
+`upload-masters` had been refusing to overwrite it, correctly, for two days. The staging copy
+was rebuilt; both now report SAME at `b12e1fb891d0`. Nothing in production was touched.
+
+## S2.8 Discrepancy table
+
+| System | Expected | Actual | Result |
+|---|---|---|---|
+| R2 vs local, Puzzle Book PDF | identical | differed; R2 newer | **FIXED** — staging rebuilt, now identical |
+| 4 Phase-2 wraps | real title + author | `paperback-wrap-v1`, no author | **FIXED** — re-emitted |
+| 3 Phase-2 interiors | text's author credited | annotator only | **FIXED** — metadata only, pages byte-identical |
+| Epictetus interior margins | ink inside 0.5 in | 0.4867 in on 2 pages | **FIXED** — root cause, Previewer clean |
+| Kindle **Codex Bestiarium** B0HDLS4W8Q | $12.99 (catalogue) | **$9.99** | **OPEN — yours** |
+| Kindle **World Games** B0HG44FH1B | $11.99 (catalogue) | **$9.99** | **OPEN — yours** |
+| Puzzle Book hardcover at KDP | Details saved | will not advance, no error shown | **OPEN — KDP UI** |
+| Gate 12, 11 published books | signed or waived | `not_started` | **OPEN — yours** |
+| Epictetus paperback | published | Draft, complete to the Terms line | **PENDING OWNER CONFIRMATION** |
+
+**The two Kindle prices are now settled, not in flight.** Both listings read plain *Live* at
+$9.99. The house rule is that a direct ebook matches its Kindle list price to the cent, so
+the catalogue's $12.99 and $11.99 are now **above** Amazon's on the same two books. Changing
+a price is yours; the exact edit is two `priceCents` values plus a Paddle price update.
+
+## S2.9 What is owner-only, restated after this session
+
+1. **Publish** — every print format ends at *"By clicking publish I confirm that I agree to
+   and am in compliance with the KDP Terms and Conditions."* Epictetus waits there now.
+2. **The two Kindle prices** in §S2.8, and whether the direct prices follow.
+3. **Gate 12** for the eleven books published in session 1.
+4. **Gates 7 and 8** for the eleven Phase-3 print formats.
+5. A **proof copy** of the Myth Hunter's hardcover — first print of that interior and wrap.
+
+---
+
 *Written 2026-09-07. Sources: the filesystem, valicepress.com, `neondb`, api.paddle.com,
 the R2 bucket, the KDP Bookshelf and the KDP Print Cover Calculator.*
