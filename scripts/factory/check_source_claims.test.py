@@ -153,5 +153,70 @@ class AfterOccurrence(unittest.TestCase):
         r = self._run(after_occurrence="first")
         self.assertEqual(r["found"], 4, "measuring from the contents counts the contents entry too")
 
+class ReportComparisons(unittest.TestCase):
+    """
+    A count of containers is not a count of contents.
+
+    Fairy Mythology's SC-018 asserted that all 604 footnotes are printed, and checked
+    `footnotes.inSource == 604`. It passed while 3,363 words INSIDE those notes were being
+    discarded, because only a note's first paragraph carries the anchor that the count
+    counts. The far-end claim — the words — is a floor rather than a fixed number, and a
+    floor cannot be written with equality without being edited every time the parse
+    improves. An assertion edited to match its output is not an assertion.
+    """
+
+    REPORT = {"footnotes": {"inSource": 604, "words": 21920}}
+
+    def _run(self, claim):
+        return run([claim], "", self.REPORT)[0]
+
+    def test_equality_is_still_the_default(self):
+        r = self._run({"id": "T", "check": "report", "path": "footnotes.inSource", "expect": 604})
+        self.assertTrue(r["ok"])
+
+    def test_a_floor_passes_when_above(self):
+        r = self._run({"id": "T", "check": "report", "path": "footnotes.words",
+                       "expect": 21500, "op": ">="})
+        self.assertTrue(r["ok"])
+
+    def test_a_floor_fails_when_below(self):
+        r = self._run({"id": "T", "check": "report", "path": "footnotes.words",
+                       "expect": 22000, "op": ">="})
+        self.assertFalse(r["ok"])
+
+    def test_the_truncation_regression_is_caught(self):
+        """18,196 words is what the broken extractor kept. The floor must reject it."""
+        r = run([{"id": "T", "check": "report", "path": "footnotes.words",
+                  "expect": 21500, "op": ">="}], "", {"footnotes": {"words": 18196}})[0]
+        self.assertFalse(r["ok"])
+
+    def test_an_unknown_operator_is_an_error_not_a_pass(self):
+        r = self._run({"id": "T", "check": "report", "path": "footnotes.words",
+                       "expect": 1, "op": "=~"})
+        self.assertFalse(r["ok"])
+        self.assertIn("unknown op", r["error"])
+
+
+class CaseSensitivity(unittest.TestCase):
+    """
+    A negative claim that matches a lament can never pass.
+
+    SC-023 asserts Keightley never names William Hone. The checker defaults to
+    case-insensitive, and Keightley prints the Irish lament "Oh hone, oh hone" twice, so
+    the claim failed against a book that is innocent of the thing it denies.
+    """
+
+    TEXT = "Oh hone, oh hone,--Jack, honey, what will I do with you"
+
+    def test_case_insensitive_by_default_matches_the_lament(self):
+        r = run([{"id": "T", "check": "absent", "pattern": r"\bHone\b"}], self.TEXT, None)[0]
+        self.assertFalse(r["ok"])
+
+    def test_case_sensitive_clears_it(self):
+        r = run([{"id": "T", "check": "absent", "pattern": r"\bHone\b", "case": True}],
+                self.TEXT, None)[0]
+        self.assertTrue(r["ok"])
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

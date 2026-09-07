@@ -1942,7 +1942,7 @@ const FAIRY_MYTHOLOGY_VOL_1: Companion = {
   newsletterSource: "fairy-mythology-vol-1-companion",
   assetsHeading: "Print and read",
   rightsNote:
-    "Thomas Keightley lived 1789\u20131872 and this text is the enlarged edition of 1850, reprinted in 1892, so it is in the public domain on two independent grounds. The illustration layer was assessed separately: the frontispiece of the 1850 issue is George Cruikshank's (1792\u20131878) and the seven engraved blocks of Persian and Sanskrit are anonymous work published in 1850 \u2014 all clear. One layer is REFUSED: the ~150 one-letter images the 2012 transcribers made to stand for the insular and Gaelic letterforms are their work, not Keightley's, and this edition replaces every one with its Unicode character instead.",
+    "Thomas Keightley lived 1789\u20131872 and this text is the enlarged edition of 1850, reprinted in 1892, so it is in the public domain on two independent grounds. The illustration layer was assessed separately. This volume carries the frontispiece of the 1850 Bohn issue, attributed to George Cruikshank (1792\u20131878) on the bibliographic record of that issue \u2014 the mark on the plate is not legible at source resolution and this edition does not claim to have read it \u2014 and six of the seven engraved script blocks, which are anonymous work published in 1850. All clear. One layer is REFUSED: the 141 one-letter images the 2012 transcribers made to stand for the insular and Gaelic letterforms are their work, not Keightley's, and this edition replaces every one with its Unicode character instead.",
   assets: [
     {
       id: "words",
@@ -2010,7 +2010,7 @@ const FAIRY_MYTHOLOGY_VOL_2: Companion = {
   newsletterSource: "fairy-mythology-vol-2-companion",
   assetsHeading: "Print and read",
   rightsNote:
-    "Thomas Keightley lived 1789\u20131872 and this text is the enlarged edition of 1850, reprinted in 1892, so it is in the public domain on two independent grounds. The illustration layer was assessed separately: the frontispiece of the 1850 issue is George Cruikshank's (1792\u20131878) and the seven engraved blocks of Persian and Sanskrit are anonymous work published in 1850 \u2014 all clear. One layer is REFUSED: the ~150 one-letter images the 2012 transcribers made to stand for the insular and Gaelic letterforms are their work, not Keightley's, and this edition replaces every one with its Unicode character instead.",
+    "Thomas Keightley lived 1789\u20131872 and this text is the enlarged edition of 1850, reprinted in 1892, so it is in the public domain on two independent grounds. The illustration layer was assessed separately. This volume has no frontispiece \u2014 it is in Volume I \u2014 and carries one engraved block, the word Keightley says is called in the Arabic language znoon. Anonymous work published in 1850, and clear. One layer is REFUSED: the 141 one-letter images the 2012 transcribers made to stand for the insular and Gaelic letterforms are their work, not Keightley's, and this edition replaces every one with its Unicode character instead.",
   assets: [
     {
       id: "words",

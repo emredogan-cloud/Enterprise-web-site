@@ -9,6 +9,12 @@
  *   front-v<n>.png       PNG · ≥ 2400 × 3600 px · ratio 1:1.5 ± 5 % · sRGB/iCCP chunk present (warn if absent)
  *   kindle-v<n>.jpg      JPEG · exactly 1600 × 2560 (warn otherwise)
  *   paperback-wrap-v<n>.pdf / hardcover-wrap-v<n>.pdf   PDF · 1 page · ≤ 40 MB
+ *
+ * A MULTI-VOLUME WORK BUILDS ONE ASSETS/cover FOR THE WHOLE BOOK and inserts the
+ * volume before the version — front-vol2-v1.png — because two volumes cannot both
+ * be front-v1.png. Keightley's Fairy Mythology is the first, and until this was
+ * taught here every one of its eight cover files warned as unrecognised, which is
+ * the kind of noise that trains a reader to skip the warnings.
  *   generated/…          ignored (raw model output, never a slot)
  * Every slot file must carry a version suffix; versions are never overwritten.
  */
@@ -59,7 +65,7 @@ export function checkFile(path, report) {
   const buf = readFileSync(path);
   const versioned = /-v\d+\.[a-z]+$/.test(name);
   if (!versioned) report.error("version", "slot files must be named …-v<n>.<ext>", name);
-  if (/^front-v\d+\.png$/.test(name)) {
+  if (/^front-(?:vol\d+-)?v\d+\.png$/.test(name)) {
     const info = pngInfo(buf);
     if (!info) return report.error("format", "not a PNG", name);
     if (info.width < 2400 || info.height < 3600) report.error("size", `${info.width}×${info.height} (min 2400×3600)`, name);
@@ -67,12 +73,12 @@ export function checkFile(path, report) {
     if (Math.abs(ratio - 1.5) > 0.075) report.error("ratio", `${ratio.toFixed(3)} (expected 1.5 ± 5 %)`, name);
     if (!info.hasColorProfile) report.warn("colorspace", "no sRGB/iCCP chunk — colour may shift in print/web", name);
     if (report.errors.every((e) => e.where !== name)) report.pass("front", `${info.width}×${info.height}`, name);
-  } else if (/^kindle-v\d+\.jpg$/.test(name)) {
+  } else if (/^kindle-(?:vol\d+-)?v\d+\.jpg$/.test(name)) {
     const info = jpegInfo(buf);
     if (!info) return report.error("format", "not a JPEG", name);
     if (info.width !== 1600 || info.height !== 2560) report.warn("size", `${info.width}×${info.height} (KDP recommends 1600×2560)`, name);
     else report.pass("kindle", "1600×2560", name);
-  } else if (/^(paperback|hardcover)-wrap-v\d+\.pdf$/.test(name)) {
+  } else if (/^(paperback|hardcover)-wrap-(?:vol\d+-)?v\d+\.pdf$/.test(name)) {
     const mb = buf.length / 1048576;
     if (mb > 40) report.error("size", `${mb.toFixed(1)} MB (KDP limit 40 MB)`, name);
     try {
@@ -84,7 +90,7 @@ export function checkFile(path, report) {
       report.skipped("pdfinfo", `could not run pdfinfo on ${name}`);
     }
   } else if (/\.(png|jpe?g|pdf)$/i.test(name)) {
-    report.warn("slot", "not a recognised cover slot name (front-v<n>.png, kindle-v<n>.jpg, paperback-wrap-v<n>.pdf, hardcover-wrap-v<n>.pdf)", name);
+    report.warn("slot", "not a recognised cover slot name (front-v<n>.png, kindle-v<n>.jpg, paperback-wrap-v<n>.pdf, hardcover-wrap-v<n>.pdf; a multi-volume work inserts vol<N>-, e.g. front-vol2-v1.png)", name);
   }
 }
 

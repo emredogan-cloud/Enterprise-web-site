@@ -92,9 +92,13 @@ gcp-*.json
 
 # Python venv for the print factory (reportlab, pikepdf, segno, fontTools).
 # Recreate with: python3 -m venv .venv-factory && .venv-factory/bin/pip install pypdf pikepdf segno reportlab fonttools Pillow
-.venv-factory/
+#
+# NO TRAILING SLASH. A git worktree keeps one venv by SYMLINKING to the main
+# tree's, and `.venv-factory/` matches only a real directory, so the symlink
+# showed up as untracked in every worktree and was one careless `git add` away
+# from being committed as a link into another checkout.
+.venv-factory
 
 # Python bytecode from the OCR tooling
 scripts/factory/ocr/__pycache__/
-.venv-factory/
 scripts/factory/__pycache__/

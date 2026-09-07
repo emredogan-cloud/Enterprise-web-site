@@ -683,3 +683,85 @@ into `paddlePriceId`: `valice-catalog.test.ts` forbids a price id on a row whose
 `available`, and that test is right — a live id on a row that is not for sale fails at the
 till rather than at load. Signing the gates and flipping `websiteStatus` is one action; the
 ids are ready for it.
+
+---
+
+### F-040 · P1 · Four books shipped with an under-measured apparatus, because the measuring instrument was wrong
+
+`differentiation.py` — the instrument Article 2 is judged by — counted **every string** in a
+content file. Two things followed that nobody had looked for:
+
+* each block's `kind` (the word `p`, or `verse`) scored as a word of the book — 552 to 1,489
+  per volume;
+* a verse block, which carries both a joined `text` for the matchers and its `lines` for the
+  typesetter, was counted **twice** — 10,175 words of Keightley's verse in Volume I alone.
+
+All of it landed in the **SOURCE denominator**, so every editor share this phase reported was
+**understated**. It failed safe, which is why it survived four books: it never reported a floor
+breach that was not real. But the direction of an error stops being safe the moment it is used
+to justify a decision, and it was about to be — *"these two volumes are below the floor, record
+it"* is exactly that decision.
+
+Corrected and all six volumes re-measured. Every share rose; every book that met the floor
+still meets it. Nine regression tests now hold the counter.
+
+**Nothing is asked of the Founder here.** It is recorded because the lesson is not about verse
+blocks: *a measuring instrument that errs in the safe direction is still a broken instrument,
+and it will be found late, by someone writing the report.*
+
+---
+
+### F-041 · P0 · The Fairy Mythology was printing 3,363 words short, and four checks could not see it
+
+An adversarial review found that both Keightley volumes were **discarding continuation
+paragraphs of footnotes** — 61 notes truncated, 19 printing as nothing at all — while Volume I
+page 4 told the reader in print that *nothing is abridged*.
+
+The reason no check caught it is worth the Founder's attention, because it generalises:
+
+* the parse report counted footnotes **found** — containers matched to an anchor — and stayed
+  at 604 the whole time. **A count of containers is not a count of contents.**
+* `coverage.py` compares each section's first and last **prose** paragraph, and a footnote is
+  neither;
+* `check_quotes.py` reads the apparatus, not the source;
+* the word-count reconciliation used the same lossy extractor on both sides, so both sides
+  agreed.
+
+Fixed at the parser, with two shapes it had never met — a note whose whole body is a poem, and
+one whose body is a two-column table. The build now **refuses to complete** if a note would
+reach the page empty, which is what the front matter had been claiming all along. A new
+source-claim asserts the **words**, as a floor, with the broken extractor's own figure as its
+regression test.
+
+**The ask:** none, but this is the finding to remember when the next book is signed off. Both
+volumes' page counts moved — 332 → 336 and 322 → 326 — which sent the covers back to the KDP
+calculator.
+
+---
+
+### F-042 · P0 · A fabricated authority reached print in both volumes, and an essay was built on him
+
+*William Hone* was given fourteen citations in Volume I, twenty-six in Volume II, an entry in
+both who's-whos, a glossary entry, a row in the Register, an editorial note, a line in the
+companion copy, a claim in the ledger marked **VERIFIED**, and **a whole essay** in Volume II —
+*England and the Every-Day Book* — whose opening sentence was *"Hone is cited twenty-six times
+here — more than Grimm, more than Scott."*
+
+**Keightley never names him.** Not once, in either volume. Neither *Every-Day Book* nor *Table
+Book* appears anywhere in the source.
+
+Every other count in the same table was exact against the text — Grimm, Thiele, Chaucer,
+Milton, Gervase, Giraldus. This one number was invented and then everything else was built on
+top of it. Two further counts in the same tables were also wrong: Walter Scott's (fifteen and
+sixteen claimed; the name occurs seven and six times, and not all of them are the same man),
+and a book — the *Letters on Demonology and Witchcraft* — that Keightley never cites at all.
+
+All of it is removed, and what is genuinely there was worth having: the English section rests
+on **poets rather than collectors**, and on Brand's *Popular Antiquities*, itself a compilation
+of earlier print. Three new source-claims now hold the book to the corrected statements.
+
+**The ask:** this is the second phase running in which a confident, specific, checkable number
+turned out to be invented — British Goblins had eleven. Both times the same thing was true:
+**the number was never held against the text the book actually prints.** `check_source_claims.py`
+exists because of the first; it now carries the second's negative claims too. If the Founder
+wants one rule enforced above the others at Gate 5, it is this one.

@@ -19,7 +19,7 @@ each step of what the witnesses actually said.
 |---|---|
 | Pages | **198**, 6 × 9, even |
 | Baring-Gould's words printed | **54,346** — 16 chapters, 38 footnotes, 15 passages of verse |
-| Editorial apparatus | **14,725 words, 21.3%** against a 20% floor |
+| Editorial apparatus | **14,998 words, 21.59%** against a 20% floor |
 | Illustrations | **none, and none invented** — the 1865 book has no plates |
 | Coverage | 99.73% of the source body; **0 boilerplate leaks**; 16/16 chapters open and close as the source does |
 | Quotations | **8 checked against the source, 0 not his** |
@@ -28,6 +28,10 @@ each step of what the witnesses actually said.
 | Hardcover | 14.21 × 10.417 in, 0.635 in spine — calculator row read for 198 pp |
 | EPUB | 843 KB, **EPUBCheck 0 fatal / 0 error / 0 warning** |
 | Companion | 4 sheets, QR **25.9% of usable page height** |
+
+
+> **Re-measured 2026-09-07.** A defect was found in `differentiation.py`, the instrument Article 2 is judged by: it counted every string in a content file, so each block's `kind` label scored as a word of the book, and a verse block carrying both `text` and `lines` was counted twice. Those words inflated the SOURCE denominator, so the share had been **understated**. The counter now skips structural keys and counts a block once; all six Phase 3 volumes were re-measured. The figure above is the corrected one, and this book still clears the floor.
+
 
 ## What this edition adds
 

@@ -81,10 +81,13 @@ Exit 1 if any claim fails. Writes QA/source-claims.json either way, because a ch
 leaves no record is a checker nobody can audit.
 """
 from __future__ import annotations
-import argparse, json, re, sys
+import argparse, operator, json, re, sys
 from pathlib import Path
 
 CHECKS = {"present", "absent", "count", "count_min", "count_max", "count_after", "report"}
+
+OPS = {"==": operator.eq, "!=": operator.ne, ">=": operator.ge, "<=": operator.le,
+       ">": operator.gt, "<": operator.lt}
 
 
 def load_source(root: Path, spec: str, exclude_index: bool) -> str:
@@ -130,7 +133,18 @@ def run(claims: list, text: str, report: dict | None) -> list:
             else:
                 try:
                     got = dig(report, c["path"])
-                    row.update(found=got, expected=c["expect"], ok=got == c["expect"])
+                    # A FLOOR IS A CLAIM TOO. Equality is right for a fixed count — 604
+                    # footnotes, 141 glyphs — and wrong for a quantity that may legitimately
+                    # rise, such as the WORDS inside those footnotes. Without `op` such a
+                    # claim can only be written as an exact number, which then has to be
+                    # edited every time the parse improves, and an assertion that is edited
+                    # to match the output is not an assertion.
+                    op = c.get("op", "==")
+                    if op not in OPS:
+                        row["error"] = f"unknown op {op!r}; use one of {sorted(OPS)}"
+                    else:
+                        row.update(found=got, expected=f"{op} {c['expect']}",
+                                   ok=bool(OPS[op](got, c["expect"])))
                 except (KeyError, IndexError, TypeError) as e:
                     row["error"] = f"no such path {c.get('path')!r}: {e}"
             rows.append(row); continue

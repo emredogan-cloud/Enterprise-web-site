@@ -12,9 +12,9 @@ his own prefatory note, with both plates of the 1904 edition. 138 pages at
 | | |
 |---|---|
 | Source | Project Gutenberg ebook 1210 — a proof-read human transcription, not a scan |
-| Source words printed | 36,053 |
+| Source words printed | 36,144 |
 | Editor words | 9,768 |
-| **Editor share** | **21.02%** against a 20% floor |
+| **Editor share** | **21.28%** against a 20% floor |
 | Pages | 138 (even, as KDP requires) |
 | Claims registered | 23, all verified — one CORRECTED by verification |
 | Quotations checked | 34 — 25 in source, 9 external, **0 not found** |
@@ -58,6 +58,10 @@ than asserted:
 | Gap | 116 words — **measured**: 105 inside heading tags, 11 in the contents lists and title page |
 | Boilerplate leaks | **0** — asserted on every build |
 | Accounting | 36,909 − 677 (dropped introduction) − 179 (title page, contents, three container headings) = **36,053 printed** |
+
+
+> **Re-measured 2026-09-07.** A defect was found in `differentiation.py`, the instrument Article 2 is judged by: it counted every string in a content file, so each block's `kind` label scored as a word of the book, and a verse block carrying both `text` and `lines` was counted twice. Those words inflated the SOURCE denominator, so the share had been **understated**. The counter now skips structural keys and counts a block once; all six Phase 3 volumes were re-measured. The figure above is the corrected one, and this book still clears the floor.
+
 
 17 stories (23,908 w), 3 studies (9,826 w),
 17 note sections (2,165 w).

@@ -17,7 +17,7 @@ serpent he cannot solve, and says so — which is why that chapter has aged best
 |---|---|
 | Pages | **232**, 6 × 9, even, no filler leaf needed |
 | Lee's words printed | **62,018** — 8 chapters, 2 prefaces, 100 footnotes |
-| Editorial apparatus | **18,491 words, 22.2%** against a 20% floor |
+| Editorial apparatus | **18,491 words, 22.38%** against a 20% floor |
 | Figures | **68 of 68**, at the size their scans honestly support |
 | Coverage | 99.71% of the source body; **0 boilerplate leaks**; 10/10 pieces open and close as the source does |
 | Quotations | **21 checked against the source, 0 not his** |
@@ -26,6 +26,10 @@ serpent he cannot solve, and says so — which is why that chapter has aged best
 | Hardcover | 14.286 × 10.417 in, 0.711 in spine — calculator row read for 232 pp |
 | EPUB | 3.64 MB, 68 plates, **EPUBCheck 0 fatal / 0 error / 0 warning** |
 | Companion | 4 sheets, QR **25.9% of usable page height**, 1.45 mm modules, independently decoded |
+
+
+> **Re-measured 2026-09-07.** A defect was found in `differentiation.py`, the instrument Article 2 is judged by: it counted every string in a content file, so each block's `kind` label scored as a word of the book, and a verse block carrying both `text` and `lines` was counted twice. Those words inflated the SOURCE denominator, so the share had been **understated**. The counter now skips structural keys and counts a block once; all six Phase 3 volumes were re-measured. The figure above is the corrected one, and this book still clears the floor.
+
 
 ## What this edition does that the free text does not
 

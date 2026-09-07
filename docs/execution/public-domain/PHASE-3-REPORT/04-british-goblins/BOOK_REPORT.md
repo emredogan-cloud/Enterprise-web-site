@@ -23,8 +23,8 @@ exactly that ground and cited him anyway. This edition exists to do the marking 
 | | |
 |---|---|
 | Pages | **390**, 6 × 9, even |
-| Sikes's words printed | **110,406** — 4 Books, 32 chapters, 194 footnotes, 44 passages of verse |
-| Editorial apparatus | **29,222 words, 20.45%** against a 20% floor |
+| Sikes's words printed | **112,594** — 4 Books, 32 chapters, 194 footnotes, 44 passages of verse |
+| Editorial apparatus | **29,223 words, 20.61%** against a 20% floor |
 | Illustrations | **20 of T. H. Thomas's 21 drawings set** — 17 captioned plates and 3 ornaments |
 | Illustrations refused | **6** — the music engravings, set in 2010 by Lesley Halamek. Not this edition's to reproduce |
 | Coverage | **32/32 chapters** open and close as the source does, in the content files and in the built PDF; 0 failures |
@@ -34,6 +34,10 @@ exactly that ground and cited him anyway. This edition exists to do the marking 
 | Hardcover | 14.642 × 10.417 in, 1.067 in spine — calculator row read for 390 pp |
 | EPUB | 1.5 MB, 65 documents, **EPUBCheck 0 fatal / 0 error / 0 warning** |
 | Companion | 4 sheets, QR **2.31 in measured in the built PDF — 25.7% of page height, 36.4% of usable height** |
+
+
+> **Re-measured 2026-09-07.** A defect was found in `differentiation.py`, the instrument Article 2 is judged by: it counted every string in a content file, so each block's `kind` label scored as a word of the book, and a verse block carrying both `text` and `lines` was counted twice. Those words inflated the SOURCE denominator, so the share had been **understated**. The counter now skips structural keys and counts a block once; all six Phase 3 volumes were re-measured. The figure above is the corrected one, and this book still clears the floor.
+
 
 ## What this edition adds
 
@@ -227,7 +231,7 @@ and it is the recommendation this book leaves to the phase.
   has no evidential support, and that the sin-eater remains disputed. Both are filed in the book
   as editorial interpretation under Article 6 rather than asserted as current fact, and the
   ledger records that no single citable authority was read for either.
-- **The apparatus clears the floor by 20.45%**, a margin of about 1,100 words — wider than
+- **The apparatus clears the floor at 20.61%**, a margin of about 900 words — wider than
   before the review, because the review required two new Article 18 notes and the rewriting of
   several false passages. It was not padded to raise it.
 - **A duplicate-prose finding is open.** The reviewer identified 28 near-duplicate sentence
