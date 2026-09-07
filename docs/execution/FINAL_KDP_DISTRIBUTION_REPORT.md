@@ -1,12 +1,12 @@
 # KDP distribution — audited 2026-09-07 (second pass)
 
-> **Second pass, later the same day.** Since the first pass: the Puzzle Book paperback was
-> **published and has a real ASIN**, Gate 11 was given an instrument and passed on seven books,
-> and the World Games description fix was confirmed saved in KDP but **not yet on Amazon**.
-> Changes are marked ▲.
+> **Third pass, evening.** Since the second: the Puzzle Book paperback **went from publishing to
+> live while this session watched it** and is recorded live; every KDP price was reconciled
+> against the catalogue line by line; the KDP quality queue was read; and the format gap was
+> costed against the files actually on disk. Third-pass changes are marked ◆; second-pass ▲.
 
 
-**12 titles on the bookshelf · 22 live ASINs · 1 publishing (`B0HJ2TPX4T`).**
+**12 titles on the bookshelf · ◆ 23 live ASINs · 0 publishing.**
 Audited through the KDP web UI. No KDP API was called. Every ASIN below was read off the
 bookshelf and confirmed on its own Amazon product page.
 
@@ -18,7 +18,7 @@ bookshelf and confirmed on its own Amazon product page.
 |---|---|---|---|
 | Codex Mythologica (main) | **live** $6.99 `B0HD8121RR` | **live** $21.99 `B0HCY8KY3X` | **live** $32.99 `B0HDBFZRQ4` |
 | Codex Mythologica — Large Print | — | **live** $27.99 `B0HDDR84MF` | — |
-| Codex Mythologica: The Puzzle Book | — | ▲ **PUBLISHING** $16.99 `B0HJ2TPX4T` | ▲ ready, blocked at create |
+| Codex Mythologica: The Puzzle Book | — | ◆ **live** $16.99 `B0HJ2TPX4T` | ▲ interior built, no cover on disk |
 | Codex Bestiarium (main) | **live** $12.99 `B0HDLS4W8Q` | **live** $24.99 `B0HDLQHQ7H` | **live** $37.99 `B0HDLLPG5M` |
 | Codex Bestiarium — Large Print | — | **live** $29.99 `B0HDLT1V3P` | — |
 | Codex Enigmatica | **live** $9.99 `B0HGRZ3BRC` | **live** $19.99 `B0HGSVF15Q` | **live**¹ $29.99 `B0HH3B4HQ7` |
@@ -186,3 +186,161 @@ has been invented for any of them.
 | Puzzle Book published | **NO.** It is DRAFT. One click remains and it is the owner's |
 | World Games LP defects | **VERIFIED** — read on the live Amazon page |
 | R2 | **VERIFIED** — 13 masters confirmed by HeadObject against the live bucket. My earlier "placeholders" finding was wrong: I had read only `scripts/tmp/.env.production`, and the real credentials are in `.env`/`.env.local`. See F-044, withdrawn. |
+
+---
+
+# ◆ Third pass — evening, 2026-09-07
+
+## 11. Every KDP price against every catalogue price
+
+The bookshelf was read in full — both pages, 12 titles, 23 format listings — and each listing
+matched to its catalogue row by ASIN. Not spot-checked: **all 23, both directions.**
+
+| | |
+|---|---|
+| Price mismatches | **0 of 23** |
+| KDP listings with no catalogue row | **0** |
+| Catalogue ASINs absent from the shelf | **0** |
+| Malformed ASINs | **0** |
+
+```
+codex-bestiarium/ebook          B0HDLS4W8Q  $12.99  $12.99  ok
+codex-bestiarium/paperback      B0HDLQHQ7H  $24.99  $24.99  ok
+codex-bestiarium/hardcover      B0HDLLPG5M  $37.99  $37.99  ok
+codex-bestiarium/large_print    B0HDLT1V3P  $29.99  $29.99  ok
+codex-enigmatica/ebook          B0HGRZ3BRC   $9.99   $9.99  ok
+codex-enigmatica/paperback      B0HGSVF15Q  $19.99  $19.99  ok
+codex-enigmatica/hardcover      B0HH3B4HQ7  $29.99  $29.99  ok · KDP: Updates in review
+codex-mythologica/ebook         B0HD8121RR   $6.99   $6.99  ok
+codex-mythologica/paperback     B0HCY8KY3X  $21.99  $21.99  ok
+codex-mythologica/hardcover     B0HDBFZRQ4  $32.99  $32.99  ok
+codex-mythologica/large_print   B0HDDR84MF  $27.99  $27.99  ok
+puzzle-book/paperback           B0HJ2TPX4T  $16.99  $16.99  ok
+hangul/paperback                B0HHHWXGG4  $12.99  $12.99  ok
+hangul/hardcover                B0HHLZ31CV  $21.99  $21.99  ok · KDP: Updates in review
+world-games/ebook               B0HG44FH1B  $11.99  $11.99  ok
+world-games/paperback           B0HG3KMK9L  $22.99  $22.99  ok
+world-games/hardcover           B0HG41F21F  $34.99  $34.99  ok
+world-games/large_print         B0HHNCVQVX  $31.99  $31.99  ok · KDP: Updates in review
+world-myths/ebook               B0HDQRPKST   $6.99   $6.99  ok
+world-myths/paperback           B0HDTL5V2H  $14.99  $14.99  ok
+world-myths/hardcover           B0HDZJ4PHQ  $26.99  $26.99  ok
+myth-hunters/paperback          B0HFP4KYX5  $14.99  $14.99  ok
+dudeney/paperback               B0HHS2JW9N  $14.99  $14.99  ok
+```
+
+Worth saying plainly: reading the shelf, I thought the World Games large print was mispriced —
+$31.99 on KDP against a remembered $29.99. **It is not. $29.99 is the Bestiarium large print.**
+The table caught a misremembering that a spot check would have promoted into a finding.
+
+## 12. The Puzzle Book paperback went live during this session
+
+The one state change worth watching in real time.
+
+| When | KDP bookshelf | `amazon.com/dp/B0HJ2TPX4T` |
+|---|---|---|
+| Morning | Publishing, $16.99 | page exists · ISBN 979-8172268281 · 156 pp · **price shows `—`** |
+| Evening | **Live**, $16.99 | **"Paperback from $16.99"**, with *Other New from $16.99* beneath |
+
+Recorded `kdp: "live"`, `availability: "available"`, and loaded into production. The page also
+says *"This item cannot be shipped to your selected delivery location"* for the account's own
+address in Turkey — that is a shipping-destination limit on one address, not a listing state, and
+it is not a reason to withhold the edition from readers who can receive it.
+
+**This is why `publishing` had to become a real state in the catalogue rather than a rounding of
+`live`.** For most of a day the honest answer was neither.
+
+## 13. The KDP quality queue — read, not guessed
+
+| Bucket | Count |
+|---|---|
+| Suppressed | **0 books** |
+| Quality warnings | **0 books** |
+| Make corrections | 0 items |
+| Under review by Amazon | 0 items |
+| Resolved | 2 items in 1 book |
+| **Open — Review** | **1 item in 1 book** |
+
+The single open item is on **Codex Enigmatica's Kindle edition** (`B0HGRZ3BRC`, last audited
+2026-09-05), category *Metadata*, type *Recommendation*:
+
+> **Metadata — Reading Interest Age is missing.** *"To improve the discoverability of books in
+> the Juvenile book categories on Amazon, choose an appropriate age range for your title."*
+
+The recommendation is not the finding. **The finding is why Amazon is offering it**: the live
+breadcrumb on that listing reads
+
+> Kindle Store › Kindle eBooks › **Teen & Young Adult** › Hobbies & Games › Games & Activities
+
+A hundred engraved ciphers with a book-length unbroken mystery is being shelved as young-adult.
+That is the F-048 categorisation problem showing up from Amazon's side as well as ours, and the
+age-range prompt is a symptom of it. **Filling in an age range would answer the prompt and
+entrench the wrong shelf.**
+
+None of the three buttons — *Edit book details*, *I will fix it*, *Decline* — was pressed. Each
+submits a response to Amazon about a live listing, and the right response depends on a
+categorisation decision that is the Founder's.
+
+## 14. The format gap, costed against files on disk
+
+**28 Amazon-fulfilled formats in the catalogue have no ASIN.** Eighteen belong to `draft` books a
+visitor cannot see. **Ten belong to books already published** — nine of them promised on a live
+page as *coming soon*, one marked not-applicable:
+
+| Book | Format | Promised at | Interior on disk | Cover on disk |
+|---|---|---|---|---|
+| greek-alphabet-workbook | paperback | $12.99 | **missing** | **missing** |
+| greek-alphabet-workbook | hardcover | $24.99 | **missing** | no path |
+| greek-alphabet-workbook | large_print | — | **missing** | **missing** |
+| puzzle-book | hardcover | $33.99 | OK 421 K | **no cover** |
+| puzzle-book | large_print | — | — | — |
+| epictetus | paperback | $16.99 | **missing** | **missing** |
+| seneca | paperback | $15.99 | **missing** | **missing** |
+| myths-and-legends-of-china | paperback | $13.99 | **missing** | **missing** |
+| indian-myth-and-legend | paperback | $12.99 | **missing** | **missing** |
+| mythical-monsters | paperback | $11.99 | **missing** | **missing** |
+| world-myths | large_print | *(not applicable)* | — | — |
+
+**Not one of the nine has a complete package.** Eight are missing both files; the Puzzle Book
+hardcover has an interior and no cover. There is nothing to upload, so nothing was uploaded —
+the blocker is upstream of KDP entirely.
+
+Four editions *do* have both files ready — `games-ancient-and-oriental`, `korean-games`,
+`chess-and-playing-cards` and `traditional-games`, all paperback. **They were not uploaded**, and
+that is a decision worth stating rather than burying:
+
+* All four are `websiteStatus: draft`. Publishing them to Amazon would put a book on Amazon that
+  Valice Press itself does not list.
+* Their gates **1, 3, 6, 7, 8, 10 and 12** are all `not_started` — including Cover, Interior/proof
+  and KDP compliance, the three gates that exist precisely to be passed *before* a KDP upload.
+* Those are founder-signature gates, and signing them is refused here.
+
+Pushing four books past three unrun compliance gates to make a report say "uploaded" is the exact
+trade the gate system exists to prevent.
+
+### ▲ Correction to the second pass
+
+The package index at `docs/execution/phase-5/kdp-packages/INDEX.json` (generated 09-05) still
+lists `the-puzzles-of-henry-dudeney/paperback` and `codex-mythologica-the-puzzle-book/paperback`
+as `not_created`. **Both are live** — `B0HHS2JW9N` and `B0HJ2TPX4T`. Its `kdpState` field is
+stale; its file paths are not, and it was the file paths this section used.
+
+## 15. Distribution scorecard — no UNKNOWN rows
+
+| | Count | Evidence |
+|---|---|---|
+| Titles on the bookshelf | 12 | read in the KDP UI, both pages |
+| Format listings | 23 | every one carries an ASIN |
+| **Live** | **23** | each confirmed on its own Amazon page |
+| Publishing | 0 | the last one cleared this evening |
+| In review / blocked / draft at KDP | 0 | the shelf filter reports none |
+| Listings with a pending metadata update | 3 | Enigmatica hardcover, Hangul hardcover, World Games LP — *"Live · Updates in review"* |
+| Price mismatches vs the catalogue | **0** | §11 |
+| Suppressed or quality-warned | **0** | §13 |
+| Open quality items | 1 | §13, a recommendation |
+| Amazon formats with no ASIN | 28 | 18 on draft books, 10 on published; §14 |
+| Of those, uploadable today | **0** | §14 — files absent, or gates unrun |
+| ASINs or ISBNs invented | **0** | every number here was read off Amazon or KDP |
+
+**No API was called. Every figure was read through the normal browser workflow, and no button
+that submits anything to Amazon was pressed.**
