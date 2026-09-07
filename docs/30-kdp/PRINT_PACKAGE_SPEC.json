@@ -1,0 +1,92 @@
+[
+ {
+  "slug": "the-myth-hunters-field-book",
+  "format": "hardcover",
+  "binding": "hardcover",
+  "trimW": 8.25,
+  "trimH": 11,
+  "interior": null,
+  "cover": null,
+  "config": "/home/emre/Downloads/MY-DİGİTAL-BOOK/GAMES-PUZZLE/THE-MYTH-HUNTERS-FIELD-BOOK/project_config.json"
+ },
+ {
+  "slug": "greek-alphabet-handwriting-workbook",
+  "format": "paperback",
+  "binding": "paperback",
+  "trimW": 8.5,
+  "trimH": 11,
+  "interior": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/02-GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/interior.pdf",
+  "cover": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/02-GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/PAPERBACK/cover.pdf",
+  "config": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/02-GREEK-ALPHABET-HANDWRITING-WORKBOOK/project_config.json"
+ },
+ {
+  "slug": "greek-alphabet-handwriting-workbook",
+  "format": "hardcover",
+  "binding": "hardcover",
+  "trimW": 8.25,
+  "trimH": 11,
+  "interior": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/02-GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/HARDCOVER/interior.pdf",
+  "cover": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/02-GREEK-ALPHABET-HANDWRITING-WORKBOOK/OUTPUT/KDP/HARDCOVER/cover.pdf",
+  "config": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/02-GREEK-ALPHABET-HANDWRITING-WORKBOOK/project_config.json"
+ },
+ {
+  "slug": "codex-mythologica-the-puzzle-book",
+  "format": "hardcover",
+  "binding": "hardcover",
+  "trimW": 8.25,
+  "trimH": 11,
+  "interior": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/04-CODEX-MYTHOLOGICA-THE-PUZZLE-BOOK/OUTPUT/HARDCOVER/interior.pdf",
+  "cover": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/04-CODEX-MYTHOLOGICA-THE-PUZZLE-BOOK/OUTPUT/HARDCOVER/cover.pdf",
+  "config": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/04-CODEX-MYTHOLOGICA-THE-PUZZLE-BOOK/project_config.json"
+ },
+ {
+  "slug": "epictetus-discourses-and-enchiridion",
+  "format": "paperback",
+  "binding": "paperback",
+  "trimW": 6,
+  "trimH": 9,
+  "interior": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/05-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/OUTPUT/interior-main.pdf",
+  "cover": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/05-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/ASSETS/cover/paperback-wrap-v4.pdf",
+  "config": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/05-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/project_config.json"
+ },
+ {
+  "slug": "seneca-selected-dialogues",
+  "format": "paperback",
+  "binding": "paperback",
+  "trimW": 6,
+  "trimH": 9,
+  "interior": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pdf",
+  "cover": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/ASSETS/cover/paperback-wrap-v3.pdf",
+  "config": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/project_config.json"
+ },
+ {
+  "slug": "myths-and-legends-of-china",
+  "format": "paperback",
+  "binding": "paperback",
+  "trimW": 6,
+  "trimH": 9,
+  "interior": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pdf",
+  "cover": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/ASSETS/cover/paperback-wrap-v3.pdf",
+  "config": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/project_config.json"
+ },
+ {
+  "slug": "indian-myth-and-legend",
+  "format": "paperback",
+  "binding": "paperback",
+  "trimW": 6,
+  "trimH": 9,
+  "interior": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf",
+  "cover": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/ASSETS/cover/paperback-wrap-v3.pdf",
+  "config": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/project_config.json"
+ },
+ {
+  "slug": "mythical-monsters",
+  "format": "paperback",
+  "binding": "paperback",
+  "trimW": 6,
+  "trimH": 9,
+  "interior": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/05-MYTHICAL-MONSTERS/OUTPUT/interior-main.pdf",
+  "cover": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/05-MYTHICAL-MONSTERS/ASSETS/cover/paperback-wrap-v3.pdf",
+  "config": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/05-MYTHICAL-MONSTERS/project_config.json"
+ }
+]
