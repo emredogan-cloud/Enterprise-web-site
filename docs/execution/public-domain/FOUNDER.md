@@ -1315,3 +1315,51 @@ The other eight now have complete, preflight-clean packages.
 
 I did not answer it. A5 is explicitly a Founder decision and the catalogue's promise is the only
 thing making it urgent.
+
+---
+
+## F-052 — four live Amazon listings say 120 creatures; the book says 112
+
+**All four Codex Bestiarium formats carry a title on Amazon that overstates the creature count
+by eight, and the book itself contradicts them.**
+
+| | |
+|---|---|
+| Live Amazon title | *"Codex Bestiarium: A World Bestiary: **120** Legendary Creatures from 40 Traditions…"* |
+| Affected | `B0HDLS4W8Q` Kindle · `B0HDLQHQ7H` paperback · `B0HDLLPG5M` hardcover · `B0HDLT1V3P` large print |
+| The manuscript | `01_SOURCE/book.json` → `entries` = **112**, and 112 distinct entry names |
+| **The printed interior** | prints the phrase **"112 legendary creatures"** in its own front matter |
+| The Valice catalogue | **112** — the storefront has been right all along |
+| Traditions | **40**, and that number is correct on both surfaces |
+
+The near-miss worth recording: the manuscript also holds 8 `kinOpenings`, and 112 + 8 = 120,
+which is exactly the sort of coincidence that makes a wrong number look explained. They are not
+creatures. They are the essay openings for the eight kin families (A–H) — one of them begins
+*"Nine traditions, on four continents, with no contact between them, invented a woman who comes
+for the mother and the newborn."* That is an argument, not an entry.
+
+**Why it went unseen.** `metadata-lint` refuses any number in a title that is not a measured
+count — and it is the check that found this class of problem elsewhere today. But it compares
+the **project config's** title against the **project config's** counts. It never sees the KDP
+listing. Both sides of its comparison can be right while the thing a customer reads is wrong.
+
+**The fix is not an edit.** KDP locks title and subtitle 72 hours after publication; Bestiarium
+was submitted 2026-08-09, a month ago. This is the same wall as F-047 (the World Games
+*"39 Cultıres"* typo): correcting it means publishing a new edition, which means new ASINs and
+losing the listing's history.
+
+**The ask — a commercial decision, not a technical one.**
+
+1. **Leave it.** Eight creatures is a small overstatement in a customer's favour's opposite
+   direction; the risk is a reviewer who counts.
+2. **New edition.** Correct title, new ASINs, review history starts again on four formats.
+3. **Split the difference** — leave the three print formats, republish only the Kindle, where a
+   new ASIN costs least.
+
+I did not choose. What I can say is that the book's own pages say 112, so a reader who counts
+will find the listing wrong rather than the book.
+
+**One more thing to fix regardless of the choice:** `metadata-lint` should compare against the
+LIVE listing, not only the config. `scripts/factory/kdp-reconcile.mjs` already holds the shelf
+titles in `docs/30-kdp/KDP_BOOKSHELF_OBSERVED.json`; the check is a join away, and it would have
+caught this a month ago.
