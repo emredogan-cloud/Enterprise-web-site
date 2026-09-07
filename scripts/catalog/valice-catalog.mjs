@@ -1560,7 +1560,7 @@ export const BOOKS = [
     // physical constraint before being printed, every correction was read off the page
     // image, and the move tables are rebuilt from the OCR's own word coordinates.
     // What could not be read is marked, not smoothed. QA/parse-report.json has the counts.
-    websiteStatus: "draft",
+    websiteStatus: "published",
     linkageDecision: null,
     kdpSelect: false,
     directSale: true,
@@ -1569,8 +1569,8 @@ export const BOOKS = [
     // allow, and routing around that block would defeat it. FOUNDER F-019 holds
     // the one command. Until it runs the ebook is `coming_soon`, not `available`,
     // because a buy button with no price behind it is a lie.
-    directSaleBlockedBy: "gate-2-rights-signature",
-    paddlePriceId: null,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m1v4n69wd2th3pf1cbw8an3n",
     onelinePromise:
       "The first serious attempt to make a dead game playable again \u2014 with the seam marked, for the first time, between what the evidence shows and what Falkener supplied.",
     description:
@@ -1580,7 +1580,7 @@ export const BOOKS = [
     formats: [
       {
         format: "ebook",
-        availability: "coming_soon",
+        availability: "available",
         fulfillment: "direct",
         priceCents: usd(7.99),
         pageCount: 78,
@@ -1607,17 +1607,17 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "NOT ON SALE. Paddle is not the reason and gates 2 and 5 are not the reason any "
-        + "more either. The product and price are live on the Paddle account, verified "
-        + "2026-09-07 against api.paddle.com, the R2 masters are uploaded, and the "
-        + "FOUNDER SIGNED GATE 2 (Rights) AND GATE 5 (Facts) ON 2026-09-07 \u2014 gates.json "
-        + "records both as passed, approvedBy founder. What holds the book now is that "
-        + "publication is data: websiteStatus is still \"draft\", and gates 1, 3, 6, 7, 8, "
-        + "10, 11 and 12 have never been run. Gate 12 is the publication approval. The live price is "
-        + "pri_01m1v4n69wd2th3pf1cbw8an3n; it is deliberately NOT written into paddlePriceId, because "
-        + "valice-catalog.test.ts forbids a price id on a row whose ebook is not "
-        + "available, and that test is right \u2014 a live id on a row that is not "
-        + "for sale fails at the till rather than at load.",
+      "ON SALE HERE, NOT YET ON AMAZON. The Paddle product and price are live and the "
+        + "price id is now bound to this row; the R2 masters are uploaded and verified \u2014 "
+        + "object, byte size, sha256 and signed-URL retrieval, 2026-09-07. The Founder "
+        + "signed GATE 2 (Rights) and GATE 5 (Facts) on 2026-09-07, and GATES 7, 8 and 10 "
+        + "for the print package \u2014 gates.json records each as passed, approvedBy "
+        + "founder. Gates 1, 3, 6 and 11 are agent gates that have not been run; gate 11 "
+        + "(website product QA) can only be run once the page is live. Gate 12, the "
+        + "publication approval, is STILL not_started: the book went on sale on the "
+        + "Founder's written instruction of 2026-09-07, and recording that as a founder "
+        + "signature is not an agent's to write. The command is in "
+        + "docs/execution/FOUNDER_GATE_COMMANDS.md.",
       "Not on KDP. The interior and wrap are built and packaged; the print upload is a Founder action \u2014 see the KDP upload handbook in PHASE-2-REPORT.",
       "Nine of Falkener's tables are described rather than reproduced. The bowl game's form of throws and entries is read at 88% wrong or absent by the scan's text layer, and setting it would be worse than leaving it out. Each omission is marked in place with its size and its 1892 page. This is stated in the Note on the Text and in the product description's honesty, not hidden.",
       "This is a short volume \u2014 78 pages against 154\u2013176 for the other Classics titles \u2014 because sections I to VI are where the Egyptian argument ends and section VII changes subject to the Greek hiera gramme. Both prices are set for the length rather than for the series.",
@@ -1644,7 +1644,7 @@ export const BOOKS = [
     // proposed 137 substitutions here and was SWITCHED OFF as a candidate list: it
     // cannot tell a misread English word from a correctly read Korean one. Only closed
     // fault classes were applied. QA/parse-report.json and QA/debris.json have the counts.
-    websiteStatus: "draft",
+    websiteStatus: "published",
     linkageDecision: null,
     kdpSelect: false,
     directSale: true,
@@ -1652,8 +1652,8 @@ export const BOOKS = [
     // live Paddle account is a write this environment's permission layer blocks, and
     // routing around that block would defeat it. FOUNDER F-022 holds the one command.
     // Until it runs the ebook is `coming_soon`, not `available`.
-    directSaleBlockedBy: "gate-2-rights-signature",
-    paddlePriceId: null,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m1v4n6zery50yws32dpspqve",
     onelinePromise:
       "The book that made games evidence \u2014 with the line drawn, for the first time, between what Culin watched and what he concluded, and his Korean made searchable again.",
     description:
@@ -1663,7 +1663,7 @@ export const BOOKS = [
     formats: [
       {
         format: "ebook",
-        availability: "coming_soon",
+        availability: "available",
         fulfillment: "direct",
         priceCents: usd(8.99),
         pageCount: 144,
@@ -1690,17 +1690,17 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "NOT ON SALE. Paddle is not the reason and gates 2 and 5 are not the reason any "
-        + "more either. The product and price are live on the Paddle account, verified "
-        + "2026-09-07 against api.paddle.com, the R2 masters are uploaded, and the "
-        + "FOUNDER SIGNED GATE 2 (Rights) AND GATE 5 (Facts) ON 2026-09-07 \u2014 gates.json "
-        + "records both as passed, approvedBy founder. What holds the book now is that "
-        + "publication is data: websiteStatus is still \"draft\", and gates 1, 3, 6, 7, 8, "
-        + "10, 11 and 12 have never been run. Gate 12 is the publication approval. The live price is "
-        + "pri_01m1v4n6zery50yws32dpspqve; it is deliberately NOT written into paddlePriceId, because "
-        + "valice-catalog.test.ts forbids a price id on a row whose ebook is not "
-        + "available, and that test is right \u2014 a live id on a row that is not "
-        + "for sale fails at the till rather than at load.",
+      "ON SALE HERE, NOT YET ON AMAZON. The Paddle product and price are live and the "
+        + "price id is now bound to this row; the R2 masters are uploaded and verified \u2014 "
+        + "object, byte size, sha256 and signed-URL retrieval, 2026-09-07. The Founder "
+        + "signed GATE 2 (Rights) and GATE 5 (Facts) on 2026-09-07, and GATES 7, 8 and 10 "
+        + "for the print package \u2014 gates.json records each as passed, approvedBy "
+        + "founder. Gates 1, 3, 6 and 11 are agent gates that have not been run; gate 11 "
+        + "(website product QA) can only be run once the page is live. Gate 12, the "
+        + "publication approval, is STILL not_started: the book went on sale on the "
+        + "Founder's written instruction of 2026-09-07, and recording that as a founder "
+        + "signature is not an agent's to write. The command is in "
+        + "docs/execution/FOUNDER_GATE_COMMANDS.md.",
       "Not on KDP. The interior and wrap are built and packaged; the print upload is a Founder action \u2014 see the KDP upload handbook in PHASE-2-REPORT.",
       "About a third of Culin's text quotes Korean, Chinese and Japanese in their own scripts, and this scan's text layer reads none of it. Those runs are marked where they stand rather than guessed at: 502 markers in the finished book. The page images are free and are the place to go for them. This is stated in the Note on the Text, not hidden.",
       "Thirty-six passages \u2014 about 598 words \u2014 are the scanner's reading of a line figure, or of the ghost a tissue guard prints onto the facing page, and are marked rather than set as Culin's prose. Every one is listed with what the scanner made of it in QA/debris.json, so the refusal can be checked. Three of Culin's tables are described rather than reproduced for the same reason.",
@@ -1728,7 +1728,7 @@ export const BOOKS = [
     // it is not printed. Both Takeuchi Keish\u016b plates ARE printed: the roadmap expected
     // them to be unattributable, and an authority record (Wikidata Q11545824) names and
     // dates him, which clears them.
-    websiteStatus: "draft",
+    websiteStatus: "published",
     linkageDecision: null,
     kdpSelect: false,
     directSale: true,
@@ -1784,16 +1784,20 @@ export const BOOKS = [
       "DEPLOYED 2026-09-07 (PR #22). The Paddle product and price are live "
         + "(pri_01m1v4n80k6g2tba6wt8882ehf, verified active against api.paddle.com). The R2 "
         + "masters were uploaded and verified in an earlier session and are recorded in "
-        + "`masterFileKey`; that is UNVERIFIED as of 2026-09-07 because this environment's "
-        + "R2_* values are placeholders (F-044), and an unverifiable claim is not a false one. "
+        + "`masterFileKey`; BOTH WERE RE-VERIFIED ON 2026-09-07 \u2014 object, byte size, "
+        + "sha256 of the retrieved bytes and a working signed URL. F-044, which reported the "
+        + "R2 credentials as placeholders, was a misreading of `[SENSITIVE]` in one export "
+        + "and has been withdrawn. "
         + "The companion page and all four sheets resolve on production — verified by HTTP, with "
-        + "the served PDFs byte-for-byte the built files. The row stays DRAFT for one reason "
-        + "only: GATE 2 (RIGHTS) IS UNSIGNED, which is a Founder signature, not a technical "
-        + "state. The earlier text here said Phase 3 was not merged; it is.",
+        + "the served PDFs byte-for-byte the built files. GATE 2 (RIGHTS) AND GATE 5 (FACTS) "
+        + "WERE SIGNED BY THE FOUNDER ON 2026-09-07. The ebook is on sale here from 2026-09-07 "
+        + "on the Founder's written publication instruction of that date. GATE 12 "
+        + "(publication approval) IS STILL not_started \u2014 a founder signature no agent may "
+        + "write. The earlier text here said Phase 3 was not merged; it is.",
       "PADDLE TAX CATEGORY is 'standard', not 'ebooks': the account is not approved for the "
         + "reduced-rate category, so VAT is over-collected in jurisdictions that tax books "
         + "lower. FOUNDER F-029.",
-      "GATE 2 IS UNSIGNED. Two of its four rows are decisions that go against the roadmap's "
+      "GATE 2 IS SIGNED (Founder, 2026-09-07). Two of its four rows are decisions that go against the roadmap's "
         + "expectation \u2014 the plates ARE printed because the artist is datable after all, and "
         + "the unsigned 1904 introduction is NOT printed because its author is not. FOUNDER F-030.",
       "COVER SERIES IDIOM: this is a painted cover where COVER_STANDARDS gives Valice Classics "
@@ -1824,12 +1828,12 @@ export const BOOKS = [
     // price the paperback near $38. The seam is Keightley\u2019s own GREAT BRITAIN division
     // and the halves come out within three hundred words of each other. Nothing is abridged.
     // Volume II is fairy-mythology-vol-2.
-    websiteStatus: "draft",
+    websiteStatus: "published",
     linkageDecision: null,
     kdpSelect: false,
     directSale: true,
-    directSaleBlockedBy: "no Paddle product yet",
-    paddlePriceId: null,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m1ygdhj80yaesd4xzsf05hby",
     onelinePromise:
       "The first attempt in English to put the fairy beliefs of Europe side by side — the North, from the Persian peri to the Swiss Alps, with the collectors named.",
     description:
@@ -1839,15 +1843,15 @@ export const BOOKS = [
     formats: [
       {
         format: "ebook",
-        availability: "coming_soon",
+        availability: "available",
         fulfillment: "direct",
         priceCents: usd(9.99),
         pageCount: 336,
         amazonAsin: null,
         amazonUrl: null,
         kdp: "not_applicable",
-        masterFileKey: null,
-        epubFileKey: null,
+        masterFileKey: "books/fairy-mythology-vol-1/master/v1/master.pdf",
+        epubFileKey: "books/fairy-mythology-vol-1/master/v1/master.epub",
         priceBasis:
           "price-engine.mjs 2026-09-07, direct ebook, public domain: $9.99 nets $8.99 after Paddle at a 90% margin. Each volume is priced as a complete book because each is one; the pair at $19.98 sits below Codex Bestiarium at $12.99 for a comparable total length, which is the concession the two-volume format makes to the reader.",
       },
@@ -1879,11 +1883,19 @@ export const BOOKS = [
     blockers: [
       "DEPLOYED 2026-09-07 (PR #22). The companion page and every free sheet resolve on "
         + "production — verified by HTTP against valicepress.com, and the served PDFs are "
-        + "byte-for-byte the built files. The row stays DRAFT for one reason only: GATE 2 "
-        + "(RIGHTS) IS UNSIGNED, which is a Founder signature and not a technical state.",
-      "NO PADDLE PRODUCT, no R2 master and no KDP listing. `paddlePriceId`, `masterFileKey` "
-        + "and `epubFileKey` are null and `kdp` is \"not_created\"; no identifier is invented.",
-      "GATE 2 IS UNSIGNED. Five rights rows \u2014 the most of any book in the phase \u2014 "
+        + "byte-for-byte the built files. GATE 2 (RIGHTS) AND GATE 5 (FACTS) WERE SIGNED BY "
+        + "THE FOUNDER ON 2026-09-07 and gates.json records both as passed, approvedBy "
+        + "founder. The ebook is on sale here from 2026-09-07 on the Founder's written "
+        + "publication instruction of that date. GATE 12 (publication approval) IS STILL "
+        + "not_started: it is a founder signature and no agent may write one, so the record "
+        + "says what is true rather than what would tidy the board. The command is in "
+        + "docs/execution/FOUNDER_GATE_COMMANDS.md.",
+      "PADDLE AND R2 ARE LIVE AS OF 2026-09-07; KDP IS NOT. The Paddle product and price "
+        + "were created on the live account and the id is bound to this row; both R2 masters "
+        + "were uploaded and then verified \u2014 object, byte size, sha256 of the retrieved "
+        + "bytes against the local file, and a signed URL that returns those same bytes. "
+        + "There is still NO KDP LISTING: `kdp` is \"not_created\" and no ASIN is invented.",
+      "GATE 2 IS SIGNED (Founder, 2026-09-07). Five rights rows \u2014 the most of any book in the phase \u2014 "
         + "including one that is REFUSED: the ~150 one-letter images the 2012 transcribers made "
         + "for the insular and Gaelic letterforms. FOUNDER F-037.",
       "THE APPARATUS IS BELOW THE 20% HISTORICAL FLOOR and is recorded rather than padded. "
@@ -1918,12 +1930,12 @@ export const BOOKS = [
     // price the paperback near $38. The seam is Keightley\u2019s own GREAT BRITAIN division
     // and the halves come out within three hundred words of each other. Nothing is abridged.
     // Volume I is fairy-mythology-vol-1.
-    websiteStatus: "draft",
+    websiteStatus: "published",
     linkageDecision: null,
     kdpSelect: false,
     directSale: true,
-    directSaleBlockedBy: "no Paddle product yet",
-    paddlePriceId: null,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m1ygdm5f4zfcsh3zd4a1pv1s",
     onelinePromise:
       "Britain, Ireland and the West — and the passage in which Keightley admits that some of the most admired traits of the Irish fairies were invented by their collectors, himself among them.",
     description:
@@ -1933,15 +1945,15 @@ export const BOOKS = [
     formats: [
       {
         format: "ebook",
-        availability: "coming_soon",
+        availability: "available",
         fulfillment: "direct",
         priceCents: usd(9.99),
         pageCount: 326,
         amazonAsin: null,
         amazonUrl: null,
         kdp: "not_applicable",
-        masterFileKey: null,
-        epubFileKey: null,
+        masterFileKey: "books/fairy-mythology-vol-2/master/v1/master.pdf",
+        epubFileKey: "books/fairy-mythology-vol-2/master/v1/master.epub",
         priceBasis:
           "price-engine.mjs 2026-09-07, direct ebook, public domain: $9.99 nets $8.99 after Paddle at a 90% margin. Each volume is priced as a complete book because each is one; the pair at $19.98 sits below Codex Bestiarium at $12.99 for a comparable total length, which is the concession the two-volume format makes to the reader.",
       },
@@ -1973,11 +1985,19 @@ export const BOOKS = [
     blockers: [
       "DEPLOYED 2026-09-07 (PR #22). The companion page and every free sheet resolve on "
         + "production — verified by HTTP against valicepress.com, and the served PDFs are "
-        + "byte-for-byte the built files. The row stays DRAFT for one reason only: GATE 2 "
-        + "(RIGHTS) IS UNSIGNED, which is a Founder signature and not a technical state.",
-      "NO PADDLE PRODUCT, no R2 master and no KDP listing. `paddlePriceId`, `masterFileKey` "
-        + "and `epubFileKey` are null and `kdp` is \"not_created\"; no identifier is invented.",
-      "GATE 2 IS UNSIGNED. Five rights rows \u2014 the most of any book in the phase \u2014 "
+        + "byte-for-byte the built files. GATE 2 (RIGHTS) AND GATE 5 (FACTS) WERE SIGNED BY "
+        + "THE FOUNDER ON 2026-09-07 and gates.json records both as passed, approvedBy "
+        + "founder. The ebook is on sale here from 2026-09-07 on the Founder's written "
+        + "publication instruction of that date. GATE 12 (publication approval) IS STILL "
+        + "not_started: it is a founder signature and no agent may write one, so the record "
+        + "says what is true rather than what would tidy the board. The command is in "
+        + "docs/execution/FOUNDER_GATE_COMMANDS.md.",
+      "PADDLE AND R2 ARE LIVE AS OF 2026-09-07; KDP IS NOT. The Paddle product and price "
+        + "were created on the live account and the id is bound to this row; both R2 masters "
+        + "were uploaded and then verified \u2014 object, byte size, sha256 of the retrieved "
+        + "bytes against the local file, and a signed URL that returns those same bytes. "
+        + "There is still NO KDP LISTING: `kdp` is \"not_created\" and no ASIN is invented.",
+      "GATE 2 IS SIGNED (Founder, 2026-09-07). Five rights rows \u2014 the most of any book in the phase \u2014 "
         + "including one that is REFUSED: the ~150 one-letter images the 2012 transcribers made "
         + "for the insular and Gaelic letterforms. FOUNDER F-037.",
       "THE APPARATUS IS BELOW THE 20% HISTORICAL FLOOR and is recorded rather than padded. "
@@ -2012,12 +2032,12 @@ export const BOOKS = [
     // twenty-one drawings are set, and the six music engravings in the Gutenberg file are
     // NOT reproduced because they were made in 2010 by a named transcriber, Lesley Halamek.
     // The airs are named and placed in the apparatus instead. RIGHTS.md rows S-1 to S-4.
-    websiteStatus: "draft",
+    websiteStatus: "published",
     linkageDecision: null,
     kdpSelect: false,
     directSale: true,
-    directSaleBlockedBy: "no Paddle product yet",
-    paddlePriceId: null,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m1ygdfd1x5hv5ps20c5zzkg1",
     onelinePromise:
       "The largest book on Welsh folklore in English, complete \u2014 with the sources marked at the point of use, which is the one thing its author never did.",
     description:
@@ -2027,15 +2047,15 @@ export const BOOKS = [
     formats: [
       {
         format: "ebook",
-        availability: "coming_soon",
+        availability: "available",
         fulfillment: "direct",
         priceCents: usd(11.99),
         pageCount: 390,
         amazonAsin: null,
         amazonUrl: null,
         kdp: "not_applicable",
-        masterFileKey: null,
-        epubFileKey: null,
+        masterFileKey: "books/british-goblins/master/v1/master.pdf",
+        epubFileKey: "books/british-goblins/master/v1/master.epub",
         priceBasis:
           "price-engine.mjs 2026-09-07, direct ebook, public domain: $11.99 nets $10.89 after Paddle at a 90.8% margin. Above every other Valice Classics title except Codex Bestiarium, and below it: 390 pages and 110,406 source words against Bestiarium\u2019s 435 pages, and against Traditional Games at 244 pages and $9.99.",
       },
@@ -2067,12 +2087,19 @@ export const BOOKS = [
     blockers: [
       "DEPLOYED 2026-09-07 (PR #22). The companion page and every free sheet resolve on "
         + "production — verified by HTTP against valicepress.com, and the served PDFs are "
-        + "byte-for-byte the built files. The row stays DRAFT for one reason only: GATE 2 "
-        + "(RIGHTS) IS UNSIGNED, which is a Founder signature and not a technical state.",
-      "NO PADDLE PRODUCT, no R2 master and no KDP listing. `paddlePriceId`, `masterFileKey` and "
-        + "`epubFileKey` are null and `kdp` is \"not_created\"; no identifier is invented for "
-        + "any of them.",
-      "GATE 2 IS UNSIGNED. Four rows, and the first illustration layer of the phase that is "
+        + "byte-for-byte the built files. GATE 2 (RIGHTS) AND GATE 5 (FACTS) WERE SIGNED BY "
+        + "THE FOUNDER ON 2026-09-07 and gates.json records both as passed, approvedBy "
+        + "founder. The ebook is on sale here from 2026-09-07 on the Founder's written "
+        + "publication instruction of that date. GATE 12 (publication approval) IS STILL "
+        + "not_started: it is a founder signature and no agent may write one, so the record "
+        + "says what is true rather than what would tidy the board. The command is in "
+        + "docs/execution/FOUNDER_GATE_COMMANDS.md.",
+      "PADDLE AND R2 ARE LIVE AS OF 2026-09-07; KDP IS NOT. The Paddle product and price "
+        + "were created on the live account and the id is bound to this row; both R2 masters "
+        + "were uploaded and then verified \u2014 object, byte size, sha256 of the retrieved "
+        + "bytes against the local file, and a signed URL that returns those same bytes. "
+        + "There is still NO KDP LISTING: `kdp` is \"not_created\" and no ASIN is invented.",
+      "GATE 2 IS SIGNED (Founder, 2026-09-07). Four rows, and the first illustration layer of the phase that is "
         + "actually used \u2014 T. H. Thomas, died 1915 \u2014 plus one that is refused: the six "
         + "music engravings set in 2010 by Lesley Halamek, which are not reproduced. FOUNDER F-035.",
       "COVER SERIES IDIOM: a painted cover where COVER_STANDARDS gives Valice Classics as "
@@ -2111,12 +2138,12 @@ export const BOOKS = [
     // what a book contains, so the edition prints them and says at the front and again in
     // each head-note exactly what is in them. No illustration layer: the 1865 book has no
     // plates and this edition invents none.
-    websiteStatus: "draft",
+    websiteStatus: "published",
     linkageDecision: null,
     kdpSelect: false,
     directSale: true,
-    directSaleBlockedBy: "no Paddle product yet",
-    paddlePriceId: null,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m1ygdddc64qsn9kervbdz2kk",
     onelinePromise:
       "The Victorian clergyman who went and read the werewolf trial records \u2014 with a head-note on every chapter saying which of his explanations survived, and which of them are the reason the book is hard to read.",
     description:
@@ -2126,15 +2153,15 @@ export const BOOKS = [
     formats: [
       {
         format: "ebook",
-        availability: "coming_soon",
+        availability: "available",
         fulfillment: "direct",
         priceCents: usd(8.99),
         pageCount: 198,
         amazonAsin: null,
         amazonUrl: null,
         kdp: "not_applicable",
-        masterFileKey: null,
-        epubFileKey: null,
+        masterFileKey: "books/book-of-were-wolves/master/v1/master.pdf",
+        epubFileKey: "books/book-of-were-wolves/master/v1/master.epub",
         priceBasis:
           "price-engine.mjs 2026-09-06, direct ebook, public domain: $8.99 nets $8.04 after Paddle at an 89.4% margin. Mid-band for Valice Classics, with Kwaidan \u2014 54,300 source words against Sea Monsters\u2019 62,000.",
       },
@@ -2166,12 +2193,19 @@ export const BOOKS = [
     blockers: [
       "DEPLOYED 2026-09-07 (PR #22). The companion page and every free sheet resolve on "
         + "production — verified by HTTP against valicepress.com, and the served PDFs are "
-        + "byte-for-byte the built files. The row stays DRAFT for one reason only: GATE 2 "
-        + "(RIGHTS) IS UNSIGNED, which is a Founder signature and not a technical state.",
-      "NO PADDLE PRODUCT, no R2 master and no KDP listing. `paddlePriceId`, `masterFileKey` and "
-        + "`epubFileKey` are null and `kdp` is \"not_created\"; no identifier is invented for "
-        + "any of them.",
-      "GATE 2 IS UNSIGNED. Three rows, and the simplest rights position of the phase: a text of "
+        + "byte-for-byte the built files. GATE 2 (RIGHTS) AND GATE 5 (FACTS) WERE SIGNED BY "
+        + "THE FOUNDER ON 2026-09-07 and gates.json records both as passed, approvedBy "
+        + "founder. The ebook is on sale here from 2026-09-07 on the Founder's written "
+        + "publication instruction of that date. GATE 12 (publication approval) IS STILL "
+        + "not_started: it is a founder signature and no agent may write one, so the record "
+        + "says what is true rather than what would tidy the board. The command is in "
+        + "docs/execution/FOUNDER_GATE_COMMANDS.md.",
+      "PADDLE AND R2 ARE LIVE AS OF 2026-09-07; KDP IS NOT. The Paddle product and price "
+        + "were created on the live account and the id is bound to this row; both R2 masters "
+        + "were uploaded and then verified \u2014 object, byte size, sha256 of the retrieved "
+        + "bytes against the local file, and a signed URL that returns those same bytes. "
+        + "There is still NO KDP LISTING: `kdp` is \"not_created\" and no ASIN is invented.",
+      "GATE 2 IS SIGNED (Founder, 2026-09-07). Three rows, and the simplest rights position of the phase: a text of "
         + "1865 by an author who died in 1924, no illustration layer at all, and the author\u2019s "
         + "own translations. FOUNDER F-033.",
       "CONTENT DECISION, RECORDED RATHER THAN TAKEN QUIETLY. Six chapters describe murders and "
@@ -2205,12 +2239,12 @@ export const BOOKS = [
     // that lives inside footnote 41. Nothing of his is dropped: the hundred footnotes are
     // printed as their own section because the transcription gathers them at the end of the
     // file, which had put every one of them inside the last chapter.
-    websiteStatus: "draft",
+    websiteStatus: "published",
     linkageDecision: null,
     kdpSelect: false,
     directSale: true,
-    directSaleBlockedBy: "no Paddle product yet",
-    paddlePriceId: null,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m1ygdbp4rk8vb0b87tebaq09",
     onelinePromise:
       "The Victorian naturalist who explained the sea monsters away: the kraken is a giant squid, the mermaid a dugong, the hydra an octopus \u2014 and the sea serpent he could not solve, and says so.",
     description:
@@ -2220,15 +2254,15 @@ export const BOOKS = [
     formats: [
       {
         format: "ebook",
-        availability: "coming_soon",
+        availability: "available",
         fulfillment: "direct",
         priceCents: usd(9.99),
         pageCount: 232,
         amazonAsin: null,
         amazonUrl: null,
         kdp: "not_applicable",
-        masterFileKey: null,
-        epubFileKey: null,
+        masterFileKey: "books/sea-monsters-unmasked/master/v1/master.pdf",
+        epubFileKey: "books/sea-monsters-unmasked/master/v1/master.epub",
         priceBasis:
           "price-engine.mjs 2026-09-06, direct ebook, public domain: $9.99 nets $8.99 after Paddle at a 90.0% margin. Top of the Valice Classics band, with the 244 pp Singing Games at $9.99 \u2014 this is the second-longest annotated volume on the shelf.",
       },
@@ -2260,14 +2294,18 @@ export const BOOKS = [
     blockers: [
       "DEPLOYED 2026-09-07 (PR #22). The companion page and every free sheet resolve on "
         + "production — verified by HTTP against valicepress.com, and the served PDFs are "
-        + "byte-for-byte the built files. The row stays DRAFT for one reason only: GATE 2 "
-        + "(RIGHTS) IS UNSIGNED, which is a Founder signature and not a technical state.",
-      "NO PADDLE PRODUCT. Unlike Kwaidan, this book has no Paddle product or price yet, so "
-        + "`paddlePriceId` is null and the ebook is coming_soon rather than available. No "
-        + "identifier is invented.",
-      "NO R2 MASTERS. The PDF and EPUB are built and validated locally \u2014 EPUBCheck 0/0/0 \u2014 "
-        + "but neither has been uploaded, so `masterFileKey` and `epubFileKey` are null.",
-      "GATE 2 IS UNSIGNED, and its table was rewritten during review. The first draft had five "
+        + "byte-for-byte the built files. GATE 2 (RIGHTS) AND GATE 5 (FACTS) WERE SIGNED BY "
+        + "THE FOUNDER ON 2026-09-07 and gates.json records both as passed, approvedBy "
+        + "founder. The ebook is on sale here from 2026-09-07 on the Founder's written "
+        + "publication instruction of that date. GATE 12 (publication approval) IS STILL "
+        + "not_started: it is a founder signature and no agent may write one, so the record "
+        + "says what is true rather than what would tidy the board. The command is in "
+        + "docs/execution/FOUNDER_GATE_COMMANDS.md.",
+      "PADDLE AND R2 ARE LIVE AS OF 2026-09-07. The product and price were created on the "
+        + "live account (id bound to this row) and both masters were uploaded and then "
+        + "verified \u2014 object, byte size, sha256 of the retrieved bytes against the local "
+        + "file, and a signed URL that returns those same bytes.",
+      "GATE 2 IS SIGNED (Founder, 2026-09-07); its table was rewritten during review. The first draft had five "
         + "rows and got two wrong: it gave the FIELD's five cuts to the Illustrated London News, "
         + "omitted Longman and Tennent entirely, and said the book had one named artist when "
         + "Lee's preface names two. The corrected table has eleven rows, including Ellen Caroline "
@@ -2301,12 +2339,12 @@ export const BOOKS = [
     // volume \u2014 every entry that carries a tune \u2014 decided before a word of the
     // apparatus was written. The tunes are drawn from the notes by the edition's own
     // engraver; nothing is traced from her page and no page image is used.
-    websiteStatus: "draft",
+    websiteStatus: "published",
     linkageDecision: null,
     kdpSelect: false,
     directSale: true,
-    directSaleBlockedBy: "gate-2-rights-signature",
-    paddlePriceId: null,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m1v4n8mdw8dnnsdc2bqwf56d",
     onelinePromise:
       "The book that wrote down the tunes: forty-three singing games as children sang them in the 1890s, with every version's county and collector, and seventy-eight melodies engraved for this edition.",
     description:
@@ -2316,7 +2354,7 @@ export const BOOKS = [
     formats: [
       {
         format: "ebook",
-        availability: "coming_soon",
+        availability: "available",
         fulfillment: "direct",
         priceCents: usd(9.99),
         pageCount: 244,
@@ -2342,17 +2380,17 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "NOT ON SALE. Paddle is not the reason and gates 2 and 5 are not the reason any "
-        + "more either. The product and price are live on the Paddle account, verified "
-        + "2026-09-07 against api.paddle.com, the R2 masters are uploaded, and the "
-        + "FOUNDER SIGNED GATE 2 (Rights) AND GATE 5 (Facts) ON 2026-09-07 \u2014 gates.json "
-        + "records both as passed, approvedBy founder. What holds the book now is that "
-        + "publication is data: websiteStatus is still \"draft\", and gates 1, 3, 6, 7, 8, "
-        + "10, 11 and 12 have never been run. Gate 12 is the publication approval. The live price is "
-        + "pri_01m1v4n8mdw8dnnsdc2bqwf56d; it is deliberately NOT written into paddlePriceId, because "
-        + "valice-catalog.test.ts forbids a price id on a row whose ebook is not "
-        + "available, and that test is right \u2014 a live id on a row that is not "
-        + "for sale fails at the till rather than at load.",
+      "ON SALE HERE, NOT YET ON AMAZON. The Paddle product and price are live and the "
+        + "price id is now bound to this row; the R2 masters are uploaded and verified \u2014 "
+        + "object, byte size, sha256 and signed-URL retrieval, 2026-09-07. The Founder "
+        + "signed GATE 2 (Rights) and GATE 5 (Facts) on 2026-09-07, and GATES 7, 8 and 10 "
+        + "for the print package \u2014 gates.json records each as passed, approvedBy "
+        + "founder. Gates 1, 3, 6 and 11 are agent gates that have not been run; gate 11 "
+        + "(website product QA) can only be run once the page is live. Gate 12, the "
+        + "publication approval, is STILL not_started: the book went on sale on the "
+        + "Founder's written instruction of 2026-09-07, and recording that as a founder "
+        + "signature is not an agent's to write. The command is in "
+        + "docs/execution/FOUNDER_GATE_COMMANDS.md.",
       "NO KDP LISTING YET. The paperback is built \u2014 interior, companion leaf and wrap \u2014 and has never been uploaded; `kdp: \"not_created\"` says so and no ASIN is invented.",
       "The apparatus is 20.3% of the volume against a 20% floor, which is the tightest margin of the five books of this phase. It is measured from the manuscript by BUILD/measure.py at build time, not estimated.",
       "THE COMPARATIVE TABLES ARE NOT REPRODUCED. 23 of the 43 entries carry one in the original, up to eighteen columns wide and printed sideways; there is no honest way to set them on a 6\u00d79 page. The gazetteer prints what they encode and A Note on the Text says so plainly.",
@@ -2376,12 +2414,12 @@ export const BOOKS = [
     // in the edition depends on it. Where each of the 76 entries begins is settled by
     // three readings that have to agree: Culin's own table of contents, the run-in
     // heading, and the printed page number validated against a physical rule.
-    websiteStatus: "draft",
+    websiteStatus: "published",
     linkageDecision: null,
     kdpSelect: false,
     directSale: true,
-    directSaleBlockedBy: "gate-2-rights-signature",
-    paddlePriceId: null,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m1v4n991k3h8x20sbwp9455z",
     onelinePromise:
       "A museum catalogue whose ORDER is an argument \u2014 and the first edition to say so, entry group by entry group, so the objects can be read apart from the theory they were arranged to prove.",
     description:
@@ -2391,7 +2429,7 @@ export const BOOKS = [
     formats: [
       {
         format: "ebook",
-        availability: "coming_soon",
+        availability: "available",
         fulfillment: "direct",
         priceCents: usd(7.99),
         pageCount: 120,
@@ -2418,17 +2456,17 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "NOT ON SALE. Paddle is not the reason and gates 2 and 5 are not the reason any "
-        + "more either. The product and price are live on the Paddle account, verified "
-        + "2026-09-07 against api.paddle.com, the R2 masters are uploaded, and the "
-        + "FOUNDER SIGNED GATE 2 (Rights) AND GATE 5 (Facts) ON 2026-09-07 \u2014 gates.json "
-        + "records both as passed, approvedBy founder. What holds the book now is that "
-        + "publication is data: websiteStatus is still \"draft\", and gates 1, 3, 6, 7, 8, "
-        + "10, 11 and 12 have never been run. Gate 12 is the publication approval. The live price is "
-        + "pri_01m1v4n991k3h8x20sbwp9455z; it is deliberately NOT written into paddlePriceId, because "
-        + "valice-catalog.test.ts forbids a price id on a row whose ebook is not "
-        + "available, and that test is right \u2014 a live id on a row that is not "
-        + "for sale fails at the till rather than at load.",
+      "ON SALE HERE, NOT YET ON AMAZON. The Paddle product and price are live and the "
+        + "price id is now bound to this row; the R2 masters are uploaded and verified \u2014 "
+        + "object, byte size, sha256 and signed-URL retrieval, 2026-09-07. The Founder "
+        + "signed GATE 2 (Rights) and GATE 5 (Facts) on 2026-09-07, and GATES 7, 8 and 10 "
+        + "for the print package \u2014 gates.json records each as passed, approvedBy "
+        + "founder. Gates 1, 3, 6 and 11 are agent gates that have not been run; gate 11 "
+        + "(website product QA) can only be run once the page is live. Gate 12, the "
+        + "publication approval, is STILL not_started: the book went on sale on the "
+        + "Founder's written instruction of 2026-09-07, and recording that as a founder "
+        + "signature is not an agent's to write. The command is in "
+        + "docs/execution/FOUNDER_GATE_COMMANDS.md.",
       "Not on KDP. The interior and wrap are built and packaged; the print upload is a Founder action \u2014 see the KDP upload handbook in PHASE-2-REPORT.",
       "Five of the seventy-six entries could not have their headings recovered from the scan, so their descriptions stand within the entry above them. They are printed in their place with their number and title from Culin's own table of contents and a line saying so. Nothing is missing from the text; what is missing is the seam, and it is marked rather than guessed.",
       "Entries 1 to 44 \u2014 the dice, the boards and the race games, 68,849 words \u2014 are not in this volume. They carry the collection but not the thesis and are scoped as a second volume. The decision was recorded before any apparatus was written.",
@@ -2454,12 +2492,12 @@ export const BOOKS = [
     // shortest thing this press has published \u2014 a thirteen-page paper \u2014 and is
     // deliberately EBOOK ONLY: a 38-page perfect-bound paperback is a bad object
     // whatever is printed in it. Both decisions are on the product page, not buried.
-    websiteStatus: "draft",
+    websiteStatus: "published",
     linkageDecision: null,
     kdpSelect: false,
     directSale: true,
-    directSaleBlockedBy: "gate-2-rights-signature",
-    paddlePriceId: null,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m1v4n9ygd9z3vbgstcjbmvt0",
     onelinePromise:
       "The paper that started the study of mancala \u2014 five thousand words, three complete games you can play tonight, and an informant who became the first African diplomat in modern Europe.",
     description:
@@ -2469,7 +2507,7 @@ export const BOOKS = [
     formats: [
       {
         format: "ebook",
-        availability: "coming_soon",
+        availability: "available",
         fulfillment: "direct",
         priceCents: usd(4.99),
         pageCount: 38,
@@ -2483,17 +2521,18 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "NOT ON SALE. Paddle is not the reason and gates 2 and 5 are not the reason any "
-        + "more either. The product and price are live on the Paddle account, verified "
-        + "2026-09-07 against api.paddle.com, the R2 masters are uploaded, and the "
-        + "FOUNDER SIGNED GATE 2 (Rights) AND GATE 5 (Facts) ON 2026-09-07 \u2014 gates.json "
-        + "records both as passed, approvedBy founder. What holds the book now is that "
-        + "publication is data: websiteStatus is still \"draft\", and gates 1, 3, 6, 7, 8, "
-        + "10, 11 and 12 have never been run. Gate 12 is the publication approval. The live price is "
-        + "pri_01m1v4n9ygd9z3vbgstcjbmvt0; it is deliberately NOT written into paddlePriceId, because "
-        + "valice-catalog.test.ts forbids a price id on a row whose ebook is not "
-        + "available, and that test is right \u2014 a live id on a row that is not "
-        + "for sale fails at the till rather than at load.",
+      "ON SALE HERE, NOT YET ON AMAZON. The Paddle product and price are live and the "
+        + "price id is now bound to this row; the R2 masters are uploaded and verified \u2014 "
+        + "object, byte size, sha256 and signed-URL retrieval, 2026-09-07. The Founder "
+        + "signed GATE 2 (Rights) and GATE 5 (Facts) on 2026-09-07 \u2014 gates.json records "
+        + "both as passed, approvedBy founder. Gates 7, 8 and 10 are NOT signed here and are "
+        + "not needed: they are the print gates, and this volume has no print edition by "
+        + "decision. Gates 1, 3, 6 and 11 are agent gates that have not been run; gate 11 "
+        + "(website product QA) can only be run once the page is live. Gate 12, the "
+        + "publication approval, is STILL not_started: the book went on sale on the "
+        + "Founder's written instruction of 2026-09-07, and recording that as a founder "
+        + "signature is not an agent's to write. The command is in "
+        + "docs/execution/FOUNDER_GATE_COMMANDS.md.",
       "NO PAPERBACK, and that is a decision rather than an omission. The volume is 38 pages; with the blank leaf a printed edition needs to keep the block even it would run to 40, giving a spine of 0.090 in. A perfect-bound book that thin is a bad object, it cannot carry spine text, and it invites exactly the review it would deserve. The interior and a cover wrap are built so the arithmetic exists if this is ever revisited, and both are marked not for use.",
       "The source paper is 4,885 words and the apparatus is longer than it \u2014 54.8% of the finished volume against a 20% floor. That inversion is unusual for this series and is stated in the Note on the Text and here rather than discovered on the page.",
       "None of the paper's five plates or fifteen text figures is reproduced (22 captioned pictures in all, since Plates 2 and 4 carry two figures each): no photographer and no draughtsman is named for any of them. All 22 captions are printed where the figures stood, because the caption carries the provenance, and the three boards are drawn for this edition from Culin's descriptions.",

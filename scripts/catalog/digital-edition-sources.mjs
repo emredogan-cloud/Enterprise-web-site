@@ -158,6 +158,41 @@ export const DIGITAL_EDITION_SOURCES = [
     printInterior: bookPath("02-SENECA-SELECTED-DIALOGUES", "OUTPUT", "interior-main.pdf"),
     epub: bookPath("02-SENECA-SELECTED-DIALOGUES", "OUTPUT", "seneca-selected-dialogues.epub"),
   },
+  {
+    // Valice Classics 14 (2026-09-06). PHASE 3 book 2. Henry Lee's 1884 plates are
+    // wood engravings at print resolution, so the /ebook pass downsamples.
+    slug: "sea-monsters-unmasked",
+    printInterior: bookPath("02-SEA-MONSTERS-UNMASKED", "OUTPUT", "interior-main.pdf"),
+    epub: bookPath("02-SEA-MONSTERS-UNMASKED", "OUTPUT", "sea-monsters-unmasked.epub"),
+  },
+  {
+    // Valice Classics 15 (2026-09-06). PHASE 3 book 3. Text-only, so the /ebook
+    // pass normalises rather than downsamples.
+    slug: "book-of-were-wolves",
+    printInterior: bookPath("03-BOOK-OF-WERE-WOLVES", "OUTPUT", "interior-main.pdf"),
+    epub: bookPath("03-BOOK-OF-WERE-WOLVES", "OUTPUT", "book-of-were-wolves.epub"),
+  },
+  {
+    // Valice Classics 16 (2026-09-07). PHASE 3 book 4, and the longest of the phase:
+    // 390 pages carrying twenty T. H. Thomas drawings.
+    slug: "british-goblins",
+    printInterior: bookPath("04-BRITISH-GOBLINS", "OUTPUT", "interior-main.pdf"),
+    epub: bookPath("04-BRITISH-GOBLINS", "OUTPUT", "british-goblins.epub"),
+  },
+  {
+    // Valice Classics 17 (2026-09-07). PHASE 3 book 5a. ONE project directory holds
+    // BOTH volumes, so the file name — not the directory — is what distinguishes
+    // them. Naming the wrong one here would sell Volume II under Volume I's price.
+    slug: "fairy-mythology-vol-1",
+    printInterior: bookPath("05-FAIRY-MYTHOLOGY", "OUTPUT", "interior-vol1.pdf"),
+    epub: bookPath("05-FAIRY-MYTHOLOGY", "OUTPUT", "fairy-mythology-vol-1.epub"),
+  },
+  {
+    // Valice Classics 18 (2026-09-07). PHASE 3 book 5b. See the note on 5a.
+    slug: "fairy-mythology-vol-2",
+    printInterior: bookPath("05-FAIRY-MYTHOLOGY", "OUTPUT", "interior-vol2.pdf"),
+    epub: bookPath("05-FAIRY-MYTHOLOGY", "OUTPUT", "fairy-mythology-vol-2.epub"),
+  },
 ];
 
 /** R2 masters key for a slug. Versioned so a re-cut edition never overwrites. */

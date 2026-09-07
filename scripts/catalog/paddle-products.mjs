@@ -241,4 +241,64 @@ export const DIRECT_SALE_EBOOKS = [
     // above the floor and short of premium.
     priceCents: 999,
   },
+  {
+    // PHASE 3, BOOK 2 (2026-09-06). Valice Classics 14. No Kindle edition and no
+    // KDP listing, so no Select exclusivity can apply. Name taken verbatim from
+    // the project's own `metadata.title`, which carries the (Annotated) tag KDP
+    // requires on a public-domain edition — four Phase 3 titles lost that tag once
+    // already and had to be restored from their upload handbooks.
+    slug: "sea-monsters-unmasked",
+    name: "Sea Monsters Unmasked, and Sea Fables Explained (Annotated)",
+    description:
+      "Henry Lee's two 1883 handbooks complete, with all 68 original figures. The naturalist of the Brighton Aquarium takes the kraken, the sea-serpent, the mermaid and the rest, and asks in each case which animal was actually seen. Original to this edition: a Register of Evidence and Inference separating what Lee watched from what he only read; a descriptive list of every figure with its provenance; a glossary; a chronology; and an account of what has been established since 1883. 232 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included.",
+    priceCents: 999,
+    priceBasis:
+      "price-engine.mjs 2026-09-07, direct ebook, public domain: $9.99 nets $8.99 after Paddle at a 90% margin. Top of the Valice Classics band \u2014 232 pages and 64,119 source words with a 22.4% apparatus share, level with The Singing Games at 244 pages.",
+  },
+  {
+    // PHASE 3, BOOK 3 (2026-09-06). Valice Classics 15.
+    slug: "book-of-were-wolves",
+    name: "The Book of Were-Wolves (Annotated)",
+    description:
+      "Sabine Baring-Gould's 1865 account complete: the werewolf in the Norse sagas, in the French courts, in Greek and Slavonic belief, and the four criminal cases he ends on. Original to this edition: a Register separating what he construed from the languages he read from what he transcribed and what he only theorised; a glossary of the Norse and Greek terms; a who's-who of the authorities he cites; a chronology; and a plain account of what has been established since 1865, including how little of his etymology survived. 198 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included.",
+    priceCents: 899,
+    priceBasis:
+      "price-engine.mjs 2026-09-07, direct ebook, public domain: $8.99 nets $8.04 after Paddle at an 89.4% margin. Mid-band for Valice Classics \u2014 198 pages and 54,456 source words, between Kwaidan at 138 pages and Sea Monsters at 232.",
+  },
+  {
+    // PHASE 3, BOOK 4 (2026-09-07). Valice Classics 16, and the longest volume the
+    // press has cut: 390 pages. This is the book whose apparatus an adversarial
+    // review found eleven falsehoods in; every one is closed and the description
+    // below claims nothing the volume does not print.
+    slug: "british-goblins",
+    name: "British Goblins: Welsh Folk-lore, Fairy Mythology, Legends and Traditions (Annotated)",
+    description:
+      "Wirt Sikes's 1880 book entire \u2014 all four Books, all thirty-two chapters, with twenty of T. H. Thomas's drawings. The largest book on Welsh folklore in English, and the one most of what English speakers know about the tylwyth teg still comes through. Original to this edition: a head-note before every chapter ending in READING AGAINST HIM; an introduction to each of the four Books; a Register of Evidence and Inference, by Book, separating what Sikes watched from what he was told and what he read; a Welsh glossary and a register of the beings with pronunciations; a descriptive list of every plate; a gazetteer of the parishes; a who's-who; and a claim-by-claim account of what has been established since 1880. 390 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included.",
+    priceCents: 1199,
+    priceBasis:
+      "price-engine.mjs 2026-09-07, direct ebook, public domain: $11.99 nets $10.89 after Paddle at a 90.8% margin. Above every other Valice Classics title and below Codex Bestiarium at $12.99: 390 pages and 112,594 source words against Bestiarium's 435.",
+  },
+  {
+    // PHASE 3, BOOK 5a (2026-09-07). Valice Classics 17. TWO PRODUCTS, ONE ROADMAP
+    // TITLE: Keightley in one volume would exceed KDP's 550-page hardcover limit, so
+    // the book is split at his own GREAT BRITAIN division. Each volume is a complete
+    // book and is priced as one.
+    slug: "fairy-mythology-vol-1",
+    name: "The Fairy Mythology, Volume I (Annotated)",
+    description:
+      "Thomas Keightley's 1850 Fairy Mythology, volume I of two: where the belief and the word come from, the Persian peri and the Arabian jinn, Oberon traced back to Alberich, the alfar and duergar of the Eddas, and the fairy beliefs of Denmark, Norway, Sweden, Iceland, Shetland, the Orkneys, R\u00fcgen, Germany and Switzerland. Original to this edition: a head-note and a criticism for every section; a Register of Evidence and Inference separating what Keightley translated, collected and read from what he only concluded; a glossary of the northern words; a register of the beings; a who's-who of the collectors he translates; a concordance of motifs measured across both volumes; and an account of what has been established since 1850. 336 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included.",
+    priceCents: 999,
+    priceBasis:
+      "price-engine.mjs 2026-09-07, direct ebook, public domain: $9.99 nets $8.99 after Paddle at a 90% margin. Each volume is priced as a complete book because each is one; the pair at $19.98 sits above Codex Bestiarium at $12.99 for a comparable total length, which is the cost the two-volume format imposes on the reader and is recorded rather than hidden.",
+  },
+  {
+    // PHASE 3, BOOK 5b (2026-09-07). Valice Classics 18. See the note on 5a.
+    slug: "fairy-mythology-vol-2",
+    name: "The Fairy Mythology, Volume II (Annotated)",
+    description:
+      "Thomas Keightley's 1850 Fairy Mythology, volume II of two: England, the Scottish Lowlands and Highlands, Ireland, the Isle of Man, Wales, Brittany, Greece, Italy, Spain, France, the Finns and the Jews, with the Conclusion and the Appendix. It is the half in which Keightley handles material he helped to make, and admits in print that some of the most admired traits of the Irish fairies were invented by their collectors. Original to this edition: a head-note and a criticism for every section; a Register of Evidence and Inference; a glossary; a register of the beings; a who's-who; a motif concordance; and an account of what has been established since 1850. 326 pages as a DRM-free watermarked PDF and a reflowable EPUB, both included.",
+    priceCents: 999,
+    priceBasis:
+      "price-engine.mjs 2026-09-07, direct ebook, public domain: $9.99 nets $8.99 after Paddle at a 90% margin. Priced level with Volume I because neither volume is the lesser half \u2014 they come out at 101,835 and 101,612 of Keightley's words without being adjusted.",
+  },
 ];
