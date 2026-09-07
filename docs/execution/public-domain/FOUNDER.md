@@ -1363,3 +1363,47 @@ will find the listing wrong rather than the book.
 LIVE listing, not only the config. `scripts/factory/kdp-reconcile.mjs` already holds the shelf
 titles in `docs/30-kdp/KDP_BOOKSHELF_OBSERVED.json`; the check is a join away, and it would have
 caught this a month ago.
+
+---
+
+## Founder actions outstanding — 2026-09-07, end of the release-system pass
+
+Only actions that genuinely require the account owner. Everything an agent could do is done.
+
+### A. Signatures — the queue is 79 gate cells with their evidence already attached
+
+| Gate | Books waiting | What the signature attests |
+|---|---|---|
+| **7 Cover** | 14 | you have seen the cover |
+| **8 Interior / proof** | 11 | **a physical proof copy** — no tooling reaches this |
+| **10 KDP compliance** | 24 | compliance lint **plus** the AI-content declaration to Amazon |
+| **2 Rights** | 7 | a legal attestation about copyright |
+| **5 Facts** | 5 | a human read behind the claim lint |
+
+**Gates 7, 8 and 10 are the whole distance between eight validated print packages and a KDP
+upload.** Nothing else stands in the way: geometry, preflight and cover-check are clean on all
+eight.
+
+### B. Gate 12 — sixteen waivers
+
+See [GATE_12_RELEASE_POLICY.md](../../00-critical/GATE_12_RELEASE_POLICY.md). The decision is
+made and documented; what remains is sixteen `gate.mjs … set 12 waived --approved-by founder`
+calls, each carrying its publishing commit in the reason. The commit for every one of the
+sixteen is in the policy's table.
+
+### C. Three product decisions
+
+| # | Decision | Why it cannot wait indefinitely |
+|---|---|---|
+| **F-051** | **A5** — does the Myth Hunter's Field Book get a hardcover? | a live page advertises one; the project says single-format by design |
+| **F-052** | Codex Bestiarium says **120 creatures**, the book has **112** | four live listings, past the 72-hour title lock — new edition, or live with it |
+| **F-047** | World Games large print reads **"39 Cultıres"** | same lock, same choice |
+| **F-048** | Codex Enigmatica is shelved under **Teen & Young Adult** | Amazon is prompting for a reading age; answering entrenches the wrong shelf |
+
+### D. One merge
+
+PR #29. CI green. `gh pr merge` is refused by the local tool layer, not by GitHub — the account
+has ADMIN and `main` has no branch protection.
+
+**Not listed here on purpose:** anything routine. Building, validating, linting, reconciling,
+provisioning and reporting were done in this pass and are not Founder work.
