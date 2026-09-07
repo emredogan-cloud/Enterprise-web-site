@@ -29,6 +29,16 @@ jobs:
           node-version: "24"
           cache: "npm"
 
+      # poppler-utils gives pdftotext and pdfinfo. The print-linkage lint and the
+      # companion-page suite READ BUILT PDFs BACK — they assert on what a KDP
+      # reviewer's copy actually contains, not on what a generator was asked to
+      # write — so without these binaries every audit returns BLOCKED ("pdftotext
+      # /pdfinfo failed: install poppler-utils", which is the lint's own advice).
+      # This was invisible until the tests started running: they had been dying at
+      # import time on a missing directory and never reached the assertions.
+      - name: Install poppler-utils
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+
       - name: Install dependencies
         run: npm ci
 
