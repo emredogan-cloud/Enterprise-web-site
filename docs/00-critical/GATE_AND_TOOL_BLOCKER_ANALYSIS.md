@@ -203,3 +203,67 @@ needs a founder — is the thing that keeps the board meaningful, and it should 
 
 *Every claim here was tested in this session. Where something is reported as blocked, it was
 attempted first.*
+
+---
+
+# Update — 2026-09-07, evening
+
+## 8. §2's third reading is closed
+
+The board read: *"Twelve book projects have no `gates.json` at all… five of those are live and
+earning. They are not failing the gates; they were never entered into them."*
+
+They are entered now. **25 projects, one model, 146 passed · 79 in_progress · 75 not_started**
+(was 64 passed across 13). `scripts/factory/backfill-gates.mjs` builds each record from
+`valice-house/workflows/gates.json` via `emptyGateRecord()` and attaches evidence already on
+disk. Two pre-factory books had no `project_config.json` either; theirs were reconstructed from
+records, with the decision fields a normal config carries left **absent rather than guessed**.
+
+What the tool will not do is the part worth keeping:
+
+* a **Founder gate is never set `passed`**, whatever evidence exists — evidence-in-hand reads
+  `in_progress` with the reason naming the missing signature;
+* nothing is back-dated: `updatedAt` is now, `approvedBy` stays null;
+* `--refresh` **never walks a gate backwards** on the strength of a file merely existing. The
+  first version did, and proposed downgrading six already-passed gates on Seneca. A pass is
+  undone by a check that fails, not by one with nothing to say.
+
+## 9. A new class of blind spot, and the fix
+
+§5 listed three layers that had been reported as one. Here is a fourth kind, and it is not a
+permission layer — it is a check that was looking in the wrong place.
+
+**`metadata-lint` compares the project config's title against the project config's counts.**
+Both can be right while what a customer reads is wrong. Codex Bestiarium sold for a month with
+*"120 Legendary Creatures"* on four live listings against a book of 112 — a book whose own
+printed front matter says 112.
+
+`kdp-reconcile.mjs` now joins the **live shelf titles** to each project's measured counts and
+reports the four. The general lesson matches [[agreement-does-not-identify]]: a check that only
+ever reads one side of a pair cannot find a disagreement between them.
+
+The same shape appeared twice more this pass:
+
+| Check | What it compared | What it missed |
+|---|---|---|
+| `cover-check` | the filename | three geometrically correct covers it errored on and then never read |
+| `upload-masters` | size, ETag, content hash | which file was **newer** — three staged masters were about to overwrite newer ones in R2 |
+
+All three are fixed, and each fix is a comparison the check was not making.
+
+## 10. Founder-only, restated after the back-fill
+
+The back-fill changed how much is *ready*, not who may sign. Unchanged and correctly so:
+
+| Gate | Still Founder-only | Why |
+|---|---|---|
+| 2 Rights | yes | a legal attestation |
+| 5 Facts | yes | a human read behind the lint |
+| 7 Cover | yes | a cover the Founder has seen |
+| **8 Interior / proof** | yes | evidence is a **physical proof copy** — no tooling reaches it |
+| 10 KDP compliance | yes | includes the AI-content declaration to Amazon |
+| 12 Publication | yes | the decision to sell; policy now defined |
+
+**79 gate cells sit at `in_progress` with their evidence attached.** That is the queue: work
+done, signature outstanding. The eight ready print packages are each held by exactly three of
+them — 7, 8 and 10.

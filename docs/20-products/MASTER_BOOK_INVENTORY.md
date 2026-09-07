@@ -3,6 +3,14 @@
 **27 catalogue books · 73 (book, format) rows · 25 local projects · 23 live KDP listings ·
 16 books serving 200 on valicepress.com.**
 
+> **SUPERSEDED IN PART, 2026-09-07 evening.** Every project now carries a gate record (25, up
+> from 13) and the board reads 146 passed / 79 in_progress / 75 not_started. §13's "12 projects
+> with no gates.json" is closed. Four live Amazon listings were found to overstate a count
+> (F-052). Read
+> [FINAL_CATALOG_DISTRIBUTION_REPORT.md](FINAL_CATALOG_DISTRIBUTION_REPORT.md) and
+> [GATE_12_RELEASE_POLICY.md](../00-critical/GATE_12_RELEASE_POLICY.md) for the current state;
+> where they disagree with this file, they are later.
+
 Every status below was measured, not read off a manifest. Valice status comes from an HTTP
 request to production; KDP status from the KDP Bookshelf read in a browser; Paddle and R2 from
 the live accounts; page counts, trims and fonts out of the PDFs themselves. Where something
@@ -190,11 +198,19 @@ A non-embedded base-14 face is **the exact defect KDP has already rejected on th
 | gate 2 (rights) unsigned | 2 | **Founder** — rights signature |
 | no interior and no cover exist | 1 | Founder — decision A5 |
 
-## 13. Gate status
+## 13. Gate status — CLOSED 2026-09-07
 
-**64 of 156 gate cells passed across 13 projects.** Twelve more projects — including five that
-are live and selling — have no `gates.json` at all. Detail and the full board are in
-[GATE_AND_TOOL_BLOCKER_ANALYSIS.md](../00-critical/GATE_AND_TOOL_BLOCKER_ANALYSIS.md).
+**Was:** 64 of 156 cells passed across 13 projects, with twelve more projects — five of them
+live and selling — carrying no `gates.json` at all.
+
+**Now:** **146 passed · 79 in_progress · 75 not_started, across 25 projects, all on one model.**
+Every book project has a record. `scripts/factory/backfill-gates.mjs` built them from the
+canonical definition and attached evidence that already existed; nothing was back-dated and no
+Founder gate was set `passed`. Evidence-in-hand on a Founder gate reads `in_progress` with the
+reason saying the signature is what is missing.
+
+Gate 12 is `not_started` on all 25 and that is now a decision rather than a gap — see
+[GATE_12_RELEASE_POLICY.md](../00-critical/GATE_12_RELEASE_POLICY.md).
 
 ## 14. Paddle / R2 / fulfillment
 
