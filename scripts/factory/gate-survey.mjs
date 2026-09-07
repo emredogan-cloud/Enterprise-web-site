@@ -33,7 +33,7 @@ for (const p of projects.sort()) {
   rows.push({ name: name.slice(0, 34), path: p, cells });
 }
 
-const sym = { passed: "✓", pending: "·", failed: "✗", waived: "~", blocked: "B" };
+const sym = { passed: "✓", not_started: "·", in_progress: "◐", failed: "✗", waived: "~" };
 console.log(`gate:      ${defs.map((d) => String(d.id).padStart(3)).join("")}`);
 console.log(`founder:   ${defs.map((d) => (d.founderSignoff ? "  F" : "  ·")).join("")}`);
 for (const r of rows) {
