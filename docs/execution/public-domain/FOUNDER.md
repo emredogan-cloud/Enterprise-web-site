@@ -943,3 +943,39 @@ turned out to be invented — British Goblins had eleven. Both times the same th
 **the number was never held against the text the book actually prints.** `check_source_claims.py`
 exists because of the first; it now carries the second's negative claims too. If the Founder
 wants one rule enforced above the others at Gate 5, it is this one.
+
+---
+
+### F-043 · P1 · The AI disclosure for all six Phase 3 volumes is the standing house answer, not a decision you have taken
+
+Every Phase 3 project config was missing `compliance.aiDisclosure` entirely. KDP asks the
+question on the upload form and it is mandatory; Article 20 requires the answer to be recorded
+rather than remembered. The generated handbook could not even be produced without it.
+
+The three values are now written into all six configs:
+
+| | |
+|---|---|
+| **Text** | `generated` |
+| **Images** | `generated` |
+| **Translation** | `none` |
+
+They follow the answer you settled for Phase 1 and applied to Phase 2, on facts that are the
+same here: a public-domain source text untouched by any model, an apparatus the model drafted
+under editorial direction, and cover artwork made with gpt-image-1.
+
+**They are recorded as the standing house answer and NOT as your decision**, because you have
+not taken one for this phase. `decidedBy` says so in as many words. Confirming it is part of
+Gate 2.
+
+Two details worth your eye, both in `$detail`:
+
+* **the interior is not generated in any of the six.** The plates are the source books' own
+  engravings, or the book has none and none was invented;
+* **the cover prompt contains no text and the models rendered none.** Every word on every
+  cover is set in the layout, so nothing on a cover is a model's idea of lettering.
+
+**The ask:** confirm the three values, or change them. They are what the KDP form will be
+answered with, and the handbook renders them verbatim so that the form cannot be answered from
+memory — which is the failure this field exists to prevent, and which has happened here before
+(the Epictetus handbook once said "AI-assisted" while its config said "generated").

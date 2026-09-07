@@ -2,7 +2,13 @@
 /**
  * Generate a Founder-facing KDP upload handbook for a public-domain edition.
  *
- *   node scripts/factory/kdp-handbook.mjs --project <dir> --out <file.html>
+ *   node scripts/factory/kdp-handbook.mjs --project <dir> --out <file.html> [--volume N]
+ *
+ * `--volume N` is for a work published in more than one volume. Such a book keeps ONE
+ * project directory and suffixes its records and assets — QA/interior-vol2.json,
+ * ASSETS/cover/paperback-wrap-vol2-v1.pdf — because two volumes cannot both be
+ * `interior-main`. Keightley's Fairy Mythology is the first, and without this the
+ * handbook read Volume I's page count while claiming to describe Volume II.
  *
  * Every number in the output is read from the project's own QA files and from the
  * companion pipeline's manifest. Nothing is typed by hand, which is the point: a
@@ -19,14 +25,33 @@ const args = process.argv.slice(2);
 const get = (k) => { const i = args.indexOf(k); return i === -1 ? null : args[i + 1]; };
 const PROJ = get("--project");
 const OUT = get("--out");
-if (!PROJ || !OUT) { console.error("usage: --project <dir> --out <file.html>"); process.exit(2); }
+const VOL = get("--volume");
+if (!PROJ || !OUT) {
+  console.error("usage: --project <dir> --out <file.html> [--volume N]");
+  process.exit(2);
+}
+/** "" for a single-volume book, "-vol2" for the second volume of a set. */
+const S = VOL ? `-vol${VOL}` : "";
 
 const J = (p) => JSON.parse(readFileSync(join(PROJ, p), "utf8"));
-const cfg = J("project_config.json");
-const diff = J("QA/differentiation.json");
-const interior = J("QA/interior-main.json");
-const epub = J("QA/epub.json");
-const cover = J("QA/cover.json");
+const cfgRaw = JSON.parse(readFileSync(join(PROJ, "project_config.json"), "utf8"));
+// A multi-volume project keeps the shared facts under `project` and the per-volume ones
+// under `volumes.<N>`; the handbook wants them as one object, volume winning.
+// A multi-volume project keeps the shared facts under `project` and the per-volume ones
+// under `volumes.<N>`. `metadata` and `companion` are read from the TOP of the config, so
+// the volume's own copies have to be lifted there too — not only merged into `project`.
+const cfg = VOL
+  ? {
+      ...cfgRaw,
+      project: { ...cfgRaw.project, ...cfgRaw.volumes[VOL] },
+      metadata: cfgRaw.volumes[VOL].metadata ?? cfgRaw.metadata,
+      companion: cfgRaw.volumes[VOL].companion ?? cfgRaw.companion,
+    }
+  : cfgRaw;
+const diff = J(`QA/differentiation${S || ""}.json`);
+const interior = J(VOL ? `QA/interior${S}.json` : "QA/interior-main.json");
+const epub = J(`QA/epub${S}.json`);
+const cover = J(`QA/cover${S}.json`);
 const slug = cfg.project.slug;
 const pkgDir = `docs/execution/phase-5/kdp-packages/${slug}/paperback`;
 const manifest = existsSync(join(pkgDir, "manifest.json"))
@@ -35,12 +60,15 @@ const manifest = existsSync(join(pkgDir, "manifest.json"))
 const sha = (p) => createHash("sha256").update(readFileSync(p)).digest("hex");
 const bytes = (p) => statSync(p).size.toLocaleString("en-US");
 const files = {
-  interior: join(PROJ, "OUTPUT/interior-main.pdf"),
-  wrap: join(PROJ, "ASSETS/cover/paperback-wrap-v1.pdf"),
-  kindle: join(PROJ, "ASSETS/cover/kindle-v1.jpg"),
-  epub: join(PROJ, "OUTPUT", epub.file),
+  interior: join(PROJ, VOL ? `OUTPUT/interior${S}.pdf` : "OUTPUT/interior-main.pdf"),
+  wrap: join(PROJ, `ASSETS/cover/paperback-wrap${S}-v1.pdf`),
+  kindle: join(PROJ, `ASSETS/cover/kindle${S}-v1.jpg`),
+  epub: join(PROJ, epub.file.startsWith("OUTPUT") ? epub.file : join("OUTPUT", epub.file)),
 };
 const pages = manifest?.interior?.pagesAfter ?? interior.pages;
+// A two-volume build nests the print geometry under `paperback`; a single-volume one
+// keeps it at the top of the record. Same numbers, two shapes.
+const pbk = cover.paperback ?? cover;
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const verif = (manifest?.verification ?? []).map(
   (v) => `<tr><td>${esc(v.name)}</td><td>${v.pass ? "<b>pass</b>" : "<b>FAIL</b>"}</td><td>${esc(v.detail ?? "")}</td></tr>`
@@ -104,9 +132,9 @@ ${manifest ? `<h3>What the companion pipeline verified by reading the finished f
 <h3><span class="who you">YOU</span> Verify the package</h3>
 <div class="card"><p>If a checksum does not match, the file changed after this handbook was written. Rebuild; do not upload.</p>
 <table><tr><th>File</th><th>SHA-256</th><th>Facts</th></tr>
-<tr><td>interior-main.pdf</td><td class="f">${sha(files.interior)}</td><td>${bytes(files.interior)} bytes · ${pages} pp</td></tr>
-<tr><td>paperback-wrap-v1.pdf</td><td class="f">${sha(files.wrap)}</td><td>${bytes(files.wrap)} bytes · 1 page</td></tr>
-<tr><td>kindle-v1.jpg</td><td class="f">${sha(files.kindle)}</td><td>${bytes(files.kindle)} bytes · 1600×2560</td></tr>
+<tr><td>${VOL ? `interior${S}.pdf` : "interior-main.pdf"}</td><td class="f">${sha(files.interior)}</td><td>${bytes(files.interior)} bytes · ${pages} pp</td></tr>
+<tr><td>paperback-wrap${S}-v1.pdf</td><td class="f">${sha(files.wrap)}</td><td>${bytes(files.wrap)} bytes · 1 page</td></tr>
+<tr><td>kindle${S}-v1.jpg</td><td class="f">${sha(files.kindle)}</td><td>${bytes(files.kindle)} bytes · 1600×2560</td></tr>
 <tr><td>epub <span class="k">(not for KDP)</span></td><td class="f">${sha(files.epub)}</td><td>${bytes(files.epub)} bytes</td></tr>
 </table></div>
 
@@ -127,7 +155,7 @@ ${manifest ? `<h3>What the companion pipeline verified by reading the finished f
 <tr><td>Pages</td><td><b>${pages}</b> — even, inside KDP's 24–828</td></tr>
 <tr><td>Paper / ink</td><td><b>White</b> / <b>Black &amp; white</b></td></tr>
 <tr><td>Cover</td><td class="f">${esc(files.wrap)}</td></tr>
-<tr><td>Wrap</td><td><b>${cover.wrapIn.w} × ${cover.wrapIn.h} in</b>, spine <b>${cover.spineIn} in</b> at ${pages} pp, bleed 0.125 in, barcode corner clear</td></tr>
+<tr><td>Wrap</td><td><b>${pbk.wrapIn.w} × ${pbk.wrapIn.h} in</b>, spine <b>${pbk.spineIn} in</b> at ${pages} pp, bleed 0.125 in, barcode corner clear</td></tr>
 </table>
 <p class="note card">If KDP's calculator disagrees with the spine above, <b>trust KDP and rebuild</b> — <code>python3 BUILD/build_cover.py</code> after correcting <code>PAGES</code>. Never stretch the PDF.</p></div>
 
