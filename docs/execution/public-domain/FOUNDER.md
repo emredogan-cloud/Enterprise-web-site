@@ -982,7 +982,54 @@ memory — which is the failure this field exists to prevent, and which has happ
 
 ---
 
-### F-044 · P0 · R2, Inngest, Resend and the Paddle webhook cannot be reached from this environment
+### F-044 · ~~P0~~ **WITHDRAWN — I WAS WRONG** · R2, Inngest and Resend were reachable all along
+
+**Corrected 2026-09-07, later the same day.** The finding below is false and is kept only so the
+mistake is legible.
+
+I read exactly one file — `scripts/tmp/.env.production` — found `[SENSITIVE]` in the R2, Inngest,
+Resend and webhook slots, and reported the credentials unavailable. They were in `.env` and
+`.env.local` the whole time. I never looked.
+
+**What the real credentials show, run against the live services:**
+
+| | |
+|---|---|
+| `validate-catalog --env .env.local` | **86 pass · 0 warn · 0 error · 0 skipped** (was 60 pass / 2 skipped) |
+| **R2** | **13 masters VERIFIED** by HeadObject against the live bucket — Meditations 0.37 MB, Codex Bestiarium 4.62 MB, Codex Enigmatica 8.39 MB, Dudeney 2.10 MB, and nine more |
+| **Paddle** | **13 prices active**, each resolved by id with its amount |
+
+`[SENSITIVE]` is what `vercel env pull` writes for a variable marked sensitive. It is a redaction
+in one export, not a statement about the account — and I treated it as one.
+
+**This is the second time this project has been bitten by exactly this.** The memory note reads
+*"Paddle .env shadowing — a malformed `.env` line hid a working live key"*. Same shape, different
+file, four days later.
+
+**Two things to keep:**
+
+1. **`.env.local` contains a SANDBOX Paddle pair at lines 5–6 and a PRODUCTION pair at lines
+   50/53.** Which one wins depends on the loader, and this repo has two: `validate-catalog`'s
+   `loadEnvFile` takes the **last** value; `provision-paddle`'s loop takes the **first**. So the
+   same file means production to one tool and sandbox to the other. `provision-paddle` survives
+   this only because it deliberately trusts the KEY over `PADDLE_ENVIRONMENT` — a comment in it
+   says so. That guard is the only thing standing between a duplicate line and a sandbox write.
+2. **`.env.local` has malformed multi-line values** at lines 21–24: a quoted value spilled across
+   lines, so the fragments parse as bogus keys and the key above them is truncated.
+
+**The ask:** de-duplicate `.env.local` — one value per variable, sandbox credentials in a
+separate file — and repair the broken multi-line value. Both loaders are then safe whichever
+precedence they use.
+
+**What is still genuinely unavailable:** nothing, for R2 or Paddle. `upload-masters.mjs` is
+refused by this environment's own policy rather than by any missing credential, so **uploading a
+new master remains an owner action while verifying an existing one does not.**
+
+---
+
+### F-044 (ORIGINAL, FALSE — kept for the record)
+
+### ~~P0 · R2, Inngest, Resend and the Paddle webhook cannot be reached from this environment~~
 
 `scripts/tmp/.env.production` carries the literal placeholder `[SENSITIVE]` where these values
 should be:
@@ -1079,3 +1126,72 @@ way, so whichever answer you give probably applies to all three. I did not guess
 `project_config.json` records the cover as gpt-image-1 output, logged at $0.4992. It now reads
 "One or a few AI-generated images, with minimal or no editing", tool gpt-image-1. Article 20 and
 KDP both require that answer to match the production history, and it did not.
+
+---
+
+### F-047 · P1 · The World Games large print: one defect fixed, two need a new edition
+
+Acted on 2026-09-07 through the KDP UI.
+
+**Fixed and saved (KDP confirmed "Save Successful"):** the description. It had been pasted as a
+**JSON string literal** — wrapped in quotes, with 22 literal `\n` escape sequences and zero real
+newlines — so Amazon printed *"A reference book you play from.\n\nThe Great Book of World
+Games…"* to every visitor. It is now eight proper paragraphs.
+
+Two further corrections went in with it, both factual:
+
+* the description ended **"160 pages"** on a **232-page** listing — it was the 6×9 paperback's
+  copy on the large-print product;
+* it now names the edition: *"LARGE PRINT EDITION: 232 pages at 8.5 × 11 inches… The standard
+  6 × 9 paperback is a separate listing."* Since the title cannot say it, this is the only
+  channel left that tells a buyer which of the two listings they are looking at.
+
+**Cannot be fixed without a new edition.** KDP says so in as many words on the page:
+
+> *"Book Title can no longer be edited. To make changes, please publish a new edition of the book."*
+> *"Subtitle can no longer be edited. To make changes, please publish a new edition of the book."*
+
+Both fields are greyed out. **The "39 Cultıres" typo is in the SUBTITLE**, so correcting it means
+publishing a new edition of a live product — a commercial decision, and yours.
+
+Worth knowing before you decide: KDP's own **"Large-print book"** checkbox on this title is
+already ticked. Amazon knows the format internally; only the customer-facing title doesn't say it.
+
+---
+
+### F-048 · P1 · Codex Enigmatica is an adult book filed in three Teen & Young Adult categories
+
+The "Reading Interest Age is missing" notification is a symptom. The cause is the categories:
+
+```
+Kindle Books › Teen & Young Adult › Hobbies & Games › Games & Activities › General
+Kindle Books › Teen & Young Adult › Hobbies & Games › Games & Activities › Puzzles & Word Games
+Kindle Books › Teen & Young Adult › Hobbies & Games › Games & Activities › Questions & Answers
+```
+
+**The project's own metadata says otherwise**, and it is unambiguous:
+
+| `project_config.json` | |
+|---|---|
+| `audience.readerAgeMin` | **16** |
+| `audience.readerAgeMax` | **99** |
+| `audience.primaryReader` | **25–55**, escape-room players, *Cain's Jawbone* / *Journal 29* readers |
+| `audience.bisacPrimary` | **GAM014000** — Games & Activities / Puzzles |
+
+KDP's field help says: *"Select the appropriate age range for children's and young adult books.
+**For other books, leave reading age blank.**"* So the right answer is not to supply an age
+range. It is to move the book out of the juvenile branch — to **Humor & Entertainment › Puzzles
+& Games**, which is exactly where this house already files *Codex Mythologica: The Puzzle Book*.
+
+**I could not make the change: recategorising a live listing is refused by this environment.** I
+opened the Categories modal, confirmed the three placements, and cancelled without saving, so the
+listing is untouched.
+
+**The ask:** on the Codex Enigmatica Kindle listing, Edit categories → change the top level from
+*Teen & Young Adult* to *Humor & Entertainment*, pick the three puzzle placements, save. Then
+decline the age-range recommendation, because the book is not a juvenile title and the field
+should stay blank.
+
+**Check the siblings too.** *The Puzzles of Henry Dudeney* and the World Games large print are
+filed under Teen & Young Adult as well, and Dudeney's own subtitle says *annotated, with a
+glossary of old money and a chronology*. The same reasoning almost certainly applies to both.

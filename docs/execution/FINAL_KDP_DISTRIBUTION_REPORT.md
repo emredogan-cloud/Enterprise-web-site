@@ -91,10 +91,10 @@ search was never run again.
 | # | Item | Status | Owner |
 |---|---|---|---|
 | 1 | Puzzle Book paperback — **Publish** | staged, previewer clean | **Founder** |
-| 2 | World Games LP — title typo **"39 Cultıres"** | live, uncorrected | **Founder** (past the 72-hour title window; needs a new edition) |
-| 3 | World Games LP — title omits "Large Print" | live, uncorrected | **Founder** |
-| 4 | World Games LP — description prints literal `\n\n` | live, uncorrected | **Founder** (editable without a new edition) |
-| 5 | Codex Enigmatica — "Reading Interest Age is missing" | open recommendation | **Founder** — see §6 |
+| 2 | World Games LP — title typo **"39 Cultıres"** | live, uncorrected — **KDP: "Subtitle can no longer be edited… publish a new edition"** | **Founder** |
+| 3 | World Games LP — title omits "Large Print" | mitigated: the description now names the edition; the title still cannot | **Founder** |
+| 4 | World Games LP — description printed literal `\n\n` | **FIXED 2026-09-07, saved** — also corrected "160 pages" to 232 (F-047) | done |
+| 5 | Codex Enigmatica — three **Teen & Young Adult** categories on a book whose config says ages 16–99 | evidence gathered, change refused by this environment (F-048) | **Founder** |
 | 6 | Phase 2 + Phase 3 books — no KDP listing | 11 books, Gate 2 unsigned | **Founder** |
 
 ## 6. The one judgement I did not make
@@ -132,4 +132,4 @@ has been invented for any of them.
 | Puzzle Book previewer clean | **VERIFIED** — ran it, read the errors, fixed the source, re-ran it, inspected pages |
 | Puzzle Book published | **NO.** It is DRAFT. One click remains and it is the owner's |
 | World Games LP defects | **VERIFIED** — read on the live Amazon page |
-| R2 / fulfillment | **UNVERIFIED** — credentials are placeholders (F-044) |
+| R2 | **VERIFIED** — 13 masters confirmed by HeadObject against the live bucket. My earlier "placeholders" finding was wrong: I had read only `scripts/tmp/.env.production`, and the real credentials are in `.env`/`.env.local`. See F-044, withdrawn. |

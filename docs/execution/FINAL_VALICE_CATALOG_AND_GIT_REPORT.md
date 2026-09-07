@@ -70,21 +70,55 @@ address 404s until this branch ships."* PR #22 merged at 08:41 UTC and both beca
 | Companion sheet PDFs | **200, `application/pdf`, byte-for-byte the built files** (`fairy-mythology-vol-1/words.pdf` = 65,023 bytes local and served) |
 | `validate-catalog` | **60 pass · 0 warn · 0 error · 2 skipped** — was 32 errors, every one a companion 404 the merge resolved |
 
-## 5. Commerce
+## 5. Commerce — VERIFIED, and a correction
 
-**Paddle — VERIFIED.** `pri_01m1v4n80k6g2tba6wt8882ehf` resolved against `api.paddle.com`:
-active, correctly named, $8.99. Phase 2's five products and prices are live.
+**Everything in this section was reported as blocked earlier today. That was wrong, and the
+error was mine.**
 
-**R2, Inngest, Resend, Paddle webhook — UNVERIFIED, and blocked.** All six `R2_*` values, both
-Inngest keys, both Resend keys and `PADDLE_WEBHOOK_SECRET` are the literal placeholder
-`[SENSITIVE]` in `scripts/tmp/.env.production`. Real and used: `DATABASE_URL`,
-`CLERK_SECRET_KEY`, `PADDLE_API_KEY`, `OPENAI_API_KEY`. **F-044.**
+I read one file — `scripts/tmp/.env.production` — saw `[SENSITIVE]` in the R2, Inngest, Resend
+and webhook slots, and concluded the credentials did not exist. They were in `.env` and
+`.env.local` the whole time. `[SENSITIVE]` is what `vercel env pull` writes for a variable marked
+sensitive: a redaction in one export, not a statement about the account.
 
-So no master could be uploaded and fulfillment could not be exercised end to end. It is also the
-right order: an R2 master is the file a paying customer downloads, and none of these books can be
-bought until Gate 2 is signed. `upload-masters.mjs` reports every object as "(new)", but with
-placeholder credentials it cannot list the bucket — **that is not evidence of absence** and is
-no longer treated as evidence at all.
+Run against the live services with the real environment:
+
+| | |
+|---|---|
+| `validate-catalog --env .env.local` | **86 pass · 0 warn · 0 error · 0 skipped** — previously 60 pass with 2 skipped |
+| **Paddle** | **13 prices active**, each resolved by id with its amount, against `api.paddle.com` |
+| **R2** | **13 masters VERIFIED** by HeadObject against the live bucket |
+
+R2 objects confirmed present, with sizes: Meditations 0.37 MB · Codex Bestiarium 4.62 MB · World
+Myths 3.72 MB · World Games 0.58 MB · Greek Workbook 0.40 MB · Puzzle Book 0.36 MB · Dudeney
+2.10 MB · Epictetus 0.59 MB · Seneca 0.54 MB · Myths of China 0.40 MB · Indian Myth 0.37 MB ·
+Mythical Monsters 0.32 MB · **Codex Enigmatica 8.39 MB**.
+
+### Two environment defects found on the way, and both are live traps
+
+**1. `.env.local` declares Paddle twice, and one of them is sandbox.** A sandbox key and
+`PADDLE_ENVIRONMENT=sandbox` at lines 5–6; the production pair at lines 50 and 53. Which wins
+depends on the loader — **and this repository has two**:
+
+| Loader | Precedence |
+|---|---|
+| `validate-catalog.mjs` → `loadEnvFile` | assigns as it goes — **last wins** → production |
+| `provision-paddle.mjs` → `if (!process.env[k])` | **first wins** → *sandbox* |
+
+The same file means production to one tool and sandbox to the other. `provision-paddle` is safe
+only because it deliberately trusts the **key** over `PADDLE_ENVIRONMENT` — its own comment says
+that is why. That guard is the single thing between a duplicate line and a sandbox write.
+
+**2. `.env.local` has a broken multi-line value** at lines 21–24: a quoted value spilled across
+lines, so its fragments parse as bogus keys and the key above them is truncated.
+
+Recorded as **F-044 (withdrawn and corrected)**. The ask is to de-duplicate the file and keep
+sandbox credentials somewhere else.
+
+### What is still not done
+
+`upload-masters.mjs` is refused by this environment's policy — not by any missing credential. So
+**verifying an existing master is done; uploading a new one remains an owner action.** The Phase
+2 and Phase 3 books have no master in R2 and cannot get one from here.
 
 ## 6. Identifiers
 
@@ -113,12 +147,13 @@ arrive as pull requests.
 
 ## 8. Everything still open, and who owns it
 
-| # | Item | Owner |
-|---|---|---|
-| Gate 2 | Rights signature — **all 11 draft books** | Founder |
-| F-036 | Phase 3 prices are engine recommendations, unapproved | Founder |
-| F-043 | AI disclosure written as the standing house answer, not a decision taken | Founder |
-| F-044 | R2 / Inngest / Resend credentials are placeholders | Founder |
-| F-045 | Three live defects on the World Games large print listing | Founder |
-| F-046 | Puzzle Book **Publish** click; Codex Enigmatica age-range judgement | Founder |
-| — | Merge PR #23 | Founder |
+| # | Item | Owner | Why it is not done |
+|---|---|---|---|
+| **Gates 2 & 5** | Rights + Factual, five Phase 2 books | Founder | `gate.mjs` needs `--approved-by founder`; this environment refuses an agent making that signature. **The exact commands are in `FOUNDER_GATE_COMMANDS.md`** — five books × two gates, one line each |
+| F-036 | Phase 3 prices are engine recommendations, unapproved | Founder | a pricing decision |
+| F-043 | AI disclosure is the standing house answer, not a decision taken | Founder | needs confirming, not deciding |
+| **F-044** | ~~credentials are placeholders~~ **WITHDRAWN — I was wrong** | — | R2 and Paddle are verified. What remains is to **de-duplicate `.env.local`**, which holds a sandbox Paddle pair and a production one |
+| F-045 / F-047 | World Games LP: description **fixed**; the "39 Cultıres" typo needs a **new edition** | Founder | KDP locks title and subtitle after 72 hours and says so on the page |
+| F-046 | Puzzle Book **Publish** click | Founder | carries the KDP Terms agreement |
+| F-048 | Codex Enigmatica sits in 3 Teen & Young Adult categories; its config says ages **16–99** | Founder | recategorising a live listing is refused here; evidence gathered, modal cancelled without saving |
+| — | Merge **PR #24** | Founder | PR #23 already merged; CI green on main |
