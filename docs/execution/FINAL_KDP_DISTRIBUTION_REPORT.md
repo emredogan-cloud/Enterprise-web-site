@@ -91,10 +91,10 @@ search was never run again.
 | # | Item | Status | Owner |
 |---|---|---|---|
 | 1 | Puzzle Book paperback — **Publish** | staged, previewer clean | **Founder** |
-| 2 | World Games LP — title typo **"39 Cultıres"** | live, uncorrected | **Founder** (past the 72-hour title window; needs a new edition) |
-| 3 | World Games LP — title omits "Large Print" | live, uncorrected | **Founder** |
-| 4 | World Games LP — description prints literal `\n\n` | live, uncorrected | **Founder** (editable without a new edition) |
-| 5 | Codex Enigmatica — "Reading Interest Age is missing" | open recommendation | **Founder** — see §6 |
+| 2 | World Games LP — title typo **"39 Cultıres"** | live, uncorrected — **KDP: "Subtitle can no longer be edited… publish a new edition"** | **Founder** |
+| 3 | World Games LP — title omits "Large Print" | mitigated: the description now names the edition; the title still cannot | **Founder** |
+| 4 | World Games LP — description printed literal `\n\n` | **SAVED IN KDP 2026-09-07** (verified across a reload); also corrected "160 pages" → 232 and named the edition. **NOT yet on Amazon** — metadata takes up to 72 h (F-047) | propagating |
+| 5 | Codex Enigmatica — three **Teen & Young Adult** categories on a book whose config says ages 16–99 | evidence gathered, change refused by this environment (F-048) | **Founder** |
 | 6 | Phase 2 + Phase 3 books — no KDP listing | 11 books, Gate 2 unsigned | **Founder** |
 
 ## 6. The one judgement I did not make
@@ -124,7 +124,30 @@ generated from their own QA records. **None has been uploaded.** All eleven carr
 "GATE 2 IS UNSIGNED": the rights signature, which no agent can give. No ASIN, ISBN or KDP state
 has been invented for any of them.
 
-## 9. Truthfulness
+## 8b. Every format classified — no UNKNOWN
+
+73 format entries across 27 catalogue rows:
+
+| State | Count |
+|---|---|
+| **LIVE** — ASIN present and `kdp: live` | **22** |
+| **READY** — published row, format not created at KDP | 22 |
+| **BLOCKED (Gate 2)** — the 11 draft books | 22 |
+| **NOT APPLICABLE** — no such format in the local project | 6 |
+| **PENDING OWNER CONFIRMATION** — Puzzle Book paperback | 1 |
+| **UNKNOWN** | **0** |
+
+## 9. States, exactly
+
+| State | Meaning here |
+|---|---|
+| **LIVE** | confirmed on the KDP bookshelf *and* the Amazon product page |
+| **READY / PENDING OWNER CONFIRMATION** | every agent-performable step done; one owner click remains |
+| **SAVED, PROPAGATING** | written and verified in KDP; Amazon has not caught up (≤72 h) |
+| **BLOCKED** | cannot proceed here — a gate signature, or an action this environment refuses |
+| **NOT APPLICABLE** | the local project has no such format |
+
+## 10. Truthfulness
 
 | Claim | Basis |
 |---|---|
@@ -132,4 +155,4 @@ has been invented for any of them.
 | Puzzle Book previewer clean | **VERIFIED** — ran it, read the errors, fixed the source, re-ran it, inspected pages |
 | Puzzle Book published | **NO.** It is DRAFT. One click remains and it is the owner's |
 | World Games LP defects | **VERIFIED** — read on the live Amazon page |
-| R2 / fulfillment | **UNVERIFIED** — credentials are placeholders (F-044) |
+| R2 | **VERIFIED** — 13 masters confirmed by HeadObject against the live bucket. My earlier "placeholders" finding was wrong: I had read only `scripts/tmp/.env.production`, and the real credentials are in `.env`/`.env.local`. See F-044, withdrawn. |
