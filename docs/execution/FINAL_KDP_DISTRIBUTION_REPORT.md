@@ -124,6 +124,19 @@ generated from their own QA records. **None has been uploaded.** All eleven carr
 "GATE 2 IS UNSIGNED": the rights signature, which no agent can give. No ASIN, ISBN or KDP state
 has been invented for any of them.
 
+## 8b. Every format classified — no UNKNOWN
+
+73 format entries across 27 catalogue rows:
+
+| State | Count |
+|---|---|
+| **LIVE** — ASIN present and `kdp: live` | **22** |
+| **READY** — published row, format not created at KDP | 22 |
+| **BLOCKED (Gate 2)** — the 11 draft books | 22 |
+| **NOT APPLICABLE** — no such format in the local project | 6 |
+| **PENDING OWNER CONFIRMATION** — Puzzle Book paperback | 1 |
+| **UNKNOWN** | **0** |
+
 ## 9. States, exactly
 
 | State | Meaning here |
