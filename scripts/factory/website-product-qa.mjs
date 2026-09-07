@@ -11,6 +11,12 @@
  * A book whose page is not live CANNOT pass this gate, and this script says so rather than
  * skipping it quietly — an unbuilt page and a broken one are different facts.
  *
+ * What "live" means depends on what the catalogue INTENDED. `websiteStatus: "draft"` says the
+ * book is deliberately not for sale, so its 404 is the correct outcome and passes; what would
+ * fail is a draft whose page is up and taking money. Grading drafts against the published
+ * checklist reported eleven failures for behaving exactly as designed, which is how a real
+ * failure gets lost in a list.
+ *
  *   node scripts/factory/website-product-qa.mjs [--slug <slug>]... [--out <file>]
  */
 import { writeFileSync } from "node:fs";
@@ -41,9 +47,19 @@ for (const b of BOOKS) {
   const checks = [];
   const add = (name, ok, detail) => checks.push({ name, ok, detail });
 
-  add("http-200", status === 200, error ?? `HTTP ${status}`);
+  const shouldBeLive = b.websiteStatus === "published";
 
-  if (status === 200) {
+  if (shouldBeLive) {
+    add("http-200", status === 200, error ?? `HTTP ${status}`);
+  } else {
+    // A withheld book must be withheld. 404 is the pass. A 200 is only tolerable if the page
+    // sells nothing — anything else means a draft reached a buyer.
+    const sellsSomething = status === 200 && /add to cart|buy now|add-to-cart/i.test(body);
+    add("withheld", status !== 200 || !sellsSomething,
+        status === 200 ? (sellsSomething ? "page is up AND buyable" : "page is up but sells nothing") : `HTTP ${status}`);
+  }
+
+  if (status === 200 && shouldBeLive) {
     // The title as the catalogue holds it must appear on the page. Compared on letters and
     // digits only: the page sets typographic quotes and dashes the catalogue stores plain.
     const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "");
@@ -83,11 +99,18 @@ for (const b of BOOKS) {
 }
 
 const live = rows.filter((r) => r.status === 200);
+const intended = rows.filter((r) => r.websiteStatus === "published");
 const rec = {
   tool: "website-product-qa",
   target: BASE,
   ranAt: new Date().toISOString(),
-  counts: { checked: rows.length, live: live.length, passing: rows.filter((r) => r.ok).length },
+  counts: {
+    checked: rows.length,
+    live: live.length,
+    published: intended.length,
+    publishedPassing: intended.filter((r) => r.ok).length,
+    passing: rows.filter((r) => r.ok).length,
+  },
   $why: "Gate 11 evidence. Every assertion is against bytes returned by production; a row that "
       + "says published while the page 404s fails here, which is the point.",
   rows,
@@ -98,5 +121,9 @@ for (const r of rows) {
   const bad = r.checks.filter((c) => !c.ok).map((c) => c.name);
   console.log(`  ${r.ok ? "PASS" : "FAIL"}  ${r.slug.padEnd(36)} ${String(r.status).padEnd(4)} ${r.websiteStatus.padEnd(10)} ${bad.length ? "failed: " + bad.join(",") : ""}`);
 }
-console.log(`\n${rec.counts.passing}/${rec.counts.checked} pass · ${rec.counts.live} live pages`);
+console.log(
+  `\n${rec.counts.passing}/${rec.counts.checked} pass · ` +
+    `${rec.counts.publishedPassing}/${rec.counts.published} of the books meant to be on sale · ` +
+    `${rec.counts.live} live pages`,
+);
 process.exit(0);
