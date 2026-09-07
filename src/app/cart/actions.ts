@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { getCurrentLocalUserIdReadOnly } from "@/lib/account";
 import { deleteCart, readCart, writeCart } from "@/lib/cart";
 import { getOwnedBookIds } from "@/lib/db/queries/account";
+import { matchBundle } from "@/lib/bundles";
 import { getCheckoutItems } from "@/lib/db/queries/catalog";
 import { getPaddleClient, isPaddleConfigured } from "@/lib/paddle";
 
@@ -125,13 +126,24 @@ export async function createCheckoutSession(): Promise<CheckoutResult> {
 
   try {
     const paddle = getPaddleClient();
+
+    // A cart that contains every member of a bundle is charged the bundle
+    // price. The discount is a Paddle object restricted to the member prices,
+    // so it cannot touch anything else in the same transaction even if the
+    // match below were wrong; and because every book still goes in as its own
+    // line item with its own id in `customData.bookIds`, fulfillment grants
+    // the same entitlement per book that it always did. See src/lib/bundles.ts.
+    const bundle = matchBundle(books.map((b) => b.slug));
+
     const transaction = await paddle.transactions.create({
       items: books.map((book) => ({
         priceId: book.paddlePriceId as string,
         quantity: 1,
       })),
+      ...(bundle ? { discountId: bundle.discountId } : {}),
       customData: {
         bookIds: books.map((b) => b.id),
+        ...(bundle ? { bundle: bundle.slug } : {}),
       },
       collectionMode: "automatic",
     });

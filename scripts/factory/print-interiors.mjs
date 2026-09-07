@@ -76,7 +76,7 @@ export const PRINT_INTERIORS = {
     // pipeline's verification and it was removed. The interior is now typeset
     // deliberately ODD (175 pp) and build-companion-pages.mjs appends the leaf
     // to make 176, which is the even count KDP requires.
-    paperback: bookPath("01-EPICTETUS-DISCOURSES-AND-ENCHIRIDION", "OUTPUT", "interior-main.pdf"),
+    paperback: bookPath("05-EPICTETUS-DISCOURSES-AND-ENCHIRIDION", "OUTPUT", "interior-main.pdf"),
   },
   "traditional-games": {
     // PHASE 2, BOOK 5 (2026-09-06). Valice Classics 12, and the longest book of the

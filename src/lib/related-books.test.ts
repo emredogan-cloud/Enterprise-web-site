@@ -4,7 +4,10 @@ import type { BookCardData } from "@/components/book-card";
 
 const EDITOR = { slug: "emre-dogan", name: "Emre Dogan" };
 
-function book(slug: string, ...authors: Array<{ slug: string; name: string }>): BookCardData {
+function book(
+  slug: string,
+  ...authors: Array<{ slug: string; name: string }>
+): BookCardData & { primaryCategory?: string } {
   return {
     id: slug,
     slug,
@@ -15,6 +18,10 @@ function book(slug: string, ...authors: Array<{ slug: string; name: string }>): 
     currency: "USD",
     authors: [...authors, EDITOR],
   };
+}
+
+function inCollection(b: BookCardData, name: string): BookCardData {
+  return { ...b, primaryCategory: name };
 }
 
 const KEIGHTLEY = { slug: "thomas-keightley", name: "Thomas Keightley" };
@@ -75,6 +82,40 @@ describe("relatedBooks", () => {
   it("never includes the book itself", () => {
     const all = [book("x", KEIGHTLEY), book("y", KEIGHTLEY)];
     expect(relatedBooks(all[0], all).map((b) => b.slug)).toEqual(["y"]);
+  });
+
+  // The other half of the same problem, solved on the book-05 branch: a bundle
+  // partner is the strongest connection the shop can make, and Meditations was
+  // falling off the Epictetus page entirely.
+  it("puts a bundle partner ahead of everything", () => {
+    const all = [
+      book("recent"),
+      book("meditations"),
+      book("old-keightley", KEIGHTLEY),
+      book("epictetus", KEIGHTLEY),
+    ];
+    const got = relatedBooks(all[3], all, { bundledWith: ["epictetus", "meditations"] });
+    expect(got[0].slug).toBe("meditations");
+    expect(got[1].slug).toBe("old-keightley");
+  });
+
+  it("puts a shared author ahead of a shared collection", () => {
+    const all = [
+      inCollection(book("same-shelf"), "Valice Classics"),
+      book("other-volume", KEIGHTLEY),
+      { ...book("current", KEIGHTLEY), primaryCategory: "Valice Classics" },
+    ];
+    const got = relatedBooks(all[2] as never, all);
+    expect(got.map((b) => b.slug)).toEqual(["other-volume", "same-shelf"]);
+  });
+
+  it("falls back to the collection when nothing else connects", () => {
+    const all = [
+      book("stranger", HEARN),
+      inCollection(book("same-shelf"), "Valice Classics"),
+      { ...book("current", SIKES), primaryCategory: "Valice Classics" },
+    ];
+    expect(relatedBooks(all[2] as never, all)[0].slug).toBe("same-shelf");
   });
 
   it("respects the limit", () => {

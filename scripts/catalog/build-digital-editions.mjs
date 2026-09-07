@@ -26,6 +26,7 @@
  * Output: scripts/tmp/digital-editions/<slug>.pdf
  */
 import { execFileSync } from "node:child_process";
+import { copyFileSync } from "node:fs";
 import { mkdirSync, statSync } from "node:fs";
 import { DIGITAL_EDITION_SOURCES } from "./digital-edition-sources.mjs";
 
@@ -74,14 +75,51 @@ for (const src of targets) {
     { stdio: "inherit" },
   );
 
-  const outSize = statSync(out).size;
+  // DOES THE DERIVED FILE EARN ITS PLACE?
+  //
+  // Ghostscript's pdfwrite rebuilds every font, and on a text-heavy interior it
+  // drops the ToUnicode CMaps while doing it. An adversarial review measured the
+  // consequence on the Epictetus master, which is the file a BUYER receives:
+  // 845 non-ASCII characters — every em dash, every curly quote, every æ and ē —
+  // extracted as nothing. `proairesis — the will —` came out `proairesis the
+  // will`, and `copyright ©` came out `copyright`. Copy, in-PDF search and
+  // screen readers all degraded, in the paid artefact only; the print master was
+  // clean. And the "compressed" file was 30 KB LARGER than its source, because
+  // an interior with no plates has nothing to downsample.
+  //
+  // So the derived file now has to prove it is worth shipping. If it loses text
+  // or fails to get smaller, the print interior is copied through unchanged.
+  const textOf = (f) => {
+    try {
+      return execFileSync("pdftotext", [f, "-"], { encoding: "utf8", maxBuffer: 64 * 1024 * 1024 });
+    } catch {
+      return "";
+    }
+  };
+  const nonAscii = (t) => (t.match(/[^\x00-\x7F]/g) ?? []).length;
+  const before = textOf(src.printInterior);
+  const after = textOf(out);
+  const lost = nonAscii(before) - nonAscii(after);
+  let outSize = statSync(out).size;
+  let kept = "ghostscript";
+  if (lost > 0 || outSize >= inSize) {
+    copyFileSync(src.printInterior, out);
+    outSize = statSync(out).size;
+    kept = "print interior, unchanged";
+    console.log(
+      `  ${src.slug}: kept the print interior — ghostscript ` +
+        (lost > 0 ? `dropped ${lost} non-ASCII characters` : "made it no smaller") +
+        (outSize >= inSize && lost > 0 ? " and made it no smaller" : ""),
+    );
+  }
+
   const pages = execFileSync("pdfinfo", [out], { encoding: "utf8" })
     .split("\n")
     .find((l) => l.startsWith("Pages:"))
     ?.split(/\s+/)[1];
 
   console.log(
-    `${src.slug.padEnd(32)} ${mb(inSize).padStart(10)} → ${mb(outSize).padStart(9)}  ${pages}pp`,
+    `${src.slug.padEnd(32)} ${mb(inSize).padStart(10)} → ${mb(outSize).padStart(9)}  ${pages}pp  [${kept}]`,
   );
 
   if (outSize > 25 * 1024 * 1024) {

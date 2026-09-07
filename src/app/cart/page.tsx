@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { CartHero } from "@/components/cart/cart-hero";
 import { CartLine } from "@/components/cart/cart-line";
 import { CartSummary } from "@/components/cart/cart-summary";
+import { bundleSaving, matchBundle } from "@/lib/bundles";
 import { EmptyCartCard } from "@/components/cart/empty-cart-card";
 import { RecommendationShelf } from "@/components/cart/recommendation-shelf";
 import { CinematicHeader } from "@/components/home/cinematic-header";
@@ -49,7 +50,15 @@ export default async function CartPage() {
     .map((item) => booksById.get(item.bookId))
     .filter((b): b is NonNullable<typeof b> => b !== undefined);
 
-  const totalCents = orderedBooks.reduce((s, b) => s + b.priceCents, 0);
+  const subtotalCents = orderedBooks.reduce((s, b) => s + b.priceCents, 0);
+  // A cart holding every member of a bundle is charged the bundle price at
+  // checkout (src/app/cart/actions.ts attaches the Paddle discount). The
+  // summary has to say so: a cart that totals $19.98 and then charges $14.99
+  // is a cart the reader cannot trust, even when the surprise is in their
+  // favour — and a saving nobody is told about persuades nobody.
+  const bundle = matchBundle(orderedBooks.map((b) => b.slug));
+  const bundleDiscountCents = bundle ? bundleSaving(bundle) : 0;
+  const totalCents = subtotalCents - bundleDiscountCents;
   const currency = orderedBooks[0]?.currency ?? "USD";
   const isEmpty = orderedBooks.length === 0;
 
@@ -103,6 +112,9 @@ export default async function CartPage() {
               {/* Summary + checkout */}
               <CartSummary
                 totalCents={totalCents}
+                subtotalCents={subtotalCents}
+                bundleName={bundle?.name ?? null}
+                bundleDiscountCents={bundleDiscountCents}
                 currency={currency}
                 itemCount={orderedBooks.length}
               />

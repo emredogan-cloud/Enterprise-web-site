@@ -610,7 +610,7 @@ const EPICTETUS: Companion = {
   intro:
     "Free material for Epictetus: the complete Enchiridion to print, the " +
     "eighteen working terms on one sheet, four ways into the Discourses, and " +
-    "the passages Marcus Aurelius demonstrably read.",
+    "the passages where Long's two translations touch.",
   newsletterSource: "epictetus-companion",
   assetsHeading: "Reading material",
   rightsNote:

@@ -1151,7 +1151,7 @@ export const BOOKS = [
     onelinePromise:
       "The book Marcus Aurelius read, in the same translator's English, with a head-note on every chapter and the passages he reused marked.",
     description:
-      "Epictetus was born a slave and taught that nobody could govern a man who wanted nothing they controlled. He wrote none of it down; his student Arrian did. This edition prints Arrian's handbook \u2014 the complete Enchiridion, all fifty-two chapters \u2014 first, as the shorter way in, then the sixty-eight Discourses George Long selected in 1877, arranged into seven thematic parts instead of the unbroken sequence Long printed. The text is Long's, unaltered. Around it: a 3,000-word introduction, an introduction to each part, a head-note on every one of the 120 chapters, a glossary of the eighteen terms Epictetus uses technically and English hides, a biographical index of the people he names without introducing, a chronology, an index of thirty-four subjects generated from the text, and a concordance to the Meditations listing the four passages Marcus Aurelius demonstrably read \u2014 and the two George Long cites that turned out not to be in this selection. 176 pages, 6 \u00d7 9 in.",
+      "Epictetus was born a slave and taught that nobody could govern a man who wanted nothing they controlled. He wrote none of it down; his student Arrian did. This edition prints Arrian's handbook \u2014 the complete Enchiridion, all fifty-two chapters \u2014 first, as the shorter way in, then the sixty-eight Discourses George Long selected in 1877, arranged into seven thematic parts instead of the unbroken sequence Long printed. The text is Long's, unaltered. Around it: a 3,000-word introduction, an introduction to each part, a head-note on every one of the 120 chapters, a glossary of the eighteen terms Epictetus uses technically and English hides, a biographical index of the people he names without introducing, a chronology, an index of thirty-four subjects generated from the text, and a concordance to the Meditations listing the four passages where George Long's two translations touch \u2014 and the two he cites that turned out not to be in this selection. 176 pages, 6 \u00d7 9 in.",
     idealReader:
       "Someone who read the Meditations, wanted the source, and would rather be told plainly which translation they are holding and what it leaves out.",
     formats: [
@@ -1180,12 +1180,12 @@ export const BOOKS = [
         kdp: "not_created",
         masterFileKey: null,
         priceBasis:
-          "price-engine.mjs 2026-09-04, 176 pp 6\u00d79 B&W public domain: prints at $3.11, KDP minimum list $5.19. $16.99 nets $7.08 (41.7%); the engine's recommended list is $12.99 and the Valice Classics bible's band is $16.99\u201319.99 once an edition has proved itself. Proposed at $16.99; the Founder decides at Gate 8.",
+          "price-engine.mjs 2026-09-04, 176 pp 6\u00d79 B&W public domain: prints at $3.11, KDP minimum list $5.19. $16.99 nets $7.08 (41.7%); the engine's recommended list is $12.99 and the Valice Classics bible's band is $16.99\u201319.99 once an edition has proved itself. DECIDED at $16.99 on 2026-09-06: the price-engine was re-run at the MEASURED 176 pages and the files are built, preflight clean and packaged. What is left is the upload itself.",
       },
     ],
     blockers: [
-      "Not on KDP. These editions are built and packaged, and the print upload is a Founder action \u2014 see the KDP upload handbook in PHASE-1-REPORT. The direct ebook is on sale here regardless.",
-      "Gates 7 (cover) and 8 (interior/proof) are unsigned, so the paperback list price is proposed rather than decided. Gates 2 (rights), 4 (content), 5 (facts) and 9 (metadata) are signed.",
+      "Not on KDP, which is why the paperback reads coming_soon and not available: the files are built, preflight clean and packaged, but no Amazon listing exists and a reader cannot buy what is not listed. The handbook is at ROADMAP-BOOKS/05-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/KDP_UPLOAD_GUIDE.html. The upload is a Founder action. The direct ebook is on sale here regardless.",
+      "Gates 7 (cover) and 8 (interior/proof) are unsigned, so the proof is unseen. Gates 2 (rights), 4 (content), 5 (facts) and 9 (metadata) are signed. The cover was corrected on 2026-09-06: the title line now matches the listed title, and the barcode rectangle carries zero text.",
 
       "No Kindle edition and no hardcover or large print are planned at launch; each decision is recorded below rather than assumed.",
       "No Kindle edition planned at launch: KDP caps public-domain content at the 35% royalty tier and the Kindle store already carries several free Epictetus editions. It is a discovery channel, not a revenue one, and the decision is recorded rather than assumed.",

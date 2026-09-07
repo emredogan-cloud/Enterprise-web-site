@@ -357,6 +357,11 @@ export async function getPublishedBookBySlug(
             },
           },
           formats: true,
+          // Needed by the detail page's related shelf, which ranks a book in
+          // the same collection above an unrelated one. Without it the rank
+          // was silently dead: `primaryCategory` is optional on BookCardData,
+          // so the comparison typechecked and always missed.
+          bookCategories: { with: { category: { columns: { name: true } } } },
         },
       });
       if (!book) return null;
@@ -376,6 +381,10 @@ export async function getPublishedBookBySlug(
         publishedAt: book.publishedAt,
         hasEpub: Boolean(book.epubFileKey),
         authors: book.bookAuthors.map((ba) => ba.author),
+        primaryCategory:
+          book.bookCategories
+            .map((bc) => bc.category.name)
+            .sort((a, z) => a.localeCompare(z))[0] ?? null,
         // `unavailable` formats are dropped rather than rendered as a
         // struck-through row: a format the press decided not to produce is
         // not news to the reader. The write-in Myth Hunter has no ebook and
@@ -558,6 +567,7 @@ export async function getCartBooks(bookIds: string[]): Promise<BookCardData[]> {
 // -----------------------------------------------------------------------------
 export interface CheckoutItem {
   id: string;
+  slug: string;
   title: string;
   priceCents: number;
   currency: string;
@@ -576,6 +586,10 @@ export async function getCheckoutItems(
           and(eq(b.status, "published"), inArray(b.id, bookIds)),
         columns: {
           id: true,
+          // The slug is what a bundle is defined in terms of: `src/lib/bundles.ts`
+          // names its members by catalogue slug, not by database uuid, so that
+          // the definition survives a reseed.
+          slug: true,
           title: true,
           priceCents: true,
           currency: true,

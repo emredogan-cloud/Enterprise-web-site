@@ -10,6 +10,7 @@ import { ExploreStrip } from "@/components/book-detail/explore-strip";
 import { DirectEditionPanel } from "@/components/book-detail/direct-edition-panel";
 import { FormatTable } from "@/components/book-detail/format-table";
 import { RelatedBooksShelf } from "@/components/book-detail/related-books-shelf";
+import { bundlesContaining } from "@/lib/bundles";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
 import { relatedBooks } from "@/lib/related-books";
@@ -131,7 +132,9 @@ export default async function BookDetailPage({
     listPublishedBooks(),
   ]);
 
-  const related = relatedBooks(book, allBooks);
+  const related = relatedBooks(book, allBooks, {
+    bundledWith: bundlesContaining(slug).flatMap((bundle) => bundle.bookSlugs),
+  });
 
   const aggregateRatingForJsonLd =
     ratingAggregate.count > 0 && ratingAggregate.average !== null

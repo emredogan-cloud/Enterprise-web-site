@@ -111,6 +111,184 @@ expectation, so neither should be signed without reading the reasoning:
 
 
 
+### F-032 · P0 · Every book's sold PDF has a destroyed text layer — one command fixes them
+
+- **Date raised:** 2026-09-06 · found by the Book 05 adversarial review
+- **What is wrong:** `build-digital-editions.mjs` runs Ghostscript, whose `pdfwrite`
+  rebuilds every font and **drops the ToUnicode CMaps**. In the master a BUYER downloads,
+  every non-ASCII character extracts as nothing. Measured on Epictetus: **845 characters
+  gone** — every em dash, every curly quote, every `æ` and `ē`.
+
+  > printed: `proairesis — the will — as the place where all real work happens.`
+  > **sold:** `proairesis the will as the place where all real work happens.`
+  > printed: `copyright © 2026 Valice Press` · **sold:** `copyright 2026 Valice Press`
+
+  Copy and paste, in-PDF search and screen-reader output are all degraded, in the paid
+  artefact only — the print master was always clean. And the "compressed" file came out
+  **30 KB larger** than its source, because an interior with no plates has nothing to
+  downsample.
+
+- **Already fixed in the pipeline.** The derived file now has to earn its place: if it
+  loses text or fails to get smaller, the print interior is copied through unchanged.
+  Book 05's master has been rebuilt and re-uploaded and its 845 characters are back.
+
+- **Nine other books are still affected**, and the losses are not small:
+
+  | book | characters lost |
+  |---|---|
+  | traditional-games | 6,578 |
+  | myths-and-legends-of-china | 1,835 |
+  | greek-alphabet-handwriting-workbook | 1,914 |
+  | chess-and-playing-cards | 1,820 |
+  | indian-myth-and-legend | 1,597 |
+  | codex-mythologica-the-puzzle-book | 1,075 |
+  | seneca-selected-dialogues | 1,056 |
+  | mythical-monsters | 724 |
+  | mancala | 388 |
+
+- **Why this is yours and not the agent's:** re-uploading changes what buyers receive for
+  nine **live** books. That is a production decision, not a chore, and it was not this
+  task's to make.
+- **The action, two commands:**
+
+  ```
+  node scripts/catalog/build-digital-editions.mjs
+  node scripts/catalog/upload-masters.mjs --commit
+  ```
+
+  The first now refuses the lossy output on its own; the second writes only what changed.
+  Then spot-check one: download a master and run `pdftotext … - | grep -c '[^ -~]'` — it
+  should be a few hundred, not zero.
+
+---
+
+
+### F-031 · P1 · Upload the Epictetus paperback (roadmap book 05)
+
+- **Date raised:** 2026-09-06 · **Book:** roadmap 05, Valice Classics 3 ·
+  **Branch:** `feature/book-05-production`, not merged
+- **Blocker:** the paperback is finished and packaged and cannot be listed by an agent.
+  Interior 176 pp preflight clean; wrap preflight clean with **zero text in the barcode
+  rectangle**; the cover title now matches the listed title; the guide carries every field,
+  both file hashes, the measured geometry and the files *not* to upload.
+- **Why the agent cannot do it:** it is an Amazon account action.
+- **The action:** work down
+  `ROADMAP-BOOKS/05-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/KDP_UPLOAD_GUIDE.html`. Two files
+  only — `OUTPUT/interior-main.pdf` and `ASSETS/cover/paperback-wrap-v4.pdf`. Type the
+  **(Annotated)** form into KDP's Title box; the guide says why. List at **$16.99**.
+  Order a proof: the spine is 0.396 in and narrow spines do not print the way they preview.
+- **Then:** put the ASIN into `valice-catalog.mjs` and move the paperback to `available`.
+  Until a listing exists it reads `coming_soon`, because a reader cannot buy what is not
+  listed.
+- **Not blocking anything else.** The ebook is live and selling, and the Stoic Library
+  bundle is live: Meditations + Epictetus in one cart is **$14.99** against $19.98
+  separately, verified against Paddle's pricing engine.
+
+---
+
+### F-029 addendum · the barcode collision has a fix that does not touch the artwork
+
+- **Date:** 2026-09-06 · raised by the Epictetus work
+- F-029 records that three repairs were tried on the eight affected covers and all three
+  were rejected, because each was an **inpaint** — smearing rock, foliage and the frame
+  rule, or leaving flat rectangles and ghost blobs.
+- A fourth approach works and was used on both Epictetus wraps: **do not paint anything,
+  move the type**. The back cover's lower half has slack in the gaps above the imprint
+  group; spending it lifts the wreath and the imprint block clear of the box while they
+  stay centred, at their own size, in their own type. Each block is cut with its
+  antialiasing, its old position refilled with ground interpolated **per column** (a
+  per-row median is what left the flat rectangles), and pasted higher.
+- Result on Epictetus, measured on the rendered final PDFs at 300 dpi: **0 glyph pixels**
+  in the barcode rectangle, paperback and hardcover. What remains is the border rule, which
+  KDP's white box overlays rather than cutting a word.
+- The module is `ROADMAP-BOOKS/05-EPICTETUS-DISCOURSES-AND-ENCHIRIDION/BUILD/fix_barcode_zone.py`.
+  It takes per-file block coordinates and refuses to write unless the box measures zero
+  glyphs. **Not applied to the other eight books** — those are not this task's to touch —
+  but it is there, and F-029 no longer needs to be answered with "cannot be fixed safely".
+
+---
+
+### F-028 · P0 · Create the five Phase 2 Paddle products (one command)
+
+- **Date raised:** 2026-09-06 · **Phase:** Phase 1/2 cover revision · **Branch:**
+  `feature/public-domain-phase-2`
+- **Blocker:** the five Phase 2 ebooks are the only thing standing between this branch and
+  five books on sale. Everything else is done: catalogue rows written, EPUBs valid and now
+  carrying the new cover, storefront images ingested, prices decided by `price-engine.mjs`.
+  The five rows stay `websiteStatus: "draft"` until the products exist, because the loader
+  refuses to publish a book it cannot charge for.
+- **What the dry run says is missing** (verified live against `api.paddle.com` on
+  2026-09-06; the webhook is active with 4/4 events subscribed and 0 missing):
+
+  | slug | list |
+  |---|---|
+  | `games-ancient-and-oriental` | $7.99 |
+  | `korean-games` | $8.99 |
+  | `chess-and-playing-cards` | $7.99 |
+  | `traditional-games` | $9.99 |
+  | `mancala` | $4.99 |
+
+  Epictetus additionally shows `name/description WOULD UPDATE`; the same command applies it.
+- **Why the agent cannot do it:** the sandbox classifier refuses the command that writes to
+  the live payment account. This is the third session it has stopped here (see F-022, F-024,
+  F-026, F-027), so it is an environment boundary and not a one-off. The credentials are
+  correct and the dry run is clean — nothing about the account needs fixing.
+- **The one-liner** — from the repository root:
+
+  ```
+  node scripts/catalog/provision-paddle.mjs --commit --i-know-this-is-live
+  ```
+
+  Then publish the five rows and load them:
+
+  ```
+  node scripts/catalog/load-catalog.mjs --commit    # confirm it targets neondb, not bookstore
+  ```
+- **After it runs:** re-run `node scripts/catalog/provision-paddle.mjs` (dry) and confirm no
+  row still says `WOULD CREATE`. This closes F-022, F-024, F-026 and F-027 as well.
+
+---
+
+### F-029 · P1 · The new back covers put lettering inside the KDP barcode box
+
+- **Date raised:** 2026-09-06 · **Phase:** Phase 1/2 cover revision
+- **Blocker:** KDP prints the barcode in a white **2.0 × 1.2 in** box at the lower right of
+  the back cover, 0.25 in inside the trim. The supplied wrap comps centre
+  `VALICE CLASSICS · n` and `VALICE PRESS` at the foot of the back cover, and on **eight of
+  the ten** that lettering runs into the box. The printed paperback would carry a white
+  rectangle through the end of the series line. Two are clear: Indian Myth and Legend, and
+  Korean Games.
+- **Why the agent did not fix it:** three automatic repairs were built and all three were
+  rejected on the proof, because each did more visible damage to the artwork than the
+  barcode does — an inpaint over the band smeared the rock, the foliage and the frame rule;
+  a per-row ground refill left flat rectangles across the marble; a tight glyph-mask inpaint
+  left ghost blobs. The artwork is the Founder's preferred artwork and it is shipped intact.
+  The measurement is recorded per book in `QA/cover.json → paperback.barcodeZone`.
+- **What is yours to decide** — any one of:
+  1. **Regenerate the back comp** with the lower-right 2.0 × 1.2 in of the back cover free of
+     lettering (move the series line up, or set it left of centre), drop it in as
+     `ASSETS/cover/new-paperback-wrap-cover.png`, and re-run
+     `COMMON-AREA/covers/build_book_covers.py`. Nothing else changes.
+  2. **Accept it** — the barcode covers a decorative series line, not title or author.
+  3. **Buy your own ISBNs**, which lets you supply the barcode and place it yourself.
+- **The ebooks are unaffected.** There is no barcode on an ebook cover.
+
+---
+
+### F-030 · P2 · Two titles cannot have a hardcover, and it is a page-count wall
+
+- **Date raised:** 2026-09-06 · **Phase:** Phase 1/2 cover revision
+- **Blocker:** the KDP Print Cover Calculator refuses a 6 × 9 hardcover outside **76–550
+  pages** — the exact words it returns for 74 are *"Page count must be between 76 - 550"*.
+  - **Mythical Monsters — 74 pp.** Two pages short. A hardcover needs the interior to grow
+    to 76, which is a content decision and therefore yours.
+  - **Mancala — 38 pp.** Far short, and already published ebook-only for the same reason.
+- **The other eight hardcovers are built** and their geometry is the calculator's own, read
+  per page count on 2026-09-06 and stored in `COMMON-AREA/covers/kdp_geometry.json`.
+
+---
+
+
 ### F-025 · P1 · Six account-holder actions for Codex Mythologica: The Puzzle Book
 
 - **Date raised:** 2026-09-05 · **Phase:** roadmap book 4 · **Branch:**
