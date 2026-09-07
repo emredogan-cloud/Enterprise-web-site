@@ -108,9 +108,21 @@ async function upload({ file, key, contentType, missingHint }) {
   // one and said only "PUT". Both files were defensible — the small one came from
   // the ghostscript path that silently dropped 2,245 non-ASCII characters, the large
   // one is the print interior that build-digital-editions now copies through rather
-  // than corrupt the buyer's text. But the watermark worker reads the whole file into
-  // memory, so the swap traded a fidelity bug for a delivery risk on a book that is
-  // on sale, and nothing in the output said so.
+  // than corrupt the buyer's text. The large one is the right file; the point is that
+  // nothing in the output said the swap had happened.
+  //
+  // The delivery cost was then measured rather than guessed, because the worker loads
+  // the whole PDF with pdf-lib and saves a second copy. One process per file, so the
+  // numbers are not polluted by a previous run's retained heap:
+  //
+  //     0.3 MB → 108 MB peak RSS   (baseline: node + aws-sdk + pdf-lib)
+  //    67.5 MB → 433 MB
+  //    93.0 MB → 464 MB
+  //   103.9 MB → 606 MB, 436 pp, 0.6 s of work once the bytes are local
+  //
+  // Call it baseline + ~5× the file. 606 MB fits a 2 GB function with room to spare,
+  // so this is a number to watch, not a fire. Roughly 380 MB of master is the point
+  // where a single book would threaten the limit.
   //
   // It still uploads: refusing would leave the corrupted file in place. It just
   // cannot happen quietly any more.
@@ -118,8 +130,8 @@ async function upload({ file, key, contentType, missingHint }) {
   const grew = existing !== null && size > existing * 4 && size > BIG_MB * 1024 * 1024;
   if (grew) {
     console.log(
-      `  ⚠ ${key}: ${mb(existing)} → ${mb(size)}. The watermark worker reads the whole ` +
-        `file into memory; confirm the function's limit before selling this.`,
+      `  ⚠ ${key}: ${mb(existing)} → ${mb(size)}. The watermark worker holds the whole ` +
+        `PDF in memory — budget about ${mb(size * 5)} of function RSS to deliver it.`,
     );
   }
 
