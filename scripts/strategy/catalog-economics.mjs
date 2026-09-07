@@ -7,8 +7,8 @@
  * actual rate card, using each book's real page count, trim class and ink.
  *
  *   node --env-file=.env scripts/strategy/catalog-economics.mjs
- *   node --env-file=.env scripts/strategy/catalog-economics.mjs --csv > CATALOG_ECONOMICS_FINAL.csv
- *   node --env-file=.env scripts/strategy/catalog-economics.mjs --ladder-csv > FORMAT_LADDER_MATRIX.csv
+ *   node --env-file=.env scripts/strategy/catalog-economics.mjs --csv > docs/40-commerce/CATALOG_ECONOMICS_FINAL.csv
+ *   node --env-file=.env scripts/strategy/catalog-economics.mjs --ladder-csv > docs/30-kdp/FORMAT_LADDER_MATRIX.csv
  *
  * ── RATE CARD, all VERIFIED at kdp.amazon.com on 2026-09-01 ────────────────
  * Paperback printing, Amazon.com:

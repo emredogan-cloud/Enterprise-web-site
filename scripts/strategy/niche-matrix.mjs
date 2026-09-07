@@ -2,8 +2,8 @@
 /**
  * Valice Press — 30-niche opportunity matrix.
  *
- * Emits NICHE_OPPORTUNITY_MATRIX.csv.
- * Run: node scripts/strategy/niche-matrix.mjs > NICHE_OPPORTUNITY_MATRIX.csv
+ * Emits docs/20-products/NICHE_OPPORTUNITY_MATRIX.csv.
+ * Run: node scripts/strategy/niche-matrix.mjs > docs/20-products/NICHE_OPPORTUNITY_MATRIX.csv
  *
  * ── HONESTY NOTE, READ BEFORE USING THESE NUMBERS ──────────────────────────
  * These sub-scores are STRUCTURED JUDGEMENT, not measured Amazon data. No
