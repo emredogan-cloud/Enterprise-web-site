@@ -45,11 +45,11 @@ export const metadata: Metadata = {
 
 export default function CodexVerifyPage() {
   return (
-    <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
+    <article className="mx-auto max-w-3xl px-4 py-10 sm:py-16 sm:px-6 lg:py-24">
       {/* Breadcrumb — same construction as the legal shell */}
       <nav
         aria-label="Breadcrumb"
-        className="text-[11px] uppercase tracking-[0.2em] text-fg-soft"
+        className="text-[12px] lg:text-[11px] uppercase tracking-[0.2em] text-fg-soft"
       >
         <Link href="/" className="transition-colors hover:text-emerald-bright">
           Home
@@ -60,7 +60,7 @@ export default function CodexVerifyPage() {
         <span className="text-fg-hi">Codex Enigmatica</span>
       </nav>
 
-      <p className="mt-10 text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+      <p className="mt-10 text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
         Verification
       </p>
 
@@ -106,8 +106,8 @@ export default function CodexVerifyPage() {
         with different answers will need its own route rather than
         silently breaking every printed first edition.
       */}
-      <div className="mt-16 border-t border-white/[0.06] pt-8">
-        <p className="text-[11px] font-medium uppercase tracking-[0.25em] text-fg-soft">
+      <div className="mt-10 sm:mt-16 border-t border-white/[0.06] pt-8">
+        <p className="text-[12px] lg:text-[11px] font-medium uppercase tracking-[0.25em] text-fg-soft">
           Edition
         </p>
         <dl className="mt-4 grid gap-x-8 gap-y-3 text-sm sm:grid-cols-[auto_1fr]">

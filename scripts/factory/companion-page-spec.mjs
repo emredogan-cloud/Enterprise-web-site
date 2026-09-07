@@ -302,7 +302,7 @@ export const COMPANION_PAGE_COPY = {
       { asset: "enchiridion-card", term: "The Enchiridion, complete", gloss: "all fifty-two chapters of Arrian's handbook, free to print and keep" },
       { asset: "glossary-sheet", term: "The working terms", gloss: "the eighteen words Epictetus uses technically and English hides, with Long's own rendering" },
       { asset: "reading-paths", term: "Four ways in", gloss: "where to start, with the chapter numbers, so it works with any edition" },
-      { asset: "concordance", term: "What Marcus Aurelius read", gloss: "the four passages he demonstrably read, and the two Long cites that are not in this selection" },
+      { asset: "concordance", term: "Where the two books touch", gloss: "the four passages Long marks as meeting the Meditations, and the two he cites that are not in this selection" },
     ],
   },
 

@@ -25,7 +25,7 @@ export function Breadcrumbs({
   return (
     <nav
       aria-label="Breadcrumb"
-      className={`text-[11px] uppercase tracking-[0.2em] text-fg-soft ${className}`}
+      className={`text-[12px] lg:text-[11px] uppercase tracking-[0.2em] text-fg-soft ${className}`}
     >
       <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
         {trail.map((crumb, i) => {

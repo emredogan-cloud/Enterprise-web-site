@@ -41,7 +41,7 @@ export function ArticleRow({ post }: { post: BlogPostMeta }) {
         {/* RIGHT — editorial content */}
         <div className="flex flex-col">
           {/* Meta line */}
-          <p className="flex flex-wrap items-center gap-x-2 text-[11px] font-semibold uppercase tracking-[0.2em]">
+          <p className="flex flex-wrap items-center gap-x-2 text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.2em]">
             <time
               dateTime={post.date}
               className="text-fg-soft"

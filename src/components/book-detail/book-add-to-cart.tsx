@@ -27,6 +27,7 @@ import { trackEvent } from "@/lib/analytics";
 export function BookAddToCart({ bookId }: { bookId: string }) {
   const [pending, startTransition] = useTransition();
   const [added, setAdded] = useState(false);
+  const [failed, setFailed] = useState(false);
   const [owned, setOwned] = useState(false);
 
   // Ownership check — runs client-side so the SSG product page stays static.
@@ -49,13 +50,20 @@ export function BookAddToCart({ bookId }: { bookId: string }) {
 
   const handleClick = () => {
     startTransition(async () => {
-      await addToCart(bookId);
-      trackEvent("add_to_cart", { bookId });
-      setAdded(true);
-      if (typeof window !== "undefined") {
-        window.dispatchEvent(new CustomEvent("cart-changed"));
+      /* Say what actually happened. This used to set "Added to cart"
+         unconditionally, including when the action had declined — measured on
+         the Redmi: the button said Added, the cart count stayed 0, and the
+         reader arrived at an empty cart. */
+      const result = await addToCart(bookId);
+      setFailed(!result.ok);
+      setAdded(result.ok);
+      if (result.ok) {
+        trackEvent("add_to_cart", { bookId });
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("cart-changed"));
+        }
       }
-      window.setTimeout(() => setAdded(false), 2500);
+      window.setTimeout(() => { setAdded(false); setFailed(false); }, 4000);
     });
   };
 
@@ -76,6 +84,7 @@ export function BookAddToCart({ bookId }: { bookId: string }) {
   }
 
   return (
+    <>
     <button
       type="button"
       onClick={handleClick}
@@ -99,9 +108,21 @@ export function BookAddToCart({ bookId }: { bookId: string }) {
           />
           Adding…
         </>
+      ) : failed ? (
+        <>Try again</>
       ) : (
         <>Add to cart</>
       )}
     </button>
+    {failed && (
+      /* `role="alert"` so a screen reader hears it: the reader has just been
+         told a purchase step worked when it did not, and silence here is the
+         whole defect. */
+      <p role="alert" className="mt-3 text-center text-[12px] leading-relaxed text-fg-soft">
+        We couldn&apos;t add this book just now. Reload the page and try again —
+        nothing was charged and your cart is unchanged.
+      </p>
+    )}
+    </>
   );
 }

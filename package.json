@@ -15,12 +15,21 @@
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "validate:catalog": "node scripts/catalog/validate-catalog.mjs",
+    "mobile:audit": "node scripts/mobile/audit.mjs",
+    "mobile:shots": "node scripts/mobile/capture.mjs",
+    "mobile:cwv": "node scripts/mobile/cwv.mjs",
+    "mobile:journeys": "node scripts/mobile/journeys.mjs",
+    "mobile:diff": "node scripts/mobile/diff.mjs",
+    "mobile:fingerprint": "node scripts/mobile/fingerprint.mjs",
+    "mobile:desktop": "node scripts/mobile/capture.mjs --desktop",
     "factory:status": "node scripts/factory/status.mjs",
     "factory:new": "node scripts/factory/new-project.mjs",
     "factory:gate": "node scripts/factory/gate.mjs",
     "factory:state": "node scripts/factory/state.mjs",
     "covers:ingest": "node scripts/covers/ingest-covers.mjs",
-    "covers:generate": "node scripts/covers/generate-cover.mjs"
+    "covers:generate": "node scripts/covers/generate-cover.mjs",
+    "mobile:webview": "node scripts/mobile/webview.mjs",
+    "mobile:e2e": "node scripts/mobile/e2e.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1055.0",

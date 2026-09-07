@@ -72,7 +72,11 @@
   --color-fg-hi: #e6e6e0;
   --color-fg-mid: #a7a7a0;
   --color-fg-soft: #88918a;
-  --color-fg-fade: #5d675f;
+  /* Phase 8 — raised from #5d675f for WCAG 2.2 SC 1.4.3 (AA). Measured on the
+     cinematic ground (#050705) the old value gave 3.44:1 at 13px and 3.25:1 at
+     12px, against a required 4.5:1 for body text. #737e75 measures 4.78:1 and
+     keeps the faint, recessive quality the token exists for. */
+  --color-fg-fade: #737e75;
   --color-emerald: #1ddf8f;
   --color-emerald-bright: #33f0aa;
   --color-emerald-deep: #16c784;
@@ -175,6 +179,29 @@
     font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+
+    /*
+     * Phase 2 — the dark theme is a document theme, not just a scoped div.
+     *
+     * `background-color`: `html` was transparent, so Chrome propagated BODY's
+     * near-white `--background` to the canvas and the overscroll/rubber-band
+     * at either end of every dark page flashed white. Painting the canvas with
+     * the cinematic ground fixes that. Body keeps its own token; the body box
+     * is covered by `.cinematic-root` on every route, so nothing else moves.
+     *
+     * `color-scheme`: was `normal`, so native controls rendered light — the
+     * sort <select> on /books, the filter selects on /authors and
+     * /account/orders all opened as light popups over a near-black page, and
+     * scrollbars were light too. There is no theme toggle in this codebase and
+     * `.dark` is never applied: every one of the 26 route files renders inside
+     * `.cinematic-root`. Declaring the document dark states what is true.
+     *
+     * This is the one deliberately document-level change in the mobile
+     * roadmap; it is visible on desktop as well and is signed off as such in
+     * PHASE_2_REPORT.md.
+     */
+    background-color: #050705;
+    color-scheme: dark;
   }
   body {
     @apply bg-background text-foreground;
@@ -278,7 +305,8 @@ body:has(.cinematic-root) > header {
   --home-text-hi: #e6e6e0;
   --home-text-mid: #a7a7a0;
   --home-text-soft: #88918a;
-  --home-text-muted: #5d675f;
+  /* See --color-fg-fade above: raised for SC 1.4.3. 3.44:1 -> 4.78:1. */
+  --home-text-muted: #737e75;
   --home-border: rgba(255, 255, 255, 0.06);
   --home-border-strong: rgba(255, 255, 255, 0.12);
 
@@ -432,6 +460,23 @@ body:has(.cinematic-root) > header {
   transform: translateY(0);
 }
 
+/* Staggered blocks hide their own children from first paint. The wrapper is
+   rendered with `data-reveal-stagger` on the server; the observer then promotes
+   each child to `data-reveal="visible"`. Without this the children shipped
+   visible and were hidden at hydration — a flash on slow devices. */
+.cinematic-root [data-reveal-stagger] > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.cinematic-root [data-reveal-stagger] > [data-reveal="visible"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Hero book — slow float; pedestal — breathing pulse beneath */
 .cinematic-root .home-hero-book {
   animation: home-float 7s ease-in-out infinite;
@@ -556,6 +601,19 @@ body:has(.cinematic-root) > header {
   text-decoration-color: rgba(51, 240, 170, 0.3);
   text-underline-offset: 3px;
   transition: text-decoration-color 0.2s ease;
+}
+/* PHASE 9 — an article's links and inline code must be breakable.
+   `overflow-wrap: anywhere`, not `break-word`: only `anywhere` also reduces
+   the element's MIN-CONTENT width, and min-content is what was doing the
+   damage. The Hangul article links a bare URL, "valicepress.com/companion/
+   hangul", which is 311px of unbreakable text. The article sits in a grid
+   whose single implicit track sizes to its items' min-content, so that one
+   URL made the track 311px wide inside a 288px container and pushed every
+   blog route 7px past a 320px viewport. `break-word` would have wrapped the
+   URL visually and left the track — and the overflow — exactly as it was. */
+.cinematic-root .cinematic-prose a,
+.cinematic-root .cinematic-prose code {
+  overflow-wrap: anywhere;
 }
 .cinematic-root .cinematic-prose a:hover {
   text-decoration-color: rgba(51, 240, 170, 0.9);
@@ -769,6 +827,56 @@ body:has(.cinematic-root) > header {
   border: 2px solid #07110b;
   box-shadow: 0 0 12px rgba(51, 240, 170, 0.6);
   cursor: pointer;
+}
+
+/*
+ * Phase 4/5 — a finger-sized hit area for the price slider, below `lg:` only.
+ *
+ * The control is a 295x4px box whose only graspable part is the 16px thumb.
+ * Measured on the Redmi with `elementFromPoint` sampled down its centre line,
+ * the real hit height is 16px — under the 24px WCAG 2.2 SC 2.5.8 minimum and
+ * far under the 44px this roadmap wants for a control you have to DRAG.
+ *
+ * (For the record: SC 2.5.8's spacing exception does carry an isolated
+ * undersized control, so this is a usability failure rather than a conformance
+ * one. It is fixed because a 16px drag target is genuinely hard to operate,
+ * not because a checker complained.)
+ *
+ * The element grows to 44px and paints nothing itself; the visible 4px track
+ * moves to ::-webkit-slider-runnable-track, so the control LOOKS identical and
+ * only its touch surface changes. Scoped under 1024px because growing the box
+ * would otherwise make the desktop sidebar 40px taller.
+ */
+@media (max-width: 1023px) {
+  .cinematic-root .catalog-range {
+    height: 44px;
+    background: transparent;
+    cursor: pointer;
+  }
+  .cinematic-root .catalog-range::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 999px;
+    background: linear-gradient(
+      to right,
+      #16c784 0%,
+      #16c784 var(--range-progress, 50%),
+      rgba(255, 255, 255, 0.08) var(--range-progress, 50%),
+      rgba(255, 255, 255, 0.08) 100%
+    );
+  }
+  .cinematic-root .catalog-range::-webkit-slider-thumb {
+    margin-top: -6px; /* centre the 16px thumb on the 4px track */
+  }
+  .cinematic-root .catalog-range::-moz-range-track {
+    height: 4px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .cinematic-root .catalog-range::-moz-range-progress {
+    height: 4px;
+    border-radius: 999px;
+    background: #16c784;
+  }
 }
 
 /* Glass card utility — used by stats card, newsletter, feature cards */

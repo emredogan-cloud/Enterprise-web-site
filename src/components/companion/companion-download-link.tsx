@@ -23,7 +23,12 @@ export function CompanionDownloadLink({
       onClick={() =>
         trackEvent("companion_download", { companion: companionSlug, asset: assetId })
       }
-      className="mt-4 inline-flex items-center gap-2 rounded-xl border border-emerald-bright/40 px-4 py-2 text-sm font-medium text-emerald-bright transition hover:bg-emerald-bright/10"
+      /* PHASE 9 — `py-2` on 14px text gives a 37px control. This page exists
+         because a printed QR code points at it: the reader is holding a book in
+         one hand and the phone in the other, and this link IS the page's job.
+         44px below sm:, the original 37px from sm: up so the desktop
+         composition is untouched. */
+      className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-xl border border-emerald-bright/40 px-4 py-2 text-sm font-medium text-emerald-bright transition hover:bg-emerald-bright/10 sm:min-h-0"
     >
       Open PDF
       <span aria-hidden>↓</span>

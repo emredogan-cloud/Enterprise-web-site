@@ -33,10 +33,10 @@ export function BookPreviewPages({
   return (
     <section
       aria-labelledby="preview-heading"
-      className="mx-auto mt-24 max-w-5xl px-4 sm:px-6"
+      className="mx-auto mt-14 sm:mt-24 max-w-5xl px-4 sm:px-6"
     >
       <header className="text-center">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+        <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
           Preview
         </p>
 
@@ -86,7 +86,7 @@ export function BookPreviewPages({
               className="h-auto w-full rounded-[12px] bg-white"
               sizes="(max-width: 640px) 78vw, 340px"
             />
-            <p className="pb-1 pt-2 text-center text-[11px] tabular-nums text-fg-fade">
+            <p className="pb-1 pt-2 text-center text-[12px] lg:text-[11px] tabular-nums text-fg-fade">
               Page {p.page}
             </p>
           </li>

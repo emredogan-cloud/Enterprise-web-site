@@ -4,6 +4,8 @@ import { SignInButton, UserButton, useAuth } from "@clerk/nextjs";
 import { Search, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+
+import { MobileNav } from "@/components/home/mobile-nav";
 import { useEffect, useState } from "react";
 
 /**
@@ -67,6 +69,16 @@ const NAV_ITEMS: { key: ActiveNavSection; label: string; href: string }[] = [
   { key: "library", label: "Library", href: "/account/library" },
 ];
 
+/**
+ * What the phone drawer offers. `About` is rendered as its own <Link> in the
+ * desktop nav below (it postdates NAV_ITEMS), so it is appended here rather
+ * than folded in — the desktop markup stays exactly as it was.
+ */
+const MOBILE_NAV_ITEMS: { key: ActiveNavSection; label: string; href: string }[] = [
+  ...NAV_ITEMS,
+  { key: "about", label: "About", href: "/about" },
+];
+
 export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
   const router = useRouter();
 
@@ -85,11 +97,19 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-[#07110b]/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center gap-6 px-6">
+      {/* Phase 2 — safe-area gutters. `viewport-fit=cover` makes the insets
+          live; max() keeps the existing 1.5rem where there is no cutout, so
+          this is a no-op on desktop and on phones without one. Landscape on a
+          notched device is where it earns its keep. */}
+      <div className="mx-auto flex h-16 max-w-7xl items-center gap-6 pl-[max(1.5rem,env(safe-area-inset-left))] pr-[max(1.5rem,env(safe-area-inset-right))]">
         {/* Logo */}
         <Link
           href="/"
-          className="group flex items-center gap-2 text-[15px] font-medium tracking-tight text-fg-hi"
+          /* min-h-11 gives the wordmark a 44px hit area inside the 64px
+             header. It is the "go home" control, and at 23px tall it was the
+             last sub-44px target left in the header. The header is a centred
+             flex row, so nothing moves. */
+          className="group flex min-h-11 items-center gap-2 text-[15px] font-medium tracking-tight text-fg-hi sm:min-h-0"
         >
           <span className="font-serif">Valice Press</span>
           <span
@@ -98,10 +118,19 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
           />
         </Link>
 
-        {/* Center nav — hidden below md */}
+        {/* Center nav — hidden below lg.
+            PHASE 9, P2-5: this was `md:flex`, and the 768-1023px band had
+            never been measured. It does not fit there. Measured on the Redmi
+            at an emulated 768px: wordmark + seven nav links + the 256px search
+            pill + cart + account need 987px, so the document went 219px wider
+            than the viewport and the browser shrank the whole page to
+            compensate — on all 32 routes, since this is site-wide chrome.
+            1024px is the first width where the full row fits (987 of 1024,
+            measured), so that is where it may appear. Below it the drawer is
+            the navigation, which is exactly what it is for. */}
         <nav
           aria-label="Primary"
-          className="ml-6 hidden items-center gap-7 text-sm md:flex"
+          className="ml-6 hidden items-center gap-7 text-sm lg:flex"
         >
           {NAV_ITEMS.map((item) => {
             const isActive = item.key === active;
@@ -157,7 +186,7 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
           >
             <Search aria-hidden className="h-4 w-4" />
             <span className="flex-1 text-left">Search books, authors…</span>
-            <kbd className="rounded border border-white/[0.1] bg-white/[0.04] px-1.5 py-0.5 font-mono text-[10px] text-fg-mid">
+            <kbd className="rounded border border-white/[0.1] bg-white/[0.04] px-1.5 py-0.5 font-mono text-[12px] lg:text-[10px] text-fg-mid">
               ⌘K
             </kbd>
           </Link>
@@ -166,7 +195,7 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
           <Link
             href="/search"
             aria-label="Search"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] text-fg-mid transition-colors hover:text-fg-hi sm:hidden"
+            className="flex h-11 w-11 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] text-fg-mid transition-colors hover:text-fg-hi sm:hidden"
           >
             <Search aria-hidden className="h-4 w-4" />
           </Link>
@@ -182,6 +211,10 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
               in, and falls back to the legacy avatar link when no Clerk
               provider is mounted (e.g. unprovisioned local dev). */}
           <AccountSlot />
+
+          {/* Phase 1 — the phone-width navigation. `lg:hidden` inside the
+              component, so the desktop cluster is unchanged. */}
+          <MobileNav items={MOBILE_NAV_ITEMS} active={active} />
         </div>
       </div>
     </header>
@@ -236,7 +269,7 @@ function CartTriggerWithBadge() {
             ? "Cart, empty"
             : `Cart, ${count} ${count === 1 ? "item" : "items"}`
       }
-      className="relative flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] text-fg-mid transition-colors hover:text-fg-hi"
+      className="relative flex h-11 w-11 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] text-fg-mid transition-colors hover:text-fg-hi"
     >
       <ShoppingCart aria-hidden className="h-4 w-4" />
       {hasItems && (
@@ -269,7 +302,7 @@ function LegacyAccountFallback() {
     <Link
       href="/account/library"
       aria-label="Account"
-      className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#1ddf8f] to-[#0e7f54] text-[#032015] transition-transform hover:scale-105"
+      className="flex h-11 w-11 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#1ddf8f] to-[#0e7f54] text-[#032015] transition-transform hover:scale-105"
     >
       <User aria-hidden className="h-4 w-4" />
     </Link>
@@ -290,7 +323,7 @@ const USER_BUTTON_APPEARANCE = {
   },
   elements: {
     avatarBox:
-      "h-9 w-9 ring-1 ring-white/[0.08] shadow-[0_0_0_1px_rgba(51,240,170,0.15)]",
+      "h-11 w-11 sm:h-9 sm:w-9 ring-1 ring-white/[0.08] shadow-[0_0_0_1px_rgba(51,240,170,0.15)]",
     userButtonPopoverCard:
       "bg-[#0c1813] border border-white/[0.08] shadow-[0_28px_60px_-22px_rgba(0,0,0,0.8)]",
     userButtonPopoverActionButton:
@@ -310,7 +343,7 @@ function ClerkAccountSlot() {
     return (
       <div
         aria-hidden
-        className="h-9 w-9 rounded-full border border-white/[0.08] bg-white/[0.03]"
+        className="h-11 w-11 sm:h-9 sm:w-9 rounded-full border border-white/[0.08] bg-white/[0.03]"
       />
     );
   }

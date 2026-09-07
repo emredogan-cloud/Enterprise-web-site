@@ -31,7 +31,15 @@ export function CinematicBookTile({ book }: { book: BookCardData }) {
         className="pointer-events-none absolute inset-x-0 top-0 z-20 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/30 to-transparent"
       />
 
-      <BookCover title={book.title} coverKey={book.coverKey} coverSrc={book.coverSrc} />
+      {/* Measured tile cover widths: 103-110px at 392, 153-200px at 768,
+          153-211px at 1440. The hero default (72vw) over-fetched these by
+          2.74x — 828px of image for a 302 device-pixel slot. */}
+      <BookCover
+        title={book.title}
+        coverKey={book.coverKey}
+        coverSrc={book.coverSrc}
+        sizes="(min-width: 640px) 220px, 120px"
+      />
 
       <div className="mt-4 flex flex-1 flex-col gap-1 px-1 pb-1">
         <h3 className="line-clamp-2 font-serif text-[15px] font-medium leading-snug text-fg-hi transition-colors group-hover:text-emerald-bright">
@@ -45,7 +53,7 @@ export function CinematicBookTile({ book }: { book: BookCardData }) {
         )}
 
         {book.authors.length > 0 && (
-          <p className="line-clamp-1 text-[11px] uppercase tracking-[0.12em] text-fg-soft">
+          <p className="line-clamp-1 text-[12px] lg:text-[11px] uppercase tracking-[0.12em] text-fg-soft">
             {book.authors.map((a) => a.name).join(", ")}
           </p>
         )}

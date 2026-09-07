@@ -35,7 +35,9 @@ export function RecommendationCard({ book }: { book: CatalogItem }) {
     e.stopPropagation();
     if (!direct) return;
     startTransition(async () => {
-      await addToCart(book.id);
+      // Same contract as <BookAddToCart>: only claim it was added if it was.
+      const result = await addToCart(book.id);
+      if (!result.ok) return;
       if (typeof window !== "undefined") {
         window.dispatchEvent(new CustomEvent("cart-changed"));
       }
@@ -94,7 +96,7 @@ export function RecommendationCard({ book }: { book: CatalogItem }) {
             disabled={pending}
             aria-label={`Add ${book.title} to cart`}
             aria-pressed={added}
-            className={`flex h-8 w-8 items-center justify-center rounded-full border transition-all disabled:cursor-not-allowed disabled:opacity-50 ${
+            className={`flex h-11 w-11 items-center sm:h-8 sm:w-8 justify-center rounded-full border transition-all disabled:cursor-not-allowed disabled:opacity-50 ${
               added
                 ? "border-emerald-bright/60 bg-emerald-bright/15 text-emerald-bright shadow-[0_0_14px_rgba(51,240,170,0.45)]"
                 : "border-white/[0.1] bg-white/[0.03] text-fg-mid hover:scale-105 hover:border-emerald-bright/50 hover:bg-emerald-bright/10 hover:text-emerald-bright hover:shadow-[0_0_14px_rgba(51,240,170,0.4)]"
@@ -110,7 +112,7 @@ export function RecommendationCard({ book }: { book: CatalogItem }) {
           <span
             aria-hidden
             title="Print editions on Amazon — see the book page"
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.02] text-fg-fade"
+            className="flex h-11 w-11 items-center sm:h-8 sm:w-8 justify-center rounded-full border border-white/[0.08] bg-white/[0.02] text-fg-fade"
           >
             <ExternalLink className="h-3.5 w-3.5" />
           </span>

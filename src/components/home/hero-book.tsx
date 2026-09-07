@@ -222,13 +222,13 @@ function FloatingBook({
               {/* Cover typography */}
               <div className={`absolute inset-0 flex flex-col justify-between ${pad}`}>
                 <div
-                  className="text-[9px] font-medium uppercase tracking-[0.3em] sm:text-[10px]"
+                  className="text-[12px] font-medium uppercase tracking-[0.3em] sm:text-[10px]"
                   style={{ color: `${accent}cc` }}
                 >
                   {eyebrow}
                 </div>
                 <div>
-                  <p className="text-[9px] font-medium uppercase tracking-[0.3em] text-white/40 sm:text-[10px]">
+                  <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 sm:text-[10px]">
                     {kicker}
                   </p>
                   <h3
@@ -238,7 +238,7 @@ function FloatingBook({
                     <br />
                     {title[1]}
                   </h3>
-                  <p className="mt-5 text-[11px] text-white/50">{author}</p>
+                  <p className="mt-5 text-[12px] lg:text-[11px] text-white/50">{author}</p>
                 </div>
               </div>
               {/* Inner shine */}

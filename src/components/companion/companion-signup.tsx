@@ -89,7 +89,7 @@ export function CompanionSignup({
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@example.com"
           disabled={status.state === "loading"}
-          className="min-w-0 flex-1 rounded-xl border border-white/12 bg-black/25 px-4 py-3 text-sm text-fg-hi outline-none transition placeholder:text-fg-low focus:border-emerald-bright/50 disabled:opacity-60"
+          className="min-h-11 w-full min-w-0 sm:flex-1 rounded-xl border border-white/12 bg-black/25 px-4 py-3 text-sm text-fg-hi outline-none transition placeholder:text-fg-low focus:border-emerald-bright/50 disabled:opacity-60"
         />
         <button
           type="submit"

@@ -41,7 +41,7 @@ export function LibraryHero() {
         {/* RIGHT — editorial content */}
         <div>
           {/* Eyebrow */}
-          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+          <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
             Your library
           </p>
 

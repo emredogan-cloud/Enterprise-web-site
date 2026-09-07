@@ -47,7 +47,7 @@ export function PrivacyOverviewCard() {
 
       {/* Header */}
       <header>
-        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+        <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
           Privacy
         </p>
         <h2 className="mt-2 font-serif text-[26px] font-medium leading-tight text-fg-hi sm:text-[28px]">

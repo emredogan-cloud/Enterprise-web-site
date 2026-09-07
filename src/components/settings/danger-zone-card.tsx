@@ -24,7 +24,7 @@ export function DangerZoneCard() {
       <div className="grid gap-0 lg:grid-cols-[1.5fr_1fr]">
         {/* LEFT — copy + delete button */}
         <div className="p-6 sm:p-8">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#ff9b9b]">
+          <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.2em] text-[#ff9b9b]">
             Danger zone
           </p>
           <h2 className="mt-2 font-serif text-[26px] font-medium leading-tight text-fg-hi sm:text-[28px]">

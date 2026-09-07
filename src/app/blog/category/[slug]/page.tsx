@@ -117,11 +117,11 @@ export default async function BlogCategoryPage({
     <div className="cinematic-root">
       <CinematicHeader active="blog" />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         {/* Breadcrumb — keeps the path back to /blog visible */}
         <nav
           aria-label="Breadcrumb"
-          className="mx-auto mt-6 max-w-[1320px] px-4 text-[11px] uppercase tracking-[0.18em] text-[#88918a] sm:px-6"
+          className="mx-auto mt-6 max-w-[1320px] px-4 text-[12px] lg:text-[11px] uppercase tracking-[0.18em] text-[#88918a] sm:px-6"
         >
           <Link
             href="/blog"

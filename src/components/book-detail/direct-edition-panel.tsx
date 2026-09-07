@@ -52,10 +52,10 @@ export function DirectEditionPanel({
   return (
     <section
       aria-labelledby="direct-edition-heading"
-      className="mx-auto mt-16 max-w-[900px] px-6"
+      className="mx-auto mt-10 sm:mt-16 max-w-[900px] px-6"
     >
       <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+        <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
           Buying it here
         </p>
         <h2

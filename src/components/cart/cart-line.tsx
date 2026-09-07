@@ -62,7 +62,7 @@ export function CartLine({
           src={book.coverSrc}
           title={book.title}
           sizes="64px"
-          titleClassName="font-serif text-[9px] font-medium leading-tight text-white line-clamp-3"
+          titleClassName="font-serif text-[12px] lg:text-[9px] font-medium leading-tight text-white line-clamp-3"
         />
       </Link>
 
@@ -85,7 +85,7 @@ export function CartLine({
         {owned && (
           <Link
             href="/account/library"
-            className="mt-2 inline-flex w-fit items-center gap-1 rounded-full border border-[#f4c44b]/30 bg-[#f4c44b]/10 px-2.5 py-0.5 text-[11px] font-medium text-[#f4c44b] transition-colors hover:border-[#f4c44b]/50"
+            className="mt-2 inline-flex w-fit items-center gap-1 rounded-full border border-[#f4c44b]/30 bg-[#f4c44b]/10 px-2.5 py-0.5 text-[12px] lg:text-[11px] font-medium text-[#f4c44b] transition-colors hover:border-[#f4c44b]/50"
           >
             Already in your library — remove to check out
           </Link>
@@ -98,7 +98,7 @@ export function CartLine({
         onClick={onRemove}
         disabled={pending}
         aria-label={`Remove ${book.title} from cart`}
-        className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.02] text-fg-soft transition-all hover:border-[#ff7a7a]/40 hover:bg-[#ff7a7a]/10 hover:text-[#ff9b9b] disabled:cursor-not-allowed disabled:opacity-50"
+        className="flex h-11 w-11 flex-shrink-0 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.02] text-fg-soft transition-all hover:border-[#ff7a7a]/40 hover:bg-[#ff7a7a]/10 hover:text-[#ff9b9b] disabled:cursor-not-allowed disabled:opacity-50"
       >
         <X aria-hidden className="h-4 w-4" />
       </button>

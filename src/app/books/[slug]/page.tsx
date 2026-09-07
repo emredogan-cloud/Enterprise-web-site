@@ -10,8 +10,10 @@ import { ExploreStrip } from "@/components/book-detail/explore-strip";
 import { DirectEditionPanel } from "@/components/book-detail/direct-edition-panel";
 import { FormatTable } from "@/components/book-detail/format-table";
 import { RelatedBooksShelf } from "@/components/book-detail/related-books-shelf";
+import { bundlesContaining } from "@/lib/bundles";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
+import { relatedBooks } from "@/lib/related-books";
 import { getCompanionForBook } from "@/lib/companions";
 import {
   getPublishedBookBySlug,
@@ -130,9 +132,9 @@ export default async function BookDetailPage({
     listPublishedBooks(),
   ]);
 
-  const relatedBooks = allBooks
-    .filter((b) => b.slug !== slug)
-    .slice(0, 6);
+  const related = relatedBooks(book, allBooks, {
+    bundledWith: bundlesContaining(slug).flatMap((bundle) => bundle.bookSlugs),
+  });
 
   const aggregateRatingForJsonLd =
     ratingAggregate.count > 0 && ratingAggregate.average !== null
@@ -181,7 +183,7 @@ export default async function BookDetailPage({
     <div className="cinematic-root">
       <CinematicHeader active="books" />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         {/* JSON-LD — same payload, same emission strategy */}
         <script
           type="application/ld+json"
@@ -221,7 +223,7 @@ export default async function BookDetailPage({
         {/* Editions — every format this title exists in, with the buy
             route each one actually supports. Print goes to Amazon because
             Amazon is what fulfils it; see <FormatTable>. */}
-        <div className="mx-auto max-w-[900px] px-6">
+        <div className="mx-auto max-w-[900px] px-4 sm:px-6">
           <FormatTable formats={book.formats} />
         </div>
 
@@ -249,10 +251,10 @@ export default async function BookDetailPage({
         <section
           id="reviews"
           aria-labelledby="reviews-heading"
-          className="mx-auto mt-24 max-w-3xl px-4 sm:px-6"
+          className="mx-auto mt-14 sm:mt-24 max-w-3xl px-4 sm:px-6"
         >
           <header className="text-center">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+            <p className="text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
               Reader reviews
             </p>
 
@@ -300,7 +302,7 @@ export default async function BookDetailPage({
 
           {/* Write-a-review form */}
           <div className="mt-12">
-            <h3 className="text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+            <h3 className="text-center text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
               Write a review
             </h3>
             <CinematicReviewForm slug={slug} bookId={book.id} />
@@ -311,7 +313,7 @@ export default async function BookDetailPage({
             "related shelf follow-up" carry-forward. ExploreStrip stays
             below as the closing quiet line; both surfaces complement
             each other (catalog discovery + brand closer). */}
-        <RelatedBooksShelf books={relatedBooks} />
+        <RelatedBooksShelf books={related} />
 
         <ExploreStrip />
 

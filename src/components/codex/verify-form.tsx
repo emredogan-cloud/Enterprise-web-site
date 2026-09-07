@@ -98,7 +98,7 @@ export function VerifyForm() {
           spellCheck={false}
           placeholder="Your answer"
           aria-describedby="codex-answer-help"
-          className="h-12 flex-1 rounded-full border border-white/[0.08] bg-white/[0.03] px-5 text-sm tracking-[0.15em] text-fg-hi placeholder:tracking-normal placeholder:text-fg-fade focus:border-emerald-bright/40 focus:outline-none focus:ring-2 focus:ring-emerald-bright/20 disabled:cursor-not-allowed disabled:opacity-60"
+          className="h-12 w-full sm:flex-1 rounded-full border border-white/[0.08] bg-white/[0.03] px-5 text-sm tracking-[0.15em] text-fg-hi placeholder:tracking-normal placeholder:text-fg-fade focus:border-emerald-bright/40 focus:outline-none focus:ring-2 focus:ring-emerald-bright/20 disabled:cursor-not-allowed disabled:opacity-60"
         />
         <button
           type="submit"
@@ -186,7 +186,7 @@ function VerifiedPanel() {
               "radial-gradient(circle, rgba(22, 199, 132, 0.18) 0%, transparent 60%)",
           }}
         />
-        <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+        <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
           Verified
         </p>
         <h2 className="mt-4 font-serif text-[30px] font-medium leading-tight tracking-tight text-fg-hi sm:text-[36px]">
@@ -206,7 +206,7 @@ function VerifiedPanel() {
 
       {/* ── Optional. Genuinely. ─────────────────────────────────────── */}
       <div className="mt-8 rounded-2xl border border-white/[0.08] bg-white/[0.02] px-6 py-7">
-        <p className="text-[11px] font-medium uppercase tracking-[0.25em] text-fg-soft">
+        <p className="text-[12px] lg:text-[11px] font-medium uppercase tracking-[0.25em] text-fg-soft">
           Optional
         </p>
         <h3 className="mt-3 font-serif text-xl font-medium text-fg-hi">
@@ -242,7 +242,7 @@ function VerifiedPanel() {
               value={email}
               onChange={(e) => setEmail(e.currentTarget.value)}
               disabled={sub.kind === "loading"}
-              className="h-11 flex-1 rounded-full border border-white/[0.08] bg-white/[0.03] px-5 text-sm text-fg-hi placeholder:text-fg-fade focus:border-emerald-bright/40 focus:outline-none focus:ring-2 focus:ring-emerald-bright/20 disabled:cursor-not-allowed disabled:opacity-60"
+              className="h-11 w-full sm:flex-1 rounded-full border border-white/[0.08] bg-white/[0.03] px-5 text-sm text-fg-hi placeholder:text-fg-fade focus:border-emerald-bright/40 focus:outline-none focus:ring-2 focus:ring-emerald-bright/20 disabled:cursor-not-allowed disabled:opacity-60"
             />
             <button
               type="submit"

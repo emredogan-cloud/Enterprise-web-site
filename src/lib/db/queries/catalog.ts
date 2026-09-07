@@ -81,7 +81,15 @@ export async function listPublishedBooks(): Promise<BookCardData[]> {
     async () => {
       const rows = await db.query.books.findMany({
         where: (b, { eq }) => eq(b.status, "published"),
-        orderBy: (b, { desc }) => desc(b.publishedAt),
+      /* PHASE 9 — `publishedAt` alone is not a total order.
+         Several books share a publication timestamp (they were provisioned in
+         one batch), and Postgres is free to return tied rows in any order it
+         likes. Measured: two adjacent cards on /books and /ebooks swapped
+         places between two builds of identical code, at unchanged geometry —
+         452px and 473px tall exchanged positions — which makes the rendered
+         page irreproducible and any visual regression gate permanently flaky.
+         `id` is the primary key, so it breaks every tie deterministically. */
+        orderBy: (b, { desc, asc }) => [desc(b.publishedAt), asc(b.id)],
         columns: {
           id: true,
           slug: true,
@@ -151,7 +159,15 @@ const _getFeaturedBooksFromDb = unstable_cache(
   async (limit: number): Promise<BookCardData[]> => {
     const rows = await db.query.books.findMany({
       where: (b, { eq }) => eq(b.status, "published"),
-      orderBy: (b, { desc }) => desc(b.publishedAt),
+    /* PHASE 9 — `publishedAt` alone is not a total order.
+       Several books share a publication timestamp (they were provisioned in
+       one batch), and Postgres is free to return tied rows in any order it
+       likes. Measured: two adjacent cards on /books and /ebooks swapped
+       places between two builds of identical code, at unchanged geometry —
+       452px and 473px tall exchanged positions — which makes the rendered
+       page irreproducible and any visual regression gate permanently flaky.
+       `id` is the primary key, so it breaks every tie deterministically. */
+      orderBy: (b, { desc, asc }) => [desc(b.publishedAt), asc(b.id)],
       limit,
       columns: {
         id: true,
@@ -210,7 +226,15 @@ export async function listEbooks(): Promise<BookCardData[]> {
     async () => {
       const rows = await db.query.books.findMany({
         where: (b, { eq }) => eq(b.status, "published"),
-        orderBy: (b, { desc }) => desc(b.publishedAt),
+      /* PHASE 9 — `publishedAt` alone is not a total order.
+         Several books share a publication timestamp (they were provisioned in
+         one batch), and Postgres is free to return tied rows in any order it
+         likes. Measured: two adjacent cards on /books and /ebooks swapped
+         places between two builds of identical code, at unchanged geometry —
+         452px and 473px tall exchanged positions — which makes the rendered
+         page irreproducible and any visual regression gate permanently flaky.
+         `id` is the primary key, so it breaks every tie deterministically. */
+        orderBy: (b, { desc, asc }) => [desc(b.publishedAt), asc(b.id)],
         columns: {
           id: true,
           slug: true,
@@ -357,6 +381,11 @@ export async function getPublishedBookBySlug(
             },
           },
           formats: true,
+          // Needed by the detail page's related shelf, which ranks a book in
+          // the same collection above an unrelated one. Without it the rank
+          // was silently dead: `primaryCategory` is optional on BookCardData,
+          // so the comparison typechecked and always missed.
+          bookCategories: { with: { category: { columns: { name: true } } } },
         },
       });
       if (!book) return null;
@@ -376,6 +405,10 @@ export async function getPublishedBookBySlug(
         publishedAt: book.publishedAt,
         hasEpub: Boolean(book.epubFileKey),
         authors: book.bookAuthors.map((ba) => ba.author),
+        primaryCategory:
+          book.bookCategories
+            .map((bc) => bc.category.name)
+            .sort((a, z) => a.localeCompare(z))[0] ?? null,
         // `unavailable` formats are dropped rather than rendered as a
         // struck-through row: a format the press decided not to produce is
         // not news to the reader. The write-in Myth Hunter has no ebook and
@@ -428,10 +461,15 @@ export async function searchBooks(query: string): Promise<BookCardData[]> {
             eq(b.status, "published"),
             sql`${b.searchTsv} @@ websearch_to_tsquery('english', ${trimmed})`,
           ),
-        orderBy: (b, { desc }) =>
+        /* Same tie-break as the catalog lists: ts_rank produces plenty of
+           equal scores, and without a total order the results reshuffle
+           between requests. */
+        orderBy: (b, { desc, asc }) => [
           desc(
             sql`ts_rank(${b.searchTsv}, websearch_to_tsquery('english', ${trimmed}))`,
           ),
+          asc(b.id),
+        ],
         columns: {
           id: true,
           slug: true,
@@ -558,6 +596,7 @@ export async function getCartBooks(bookIds: string[]): Promise<BookCardData[]> {
 // -----------------------------------------------------------------------------
 export interface CheckoutItem {
   id: string;
+  slug: string;
   title: string;
   priceCents: number;
   currency: string;
@@ -576,6 +615,10 @@ export async function getCheckoutItems(
           and(eq(b.status, "published"), inArray(b.id, bookIds)),
         columns: {
           id: true,
+          // The slug is what a bundle is defined in terms of: `src/lib/bundles.ts`
+          // names its members by catalogue slug, not by database uuid, so that
+          // the definition survives a reseed.
+          slug: true,
           title: true,
           priceCents: true,
           currency: true,

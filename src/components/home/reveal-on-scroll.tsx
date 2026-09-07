@@ -77,8 +77,27 @@ export function RevealOnScroll({
     return () => observer.disconnect();
   }, [stagger, delay]);
 
+  /*
+   * The hiding attribute is rendered on the SERVER, not applied in the effect.
+   *
+   * Before this, the markup shipped visible and the effect then set
+   * `data-reveal=""` — whose CSS rule is `opacity: 0` — so on a slow device the
+   * section painted, disappeared at hydration, and faded back in. Rendering the
+   * attribute up front means the reader never sees the flash.
+   *
+   * The stagger case cannot mark its children server-side (they are opaque
+   * `children`), so the wrapper carries `data-reveal-stagger` and globals.css
+   * hides its direct children until the observer promotes each one.
+   *
+   * A <noscript> rule in the root layout forces everything visible when
+   * JavaScript never arrives, so this can never hide content permanently.
+   */
   return (
-    <div ref={ref} className={className}>
+    <div
+      ref={ref}
+      className={className}
+      {...(stagger ? { "data-reveal-stagger": "" } : { "data-reveal": "" })}
+    >
       {children}
     </div>
   );

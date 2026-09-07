@@ -69,7 +69,7 @@ export default function AboutPage() {
       {/* Atmospheric backdrop — fixed, behind every section */}
       <AboutBackground />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         <div className="mx-auto max-w-[1320px] px-4 pt-8 sm:px-6 sm:pt-12">
           {/* Hero paints immediately (LCP) — its motion is ambient, not a
               fade-in, so there's no reveal wrapper here. */}

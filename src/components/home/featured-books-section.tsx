@@ -36,12 +36,12 @@ export function FeaturedBooksSection({
   if (cards.length === 0) return null;
 
   return (
-    <section className="relative px-6 py-24 sm:py-28">
+    <section className="relative px-6 py-14 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl">
         <RevealOnScroll>
           <header className="flex flex-col items-start gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-emerald-bright/80">
+              <p className="text-[12px] lg:text-[11px] font-medium uppercase tracking-[0.3em] text-emerald-bright/80">
                 Handpicked for you
               </p>
               <h2 className="mt-3 font-serif text-[36px] font-medium leading-tight tracking-tight text-fg-hi sm:text-[44px]">
@@ -96,7 +96,7 @@ function FeaturedCard({ book, priority }: { book: BookCardData; priority: boolea
         </h3>
         <p className="mt-1 text-xs text-fg-soft">{author}</p>
         <div className="mt-2 flex items-center justify-between gap-2">
-          <span className="text-[10px] font-medium uppercase tracking-[0.16em] text-fg-fade">
+          <span className="text-[12px] lg:text-[10px] font-medium uppercase tracking-[0.16em] text-fg-fade">
             {direct ? "Ebook · direct" : "Print · Amazon"}
           </span>
           <span className="text-sm font-semibold text-fg-hi">{price}</span>

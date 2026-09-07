@@ -28,7 +28,7 @@ export function AboutHero() {
         {/* LEFT — editorial content */}
         <div className="relative z-10 pt-2 text-center sm:pt-6 lg:text-left">
           {/* Eyebrow */}
-          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+          <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
             About
           </p>
 

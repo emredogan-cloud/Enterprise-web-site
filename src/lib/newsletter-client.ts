@@ -60,7 +60,14 @@ export type NewsletterSource =
   | "korean-games-companion"
   | "chess-and-playing-cards-companion"
   | "mancala-companion"
-  | "traditional-games-companion";
+  | "traditional-games-companion"
+  // Phase 3 of the public-domain factory (2026-09-06): the Bestiarium expansion.
+  | "kwaidan-companion"
+  | "sea-monsters-unmasked-companion"
+  | "book-of-were-wolves-companion"
+  | "british-goblins-companion"
+  | "fairy-mythology-vol-1-companion"
+  | "fairy-mythology-vol-2-companion";
 
 /** The subset of sources a printed-book companion page may carry. */
 export type CompanionNewsletterSource = Extract<

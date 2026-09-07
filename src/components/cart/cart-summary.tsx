@@ -18,10 +18,16 @@ import { formatPrice } from "@/lib/format";
  */
 export function CartSummary({
   totalCents,
+  subtotalCents,
+  bundleName,
+  bundleDiscountCents,
   currency,
   itemCount,
 }: {
   totalCents: number;
+  subtotalCents: number;
+  bundleName: string | null;
+  bundleDiscountCents: number;
   currency: string;
   itemCount: number;
 }) {
@@ -63,7 +69,7 @@ export function CartSummary({
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/45 to-transparent"
       />
 
-      <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+      <h2 className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
         Order summary
       </h2>
 
@@ -73,9 +79,21 @@ export function CartSummary({
           {itemCount} {itemCount === 1 ? "book" : "books"}
         </span>
         <span className="text-fg-hi tabular-nums">
-          {formatPrice(totalCents, currency)}
+          {formatPrice(subtotalCents, currency)}
         </span>
       </div>
+
+      {/* The bundle, when the cart holds every member of one. Shown as its own
+          line so the reader can see WHY the total is lower than the books
+          added up, and what it is called. */}
+      {bundleName && bundleDiscountCents > 0 && (
+        <div className="mt-4 flex items-baseline justify-between border-b border-emerald-bright/20 pb-4 text-sm">
+          <span className="text-emerald-bright">{bundleName}</span>
+          <span className="tabular-nums text-emerald-bright">
+            −{formatPrice(bundleDiscountCents, currency)}
+          </span>
+        </div>
+      )}
 
       {/* Tax note — Paddle handles tax at checkout, so we're explicit */}
       <p className="mt-3 text-xs text-fg-fade">
@@ -122,7 +140,11 @@ export function CartSummary({
           type="button"
           onClick={onClear}
           disabled={clearPending}
-          className="text-xs text-fg-fade underline-offset-4 transition-colors hover:text-fg-mid hover:underline disabled:cursor-not-allowed disabled:opacity-50"
+          /* Deliberately understated — a destructive action should not shout.
+             Below `sm:` it gets a 44px hit area from padding rather than from
+             type size, so it looks exactly the same and is actually tappable;
+             measured 54x16 before. Desktop keeps its original box. */
+          className="inline-flex min-h-11 items-center px-3 text-xs text-fg-fade underline-offset-4 transition-colors hover:text-fg-mid hover:underline disabled:cursor-not-allowed disabled:opacity-50 sm:min-h-0 sm:px-0"
         >
           {clearPending ? "Clearing…" : "Clear cart"}
         </button>
@@ -130,7 +152,7 @@ export function CartSummary({
 
       {/* Trust microcopy */}
       <div className="mt-7 border-t border-white/[0.06] pt-5">
-        <p className="text-center text-[11px] uppercase tracking-[0.2em] text-fg-fade">
+        <p className="text-center text-[12px] lg:text-[11px] uppercase tracking-[0.2em] text-fg-fade">
           ✓ Paddle · MoR &nbsp;·&nbsp; ✓ Watermarked PDF &nbsp;·&nbsp; ✓ Yours to keep
         </p>
       </div>

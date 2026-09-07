@@ -75,7 +75,7 @@ export function NextStepsGrid() {
   return (
     <section aria-labelledby="next-steps-heading">
       <header className="max-w-2xl">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+        <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
           Keep going
         </p>
         <h2

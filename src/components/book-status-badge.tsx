@@ -33,7 +33,7 @@ export function BookStatusBadge({
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em]",
+        "inline-flex items-center rounded-full border px-2.5 py-0.5 text-[12px] lg:text-[10px] font-semibold uppercase tracking-[0.12em]",
         STATUS_CLASSES[status],
         className,
       )}
