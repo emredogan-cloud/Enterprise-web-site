@@ -686,29 +686,47 @@ export const BOOKS = [
         format: "hardcover",
         availability: "coming_soon",
         fulfillment: "amazon",
-        priceCents: null,
+        priceCents: usd(33.99),
         pageCount: 156,
         amazonAsin: null,
         amazonUrl: null,
         kdp: "not_created",
         masterFileKey: null,
         priceBasis:
-          "Not created on KDP. No price, because no price has been set — a hardcover of a write-in book is a real question, not a formality.",
+          "price-engine.mjs 2026-09-07 at the MEASURED 156 pages of the hardcover's own "
+          + "typesetting, 8.25 × 11 hardcover, B&W on white: printing $8.30, KDP minimum list "
+          + "$13.84, recommended $33.99 — which nets $12.09 (35.6%), the first price on the "
+          + "ladder that clears the 35% house floor. The project's own editionsHypothesis "
+          + "carried $24.99 as a DISABLED test position; it nets 26.8% and was not taken. "
+          + "$33.99 is also exactly where Codex Mythologica: The Puzzle Book sits — same trim, "
+          + "same binding, same 156 pages — so the two are consistent rather than each guessed.",
       },
     ],
         blockers: [
-      "HARDCOVER: BLOCKED — FORMAT DECISION, not a build. This page advertises a hardcover as "
-        + "coming soon. There is no hardcover interior, no hardcover cover and no hardcover "
-        + "directory anywhere in the project, and that is deliberate twice over. "
-        + "project_config.json says TEK FORMAT: ciltsiz — single format, paperback — because an "
-        + "activity book is written in, and DECISIONS.md carries A5, 'will a hardcover gift "
-        + "edition go into v1.0', as AÇIK (varsayım: hayır): OPEN, assumption no, deferred to "
-        + "month 6. So the catalogue promises what the project decided against. The inconsistency "
-        + "is recorded rather than resolved: answering A5 is the Founder's, and an agent must "
-        + "neither invent the hardcover nor silently withdraw the promise. See F-051.",
+      "HARDCOVER: BUILT 2026-09-07 under FOUNDER DECISION F-051, which closed A5. It is "
+        + "its OWN typesetting, not the paperback in a different jacket: KDP's hardcover "
+        + "line does not offer 8.5 × 11, so the interior was re-set at 8.25 × 11 by "
+        + "`interior.py --format hardcover` and measured its own page count — 156, the "
+        + "same as the paperback, because this book's extent is set by fixed-height "
+        + "activity boxes rather than by reflowing text. Interior: 156 pp, 8.250 × 11.000 "
+        + "in, 7 fonts embedded, real title and author, companion page at p.156 with its "
+        + "QR measured at 26% of the page. Wrap: 18.615 × 12.417 in, spine 0.540, art at "
+        + "311 ppi, barcode zone measured clear, every WCAG contrast ratio above floor. "
+        + "The geometry was READ from KDP's own Cover Calculator on 2026-09-07, never "
+        + "derived. WHAT IS NOT DONE: the edition has never been uploaded, so KDP Print "
+        + "Previewer has never seen it — and this house has already had a table print off "
+        + "the page that every local check passed.",
       "Accepted risk on record: ZERO child testing (`externalValidation = overridden-zero-sessions`, explicitly not 'passed'). The project config permanently refuses to claim a child tested this book. It is live on Amazon regardless.",
       "Accepted risk on record: interior art resolution floor lowered from 300 to 150 dpi by founder decision rather than regenerating assets.",
-      "The PDF carries no title or author metadata ('untitled' / 'anonymous'). Cosmetic, but it is what a library catalogue reads.",
+      "PDF METADATA IS FIXED on both formats (2026-09-07); both interiors carry the real "
+        + "title and author. The hardcover's first build did not, and the companion-page "
+        + "tool caught it and refused — then could not fix it, because its own assembly "
+        + "read ReportLab's placeholder `anonymous` as a value. The check and the thing "
+        + "it checked disagreed; both now exclude the same two words. Separately, BOTH "
+        + "WRAPS WERE OVER KDP'S 40 MB COVER LIMIT (paperback 50.2 MB, hardcover 52.7 MB) "
+        + "and would have been rejected at upload. Both are re-encoded at 300 dpi — 1.5 "
+        + "and 1.6 MB, 329 and 311 ppi, geometry unchanged — with the originals kept "
+        + "beside them as `cover.uncompressed.pdf`.",
     ],
   },
 

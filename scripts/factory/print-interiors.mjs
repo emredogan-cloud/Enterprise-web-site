@@ -68,6 +68,14 @@ const SPECS = {
   },
   "the-myth-hunters-field-book": {
     paperback: ["THE-MYTH-HUNTERS-FIELD-BOOK", "08_OUTPUT", "PAPERBACK", "interior.pdf"],
+    // F-051, 2026-09-07. TWO BUILDS, NOT ONE FILE IN TWO JACKETS. KDP's
+    // hardcover line does not offer 8.5 x 11; the largest hardcover trim is
+    // 8.25 x 11, and uploading the paperback's file to a hardcover is the
+    // mismatch KDP rejects. `interior.py --format hardcover` re-typesets at
+    // that trim and measures its own page count, which came out at 156 —
+    // the same as the paperback, because this book's extent is set by
+    // fixed-height activity boxes rather than by reflowing text.
+    hardcover: ["THE-MYTH-HUNTERS-FIELD-BOOK", "08_OUTPUT", "HARDCOVER", "interior.pdf"],
   },
   "greek-alphabet-handwriting-workbook": {
     // Valice Script 2, built 2026-09-04; the hardcover added 2026-09-05.

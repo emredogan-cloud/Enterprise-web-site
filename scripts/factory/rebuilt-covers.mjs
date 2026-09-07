@@ -124,6 +124,21 @@ export const REBUILT_COVERS = {
       note: "rebuilt 2026-09-04 at the final page count of 154, after the companion leaf. The count moved 156 -> 154 when a markdown-bold rendering defect was fixed and the text reflowed; the cover was rebuilt rather than reused.",
     },
   },
+  "the-myth-hunters-field-book": {
+    paperback: {
+      built: true,
+      path: bookPath("THE-MYTH-HUNTERS-FIELD-BOOK", "08_OUTPUT", "PAPERBACK", "cover.pdf"),
+      pageCount: 156, spineIn: 0.3513, wrapIn: "17.6013 × 11.2500 (white)",
+      note: "Built 2026-08-18 by the project's own 04_BUILD/covers.py and RE-ENCODED on 2026-09-07 without being redesigned. The file this table had pointed at was 50.2 MB against KDP's 40 MB cover ceiling — `preflight.py --kind cover` fails it — so the wrap in the repository for a LIVE edition was one KDP would have rejected. It is now 1.5 MB at 329 ppi with the geometry unchanged to three decimals; the original is kept beside it as cover.uncompressed.pdf. What is on Amazon was not touched.",
+    },
+    hardcover: {
+      built: true,
+      path: bookPath("THE-MYTH-HUNTERS-FIELD-BOOK", "08_OUTPUT", "HARDCOVER", "cover.pdf"),
+      pageCount: 156, spineIn: 0.54, wrapIn: "18.6150 × 12.4170 (white)",
+      note: "F-051, built 2026-09-07. The geometry was READ from KDP's own Cover Calculator that day — Hardcover · Black & white · White paper · Left to Right · Inches · 8.25 × 11 in · 156 pages — and matches, to the digit, the row this house read on 2026-09-05 for the Puzzle Book at the same six inputs. Nothing is derived. The paperback layout model could not express this cover: a hardcover has THREE clearances where a paperback has one — wrap 0.591 folded behind the board, hinge 0.394 either side of the spine where the book bends, and a barcode margin of 0.375 rather than 0.25 — so covers.py gained a separate `inner` clearance, defaulting to the old value so no paperback changed. Art 311 ppi after the spine-alignment crop, every WCAG contrast ratio measured above floor, spine drift 0.0000 in after optical centring, barcode zone measured empty off the render. NOT SEEN BY KDP PREVIEWER: this edition has never been uploaded.",
+    },
+  },
+
   "the-great-book-of-world-games": {
     large_print: {
       built: false,

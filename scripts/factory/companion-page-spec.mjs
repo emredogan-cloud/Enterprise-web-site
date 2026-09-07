@@ -722,6 +722,16 @@ export const COMPANION_PAGE_PLAN = {
         folio: null,
         replacing: "the second of two identical ruled 'Field Notes' pages — the reader keeps one and gains a destination",
       },
+      // F-051, 2026-09-07. The hardcover is its own typesetting at 8.25 x 11 and
+      // came out at 156 pages too, with the same doubled 'Field Notes' leaf at
+      // the end. VERIFIED by reading pages 155 and 156 of the built file, not
+      // assumed from the paperback: the plan is checked against the interior
+      // before anything is spliced, and a wrong pagesBefore stops the run.
+      hardcover: {
+        mode: "replace", page: 156, pagesBefore: 156, pagesAfter: 156, recto: false,
+        folio: null,
+        replacing: "the second of two identical ruled 'Field Notes' pages — the reader keeps one and gains a destination",
+      },
     },
   },
 
