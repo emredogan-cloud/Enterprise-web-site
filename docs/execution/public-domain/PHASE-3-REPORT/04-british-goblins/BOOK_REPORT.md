@@ -177,7 +177,7 @@ Also printed and false, each corrected against the source:
 
 | The edition said | The book says |
 |---|---|
-| Gwyn ap Nudd is a figure "whom Sikes does not name" | Named **twelve times**, with a section of Book I chapter I about him |
+| Gwyn ap Nudd is a figure "whom Sikes does not name" | Named **eleven times** in the body, with a section of Book I chapter I about him |
 | Rip Van Winkle, "which Sikes does not mention once" | A chapter section is *titled* "The Original of Rip van Winkle"; Washington Irving named twice |
 | Chronology: Olaus Magnus, 1555, "a source for Book II" | **Zero** occurrences — the row was imported from another book of the phase |
 | Chronology: Marie de France writes *Bisclavret* | **Zero** occurrences — likewise |
