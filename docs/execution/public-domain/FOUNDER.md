@@ -1011,3 +1011,71 @@ The presence checks were not trusted, per the house rule: each value was tested 
 is the placeholder string, not by whether the variable is defined. Four of the five providers
 in this file were once configured with a wrong-but-plausible value that `process.env.X !==
 undefined` accepted.
+
+---
+
+### F-045 · P0 · Three live Amazon listing defects on the World Games large print, and one whole civilization was missing from the Puzzle Book
+
+Two separate findings from the KDP audit of 2026-09-07. Both are on the commercial surface.
+
+**1. The World Games large print edition (B0HHNCVQVX, $31.99, live since 2026-09-02).**
+It was not in the catalogue at all, because it sits on KDP as a second "paperback" entry. Three
+defects, all visible to a buyer right now:
+
+| | |
+|---|---|
+| Title typo | reads **"39 Cultıres"** — a Turkish dotless ı where the u belongs — in the product title |
+| No format marker | the title never says **Large Print**, so this $31.99 8.5×11 edition and the $22.99 6×9 paperback are indistinguishable by title. *Codex Mythologica* and *Codex Bestiarium* both carry "(Large Print Edition)" in theirs |
+| Broken description | literal `\n\n` pairs print as text: *"A reference book you play from.\n\nThe Great Book of World Games…"* |
+
+**The ask:** all three are metadata edits inside KDP, and a title change on a live listing needs
+your decision — KDP allows it only within 72 hours of publication, so this one now requires
+publishing a new edition. Decide whether the title correction is worth a new edition, or whether
+to correct the description and the format marker only.
+
+**2. The Puzzle Book paperback was dropping three creatures.**
+KDP's Print Previewer refused the file twice on page 152. The cause was not a margin: the
+fifty-seven-creature reference table was drawing off the bottom of the page, so **Ghūl, ʿIfrīt
+and Rukh — the entire Arabian civilization — never printed**, in a table the book's own text
+says holds "three to each, exactly" for nineteen civilizations. Before the fix the printed table
+held 54 of 57.
+
+Fixed at the builder: a table longer than a page now splits across pages with its header
+repeated. Both the paperback and the hardcover interiors were rebuilt; the page count did not
+move, so the covers are unaffected. **Nothing was lost and three names were gained** — verified
+by extracting the text of both builds and diffing.
+
+**Nothing is asked of you for this one.** It is recorded because of how it was found: no local
+check caught it. `preflight-interior.json` passed, fonts embedded, page count right. The
+overflow was invisible to every instrument this house owns, and KDP's previewer found it in one
+click. **The previewer is a measuring instrument we do not own, and it should be run before a
+book is called finished, not after.**
+
+---
+
+### F-046 · P1 · Two things at KDP need your click, and one needs your judgement
+
+**Ready and waiting for the account owner:**
+
+*Codex Mythologica: The Puzzle Book* — paperback. Details, Content and Rights & Pricing are all
+complete; the corrected interior is uploaded, the Print Previewer is clean, the price is set at
+$16.99 (printing $3.65, royalty $6.54 at 60%, KDP's own figures), territories worldwide, ISBN
+9798172268281 assigned. **The only remaining action is the "Publish Your Paperback Book"
+button**, which carries the KDP Terms agreement. That is yours, not an agent's.
+
+**Needs your judgement:**
+
+KDP's Quality Notifications has one open item — *Codex Enigmatica*, "Metadata: Reading Interest
+Age is missing". It is a recommendation, not an issue: nothing is suppressed and there are no
+quality warnings. It fires because the ebook is filed under **Teen & Young Adult › Hobbies &
+Games**, and that category expects an age range.
+
+So the question is which of two things is true, and only you can say: either the book belongs in
+that category and should carry an age range, or it is an adult puzzle book that is
+miscategorised. *The Puzzles of Henry Dudeney* and the World Games large print are filed the same
+way, so whichever answer you give probably applies to all three. I did not guess.
+
+**Also corrected while there:** the Puzzle Book's KDP AI declaration said **Images: None** while
+`project_config.json` records the cover as gpt-image-1 output, logged at $0.4992. It now reads
+"One or a few AI-generated images, with minimal or no editing", tool gpt-image-1. Article 20 and
+KDP both require that answer to match the production history, and it did not.
