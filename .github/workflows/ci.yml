@@ -39,6 +39,18 @@ jobs:
       - name: Install poppler-utils
         run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
 
+      # The print-linkage lint measures a printed QR by rendering the page with
+      # pdftoppm and looking for the 1:1:3:1:1 finder signature — the same thing a
+      # decoder looks for. It runs that through ./.venv-factory/bin/python, and
+      # without it reports "unmeasured", which is honest but is not a measurement.
+      # The script needs Pillow and nothing else, so CI can measure for real rather
+      # than skip: the alternative was asserting a weaker claim on the runner than
+      # on the Founder's machine.
+      - name: Python venv for the print factory (Pillow — QR measurement)
+        run: |
+          python3 -m venv .venv-factory
+          ./.venv-factory/bin/pip install --quiet --disable-pip-version-check Pillow
+
       - name: Install dependencies
         run: npm ci
 
