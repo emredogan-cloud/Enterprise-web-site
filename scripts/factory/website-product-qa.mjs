@@ -84,13 +84,29 @@ for (const b of BOOKS) {
     // Kindle edition with an ASIN, and its page correctly shows a cart button instead of a
     // link to Amazon. Requiring every ASIN to appear failed four books for doing the right
     // thing, and would have buried the three that are genuinely wrong.
-    const amazonAsins = (b.formats ?? [])
-      .filter((f) => f.amazonAsin && f.fulfillment === "amazon")
-      .map((f) => f.amazonAsin);
-    if (amazonAsins.length) {
-      const absent = amazonAsins.filter((a) => !body.includes(a));
+    //
+    // And only for formats a reader can actually BUY. A format Amazon has accepted but not yet
+    // put on sale carries an ASIN and is marked `coming_soon`; the page prints "Not yet
+    // available" instead of a link, which is the right thing to print — a link to a listing
+    // with no buy button is worse than no link. The Puzzle Book paperback proved it.
+    const amazonFormats = (b.formats ?? []).filter(
+      (f) => f.amazonAsin && f.fulfillment === "amazon",
+    );
+    const onSale = amazonFormats.filter((f) => f.availability === "available");
+    const notYet = amazonFormats.filter((f) => f.availability !== "available");
+
+    if (onSale.length) {
+      const absent = onSale.filter((f) => !body.includes(f.amazonAsin)).map((f) => f.amazonAsin);
       add("asin-links", absent.length === 0,
-          absent.length ? `absent: ${absent.join(",")}` : amazonAsins.join(","));
+          absent.length ? `absent: ${absent.join(",")}` : onSale.map((f) => f.amazonAsin).join(","));
+    }
+    // The other half of the same fact: an edition that is not on sale must not be offered as
+    // though it were. Without this the `coming_soon` formats would simply go unchecked.
+    if (notYet.length) {
+      const leaked = notYet.filter((f) => body.includes(f.amazonAsin)).map((f) => f.amazonAsin);
+      add("unreleased-not-linked", leaked.length === 0,
+          leaked.length ? `linked while ${notYet[0].availability}: ${leaked.join(",")}`
+                        : `${notYet.length} withheld from the page`);
     }
   }
 
