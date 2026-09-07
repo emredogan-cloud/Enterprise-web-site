@@ -1,0 +1,758 @@
+{
+ "tool": "website-product-qa",
+ "target": "https://valicepress.com",
+ "ranAt": "2026-09-07T14:52:51.923Z",
+ "counts": {
+  "checked": 27,
+  "live": 16,
+  "published": 16,
+  "publishedPassing": 16,
+  "passing": 27
+ },
+ "$why": "Gate 11 evidence. Every assertion is against bytes returned by production; a row that says published while the page 404s fails here, which is the point.",
+ "rows": [
+  {
+   "slug": "meditations",
+   "url": "https://valicepress.com/books/meditations",
+   "websiteStatus": "published",
+   "status": 200,
+   "ok": true,
+   "checks": [
+    {
+     "name": "http-200",
+     "ok": true,
+     "detail": "HTTP 200"
+    },
+    {
+     "name": "title",
+     "ok": true,
+     "detail": "Meditations"
+    },
+    {
+     "name": "cover",
+     "ok": true,
+     "detail": "/images/books/meditations.webp"
+    },
+    {
+     "name": "prices",
+     "ok": true,
+     "detail": "1/1 shown"
+    },
+    {
+     "name": "cta",
+     "ok": true,
+     "detail": "direct"
+    }
+   ]
+  },
+  {
+   "slug": "codex-mythologica",
+   "url": "https://valicepress.com/books/codex-mythologica",
+   "websiteStatus": "published",
+   "status": 200,
+   "ok": true,
+   "checks": [
+    {
+     "name": "http-200",
+     "ok": true,
+     "detail": "HTTP 200"
+    },
+    {
+     "name": "title",
+     "ok": true,
+     "detail": "Codex Mythologica"
+    },
+    {
+     "name": "cover",
+     "ok": true,
+     "detail": "/images/books/codex-mythologica.webp"
+    },
+    {
+     "name": "prices",
+     "ok": true,
+     "detail": "4/4 shown"
+    },
+    {
+     "name": "cta",
+     "ok": true,
+     "detail": "amazon B0HD8121RR,B0HCY8KY3X,B0HDBFZRQ4,B0HDDR84MF"
+    },
+    {
+     "name": "asin-links",
+     "ok": true,
+     "detail": "B0HD8121RR,B0HCY8KY3X,B0HDBFZRQ4,B0HDDR84MF"
+    }
+   ]
+  },
+  {
+   "slug": "codex-bestiarium",
+   "url": "https://valicepress.com/books/codex-bestiarium",
+   "websiteStatus": "published",
+   "status": 200,
+   "ok": true,
+   "checks": [
+    {
+     "name": "http-200",
+     "ok": true,
+     "detail": "HTTP 200"
+    },
+    {
+     "name": "title",
+     "ok": true,
+     "detail": "Codex Bestiarium"
+    },
+    {
+     "name": "cover",
+     "ok": true,
+     "detail": "/images/books/codex-bestiarium.webp"
+    },
+    {
+     "name": "prices",
+     "ok": true,
+     "detail": "4/4 shown"
+    },
+    {
+     "name": "cta",
+     "ok": true,
+     "detail": "amazon B0HDLS4W8Q,B0HDLQHQ7H,B0HDLLPG5M,B0HDLT1V3P"
+    },
+    {
+     "name": "asin-links",
+     "ok": true,
+     "detail": "B0HDLQHQ7H,B0HDLLPG5M,B0HDLT1V3P"
+    }
+   ]
+  },
+  {
+   "slug": "the-great-book-of-world-myths",
+   "url": "https://valicepress.com/books/the-great-book-of-world-myths",
+   "websiteStatus": "published",
+   "status": 200,
+   "ok": true,
+   "checks": [
+    {
+     "name": "http-200",
+     "ok": true,
+     "detail": "HTTP 200"
+    },
+    {
+     "name": "title",
+     "ok": true,
+     "detail": "The Great Book of World Myths"
+    },
+    {
+     "name": "cover",
+     "ok": true,
+     "detail": "/images/books/the-great-book-of-world-myths.webp"
+    },
+    {
+     "name": "prices",
+     "ok": true,
+     "detail": "3/3 shown"
+    },
+    {
+     "name": "cta",
+     "ok": true,
+     "detail": "amazon B0HDQRPKST,B0HDTL5V2H,B0HDZJ4PHQ"
+    },
+    {
+     "name": "asin-links",
+     "ok": true,
+     "detail": "B0HDTL5V2H,B0HDZJ4PHQ"
+    }
+   ]
+  },
+  {
+   "slug": "the-great-book-of-world-games",
+   "url": "https://valicepress.com/books/the-great-book-of-world-games",
+   "websiteStatus": "published",
+   "status": 200,
+   "ok": true,
+   "checks": [
+    {
+     "name": "http-200",
+     "ok": true,
+     "detail": "HTTP 200"
+    },
+    {
+     "name": "title",
+     "ok": true,
+     "detail": "The Great Book of World Games"
+    },
+    {
+     "name": "cover",
+     "ok": true,
+     "detail": "/images/books/the-great-book-of-world-games.webp"
+    },
+    {
+     "name": "prices",
+     "ok": true,
+     "detail": "4/4 shown"
+    },
+    {
+     "name": "cta",
+     "ok": true,
+     "detail": "amazon B0HG44FH1B,B0HG3KMK9L,B0HG41F21F,B0HHNCVQVX"
+    },
+    {
+     "name": "asin-links",
+     "ok": true,
+     "detail": "B0HG3KMK9L,B0HG41F21F,B0HHNCVQVX"
+    }
+   ]
+  },
+  {
+   "slug": "the-myth-hunters-field-book",
+   "url": "https://valicepress.com/books/the-myth-hunters-field-book",
+   "websiteStatus": "published",
+   "status": 200,
+   "ok": true,
+   "checks": [
+    {
+     "name": "http-200",
+     "ok": true,
+     "detail": "HTTP 200"
+    },
+    {
+     "name": "title",
+     "ok": true,
+     "detail": "The Myth Hunter's Field Book"
+    },
+    {
+     "name": "cover",
+     "ok": true,
+     "detail": "/images/books/the-myth-hunters-field-book.webp"
+    },
+    {
+     "name": "prices",
+     "ok": true,
+     "detail": "1/1 shown"
+    },
+    {
+     "name": "cta",
+     "ok": true,
+     "detail": "amazon B0HFP4KYX5"
+    },
+    {
+     "name": "asin-links",
+     "ok": true,
+     "detail": "B0HFP4KYX5"
+    }
+   ]
+  },
+  {
+   "slug": "greek-alphabet-handwriting-workbook",
+   "url": "https://valicepress.com/books/greek-alphabet-handwriting-workbook",
+   "websiteStatus": "published",
+   "status": 200,
+   "ok": true,
+   "checks": [
+    {
+     "name": "http-200",
+     "ok": true,
+     "detail": "HTTP 200"
+    },
+    {
+     "name": "title",
+     "ok": true,
+     "detail": "The Greek Alphabet Handwriting Workbook"
+    },
+    {
+     "name": "cover",
+     "ok": true,
+     "detail": "/images/books/greek-alphabet-handwriting-workbook.webp"
+    },
+    {
+     "name": "prices",
+     "ok": true,
+     "detail": "1/1 shown"
+    },
+    {
+     "name": "cta",
+     "ok": true,
+     "detail": "direct"
+    }
+   ]
+  },
+  {
+   "slug": "codex-mythologica-the-puzzle-book",
+   "url": "https://valicepress.com/books/codex-mythologica-the-puzzle-book",
+   "websiteStatus": "published",
+   "status": 200,
+   "ok": true,
+   "checks": [
+    {
+     "name": "http-200",
+     "ok": true,
+     "detail": "HTTP 200"
+    },
+    {
+     "name": "title",
+     "ok": true,
+     "detail": "Codex Mythologica: The Puzzle Book"
+    },
+    {
+     "name": "cover",
+     "ok": true,
+     "detail": "/images/books/codex-mythologica-the-puzzle-book.webp"
+    },
+    {
+     "name": "prices",
+     "ok": true,
+     "detail": "2/2 shown"
+    },
+    {
+     "name": "cta",
+     "ok": true,
+     "detail": "amazon B0HJ2TPX4T"
+    },
+    {
+     "name": "asin-links",
+     "ok": true,
+     "detail": "B0HJ2TPX4T"
+    }
+   ]
+  },
+  {
+   "slug": "korean-hangul-handwriting-workbook",
+   "url": "https://valicepress.com/books/korean-hangul-handwriting-workbook",
+   "websiteStatus": "published",
+   "status": 200,
+   "ok": true,
+   "checks": [
+    {
+     "name": "http-200",
+     "ok": true,
+     "detail": "HTTP 200"
+    },
+    {
+     "name": "title",
+     "ok": true,
+     "detail": "Korean Hangul Handwriting Workbook"
+    },
+    {
+     "name": "cover",
+     "ok": true,
+     "detail": "/images/books/korean-hangul-handwriting-workbook.webp"
+    },
+    {
+     "name": "prices",
+     "ok": true,
+     "detail": "2/2 shown"
+    },
+    {
+     "name": "cta",
+     "ok": true,
+     "detail": "amazon B0HHHWXGG4,B0HHLZ31CV"
+    },
+    {
+     "name": "asin-links",
+     "ok": true,
+     "detail": "B0HHHWXGG4,B0HHLZ31CV"
+    }
+   ]
+  },
+  {
+   "slug": "the-puzzles-of-henry-dudeney",
+   "url": "https://valicepress.com/books/the-puzzles-of-henry-dudeney",
+   "websiteStatus": "published",
+   "status": 200,
+   "ok": true,
+   "checks": [
+    {
+     "name": "http-200",
+     "ok": true,
+     "detail": "HTTP 200"
+    },
+    {
+     "name": "title",
+     "ok": true,
+     "detail": "The Puzzles of Henry Dudeney"
+    },
+    {
+     "name": "cover",
+     "ok": true,
+     "detail": "/images/books/the-puzzles-of-henry-dudeney.webp"
+    },
+    {
+     "name": "prices",
+     "ok": true,
+     "detail": "2/2 shown"
+    },
+    {
+     "name": "cta",
+     "ok": true,
+     "detail": "amazon B0HHS2JW9N"
+    },
+    {
+     "name": "asin-links",
+     "ok": true,
+     "detail": "B0HHS2JW9N"
+    }
+   ]
+  },
+  {
+   "slug": "epictetus-discourses-and-enchiridion",
+   "url": "https://valicepress.com/books/epictetus-discourses-and-enchiridion",
+   "websiteStatus": "published",
+   "status": 200,
+   "ok": true,
+   "checks": [
+    {
+     "name": "http-200",
+     "ok": true,
+     "detail": "HTTP 200"
+    },
+    {
+     "name": "title",
+     "ok": true,
+     "detail": "Epictetus: The Discourses and Enchiridion"
+    },
+    {
+     "name": "cover",
+     "ok": true,
+     "detail": "/images/books/epictetus-discourses-and-enchiridion.webp"
+    },
+    {
+     "name": "prices",
+     "ok": true,
+     "detail": "1/1 shown"
+    },
+    {
+     "name": "cta",
+     "ok": true,
+     "detail": "direct"
+    }
+   ]
+  },
+  {
+   "slug": "seneca-selected-dialogues",
+   "url": "https://valicepress.com/books/seneca-selected-dialogues",
+   "websiteStatus": "published",
+   "status": 200,
+   "ok": true,
+   "checks": [
+    {
+     "name": "http-200",
+     "ok": true,
+     "detail": "HTTP 200"
+    },
+    {
+     "name": "title",
+     "ok": true,
+     "detail": "Seneca: Selected Dialogues"
+    },
+    {
+     "name": "cover",
+     "ok": true,
+     "detail": "/images/books/seneca-selected-dialogues.webp"
+    },
+    {
+     "name": "prices",
+     "ok": true,
+     "detail": "1/1 shown"
+    },
+    {
+     "name": "cta",
+     "ok": true,
+     "detail": "direct"
+    }
+   ]
+  },
+  {
+   "slug": "myths-and-legends-of-china",
+   "url": "https://valicepress.com/books/myths-and-legends-of-china",
+   "websiteStatus": "published",
+   "status": 200,
+   "ok": true,
+   "checks": [
+    {
+     "name": "http-200",
+     "ok": true,
+     "detail": "HTTP 200"
+    },
+    {
+     "name": "title",
+     "ok": true,
+     "detail": "Myths and Legends of China"
+    },
+    {
+     "name": "cover",
+     "ok": true,
+     "detail": "/images/books/myths-and-legends-of-china.webp"
+    },
+    {
+     "name": "prices",
+     "ok": true,
+     "detail": "1/1 shown"
+    },
+    {
+     "name": "cta",
+     "ok": true,
+     "detail": "direct"
+    }
+   ]
+  },
+  {
+   "slug": "indian-myth-and-legend",
+   "url": "https://valicepress.com/books/indian-myth-and-legend",
+   "websiteStatus": "published",
+   "status": 200,
+   "ok": true,
+   "checks": [
+    {
+     "name": "http-200",
+     "ok": true,
+     "detail": "HTTP 200"
+    },
+    {
+     "name": "title",
+     "ok": true,
+     "detail": "Indian Myth and Legend"
+    },
+    {
+     "name": "cover",
+     "ok": true,
+     "detail": "/images/books/indian-myth-and-legend.webp"
+    },
+    {
+     "name": "prices",
+     "ok": true,
+     "detail": "1/1 shown"
+    },
+    {
+     "name": "cta",
+     "ok": true,
+     "detail": "direct"
+    }
+   ]
+  },
+  {
+   "slug": "mythical-monsters",
+   "url": "https://valicepress.com/books/mythical-monsters",
+   "websiteStatus": "published",
+   "status": 200,
+   "ok": true,
+   "checks": [
+    {
+     "name": "http-200",
+     "ok": true,
+     "detail": "HTTP 200"
+    },
+    {
+     "name": "title",
+     "ok": true,
+     "detail": "Mythical Monsters"
+    },
+    {
+     "name": "cover",
+     "ok": true,
+     "detail": "/images/books/mythical-monsters.webp"
+    },
+    {
+     "name": "prices",
+     "ok": true,
+     "detail": "1/1 shown"
+    },
+    {
+     "name": "cta",
+     "ok": true,
+     "detail": "direct"
+    }
+   ]
+  },
+  {
+   "slug": "games-ancient-and-oriental",
+   "url": "https://valicepress.com/books/games-ancient-and-oriental",
+   "websiteStatus": "draft",
+   "status": 404,
+   "ok": true,
+   "checks": [
+    {
+     "name": "withheld",
+     "ok": true,
+     "detail": "HTTP 404"
+    }
+   ]
+  },
+  {
+   "slug": "korean-games",
+   "url": "https://valicepress.com/books/korean-games",
+   "websiteStatus": "draft",
+   "status": 404,
+   "ok": true,
+   "checks": [
+    {
+     "name": "withheld",
+     "ok": true,
+     "detail": "HTTP 404"
+    }
+   ]
+  },
+  {
+   "slug": "kwaidan",
+   "url": "https://valicepress.com/books/kwaidan",
+   "websiteStatus": "draft",
+   "status": 404,
+   "ok": true,
+   "checks": [
+    {
+     "name": "withheld",
+     "ok": true,
+     "detail": "HTTP 404"
+    }
+   ]
+  },
+  {
+   "slug": "fairy-mythology-vol-1",
+   "url": "https://valicepress.com/books/fairy-mythology-vol-1",
+   "websiteStatus": "draft",
+   "status": 404,
+   "ok": true,
+   "checks": [
+    {
+     "name": "withheld",
+     "ok": true,
+     "detail": "HTTP 404"
+    }
+   ]
+  },
+  {
+   "slug": "fairy-mythology-vol-2",
+   "url": "https://valicepress.com/books/fairy-mythology-vol-2",
+   "websiteStatus": "draft",
+   "status": 404,
+   "ok": true,
+   "checks": [
+    {
+     "name": "withheld",
+     "ok": true,
+     "detail": "HTTP 404"
+    }
+   ]
+  },
+  {
+   "slug": "british-goblins",
+   "url": "https://valicepress.com/books/british-goblins",
+   "websiteStatus": "draft",
+   "status": 404,
+   "ok": true,
+   "checks": [
+    {
+     "name": "withheld",
+     "ok": true,
+     "detail": "HTTP 404"
+    }
+   ]
+  },
+  {
+   "slug": "book-of-were-wolves",
+   "url": "https://valicepress.com/books/book-of-were-wolves",
+   "websiteStatus": "draft",
+   "status": 404,
+   "ok": true,
+   "checks": [
+    {
+     "name": "withheld",
+     "ok": true,
+     "detail": "HTTP 404"
+    }
+   ]
+  },
+  {
+   "slug": "sea-monsters-unmasked",
+   "url": "https://valicepress.com/books/sea-monsters-unmasked",
+   "websiteStatus": "draft",
+   "status": 404,
+   "ok": true,
+   "checks": [
+    {
+     "name": "withheld",
+     "ok": true,
+     "detail": "HTTP 404"
+    }
+   ]
+  },
+  {
+   "slug": "traditional-games",
+   "url": "https://valicepress.com/books/traditional-games",
+   "websiteStatus": "draft",
+   "status": 404,
+   "ok": true,
+   "checks": [
+    {
+     "name": "withheld",
+     "ok": true,
+     "detail": "HTTP 404"
+    }
+   ]
+  },
+  {
+   "slug": "chess-and-playing-cards",
+   "url": "https://valicepress.com/books/chess-and-playing-cards",
+   "websiteStatus": "draft",
+   "status": 404,
+   "ok": true,
+   "checks": [
+    {
+     "name": "withheld",
+     "ok": true,
+     "detail": "HTTP 404"
+    }
+   ]
+  },
+  {
+   "slug": "mancala",
+   "url": "https://valicepress.com/books/mancala",
+   "websiteStatus": "draft",
+   "status": 404,
+   "ok": true,
+   "checks": [
+    {
+     "name": "withheld",
+     "ok": true,
+     "detail": "HTTP 404"
+    }
+   ]
+  },
+  {
+   "slug": "codex-enigmatica",
+   "url": "https://valicepress.com/books/codex-enigmatica",
+   "websiteStatus": "published",
+   "status": 200,
+   "ok": true,
+   "checks": [
+    {
+     "name": "http-200",
+     "ok": true,
+     "detail": "HTTP 200"
+    },
+    {
+     "name": "title",
+     "ok": true,
+     "detail": "Codex Enigmatica"
+    },
+    {
+     "name": "cover",
+     "ok": true,
+     "detail": "/images/books/codex-enigmatica.webp"
+    },
+    {
+     "name": "prices",
+     "ok": true,
+     "detail": "3/3 shown"
+    },
+    {
+     "name": "cta",
+     "ok": true,
+     "detail": "amazon B0HGRZ3BRC,B0HGSVF15Q,B0HH3B4HQ7"
+    },
+    {
+     "name": "asin-links",
+     "ok": true,
+     "detail": "B0HGSVF15Q,B0HH3B4HQ7"
+    }
+   ]
+  }
+ ]
+}
