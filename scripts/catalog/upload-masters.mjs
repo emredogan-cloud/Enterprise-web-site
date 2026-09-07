@@ -78,12 +78,40 @@ async function upload({ file, key, contentType, missingHint }) {
 
   let existing = null;
   let remoteEtag = null;
+  let remoteModified = null;
   try {
     const head = await client.send(new HeadObjectCommand({ Bucket: bucket, Key: key }));
     existing = head.ContentLength;
     remoteEtag = (head.ETag ?? "").replace(/"/g, "");
+    remoteModified = head.LastModified ?? null;
   } catch {
     /* not present — first upload */
+  }
+
+  // WHICH ONE IS NEWER? This tool uploads whatever is in the staging directory, and on
+  // 2026-09-07 that was about to DOWNGRADE a live master: the Puzzle Book's staged
+  // digital edition was 429,015 bytes from 09-06, while R2 already held 429,205 bytes
+  // built from the current interior on 09-07. Content differed, so every check passed
+  // and it offered the older file. Staging is an intermediate, and intermediates go
+  // stale — the same shape as the cover built from a page count nobody re-measured.
+  const localModified = statSync(file).mtime;
+  // An hour of tolerance. A build writes its PDF and its EPUB a minute apart and the
+  // upload lands a minute after that, so a strict comparison flags a same-build pair as
+  // stale — which is the false-failure pattern that buries the real ones. What matters
+  // is a file left behind by a LATER rebuild, and that gap is hours or days.
+  const STALE_TOLERANCE_MS = 60 * 60 * 1000;
+  if (remoteModified && remoteModified - localModified > STALE_TOLERANCE_MS) {
+    const days = ((remoteModified - localModified) / 86400000).toFixed(1);
+    console.log(
+      `  ⚠ ${key}: the LOCAL file is ${days} day(s) OLDER than what R2 already holds ` +
+        `(local ${localModified.toISOString().slice(0, 16)}, R2 ` +
+        `${remoteModified.toISOString().slice(0, 16)}). Uploading would replace a newer ` +
+        `master with an older one. Rebuild the digital edition before uploading, or skip it.`,
+    );
+    if (!process.argv.includes("--i-know-the-local-file-is-older")) {
+      console.log(`  SKIP  ${key.padEnd(52)} refusing to overwrite a newer object`);
+      return;
+    }
   }
 
   // Same size is NOT the same file. A re-cut edition can come out byte-different

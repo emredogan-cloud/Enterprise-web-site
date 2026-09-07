@@ -696,7 +696,16 @@ export const BOOKS = [
           "Not created on KDP. No price, because no price has been set — a hardcover of a write-in book is a real question, not a formality.",
       },
     ],
-    blockers: [
+        blockers: [
+      "HARDCOVER: BLOCKED — FORMAT DECISION, not a build. This page advertises a hardcover as "
+        + "coming soon. There is no hardcover interior, no hardcover cover and no hardcover "
+        + "directory anywhere in the project, and that is deliberate twice over. "
+        + "project_config.json says TEK FORMAT: ciltsiz — single format, paperback — because an "
+        + "activity book is written in, and DECISIONS.md carries A5, 'will a hardcover gift "
+        + "edition go into v1.0', as AÇIK (varsayım: hayır): OPEN, assumption no, deferred to "
+        + "month 6. So the catalogue promises what the project decided against. The inconsistency "
+        + "is recorded rather than resolved: answering A5 is the Founder's, and an agent must "
+        + "neither invent the hardcover nor silently withdraw the promise. See F-051.",
       "Accepted risk on record: ZERO child testing (`externalValidation = overridden-zero-sessions`, explicitly not 'passed'). The project config permanently refuses to claim a child tested this book. It is live on Amazon regardless.",
       "Accepted risk on record: interior art resolution floor lowered from 300 to 150 dpi by founder decision rather than regenerating assets.",
       "The PDF carries no title or author metadata ('untitled' / 'anonymous'). Cosmetic, but it is what a library catalogue reads.",
