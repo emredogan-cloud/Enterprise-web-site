@@ -1,0 +1,28 @@
+{
+  "$source": "KDP Bookshelf, read in the browser 2026-09-07. Prices and statuses are what KDP printed.",
+  "listings": [
+    {"asin":"B0HHNCVQVX","kdpTitle":"The Great Book of World Games: 56 Games from 4,600 Years of Human Play — Rules, Boards and Stories From 39 Cultıres, Ready to Play Tonight","format":"Paperback","priceUsd":31.99,"status":"Live","note":"Updates in review","submitted":"2026-09-03"},
+    {"asin":"B0HJ2TPX4T","kdpTitle":"Codex Mythologica: The Puzzle Book: 100 Myth Puzzles from 19 Civilizations","format":"Paperback","priceUsd":16.99,"status":"Live","submitted":"2026-09-07"},
+    {"asin":"B0HDDR84MF","kdpTitle":"Codex Mythologica: 76 Myths from 19 Civilizations (Large Print Edition)","format":"Paperback","priceUsd":27.99,"status":"Live","submitted":"2026-08-07"},
+    {"asin":"B0HD8121RR","kdpTitle":"Codex Mythologica: 76 Myths from 19 Civilizations","format":"Kindle eBook","priceUsd":6.99,"status":"Live","submitted":"2026-08-06","kdpSelect":true},
+    {"asin":"B0HCY8KY3X","kdpTitle":"Codex Mythologica: 76 Myths from 19 Civilizations","format":"Paperback","priceUsd":21.99,"status":"Live","submitted":"2026-08-05"},
+    {"asin":"B0HDBFZRQ4","kdpTitle":"Codex Mythologica: 76 Myths from 19 Civilizations","format":"Hardcover","priceUsd":32.99,"status":"Live","submitted":"2026-08-07"},
+    {"asin":"B0HFP4KYX5","kdpTitle":"The Myth Hunter's Field Book","format":"Paperback","priceUsd":14.99,"status":"Live","submitted":"2026-08-18"},
+    {"asin":"B0HDQRPKST","kdpTitle":"The Great Book of World Myths","format":"Kindle eBook","priceUsd":6.99,"status":"Live","submitted":"2026-08-10"},
+    {"asin":"B0HDTL5V2H","kdpTitle":"The Great Book of World Myths","format":"Paperback","priceUsd":14.99,"status":"Live","submitted":"2026-08-11"},
+    {"asin":"B0HDZJ4PHQ","kdpTitle":"The Great Book of World Myths","format":"Hardcover","priceUsd":26.99,"status":"Live","submitted":"2026-08-12"},
+    {"asin":"B0HGRZ3BRC","kdpTitle":"Codex Enigmatica","format":"Kindle eBook","priceUsd":9.99,"status":"Live","submitted":"2026-08-27"},
+    {"asin":"B0HGSVF15Q","kdpTitle":"Codex Enigmatica","format":"Paperback","priceUsd":19.99,"status":"Live","submitted":"2026-08-27"},
+    {"asin":"B0HH3B4HQ7","kdpTitle":"Codex Enigmatica","format":"Hardcover","priceUsd":29.99,"status":"Live","note":"Updates in review","submitted":"2026-08-29"},
+    {"asin":"B0HDLT1V3P","kdpTitle":"Codex Bestiarium (Large Print Edition)","format":"Paperback","priceUsd":29.99,"status":"Live","submitted":"2026-08-09"},
+    {"asin":"B0HG44FH1B","kdpTitle":"The Great Book of World Games","format":"Kindle eBook","priceUsd":11.99,"status":"Live","submitted":"2026-08-22"},
+    {"asin":"B0HG3KMK9L","kdpTitle":"The Great Book of World Games","format":"Paperback","priceUsd":22.99,"status":"Live","submitted":"2026-08-21"},
+    {"asin":"B0HG41F21F","kdpTitle":"The Great Book of World Games","format":"Hardcover","priceUsd":34.99,"status":"Live","submitted":"2026-08-22"},
+    {"asin":"B0HHHWXGG4","kdpTitle":"Korean Hangul Handwriting Workbook","format":"Paperback","priceUsd":12.99,"status":"Live","submitted":"2026-09-02"},
+    {"asin":"B0HHLZ31CV","kdpTitle":"Korean Hangul Handwriting Workbook","format":"Hardcover","priceUsd":21.99,"status":"Live","note":"Updates in review","submitted":"2026-09-03"},
+    {"asin":"B0HDLS4W8Q","kdpTitle":"Codex Bestiarium","format":"Kindle eBook","priceUsd":12.99,"status":"Live","submitted":"2026-08-09"},
+    {"asin":"B0HDLQHQ7H","kdpTitle":"Codex Bestiarium","format":"Paperback","priceUsd":24.99,"status":"Live","submitted":"2026-08-09"},
+    {"asin":"B0HDLLPG5M","kdpTitle":"Codex Bestiarium","format":"Hardcover","priceUsd":37.99,"status":"Live","submitted":"2026-08-09"},
+    {"asin":"B0HHS2JW9N","kdpTitle":"The Puzzles of Henry Dudeney (Annotated)","format":"Paperback","priceUsd":14.99,"status":"Live","submitted":"2026-09-04"}
+  ]
+}

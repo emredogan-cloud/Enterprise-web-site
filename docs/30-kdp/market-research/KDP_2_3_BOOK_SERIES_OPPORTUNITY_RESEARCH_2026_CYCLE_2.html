@@ -1,0 +1,1511 @@
+<meta charset="utf-8">
+<title>KDP 2–3 Kitaplık Seri Fırsatı Araştırması 2026 — Tur 2</title>
+<style>
+:root{
+  --bg:#f7f5f1; --surface:#ffffff; --surface-2:#f0ede6; --text:#1e1c18; --muted:#5c574d;
+  --border:#ddd6c9; --accent:#8a5a2b; --accent-2:#2b5a8a;
+  --green:#2f7a3d; --green-bg:#e6f2e6; --yellow:#8a6d1a; --yellow-bg:#f7f0d8;
+  --red:#a3312a; --red-bg:#f6e4e2; --blue:#2b5a8a; --blue-bg:#e3edf6;
+  --tag-obs:#2f7a3d; --tag-obs-bg:#e6f2e6; --tag-est:#8a6d1a; --tag-est-bg:#f7f0d8;
+  --tag-unv:#a3312a; --tag-unv-bg:#f6e4e2; --tag-acc:#2f7a3d; --tag-acc-bg:#e6f2e6;
+  --tag-reb:#2b5a8a; --tag-reb-bg:#e3edf6; --tag-unr:#8a6d1a; --tag-unr-bg:#f7f0d8;
+  --code-bg:#efe9dc;
+  color-scheme: light;
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme: dark){
+    --bg:#17140f; --surface:#211d17; --surface-2:#2a251d; --text:#ecE6d8; --muted:#b3a892;
+    --border:#443c2c; --accent:#d19a5c; --accent-2:#7fb0e0;
+    --green:#7fcf8f; --green-bg:#1e2f1f; --yellow:#e0c56a; --yellow-bg:#332c14;
+    --red:#e8938c; --red-bg:#3a2220; --blue:#7fb0e0; --blue-bg:#1c2a38;
+    --tag-obs:#7fcf8f; --tag-obs-bg:#1e2f1f; --tag-est:#e0c56a; --tag-est-bg:#332c14;
+    --tag-unv:#e8938c; --tag-unv-bg:#3a2220; --tag-acc:#7fcf8f; --tag-acc-bg:#1e2f1f;
+    --tag-reb:#7fb0e0; --tag-reb-bg:#1c2a38; --tag-unr:#e0c56a; --tag-unr-bg:#332c14;
+    --code-bg:#2a251d;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17140f; --surface:#211d17; --surface-2:#2a251d; --text:#ece6d8; --muted:#b3a892;
+  --border:#443c2c; --accent:#d19a5c; --accent-2:#7fb0e0;
+  --green:#7fcf8f; --green-bg:#1e2f1f; --yellow:#e0c56a; --yellow-bg:#332c14;
+  --red:#e8938c; --red-bg:#3a2220; --blue:#7fb0e0; --blue-bg:#1c2a38;
+  --tag-obs:#7fcf8f; --tag-obs-bg:#1e2f1f; --tag-est:#e0c56a; --tag-est-bg:#332c14;
+  --tag-unv:#e8938c; --tag-unv-bg:#3a2220; --tag-acc:#7fcf8f; --tag-acc-bg:#1e2f1f;
+  --tag-reb:#7fb0e0; --tag-reb-bg:#1c2a38; --tag-unr:#e0c56a; --tag-unr-bg:#332c14;
+  --code-bg:#2a251d;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;line-height:1.62;margin:0;padding:0}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px 80px}
+.grid{display:grid;grid-template-columns:250px 1fr;gap:36px;align-items:start}
+@media (max-width:920px){.grid{grid-template-columns:1fr}.toc{position:static !important}}
+header.hero{padding:56px 0 32px;border-bottom:3px double var(--border)}
+header.hero .kicker{font-family:Arial,Helvetica,sans-serif;letter-spacing:.14em;text-transform:uppercase;font-size:.75rem;color:var(--accent);font-weight:700}
+header.hero h1{font-size:2.35rem;margin:.35em 0 .2em;line-height:1.18}
+header.hero p.sub{color:var(--muted);font-size:1.08rem;max-width:64ch}
+.meta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.pill{font-family:Arial,Helvetica,sans-serif;font-size:.78rem;background:var(--surface-2);border:1px solid var(--border);border-radius:999px;padding:4px 12px;color:var(--muted)}
+.toc{position:sticky;top:24px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;font-family:Arial,Helvetica,sans-serif;font-size:.86rem;max-height:88vh;overflow-y:auto}
+.toc h2{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:0 0 10px}
+.toc ol{margin:0;padding-left:1.15em}
+.toc li{margin:5px 0}
+.toc a{color:var(--text);text-decoration:none;opacity:.86}
+.toc a:hover{opacity:1;color:var(--accent)}
+main section{padding:40px 0;border-bottom:1px solid var(--border)}
+main section:last-of-type{border-bottom:none}
+h2.sect-title{font-size:1.55rem;margin:0 0 .2em;display:flex;align-items:baseline;gap:.5em}
+h2.sect-title .n{font-family:Arial,Helvetica,sans-serif;color:var(--accent);font-size:.95rem;font-weight:700}
+h3{font-size:1.18rem;margin:1.6em 0 .5em;color:var(--text)}
+h4{font-size:1.02rem;margin:1.3em 0 .4em;color:var(--accent)}
+p{margin:.75em 0}
+.lead{font-size:1.08rem;color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin:1.1em 0;font-size:.92rem}
+caption{text-align:left;font-family:Arial,Helvetica,sans-serif;font-size:.78rem;color:var(--muted);margin-bottom:6px}
+th,td{border:1px solid var(--border);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--surface-2);font-family:Arial,Helvetica,sans-serif;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+tbody tr:nth-child(even){background:var(--surface-2)}
+.tablewrap{overflow-x:auto;border-radius:8px}
+.tag{display:inline-block;font-family:Arial,Helvetica,sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:2px 7px;border-radius:5px;white-space:nowrap}
+.tag-obs{color:var(--tag-obs);background:var(--tag-obs-bg)}
+.tag-est{color:var(--tag-est);background:var(--tag-est-bg)}
+.tag-unv{color:var(--tag-unv);background:var(--tag-unv-bg)}
+.tag-acc{color:var(--tag-acc);background:var(--tag-acc-bg)}
+.tag-reb{color:var(--tag-reb);background:var(--tag-reb-bg)}
+.tag-unr{color:var(--tag-unr);background:var(--tag-unr-bg)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 22px;margin:1.2em 0}
+.card.accent{border-left:4px solid var(--accent)}
+.card.green{border-left:4px solid var(--green)}
+.card.red{border-left:4px solid var(--red)}
+.card.blue{border-left:4px solid var(--blue)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:720px){.two-col{grid-template-columns:1fr}}
+.badge-verdict{display:inline-block;font-family:Arial,Helvetica,sans-serif;font-weight:800;font-size:.95rem;letter-spacing:.02em;padding:10px 18px;border-radius:8px;margin:.4em 0}
+.badge-verdict.B{color:var(--yellow);background:var(--yellow-bg);border:1px solid var(--yellow)}
+.badge-verdict.A{color:var(--green);background:var(--green-bg);border:1px solid var(--green)}
+.badge-verdict.C{color:var(--red);background:var(--red-bg);border:1px solid var(--red)}
+.badge-verdict.D{color:var(--blue);background:var(--blue-bg);border:1px solid var(--blue)}
+.rankbig{font-family:Arial,Helvetica,sans-serif;font-weight:800;font-size:2.4rem;color:var(--accent)}
+.small{font-size:.86rem;color:var(--muted)}
+blockquote{margin:1em 0;padding:.6em 1.2em;border-left:3px solid var(--accent);background:var(--surface-2);font-style:italic;color:var(--text)}
+code{background:var(--code-bg);padding:1px 5px;border-radius:4px;font-family:Consolas,Monaco,monospace;font-size:.9em}
+.footnote{font-size:.82rem;color:var(--muted)}
+.divider-note{font-family:Arial,Helvetica,sans-serif;font-size:.82rem;color:var(--muted);background:var(--surface-2);border:1px dashed var(--border);border-radius:8px;padding:12px 16px;margin:1em 0}
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.85rem}
+.arrow-up{color:var(--green)}
+.arrow-down{color:var(--red)}
+
+.scorebar{display:flex;align-items:center;gap:8px;font-family:Arial,Helvetica,sans-serif;font-size:.8rem}
+.scorebar .bar{flex:1;height:9px;background:var(--surface-2);border:1px solid var(--border);border-radius:5px;overflow:hidden}
+.scorebar .fill{height:100%;background:var(--accent)}
+.rank-row{display:flex;align-items:center;gap:14px;padding:9px 14px;border:1px solid var(--border);border-radius:8px;margin:7px 0;background:var(--surface);font-family:Arial,Helvetica,sans-serif}
+.rank-row .pos{font-weight:800;font-size:1.1rem;color:var(--accent);min-width:1.6em}
+.rank-row .nm{flex:1;font-weight:600}
+.rank-row .sc{font-weight:800;font-size:1.05rem}
+.rank-row.win{border-left:4px solid var(--green);background:var(--green-bg)}
+.rank-row.two{border-left:4px solid var(--blue)}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:1em 0}
+.flow .n{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-family:Arial,Helvetica,sans-serif;font-size:.85rem;text-align:center}
+.flow .n b{display:block;font-size:1.35rem;color:var(--accent);margin-bottom:3px}
+.funnel{font-family:Consolas,Monaco,monospace;font-size:.86rem;background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:16px 18px;white-space:pre;overflow-x:auto;line-height:1.5}
+ul.tight li{margin:.3em 0}
+.kv{font-family:Arial,Helvetica,sans-serif;font-size:.86rem}
+.kv b{color:var(--accent)}
+
+.rejected{background:var(--red-bg);border:1px solid var(--red);border-radius:8px;padding:14px 18px;margin:1em 0}
+.rejected b{color:var(--red)}
+.newbadge{display:inline-block;font-family:Arial,Helvetica,sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:5px;background:var(--green-bg);color:var(--green);border:1px solid var(--green)}
+</style>
+<div class="wrap">
+<header class="hero">
+  <div class="kicker">Vâliçe Press · Ticari Karar Belgesi · TUR 2</div>
+  <h1>KDP 2–3 Kitaplık Seri Fırsatı Araştırması 2026 — İkinci Tur</h1>
+  <p class="sub">Birinci turun beş adayının tamamı <strong>reddedildi</strong>. Bu belge, o kavramsal alanın tamamen dışında, sıfırdan yürütülmüş yeni bir pazar keşif turudur: 20 yeni aday, 5 finalist, tek standart model, bağımsız ve <em>çıpasız</em> çelişmeli inceleme.</p>
+  <div class="meta-row">
+    <span class="pill">27 Ağustos 2026</span>
+    <span class="pill">20 yeni aday tarandı</span>
+    <span class="pill">Tur 1 adayları hariç tutuldu</span>
+    <span class="pill">Girdi geçerliliği testi eklendi</span>
+    <span class="pill">Kitap İÇERİĞİ ÜRETİLMEDİ</span>
+  </div>
+</header>
+
+<div class="grid">
+<nav class="toc">
+  <h2>İçindekiler</h2>
+  <ol>
+    <li><a href="#ozet">Yönetici Özeti</a></li>
+    <li><a href="#s1">1 · Araştırma Sıfırlaması</a></li>
+    <li><a href="#s2">2 · Önceki Fırsatlar Neden Reddedildi</a></li>
+    <li><a href="#s3">3 · Metodoloji</a></li>
+    <li><a href="#s4">4 · Yeni Pazar Keşfi</a></li>
+    <li><a href="#s5">5 · Aday Elemesi</a></li>
+    <li><a href="#s6">6 · Finalist #1 — IEP / Özel Eğitim</a></li>
+    <li><a href="#s7">7 · Finalist #2 — Dikiş Kalıp Uyumu</a></li>
+    <li><a href="#s8">8 · Finalist #3 — HVAC / Soğutma</a></li>
+    <li><a href="#s9">9 · Finalist #4 — Soyağacı</a></li>
+    <li><a href="#s10">10 · Finalist #5 — Off-grid Solar</a></li>
+    <li><a href="#s11">11 · Rekabet: Stok + Akış</a></li>
+    <li><a href="#s12">12 · Müşteri Talebi</a></li>
+    <li><a href="#s13">13 · Satın Alma Niyeti</a></li>
+    <li><a href="#s14">14 · Rakip Kalite Açığı</a></li>
+    <li><a href="#s15">15 · Amazon Ads Analizi</a></li>
+    <li><a href="#s16">16 · Birim Ekonomisi</a></li>
+    <li><a href="#s17">17 · Seri Ekonomisi</a></li>
+    <li><a href="#s18">18 · Evergreen / Eskime</a></li>
+    <li><a href="#s19">19 · AI İkame Riski</a></li>
+    <li><a href="#s20">20 · Uzman Bağımlılığı</a></li>
+    <li><a href="#s21">21 · IP / Politika Riski</a></li>
+    <li><a href="#s22">22 · Üretim Fizibilitesi</a></li>
+    <li><a href="#s23">23 · Puanlama Modeli</a></li>
+    <li><a href="#s24">24 · Çelişmeli İnceleme</a></li>
+    <li><a href="#s25">25 · Düzeltilmiş Sıralama</a></li>
+    <li><a href="#s26">26 · Duyarlılık Testleri</a></li>
+    <li><a href="#s27">27 · Girdi Geçerliliği Testi</a></li>
+    <li><a href="#s28">28 · Nihai Kazanan</a></li>
+    <li><a href="#s29">29 · Üç Kitaplık Seri</a></li>
+    <li><a href="#s30">30 · Amazon Ads Stratejisi</a></li>
+    <li><a href="#s31">31 · Seri Ekonomisi (Kazanan)</a></li>
+    <li><a href="#s32">32 · Bu Neden Başarısız Olabilir</a></li>
+    <li><a href="#s33">33 · İkinci Sıradaki</a></li>
+    <li><a href="#s34">34 · İkinci Neden Kaybetti</a></li>
+    <li><a href="#s35">35 · Tam Olarak Sonraki Eylem</a></li>
+    <li><a href="#s36">36 · Sınırlamalar</a></li>
+    <li><a href="#s37">37 · Kaynaklar</a></li>
+  </ol>
+</nav>
+
+<main>
+<section id="ozet">
+<h2 class="sect-title">Yönetici Özeti</h2>
+<p class="lead">Birinci turun beş adayı reddedildi ve o kavramsal alanın tamamen dışında sıfırdan bir tur yürütüldü: <strong>20 yeni aday</strong> tarandı, 15'i elendi, 5 finalist aynı 12 ölçütlü modelle incelendi. Sonra <em>çıpasız</em> bir çelişmeli inceleyici — önceki turun varlığından haberi olmayan — birinci sıradakini yıktı. <strong>Yine.</strong></p>
+
+<div class="card accent">
+<p><strong>KAZANAN: Dikiş kalıp uyumu ve kalıp düzeltme — 7,02/10.</strong> Üç kitap: <em>Ölç ve Teşhis Et</em> → <em>Düzeltme Atlası</em> → <em>Kendi Kalıp Bloğunu Çiz</em>. Ev dikişçisinin en tekrarlayan sorunu: kalıbı harfiyen uyguluyor, giysi yine oturmuyor.</p>
+<p><strong>İKİNCİ: HVAC / soğutma saha referansı — 6,26/10.</strong> Bu turun en iyi birim ekonomisi ($18,74 telif) — ve <strong>KRİTİK</strong> uzman bağımlılığı yüzünden kaybetti.</p>
+</div>
+
+<div class="tablewrap">
+<table>
+<caption>Çelişmeli inceleme öncesi → sonrası</caption>
+<thead><tr><th>Aday</th><th>Önce</th><th>Sonra</th><th>Sıra</th></tr></thead>
+<tbody>
+<tr><td><strong>Dikiş kalıp uyumu</strong></td><td>6,62</td><td><strong>7,02</strong></td><td>2. → <strong>1. KAZANAN</strong></td></tr>
+<tr><td>HVAC / soğutma</td><td>6,26</td><td>6,26</td><td>3. → <strong>2. İKİNCİ</strong></td></tr>
+<tr><td>Soyağacı</td><td>6,17</td><td>6,17</td><td>4. → 3.</td></tr>
+<tr><td>Off-grid solar</td><td>5,89</td><td>5,89</td><td>5. → 4.</td></tr>
+<tr><td><strong>IEP / özel eğitim</strong></td><td><strong>7,45</strong></td><td><strong>4,31</strong></td><td><strong>1. → 5. (sonuncu)</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Birinci sıradaki aday neden çöktü — bu kez olgusal bir hata yüzünden</h3>
+<p>IEP/özel eğitim savunuculuğu her testi geçmiş görünüyordu: 7,5 milyon aile, hiçbir başlığın 653 yorumu geçmediği bir niş, yasayla yaratılmış bir üç kitaplık merdiven ve "kategori liderleri 2006 ve 2010 tarihli" diye <em>ölçülebilir</em> bir güncellik açığı. Çelişmeli inceleme bunu yıktı ve <strong>iki belirleyici bulgu bu rapor tarafından bağımsız olarak yeniden doğrulandı</strong>:</p>
+<ul class="tight">
+<li><strong>Nolo, bir ay önce 12. baskıyı yayımlamış.</strong> ASIN <code>1413333540</code> · Baskı <em>Twelfth</em> · <strong>28 Temmuz 2026</strong> · 400 sayfa <span class="tag tag-obs">OBSERVED</span>. Birincil analizin dayandığı $35,99'luk kayıt, <em>eskimiş 11. baskıydı</em>.</li>
+<li><strong>Güncellik açığı Ocak 2026'da zaten doldurulmuş — ve dolduran kitap eski lideri geçmiş.</strong> <em>The Epic IEP</em> (<code>1637635125</code>, 27 Ocak 2026): <strong>BSR #21.216</strong>, Wrightslaw'ın #27.933'ünden daha iyi, 7 ayda 109 yorum <span class="tag tag-obs">OBSERVED</span>.</li>
+<li><strong>Kitap 2'nin içeriği yasal olarak ücretsiz dağıtılıyor:</strong> 34 CFR 300.504 uyarınca okul, usul güvenceleri bildirimini <em>yılda en az bir kez</em> ücretsiz vermek zorunda — içeriği bağımsız değerlendirme, itiraz, arabuluculuk, <em>stay-put</em>, avukat ücretleri. Ayrıca ~100 federal finansmanlı ücretsiz PTI merkezi.</li>
+<li><strong>Kategori aslında IEP kitabı kategorisi değil:</strong> Amazon Best Sellers'ta <em>Special Education</em> düğümünün ilk 30'unda tek bir IEP-süreci ebeveyn kitabı yok; #1 bir el yazısı çalışma kitabı.</li>
+<li><strong>Talep rakamı hem yanlış hem yanlış türdeydi:</strong> NCES 7,5M diyor (iddia 8,2M); ve "+301.991" bir <em>net</em> değişimdir (girenler − çıkanlar), brüt yeni aile sayısı değil.</li>
+</ul>
+
+<h3>Kazananı belirleyen metodolojik düzeltme</h3>
+<p>Dikiş yalnızca IEP düştüğü için birinci olmadı — <strong>üç ölçütte kendi puanı da yükseldi</strong>, çünkü birincil analiz onu kendi kurallarına göre eksik puanlamıştı:</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Ölçüt</th><th>Önce → Sonra</th><th>Doğrulanmış gerekçe</th></tr></thead>
+<tbody>
+<tr><td>Rakip kalite açığı</td><td>5 → <strong>7</strong></td><td>Lider üründe (n=<strong>1.797</strong>) Amazon'un kendi <em>sayısallaştırılmış</em> olumsuz etiketi: <strong>Complexity(58)</strong> — <em>"some find it too complicated"</em>. IEP'e <em>doğrulanmamış</em> bir varsayımla 7 verilirken bu 5'te bırakılmıştı.</td></tr>
+<tr><td>Talep</td><td>7 → <strong>8</strong></td><td>DK'nın <em>The Sewing Book</em>'u (Şub 2025) <strong>18 ayda 865 yorum</strong>, BSR #15.653. Konu içi on iki başlığın hepsi 549+ yorumda.</td></tr>
+<tr><td>Birim ekonomisi</td><td>8 → <strong>9</strong></td><td><strong>Kendi kendine yayımlayan</strong> bir yazar aynı anda <strong>$28,95 ciltsiz ve $64,50 spiral</strong> sürdürüyor.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Kazananın gerekçesi ve en büyük riski</h3>
+<div class="two-col">
+<div class="card green"><h4>Neden dikiş kalıp uyumu</h4><ul class="tight">
+<li><strong>Bağımsız yayıncının kazandığı kanıtlı</strong> — kendi kendine yayımlayan bir yazar 958 yorum ve $64,50'lik bir SKU sürdürüyor. Bu turun en güçlü tek bulgusu.</li>
+<li><strong>Sayısallaştırılmış kalite açığı</strong> — Complexity(58) / n=1.797.</li>
+<li>Konu içi on iki başlık 549+ yorumda; yeni girenler emiliyor.</li>
+<li><strong>Bu turun en iyi evergreen'i (9/10)</strong> — kalıp geometrisi ve anatomi değişmez.</li>
+<li><strong>Uzman kapısı yok</strong>, doğrulama fiziksel: dik ve otur mu bak. En düşük risk (8/10).</li>
+<li>Geometrik çizgi diyagramı = mevcut üretim hattının doğrudan işi.</li>
+</ul></div>
+<div class="card red"><h4>En büyük risk</h4>
+<p><strong>Ortam riski.</strong> Lider ürün hibrit: müşteri etiketlerinde <em>Video content</em> bir güç olarak anılıyor ve "neredeyse her sayfada QR kodu" öne çıkarılıyor. Girdi geçerliliği testinde (§ 27) altı iddiadan beşi doğrulandı; doğrulanamayan tek iddia <strong>"basılı formatın avantajı"</strong> oldu — ve bu iddia puanı yükseltmek için kullanılmadı.</p>
+<p><strong>Kill koşulu:</strong> Kitap 1'den tek bir teşhis bölümü, liderin aynı bölümüyle yan yana üç gerçek ev dikişçisine okutulduğunda en az ikisi farkı kendiliğinden söylemezse → farklılaşma hipotezi çürüktür ve proje durur.</p>
+</div>
+</div>
+<div class="divider-note"><strong>Kapsam:</strong> Yalnızca pazar-düzeyi ticari karar belgesi. Manüskript, kapak, KDP dosyası üretilmedi. Birinci turun adayları değerlendirmeye alınmadı; Hangıl ve duraklatılmış sigorta projelerine dokunulmadı.</div>
+</section>
+<section id="s1">
+<h2 class="sect-title"><span class="n">1</span> Araştırma Sıfırlaması</h2>
+<p class="lead">Bu tur, bir öncekinin devamı değildir. Bir <strong>sert sıfırlamadır</strong>.</p>
+<div class="rejected">
+<p><b>BİRİNCİ TURUN BEŞ ADAYININ TAMAMI BU TUR İÇİN REDDEDİLMİŞTİR:</b></p>
+<ul class="tight">
+<li>Hemşirelik ilaç doz hesabı <span class="small">(ve NCLEX/doz hesabı türevleri)</span></li>
+<li>Satranç <span class="small">(taktik, final, açılış türevleri dâhil)</span></li>
+<li>ASL / Amerikan İşaret Dili <span class="small">(ve dil öğrenme türevleri)</span></li>
+<li>Noter / Loan Signing Agent <span class="small">(ve hukuki sertifikasyon türevleri)</span></li>
+<li>Amatör telsiz / ham radio <span class="small">(ve teknik lisanslama türevleri)</span></li>
+</ul>
+<p>Bu adaylar kurtarılmadı, yeniden yorumlanmadı, hafifçe değiştirilip yeni fırsat gibi sunulmadı. Hiçbiri bu turun aday havuzuna girmedi.</p>
+</div>
+<h3>Çıpalanmaya karşı alınan somut önlemler</h3>
+<ul class="tight">
+<li><strong>Komşu kavram alanları da terk edildi.</strong> Hemşirelikten başka bir sağlık konusuna, satrançtan başka bir masa oyununa, ASL'den başka bir dile, noterden başka bir hukuki sertifikaya, amatör telsizden başka bir teknik lisansa geçilmedi.</li>
+<li><strong>Çelişmeli inceleyiciye önceki tur hiç anlatılmadı.</strong> Bağımsız inceleyici, bir önceki turun varlığından, adaylarından veya kazananından haberdar edilmedi — yalnızca bu turun kanıtlarıyla beslendi (görev talimatı § 27).</li>
+<li><strong>Yeni bir zorunlu test eklendi:</strong> <em>Girdi Geçerliliği Testi</em> (§ 27). Önceki tur, modelin sağlam ama <em>girdilerin</em> yanlış olabileceğini gösterdi; bu turda kazananın en güçlü altı iddiası tek tek birincil kaynağa karşı sınandı — ve biri düşürüldü.</li>
+<li><strong>Mutlak pazar kontrolü zorunlu hâle getirildi</strong> (§ 12). "Yıllık kaç gerçek kitap alıcısı var?" sorusu, kurulu tabandan ve arama hacminden ayrı olarak soruldu.</li>
+</ul>
+<div class="divider-note"><strong>Kapsam:</strong> Yalnızca araştırma. Manüskript, kapak, KDP dosyası üretilmedi; Hangıl projesine ve duraklatılmış sigorta projesine dokunulmadı; reddedilen projeler yeniden başlatılmadı.</div>
+</section>
+
+<section id="s2">
+<h2 class="sect-title"><span class="n">2</span> Önceki Fırsatlar Neden Reddedildi</h2>
+<p>Reddin gerekçesi kurucu kararıdır ve bu belge onu tartışmaz. Ancak birinci tur, bu turda <strong>bağlayıcı metodoloji kuralı</strong> hâline gelen dersler üretti. Aşağıdaki tablo, her dersin bu turda hangi somut kurala dönüştüğünü gösterir.</p>
+<div class="tablewrap">
+<table>
+<caption>Birinci turun dersleri → ikinci turun kuralları</caption>
+<thead><tr><th>Birinci turda görülen hata deseni</th><th>Bu turda uygulanan kural</th><th>Bu turda neyi değiştirdi</th></tr></thead>
+<tbody>
+<tr><td>Yüksek ilk puan, çelişmeli incelemede tamamen çöktü (7,44 → 4,58)</td><td>Çelişmeli inceleme <em>zorunlu ve çıpasız</em>; birincil analiz her itiraza tek tek cevap verir</td><td>§ 24–25</td></tr>
+<tr><td>Güçlü BSR, kazanılabilir pazar sanıldı</td><td>BSR yalnızca <em>güncel hız</em> göstergesi; mutlak alıcı havuzu ayrıca hesaplanır</td><td>§ 12</td></tr>
+<tr><td>Büyük kurulu taban, yıllık kitap alıcısı sanıldı</td><td><strong>Mutlak pazar kontrolü zorunlu:</strong> kurulu taban ≠ yıllık alıcı</td><td>§ 12, § 27</td></tr>
+<tr><td>Düşük sonuç sayısı, düşük rekabet sanıldı</td><td>Sonuç sayısı yalnızca kaba bağlam; rakip <em>traksiyonu</em> ölçülür</td><td>§ 11</td></tr>
+<tr><td>Ömür boyu yorum sayısı, güncel talep sanıldı</td><td><strong>Ömür-boyu yorum yanılsaması testi</strong> her ölçütte uygulanır, yalnızca Talep'te değil</td><td>§ 11–12</td></tr>
+<tr><td>Kalite açığı n=41'lik bir puana dayandırıldı</td><td><strong>Asgari-n kuralı:</strong> kalite açığı ya n≥200'de bir sinyale ya da mekanik olarak doğrulanabilir bir kusura dayanmalı</td><td>§ 14</td></tr>
+<tr><td>Seri, ürün mantığından değil, pazarlama arzusundan türetildi</td><td><strong>Seri doğallık testi:</strong> Kitap 2 ve 3 bağımsız talebe sahip olmalı</td><td>§ 6–10</td></tr>
+<tr><td>Stres testi, yanlış girdileri gizledi</td><td><strong>Girdi geçerliliği testi</strong> eklendi — stres testinden ayrı ve ondan önce gelir</td><td>§ 27</td></tr>
+<tr><td>Uzman bağımlılığı hafife alındı</td><td>Uzman bağımlılığı <strong>DÜŞÜK / ORTA / YÜKSEK / KRİTİK</strong> olarak ayrıca sınıflanır; "AI incelemesi uzman değildir"</td><td>§ 20</td></tr>
+<tr><td>Üretim uyumu, pazar kalitesinin önüne geçme eğilimi gösterdi</td><td>Üretim uyumu ikincil; zayıf pazarı kurtaramaz</td><td>§ 22</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="s3">
+<h2 class="sect-title"><span class="n">3</span> Metodoloji</h2>
+<h3>Analiz birimi</h3>
+<p>Kategori değil, <strong>spesifik müşteri problemi + spesifik kitap ürünü + doğal iki devam kitabı</strong>. "Eğitim", "hobi", "sağlık" gibi başlıklar aday sayılmadı.</p>
+<h3>Kanıt etiketleri</h3>
+<p>
+<span class="tag tag-reb">FACT</span> resmî/birincil kaynak ·
+<span class="tag tag-obs">OBSERVED</span> bu oturumda tarayıcıyla doğrudan görüldü ·
+<span class="tag tag-est">ESTIMATE</span> açık varsayımlarla hesaplandı ·
+<span class="tag tag-unr">INFERENCE</span> kanıttan çıkarım ·
+<span class="tag tag-est">HYPOTHESIS</span> sınanmamış varsayım ·
+<span class="tag tag-unv">UNVERIFIED</span> iddia edildi, doğrulanamadı
+</p>
+<h3>Kaynak hiyerarşisi</h3>
+<p class="small"><strong>Tier 1</strong> resmî KDP/Amazon, devlet, düzenleyici, meslek kuruluşu · <strong>Tier 2</strong> Amazon pazar yeri gözlemi · <strong>Tier 3</strong> birincil sektör verisi · <strong>Tier 4</strong> itibarlı sektör araştırması · <strong>Tier 5</strong> topluluk tartışması. Tier 4–5 malzemesi hiçbir yerde sert pazar istatistiği olarak sunulmadı.</p>
+<h3>Süreç</h3>
+<div class="funnel">20 yeni aday pazar (hızlı kanıt taraması)
+        ↓  15 eleme
+5 finalist (simetrik derinlik, aynı 12 ölçüt, gerçekçi-varsayılan)
+        ↓
+Standart ağırlıklı puanlama
+        ↓
+Bağımsız ÇIPASIZ çelişmeli inceleme  (önceki tur anlatılmadı)
+        ↓
+İkinci geçiş: her itiraza cevap → gerekirse yeniden puanlama
+        ↓
+4 stres testi  +  GİRDİ GEÇERLİLİĞİ TESTİ
+        ↓
+kazanan + ikinci + üç kitaplık seri tasarımı</div>
+<h3>Bu turda karşılaşılan ve raporlanan metodoloji sorunu</h3>
+<div class="card red">
+<p><strong>Amazon'un yayın-tarihi filtresi bu turda güvenilmez çıktı.</strong> <code>rh=p_n_publication_date</code> parametresi, anahtar kelime filtresini düşürerek <em>filtresiz sorgudan daha fazla</em> sonuç döndürdü (örn. "sewing pattern fitting": filtresiz 273, "son 90 gün" 2.000+). Bu nedenle rekabet akışı, birinci turdaki oran yöntemiyle değil, <strong>tarihe göre sıralanmış sonuçlardan yayın tarihi çıkarılarak</strong> ölçüldü. İki turun akış rakamları birbiriyle karşılaştırılamaz.</p>
+</div>
+<h3>Yorum metinleri hakkında</h3>
+<p>Amazon'un <code>/product-reviews/</code> sayfaları oturum açma istiyor. Bunun yerine ürün sayfasında oturumsuz görünen <strong>yıldız histogramları</strong> ve Amazon'un kendi <em>"Customers say"</em> özetleri kullanıldı. Bu özetler Amazon tarafından yapay zekâ ile üretilir; ham yorum değil, <em>türetilmiş</em> veridir ve bu belgede öyle etiketlenmiştir. Şikâyet metni uydurulmadı.</p>
+</section>
+<section id="s4">
+<h2 class="sect-title"><span class="n">4</span> Yeni Pazar Keşfi</h2>
+<p class="lead">Görev talimatı en az 12 yeni ciddi ürün fırsatı istiyordu. <strong>20 aday</strong> tarandı — hiçbiri birinci turun kavramsal alanından değil.</p>
+<h3>Arama yönleri (aday varsayımı değil)</h3>
+<p class="small">Tekrarlayan gerçek-dünya görevleri · fiziksel pratik gerektiren beceri ilerlemeleri · mesleki iş akışları · aile faydası ve savunuculuk · uzman tüketici referansı · organizasyon/takip sistemleri · zanaat ilerlemesi · saha referansı. Her yön yalnızca bir <em>arama yönü</em> olarak kullanıldı; hiçbiri peşinen aday sayılmadı.</p>
+<div class="tablewrap">
+<table>
+<caption>20 yeni aday — hızlı kanıt taraması <span class="tag tag-obs">OBSERVED</span> 27 Ağustos 2026, Amazon.com Kitaplar</caption>
+<thead><tr><th>#</th><th>Aday ürün fırsatı</th><th>Sonuç</th><th>Lider ürünlerin yorum sayısı</th><th>Fiyat bandı</th><th>Karar</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><strong>IEP / özel eğitim ebeveyn savunuculuğu</strong></td><td>428</td><td>653 · 520 · 490 · 194 · 142 · 130</td><td>$10,13–$35,99</td><td><span class="newbadge">FİNALİST</span></td></tr>
+<tr><td>2</td><td><strong>Dikiş kalıp uyumu ve kalıp düzeltme</strong></td><td>550 / 273 <span class="small">(dar sorgu)</span></td><td>1,7K · 1K · 992 · 986 · 958 · 829</td><td>$18,55–$45,50</td><td><span class="newbadge">FİNALİST</span></td></tr>
+<tr><td>3</td><td><strong>HVAC / soğutma saha referansı</strong></td><td>546</td><td>2,4K · 763 · 713 · 681 · 516 · 386 · 365</td><td>$22,53–$201,97</td><td><span class="newbadge">FİNALİST</span></td></tr>
+<tr><td>4</td><td><strong>Soyağacı araştırma metodolojisi</strong></td><td>1.000+</td><td>1,8K · 1,2K · 1,2K · 1,1K · 979 · 757</td><td>$9,99–$40,27</td><td><span class="newbadge">FİNALİST</span></td></tr>
+<tr><td>5</td><td><strong>Off-grid solar / 12V güç sistemi</strong></td><td>607</td><td>4,9K · 2,7K · 1,5K · 1K · 668 · 554</td><td>$9,99–$26,97</td><td><span class="newbadge">FİNALİST</span></td></tr>
+<tr><td>6</td><td>Vasiyet / yaşam sonu düzenleyici klasör</td><td>900</td><td>895 · 677 · 575 · 364 · 362</td><td>$7,99–$21,99</td><td>ELENDİ</td></tr>
+<tr><td>7</td><td>Ev okulu planlayıcı / kayıt tutma</td><td>790</td><td>1,9K · 1,5K · 754 · 566</td><td>$10,99–$12,95</td><td>ELENDİ</td></tr>
+<tr><td>8</td><td>Mantar yetiştiriciliği</td><td>680</td><td>5,6K · 4,7K · 3K · 1,2K · 1,1K</td><td>$14,99–$30,00</td><td>ELENDİ</td></tr>
+<tr><td>9</td><td>Balıkçılık düğüm ve takım rehberi</td><td>486</td><td>5,1K · 4K · 2,8K · 2,7K · 1,5K</td><td>$7,95–$16,99</td><td>ELENDİ</td></tr>
+<tr><td>10</td><td>Güç antrenmanı program tasarımı / günlük</td><td>46 <span class="small">(dar)</span></td><td>2,6K · 1,9K · 1,7K · 1,2K</td><td>$9,67–$22,99</td><td>ELENDİ</td></tr>
+<tr><td>11</td><td>El yazısı / kaligrafi pratik kitabı</td><td>6.000+</td><td><strong>30,6K</strong> · 21,5K · 7,9K · 4,7K</td><td>$6,90–$19,69</td><td>ELENDİ</td></tr>
+<tr><td>12</td><td>Harita-pusula / arazi navigasyonu</td><td>415</td><td>1,8K · 1,1K · 1K · 787 · 467</td><td>$5,99–$21,49</td><td>ELENDİ</td></tr>
+<tr><td>13</td><td>Arka bahçe tavukçuluğu</td><td>714</td><td>4,9K · 4,5K · 4,3K · 2,3K · 1,8K</td><td>$9,34–$22,99</td><td>ELENDİ</td></tr>
+<tr><td>14</td><td>Kapitone (quilting) teknikleri</td><td>818</td><td>2,9K · 1,8K · 1,4K · 1,3K</td><td>$11,99–$32,99</td><td>ELENDİ</td></tr>
+<tr><td>15</td><td>Minyatür/masaüstü figür boyama</td><td><strong>161</strong></td><td>1,1K · 884 <span class="small">(ikisi de lisanslı)</span> · 354 · 88 · 61</td><td>$2,99–$49,90</td><td>ELENDİ</td></tr>
+<tr><td>16</td><td>Küçük motor tamiri</td><td>315</td><td>1,1K · 623 · 545 · 503 · 441</td><td>$3,99–$103,80</td><td>ELENDİ</td></tr>
+<tr><td>17</td><td>Ahşap işçiliği / geçme birleşimler</td><td>559</td><td>2,4K · 2,3K · 2,2K · 1,6K</td><td>$9,99–$31,90</td><td>ELENDİ</td></tr>
+<tr><td>18</td><td>Bisiklet bakım/tamir</td><td>529</td><td>1,3K · 796 · 530 · 526 · 480</td><td>$11,99–$32,95</td><td>ELENDİ</td></tr>
+<tr><td>19</td><td>Deri işçiliği</td><td>298</td><td>4,7K · 1K · 778 · 594 · 457</td><td>$9,99–$26,09</td><td>ELENDİ</td></tr>
+<tr><td>20</td><td>Konut elektrik tesisatı</td><td>601</td><td>4,9K · 2,9K · 2K · 2K · 1,5K</td><td>$9,95–$51,00</td><td>ELENDİ</td></tr>
+</tbody>
+</table>
+</div>
+<p class="footnote">Sonuç sayıları Amazon'un kendi başlık satırından alınmıştır ve kesin pazar ölçüsü değildir; yalnızca kaba bağlamdır. Hiçbir eleme kararı yalnızca bu sütuna dayandırılmamıştır.</p>
+</section>
+
+<section id="s5">
+<h2 class="sect-title"><span class="n">5</span> Aday Elemesi</h2>
+<p class="lead">15 aday elendi. Kritik nokta: <strong>çoğu "talep yok" diye elenmedi.</strong> Talep genellikle vardı; elenen şey <em>kazanılabilirlikti</em>.</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Aday</th><th>Eleme gerekçesi</th><th>Eleme türü</th></tr></thead>
+<tbody>
+<tr><td>El yazısı / kaligrafi</td><td>Lider <strong>30.600 yorum</strong> ve fiyat $6,90–$9,99. Bu bir fırsat değil, emtia savaşı. Bir bağımsız yayıncının bu fiyat tabanında birim ekonomisi kuramaz.</td><td>Fiyat tabanı</td></tr>
+<tr><td>Balıkçılık düğümleri</td><td>Kazanan ürün bir kitap değil: <strong>su geçirmez plastik kart seti</strong> (5,1K ve 4K yorum, $7,95–$11,95). KDP bu formatı üretemez — rekabet ürün formatında kaybedilmiş durumda.</td><td>Format uyumsuzluğu</td></tr>
+<tr><td>Minyatür figür boyama</td><td>Hobi devasa, <strong>kitap pazarı 161 sonuçla çok ince</strong>; en çok yorumlu iki ürün de lisanslı marka kitabı. Öğretim YouTube/Patreon'a kaymış. <em>Talep ≠ kitap satın alma niyeti.</em></td><td>Yanlış ortam</td></tr>
+<tr><td>Ev okulu planlayıcı</td><td>$10,99–$12,95 bandında düşük içerikli planlayıcı emtiası; tek yazarın onlarca varyantı.</td><td>Emtia</td></tr>
+<tr><td>Güç antrenmanı günlüğü</td><td>Aynı desen: günlük/log emtiası + ünlü yazar programları.</td><td>Emtia</td></tr>
+<tr><td>Vasiyet / yaşam sonu klasörü</td><td>Gerçek talep ve demografik rüzgâr var, ama fiyat $7,99–$21,99 ve ürün doldurulabilir şablon — AI/şablon ikamesi çok kolay, mizah başlıkları pazarı aşağı çekiyor.</td><td>Emtia + düşük fiyat</td></tr>
+<tr><td>Arazi navigasyonu</td><td>ABD Ordusu FM 3-25.26 <strong>kamu malı</strong> yeniden basımları $5,99–$14,95'te fiyat tabanı kuruyor (1K ve 452 yorum). Ücretsiz/kamu malı içerikle fiyat rekabeti yapılamaz.</td><td>Kamu malı fiyat tabanı</td></tr>
+<tr><td>Mantar yetiştiriciliği</td><td>Paul Stamets kanonik otorite (4,7K + 3K); ayrıca en çok yorumlu başlık psilosibin kitabı (5,6K) — <strong>politika/marka riski</strong> ve fotoğraf yükü.</td><td>Otorite + politika riski</td></tr>
+<tr><td>Arka bahçe tavukçuluğu</td><td>Storey (17 kitaplık seri), Gail Damerow gibi yerleşik yayıncılar; 4,9K/4,5K/4,3K yorumlu liderler; fotoğraf yoğun.</td><td>Yerleşik yayıncı</td></tr>
+<tr><td>Kapitone</td><td>C&amp;T/Landauer gibi zanaat yayıncıları; kumaş fotoğrafı ve kalıp eki üretimi gerekiyor.</td><td>Üretim uyumsuzluğu</td></tr>
+<tr><td>Ahşap işçiliği</td><td>DK/Taunton yerleşik; 2,4K/2,3K/2,2K yorum; fotoğraf yoğun.</td><td>Yerleşik yayıncı</td></tr>
+<tr><td>Bisiklet bakımı</td><td>Park Tool (alet üreticisinin kendi kitabı, $32,95) ve Zinn marka otoritesi.</td><td>Marka otoritesi</td></tr>
+<tr><td>Deri işçiliği</td><td>Tandy ekosistemi ve Al Stohlman klasikleri; 4,7K yorumlu $9,99 giriş ürünü.</td><td>Ekosistem + fiyat</td></tr>
+<tr><td>Küçük motor tamiri</td><td>Haynes 22 kitaplık Techbook serisi; üretici servis verisi tescilli.</td><td>Yerleşik seri</td></tr>
+<tr><td>Konut elektrik tesisatı</td><td><strong>NEC (NFPA) telifli</strong> — kod metni çoğaltılamaz; ayrıca Creative Homeowner/Black &amp; Decker yerleşik ve elektrik güvenliği uzman kapısı.</td><td>IP + uzman kapısı</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card blue">
+<p><strong>Elemenin en öğretici üç bulgusu:</strong></p>
+<ol class="tight">
+<li><strong>Minyatür boyama:</strong> devasa bir hobi, ama 161 sonuçluk bir kitap pazarı. Hobi büyüklüğü kitap satın alma niyetine dönüşmüyor — bu, "talep ≠ satın alma niyeti" ayrımının en temiz örneği.</li>
+<li><strong>Balıkçılık düğümleri:</strong> pazarı kazanan şey içerik değil <em>format</em> (su geçirmez kart). Rakip bizim üretemeyeceğimiz bir fiziksel üründe kazanıyorsa, daha iyi içerik yazmak yetmez.</li>
+<li><strong>Arazi navigasyonu:</strong> kamu malı bir devlet dokümanı pazarda fiyat tabanı kuruyor. Birinci turda aynı desen FAA yayınlarında görülmüştü; bu tur da aynı nedenle bir aday elendi.</li>
+</ol>
+</div>
+</section>
+<section id="s6">
+<h2 class="sect-title"><span class="n">6</span> Finalist #1 — IEP / Özel Eğitim Ebeveyn Savunuculuğu</h2>
+<p class="lead">Seçilen ürün fırsatı: ABD'de engelli çocuğu olan <strong>ebeveynin</strong>, IDEA yasası altında yasal olarak zorunlu <strong>IEP (Bireyselleştirilmiş Eğitim Programı)</strong> sürecini yönetmesi.</p>
+
+<h3>A · Talep ve mutlak alıcı havuzu</h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Ölçü</th><th>Değer</th><th>Kaynak / etiket</th></tr></thead>
+<tbody>
+<tr><td>IDEA kapsamında hizmet alan öğrenci (3–21 yaş)</td><td><strong>7,5 milyon</strong> (2022–23)</td><td>NCES <span class="tag tag-reb">FACT</span></td></tr>
+<tr><td>Tüm devlet okulu öğrencilerine oranı</td><td><strong>%15</strong></td><td>NCES <span class="tag tag-reb">FACT</span></td></tr>
+<tr><td>On yıllık büyüme</td><td>6,4M (2012–13) → 7,5M (2022–23)</td><td>NCES <span class="tag tag-reb">FACT</span></td></tr>
+<tr><td>On yıllık <em>ortalama net</em> yıllık artış</td><td>≈ <strong>110.000 öğrenci/yıl</strong></td><td>yukarıdakinden hesaplandı <span class="tag tag-est">ESTIMATE</span></td></tr>
+<tr><td>Sektör basınının bildirdiği güncel rakam</td><td>8,2M (2024), tek yılda +301.991 (%3,8)</td><td>Tier 4 <span class="tag tag-unv">UNVERIFIED</span></td></tr>
+</tbody>
+</table>
+</div>
+<div class="card red">
+<p><strong>Girdi geçerliliği düzeltmesi (§ 27'nin ön izlemesi):</strong> Bu adayın ilk talep iddiası "8,2 milyon ve yılda +302.000" idi. Birincil kaynağa (NCES) karşı sınandığında Tier 1 rakam <strong>7,5 milyon (2022–23)</strong> çıktı ve on yıllık ortalama net artış <strong>~110.000/yıl</strong>. Yani daha yüksek rakam <em>ortalamanın ~2,7 katı</em> bir tek-yıl sıçraması ve bağımsız doğrulanamadı. <strong>Bu raporda savunulabilir taban olarak 7,5M + ~110.000/yıl kullanılmıştır</strong>, yüksek rakam yalnızca etiketli üst senaryo olarak anılmıştır. Talep puanı bu düzeltmeyle 8'de tutulmuştur, 9'a çıkarılmamıştır.</p>
+</div>
+<p><strong>Yıllık kitap alıcısı havuzu <span class="tag tag-est">ESTIMATE</span>:</strong> Sisteme her yıl yeni giren ~110.000 aile <em>artı</em> mevcut 7,5M ailenin her yıl yeniden IEP toplantısına giren kısmı. Yıllık "yeni ve aktif olarak bilgi arayan" ebeveyn havuzu <strong>düşük–orta altı haneli</strong> olarak modellenmiştir. Bu, taranan 20 adayın en büyük ve <em>en iyi belgelenmiş</em> yıllık akışıdır.</p>
+
+<h3>B · Satın alma niyeti</h3>
+<ul class="tight">
+<li><strong>Yasal olarak zorunlu, takvimli bir olay:</strong> IEP en az yılda bir gözden geçirilir. Ebeveyn belirli bir tarihte, hazırlıklı olması gereken bir toplantıya girer.</li>
+<li><strong>Duygusal bahis en yüksek seviyede:</strong> alıcı, çocuğunun eğitim hakkı için bir kurumla müzakere ediyor.</li>
+<li><strong>Fiyat karşılaştırması alıcının lehine:</strong> profesyonel bir savunucu/avukat saatlik ücret alır; $25–35'lik bir kitap bunun yanında önemsiz görünür.</li>
+<li><strong>Basılı formatın gerçek avantajı var:</strong> ebeveyn kitabı, formları ve notlarını <em>toplantıya götürür</em>; ekran değil, işaretlenmiş kâğıt kullanılır.</li>
+</ul>
+<p>Puan: <strong>9/10</strong> — beş finalistle birlikte en yüksek (HVAC ile eşit).</p>
+
+<h3>C · Rekabet: stok, akış ve konsantrasyon</h3>
+<div class="flow">
+<div class="n"><b>428</b>sonuç<br><span class="small">"IEP special education parent advocacy guide"</span></div>
+<div class="n"><b>653</b>en yüksek yorum<br><span class="small">tüm nişte</span></div>
+<div class="n"><b>7,5M</b>aile<br><span class="small">hizmet alan öğrenci</span></div>
+<div class="n"><b>3</b>yeni başlık<br><span class="small">yalnızca 26–27 Ağu 2026</span></div>
+</div>
+<div class="tablewrap">
+<table>
+<caption>Doğrudan gözlemlenen başlıca rakipler <span class="tag tag-obs">OBSERVED</span></caption>
+<thead><tr><th>Başlık</th><th>Yayıncı / yazar</th><th>Yayın</th><th>Sayfa</th><th>Fiyat</th><th>Puan / Yorum</th><th>BSR</th></tr></thead>
+<tbody>
+<tr><td><strong>Wrightslaw: All About IEPs</strong></td><td>Harbor House Law Press (Wright &amp; Wright, avukat)</td><td><strong>01.01.2010</strong></td><td>166</td><td>$10,13</td><td>4,7★ / 653</td><td><strong>#27.933</strong></td></tr>
+<tr><td>Wrightslaw: From Emotions to Advocacy (2. bs.)</td><td>Harbor House Law Press</td><td><strong>01.01.2006</strong></td><td>311</td><td>$15,91</td><td>4,8★ / 520</td><td>#94.568</td></tr>
+<tr><td>Wrightslaw: Special Education Law (2. bs.)</td><td>Harbor House Law Press</td><td>—</td><td>—</td><td>—</td><td>—/ 490</td><td>—</td></tr>
+<tr><td>The Complete IEP Guide</td><td>Nolo (Lawrence M. Siegel, avukat)</td><td>—</td><td>—</td><td>$35,99</td><td>4,6★ / 194</td><td>—</td></tr>
+<tr><td>The IEP Checklist</td><td>Dr. Kathleen G. Winterman Ed.D.</td><td>—</td><td>—</td><td>$34,95</td><td>4,5★ / 142</td><td>—</td></tr>
+<tr><td>IEP Planner (öğretmen odaklı)</td><td>Stephanie DeLussey</td><td>15.06.2023</td><td>—</td><td>$16,99</td><td>4,4★ / 130</td><td>—</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Konsantrasyon çok düşük.</strong> 7,5 milyon ailelik bir tabanda hiçbir başlık 653 yorumu geçmiyor. Karşılaştırma için aynı turda taranan el yazısı pazarında tek bir kitap 30.600 yoruma sahip. Bu, nişin <em>ya ciddi biçimde yetersiz hizmet aldığını ya da ebeveynlerin kitap satın almadığını</em> gösterir — ikisi de doğru olabilir ve bu belirsizlik § 24'te doğrudan sınanmıştır.</p>
+<p>Rekabet çekiciliği puanı: <strong>6/10</strong>.</p>
+
+<h4>Rakip kalite açığı — <em>kalite değil, güncellik açığı</em></h4>
+<div class="card green">
+<p>Asgari-n kuralı dürüstçe uygulandığında: <strong>her iki liderde de olumsuz puan sinyali YOK.</strong> n=653'te 4,7★ (81/12/6/1/0) ve n=520'de 4,8★ (86/10/4/0/0); Amazon'un "Customers say" özetleri baştan sona olumlu. Bu kitaplar <em>kötü değil</em> — ve bu rapor onların kötü olduğunu iddia etmiyor.</p>
+<p><strong>Açık başka bir yerde ve mekanik olarak doğrulanabilir: yayın tarihi.</strong> Kategoriyi tanımlayan iki kitap <strong>2006</strong> ve <strong>2010</strong> tarihli <span class="tag tag-obs">OBSERVED</span>. IDEA yasası 2004'ten beri yeniden yetkilendirilmedi — yani <em>hukuk</em> istikrarlı. Ama uygulama değişti: uzaktan/hibrit IEP toplantıları, salgın sonrası telafi hizmetleri dalgası, modern yardımcı teknoloji (2010 tarihli kitabın YT bölümü iPad'den öncedir), tele-değerlendirme ve son yıllardaki federal rehberlik — hiçbiri 2006/2010 tarihli bir kitapta olamaz.</p>
+<p>Bu, yıldıza dayanmayan, tarihle kanıtlanabilir bir kusurdur ve asgari-n kuralının izin verdiği ikinci kanıt türüdür. Puan: <strong>7/10</strong>.</p>
+</div>
+<div class="card red">
+<p><strong>Karşı okuma da kayda geçirilmelidir:</strong> 2010 tarihli bir kitabın hâlâ BSR #27.933'te olması, "eskilik bir kusurdur" tezinin tam tersini de destekleyebilir — ebeveynler <em>güvenilir otoriteyi</em> arıyor olabilir ve güncellik onlar için belirleyici olmayabilir <span class="tag tag-unr">INFERENCE</span>. Bu belirsizlik çözülmemiştir ve § 24'ün ana saldırı hedeflerinden biridir.</p>
+</div>
+
+<h3>D · Seri doğallık testi</h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Soru</th><th>Cevap</th></tr></thead>
+<tbody>
+<tr><td>Kitap 1 neden var?</td><td>Ebeveyn IEP sürecini hiç bilmiyor ve takvimli bir toplantıya hazırlanmak zorunda.</td></tr>
+<tr><td>Kitap 2 neden var?</td><td>Ebeveyn okulla <em>anlaşamıyor</em>: bağımsız değerlendirme talebi, yazılı itiraz, uyuşmazlık çözümü. Bu, Kitap 1'den tamamen farklı bir beceri.</td></tr>
+<tr><td>Kitap 3 neden var?</td><td><strong>Yasa zorunlu kılıyor:</strong> 34 CFR 300.320(b) — çocuk 16 yaşına girdiğinde yürürlükte olacak ilk IEP'ten itibaren <em>geçiş planı</em> zorunlu ve <strong>yıllık güncelleniyor</strong> <span class="tag tag-reb">FACT</span>. Birçok eyalet 14 yaşta başlatıyor.</td></tr>
+<tr><td>Aynı müşteri üçünü de alır mı?</td><td>Aynı ebeveyn, aynı çocuk, 3–21 yaş arası <strong>18 yıla kadar</strong> süren tek bir yolculuk. Üç kitap bu yolculuğun üç ayrı evresi.</td></tr>
+<tr><td>Kitap 2, "Cilt 1" denmeseydi de istenir miydi?</td><td><strong>Evet.</strong> Okulla anlaşmazlık yaşayan ebeveyn, Kitap 1'i hiç almamış olsa da bu kitabı arar.</td></tr>
+<tr><td>Kitap 3'ün bağımsız talebi var mı?</td><td><strong>Evet, ve yasal olarak yaratılmış.</strong> Her yıl yeni bir ergen kohortu 16 yaşına giriyor ve geçiş planı zorunlu hâle geliyor.</td></tr>
+</tbody>
+</table>
+</div>
+<p>Puan: <strong>8/10</strong> — beş finalistin en yükseği. Merdiven pazarlama arzusundan değil, <em>çocuğun yaşından ve federal düzenlemeden</em> türüyor.</p>
+
+<h3>E · Amazon Ads uygunluğu</h3>
+<ul class="tight">
+<li><strong>Anahtar kelime niyeti yüksek:</strong> "IEP guide for parents", "special education advocacy", "IEP meeting preparation", "IDEA parent rights". Bunlar merak değil, hazırlık sorgularıdır.</li>
+<li><strong>Ürün hedefleme net:</strong> Wrightslaw serisi, Nolo, IEP Checklist — sınırlı ve tanımlı bir ASIN kümesi.</li>
+<li><strong>Kategori tutarlı:</strong> Special Education (Books).</li>
+<li><strong>Fiyat, reklamı taşıyabilir:</strong> $24,99–$34,99 bandı $10'luk emtiadan daha geniş marj bırakır.</li>
+</ul>
+<p>Puan: <strong>8/10</strong>. <span class="tag tag-unv">UNVERIFIED</span> Bu nişte rakiplerin sponsorlu reklam yoğunluğu bu turda sistematik olarak ölçülmedi — § 36'da sınırlama olarak kayıtlı.</p>
+
+<h3>F · Birim ekonomisi</h3>
+<p>Resmî KDP formülüyle (büyük trim 8,5×11″: $1,00 + sayfa × $0,017; telif = liste × 0,60 − baskı):</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Fiyat senaryosu (240 sayfa)</th><th>Baskı</th><th>Birim telif</th></tr></thead>
+<tbody>
+<tr><td>$19,99</td><td>$5,08</td><td>$6,91</td></tr>
+<tr><td>$22,99</td><td>$5,08</td><td>$8,71</td></tr>
+<tr><td><strong>$24,99 (model)</strong></td><td>$5,08</td><td><strong>$9,91</strong></td></tr>
+<tr><td>$27,99</td><td>$5,08</td><td>$11,71</td></tr>
+<tr><td>$29,99</td><td>$5,08</td><td>$12,91</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card red">
+<p><strong>Ekonomi puanı bilinçli olarak düşürüldü.</strong> İlk taramada $34,95–$35,99 fiyatları görülünce bu aday "yüksek fiyatlı" sanıldı. Ancak <em>hacim liderleri</em> $10,13 ve $15,91'de <span class="tag tag-obs">OBSERVED</span>. Yani yüksek fiyat mümkün ama kanıtlanmış değil. Model bu yüzden $24,99'u kullanır ve puan <strong>9 değil 7/10</strong>'dur.</p>
+</div>
+
+<h3>G · Evergreen · H · AI · I · Uzman · J · IP</h3>
+<div class="tablewrap">
+<table>
+<tbody>
+<tr><th style="width:22%">Evergreen</th><td>IDEA 2004'ten beri yeniden yetkilendirilmedi — yasal iskelet çok istikrarlı. 6/12 ay stabil; 24/36 ayda federal rehberlik güncellemeleri izlenmeli. <strong>Ancak 2025–26'da ABD Eğitim Bakanlığı çevresindeki politika türbülansı gerçek bir belirsizlik</strong> <span class="tag tag-unv">UNVERIFIED</span> — § 24'te sınanmıştır. Puan <strong>7/10</strong>.</td></tr>
+<tr><th>AI ikame riski</th><td>AI genel IEP tavsiyesi üretebilir. Ancak <em>usul olarak doğru</em>, güncel ve kullanılabilir form/mektup şablonları üretmek zordur ve hata görünür sonuç doğurur. Puan <strong>5/10</strong>.</td></tr>
+<tr><th>Uzman bağımlılığı</th><td><strong>ORTA–YÜKSEK.</strong> İçerik hukuki usule dayanır; yanlış bir hak veya süre beyanı ebeveyni zarara uğratabilir. Kategori normu avukat yazarlıktır (Wrightslaw = avukat çift; Nolo = hukuk yayıncısı). Bir özel eğitim avukatı veya sertifikalı savunucu <strong>inceleyici</strong> gereklidir. Ancak bu, fiziksel zarar riski taşıyan alanlardan (§ 20) daha hafiftir: yanlış bilgi kötü bir toplantıya yol açar, ölüme değil.</td></tr>
+<tr><th>IP / politika</th><td>IDEA metni ve federal düzenlemeler <strong>kamu malı</strong> — alıntılanabilir. "IEP" ve "IDEA" jenerik/yasal terimlerdir, marka değildir. "Wrightslaw" tescillidir ve kullanılamaz. <strong>Hukuki tavsiye vermeme</strong> beyanı ve net sorumluluk reddi zorunludur.</td></tr>
+</tbody>
+</table>
+</div>
+<p>Risk puanı: <strong>5/10</strong> · Üretim fizibilitesi: <strong>8/10</strong> (form, kontrol listesi, mektup şablonu, akış şeması, toplantı hazırlık sayfası — tamamı dizgi ve çizgi grafiği; fotoğraf yok).</p>
+
+<h3>K · İnşa et / etme</h3>
+<div class="two-col">
+<div class="card green"><h4>Neden inşa etmeliyiz</h4><ul class="tight">
+<li>Taranan 20 adayın <strong>en iyi belgelenmiş mutlak pazarı</strong> (Tier 1: 7,5M, ~110K/yıl).</li>
+<li>Hiçbir başlık 653 yorumu geçmiyor — olağandışı düşük konsantrasyon.</li>
+<li>Merdiven federal düzenlemeyle yaratılmış (16 yaş geçiş planı, yıllık).</li>
+<li>Mekanik olarak kanıtlanabilir güncellik açığı (2006/2010).</li>
+<li>Basılı format gerçek avantaj: toplantıya götürülen doküman.</li>
+<li>Üretim hattıyla tam uyum (form/şema/dizgi).</li>
+</ul></div>
+<div class="card red"><h4>Neden inşa etmemeliyiz</h4><ul class="tight">
+<li>7,5M ailelik pazarda en çok satan kitabın 653 yorumu olması, <strong>ebeveynlerin kitap satın almadığı</strong> anlamına gelebilir.</li>
+<li>Her eyalette <strong>federal finansmanlı ücretsiz Ebeveyn Eğitim ve Bilgi Merkezleri (PTI)</strong> var; ayrıca Wrightslaw.com'un ücretsiz içeriği geniş.</li>
+<li>Hukuki usul içeriği — avukat/savunucu inceleyici gerekiyor.</li>
+<li>Hacim liderleri $10–16'da; yüksek fiyat kanıtlanmamış.</li>
+<li>Federal eğitim politikası 2025–26'da oynak.</li>
+</ul></div>
+</div>
+<h4>Bu fırsatın yanlış olduğunu ne kanıtlar?</h4>
+<ul class="tight">
+<li>Son 18 ayda giren IEP-ebeveyn başlıklarının <strong>hiçbiri</strong> 50+ yoruma ulaşamamışsa → pazar kitap satın almıyordur.</li>
+<li>Wrightslaw güncel bir baskı yayımlarsa → güncellik açığı kapanır.</li>
+<li>Nolo'nun rehberi düzenli olarak revize ediliyorsa → "eski liderler" tezi zayıflar.</li>
+<li>Ücretsiz PTI merkezleri fiilen aynı içeriği veriyorsa → satın alma niyeti 9 yanlıştır.</li>
+</ul>
+</section>
+<section id="s7">
+<h2 class="sect-title"><span class="n">7</span> Finalist #2 — Dikiş Kalıp Uyumu ve Kalıp Düzeltme</h2>
+<p class="lead">Seçilen ürün fırsatı: ev dikişçisinin en bilinen ve en tekrarlayan sorunu — <em>hazır kalıp vücuda oturmuyor</em>. Ölçüm, uyum teşhisi ve kalıp düzeltme.</p>
+
+<h3>A · Talep ve mutlak alıcı havuzu</h3>
+<ul class="tight">
+<li><span class="tag tag-unv">UNVERIFIED</span> Sektör raporları ABD'de <strong>~3,2 milyon aktif ev dikiş makinesi kullanıcısı</strong> bildiriyor (Tier 4). Bu bir <em>kurulu taban</em>dır; yıllık uyum-kitabı alıcısı değildir.</li>
+<li><span class="tag tag-est">ESTIMATE</span> Uyum sorunu esas olarak <em>giysi</em> diken alt kümeyi ilgilendirir; yıllık gerçek alıcı havuzu <strong>on binler</strong> mertebesinde modellenmiştir — IEP'ten belirgin biçimde küçük.</li>
+<li><span class="tag tag-obs">OBSERVED</span> Ama güncel satış hızı iyi: liderlerin BSR'ları <strong>#36.985 · #50.408 · #54.594</strong> — bu turda taranan birçok adaydan daha canlı.</li>
+</ul>
+<p>Puan: <strong>7/10</strong>.</p>
+
+<h3>B · Satın alma niyeti</h3>
+<p>Son tarih yok, sınav yok, yasal zorunluluk yok — <strong>ama basılı formatın gerçek bir avantajı var:</strong> kullanıcı kitabı kesim masasına açar, kalıp kâğıdını yanına serer, ölçü alır ve işaretler. Ekran bu iş için kötü bir ortamdır. Buna karşılık YouTube'da ücretsiz uyum dersleri bol. Puan: <strong>6/10</strong>.</p>
+
+<h3>C · Rekabet</h3>
+<div class="flow">
+<div class="n"><b>273</b>dar sorgu sonucu<br><span class="small">"sewing pattern fitting"</span></div>
+<div class="n"><b>550</b>geniş sorgu<br><span class="small">+ "alteration book"</span></div>
+<div class="n"><b>13</b>yeni başlık<br><span class="small">9 Haz–25 Ağu 2026, hepsi 0–1 yorum</span></div>
+</div>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Başlık</th><th>Yayıncı / yazar</th><th>Yayın</th><th>Sayfa</th><th>Fiyat</th><th>Puan / Yorum</th><th>BSR</th></tr></thead>
+<tbody>
+<tr><td>The Complete Photo Guide to Perfect Fitting</td><td>Creative Publishing (Sarah Veblen)</td><td>01.01.2012</td><td>224</td><td>$21,06</td><td>4,6★ / 1.700</td><td><strong>#36.985</strong></td></tr>
+<tr><td>The Palmer Pletsch Complete Guide to Fitting</td><td>Palmer/Pletsch (spiral, "Sewing for Real People" serisi)</td><td>01.09.2018</td><td>256</td><td>—</td><td>4,7★ / 829</td><td>#50.408</td></tr>
+<tr><td>The Fitting Book</td><td><strong>Gina Renee Designs (bağımsız)</strong></td><td>01.06.2021</td><td>278</td><td>$28,95</td><td>4,7★ / 958</td><td>#54.594</td></tr>
+<tr><td>Pattern Fitting With Confidence</td><td>Nancy Zieman</td><td>21.07.2008</td><td>—</td><td>$18,55</td><td>4,8★ / 1.000</td><td>—</td></tr>
+<tr><td>Ahead of the Curve</td><td>Jenny Rushmore (Cashmerette)</td><td>09.11.2021</td><td>—</td><td>$22,31</td><td>4,8★ / 986</td><td>—</td></tr>
+<tr><td>Metric Pattern Cutting for Women's Wear</td><td>Winifred Aldrich (akademik standart)</td><td>13.04.2015</td><td>—</td><td>$45,50</td><td>4,7★ / 992</td><td>—</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Bu turun en sağlıklı fiyat bandı:</strong> $18,55–$45,50. Ayrıca <strong>2021'de iki bağımsız giriş</strong> (Dunham 958, Rushmore 986) traksiyon kazanmış — yani bağımsız yayıncı bu pazarda kazanabiliyor. Rekabet çekiciliği: <strong>6/10</strong>.</p>
+
+<h4>Kalite açığı — asgari-n kuralıyla</h4>
+<ul class="tight">
+<li><span class="tag tag-obs">OBSERVED</span> <strong>n=1.700</strong> (Complete Photo Guide): Amazon özeti çoğunlukla olumlu ama bir olumsuz sinyal içeriyor — <em>"While many find it easy to understand and follow, <strong>some find it too complicated for their understanding</strong>."</em> Bu, erişilebilirlik açığıdır ve n eşiğini geçer.</li>
+<li><span class="tag tag-obs">OBSERVED</span> <strong>n=958</strong> (The Fitting Book): olumsuz sinyal <strong>yok</strong>; üstelik <em>"QR codes on almost every page that link to helpful videos"</em> — yani lider ürün hibrit basılı+video. Saf basılı bir kitap burada dezavantajlı.</li>
+<li><span class="tag tag-obs">OBSERVED</span> <strong>n=829</strong> (Palmer/Pletsch): olumsuz sinyal yok.</li>
+</ul>
+<p>Üç liderden yalnızca birinde, o da ılımlı bir açık var. Puan: <strong>5/10</strong> — kazananın 7'sinden belirgin biçimde zayıf.</p>
+
+<h3>D · Seri doğallık testi</h3>
+<p>Kitap 1 ölçüm ve uyum teşhisi → Kitap 2 vücut bölgesine göre kalıp düzeltme → Kitap 3 sıfırdan kalıp/blok çizimi. Aynı müşteri, aynı ekosistem, gerçek zorluk artışı. <strong>Ama:</strong> merdiven dışarıdan dayatılmıyor ve alıcı çoğu zaman <em>tek bir kapsamlı uyum kitabı</em> alıp durur; ayrıca Palmer/Pletsch zaten "Sewing for Real People" serisini işletiyor. Puan: <strong>6/10</strong>.</p>
+
+<h3>E–J · Diğer ölçütler</h3>
+<div class="tablewrap">
+<table>
+<tbody>
+<tr><th style="width:22%">Amazon Ads</th><td>Anahtar kelimeler dar ama niyetli ("full bust adjustment", "pattern alteration"). Hacim IEP'ten düşük. <strong>6/10</strong></td></tr>
+<tr><th>Birim ekonomisi</th><td>250 sayfa, büyük trim, $26,99 → baskı $5,25 → telif <strong>$10,94</strong>. Fiyat bandı kanıtlı. <strong>8/10</strong></td></tr>
+<tr><th>Katalog</th><td>Uyum → düzeltme → çizim → örme kumaş → terzilik. Geniş. <strong>7/10</strong></td></tr>
+<tr><th>Evergreen</th><td><strong>Bu turun en iyisi.</strong> Kalıp geometrisi ve insan anatomisi değişmez. 36 ayda bakım ≈ 0. <strong>9/10</strong></td></tr>
+<tr><th>Üretim fizibilitesi</th><td>Kalıp düzeltme diyagramları saf çizgi grafiğidir — deterministik render için ideal. <em>Ama</em> rakipler gerçek vücut fotoğrafı ve QR→video kullanıyor; saf çizgi grafiği tek başına yetmeyebilir. <strong>7/10</strong></td></tr>
+<tr><th>AI ikame direnci</th><td>Geometrik olarak doğru düzeltme diyagramı üretmek AI için zordur; hata dikilen giyside anında görünür. <strong>7/10</strong></td></tr>
+<tr><th>Uzman bağımlılığı</th><td><strong>DÜŞÜK.</strong> Doğrulama mekanizması var: kalıbı uygula, giysiyi dik, otur mu bak. Beş finalistin en düşük bağımlılığı.</td></tr>
+<tr><th>IP / politika</th><td>Kalıp geometrisi ve düzeltme yöntemleri telifle korunmaz. Ticari kalıp markaları (McCall's, Simplicity) başlıkta kullanılamaz. Sorumluluk riski yok. <strong>Risk 8/10</strong></td></tr>
+</tbody>
+</table>
+</div>
+<h4>Bu fırsatın yanlış olduğunu ne kanıtlar?</h4>
+<ul class="tight">
+<li>Haz–Ağu 2026'da giren 13 başlıktan hiçbiri 6 ayda 50+ yorum alamazsa → niş yeni girişe kapalı.</li>
+<li>Alıcılar QR→video entegrasyonunu zorunlu sayıyorsa → saf basılı ürün rekabet edemez.</li>
+</ul>
+</section>
+<section id="s8">
+<h2 class="sect-title"><span class="n">8</span> Finalist #3 — HVAC / Soğutma Saha Referansı</h2>
+<p class="lead">Seçilen ürün fırsatı: HVAC/soğutma teknisyeni ve çırağı için saha teşhis ve servis prosedürü referansı.</p>
+
+<h3>A · Talep ve mutlak alıcı havuzu</h3>
+<ul class="tight">
+<li><span class="tag tag-reb">FACT</span> BLS: <strong>425.200 istihdam</strong> (2024); yılda <strong>~40.100 açık pozisyon</strong>; 2034'e kadar %8 büyüme.</li>
+<li><span class="tag tag-est">ESTIMATE</span> Yıllık gerçek teknik-kitap alıcısı havuzu ≈ yeni girenler + mevcut teknisyenlerin referans yenilemesi ⇒ <strong>on binler</strong>. IEP'ten küçük ama sağlam.</li>
+<li><span class="tag tag-obs">OBSERVED</span> Craig Migliaccio'nun kitabı 2,4K yorum.</li>
+</ul>
+<p>Puan: <strong>7/10</strong>.</p>
+
+<h3>B · Satın alma niyeti — <strong>bu turun en yükseği (IEP ile eşit)</strong></h3>
+<p>Kitap işin kendisi için gerekli: yanlış şarj miktarı ekipmanı bozar, EPA 608 sertifikasyonu yasal zorunluluktur, saha referansı alet çantasında taşınır. Puan: <strong>9/10</strong>.</p>
+
+<h3>C · Rekabet — <strong>bu turun en kötüsü</strong></h3>
+<div class="flow">
+<div class="n"><b>546</b>sonuç</div>
+<div class="n"><b>11</b>yeni başlık<br><span class="small">17–26 Ağustos 2026 (10 gün)</span></div>
+<div class="n"><b>6+</b>kitaplık tek yazar<br><span class="small">Migliaccio kataloğu</span></div>
+<div class="n"><b>$34,99<br>–$99,99</b>bağımsız premium<br><span class="small">kanıtlanmış fiyat</span></div>
+</div>
+<p><span class="tag tag-obs">OBSERVED</span> <strong>Şiddetli AI seli:</strong> 22, 23 ve 24 Ağustos 2026'da neredeyse aynı başlıkla üç ayrı kitap ("Modern Refrigeration and Air Conditioning …"); ayrıca "HVAC MASTER HANDBOOK — VOLUME 3 AI, Smart Bu…" gibi açık AI serileri. 10 günde 11 giriş, neredeyse tamamı 0 yorumda.</p>
+<p><span class="tag tag-obs">OBSERVED</span> <strong>Yerleşik oyuncu, kurmak istediğimiz seriyi zaten kurmuş:</strong> Craig Migliaccio (ACservicetech) — $78,99 (2,4K yorum) · $34,99 (681) · $99,99 (365) · $99,99 (243) · $39,99 (57) · İspanyolca $99,95 (11). Ayrıca akademik ders kitapları $86,49–$201,97.</p>
+<p>Rekabet çekiciliği: <strong>3/10</strong>.</p>
+<h4>Kalite açığı</h4>
+<p><span class="tag tag-obs">OBSERVED</span> Kategorinin en düşük puanlı kitabı, AI kalıplı <em>"HVAC BIBLE [10 in 1]"</em> — <strong>4,1★</strong> / 516 yorum. Bu bir açıktır ama <em>gerçek lidere karşı değil, AI çöpüne karşı</em> bir açıktır. Migliaccio 4,7–4,8★. Puan: <strong>4/10</strong>.</p>
+
+<h3>D–J · Diğer ölçütler</h3>
+<div class="tablewrap">
+<table>
+<tbody>
+<tr><th style="width:22%">Seri potansiyeli</th><td>Temeller → şarj/soğutucu → teşhis. Gerçek ama <strong>Migliaccio bu merdiveni zaten işgal etmiş</strong>. <strong>6/10</strong></td></tr>
+<tr><th>Amazon Ads</th><td>Yüksek niyetli anahtar kelimeler, premium fiyat reklamı taşır. <strong>7/10</strong></td></tr>
+<tr><th>Birim ekonomisi</th><td><strong>Bu turun en iyisi.</strong> $39,99 / 250 sayfa büyük trim → telif <strong>$18,74</strong>. $99,99'un çalıştığı kanıtlı. <strong>9/10</strong></td></tr>
+<tr><th>Katalog</th><td>Mini-split, ticari soğutma, elektrik, EPA 608. <strong>8/10</strong></td></tr>
+<tr><th>Evergreen</th><td><strong>Aktif eskime:</strong> AIM Act kapsamında R-410A → R-454B/R-32 geçişi tam şu anda yaşanıyor. Hem risk hem fırsat. <strong>5/10</strong></td></tr>
+<tr><th>AI direnci</th><td>10 günde 11 giriş bunun cevabı. <strong>3/10</strong></td></tr>
+<tr><th>Uzman bağımlılığı</th><td><strong>KRİTİK.</strong> Soğutucu akışkan elleçleme, basınç, elektrik güvenliği ve EPA 608 uyumu. Yanlış bilgi ekipman hasarı, yaralanma veya EPA ihlali doğurur. Evin sıfır meslek kimliği var.</td></tr>
+<tr><th>Risk</th><td><strong>2/10 — beş finalistin en kötüsü.</strong></td></tr>
+</tbody>
+</table>
+</div>
+<div class="card red"><p><strong>Kayıt için:</strong> HVAC bu turun <em>en iyi birim ekonomisine</em> sahip adayıdır ve yine de kaybetti. Görev talimatı § 20 açık: "mükemmel ekonomiye ama imkânsız uzman erişimine sahip bir pazar kaybetmelidir." Bu aday, o kuralın çalıştığının kanıtı olarak finalist yapılmıştır.</p></div>
+</section>
+
+<section id="s9">
+<h2 class="sect-title"><span class="n">9</span> Finalist #4 — Soyağacı Araştırma Metodolojisi</h2>
+<p class="lead">Seçilen ürün fırsatı: aile tarihi araştırmasını <em>yöntemli</em> yapma — kayıt türleri, kanıt değerlendirme, çıkmaz duvarları aşma.</p>
+<h3>A · Talep</h3>
+<p><span class="tag tag-unv">UNVERIFIED</span> Kuzey Amerika soyağacı ürün/hizmet pazarı ~$2,25 milyar (Tier 4). <strong>Katılımcı sayısı bulunamadı</strong> — mutlak alıcı havuzu bu turda güvenilir biçimde ölçülemedi; bu, bu adayın en zayıf noktasıdır. <span class="tag tag-obs">OBSERVED</span> Liderler: 1,8K · 1,2K · 1,2K · 1,1K · 979 · 757 yorum. Puan: <strong>7/10</strong>.</p>
+<h3>B · Satın alma niyeti</h3>
+<p>Son tarih yok; FamilySearch wiki gibi <strong>ücretsiz ve çok kaliteli</strong> alternatifler var. Ancak form/çizelge kullanımı basılıyı destekliyor. Puan: <strong>5/10</strong> — bu turun en düşüğü.</p>
+<h3>C · Rekabet</h3>
+<p><span class="tag tag-obs">OBSERVED</span> 1.000+ sonuç; <strong>düşük içerikli "Research Log / Logbook / Journal" seli</strong> (neredeyse tamamı 0 yorum). Ciddi metodoloji segmenti daha dar: Dyer &amp; Elder <em>Research Like a Pro</em> $21,99 / 757 ve <em>…with DNA</em> $31,99 / 226 — <strong>gerçek bir 2 kitaplık bağımsız seri</strong>. Ayrıca Genealogical Publishing Company profesyonel segmentte yerleşik ve <em>Genealogy Standards</em> (BCG) 849 yorum.</p>
+<p>Rekabet çekiciliği: <strong>5/10</strong>. Kalite açığı: <strong>6/10</strong> — Ancestry.com'a bağlı rehberler (979 ve 758 yorum) platform değişimiyle bayatlıyor; bu gerçek ve mekanik bir açık.</p>
+<h3>D–J</h3>
+<div class="tablewrap"><table><tbody>
+<tr><th style="width:22%">Seri potansiyeli</th><td>Başlangıç → kayıt türleri/DNA → çıkmaz duvarlar. Gerçek, <em>ama Dyer &amp; Elder tam olarak bunu yapıyor</em>. <strong>6/10</strong></td></tr>
+<tr><th>Amazon Ads</th><td>Orta niyet. <strong>6/10</strong></td></tr>
+<tr><th>Birim ekonomisi</th><td>$26,99 / 250 sayfa → telif <strong>$10,94</strong>. <strong>7/10</strong></td></tr>
+<tr><th>Katalog</th><td>Bölgesel/etnik varyantlar geniş yüzey verir. <strong>8/10</strong></td></tr>
+<tr><th>Evergreen</th><td>Yöntem istikrarlı; platform ve DNA teknolojisi değişken. <strong>6/10</strong></td></tr>
+<tr><th>AI direnci</th><td>Jenerik soyağacı tavsiyesi kolayca üretilir. <strong>4/10</strong></td></tr>
+<tr><th>Uzman bağımlılığı</th><td><strong>DÜŞÜK–ORTA.</strong> Sertifikalı soyağacı uzmanı (BCG) yararlı ama zorunlu değil.</td></tr>
+<tr><th>Risk</th><td>Sorumluluk ve IP riski düşük. <strong>7/10</strong></td></tr>
+</tbody></table></div>
+</section>
+
+<section id="s10">
+<h2 class="sect-title"><span class="n">10</span> Finalist #5 — Off-grid Solar / 12V Güç Sistemi</h2>
+<p class="lead">Seçilen ürün fırsatı: karavan, van, tekne veya kulübe için 12V/off-grid güneş sistemi boyutlandırma, kurulum ve genişletme.</p>
+<h3>A · Talep — ve ömür-boyu yorum yanılsaması</h3>
+<div class="card red">
+<p><span class="tag tag-obs">OBSERVED</span> Lider ürün — Prowse, <em>Mobile Solar Power Made Easy</em> (CreateSpace, Mayıs 2017): <strong>4.909 yorum</strong>, 4,7★ … ama <strong>BSR #99.832</strong> ve yalnızca <strong>90 sayfa</strong>.</p>
+<p>Yani 4,9K yorum <em>dokuz yılda</em> birikmiş; güncel satış hızı beş finalistin en zayıflarından biri. Bu, birinci turda bir adayı deviren <strong>ömür-boyu yorum yanılsamasının</strong> bu turdaki karşılığıdır ve talep puanını 8'den <strong>6</strong>'ya indirmiştir.</p>
+</div>
+<p><span class="tag tag-obs">OBSERVED</span> Seghers <em>Off Grid Solar Power Simplified</em> (Oca 2023) 2,7K yorum — yakın tarihli ve başarılı bir bağımsız giriş; bu, pazarın kapalı olmadığını gösterir.</p>
+<h3>B–C</h3>
+<p>Satın alma niyeti <strong>7/10</strong>: alıcı $2.000–$10.000'lık donanım almadan önce doğru boyutlandırma yapmak zorunda; hata pahalı. Ancak YouTube bu alanda çok güçlü.</p>
+<p>Rekabet <strong>4/10</strong>: <span class="tag tag-obs">OBSERVED</span> yalnızca Ağustos 2026'da 8 yeni başlık; "[10 in 1] Bible" kalıplı AI girişleri yaygın (biri 29 Tem 2026'da çıkıp bir ayda 54 yorum toplamış). Kalite açığı <strong>5/10</strong> — liderde olumsuz sinyal yok.</p>
+<h3>D–J</h3>
+<div class="tablewrap"><table><tbody>
+<tr><th style="width:22%">Seri potansiyeli</th><td>Boyutlandırma → kurulum → batarya/genişletme. Gerçek ama içerikler örtüşüyor. <strong>6/10</strong></td></tr>
+<tr><th>Amazon Ads</th><td>Güçlü, niyetli anahtar kelimeler. <strong>7/10</strong></td></tr>
+<tr><th>Birim ekonomisi</th><td>$24,99 / 220 sayfa büyük trim → telif <strong>$11,26</strong>. <strong>7/10</strong></td></tr>
+<tr><th>Evergreen</th><td><strong>Bu turun en kötüsü.</strong> Batarya kimyası (LiFePO4), invertör teknolojisi ve ürün modelleri hızla değişiyor; kitap 24 ayda görünür biçimde bayatlıyor. <strong>4/10</strong></td></tr>
+<tr><th>AI direnci</th><td>Metin ağırlıklı; sel bunu kanıtlıyor. <strong>4/10</strong></td></tr>
+<tr><th>Uzman bağımlılığı</th><td><strong>ORTA–YÜKSEK.</strong> DC elektrik, batarya yangın riski, akım/kablo boyutlandırma. Yanlış tel kesiti gerçek yangın riskidir.</td></tr>
+<tr><th>Risk</th><td><strong>4/10</strong></td></tr>
+</tbody></table></div>
+</section>
+<section id="s11">
+<h2 class="sect-title"><span class="n">11</span> Rekabet: Stok + Akış</h2>
+<div class="tablewrap">
+<table>
+<caption>Beş finalist, aynı gün, aynı yöntem <span class="tag tag-obs">OBSERVED</span></caption>
+<thead><tr><th>Finalist</th><th>Stok <span class="small">(sonuç)</span></th><th>Akış <span class="small">(son ~2,5 ay)</span></th><th>Konsantrasyon <span class="small">(en yüksek yorum)</span></th><th>Lider kim</th><th>Fiyat baskısı</th></tr></thead>
+<tbody>
+<tr><td><strong>IEP / özel eğitim</strong></td><td>428</td><td>26–27 Ağu'da 3 giriş; hepsi 0 yorum</td><td><strong>653</strong> — olağandışı düşük</td><td>Avukat yazarlı bağımsız hukuk yayınevi</td><td>$10,13 hacim lideri baskı yapıyor</td></tr>
+<tr><td>Dikiş kalıp uyumu</td><td>273 / 550</td><td>13 giriş (9 Haz–25 Ağu), hepsi 0–1 yorum</td><td>1.700</td><td>Zanaat yayıncıları + 1 bağımsız</td><td>Düşük — $18–45 sağlıklı</td></tr>
+<tr><td>HVAC / soğutma</td><td>546</td><td><strong>11 giriş / 10 gün</strong>, 3'ü neredeyse aynı başlık</td><td>2.400</td><td>Tek bağımsız yazar (6+ kitap) + akademik ders kitapları</td><td>Yok — $99,99 çalışıyor</td></tr>
+<tr><td>Soyağacı</td><td>1.000+</td><td>Sürekli "log/journal" seli, hepsi 0 yorum</td><td>1.800</td><td>Karışık: bağımsız seri + yerleşik yayınevi</td><td>Orta — $9,99 log'lar aşağı çekiyor</td></tr>
+<tr><td>Off-grid solar</td><td>607</td><td>Yalnızca Ağu 2026'da 8 giriş</td><td>4.900 <span class="small">(ama BSR #99.832)</span></td><td>Bağımsız yazarlar</td><td>Orta</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Giriş engeli — her finalist için</h3>
+<ul class="tight">
+<li><strong>IEP:</strong> hukuki usul doğruluğu ve avukat/savunucu inceleyici. Marka değil, <em>güvenilirlik</em> engeli.</li>
+<li><strong>Dikiş:</strong> gerçek kalıpçılık yetkinliği; rakip QR→video entegrasyonu.</li>
+<li><strong>HVAC:</strong> meslek kimliği + kritik güvenlik + yerleşik yazarın 6 kitaplık kataloğu.</li>
+<li><strong>Soyağacı:</strong> düşük engel — <em>bu yüzden log seli var.</em></li>
+<li><strong>Solar:</strong> düşük engel + hızlı teknoloji değişimi.</li>
+</ul>
+<div class="card blue">
+<p><strong>Akışın doğru okunması (görev talimatı § 32):</strong> Çok sayıda yeni kitap ve <em>hiç başarılı yeni giren olmaması</em>, düşük rekabetin değil <strong>ticari başarısızlığın</strong> işareti olabilir. Bu turda dört finalistte de yeni girenler 0 yorumda takılı. Tek istisna: dikişte 2021'de giren iki bağımsız (958 ve 986 yorum) ve solar'da 2023'te giren bir bağımsız (2,7K) <em>gerçekten</em> traksiyon kazanmış — yani o iki pazarda bağımsız girişin işe yaradığı kanıtlı. IEP'te son 18 ayda başarılı bir bağımsız giriş <strong>gözlemlenmedi</strong>; bu, kazananın en ciddi açık sorusudur ve § 24'te sınanmıştır.</p>
+</div>
+</section>
+
+<section id="s12">
+<h2 class="sect-title"><span class="n">12</span> Müşteri Talebi — Mutlak Pazar Kontrolü</h2>
+<p class="lead">Birinci turun ölümcül hatası buydu: kurulu taban, yıllık kitap alıcısı sanıldı. Bu turda her finalist için "yılda kaç <em>gerçekçi</em> alıcı var?" sorusu ayrıca soruldu.</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Finalist</th><th>Kurulu taban / evren</th><th>Yıllık akış</th><th>Yıllık gerçekçi kitap alıcısı <span class="tag tag-est">ESTIMATE</span></th><th>Kanıt gücü</th></tr></thead>
+<tbody>
+<tr><td><strong>IEP</strong></td><td><strong>7,5M öğrenci</strong> (2022–23) <span class="tag tag-reb">FACT</span></td><td>~110.000/yıl net artış (10 yıl ort.)</td><td>Düşük–orta <strong>altı haneli</strong></td><td><strong>Tier 1 — en güçlü</strong></td></tr>
+<tr><td>HVAC</td><td>425.200 istihdam <span class="tag tag-reb">FACT</span></td><td>~40.100 açık pozisyon/yıl</td><td><strong>On binler</strong></td><td>Tier 1 (BLS)</td></tr>
+<tr><td>Dikiş</td><td>~3,2M ev dikiş makinesi kullanıcısı <span class="tag tag-unv">UNVERIFIED</span></td><td>bilinmiyor</td><td><strong>On binler</strong></td><td>Tier 4</td></tr>
+<tr><td>Solar</td><td>bilinmiyor</td><td>bilinmiyor</td><td>On binler</td><td>Ölçülemedi</td></tr>
+<tr><td>Soyağacı</td><td>KA pazarı ~$2,25 milyar <span class="tag tag-unv">UNVERIFIED</span></td><td>katılımcı sayısı bulunamadı</td><td>Ölçülemedi</td><td><strong>Tier 4 — en zayıf</strong></td></tr>
+</tbody>
+</table>
+</div>
+<div class="card red">
+<p><strong>Dürüstlük kaydı:</strong> Yalnızca <strong>iki</strong> finalist (IEP ve HVAC) resmî, Tier 1 mutlak pazar verisine sahiptir. Diğer üçünün alıcı havuzu bu turda güvenilir biçimde ölçülememiştir ve puanları bu belirsizliği yansıtacak şekilde sınırlı tutulmuştur. Ölçülemeyen bir pazar, büyük olmadığı için değil, <em>büyüklüğü bilinmediği için</em> düşük puan alır.</p>
+</div>
+</section>
+
+<section id="s13">
+<h2 class="sect-title"><span class="n">13</span> Satın Alma Niyeti</h2>
+<p>Kritik soru: <em>Neden Google, YouTube, Reddit, ChatGPT veya ücretsiz bir PDF yerine para versin?</em></p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Finalist</th><th>Ücretli kitabı haklı çıkaran şey</th><th>En güçlü ücretsiz alternatif</th><th>Puan</th></tr></thead>
+<tbody>
+<tr><td><strong>IEP</strong></td><td>Takvimli ve <strong>yasal olarak zorunlu</strong> toplantı · en yüksek duygusal bahis · savunucu saatlik ücretine karşı $25 · toplantıya <em>götürülen</em> basılı doküman</td><td>Wrightslaw.com ücretsiz içeriği · her eyalette <strong>federal finansmanlı ücretsiz PTI merkezleri</strong> · Facebook grupları</td><td><strong>9</strong></td></tr>
+<tr><td>HVAC</td><td>İş için gerekli · yanlış işlem ekipmanı bozar · EPA 608 yasal · alet çantasında saha referansı</td><td>YouTube (ACservicetech kanalı dâhil) · üretici servis bültenleri</td><td><strong>9</strong></td></tr>
+<tr><td>Solar</td><td>Kurulumdan önce $2.000–$10.000'lık karar · yanlış boyutlandırma pahalı · sahada basılı referans</td><td>YouTube çok güçlü · üretici hesaplayıcıları</td><td>7</td></tr>
+<tr><td>Dikiş</td><td>Kesim masasında açık kitap · işaretlenen kâğıt · tekrarlayan hayal kırıklığı</td><td>YouTube ders bolluğu · blog'lar</td><td>6</td></tr>
+<tr><td>Soyağacı</td><td>Form ve çizelge kullanımı · yöntem disiplini</td><td><strong>FamilySearch wiki</strong> — ücretsiz ve çok kapsamlı</td><td>5</td></tr>
+</tbody>
+</table>
+</div>
+<p class="footnote">IEP'in ücretsiz alternatifi (PTI merkezleri) bu turun en ciddi karşı-argümanıdır ve § 24'te doğrudan sınanmıştır.</p>
+</section>
+
+<section id="s14">
+<h2 class="sect-title"><span class="n">14</span> Rakip Kalite Açığı — Asgari-n Kuralıyla</h2>
+<div class="card accent">
+<p><strong>Kural (birinci turdan devralındı):</strong> Bir kalite açığı puanı ancak (a) <strong>n ≥ 200</strong> olan bir yorum sinyaliyle <em>veya</em> (b) puana dayanmayan, <strong>mekanik olarak doğrulanabilir</strong> bir kusurla desteklenebilir. Tek bir yorumdan veya küçük örneklemden açık üretilmez.</p>
+</div>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Finalist</th><th>Lider (n)</th><th>Amazon "Customers say" özeti <span class="small">(AI üretimi, türetilmiş veri)</span></th><th>Mekanik kusur</th><th>Puan</th></tr></thead>
+<tbody>
+<tr><td><strong>IEP</strong></td><td>653 / 520</td><td><strong>Olumsuz sinyal yok</strong> — her iki özet de olumlu (4,7★ ve 4,8★)</td><td><strong>EVET:</strong> kategori liderleri <strong>2010</strong> ve <strong>2006</strong> tarihli <span class="tag tag-obs">OBSERVED</span></td><td><strong>7</strong></td></tr>
+<tr><td>Soyağacı</td><td>979 / 758</td><td>—</td><td><strong>EVET:</strong> Ancestry.com'a bağlı rehberler platform değişimiyle bayatlıyor</td><td>6</td></tr>
+<tr><td>Dikiş</td><td>1.700</td><td><em>"…<strong>some find it too complicated</strong> for their understanding"</em> — ılımlı ama gerçek</td><td>Hayır</td><td>5</td></tr>
+<tr><td>Solar</td><td>4.909</td><td>Olumsuz sinyal yok</td><td>Kısmen: teknoloji bayatlaması</td><td>5</td></tr>
+<tr><td>HVAC</td><td>2.400</td><td>Liderde olumsuz sinyal yok; <strong>AI kalıplı rakip 4,1★/516</strong></td><td>Hayır — açık gerçek lidere karşı değil</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Kazananın kalite açığı bir <em>şikâyet</em> değil, bir <em>tarihtir</em>.</strong> Bu önemli bir ayrımdır: rakiplerin kötü olduğunu iddia etmiyoruz — iyiler ve öyle puanlanıyorlar. İddia dar ve kanıtlanabilir: <em>16 ve 20 yıl önce yazılmış kitaplar, o tarihten sonra ortaya çıkan uygulamayı kapsayamaz.</em></p>
+</section>
+
+<section id="s15">
+<h2 class="sect-title"><span class="n">15</span> Amazon Ads Analizi</h2>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Boyut</th><th>IEP</th><th>Dikiş</th><th>HVAC</th><th>Soyağacı</th><th>Solar</th></tr></thead>
+<tbody>
+<tr><td>Anahtar kelime niyeti</td><td><strong>Yüksek</strong> — "IEP meeting", "parent rights"</td><td>Dar ama teknik</td><td><strong>Yüksek</strong> — iş gereksinimi</td><td>Orta</td><td>Yüksek</td></tr>
+<tr><td>Ürün hedefleme</td><td>Net, küçük ASIN kümesi</td><td>Net</td><td>Net (Migliaccio)</td><td>Dağınık (log seli)</td><td>Net</td></tr>
+<tr><td>Kategori tutarlılığı</td><td>Special Education (Books)</td><td>Sewing / Fashion Craft</td><td>HVAC / Refrigeration</td><td>Genealogy</td><td>Solar Energy</td></tr>
+<tr><td>Marj (Kitap 1 telifi)</td><td>$9,91</td><td>$10,94</td><td><strong>$18,74</strong></td><td>$10,94</td><td>$11,26</td></tr>
+<tr><td>Tolere edilebilir reklam/satış (%60)</td><td>$5,95</td><td>$6,56</td><td><strong>$11,24</strong></td><td>$6,56</td><td>$6,76</td></tr>
+<tr><td><strong>Puan</strong></td><td><strong>8</strong></td><td>6</td><td>7</td><td>6</td><td>7</td></tr>
+</tbody>
+</table>
+</div>
+<p class="footnote"><span class="tag tag-est">ESTIMATE</span> %60 oranı bir varsayımdır. <strong>Gerçek CPC hiçbir finalist için gözlemlenmedi ve uydurulmadı.</strong> Rakiplerin sponsorlu reklam yoğunluğu bu turda sistematik ölçülmedi (§ 36).</p>
+</section>
+
+<section id="s16">
+<h2 class="sect-title"><span class="n">16</span> Birim Ekonomisi</h2>
+<p><strong>Resmî KDP formülü</strong> <span class="tag tag-reb">FACT</span> — Amazon.com, ciltsiz, siyah mürekkep: normal trim (≤6,12×9″) 110–828 sayfa = $1,00 + sayfa×$0,012 · büyük trim (&gt;6,12×9″) = $1,00 + sayfa×$0,017 · <strong>telif = liste × 0,60 − baskı</strong>.</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Finalist / Kitap 1</th><th>Sayfa</th><th>Liste</th><th>Baskı</th><th>Telif</th><th>Telif/liste</th><th>Gözlemlenen fiyat bandı</th></tr></thead>
+<tbody>
+<tr><td>HVAC</td><td>250</td><td>$39,99</td><td>$5,25</td><td><strong>$18,74</strong></td><td>%46,9</td><td>$22,53–$201,97</td></tr>
+<tr><td>Solar</td><td>220</td><td>$24,99</td><td>$4,74</td><td>$11,26</td><td>%45,1</td><td>$9,99–$26,97</td></tr>
+<tr><td>Dikiş</td><td>250</td><td>$26,99</td><td>$5,25</td><td>$10,94</td><td>%40,5</td><td>$18,55–$45,50</td></tr>
+<tr><td>Soyağacı</td><td>250</td><td>$26,99</td><td>$5,25</td><td>$10,94</td><td>%40,5</td><td>$9,99–$40,27</td></tr>
+<tr><td><strong>IEP</strong></td><td>240</td><td>$24,99</td><td>$5,08</td><td><strong>$9,91</strong></td><td>%39,7</td><td>$10,13–$35,99</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Ayrıştırılmış kavramlar</h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Kavram</th><th>IEP Kitap 1</th><th>Not</th></tr></thead>
+<tbody>
+<tr><td><code>GELİR</code></td><td>$24,99</td><td>Müşterinin ödediği liste fiyatı</td></tr>
+<tr><td><code>TELİF</code></td><td>$9,91</td><td>KDP'nin ödediği tutar — <strong>kâr değildir</strong></td></tr>
+<tr><td><code>ÜRETİM MALİYETİ</code></td><td>modellenmedi</td><td>Evin saat/maliyet yapısı bu belgede yok</td></tr>
+<tr><td><code>UZMAN MALİYETİ</code></td><td><strong>bilinmiyor</strong></td><td>Avukat/savunucu inceleyici ücreti — § 35'in cevaplaması gereken soru</td></tr>
+<tr><td><code>REKLAM GİDERİ</code></td><td>illüstratif</td><td>Gerçek CPC bilinmiyor</td></tr>
+<tr><td><code>TAHMİNİ KATKI</code></td><td>üretim ve uzman maliyeti <em>düşülmeden önce</em></td><td>Bu yüzden "kâr" denmemiştir</td></tr>
+</tbody>
+</table>
+</div>
+<div class="flow">
+<div class="n"><b>101</b>$1.000 bütçe</div>
+<div class="n"><b>252</b>$2.500 bütçe</div>
+<div class="n"><b>505</b>$5.000 bütçe</div>
+<div class="n"><b>807</b>$8.000 bütçe</div>
+</div>
+<p class="footnote">Başabaş adet, IEP Kitap 1 telifiyle ($9,91), reklam ve uzman maliyeti hariç <span class="tag tag-est">ESTIMATE</span>.</p>
+</section>
+
+<section id="s17">
+<h2 class="sect-title"><span class="n">17</span> Seri Ekonomisi — Çark</h2>
+<div class="funnel">Amazon araması ("IEP guide for parents")
+        ↓
+Kitap 1 reklamı ────────────────────────┐
+        ↓                               │  organik görünürlük
+Kitap 1 satın alma                      │  + "birlikte alınanlar"
+        ↓                               │
+Kitap 2 keşfi (okulla anlaşmazlık)      │
+        ↓                               │
+Kitap 2 satın alma                      │
+        ↓                               │
+Kitap 3 keşfi (16 yaş: geçiş planı) ────┘
+        ↓
+Katalog LTV + düşen harmanlanmış edinme maliyeti</div>
+<p><strong>Serinin ekonomik işlevi:</strong> müşteri edinme maliyeti <em>bir kez</em> ödenir, telif <em>üç kez</em> tahsil edilebilir. Ancak bu bir varsayım değil, sınanması gereken bir mekanizmadır: § 31'de bağlanma oranları senaryo olarak modellenmiş ve <strong>seri tezinin büyük ölçüde yanlış çıktığı senaryo da hesaplanmıştır</strong>.</p>
+<p>Bu finalistler arasında serinin ekonomiyi en çok iyileştirdiği aday IEP'tir, çünkü üç kitabın arası <em>yıllarla</em> ayrılmıştır (çocuk büyürken) — yani aynı müşteri uzun bir süre boyunca katalogda kalır. Solar ve HVAC'ta üç kitap aynı anda satın alınabilir; bu, çapraz satışı kolaylaştırır ama katalogda kalma süresini kısaltır.</p>
+</section>
+
+<section id="s18">
+<h2 class="sect-title"><span class="n">18</span> Evergreen / Eskime</h2>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Finalist</th><th>6 ay</th><th>12 ay</th><th>24 ay</th><th>36 ay</th><th>Eskime kaynağı</th><th>Puan</th></tr></thead>
+<tbody>
+<tr><td>Dikiş</td><td>Stabil</td><td>Stabil</td><td>Stabil</td><td>Stabil</td><td>Yok — kalıp geometrisi ve anatomi değişmez</td><td><strong>9</strong></td></tr>
+<tr><td><strong>IEP</strong></td><td>Stabil</td><td>Stabil</td><td>Federal rehberlik izlenmeli</td><td>Rehberlik güncellemesi</td><td>IDEA 2004'ten beri yeniden yetkilendirilmedi; <strong>ama 2025–26 politika türbülansı</strong> <span class="tag tag-unv">UNVERIFIED</span></td><td><strong>7</strong></td></tr>
+<tr><td>Soyağacı</td><td>Stabil</td><td>Platform değişimi</td><td>DNA teknolojisi</td><td>Kısmi yeniden yazım</td><td>Platform bağımlılığı</td><td>6</td></tr>
+<tr><td>HVAC</td><td>Aktif geçiş</td><td>Aktif geçiş</td><td>Soğutucu geçişi sürüyor</td><td>Yeni standartlar</td><td><strong>AIM Act: R-410A → R-454B/R-32</strong> geçişi şu anda</td><td>5</td></tr>
+<tr><td>Solar</td><td>Stabil</td><td>Batarya/invertör değişimi</td><td><strong>Görünür bayatlama</strong></td><td>Yeniden yazım</td><td>Hızlı donanım evrimi</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+<p class="footnote">Hiçbir aday yalnızca konusu popüler olduğu için evergreen sayılmadı. Platform bağımlılığı: beş adayın hiçbiri Amazon dışı bir platforma bağımlı değil; hepsi KDP politika değişikliğine eşit ölçüde açık.</p>
+</section>
+
+<section id="s19">
+<h2 class="sect-title"><span class="n">19</span> AI İkame Riski</h2>
+<p>Soru: <em>Düşük maliyetli bir AI yayıncısı altı ay içinde yeterince kabul edilebilir bir ikame üretebilir mi?</em></p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Boyut</th><th>IEP</th><th>Dikiş</th><th>HVAC</th><th>Soyağacı</th><th>Solar</th></tr></thead>
+<tbody>
+<tr><td>Emtialaşma riski</td><td>Orta</td><td>Düşük</td><td><strong>Çok yüksek</strong></td><td>Yüksek</td><td>Yüksek</td></tr>
+<tr><td>Uzman veri avantajı</td><td>Orta (usul bilgisi)</td><td>Orta</td><td>Yüksek</td><td>Düşük</td><td>Düşük</td></tr>
+<tr><td>Görsel avantaj</td><td>Orta (form/şema)</td><td><strong>Yüksek</strong> (geometrik diyagram)</td><td>Orta</td><td>Orta</td><td>Orta</td></tr>
+<tr><td>Fiziksel ürün avantajı</td><td><strong>Yüksek</strong> (toplantıya götürülür)</td><td>Yüksek (kesim masası)</td><td>Yüksek (alet çantası)</td><td>Orta</td><td>Orta</td></tr>
+<tr><td>Doğrulama avantajı</td><td>Orta</td><td><strong>Yüksek</strong> (giysiyi dik, otur mu bak)</td><td>Yüksek ama uzman gerekir</td><td>Düşük</td><td>Orta</td></tr>
+<tr><td>Kanıtlanan sel</td><td>3 giriş/2 gün</td><td>13 giriş/2,5 ay</td><td><strong>11 giriş/10 gün</strong></td><td>Sürekli log seli</td><td>8 giriş/1 ay</td></tr>
+<tr><td><strong>AI direnci puanı</strong></td><td><strong>5</strong></td><td><strong>7</strong></td><td>3</td><td>4</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="s20">
+<h2 class="sect-title"><span class="n">20</span> Uzman Bağımlılığı</h2>
+<div class="card accent"><p>Görev talimatı § 20 burada özellikle muhafazakâr olmayı emrediyor — ve birinci turun kazananı tam olarak bu ölçütte çökmüştü. <strong>AI incelemesi uzman doğrulaması sayılmaz.</strong></p></div>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Finalist</th><th>Sınıf</th><th>Neden</th><th>Erişilebilirlik</th></tr></thead>
+<tbody>
+<tr><td>Dikiş</td><td><span class="tag tag-obs">DÜŞÜK</span></td><td>Doğrulama fiziksel: kalıbı uygula, giysiyi dik, otur mu bak. Dış uzman gerekmez.</td><td>Sorunsuz</td></tr>
+<tr><td>Soyağacı</td><td><span class="tag tag-obs">DÜŞÜK–ORTA</span></td><td>BCG sertifikalı uzman yararlı, zorunlu değil.</td><td>Kolay</td></tr>
+<tr><td><strong>IEP</strong></td><td><span class="tag tag-est">ORTA–YÜKSEK</span></td><td>Hukuki usul doğruluğu; yanlış hak/süre beyanı ebeveyni zarara uğratır. Kategori normu avukat yazarlık.</td><td><strong>Ulaşılabilir:</strong> özel eğitim avukatı veya sertifikalı ebeveyn savunucusu, <em>inceleyici</em> olarak — fiziksel zarar riski yok</td></tr>
+<tr><td>Solar</td><td><span class="tag tag-est">ORTA–YÜKSEK</span></td><td>DC elektrik, kablo kesiti, batarya yangın riski.</td><td>Elektrikçi/sistem kurulumcusu gerekir</td></tr>
+<tr><td>HVAC</td><td><span class="tag tag-unv">KRİTİK</span></td><td>Soğutucu elleçleme, basınç, EPA 608 uyumu. Ürün sorumlu biçimde <em>uzman kapısı olmadan sevk edilemez</em>.</td><td><strong>Evin sıfır meslek kimliği var</strong></td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Bu tablo HVAC'ı eleyen tek ölçüttür</strong> — en iyi birim ekonomisine sahip olmasına rağmen.</p>
+</section>
+
+<section id="s21">
+<h2 class="sect-title"><span class="n">21</span> IP / Politika Riski</h2>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Finalist</th><th>Kaynak metin durumu</th><th>Marka riski</th><th>İddia / sorumluluk riski</th><th>Puan etkisi</th></tr></thead>
+<tbody>
+<tr><td><strong>IEP</strong></td><td><strong>IDEA metni ve federal düzenlemeler kamu malı</strong> — serbestçe alıntılanabilir</td><td>"IEP"/"IDEA" jenerik yasal terim; <strong>"Wrightslaw" tescilli</strong> — kullanılamaz</td><td>Hukuki tavsiye vermeme beyanı ve sorumluluk reddi <strong>zorunlu</strong></td><td>Orta</td></tr>
+<tr><td>Dikiş</td><td>Kalıp geometrisi telifle korunmaz</td><td>Ticari kalıp markaları (McCall's, Simplicity) başlıkta kullanılamaz</td><td>Yok</td><td><strong>En düşük</strong></td></tr>
+<tr><td>Soyağacı</td><td>Kayıt türleri kamu bilgisi</td><td>Ancestry/FamilySearch tescilli</td><td>Düşük</td><td>Düşük</td></tr>
+<tr><td>Solar</td><td>Elektrik teorisi serbest</td><td>Ürün markaları başlıkta kullanılamaz</td><td>Yangın/elektrik güvenliği</td><td>Orta</td></tr>
+<tr><td>HVAC</td><td>Teori serbest; <strong>üretici servis verisi tescilli</strong></td><td>Marka adları kullanılamaz</td><td><strong>EPA uyumu + güvenlik</strong></td><td>Yüksek</td></tr>
+</tbody>
+</table>
+</div>
+<p class="footnote">Karşılaştırma: bu turda elenen <em>konut elektrik tesisatı</em> adayı, NEC (NFPA) metninin telifli olması nedeniyle finalist bile yapılmadı. Kamu malı kaynak metin, IEP'in belirgin bir yapısal avantajıdır.</p>
+</section>
+
+<section id="s22">
+<h2 class="sect-title"><span class="n">22</span> Üretim Fizibilitesi</h2>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Finalist</th><th>Görsel ihtiyaç</th><th>Fotoğraf gerekir mi?</th><th>Otomatik QA</th><th>Kitaplar arası yeniden kullanım</th><th>Puan</th></tr></thead>
+<tbody>
+<tr><td><strong>IEP</strong></td><td>Form, kontrol listesi, mektup şablonu, akış şeması, toplantı hazırlık sayfası</td><td><strong>Hayır</strong></td><td>Kısmi (şablon/format tutarlılığı)</td><td><strong>Çok yüksek</strong> — aynı form dili üç kitapta</td><td><strong>8</strong></td></tr>
+<tr><td>Dikiş</td><td>Geometrik kalıp düzeltme diyagramları</td><td>Rakipler kullanıyor (dezavantaj)</td><td>Kısmi</td><td>Yüksek</td><td>7</td></tr>
+<tr><td>HVAC</td><td>Şema, P-T tabloları, akış çizelgeleri</td><td>Kısmen</td><td>Kısmi</td><td>Yüksek</td><td>7</td></tr>
+<tr><td>Soyağacı</td><td>Form, çizelge, kayıt şablonu</td><td>Hayır</td><td>Kısmi</td><td>Yüksek</td><td>7</td></tr>
+<tr><td>Solar</td><td>Kablolama şemaları, hesap tabloları</td><td>Kısmen</td><td>Kısmi</td><td>Yüksek</td><td>7</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card red">
+<p><strong>Görev talimatı § 22–23 uyarısı bilinçli olarak uygulandı:</strong> Üretim uyumu bu turda hiçbir adayı kurtarmadı. Mevcut katalog (mitoloji, illüstrasyonlu referans, oyun, bulmaca, saha kitabı) yalnızca <em>üretim kapasitesi</em> olarak değerlendirildi, <em>pazar yönü</em> olarak değil — ve kazanan aday, mevcut kataloğun konu alanlarının tamamen dışındadır.</p>
+</div>
+</section>
+<section id="s23">
+<h2 class="sect-title"><span class="n">23</span> Puanlama Modeli</h2>
+<p class="lead">Beş finalist, tek bir standart ağırlıklı modelle ve tek bir <strong>gerçekçi-varsayılan</strong> uygulama disipliniyle puanlandı. Ağırlıklar görev talimatı § 24'ten değiştirilmeden alındı.</p>
+<h3>Ağırlıklar</h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Ölçüt</th><th>Ağırlık</th><th>Ölçüt</th><th>Ağırlık</th></tr></thead>
+<tbody>
+<tr><td>Satın alma niyeti</td><td>%12</td><td>Katalog / çapraz satış</td><td>%8</td></tr>
+<tr><td>Talep</td><td>%10</td><td>Evergreen potansiyeli</td><td>%6</td></tr>
+<tr><td>Rekabet çekiciliği</td><td>%10</td><td>Üretim fizibilitesi</td><td>%5</td></tr>
+<tr><td>Rakip kalite açığı</td><td>%10</td><td>AI ikame direnci</td><td>%3</td></tr>
+<tr><td>Seri potansiyeli</td><td>%12</td><td>Risk</td><td>%4</td></tr>
+<tr><td>Amazon Ads uygunluğu</td><td>%10</td><td colspan="2"><strong>TOPLAM %100</strong></td></tr>
+<tr><td>Birim ekonomisi</td><td>%10</td><td colspan="2"></td></tr>
+</tbody>
+</table>
+</div>
+<h3>Gerçekçi-varsayılan disiplini</h3>
+<p>Hiçbir adaya "her şey mükemmel giderse" varsayımı uygulanmadı. Fiyatlama <em>gözlemlenen hacim liderlerinin</em> bandından alındı (kazananda bu, puanı 9'dan 7'ye indirdi). Reklam varsayımları beş adayda aynı (%60 tolerans). Yorum yorumlaması beş adayda aynı asgari-n kuralına tabi. Çapraz satış varsayımları beş adayda aynı senaryo bandında.</p>
+<h3>Puan matrisi</h3>
+<div class="tablewrap">
+<table>
+<caption>0–10 ölçek · gerçekçi-varsayılan · çelişmeli inceleme öncesi</caption>
+<thead><tr><th>Ölçüt</th><th>Ağ.</th><th>IEP</th><th>Dikiş</th><th>HVAC</th><th>Soyağacı</th><th>Solar</th></tr></thead>
+<tbody>
+<tr><td>Satın alma niyeti</td><td>%12</td><td><strong>9</strong></td><td>6</td><td><strong>9</strong></td><td>5</td><td>7</td></tr>
+<tr><td>Talep</td><td>%10</td><td><strong>8</strong></td><td>7</td><td>7</td><td>7</td><td>6</td></tr>
+<tr><td>Rekabet çekiciliği</td><td>%10</td><td><strong>6</strong></td><td><strong>6</strong></td><td>3</td><td>5</td><td>4</td></tr>
+<tr><td>Rakip kalite açığı</td><td>%10</td><td><strong>7</strong></td><td>5</td><td>4</td><td>6</td><td>5</td></tr>
+<tr><td>Seri potansiyeli</td><td>%12</td><td><strong>8</strong></td><td>6</td><td>6</td><td>6</td><td>6</td></tr>
+<tr><td>Amazon Ads</td><td>%10</td><td><strong>8</strong></td><td>6</td><td>7</td><td>6</td><td>7</td></tr>
+<tr><td>Birim ekonomisi</td><td>%10</td><td>7</td><td>8</td><td><strong>9</strong></td><td>7</td><td>7</td></tr>
+<tr><td>Katalog / çapraz satış</td><td>%8</td><td><strong>8</strong></td><td>7</td><td><strong>8</strong></td><td><strong>8</strong></td><td>7</td></tr>
+<tr><td>Evergreen</td><td>%6</td><td>7</td><td><strong>9</strong></td><td>5</td><td>6</td><td>4</td></tr>
+<tr><td>Üretim fizibilitesi</td><td>%5</td><td><strong>8</strong></td><td>7</td><td>7</td><td>7</td><td>7</td></tr>
+<tr><td>AI ikame direnci</td><td>%3</td><td>5</td><td><strong>7</strong></td><td>3</td><td>4</td><td>4</td></tr>
+<tr><td>Risk</td><td>%4</td><td>5</td><td><strong>8</strong></td><td>2</td><td>7</td><td>4</td></tr>
+<tr><th>TOPLAM</th><th>%100</th><th><strong>7,45</strong></th><th>6,62</th><th>6,26</th><th>6,17</th><th>5,89</th></tr>
+</tbody>
+</table>
+</div>
+<div class="rank-row win"><span class="pos">1</span><span class="nm">IEP / Özel eğitim ebeveyn savunuculuğu</span><span class="sc">7,45</span></div>
+<div class="rank-row two"><span class="pos">2</span><span class="nm">Dikiş kalıp uyumu ve kalıp düzeltme</span><span class="sc">6,62</span></div>
+<div class="rank-row"><span class="pos">3</span><span class="nm">HVAC / soğutma saha referansı</span><span class="sc">6,26</span></div>
+<div class="rank-row"><span class="pos">4</span><span class="nm">Soyağacı araştırma metodolojisi</span><span class="sc">6,17</span></div>
+<div class="rank-row"><span class="pos">5</span><span class="nm">Off-grid solar / 12V güç sistemi</span><span class="sc">5,89</span></div>
+<h3>Nerede cömert, nerede sert davranıldı</h3>
+<ul class="tight">
+<li><strong>Kazanan cömert puan almadı.</strong> Birim ekonomisinde 7 (beş finalistin ortası), riskte 5, AI direncinde 5 aldı. Ekonomi puanı, gözlemlenen hacim liderleri $10–16 bandında olduğu için bilinçle düşürüldü.</li>
+<li><strong>HVAC, en iyi ekonomisine rağmen üçüncü.</strong> Rekabet 3 ve risk 2, $18,74'lük telifi taşıyamadı. Bu, "mükemmel ekonomi + imkânsız uzman erişimi = kayıp" kuralının uygulanmasıdır.</li>
+<li><strong>Solar'ın talep puanı 4,9K yoruma rağmen 6.</strong> BSR #99.832 olduğu için ömür-boyu yorum yanılsaması testi uygulandı.</li>
+<li><strong>Soyağacının talep puanı, mutlak pazarı ölçülemediği için tavanlandı</strong> — büyük olmadığı için değil, bilinmediği için.</li>
+</ul>
+</section>
+<section id="s24">
+<h2 class="sect-title"><span class="n">24</span> Çelişmeli İnceleme</h2>
+<p class="lead">Birincil sıralama tamamlandıktan sonra, <strong>tamamen ayrı ve çıpasız</strong> bir inceleyici devreye alındı. Görev talimatı § 27 gereği bu ajana <em>önceki turun varlığı, adayları veya kazananı hiç anlatılmadı</em> — yalnızca bu turun kanıtları ve sıralaması verildi, görevi ise "birinci sıradakini yık" idi.</p>
+<div class="card red">
+<p><strong>Sonuç: kazanan yine ayakta kalmadı — ve bu kez sebep bir yorum farkı değil, <em>olgusal olarak yanlış bir iddiaydı</em>.</strong> Birincil analizin kalite açığı tezi ("kategori liderleri 2006 ve 2010 tarihli, dolayısıyla güncelliğini yitirmiş") doğrudan çürütüldü. İki belirleyici bulgu <strong>bu rapor tarafından bağımsız olarak yeniden doğrulandı</strong>.</p>
+</div>
+
+<h3>İki belirleyici bulgu — birincil analiz tarafından yeniden doğrulandı</h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Bulgu</th><th>Doğrulanan kanıt <span class="tag tag-obs">OBSERVED</span></th><th>Etkisi</th></tr></thead>
+<tbody>
+<tr><td><strong>Nolo, bir ay önce 12. baskıyı yayımladı</strong></td><td>ASIN <code>1413333540</code> · Yayıncı <strong>NOLO</strong> · Baskı <strong>Twelfth</strong> · Yayın tarihi <strong>28 Temmuz 2026</strong> · 400 sayfa · BSR #294.959 · #92 Legal Self-Help · 4,5★ / 5 yorum · Yazar Lawrence Siegel, <em>40+ yıllık özel eğitim avukatı</em></td><td>"Liderler eski" tezi <strong>tamamen çöktü</strong>. Profesyonel bir hukuk yayınevi ~3 yıllık revizyon temposuyla çalışıyor. Birincil analizin dayandığı $35,99'luk kayıt ise <em>eskimiş 11. baskıydı</em>.</td></tr>
+<tr><td><strong>Güncellik açığı Ocak 2026'da zaten dolduruldu</strong></td><td>ASIN <code>1637635125</code> · <em>The Epic IEP</em> · Mission Driven Press · <strong>27 Ocak 2026</strong> · 288 sayfa · <strong>BSR #21.216</strong> — Wrightslaw'ın #27.933'ünden <em>daha iyi</em> · #13 Inclusive Education Methods · 4,8★ / <strong>109 yorum (7 ayda)</strong> · Yazar Karen Mayer Cunningham, 20+ yıllık savunucu/arabulucu</td><td>Yalnızca açık dolmakla kalmadı; dolduran kitap <strong>eski lideri geçti</strong> — ve yazarı kimlik bilgisine sahip bir savunucu.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>İtirazlar ve kararlar</h3>
+<div class="tablewrap">
+<table>
+<caption><span class="tag tag-acc">ACCEPTED</span> itiraz geçerli · <span class="tag tag-reb">REBUTTED</span> iddia ayakta · <span class="tag tag-unr">UNRESOLVED</span> belirlenemedi</caption>
+<thead><tr><th>#</th><th>İtiraz</th><th>Belirleyici kanıt</th><th>Karar</th><th>Puan etkisi</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>"Eski rakipler" kalite açığı olgusal olarak ölü — Nolo bir ay önce 12. baskıyı çıkardı</td><td>Yukarıda; birincil analiz tarafından yeniden doğrulandı</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Kalite açığı 7→<strong>2</strong></td></tr>
+<tr><td>2</td><td>Güncellik açığı Ocak 2026'da dolduruldu ve dolduran kitap lideri geçti</td><td>Yukarıda; yeniden doğrulandı</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Rekabet 6→<strong>3</strong></td></tr>
+<tr><td>3</td><td>Amazon'un kendi yorum özetlerinde yerleşiklerde <em>hiç</em> olumsuz etiket yok — sömürülecek algılanan kusur yok</td><td>Wrightslaw n=653 etiketleri: Informative(61), Content(28), Readability(16), Value for money(8), Well-written(6) — <strong>olumsuz etiket yok</strong>. Karşılaştırma: dikiş liderinde <strong>Complexity(58)</strong> olumsuz etiketi var (n=1.797)</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Kalite açığını pekiştirir</td></tr>
+<tr><td>4</td><td>IEP arayan ebeveynler IEP kitabı satın almıyor; kategori davranış/duyusal ebeveynlik kitaplarının</td><td>Amazon Best Sellers, <strong>Special Education</strong> düğümü #1–#30 arasında <strong>tek bir IEP-süreci ebeveyn kitabı yok</strong>; #1 bir <em>el yazısı çalışma kitabı</em> (15.083 yorum). Wrightslaw kategoride #87.</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Talep 8→<strong>4</strong></td></tr>
+<tr><td>5</td><td>Talep rakamı hem yanlış hem <em>yanlış türde</em>: net değişim, brüt yeni giriş sanıldı</td><td>NCES: 7,5M (2022–23), 7,3M (2019–20) → üç yılda ~%3. İddia edilen %12,6 / 8,2M bununla tutarsız. Ayrıca "+301.991 <em>net</em>" = girenler − çıkanlar (21 yaşını doldurma, mezuniyet, sınıflandırma kaldırma); brüt yeni aile sayısı değil.</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Talep 8→<strong>4</strong></td></tr>
+<tr><td>6</td><td>Kitap 2'nin içeriği için <strong>yasal olarak zorunlu, ücretsiz</strong> ikame var</td><td><strong>34 CFR 300.504</strong>: okul, usul güvenceleri bildirimini <em>yılda en az bir kez</em> ücretsiz vermek zorunda; içeriği 13 madde — bağımsız değerlendirme, ön yazılı bildirim, veli onayı, kayıt erişimi, şikâyet ve dava süreçleri, arabuluculuk, <em>stay-put</em>, avukat ücretleri… Ayrıca ülke genelinde <strong>~100 federal finansmanlı ücretsiz PTI/CPRC merkezi</strong>.</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Satın alma niyeti 9→<strong>6</strong></td></tr>
+<tr><td>7</td><td>Gerçek fiyat tavanı ~$20–23; $30+ bandı ticari olarak ölü</td><td>Canlı fiyatlar: Wrightslaw $10,13 · Emotions $15,91 · Epic IEP $19,99 · Nolo 12. bs. $23,21. Ve <em>Your Special Education Rights</em> ($32,99, avukat+savunucu yazarlı) <strong>BSR #553.807</strong>, 9 yılda 216 yorum.</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Ekonomi 7→<strong>4</strong> · Ads 8→<strong>5</strong></td></tr>
+<tr><td>8</td><td>Yeni girenler mezarlık — ve önerilen ürünün <em>aynısı</em> zaten 0 yorumda</td><td><strong>Son üç günde üç yeni IEP-ebeveyn başlığı.</strong> <em>The Parent Email Playbook: 50 Ready-to-Use Emails</em> (27 Ağu 2026 — bugün) 0 yorum; <em>IEP &amp; 504 Parent Organizer</em> (26 Ağu, $17,99) 0 yorum. Bunlar birincil analizin iki üretim direğiydi (mektup şablonları + form/kontrol listesi). Ayrıca <em>The Parents IEP Guide</em> ($29,99, Ağu 2024) <strong>iki yılda 0 yorum</strong>; Wiley'nin <em>Your IEP Playbook</em>'u 10 ayda 16 yorum.</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Rekabet 6→<strong>3</strong> · Üretim 8→<strong>6</strong></td></tr>
+<tr><td>9</td><td>Wrightslaw donmuş değil; yalnızca iki başlığına bakılmış</td><td><em>Special Education Law 3. Baskı</em> (Mart 2023); <em>All About Tests and Assessments 2. Baskı</em> (2018); yıllık <em>Legal Developments &amp; Cases</em> serisi.</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Kalite açığına dâhil</td></tr>
+<tr><td>10</td><td>Kitap 3 (yetişkinliğe geçiş) uydurma bir devam kitabı — pazarı yok</td><td>Segmentin tavanı: <em>Preparing for Life</em> (2006) 113 yorum · <em>The Breakaway</em> (2021) 106 · 69 · 53. Sorgu o kadar ince ki Amazon konu dışı sonuç dolduruyor.</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Seri 8→<strong>4</strong></td></tr>
+<tr><td>11</td><td>Bu nişte ürün bir kitap değil, bir <strong>kimlik belgesidir</strong></td><td>70 yorumun üzerindeki <strong>her</strong> başlık avukat veya sertifikalı savunucu yazarlı: Wrightslaw (Yüksek Mahkeme'de dava görmüş avukat), Nolo (1979'dan beri avukat), <em>Your Special Education Rights</em> (avukat + savunucu), <em>The Epic IEP</em> (20+ yıllık savunucu/arabulucu). <strong>%100.</strong> Kategorinin pazarlama vaadi ("okulunuzun size söylemedikleri") <em>zaten</em> kimlik belgesidir.</td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Risk 5→<strong>2</strong> · AI direnci 5→<strong>3</strong></td></tr>
+<tr><td>12</td><td>2025–26 federal eğitim politikası oynaklığı evergreen'i düşürmeli</td><td>İnceleyici bunu <strong>doğrulayamadı</strong> (arama bütçesi tükendi). Yalnızca çıkarım sundu: Nolo'nun ~3 yıllık revizyon temposu içeriğin bozunduğunun <em>pazar kanıtıdır</em>.</td><td><span class="tag tag-unr">UNRESOLVED</span></td><td>Evergreen 7→<strong>6</strong> <span class="small">(inceleyicinin önerdiği 5 değil — bkz. aşağıda)</span></td></tr>
+<tr><td>13</td><td>İkinci sıradaki (dikiş) kazanmalı</td><td>Eş-koşullu derinlik sayımı: dikiş 1.797 / 1,2K / 1K / 992 / 986 / 958 / 952 / 865 / 829 / 588 / 577 / 549 — <strong>on ikisi de konu içi</strong>. IEP sayımı: 653 / 520 / 490 / 216 / 194 / 123 / 109 / 70 / 56 / 47 / 46 / 43. <strong>Dikişin 12. sıradaki başlığı (549), IEP'in ilk üçü hariç her şeyi geçiyor.</strong></td><td><span class="tag tag-acc">ACCEPTED</span></td><td>Sıralama yeniden düzenlendi</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>İki bağımsız araştırma hattı çelişti — ve doğrudan gözlemle çözüldü</h3>
+<div class="card red">
+<p>Çelişmeli inceleme sürerken ikinci ve bağımsız bir bibliyografik tarama hattı da çalıştı. İkisi <strong>bir noktada birbirini yalanladı</strong> ve bu, raporlanması gereken bir metodoloji olayıdır.</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>İddia</th><th>Hat A (çelişmeli inceleme)</th><th>Hat B (bibliyografik tarama)</th><th>Çözüm</th></tr></thead>
+<tbody>
+<tr><td>Nolo güncel bir baskı yayımladı mı?</td><td><strong>Evet</strong> — 12. baskı, 28.07.2026</td><td><strong>Doğrulanamadı</strong> — "ayrı bir 2023 baskı ISBN'i teyit edilemedi"; <code>store.nolo.com</code> 403 döndü</td><td><strong>Hat A doğru.</strong> Birincil analiz Amazon ürün sayfasını <em>doğrudan yükleyerek</em> teyit etti: ASIN <code>1413333540</code>, Yayıncı NOLO, Baskı <strong>Twelfth</strong>, tarih <strong>28 Temmuz 2026</strong>, 400 sayfa. Hat B'nin erişimi engelliydi (Amazon ona JS kabuğu döndürdü, Nolo 403 verdi) — <em>kanıt yokluğu, yokluk kanıtı değildir.</em></td></tr>
+<tr><td>Wrightslaw durgun mu?</td><td>Hayır — 2023'te 3. baskı çıkardılar</td><td><strong>Evet</strong> — mağazada 2010 sonrası yeni başlık yok; yıllık <em>Legal Developments</em> PDF serisi <strong>2019'da duruyor</strong></td><td><strong>İkisi de kısmen haklı.</strong> Wrightslaw yeniden basıyor ama <em>yeni başlık</em> çıkarmıyor ve yıllık serisi durmuş. Bu, "durgun" ile "ölü" arasında bir yerdedir.</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Sonuç değişmiyor:</strong> Wrightslaw durgun olsa bile, güncellik açığı iddiası yine ölüdür — çünkü <em>Nolo 12. baskı (Tem 2026)</em> ve <em>The Epic IEP (Oca 2026)</em> güncel, iyi puanlı ve ikincisi eski lideri BSR'da geçmiş durumda.</p>
+</div>
+<div class="card blue">
+<h4>Hat B'nin eklediği ve kabul edilen kanıt</h4>
+<ul class="tight">
+<li><strong>Büyük yayıncı bile bu nişte satamıyor:</strong> Lisa Lightner, <em>Your IEP Playbook</em>, <strong>Jossey-Bass (Wiley)</strong>, 14.10.2025, $25,00 — <strong>Goodreads'te 10 ayda 4 puanlama</strong> <span class="tag tag-obs">OBSERVED</span>. Kurumsal dağıtım gücü bile talebi doğurmuyor.</li>
+<li>Son 14 ayda ticari olarak yayımlanmış <strong>yalnızca üç</strong> ebeveyn-odaklı IEP başlığı var: <em>Your IEP Playbook</em> (Eki 2025), <em>Navigate and Advocate</em> (Future Horizons, Ara 2025, 50 sayfa, $13,95), <em>The Epic IEP</em> (Oca 2026).</li>
+<li>Bağımsız/kendi yayımlayan uzun kuyrukta (2023–2026, 10+ başlık) en yüksek doğrulanabilir traksiyon <strong>17 Goodreads puanlaması</strong>.</li>
+<li><strong>Penguin Random House ve Hachette'in site aramaları bu konuda sıfır sonuç veriyor</strong> — Big Five kategoride yok. Bu, "düşük hendek" değil, <em>düşük ticari çekicilik</em> olarak okunmalıdır (§ 32 dersi).</li>
+<li><span class="tag tag-unv">Bağlam notu:</span> <em>IEP Guide for All</em> (Laviano &amp; Swanson, Oca 2025) künyesi <strong>Children's Health Defense Books</strong> — bu nişte kıyaslama yaparken bilinmesi gereken bir itibar bağlamı.</li>
+</ul>
+<p>Bu bulgular kazananın demotesini <strong>zayıflatmıyor, güçlendiriyor</strong>: Talep 4 ve Rekabet 3 puanları korunmuştur.</p>
+</div>
+<h3>Körü körüne kabul edilmeyenler — birincil analizin ayrıldığı üç nokta</h3>
+<div class="card blue">
+<h4>1 · Satın alma niyeti 5 değil <strong>6</strong></h4>
+<p>İnceleyici, ücretsiz zorunlu usul güvenceleri bildirimi ve ~100 PTI merkezi nedeniyle niyeti 5'e indirmek istedi. Bulgu kabul edildi ama <strong>tam ölçüsü değil</strong>: 34 CFR 300.504 bildirimi bir <em>hukuki tebligattır</em>, kullanılabilir bir rehber değildir — anlaşılmazlığı, Wrightslaw'ın var olma sebebidir. PTI merkezlerinin kapasitesi de sınırlıdır. Yine de ücretsiz ve zorunlu bir ikamenin varlığı gerçek bir niyet düşürücüdür. <strong>6</strong>.</p>
+</div>
+<div class="card blue">
+<h4>2 · Evergreen 5 değil <strong>6</strong> — çünkü itiraz kanıtlanmadı</h4>
+<p>İnceleyici kendi ifadesiyle 2025–26 politika türbülansını <strong>doğrulayamadı</strong> ve puanı "geçici olarak" 5'e indirdi. Doğrulanmamış bir itiraz, puanı doğrulanmış bir itiraz kadar düşüremez. Kabul edilen tek kanıt Nolo'nun ~3 yıllık revizyon temposudur — bu gerçek bir bakım yükü göstergesidir ama 7'den 5'e değil, <strong>6</strong>'ya indirmeyi haklı çıkarır. Konu <span class="tag tag-unr">UNRESOLVED</span> olarak kayıtlıdır.</p>
+</div>
+<div class="card blue">
+<h4>3 · Katalog puanı da düşürüldü — inceleyicinin <em>atladığı</em> bir tutarsızlık</h4>
+<p>İnceleyici katalog/çapraz satış puanını 8'de bıraktı. Ancak niş çekirdek kitapları taşıyamıyorsa katalog değeri de düşer; 8'de bırakmak, kabul edilen diğer düzeltmelerle tutarsız olurdu. Birincil analiz bunu kendi aleyhine <strong>6</strong>'ya indirmiştir.</p>
+</div>
+<div class="card accent">
+<p><strong>İnceleyicinin en değerli metodolojik tespiti — ve kabul edilmesi:</strong> "Kazananın ekonomi ve üretim varsayımları <em>ikinci sıradakinin</em> nişinden ödünç alınmıştı." Gerçekten öyleydi: "~250 sayfa büyük trim, $27–30, form ve kontrol listeleri" tarifi, dikiş nişindeki <em>The Fitting Book</em>'u (278 sayfa, 8,5×11, $28,95) neredeyse birebir anlatıyor. IEP nişinin gözlemlenen formatı ise 6×9 / 7×9, 288–400 sayfa düz metin, $10–23. <strong>Kazanan, kaybedenin pazar verisiyle puanlanmıştı.</strong></p>
+</div>
+</section>
+
+<section id="s25">
+<h2 class="sect-title"><span class="n">25</span> Düzeltilmiş Sıralama</h2>
+<div class="tablewrap">
+<table>
+<caption>Çelişmeli inceleme öncesi → sonrası</caption>
+<thead><tr><th>Aday</th><th>Önce</th><th>Sonra</th><th>Değişim</th><th>Sıra</th></tr></thead>
+<tbody>
+<tr><td><strong>Dikiş kalıp uyumu</strong></td><td>6,62</td><td><strong>7,02</strong></td><td><span class="arrow-up">+0,40</span></td><td>2. → <strong>1. KAZANAN</strong></td></tr>
+<tr><td>HVAC / soğutma</td><td>6,26</td><td>6,26</td><td>—</td><td>3. → <strong>2.</strong></td></tr>
+<tr><td>Soyağacı</td><td>6,17</td><td>6,17</td><td>—</td><td>4. → 3.</td></tr>
+<tr><td>Off-grid solar</td><td>5,89</td><td>5,89</td><td>—</td><td>5. → 4.</td></tr>
+<tr><td><strong>IEP / özel eğitim</strong></td><td><strong>7,45</strong></td><td><strong>4,31</strong></td><td><span class="arrow-down">−3,14</span></td><td><strong>1. → 5. (sonuncu)</strong></td></tr>
+</tbody>
+</table>
+</div>
+<div class="rank-row win"><span class="pos">1</span><span class="nm">Dikiş kalıp uyumu ve kalıp düzeltme — <strong>KAZANAN</strong></span><span class="sc">7,02</span></div>
+<div class="rank-row two"><span class="pos">2</span><span class="nm">HVAC / soğutma saha referansı — <strong>İKİNCİ</strong></span><span class="sc">6,26</span></div>
+<div class="rank-row"><span class="pos">3</span><span class="nm">Soyağacı araştırma metodolojisi</span><span class="sc">6,17</span></div>
+<div class="rank-row"><span class="pos">4</span><span class="nm">Off-grid solar / 12V güç sistemi</span><span class="sc">5,89</span></div>
+<div class="rank-row"><span class="pos">5</span><span class="nm">IEP / özel eğitim ebeveyn savunuculuğu</span><span class="sc">4,31</span></div>
+
+<h3>Kazananın <em>yükselen</em> puanları — kendi kuralımızın kendi aleyhimize uygulanması</h3>
+<p>Dikişin puanı yalnızca IEP düştüğü için birinci olmadı; <strong>üç ölçütte kendi puanı da yükseldi</strong>, çünkü birincil analiz onu kendi kurallarına göre <em>eksik</em> puanlamıştı:</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Ölçüt</th><th>Önce</th><th>Sonra</th><th>Gerekçe <span class="tag tag-obs">OBSERVED</span></th></tr></thead>
+<tbody>
+<tr><td>Rakip kalite açığı</td><td>5</td><td><strong>7</strong></td><td>Asgari-n kuralı doğru uygulandığında: lider üründe (n=<strong>1.797</strong>) <em>sayısallaştırılmış</em> olumsuz etiket var — <strong>Complexity(58)</strong>, yanında Informative(152), Detailed instructions(86), Image quality(85). Birincil analiz bu etiketi görmüş ama "ılımlı" diye 5'te bırakmıştı; oysa IEP'e <em>doğrulanmamış</em> bir varsayımla 7 verilmişti. Tutarsızlık düzeltildi.</td></tr>
+<tr><td>Talep</td><td>7</td><td><strong>8</strong></td><td>Yeni giren emilimi: DK'nın <em>The Sewing Book</em>'u (4 Şub 2025) <strong>18 ayda 865 yorum</strong> ve BSR <strong>#15.653</strong>, #4 in Sewing. IEP'in en iyi yeni gireni 7 ayda 109. Ayrıca derinlik sayımı (§ 24, İtiraz 13).</td></tr>
+<tr><td>Birim ekonomisi</td><td>8</td><td><strong>9</strong></td><td><strong>Kendi kendine yayımlanmış</strong> bir yazar (Gina Renee Designs) aynı anda <strong>$28,95 ciltsiz ve $64,50 spiral</strong> SKU sürdürüyor — format sekmelerinden doğrudan doğrulandı. Akademik referans $45,50. Bu, bağımsız yayıncı için kanıtlanmış premium fiyat gücüdür.</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="s26">
+<h2 class="sect-title"><span class="n">26</span> Duyarlılık Testleri</h2>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Senaryo</th><th>Dikiş</th><th>HVAC</th><th>Soyağacı</th><th>Solar</th><th>IEP</th><th>Kazanan farkı</th></tr></thead>
+<tbody>
+<tr><td>Temel</td><td><strong>7,02</strong></td><td>6,26</td><td>6,17</td><td>5,89</td><td>4,31</td><td>+0,76</td></tr>
+<tr><td>ST1 · Rekabet %25 kötüleşir</td><td><strong>6,70</strong></td><td>6,08</td><td>5,90</td><td>5,67</td><td>4,18</td><td>+0,61</td></tr>
+<tr><td>ST2 · Telif katkısı %20 kötüleşir</td><td><strong>6,84</strong></td><td>6,08</td><td>6,03</td><td>5,75</td><td>4,23</td><td>+0,76</td></tr>
+<tr><td>ST3 · Çapraz satış çok daha düşük</td><td><strong>6,51</strong></td><td>5,72</td><td>5,63</td><td>5,38</td><td>3,93</td><td>+0,79</td></tr>
+<tr><td>ST4 · Bileşik en-kötü</td><td><strong>6,00</strong></td><td>5,36</td><td>5,21</td><td>5,01</td><td>3,72</td><td>+0,64</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card accent">
+<p><strong>Kazanan dört senaryonun dördünde de birinci ve fark hiç 0,61'in altına inmiyor.</strong> Sıralamanın geri kalanı da hiçbir testte yer değiştirmiyor.</p>
+<p><strong>Ama bu turun ana dersi tam olarak burada:</strong> önceki kazanan da dört stres testinin dördünü geçmişti (0,67–0,85 farkla) ve <em>yine de olgusal olarak yanlış bir girdiye dayanıyordu</em>. Stres testi bir <strong>kırılganlık</strong> testidir, bir <strong>doğruluk</strong> testi değil. Bu yüzden § 27 zorunludur.</p>
+</div>
+</section>
+
+<section id="s27">
+<h2 class="sect-title"><span class="n">27</span> Girdi Geçerliliği Testi</h2>
+<p class="lead">Bu turda eklenen yeni zorunlu adım. Kazananın <strong>en güçlü altı iddiası</strong> tek tek birincil kaynağa veya doğrudan gözleme karşı sınandı. Amaç modeli değil, <em>modele giren sayıları</em> denetlemektir.</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>#</th><th>Kazananın en güçlü iddiası</th><th>Bağımsız sınama sonucu</th><th>Durum</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><strong>Talep:</strong> "Yeni girenler bu pazarda gerçekten emiliyor"</td><td>DK <em>The Sewing Book</em> (4 Şub 2025): BSR <strong>#15.653</strong>, #4 in Sewing, <strong>865 yorum / 18 ay</strong> <span class="tag tag-obs">OBSERVED</span></td><td><span class="tag tag-acc">DOĞRULANDI</span> <span class="small">— ama DK büyük bir yayınevi; emilimin bir kısmı marka gücüdür. Bağımsız emilim kanıtı ayrı: Dunham 958, Rushmore 986 (ikisi de 2021).</span></td></tr>
+<tr><td>2</td><td><strong>Satın alma niyeti:</strong> "Basılı formatın gerçek bir avantajı var"</td><td>Doğrudan kanıt bulunamadı. Aksine lider ürün <em>The Fitting Book</em>, "neredeyse her sayfada video'ya giden QR kodları" ile öne çıkıyor ve müşteri etiketlerinde <strong>Video content</strong> bir güç olarak anılıyor <span class="tag tag-obs">OBSERVED</span></td><td><span class="tag tag-unr">ZAYIF</span> <span class="small">— saf basılı ürün dezavantajlı olabilir; § 32'de risk olarak kayıtlı.</span></td></tr>
+<tr><td>3</td><td><strong>Rekabet:</strong> "Bağımsız yayıncı bu pazarda kazanabilir"</td><td>Gina Renee Dunham (<strong>kendi kendine yayımlamış</strong>, Gina Renee Designs): 958 yorum, BSR #54.594, $28,95 + $64,50 spiral. Jenny Rushmore 986 yorum. Her ikisi de 2021 <span class="tag tag-obs">OBSERVED</span></td><td><span class="tag tag-acc">DOĞRULANDI</span> <span class="small">— bu turun en güçlü tek kanıtı.</span></td></tr>
+<tr><td>4</td><td><strong>Kalite açığı:</strong> "Liderde sömürülebilir bir kusur var"</td><td>Complete Photo Guide to Perfect Fitting (n=<strong>1.797</strong>): olumsuz etiket <strong>Complexity(58)</strong>, özet metni <em>"some find it too complicated for their understanding"</em> <span class="tag tag-obs">OBSERVED</span></td><td><span class="tag tag-acc">DOĞRULANDI</span> <span class="small">— sayısallaştırılmış ve asgari-n eşiğini geçiyor.</span></td></tr>
+<tr><td>5</td><td><strong>Seri:</strong> "Kitap 3'ün bağımsız talebi var"</td><td>Winifred Aldrich, <em>Metric Pattern Cutting for Women's Wear</em>: <strong>$45,50</strong>, 992 yorum <span class="tag tag-obs">OBSERVED</span> — blok/kalıp çizimi kendi başına bir pazar ve <em>en yüksek</em> fiyat noktası</td><td><span class="tag tag-acc">DOĞRULANDI</span></td></tr>
+<tr><td>6</td><td><strong>Birim ekonomisi:</strong> "$27–29 savunulabilir"</td><td>Gözlemlenen bant $18,55–$45,50; kendi kendine yayımlayan yazar $28,95 <em>ve</em> $64,50 sürdürüyor; medyan ~$21–23 <span class="tag tag-obs">OBSERVED</span></td><td><span class="tag tag-acc">DOĞRULANDI</span> <span class="small">— ama medyan $21–23 olduğu için model $26,99'da tutuldu, $29,99'da değil.</span></td></tr>
+</tbody>
+</table>
+</div>
+<div class="card red">
+<p><strong>Altı iddiadan beşi doğrulandı, biri zayıf çıktı.</strong> Zayıf çıkan iddia (basılı format avantajı) puanı yükseltmek için <strong>kullanılmamıştır</strong> — satın alma niyeti 6'da tutulmuştur, ki bu beş finalist içinde ortanın altıdır. Kazananın skoru, doğrulanamayan tek varsayımına dayanmıyor.</p>
+<p class="footnote"><strong>Karşılaştırma:</strong> Aynı test önceki birinci sıradakine uygulandığında iki iddia (talep rakamı ve kalite açığı) <em>çürütüldü</em> — ve o aday sonuncu sıraya düştü.</p>
+</div>
+</section>
+<section id="s28">
+<h2 class="sect-title"><span class="n">28</span> Nihai Kazanan</h2>
+<div class="card accent">
+<p class="rankbig">Dikiş kalıp uyumu ve kalıp düzeltme</p>
+<p class="lead">Ev dikişçisinin en tekrarlayan ve en çok terk ettiren sorunu: <em>kalıbı harfiyen uyguluyorum, giysi yine oturmuyor.</em></p>
+<div class="badge-verdict A">KAZANAN · 7,02 / 10 · dört stres testinin dördünde de birinci</div>
+</div>
+<div class="card green">
+<p><strong>§ 47 — geri dönüşüm kontrolü:</strong> Bu pazar birinci turun finalisti <strong>değildi</strong>. Birinci turun beş finalisti hemşirelik doz hesabı, satranç, ASL, noter/LSA ve amatör telsizdi. Dikiş kalıp uyumu bu turda ilk kez değerlendirilmiştir; müşterisi, anahtar kelime ekosistemi, rekabet yapısı ve ürün ekonomisi bunların hiçbiriyle örtüşmez.</p>
+</div>
+
+<h3>Neden bu pazar kazandı — yedi maddede</h3>
+<ol class="tight">
+<li><strong>Bağımsız yayıncının kazandığı kanıtlı — bu turun en güçlü tek bulgusu.</strong> Gina Renee Dunham, <em>kendi kendine yayımladığı</em> <em>The Fitting Book</em> ile 958 yorum, BSR #54.594 ve aynı anda <strong>$28,95 ciltsiz + $64,50 spiral</strong> SKU sürdürüyor <span class="tag tag-obs">OBSERVED</span>. Jenny Rushmore da 2021'de girip 986 yoruma ulaştı. Bu, tam olarak bizim konumumuzdaki bir yayıncının başarabildiğinin kanıtıdır.</li>
+<li><strong>Sayısallaştırılmış, sömürülebilir bir kalite açığı var.</strong> Kategori liderinde (n=<strong>1.797</strong>) Amazon'un kendi etiketi <strong>Complexity(58)</strong> ve özet metni <em>"some find it too complicated for their understanding"</em> <span class="tag tag-obs">OBSERVED</span>. Bu bir varsayım değil, sayılmış bir kusurdur.</li>
+<li><strong>Pazar derinliği yüksek.</strong> Konu içi on iki başlığın hepsi 549 yorumun üzerinde (1.797 / 1,2K / 1K / 992 / 986 / 958 / 952 / 865 / 829 / 588 / 577 / 549).</li>
+<li><strong>Yeni girenler emiliyor.</strong> DK'nın <em>The Sewing Book</em>'u (Şub 2025) 18 ayda 865 yorum ve BSR #15.653.</li>
+<li><strong>Bu turun en iyi fiyat gücü:</strong> $18,55–$45,50 bandı, kendi kendine yayımlayan bir yazarın $64,50 SKU'su ve $45,50'lik akademik referans.</li>
+<li><strong>Bu turun en iyi evergreen'i (9/10):</strong> kalıp geometrisi ve insan anatomisi değişmez. Rakip yaşları 2008–2021 arasında ve hâlâ satıyorlar — içerik bozunmuyor.</li>
+<li><strong>Uzman kapısı YOK</strong> ve doğrulama fizikseldir: kalıbı uygula, giysiyi dik, oturuyor mu bak. Beş finalistin en düşük uzman bağımlılığı ve en düşük riski (8/10).</li>
+</ol>
+
+<h3>Mutlak pazar — dürüst konuşma</h3>
+<div class="card red">
+<p><span class="tag tag-unv">UNVERIFIED</span> Sektör raporları ABD'de ~3,2 milyon aktif ev dikiş makinesi kullanıcısı bildiriyor (Tier 4). <strong>Bu bir kurulu tabandır ve yıllık kitap alıcısı değildir</strong> — birinci turun ölümcül hatası tam olarak bu ayrımı kaçırmaktı. Yıllık gerçekçi alıcı havuzu bu belgede <strong>on binler</strong> mertebesinde <span class="tag tag-est">ESTIMATE</span> tutulmuştur ve puanı yükseltmek için kullanılmamıştır.</p>
+<p><strong>Kazananın talep puanı (8), kurulu tabandan değil, <em>açığa vurulmuş tercihten</em> türetilmiştir:</strong> 549+ yorumlu on iki konu-içi başlık, 18 ayda 865 yorum toplayan yeni bir giren ve iki bağımsız yazarın 2021'de kurduğu ~960–990 yorumluk konumlar. Bu, taranan 20 aday içinde <em>ölçülebilir</em> talebin en güçlü kanıtıdır.</p>
+</div>
+</section>
+
+<section id="s29">
+<h2 class="sect-title"><span class="n">29</span> Üç Kitaplık Seri</h2>
+<div class="card accent">
+<p><strong>Seri markası (çalışma adı): <span class="rankbig" style="font-size:1.6rem">TRUE FIT</span></strong></p>
+<p>Kısa, numaralandırılabilir, ürünün tek vaadini taşıyor. Mevcut "Codex" / "The Great Book of…" hatlarından tamamen ayrı.</p>
+<p class="footnote"><strong>Uyarı:</strong> "True Fit" adının kitap kategorisinde marka çakışması § 35'te zorunlu kontrol maddesidir. Ticari kalıp markaları (McCall's, Simplicity, Vogue Patterns, Burda) başlıkta kullanılamaz — KDP Metadata Guidelines başlıkta izinsiz marka kullanımını açıkça yasaklıyor.</p>
+</div>
+
+<h3>KİTAP 1 — <em>True Fit 1: Measure &amp; Diagnose</em></h3>
+<div class="tablewrap"><table><tbody>
+<tr><th style="width:22%">Alt başlık</th><td>"Find Your Real Measurements, Read Your Own Body, and Know Exactly Which Adjustments You Need — Before You Cut."</td></tr>
+<tr><th>Hedef okur</th><td>Dikmeyi bilen ama giysileri oturmayan orta seviye ev dikişçisi. Kalıbı doğru uyguluyor; sorunun <em>hangi</em> düzeltme olduğunu bilmiyor.</td></tr>
+<tr><th>Çözdüğü problem</th><td><strong>Teşhis problemi.</strong> Piyasadaki kitaplar bir <em>düzeltme kataloğudur</em>; alıcının gerçek sorunu ise hangi düzeltmeye ihtiyacı olduğunu <em>bulmaktır</em>.</td></tr>
+<tr><th>Ürün vaadi</th><td>Ölçüden ve tek bir kumaş prova adımından, kişiye özel bir düzeltme listesine giden sistematik bir teşhis akışı.</td></tr>
+<tr><th>Sayfa / format</th><td>~220–260 sayfa · 8,5×11 inç büyük trim · ciltsiz <em>(spiral SKU Kitap 2 için değerlendirilecek — rakip $64,50'de satıyor)</em></td></tr>
+<tr><th>Fiyat aralığı</th><td><strong>$24,99 – $28,99</strong> (model: $26,99) · gözlemlenen medyan $21–23, lider bağımsız $28,95</td></tr>
+<tr><th>İçerik mimarisi</th><td>1) Ölçü almanın doğru yolu ve en sık yapılan altı hata · 2) Kalıp bedeni ≠ hazır giyim bedeni · 3) Tek seferlik prova kalıbı (muslin) protokolü · 4) <strong>Teşhis akış şemaları</strong> — kırışıklık deseninden nedene · 5) Bölge bölge belirti atlası (omuz, göğüs, sırt, bel, kalça, kol) · 6) Düzeltme önceliği: hangi sırayla · 7) Kişisel uyum profilinizi kaydetme · 8) Aynı profili sonraki her kalıba uygulama</td></tr>
+<tr><th>Farklılaşma</th><td>(a) <strong>Teşhis-önce mimari</strong> — rakipler katalog, biz akış şeması; (b) <strong>doğrulanmış kusuru doğrudan hedefler:</strong> Complexity(58) şikâyetine karşı her yayılımda tek bir kavram, ön koşulsuz, kademeli yol; (c) her diyagram tutarlı ölçekte, deterministik olarak üretilmiş ve geometrik olarak doğrulanmış çizgi grafiği</td></tr>
+<tr><th>Ana anahtar kelimeler</th><td>pattern fitting · sewing measurements · full bust adjustment · fitting problems sewing · muslin fitting · pattern adjustments for beginners</td></tr>
+<tr><th>Ads hedefleme mantığı</th><td>Anahtar kelime: teşhis niyetli sorgular ("why doesn't my pattern fit", "sewing wrinkles diagnosis"). Ürün: Complete Photo Guide, Palmer/Pletsch, The Fitting Book, Zieman. Kategori: Sewing (Books) · Fashion Craft.</td></tr>
+<tr><th>Rakip ASIN tipleri</th><td>Zanaat yayınevi fotoğraf rehberleri ($21,06) · spiral ciltli seri kitapları · kendi kendine yayımlanmış premium ($28,95 + $64,50) · akademik kalıp çizimi ($45,50)</td></tr>
+<tr><th>Çapraz satış</th><td>Kitap 1 okuru teşhisini koyduğu anda <strong>düzeltmeyi nasıl yapacağını</strong> sorar — Kitap 2.</td></tr>
+</tbody></table></div>
+
+<h3>KİTAP 2 — <em>True Fit 2: The Adjustment Atlas</em></h3>
+<div class="tablewrap"><table><tbody>
+<tr><th style="width:22%">Alt başlık</th><td>"Every Common Pattern Alteration, Worked Step by Step — Bodice, Sleeve, Shoulder, Waist, Hip and Trouser."</td></tr>
+<tr><th>Hedef okur</th><td>Hangi düzeltmeye ihtiyacı olduğunu bilen ve <em>uygulamak</em> isteyen dikişçi.</td></tr>
+<tr><th>Çözdüğü problem</th><td>Uygulama referansı: her düzeltmenin adım adım, ölçekli, geometrik olarak doğru çizimi.</td></tr>
+<tr><th>Sayfa / format</th><td>~260–300 sayfa · 8,5×11 · ciltsiz <strong>+ spiral SKU</strong> (masada açık durması gereken referans; rakip spiral $64,50'de satıyor <span class="tag tag-obs">OBSERVED</span>)</td></tr>
+<tr><th>Fiyat aralığı</th><td><strong>$26,99 – $32,99</strong> ciltsiz (model: $28,99) · spiral <strong>$42,99 – $49,99</strong></td></tr>
+<tr><th>İçerik mimarisi</th><td>Bölge bazlı atlas: her düzeltme için <em>belirti → neden → adım adım çizim → doğrulama provası</em>. Zorluk derecelendirmesi ve düzeltmelerin birbirini etkileme haritası.</td></tr>
+<tr><th>Bağımsız talep</th><td><strong>Evet.</strong> Teşhisini başka bir kaynaktan (kurs, YouTube, Kitap 1'i almamış) yapmış her dikişçi bu referansa ihtiyaç duyar. "Cilt 2" olmasa da aranır.</td></tr>
+<tr><th>Ana anahtar kelimeler</th><td>pattern alteration · full bust adjustment · sway back adjustment · sleeve fitting · trouser fitting · pattern adjustment book</td></tr>
+<tr><th>Ads hedefleme</th><td>Ürün hedefleme: pahalı fotoğraf rehberleri <strong>ve kendi Kitap 1'imiz</strong>. Spiral SKU, "masada açık durma" avantajını reklam metninde somut bir fark hâline getirir.</td></tr>
+<tr><th>Çapraz satış</th><td>Kitap 1'in doğrudan devamı; ayrıca bağımsız giriş kapısı.</td></tr>
+</tbody></table></div>
+
+<h3>KİTAP 3 — <em>True Fit 3: Draft Your Own Block</em></h3>
+<div class="tablewrap"><table><tbody>
+<tr><th style="width:22%">Alt başlık</th><td>"Build a Personal Sloper from Your Own Measurements — and Stop Adjusting Commercial Patterns Forever."</td></tr>
+<tr><th>Hedef okur</th><td>Düzeltmeyi öğrenmiş ve artık her kalıpta aynı işi tekrarlamaktan bıkmış dikişçi.</td></tr>
+<tr><th>Çözdüğü problem</th><td>Yolculuğun mantıksal sonu: ticari kalıbı düzeltmek yerine kendi temel kalıbını (sloper/blok) çizmek.</td></tr>
+<tr><th>Sayfa / format</th><td>~280–320 sayfa · 8,5×11 · ciltsiz</td></tr>
+<tr><th>Fiyat aralığı</th><td><strong>$28,99 – $34,99</strong> (model: $29,99)</td></tr>
+<tr><th>Bağımsız talep — <strong>doğrulandı</strong></th><td><span class="tag tag-obs">OBSERVED</span> Winifred Aldrich, <em>Metric Pattern Cutting for Women's Wear</em>: <strong>$45,50 · 992 yorum</strong>. Blok/kalıp çizimi kendi başına bir pazardır <em>ve serinin en yüksek fiyat noktasıdır</em>. Kitap 3 uydurma bir devam kitabı değildir.</td></tr>
+<tr><th>Farklılaşma</th><td>Akademik kalıp çizimi kitapları (Aldrich) profesyonel/öğrenci diliyle yazılmıştır; bu kitap Kitap 1–2'nin ev dikişçisi diliyle ve aynı diyagram sistemiyle devam eder.</td></tr>
+<tr><th>Ana anahtar kelimeler</th><td>sloper drafting · block pattern drafting · draft your own pattern · personal sloper · pattern making from measurements</td></tr>
+<tr><th>Ads hedefleme</th><td>Öncelik: <strong>kendi Kitap 1 ve 2 sayfalarımız</strong>. İkincil: akademik kalıp çizimi başlıkları (fiyat ve erişilebilirlik avantajımız görünür olur).</td></tr>
+</tbody></table></div>
+
+<h3>Neden bu sıra? <span class="small">(§ 38)</span></h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Karar</th><th>Gerekçe</th></tr></thead>
+<tbody>
+<tr><td><strong>Kitap 1 neden teşhis?</strong></td><td><strong>En güçlü edinme ürünü.</strong> "pattern fitting" ve "why doesn't my pattern fit" en geniş huni ağzıdır; alıcı problemi hissediyor ama adını bilmiyor. Ayrıca en düşük giriş bariyeri: okuma öncesi bilgi gerektirmez.</td></tr>
+<tr><td><strong>Kitap 2 neden ikinci?</strong></td><td>Teşhisin doğrudan devamı ve <strong>bağımsız talebi var</strong>. Ayrıca spiral SKU ile serinin en yüksek birim telifini üretir (bkz. § 31).</td></tr>
+<tr><td><strong>Kitap 3 neden son?</strong></td><td>En yüksek beceri eşiği ve en yüksek fiyat noktası. Önce gelirse alıcıyı korkutur; sonra gelirse Kitap 1–2'nin kurduğu güvenle satılır. Bağımsız talebi Aldrich'in 992 yorumu ile <em>doğrulanmıştır</em>.</td></tr>
+<tr><td><strong>Neden dördüncü kitap yok?</strong></td><td>Doğal genişleme yönleri mevcut (örme kumaş uyumu, erkek giyim, terzilik) ama bu turun kapsamı üç kitaptır.</td></tr>
+</tbody>
+</table></div>
+<p class="footnote">Görev talimatı § 37 gereği manüskript yazılmadı, kapak ve KDP dosyası üretilmedi.</p>
+</section>
+
+<section id="s30">
+<h2 class="sect-title"><span class="n">30</span> Amazon Ads Stratejisi</h2>
+<p class="lead"><strong>Hiçbir CPC rakamı verilmiyor</strong> — canlı kampanya olmadan gözlemlenemez. Bunun yerine her hedefin neden ticari olarak anlamlı olduğu ve reklamı neyin uygulanabilir kılacağı yazılıyor.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Kitap</th><th>Anahtar kelime ailesi</th><th>Ürün hedefleme</th><th>Kategori</th><th>Defansif / çapraz</th></tr></thead>
+<tbody>
+<tr><td><strong>1 · Teşhis</strong></td><td>Teşhis niyetli: "why doesn't my pattern fit", "sewing pattern too big", "fitting problems"; ürün niyetli: "pattern fitting book", "sewing measurements"</td><td>Complete Photo Guide ($21,06) · Palmer/Pletsch · The Fitting Book ($28,95) · Zieman</td><td>Sewing (Books) · Fashion Craft</td><td>Kendi ASIN'imizi kapat</td></tr>
+<tr><td><strong>2 · Atlas</strong></td><td>İşlem niyetli: "full bust adjustment", "sway back adjustment", "sleeve fitting", "trouser fitting"</td><td>Pahalı fotoğraf rehberleri <strong>+ kendi Kitap 1'imiz</strong></td><td>Sewing (Books)</td><td>Kitap 1 ↔ 2 karşılıklı</td></tr>
+<tr><td><strong>3 · Blok</strong></td><td>Uzmanlık niyetli: "sloper drafting", "block pattern drafting", "pattern making from measurements"</td><td><strong>Öncelik: kendi Kitap 1–2 sayfalarımız</strong>; ikincil: Aldrich ($45,50)</td><td>Sewing · Fashion Design</td><td>Üç yönlü karşılıklı kapatma</td></tr>
+</tbody>
+</table></div>
+<h3>Reklamı uygulanabilir / uygulanamaz kılan</h3>
+<div class="two-col">
+<div class="card green"><h4>Uygulanabilir kılar</h4><ul class="tight">
+<li>Birim telif $11,11–$12,23; spiral SKU'da <strong>$21,57</strong> — geniş marj.</li>
+<li>Seri tamamlandığında tolere edilebilir edinme maliyeti <strong>%23–60</strong> artar (§ 31).</li>
+<li>Anahtar kelimeler dar ve teknik; büyük reklamverenleri çekmiyor.</li>
+<li>Alıcı zaten kumaş ve kalıba para harcamış — fiyat duyarlılığı orta.</li>
+</ul></div>
+<div class="card red"><h4>Uygulanamaz kılar</h4><ul class="tight">
+<li>Dönüşüm %5 altında kalırsa tolere edilebilir CPC $0,33–$0,53'e iner.</li>
+<li>Arama hacmi IEP veya solar kadar geniş değil; niş dar.</li>
+<li>Ücretsiz YouTube içeriği güçlü; alıcı reklamı görüp videoya gidebilir.</li>
+<li><span class="tag tag-unv">UNVERIFIED</span> Bu nişte rakiplerin sponsorlu reklam yoğunluğu ölçülmedi (§ 36).</li>
+</ul></div>
+</div>
+</section>
+
+<section id="s31">
+<h2 class="sect-title"><span class="n">31</span> Seri Ekonomisi — Kazanan</h2>
+<p class="lead">Tüm rakamlar illüstratiftir; satış adedi tahmini yapılmamıştır.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Kitap</th><th>Sayfa</th><th>Liste = GELİR</th><th>BASKI</th><th>TELİF</th><th>Telif/liste</th></tr></thead>
+<tbody>
+<tr><td>Kitap 1 — Measure &amp; Diagnose</td><td>240</td><td>$26,99</td><td>$5,08</td><td><strong>$11,11</strong></td><td>%41,2</td></tr>
+<tr><td>Kitap 2 — Adjustment Atlas</td><td>260</td><td>$28,99</td><td>$5,42</td><td><strong>$11,97</strong></td><td>%41,3</td></tr>
+<tr><td>Kitap 2 — <em>spiral SKU</em></td><td>260</td><td>$44,99</td><td>$5,42</td><td><strong>$21,57</strong></td><td>%47,9</td></tr>
+<tr><td>Kitap 3 — Draft Your Own Block</td><td>280</td><td>$29,99</td><td>$5,76</td><td><strong>$12,23</strong></td><td>%40,8</td></tr>
+</tbody>
+</table></div>
+<p><strong>Alıcı senaryoları:</strong> yalnızca Kitap 1 → $11,11 · Kitap 1+2 → $23,08 · Kitap 1+2+3 → <strong>$35,31</strong>.</p>
+<div class="tablewrap"><table>
+<caption>Harmanlanmış telif / edinilen müşteri — bağlanma oranları <span class="tag tag-est">ESTIMATE</span>, gözlemlenmedi</caption>
+<thead><tr><th>Senaryo</th><th>Kitap 2</th><th>Kitap 3</th><th>Harmanlanmış telif</th><th>Tolere edilebilir reklam/satış (%60)</th><th>Tek kitaba göre</th></tr></thead>
+<tbody>
+<tr><td><strong>Çok kötümser</strong> <span class="small">(seri tezi büyük ölçüde yanlış)</span></td><td>%5</td><td>%2</td><td>$11,95</td><td>$7,17</td><td><span class="arrow-up">+%7,6</span></td></tr>
+<tr><td>Muhafazakâr</td><td>%15</td><td>%6</td><td>$13,64</td><td>$8,18</td><td><span class="arrow-up">+%22,8</span></td></tr>
+<tr><td>Temel</td><td>%25</td><td>%12</td><td>$15,57</td><td>$9,34</td><td><span class="arrow-up">+%40,1</span></td></tr>
+<tr><td>İyimser</td><td>%35</td><td>%20</td><td>$17,75</td><td>$10,65</td><td><span class="arrow-up">+%59,7</span></td></tr>
+<tr><td><em>Tek kitap (referans)</em></td><td>—</td><td>—</td><td><em>$11,11</em></td><td><em>$6,67</em></td><td>—</td></tr>
+</tbody>
+</table></div>
+<p><strong>Kritik gözlem:</strong> seri tezi neredeyse tamamen yanlış çıksa bile (%5/%2) harmanlanmış telif tek kitabın üzerinde kalıyor — çünkü Kitap 2 ve 3'ün <em>bağımsız arama trafiği</em> var ve Kitap 3'ün bağımsız talebi Aldrich'in 992 yorumuyla doğrulandı.</p>
+<div class="tablewrap"><table>
+<caption>Tolere edilebilir CPC = max reklam × dönüşüm — <strong>gerçek CPC gözlemlenmedi</strong></caption>
+<thead><tr><th>Dönüşüm</th><th>Çok kötümser</th><th>Muhafazakâr</th><th>Temel</th><th>İyimser</th><th>Tek kitap</th></tr></thead>
+<tbody>
+<tr><td>%5</td><td>$0,36</td><td>$0,41</td><td>$0,47</td><td>$0,53</td><td>$0,33</td></tr>
+<tr><td>%8</td><td>$0,57</td><td>$0,65</td><td>$0,75</td><td>$0,85</td><td>$0,53</td></tr>
+<tr><td>%10</td><td>$0,72</td><td>$0,82</td><td>$0,93</td><td>$1,06</td><td>$0,67</td></tr>
+<tr><td>%15</td><td>$1,08</td><td>$1,23</td><td>$1,40</td><td>$1,60</td><td>$1,00</td></tr>
+</tbody>
+</table></div>
+<h3>Katalog etkisi <span class="small">(§ 40)</span></h3>
+<ul class="tight">
+<li><strong>Harmanlanmış edinme maliyeti düşer</strong> — aynı reklam harcaması üç ürünün gelirine dağılır.</li>
+<li><strong>Öneri motoruna gerçek sinyal gider</strong> — "birlikte alınanlar" ilişkisi ancak ikinci ve üçüncü ürünle kurulur.</li>
+<li><strong>Anahtar kelime yüzeyi genişler</strong> — teşhis, düzeltme ve blok çizimi ayrı arama kümeleridir.</li>
+<li><strong>Defansif hedefleme mümkün olur</strong> — kendi sayfalarımızda kendi kitaplarımızı hedefleriz.</li>
+<li><strong>Diyagram kütüphanesi amortize olur</strong> — bir kez üretilen, doğrulanmış, tutarlı ölçekli çizim sistemi üç kitapta yeniden kullanılır. Bu, kazananın en somut üretim avantajıdır.</li>
+</ul>
+<div class="flow">
+<div class="n"><b>90</b>$1.000 bütçe</div>
+<div class="n"><b>225</b>$2.500 bütçe</div>
+<div class="n"><b>450</b>$5.000 bütçe</div>
+<div class="n"><b>720</b>$8.000 bütçe</div>
+</div>
+<p class="footnote">Başabaş adet, Kitap 1 telifiyle ($11,11), reklam hariç <span class="tag tag-est">ESTIMATE</span>.</p>
+</section>
+<section id="s32">
+<h2 class="sect-title"><span class="n">32</span> Bu Seri Neden Başarısız Olabilir</h2>
+<p class="lead">Zorunlu bölüm. Bu turda birinci sıradaki aday <em>iki kez</em> çöktü — bir kez tur içinde, bir kez de önceki turda. Aşağıdaki riskler ciddiye alınmalıdır.</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Risk</th><th>Nasıl gerçekleşir</th><th>Ciddiyet</th></tr></thead>
+<tbody>
+<tr><td><strong>Ortam riski — en büyük risk</strong></td><td><strong>Lider ürün hibrit.</strong> <em>The Fitting Book</em>'un müşteri etiketlerinde <em>Video content</em> bir güç olarak anılıyor ve "neredeyse her sayfada QR kodu" öne çıkarılıyor <span class="tag tag-obs">OBSERVED</span>. Saf basılı bir kitap yapısal olarak dezavantajlı olabilir. Girdi geçerliliği testinde "basılı format avantajı" iddiası <strong>zayıf</strong> çıktı (§ 27).</td><td><strong>Yüksek</strong></td></tr>
+<tr><td><strong>Talep tavanı riski</strong></td><td>Mutlak alıcı havuzu <em>ölçülemedi</em>; yalnızca açığa vurulmuş tercih (yorum sayıları) var. Yıllık havuz on binlerse, üç kitaplık bir seri için tavan düşük olabilir.</td><td>Yüksek</td></tr>
+<tr><td><strong>Farklılaşma riski</strong></td><td>"Teşhis-önce" konumlandırması <strong>kanıtlanmamış bir hipotezdir</strong> <span class="tag tag-est">HYPOTHESIS</span>. Alıcı, Complexity(58) şikâyetini bizim çözdüğümüzü satın alma anında fark etmeyebilir.</td><td>Yüksek</td></tr>
+<tr><td><strong>Rekabet riski</strong></td><td>13 yeni başlık (Haz–Ağu 2026) ve bunların içinde doğrudan uyum-odaklı girişler var ("Stop Re-Fitting the Same Pattern Twice", "The Pattern Fit Record", "The Tailor's Blueprint"). Hiçbiri traksiyon kazanmadı — ama bir sonraki kazanabilir.</td><td>Orta–yüksek</td></tr>
+<tr><td><strong>Görsel üretim riski</strong></td><td>Rakipler gerçek vücut fotoğrafı kullanıyor. Saf çizgi grafiği daha ucuz ve daha tutarlıdır ama alıcı <em>fotoğraf bekliyorsa</em> dezavantajdır.</td><td>Orta–yüksek</td></tr>
+<tr><td><strong>Doğruluk riski</strong></td><td>Geometrik olarak yanlış bir düzeltme diyagramı, okurun kumaşını mahveder. Uzman kapısı yok ama <strong>fiziksel doğrulama zorunludur</strong> — her diyagram gerçekten dikilerek sınanmalı.</td><td>Orta</td></tr>
+<tr><td><strong>Reklam riski</strong></td><td>Dönüşüm %5 altında kalırsa tolere edilebilir CPC $0,33–$0,53'e iner. Niş dar; arama hacmi sınırlı.</td><td>Orta</td></tr>
+<tr><td><strong>Katalog riski</strong></td><td>Kitap 3 (blok çizimi) beceri eşiği yüksek; bağlanma oranı %2–5'te kalabilir.</td><td>Orta</td></tr>
+<tr><td><strong>Fiyat riski</strong></td><td>Medyan $21–23. $26,99–$29,99 savunulabilir ama garanti değil; $64,50 spiral tek bir rakibin başarısı, kural değil.</td><td>Orta</td></tr>
+<tr><td>IP / politika riski</td><td>Düşük. Kalıp geometrisi telifle korunmaz. Ticari kalıp markaları başlıkta kullanılamaz.</td><td>Düşük</td></tr>
+<tr><td>AI ikame riski</td><td>Düşük–orta. Geometrik diyagram üretimi AI için zor; hata dikilen giyside görünür.</td><td>Düşük–orta</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Terk etme koşulları — ölçülebilir <span class="small">(§ 34)</span></h3>
+<ol class="tight">
+<li><strong>Örnek bölüm testi başarısız olursa:</strong> üç gerçek ev dikişçisine Kitap 1'den tek bir teşhis bölümü ile liderin aynı konudaki bölümü yan yana verildiğinde, hiçbiri farkı kendiliğinden fark etmezse → farklılaşma hipotezi çürük.</li>
+<li><strong>Haz–Ağu 2026'da giren 13 başlıktan biri 6 ay içinde 200+ yoruma ulaşırsa</strong> → niş bizim girişimizden önce kapanmış demektir.</li>
+<li><strong>Fiziksel doğrulama testinde diyagramların %5'inden fazlası hatalı çıkarsa</strong> → üretim yöntemi güvenilir değil; proje durur.</li>
+<li><strong>Küçük bütçeli reklam testinde dönüşüm %5 altında kalırsa</strong> → ücretli edinme uygulanamaz; ürün yalnızca organiğe bağımlı kalır.</li>
+<li><strong>Liderin Complexity(58) etiketi 12 ay içinde kaybolursa</strong> (yeni baskı veya rakip düzeltmesiyle) → tek doğrulanmış kalite açığımız kapanmış demektir.</li>
+<li><strong>Kitap 3'ün bağımsız talep kanıtı zayıflarsa</strong> — Aldrich'in <em>Metric Pattern Cutting</em>'i BSR'da belirgin biçimde gerilerse → üç kitaplık yapı iki kitaba indirilmelidir.</li>
+</ol>
+</section>
+
+<section id="s33">
+<h2 class="sect-title"><span class="n">33</span> İkinci Sıradaki</h2>
+<div class="card blue">
+<p class="rankbig" style="font-size:1.7rem">HVAC / soğutma saha referansı — 6,26 / 10</p>
+<p>Kitap 1 temeller → Kitap 2 soğutucu şarj ve servis → Kitap 3 saha teşhisi.</p>
+</div>
+<div class="card green"><p><strong>§ 47 — geri dönüşüm kontrolü:</strong> HVAC birinci turun finalisti <strong>değildi</strong> ve o turun hiçbir adayının komşusu değildir.</p></div>
+<h3>Neden ticari olarak güvenilir</h3>
+<ul class="tight">
+<li><strong>Bu turun en iyi birim ekonomisi (9/10):</strong> $39,99 / 250 sayfa → telif <strong>$18,74</strong>. Ve fiyat gücü kanıtlı: bağımsız bir yazar $34,99 · $78,99 · <strong>$99,99</strong> fiyatlarını sürdürüyor <span class="tag tag-obs">OBSERVED</span>.</li>
+<li><strong>Satın alma niyeti 9/10:</strong> kitap işin kendisi için gerekli; yanlış işlem ekipmanı bozar, EPA 608 yasal zorunluluktur.</li>
+<li><strong>Tier 1 mutlak pazar:</strong> BLS 425.200 istihdam, yılda ~40.100 açık pozisyon <span class="tag tag-reb">FACT</span>.</li>
+<li><strong>Gerçek bir kalite açığı işareti:</strong> AI kalıplı <em>"HVAC BIBLE [10 in 1]"</em> kategorinin en düşük puanı — 4,1★/516.</li>
+</ul>
+<div class="card red">
+<p><strong>Dürüstlük kaydı — ikincilik dar bir farkla kazanıldı.</strong> HVAC (6,26) ile üçüncü sıradaki soyağacı (6,17) arasındaki fark yalnızca <strong>0,09 puandır</strong> — modelin ölçüm hassasiyetinin içinde. Model HVAC'ı ikinci sıraya koyuyor, ama <em>uygulanabilir bir yedek plan</em> olarak soyağacı daha gerçekçidir: HVAC'ın uzman bağımlılığı <strong>KRİTİK</strong>, soyağacınınki <strong>DÜŞÜK–ORTA</strong>. Kazanan uygulanamaz hâle gelirse ikinci sıradakine otomatik geçilmemeli; § 35'teki kapıdan geçirilmelidir.</p>
+</div>
+</section>
+
+<section id="s34">
+<h2 class="sect-title"><span class="n">34</span> İkinci Sıradaki Neden Kaybetti</h2>
+<p>Ağırlıklı modele göre, üç ölçütte:</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Ölçüt</th><th>Ağırlık</th><th>Dikiş</th><th>HVAC</th><th>Fark ne yarattı</th></tr></thead>
+<tbody>
+<tr><td><strong>Rekabet çekiciliği</strong></td><td>%10</td><td>6</td><td><strong>3</strong></td><td>10 günde 11 yeni başlık; 22/23/24 Ağustos'ta neredeyse aynı başlıkla üç kitap; açık AI serileri. Ayrıca tek bir bağımsız yazar 6+ kitaplık premium kataloğuyla kurmak istediğimiz seriyi <em>zaten</em> kurmuş.</td></tr>
+<tr><td><strong>Risk (uzman bağımlılığı)</strong></td><td>%4</td><td>8</td><td><strong>2</strong></td><td><strong>KRİTİK.</strong> Soğutucu akışkan elleçleme, basınç, EPA 608 uyumu. Yanlış bilgi ekipman hasarı, yaralanma veya düzenleyici ihlal doğurur. Evin sıfır meslek kimliği var ve bu, tasarımla veya fiyatla telafi edilemez.</td></tr>
+<tr><td><strong>AI ikame direnci</strong></td><td>%3</td><td>7</td><td><strong>3</strong></td><td>Sel bunun kanıtı. Dikişte geometrik diyagram doğruluğu AI için gerçek bir engel.</td></tr>
+<tr><td>Evergreen</td><td>%6</td><td><strong>9</strong></td><td>5</td><td>AIM Act kapsamında R-410A → R-454B/R-32 geçişi şu anda yaşanıyor; HVAC içeriği aktif olarak eskiyor. Kalıp geometrisi eskimiyor.</td></tr>
+<tr><td>Talep</td><td>%10</td><td><strong>8</strong></td><td>7</td><td>Dikişte on iki konu-içi başlık 549+ yorumda ve yeni giren 18 ayda 865 yorum aldı.</td></tr>
+<tr><td><em>Birim ekonomisi</em></td><td>%10</td><td>9</td><td><strong>9</strong></td><td><em>Beraberlik.</em> HVAC'ın $18,74'lük telifi dikişin $11,11'inden yüksek — ama bu tek üstünlük, yukarıdaki dört kaybı kapatmaya yetmedi.</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Tek cümlede:</strong> HVAC daha çok para kazandırırdı; dikiş <em>kazanılabilir</em>. Görev talimatı § 20'nin kuralı burada belirleyici oldu — mükemmel ekonomiye ama imkânsız uzman erişimine sahip bir pazar kaybeder.</p>
+</section>
+
+<section id="s35">
+<h2 class="sect-title"><span class="n">35</span> Tam Olarak Sonraki Eylem</h2>
+<p class="lead">Bu bir üretim emri <strong>değildir</strong>. Aşağıdakilerin tamamı manüskript yazımı başlamadan ve düşük maliyetle tamamlanabilir.</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>#</th><th>Eylem</th><th>Neden şimdi</th><th>Geçme kriteri</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td><strong>KİLİT KAPI — Farklılaşma hipotezini sına.</strong> Kitap 1'den tek bir teşhis bölümü (bir uyum sorunu, tam akış şemalı) üret; liderin aynı konudaki bölümüyle yan yana, <strong>üç gerçek ev dikişçisine</strong> okut.</td><td>"Teşhis-önce" konumlandırması bu raporun tek kanıtlanmamış hipotezidir. Complexity(58) şikâyetini çözdüğümüzü <em>alıcı fark etmiyorsa</em> tüm tez zayıflar.</td><td>Üç okurdan en az ikisi farkı kendiliğinden söylüyor</td></tr>
+<tr><td><strong>2</strong></td><td><strong>Fiziksel doğrulama protokolünü kur.</strong> Örnek bölümdeki her diyagramı gerçekten kalıba uygula, muslin dik, sonucu fotoğrafla.</td><td>Uzman kapısı olmamasının bedeli budur: doğrulama <em>bizim</em> üzerimizde. Geometrik hata okurun kumaşını mahveder.</td><td>Diyagram hata oranı %0; protokol yazılı</td></tr>
+<tr><td>3</td><td><strong>Ortam kararı:</strong> QR→video eklenecek mi? Lider bunu bir güç olarak kullanıyor.</td><td>Girdi geçerliliği testinde "basılı avantajı" zayıf çıktı. Video eklemek üretim yükünü ve bakım yükünü artırır; eklememek rekabet dezavantajı olabilir.</td><td>Yazılı karar + maliyet tahmini</td></tr>
+<tr><td>4</td><td><strong>Spiral SKU fizibilitesi.</strong> Rakip spirali $64,50'de satıyor; KDP'nin spiral seçeneği ve maliyeti araştırılmalı.</td><td>Kitap 2'nin birim telifini $11,97'den <strong>$21,57</strong>'ye çıkarabilir — serinin ekonomisini tek başına değiştirir.</td><td>KDP'de mevcut mu, maliyeti ne — yazılı cevap</td></tr>
+<tr><td>5</td><td><strong>Mutlak pazar boşluğunu kapat.</strong> Yıllık giysi diken ev dikişçisi sayısı için birincil/sektör kaynağı ara.</td><td>Bu turda ölçülemedi ve kazananın en büyük kanıt boşluğu (§ 36). Birinci turu deviren tam olarak bu tür bir eksikti.</td><td>Tek, kaynaklı bir aralık</td></tr>
+<tr><td>6</td><td><strong>Rakip akış izleme:</strong> Haz–Ağu 2026'da giren 13 başlığın yorum/BSR gelişimini 90 gün izle.</td><td>Niş bizim girişimizden önce kapanıyor mu, ölçülmeli.</td><td>Hiçbiri 200+ yoruma ulaşmadı</td></tr>
+<tr><td>7</td><td><strong>Marka taraması:</strong> "True Fit" adının kitap kategorisinde çakışma kontrolü; ticari kalıp markalarının başlıkta kullanılmayacağının yazılı teyidi.</td><td>Seri adı üç kitabı bağlar; KDP başlıkta izinsiz marka kullanımını açıkça yasaklıyor.</td><td>Çakışma yok</td></tr>
+<tr><td>8</td><td><strong>Reklam sınama planını yaz</strong> (henüz çalıştırma — ürün yok): kelime kümesi ve tolere edilebilir CPC eşiği.</td><td>CPC bu raporda senaryodur; gerçeği yalnızca testle öğrenilir.</td><td>Yazılı eşik: dönüşüm %5 altındaysa ücretli edinme iptal</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card red">
+<p><strong>Bu araştırma burada durur.</strong> Kitap üretilmedi, manüskript yazılmadı, kapak tasarlanmadı, KDP dosyası oluşturulmadı. Hangıl projesine ve duraklatılmış sigorta projesine dokunulmadı. Reddedilen birinci tur projeleri yeniden başlatılmadı.</p>
+</div>
+</section>
+
+<section id="s36">
+<h2 class="sect-title"><span class="n">36</span> Sınırlamalar</h2>
+<ol class="tight">
+<li><strong>Kazananın mutlak pazarı ölçülemedi.</strong> Yıllık gerçekçi alıcı havuzu için yalnızca Tier 4 bir kurulu-taban rakamı (~3,2M makine kullanıcısı) bulunabildi ve bu bilinçli olarak <em>puanı yükseltmek için kullanılmadı</em>. Talep puanı açığa vurulmuş tercihten (yorum sayıları, yeni giren emilimi) türetildi. <strong>Bu, bu raporun bilinen en büyük kanıt boşluğudur</strong> ve § 35'in 5. maddesidir.</li>
+<li><strong>Amazon'un yayın-tarihi filtresi bu turda bozuktu</strong> — anahtar kelime filtresini düşürüyordu. Akış, tarihe göre sıralı sonuçlardan çıkarıldı. <strong>Birinci turun akış oranlarıyla karşılaştırılamaz.</strong></li>
+<li><strong>Sponsorlu reklam yoğunluğu hiçbir finalist için sistematik ölçülmedi.</strong> Ads puanları anahtar kelime niyeti, hedeflenebilirlik ve marj üzerinden verildi; gözlemlenmiş reklam rekabeti üzerinden değil.</li>
+<li><strong>"Customers say" özetleri Amazon'un AI çıktısıdır</strong> — ham yorum değil, türetilmiş veridir. Etiket sayıları (ör. Complexity 58) Amazon'un kendi sınıflandırmasıdır; bağımsız doğrulanmadı. <code>/product-reviews/</code> sayfaları oturum açma istediği için 1–2 yıldızlı yorum metinlerine sistematik erişilemedi.</li>
+<li><strong>Güncel-baskı kontrolü yalnızca tartışmalı hâle gelen başlıklar için yapıldı.</strong> Beş finalistin <em>tüm</em> yerleşiklerine sistematik bir "en güncel baskı hangisi" taraması uygulanmadı — bu, çelişmeli incelemenin kazananı devirirken kullandığı zafiyetin ta kendisidir ve diğer adaylarda hâlâ mevcut olabilir.</li>
+<li><strong>İki araştırma hattı bir noktada çelişti</strong> (§ 24) ve doğrudan gözlemle çözüldü; ancak her iki hattın da erişim engelleriyle karşılaştığı (403'ler, JS kabukları, arama kotası) kayda geçirilmelidir.</li>
+<li><strong>BSR birim satış değildir</strong> ve günlük dalgalanır. Tüm gözlemler tek gün (27 Ağustos 2026) ve tek pazar yeri (Amazon.com/ABD) içindir.</li>
+<li><strong>CPC, dönüşüm oranı, bağlanma oranı ve üretim maliyeti gözlemlenmedi</strong> — hepsi etiketli senaryodur. Uzman/doğrulama maliyeti modellenmedi.</li>
+<li><strong>Spiral SKU ekonomisi varsayımsaldır.</strong> Rakibin $64,50'lik spirali gözlemlendi; KDP'de spiral üretim seçeneği ve maliyeti <strong>doğrulanmadı</strong> (§ 35, madde 4).</li>
+<li><strong>20 aday tarandı, ama tarama tükenmiş değildir.</strong> Farklı arama yönleri farklı adaylar üretebilirdi; bu bir kapsam sınırıdır.</li>
+</ol>
+</section>
+
+<section id="s37">
+<h2 class="sect-title"><span class="n">37</span> Kaynaklar</h2>
+<h3>Tier 1 — Resmî / birincil</h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Kaynak</th><th>Kullanım</th></tr></thead>
+<tbody>
+<tr><td><a href="https://kdp.amazon.com/en_US/help/topic/G201834340">kdp.amazon.com — Printing Cost &amp; Royalty</a></td><td>Tüm birim ekonomisi: normal trim $1,00+$0,012/sayfa · büyük trim $1,00+$0,017/sayfa · telif = liste×0,60 − baskı</td></tr>
+<tr><td><a href="https://kdp.amazon.com/en_US/help/topic/G201097560">kdp.amazon.com — Metadata Guidelines</a></td><td>Başlıkta izinsiz marka kullanımı yasağı (ticari kalıp markaları, seri adı taraması)</td></tr>
+<tr><td><a href="https://nces.ed.gov/programs/coe/indicator/cgg/students-with-disabilities">nces.ed.gov — Students With Disabilities</a></td><td><strong>7,5 milyon</strong> IDEA öğrencisi (2022–23), %15; 6,4M (2012–13) → decade ~110K/yıl. Girdi geçerliliği testinde 8,2M iddiasını düşürdü.</td></tr>
+<tr><td><a href="https://sites.ed.gov/idea/regs/b/d/300.320/b">sites.ed.gov/idea — 34 CFR 300.320(b)</a></td><td>16 yaşta zorunlu geçiş planı, yıllık güncelleme — IEP serisinin Kitap 3 gerekçesi (sonradan yetersiz bulundu)</td></tr>
+<tr><td>34 CFR 300.504 — usul güvenceleri bildirimi</td><td>Yılda en az bir kez <strong>ücretsiz</strong> verilmesi zorunlu; 13 maddelik içeriği IEP Kitap 2'nin kapsamıyla örtüşüyor <span class="tag tag-obs">çelişmeli inceleme tarafından raporlandı</span></td></tr>
+<tr><td><a href="https://www.bls.gov/ooh/installation-maintenance-and-repair/heating-air-conditioning-and-refrigeration-mechanics-and-installers.htm">BLS — HVAC Mechanics and Installers</a></td><td>425.200 istihdam (2024), ~40.100 yıllık açık pozisyon, %8 büyüme</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Tier 2 — Amazon pazar yeri gözlemleri <span class="small">(tümü 27 Ağustos 2026, Amazon.com)</span></h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th>ASIN</th><th>Ürün</th><th>Gözlenen ana veri</th></tr></thead>
+<tbody>
+<tr><td><code>1589236084</code></td><td>Complete Photo Guide to Perfect Fitting (Veblen)</td><td>2012, 224 sf, $21,06, BSR <strong>#36.985</strong>, #13 Sewing, 4,6★/<strong>1.797</strong>; etiketler: Informative(152), Detailed instructions(86), Image quality(85), Content(64), Fitting(59), Pattern content(41), Value for money(31), <strong>Complexity(58)</strong></td></tr>
+<tr><td><code>3033083749</code></td><td>The Fitting Book (Gina Renee Designs — kendi yayını)</td><td>2021, 278 sf, BSR #54.594, 4,7★/958; format: <strong>Paperback $28,95 · Spiral-bound $64,50</strong>; etiketler Content(61), Readability(28), Clarity of instructions(24), Video content</td></tr>
+<tr><td><code>1618471015</code></td><td>Palmer/Pletsch Complete Guide to Fitting</td><td>2018, 256 sf spiral, BSR #50.408, 4,7★/829, "Sewing for Real People" serisi</td></tr>
+<tr><td><code>0593964578</code></td><td>The Sewing Book (DK)</td><td><strong>4 Şub 2025</strong>, 352 sf, BSR <strong>#15.653</strong>, #4 Sewing, 4,6★/<strong>865</strong> — yeni giren emilimi kanıtı</td></tr>
+<tr><td><code>1444335057</code></td><td>Metric Pattern Cutting (Aldrich)</td><td>$45,50, 992 yorum — Kitap 3'ün bağımsız talep kanıtı</td></tr>
+<tr><td><code>1413333540</code></td><td>The Complete IEP Guide (NOLO)</td><td><strong>Baskı: Twelfth · 28 Tem 2026</strong>, 400 sf, BSR #294.959, 4,5★/5 — IEP kalite açığı tezini çürüten bulgu</td></tr>
+<tr><td><code>1637635125</code></td><td>The Epic IEP (Mission Driven Press)</td><td><strong>27 Oca 2026</strong>, 288 sf, BSR <strong>#21.216</strong> (Wrightslaw'ı geçiyor), 4,8★/<strong>109</strong></td></tr>
+<tr><td><code>1892320207</code></td><td>Wrightslaw: All About IEPs</td><td>2010, 166 sf, $10,13, BSR #27.933, 4,7★/653; etiketlerde <strong>olumsuz sinyal yok</strong></td></tr>
+<tr><td><code>1892320096</code></td><td>Wrightslaw: From Emotions to Advocacy</td><td>2006 (2. bs.), 311 sf, $15,91, BSR #94.568, 4,8★/520</td></tr>
+<tr><td><code>1733817204</code> vd.</td><td>Migliaccio HVAC kataloğu</td><td>$78,99/2,4K · $34,99/681 · $99,99/365 · $99,99/243 · $39,99/57 — bağımsız premium fiyat kanıtı</td></tr>
+<tr><td><code>1546567119</code></td><td>Mobile Solar Power Made Easy (Prowse)</td><td>2017, <strong>90 sf</strong>, 4,7★/<strong>4.909</strong> ama BSR <strong>#99.832</strong> — ömür-boyu yorum yanılsaması örneği</td></tr>
+<tr><td><code>1732188106</code> / <code>1732188122</code></td><td>Research Like a Pro (Dyer &amp; Elder)</td><td>$21,99/757 ve $31,99/226 — soyağacında kanıtlı 2 kitaplık bağımsız seri</td></tr>
+</tbody>
+</table>
+</div>
+<h4>Yürütülen arama sorguları <span class="small">(sonuç sayıları kesin pazar ölçüsü değildir)</span></h4>
+<p class="small"><code>sewing pattern fitting</code> (273) · <code>sewing pattern fitting alteration book</code> (550) · <code>IEP special education parent advocacy guide</code> (428) · <code>IEP guide for parents</code> (823) · <code>HVAC technician training refrigeration troubleshooting</code> (546) · <code>genealogy research workbook family history</code> (1.000+) · <code>off grid solar power system design book</code> (607) · <code>end of life planning organizer binder</code> (900) · <code>homeschool record keeping transcript planner</code> (790) · <code>mushroom cultivation growing guide</code> (680) · <code>fishing knots rigs guide book</code> (486) · <code>strength training program design workout log</code> (46) · <code>hand lettering calligraphy practice workbook</code> (6.000+) · <code>map and compass land navigation book</code> (415) · <code>raising chickens backyard flock guide</code> (714) · <code>quilting for beginners piecing technique book</code> (818) · <code>miniature painting guide tabletop models</code> (161) · <code>small engine repair manual lawn mower</code> (315) · <code>woodworking joinery hand tools book</code> (559) · <code>bicycle repair maintenance manual</code> (529) · <code>leathercraft patterns leatherworking book</code> (298) · <code>electrical wiring residential code book</code> (601) · <code>home repair maintenance manual homeowner</code> (986) · <code>aquarium setup fishkeeping guide</code> (648) · <code>metal detecting guide coin relic</code> (340)</p>
+<h3>Tier 4 — İkincil <span class="small">(sert istatistik olarak kullanılmadı)</span></h3>
+<ul class="tight">
+<li><span class="tag tag-unv">UNVERIFIED</span> Ev dikiş makinesi pazar raporları — ~3,2M aktif ABD kullanıcısı. Kurulu taban; yıllık alıcı değil.</li>
+<li><span class="tag tag-unv">UNVERIFIED</span> Soyağacı ürün/hizmet pazarı ~$2,25 milyar (Kuzey Amerika). Katılımcı sayısı bulunamadı.</li>
+<li><span class="tag tag-unv">UNVERIFIED</span> K-12 sektör basını: 8,2M IDEA öğrencisi (2024), +301.991. NCES ile tutarsız; kullanılmadı.</li>
+<li>Bibliyografik tarama hattı: OpenLibrary, Barnes &amp; Noble, Porchlight, Green Apple, Skyhorse, Future Horizons, Wrightslaw mağazası — IEP rakip sayımı için.</li>
+</ul>
+<h3>Yöntem notu — bu raporda bilerek yapılmayanlar</h3>
+<ul class="tight">
+<li>Hiçbir satış adedi, CPC, dönüşüm oranı, pazar büyüklüğü veya gelir rakamı uydurulmadı.</li>
+<li>BSR hiçbir yerde birim satışa çevrilmedi.</li>
+<li>Amazon sonuç sayısı hiçbir yerde birincil rekabet ölçütü olarak kullanılmadı.</li>
+<li>Okunamayan yorum metinleri için şikâyet uydurulmadı.</li>
+<li>Birinci turun hiçbir adayı değerlendirmeye alınmadı.</li>
+</ul>
+</section>
+</main>
+</div>
+<footer>
+  <p><strong>Vâliçe Press · KDP 2–3 Kitaplık Seri Fırsatı Araştırması — İkinci Tur</strong><br>
+  27 Ağustos 2026 · Tüm Amazon gözlemleri aynı gün, Amazon.com (ABD) üzerinde yapılmıştır.</p>
+  <p class="small">Pazar-düzeyi ticari karar belgesidir. Kitap içeriği, manüskript, kapak veya KDP dosyası üretilmemiştir.<br>
+  Birinci turun adayları bu turda değerlendirmeye alınmamıştır. Hiçbir satış adedi, CPC veya dönüşüm oranı uydurulmamıştır.</p>
+</footer>
+</div>

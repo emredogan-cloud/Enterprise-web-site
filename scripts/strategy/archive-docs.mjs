@@ -3,7 +3,7 @@
  * Documentation rule-set audit and archiver.
  *
  * Classifies every strategy/report document in the repository and moves the
- * ones that are no longer authoritative into `archive/`, preserving their
+ * ones that are no longer authoritative into `docs/70-archive/`, preserving their
  * original filenames. Emits RULE_SET_INDEX.md so the founder can answer
  * "which document is currently in force?" from one file.
  *
@@ -43,24 +43,24 @@ const DOCS = [
   { path: "memory/USER_PROFILE.md", status: "ACTIVE", reason: "Engineering standards." },
   { path: "roadmap/WEB_SITE_ROADMAP.md", status: "ACTIVE", reason: "Source of truth for the ADRs referenced by PAST_DECISIONS.md." },
 
-  { path: "VALICE_PRESS_MASTER_PUBLISHING_STRATEGY_TR.md", status: "ACTIVE", reason: "Current master business strategy (2026-08-31)." },
-  { path: "docs/VALICE_PRESS_MASTER_PUBLISHING_STRATEGY_TR.html", status: "ACTIVE", reason: "Founder-facing edition of the master strategy." },
-  { path: "KDP_BUSINESS_MODEL_COMPARISON.md", status: "ACTIVE", reason: "Unit economics behind the master strategy." },
-  { path: "PUBLISHING_FACTORY_ARCHITECTURE.md", status: "ACTIVE", reason: "Production system design behind the master strategy." },
-  { path: "CATALOG_ECONOMICS_FINAL.md", status: "ACTIVE", reason: "Per-title economics against the live catalogue (this phase)." },
+  { path: "docs/40-commerce/VALICE_PRESS_MASTER_PUBLISHING_STRATEGY_TR.md", status: "ACTIVE", reason: "Current master business strategy (2026-08-31)." },
+  { path: "docs/40-commerce/VALICE_PRESS_MASTER_PUBLISHING_STRATEGY_TR.html", status: "ACTIVE", reason: "Founder-facing edition of the master strategy." },
+  { path: "docs/30-kdp/KDP_BUSINESS_MODEL_COMPARISON.md", status: "ACTIVE", reason: "Unit economics behind the master strategy." },
+  { path: "docs/60-architecture/PUBLISHING_FACTORY_ARCHITECTURE.md", status: "ACTIVE", reason: "Production system design behind the master strategy." },
+  { path: "docs/40-commerce/CATALOG_ECONOMICS_FINAL.md", status: "ACTIVE", reason: "Per-title economics against the live catalogue (this phase)." },
 
   // ── Master roadmap phase (2026-09-02) — research + architecture + plan; no books produced ──
-  { path: "VALICE_PRESS_MASTER_ROADMAP_TR.md", status: "ACTIVE", reason: "Master publishing roadmap (2026-09-02): phases 0-41, first 5/20/50 books, 12/24/36-month plan, founder checklist. Working version." },
-  { path: "VALICE_PRESS_MASTER_ROADMAP_TR.html", status: "ACTIVE", reason: "Founder-facing edition of the master roadmap (2026-09-02)." },
-  { path: "PUBLISHING_FACTORY_MASTER_ARCHITECTURE.md", status: "ACTIVE", reason: "Operational factory design (9 roles, 20 steps, 12 gates, factory memory). Builds on PUBLISHING_FACTORY_ARCHITECTURE.md; supersedes only its topology section." },
-  { path: "KDP_PRODUCTION_MASTER_PLAN_TR.md", status: "ACTIVE", reason: "KDP rules verified 2026-09-02, format ladder per title, production workflow, pricing engine usage." },
-  { path: "VALICE_EBOOK_PRODUCTION_MASTER_PLAN_TR.md", status: "ACTIVE", reason: "Digital edition standard, ebook sourcing pipeline, bundles." },
-  { path: "PUBLIC_DOMAIN_ACQUISITION_MASTER_PLAN_TR.md", status: "ACTIVE", reason: "Public-domain discovery engine, rights gate, differentiation standards. Builds on PUBLIC_DOMAIN_BATCH_1_PLAN.md (Batch 1 unchanged)." },
-  { path: "PUBLIC_DOMAIN_CANDIDATE_DATABASE.csv", status: "ACTIVE", reason: "Scored public-domain candidate pool with verified PG/IA identifiers (94 rows)." },
-  { path: "SEO_MASTER_IMPLEMENTATION_PLAN_TR.md", status: "ACTIVE", reason: "SEO audit, architecture for the real catalogue, Search Console/Cloud procedure, content factory. Replaces the strategic layer of docs/seo/ (which was written for the pre-rebrand catalogue)." },
-  { path: "AMAZON_ADS_MASTER_PLAN_TR.md", status: "ACTIVE", reason: "Amazon Ads product selection, economics, launch system (2026 rules)." },
-  { path: "AMAZON_TO_VALICE_CUSTOMER_BRIDGE_TR.md", status: "ACTIVE", reason: "Companion templates, QR/URL rules, email flows, direct value proposition." },
-  { path: "CATALOG_LIFECYCLE_AND_MAINTENANCE_TR.md", status: "ACTIVE", reason: "Lifecycle classes, maintenance automation thresholds, rights system, QA, launch checklist." },
+  { path: "docs/00-critical/VALICE_PRESS_MASTER_ROADMAP_TR.md", status: "ACTIVE", reason: "Master publishing roadmap (2026-09-02): phases 0-41, first 5/20/50 books, 12/24/36-month plan, founder checklist. Working version." },
+  { path: "docs/00-critical/VALICE_PRESS_MASTER_ROADMAP_TR.html", status: "ACTIVE", reason: "Founder-facing edition of the master roadmap (2026-09-02)." },
+  { path: "docs/60-architecture/PUBLISHING_FACTORY_MASTER_ARCHITECTURE.md", status: "ACTIVE", reason: "Operational factory design (9 roles, 20 steps, 12 gates, factory memory). Builds on PUBLISHING_FACTORY_ARCHITECTURE.md; supersedes only its topology section." },
+  { path: "docs/30-kdp/KDP_PRODUCTION_MASTER_PLAN_TR.md", status: "ACTIVE", reason: "KDP rules verified 2026-09-02, format ladder per title, production workflow, pricing engine usage." },
+  { path: "docs/20-products/VALICE_EBOOK_PRODUCTION_MASTER_PLAN_TR.md", status: "ACTIVE", reason: "Digital edition standard, ebook sourcing pipeline, bundles." },
+  { path: "docs/20-products/PUBLIC_DOMAIN_ACQUISITION_MASTER_PLAN_TR.md", status: "ACTIVE", reason: "Public-domain discovery engine, rights gate, differentiation standards. Builds on PUBLIC_DOMAIN_BATCH_1_PLAN.md (Batch 1 unchanged)." },
+  { path: "docs/20-products/PUBLIC_DOMAIN_CANDIDATE_DATABASE.csv", status: "ACTIVE", reason: "Scored public-domain candidate pool with verified PG/IA identifiers (94 rows)." },
+  { path: "docs/60-architecture/SEO_MASTER_IMPLEMENTATION_PLAN_TR.md", status: "ACTIVE", reason: "SEO audit, architecture for the real catalogue, Search Console/Cloud procedure, content factory. Replaces the strategic layer of docs/seo/ (which was written for the pre-rebrand catalogue)." },
+  { path: "docs/30-kdp/AMAZON_ADS_MASTER_PLAN_TR.md", status: "ACTIVE", reason: "Amazon Ads product selection, economics, launch system (2026 rules)." },
+  { path: "docs/30-kdp/AMAZON_TO_VALICE_CUSTOMER_BRIDGE_TR.md", status: "ACTIVE", reason: "Companion templates, QR/URL rules, email flows, direct value proposition." },
+  { path: "docs/40-commerce/CATALOG_LIFECYCLE_AND_MAINTENANCE_TR.md", status: "ACTIVE", reason: "Lifecycle classes, maintenance automation thresholds, rights system, QA, launch checklist." },
 
   // ── Execution phase (2026-09-02) — reports live under docs/execution/, never in the root ──
   { path: "docs/execution/FOUNDER_ACTIONS.md", status: "ACTIVE", reason: "The single canonical Founder handbook: only actions the agent cannot perform." },
@@ -110,21 +110,21 @@ const DOCS = [
   { path: "docs/execution/PHASE-REPORT/README.md", status: "ACTIVE", reason: "Pointer only. Replaced stale duplicate copies of the Phase 0/1 reports and an out-of-date handbook." },
   { path: "valice-house/README.md", status: "ACTIVE", reason: "Factory standing context and memory — entry point for every agent role." },
 
-  { path: "CATALOG_MASTER_INVENTORY_FINAL.md", status: "ACTIVE", reason: "Current catalogue inventory (2026-08-31)." },
-  { path: "EBOOK_STORE_FINAL.md", status: "ACTIVE", reason: "Current ebook store state." },
-  { path: "EMAIL_SYSTEM_FINAL.md", status: "ACTIVE", reason: "Current email system state." },
-  { path: "PRODUCTION_VERIFICATION_FINAL.md", status: "ACTIVE", reason: "Current production verification." },
-  { path: "PHASE_4_COMPLETION_REPORT_TR.md", status: "ACTIVE", reason: "Most recent completed phase; still the baseline for what exists." },
-  { path: "PUBLIC_DOMAIN_BATCH_1_PLAN.md", status: "ACTIVE", reason: "Current public-domain production plan." },
-  { path: "FOUNDER_CONFIGURATION_MANUAL.md", status: "ACTIVE", reason: "Operational runbook for provider configuration." },
-  { path: "FOUNDER_OPERATIONS_MANUAL.md", status: "ACTIVE", reason: "Operational runbook for day-to-day running." },
-  { path: "docs/KURULUM_VE_ENV_REHBERI.md", status: "ACTIVE", reason: "Environment setup guide." },
+  { path: "docs/20-products/CATALOG_MASTER_INVENTORY_FINAL.md", status: "ACTIVE", reason: "Current catalogue inventory (2026-08-31)." },
+  { path: "docs/40-commerce/EBOOK_STORE_FINAL.md", status: "ACTIVE", reason: "Current ebook store state." },
+  { path: "docs/40-commerce/EMAIL_SYSTEM_FINAL.md", status: "ACTIVE", reason: "Current email system state." },
+  { path: "docs/50-quality/PRODUCTION_VERIFICATION_FINAL.md", status: "ACTIVE", reason: "Current production verification." },
+  { path: "docs/70-archive/PHASE_4_COMPLETION_REPORT_TR.md", status: "ACTIVE", reason: "Most recent completed phase; still the baseline for what exists." },
+  { path: "docs/20-products/PUBLIC_DOMAIN_BATCH_1_PLAN.md", status: "ACTIVE", reason: "Current public-domain production plan." },
+  { path: "docs/00-critical/FOUNDER_CONFIGURATION_MANUAL.md", status: "ACTIVE", reason: "Operational runbook for provider configuration." },
+  { path: "docs/00-critical/FOUNDER_OPERATIONS_MANUAL.md", status: "ACTIVE", reason: "Operational runbook for day-to-day running." },
+  { path: "docs/00-critical/KURULUM_VE_ENV_REHBERI.md", status: "ACTIVE", reason: "Environment setup guide." },
 
   // Rights and provenance documents are ALWAYS active. A legal record does
   // not expire because a strategy changed, and archiving one would remove
   // the evidence trail behind a published edition.
-  { path: "BOOK_ACQUISITION_LEGAL_REPORT_TR.md", status: "ACTIVE", reason: "Rights/legal reference. Legal records never expire with a strategy change." },
-  { path: "MEDITATIONS_EDITION_SOURCE_REPORT_TR.md", status: "ACTIVE", reason: "Edition provenance for a published title. Evidence trail — must stay in place." },
+  { path: "docs/20-products/BOOK_ACQUISITION_LEGAL_REPORT_TR.md", status: "ACTIVE", reason: "Rights/legal reference. Legal records never expire with a strategy change." },
+  { path: "docs/20-products/MEDITATIONS_EDITION_SOURCE_REPORT_TR.md", status: "ACTIVE", reason: "Edition provenance for a published title. Evidence trail — must stay in place." },
 
   // Current commercial research (2026-08-29). Consistent with, and feeding,
   // the master strategy rather than superseded by it.
@@ -146,14 +146,14 @@ const DOCS = [
     reason: "Commercial research (2026-08-29) that the master strategy builds on, not replaces.",
   })),
 
-  { path: "CLAUDE_AGENT_SDK_MASTERCLASS_TR.md", status: "ACTIVE", reason: "Technical reference, not a business rule. Independent of strategy." },
+  { path: "docs/60-architecture/CLAUDE_AGENT_SDK_MASTERCLASS_TR.md", status: "ACTIVE", reason: "Technical reference, not a business rule. Independent of strategy." },
 
   // ── CONFLICTING ─────────────────────────────────────────────────────────
   {
     path: "docs/STRATEJI_VE_KITAP_FIKIRLERI.md",
     status: "CONFLICTING",
     bucket: "strategy",
-    supersededBy: "VALICE_PRESS_MASTER_PUBLISHING_STRATEGY_TR.md",
+    supersededBy: "docs/40-commerce/VALICE_PRESS_MASTER_PUBLISHING_STRATEGY_TR.md",
     reason:
       "Prescribes 1-2 premium titles/year in engineering + executive niches and 'stop at 5-6 titles'. " +
       "The master strategy reaches the opposite conclusion: too slow for a main income, and those two " +
@@ -165,11 +165,11 @@ const DOCS = [
   },
 
   // ── SUPERSEDED ──────────────────────────────────────────────────────────
-  { path: "CATALOG_MASTER_INVENTORY.md", status: "SUPERSEDED", bucket: "reports", supersededBy: "CATALOG_MASTER_INVENTORY_FINAL.md", reason: "Earlier inventory (08-29) replaced by the FINAL revision (08-31)." },
-  { path: "PRODUCTION_VERIFICATION_REPORT.md", status: "SUPERSEDED", bucket: "reports", supersededBy: "PRODUCTION_VERIFICATION_FINAL.md", reason: "Earlier verification pass replaced by the FINAL revision." },
-  { path: "PUBLIC_DOMAIN_8_10_BOOK_PLAN.md", status: "SUPERSEDED", bucket: "strategy", supersededBy: "PUBLIC_DOMAIN_BATCH_1_PLAN.md", reason: "Superseded batch plan; Batch 1 is the current scope." },
-  { path: "IMPLEMENTATION_COMPLETION_REPORT.md", status: "SUPERSEDED", bucket: "reports", supersededBy: "PHASE_4_COMPLETION_REPORT_TR.md", reason: "Superseded by the Phase 4 completion report." },
-  { path: "FINAL_VALICE_PRESS_BUSINESS_PLAN.html", status: "SUPERSEDED", bucket: "strategy", supersededBy: "docs/VALICE_PRESS_MASTER_PUBLISHING_STRATEGY_TR.html", reason: "Earlier business plan (08-29) replaced by the master publishing strategy (08-31)." },
+  { path: "CATALOG_MASTER_INVENTORY.md", status: "SUPERSEDED", bucket: "reports", supersededBy: "docs/20-products/CATALOG_MASTER_INVENTORY_FINAL.md", reason: "Earlier inventory (08-29) replaced by the FINAL revision (08-31)." },
+  { path: "PRODUCTION_VERIFICATION_REPORT.md", status: "SUPERSEDED", bucket: "reports", supersededBy: "docs/50-quality/PRODUCTION_VERIFICATION_FINAL.md", reason: "Earlier verification pass replaced by the FINAL revision." },
+  { path: "PUBLIC_DOMAIN_8_10_BOOK_PLAN.md", status: "SUPERSEDED", bucket: "strategy", supersededBy: "docs/20-products/PUBLIC_DOMAIN_BATCH_1_PLAN.md", reason: "Superseded batch plan; Batch 1 is the current scope." },
+  { path: "IMPLEMENTATION_COMPLETION_REPORT.md", status: "SUPERSEDED", bucket: "reports", supersededBy: "docs/70-archive/PHASE_4_COMPLETION_REPORT_TR.md", reason: "Superseded by the Phase 4 completion report." },
+  { path: "FINAL_VALICE_PRESS_BUSINESS_PLAN.html", status: "SUPERSEDED", bucket: "strategy", supersededBy: "docs/40-commerce/VALICE_PRESS_MASTER_PUBLISHING_STRATEGY_TR.html", reason: "Earlier business plan (08-29) replaced by the master publishing strategy (08-31)." },
 
   // ── HISTORICAL — finished phases; records, not rules ─────────────────────
   ...[
@@ -224,7 +224,7 @@ let missing = 0;
 
 for (const doc of DOCS) {
   const dest = MOVE.has(doc.status)
-    ? `archive/${doc.bucket ?? "reports"}/${doc.path.split("/").pop()}`
+    ? `docs/70-archive/${doc.bucket ?? "reports"}/${doc.path.split("/").pop()}`
     : null;
 
   const atOrigin = existsSync(join(ROOT, doc.path));
@@ -341,6 +341,6 @@ ${sorted
   \`DECISIONS.md\` and is the source of truth for that book's specification.
 `;
 
-writeFileSync(join(ROOT, "RULE_SET_INDEX.md"), index);
-console.log(`\n  wrote RULE_SET_INDEX.md (${sorted.length} rows)`);
+writeFileSync(join(ROOT, "docs", "00-critical", "RULE_SET_INDEX.md"), index);
+console.log(`\n  wrote docs/00-critical/RULE_SET_INDEX.md (${sorted.length} rows)`);
 if (!COMMIT) console.log("\n  DRY RUN — no files were moved.");

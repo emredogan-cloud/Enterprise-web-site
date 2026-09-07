@@ -21,7 +21,8 @@
  * NOT part of this repository. The build script fails loudly rather than
  * silently skipping when a path is absent — which is how the 2026-09-05 pass
  * found that SIX of these paths had gone stale: the book repositories were
- * reorganised into CODEX-SERIES/, GAMES-PUZZLE/, LANGUAGE-SERIES/ and
+ * reorganised into CODEX-SERIES/, GAMES-PUZZLE/, LANGUAGE-SERIES/ (all since
+ * folded into ROADMAP-BOOKS/, 2026-09-07) and
  * PHASE-1-BOOK/ after these lines were written, and nothing had re-cut a
  * digital edition since. Every path below was checked against the filesystem
  * on 2026-09-05.

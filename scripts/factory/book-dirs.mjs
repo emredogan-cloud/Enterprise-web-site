@@ -6,6 +6,8 @@
  * preview sources and the print interiors — each hard-coded a full path into
  * `MY-DİGİTAL-BOOK/`. That directory has now been reorganised twice inside a
  * week: first into series folders (`CODEX-SERIES/`, `GAMES-PUZZLE/`,
+ * `LANGUAGE-SERIES/`) — all of which were folded into `ROADMAP-BOOKS/` on
+ * 2026-09-07, leaving two families: `ROADMAP-BOOKS/` and `PUBLIC-BOOKS/` —
  * `LANGUAGE-SERIES/`, `PHASE-1-BOOK/`), and then again into
  * `PUBLİC-PHASE-1-BOOK/`, `PUBLİC-PHASE-2-BOOK/` and `ROADMAP-BOOKS/`. Each
  * time, twenty-odd editions went BLOCKED and stayed blocked until somebody

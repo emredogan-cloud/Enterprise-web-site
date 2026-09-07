@@ -1598,12 +1598,13 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "NOT ON SALE, AND PADDLE IS NOT THE REASON ANY MORE. The product and price are live "
-        + "on the Paddle account, verified 2026-09-07 by provision-paddle.mjs against "
-        + "api.paddle.com, and the R2 masters are uploaded. What holds this book is the "
-        + "FOUNDER'S GATE 2 (Rights) AND GATE 5 (Facts) SIGNATURES, which no agent can "
-        + "give. The earlier blocker text said this environment blocked the Paddle write; "
-        + "that was true when it was written and is false now. The live price is "
+      "NOT ON SALE. Paddle is not the reason and gates 2 and 5 are not the reason any "
+        + "more either. The product and price are live on the Paddle account, verified "
+        + "2026-09-07 against api.paddle.com, the R2 masters are uploaded, and the "
+        + "FOUNDER SIGNED GATE 2 (Rights) AND GATE 5 (Facts) ON 2026-09-07 \u2014 gates.json "
+        + "records both as passed, approvedBy founder. What holds the book now is that "
+        + "publication is data: websiteStatus is still \"draft\", and gates 1, 3, 6, 7, 8, "
+        + "10, 11 and 12 have never been run. Gate 12 is the publication approval. The live price is "
         + "pri_01m1v4n69wd2th3pf1cbw8an3n; it is deliberately NOT written into paddlePriceId, because "
         + "valice-catalog.test.ts forbids a price id on a row whose ebook is not "
         + "available, and that test is right \u2014 a live id on a row that is not "
@@ -1680,12 +1681,13 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "NOT ON SALE, AND PADDLE IS NOT THE REASON ANY MORE. The product and price are live "
-        + "on the Paddle account, verified 2026-09-07 by provision-paddle.mjs against "
-        + "api.paddle.com, and the R2 masters are uploaded. What holds this book is the "
-        + "FOUNDER'S GATE 2 (Rights) AND GATE 5 (Facts) SIGNATURES, which no agent can "
-        + "give. The earlier blocker text said this environment blocked the Paddle write; "
-        + "that was true when it was written and is false now. The live price is "
+      "NOT ON SALE. Paddle is not the reason and gates 2 and 5 are not the reason any "
+        + "more either. The product and price are live on the Paddle account, verified "
+        + "2026-09-07 against api.paddle.com, the R2 masters are uploaded, and the "
+        + "FOUNDER SIGNED GATE 2 (Rights) AND GATE 5 (Facts) ON 2026-09-07 \u2014 gates.json "
+        + "records both as passed, approvedBy founder. What holds the book now is that "
+        + "publication is data: websiteStatus is still \"draft\", and gates 1, 3, 6, 7, 8, "
+        + "10, 11 and 12 have never been run. Gate 12 is the publication approval. The live price is "
         + "pri_01m1v4n6zery50yws32dpspqve; it is deliberately NOT written into paddlePriceId, because "
         + "valice-catalog.test.ts forbids a price id on a row whose ebook is not "
         + "available, and that test is right \u2014 a live id on a row that is not "
@@ -2331,12 +2333,13 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "NOT ON SALE, AND PADDLE IS NOT THE REASON ANY MORE. The product and price are live "
-        + "on the Paddle account, verified 2026-09-07 by provision-paddle.mjs against "
-        + "api.paddle.com, and the R2 masters are uploaded. What holds this book is the "
-        + "FOUNDER'S GATE 2 (Rights) AND GATE 5 (Facts) SIGNATURES, which no agent can "
-        + "give. The earlier blocker text said this environment blocked the Paddle write; "
-        + "that was true when it was written and is false now. The live price is "
+      "NOT ON SALE. Paddle is not the reason and gates 2 and 5 are not the reason any "
+        + "more either. The product and price are live on the Paddle account, verified "
+        + "2026-09-07 against api.paddle.com, the R2 masters are uploaded, and the "
+        + "FOUNDER SIGNED GATE 2 (Rights) AND GATE 5 (Facts) ON 2026-09-07 \u2014 gates.json "
+        + "records both as passed, approvedBy founder. What holds the book now is that "
+        + "publication is data: websiteStatus is still \"draft\", and gates 1, 3, 6, 7, 8, "
+        + "10, 11 and 12 have never been run. Gate 12 is the publication approval. The live price is "
         + "pri_01m1v4n8mdw8dnnsdc2bqwf56d; it is deliberately NOT written into paddlePriceId, because "
         + "valice-catalog.test.ts forbids a price id on a row whose ebook is not "
         + "available, and that test is right \u2014 a live id on a row that is not "
@@ -2406,12 +2409,13 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "NOT ON SALE, AND PADDLE IS NOT THE REASON ANY MORE. The product and price are live "
-        + "on the Paddle account, verified 2026-09-07 by provision-paddle.mjs against "
-        + "api.paddle.com, and the R2 masters are uploaded. What holds this book is the "
-        + "FOUNDER'S GATE 2 (Rights) AND GATE 5 (Facts) SIGNATURES, which no agent can "
-        + "give. The earlier blocker text said this environment blocked the Paddle write; "
-        + "that was true when it was written and is false now. The live price is "
+      "NOT ON SALE. Paddle is not the reason and gates 2 and 5 are not the reason any "
+        + "more either. The product and price are live on the Paddle account, verified "
+        + "2026-09-07 against api.paddle.com, the R2 masters are uploaded, and the "
+        + "FOUNDER SIGNED GATE 2 (Rights) AND GATE 5 (Facts) ON 2026-09-07 \u2014 gates.json "
+        + "records both as passed, approvedBy founder. What holds the book now is that "
+        + "publication is data: websiteStatus is still \"draft\", and gates 1, 3, 6, 7, 8, "
+        + "10, 11 and 12 have never been run. Gate 12 is the publication approval. The live price is "
         + "pri_01m1v4n991k3h8x20sbwp9455z; it is deliberately NOT written into paddlePriceId, because "
         + "valice-catalog.test.ts forbids a price id on a row whose ebook is not "
         + "available, and that test is right \u2014 a live id on a row that is not "
@@ -2470,12 +2474,13 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "NOT ON SALE, AND PADDLE IS NOT THE REASON ANY MORE. The product and price are live "
-        + "on the Paddle account, verified 2026-09-07 by provision-paddle.mjs against "
-        + "api.paddle.com, and the R2 masters are uploaded. What holds this book is the "
-        + "FOUNDER'S GATE 2 (Rights) AND GATE 5 (Facts) SIGNATURES, which no agent can "
-        + "give. The earlier blocker text said this environment blocked the Paddle write; "
-        + "that was true when it was written and is false now. The live price is "
+      "NOT ON SALE. Paddle is not the reason and gates 2 and 5 are not the reason any "
+        + "more either. The product and price are live on the Paddle account, verified "
+        + "2026-09-07 against api.paddle.com, the R2 masters are uploaded, and the "
+        + "FOUNDER SIGNED GATE 2 (Rights) AND GATE 5 (Facts) ON 2026-09-07 \u2014 gates.json "
+        + "records both as passed, approvedBy founder. What holds the book now is that "
+        + "publication is data: websiteStatus is still \"draft\", and gates 1, 3, 6, 7, 8, "
+        + "10, 11 and 12 have never been run. Gate 12 is the publication approval. The live price is "
         + "pri_01m1v4n9ygd9z3vbgstcjbmvt0; it is deliberately NOT written into paddlePriceId, because "
         + "valice-catalog.test.ts forbids a price id on a row whose ebook is not "
         + "available, and that test is right \u2014 a live id on a row that is not "
