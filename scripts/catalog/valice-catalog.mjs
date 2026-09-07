@@ -149,6 +149,13 @@ export const AUTHORS = [
     bio: "English clergyman, antiquarian, novelist and collector of folk-song (1834\u20131924). Squire and parson of the same Devon parish, Lew Trenchard, which he had inherited and then presented himself to; author of the words of \u201cOnward, Christian Soldiers\u201d, of a very long series on the lives of the saints, and of well over a hundred other books. He had been to Iceland and could read Old Norse, which is why the middle chapters of The Book of Were-Wolves are so much better than the end. He went about Devon with a notebook collecting folk-songs from farm labourers before anyone else in England was doing it systematically.",
   },
   {
+    slug: "thomas-keightley",
+    name: "Thomas Keightley",
+    // Dates from PG bibrec 41006; the career and the Croker connection from Keightley's own
+    // preface, which is the primary source. See CLAIMS.jsonl C-001 and C-002.
+    bio: "Irish writer and folklorist (1789\u20131872), born in Dublin and settled in London from 1824. He came to literature, by his own account, because his fortune was gone and ill health shut him out of the professions, and he lived by writing school histories. Helping T. Crofton Croker gather the Fairy Legends of the South of Ireland led him to write The Fairy Mythology (1828), the first attempt in English to set the fairy beliefs of Europe side by side. It was translated into German at once; Jacob Grimm wrote commending it. He is also, unusually for his century, a collector who admitted in print that some of the material he helped produce had been improved for effect.",
+  },
+  {
     slug: "wirt-sikes",
     name: "Wirt Sikes",
     // Dates from PG bibrec 34704; the appointment, the novels and the pseudonyms from
@@ -1711,6 +1718,182 @@ export const BOOKS = [
         + "ASIN is invented.",
       "The apparatus is 20.6% of the volume against a 20% floor, measured from the content "
         + "files by COMMON-AREA/checks/differentiation.py.",
+    ],
+  },
+
+  {
+    slug: "fairy-mythology-vol-1",
+    title: "The Fairy Mythology, Volume I",
+    subtitle:
+      "Volume I · Persia, Romance, the Eddas, Scandinavia, Germany \u2014 Keightley\u2019s 1850 Text, Annotated, with a Register of What He Translated, Collected, Read and Only Concluded",
+    language: "en",
+    pageCount: 332,
+    categories: ["myth-and-folklore", "classics-and-philosophy"],
+    authors: ["thomas-keightley", "emre-dogan"],
+    bisac: ["SOC011000", "OCC036000"],
+    series: { name: "Valice Classics", volume: 17 },
+    // PHASE 3, BOOK 5 (2026-09-07). ONE ROADMAP TITLE, TWO PRODUCT VOLUMES. The work runs to
+    // ~200,000 words; in one volume it would exceed KDP\u2019s 550-page hardcover limit and
+    // price the paperback near $38. The seam is Keightley\u2019s own GREAT BRITAIN division
+    // and the halves come out within three hundred words of each other. Nothing is abridged.
+    // Volume II is fairy-mythology-vol-2.
+    websiteStatus: "draft",
+    linkageDecision: null,
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: "no Paddle product yet",
+    paddlePriceId: null,
+    onelinePromise:
+      "The first attempt in English to put the fairy beliefs of Europe side by side — the North, from the Persian peri to the Swiss Alps, with the collectors named.",
+    description:
+      "Thomas Keightley's 1850 Fairy Mythology, volume I of two: where the belief and the word come from, the Persian peri and the Arabian jinn, Oberon traced back to Alberich, the alfar and duergar of the Eddas, and the fairy beliefs of Denmark, Norway, Sweden, Iceland, Shetland, the Orkneys, Rügen, Germany and Switzerland. With a head-note and a criticism for every section, a Register of Evidence and Inference, a glossary of the northern words, a register of the beings, a who's-who of the collectors he translates, a concordance of motifs measured across both volumes, and a plain account of what has been established since 1850.",
+    idealReader:
+      "Someone who wants the Scandinavian and German fairy material in one place, in English, and would rather be told which collector each tale comes from than be handed it anonymously.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(9.99),
+        pageCount: 332,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_applicable",
+        masterFileKey: null,
+        epubFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-07, direct ebook, public domain: $9.99 nets $8.99 after Paddle at a 90% margin. Each volume is priced as a complete book because each is one; the pair at $19.98 sits below Codex Bestiarium at $12.99 for a comparable total length, which is the concession the two-volume format makes to the reader.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(19.99),
+        pageCount: 332,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-07, 332 pp 6\u00d79 B&W on white: prints at $4.98, KDP minimum list $8.31; $19.99 is the engine\u2019s recommendation at the 35% target.",
+      },
+      {
+        format: "hardcover",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(38.99),
+        pageCount: 332,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-07, 332 pp 6\u00d79 hardcover: prints at $9.63, KDP minimum list $16.06; $38.99 is the engine\u2019s recommendation at the 35% target. FOUNDER F-036 applies here as to British Goblins: no book this press has sold is priced near it.",
+      },
+    ],
+    blockers: [
+      "NOT DEPLOYED, AND THAT IS WHY THE ROW IS DRAFT. Phase 3 is not merged. The companion "
+        + "address is printed permanently in the book and 404s until this branch ships.",
+      "NO PADDLE PRODUCT, no R2 master and no KDP listing. `paddlePriceId`, `masterFileKey` "
+        + "and `epubFileKey` are null and `kdp` is \"not_created\"; no identifier is invented.",
+      "GATE 2 IS UNSIGNED. Five rights rows \u2014 the most of any book in the phase \u2014 "
+        + "including one that is REFUSED: the ~150 one-letter images the 2012 transcribers made "
+        + "for the insular and Gaelic letterforms. FOUNDER F-037.",
+      "THE APPARATUS IS BELOW THE 20% HISTORICAL FLOOR and is recorded rather than padded. "
+        + "Article 2 forbids filler and the Founder\u2019s standing instruction is that the "
+        + "floor is a quality floor, not a word-count target. Measured in "
+        + "QA/differentiation-vol1.json.",
+      "COVER SERIES IDIOM: a painted cover where COVER_STANDARDS gives Valice Classics as "
+        + "typographic \u2014 the same open Founder decision as the rest of the phase (F-031).",
+      "TWO VOLUMES, ONE ROADMAP TITLE. The pair must be sold and shelved as a pair: a reader "
+        + "who buys one and not the other gets half of Keightley. The related-products link "
+        + "between the two rows is not optional.",
+    ],
+  },
+
+  {
+    slug: "fairy-mythology-vol-2",
+    title: "The Fairy Mythology, Volume II",
+    subtitle:
+      "Volume II · Britain, Ireland, Brittany, France and the South \u2014 Keightley\u2019s 1850 Text, Annotated, with a Register of What He Translated, Collected, Read and Only Concluded",
+    language: "en",
+    pageCount: 322,
+    categories: ["myth-and-folklore", "classics-and-philosophy"],
+    authors: ["thomas-keightley", "emre-dogan"],
+    bisac: ["SOC011000", "OCC036000"],
+    series: { name: "Valice Classics", volume: 18 },
+    // PHASE 3, BOOK 5 (2026-09-07). ONE ROADMAP TITLE, TWO PRODUCT VOLUMES. The work runs to
+    // ~200,000 words; in one volume it would exceed KDP\u2019s 550-page hardcover limit and
+    // price the paperback near $38. The seam is Keightley\u2019s own GREAT BRITAIN division
+    // and the halves come out within three hundred words of each other. Nothing is abridged.
+    // Volume I is fairy-mythology-vol-1.
+    websiteStatus: "draft",
+    linkageDecision: null,
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: "no Paddle product yet",
+    paddlePriceId: null,
+    onelinePromise:
+      "Britain, Ireland and the West — and the passage in which Keightley admits that some of the most admired traits of the Irish fairies were invented by their collectors, himself among them.",
+    description:
+      "Thomas Keightley's 1850 Fairy Mythology, volume II of two: England, the Scottish Lowlands and Highlands, Ireland, the Isle of Man, Wales, Brittany, Greece, Italy, Spain, France, the Finns and the Jews, with the Conclusion and the Appendix. It is the half of the book in which Keightley handles material he helped to make, and admits in print that some of the most admired traits of the Irish fairies were invented by their collectors. With a head-note and a criticism for every section, a Register of Evidence and Inference, a glossary, a register of the beings, a who's-who, a motif concordance, and a plain account of what has been established since 1850.",
+    idealReader:
+      "Someone interested in how a national folklore canon gets made — and unmade — and who wants the British, Irish and Breton material with its sourcing marked.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(9.99),
+        pageCount: 322,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_applicable",
+        masterFileKey: null,
+        epubFileKey: null,
+        priceBasis:
+          "price-engine.mjs 2026-09-07, direct ebook, public domain: $9.99 nets $8.99 after Paddle at a 90% margin. Each volume is priced as a complete book because each is one; the pair at $19.98 sits below Codex Bestiarium at $12.99 for a comparable total length, which is the concession the two-volume format makes to the reader.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(19.99),
+        pageCount: 322,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-07, 322 pp 6\u00d79 B&W on white: prints at $4.86, KDP minimum list $8.11; $19.99 is the engine\u2019s recommendation at the 35% target.",
+      },
+      {
+        format: "hardcover",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(38.99),
+        pageCount: 322,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not_created",
+        priceBasis:
+          "price-engine.mjs 2026-09-07, 322 pp 6\u00d79 hardcover: prints at $9.51, KDP minimum list $15.86; $38.99 is the engine\u2019s recommendation at the 35% target. FOUNDER F-036 applies here as to British Goblins: no book this press has sold is priced near it.",
+      },
+    ],
+    blockers: [
+      "NOT DEPLOYED, AND THAT IS WHY THE ROW IS DRAFT. Phase 3 is not merged. The companion "
+        + "address is printed permanently in the book and 404s until this branch ships.",
+      "NO PADDLE PRODUCT, no R2 master and no KDP listing. `paddlePriceId`, `masterFileKey` "
+        + "and `epubFileKey` are null and `kdp` is \"not_created\"; no identifier is invented.",
+      "GATE 2 IS UNSIGNED. Five rights rows \u2014 the most of any book in the phase \u2014 "
+        + "including one that is REFUSED: the ~150 one-letter images the 2012 transcribers made "
+        + "for the insular and Gaelic letterforms. FOUNDER F-037.",
+      "THE APPARATUS IS BELOW THE 20% HISTORICAL FLOOR and is recorded rather than padded. "
+        + "Article 2 forbids filler and the Founder\u2019s standing instruction is that the "
+        + "floor is a quality floor, not a word-count target. Measured in "
+        + "QA/differentiation-vol2.json.",
+      "COVER SERIES IDIOM: a painted cover where COVER_STANDARDS gives Valice Classics as "
+        + "typographic \u2014 the same open Founder decision as the rest of the phase (F-031).",
+      "TWO VOLUMES, ONE ROADMAP TITLE. The pair must be sold and shelved as a pair: a reader "
+        + "who buys one and not the other gets half of Keightley. The related-products link "
+        + "between the two rows is not optional.",
     ],
   },
 

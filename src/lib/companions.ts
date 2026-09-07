@@ -1924,6 +1924,142 @@ const BRITISH_GOBLINS: Companion = {
   ],
 };
 
+/**
+ * The Fairy Mythology, Volume I — Valice Classics 17.
+ *
+ * One roadmap title, two product volumes, split at Keightley's own Great Britain division.
+ * The sheets differ per volume because the volumes do.
+ */
+const FAIRY_MYTHOLOGY_VOL_1: Companion = {
+  slug: "fairy-mythology-vol-1",
+  bookSlug: "fairy-mythology-vol-1",
+  bookTitle: "The Fairy Mythology, Volume I",
+  state: "book-not-yet-available",
+  stateNote:
+    "The Valice edition is built and validated \u2014 332 pages, thirty sections, all of Keightley from his preface to the end of Switzerland \u2014 but its pages have not been deployed and no payment product exists for it yet, so the storefront row is deliberately held back. Everything on this page is free and works today regardless.",
+  intro:
+    "Free material for the first volume of Keightley\u2019s 1850 Fairy Mythology: the northern vocabulary the book uses without explaining, a reading list of the collectors he translates, a scorecard of what became of his claims, a measured concordance of the motifs he compares, and the insular alphabet the original was set in.",
+  newsletterSource: "fairy-mythology-vol-1-companion",
+  assetsHeading: "Print and read",
+  rightsNote:
+    "Thomas Keightley lived 1789\u20131872 and this text is the enlarged edition of 1850, reprinted in 1892, so it is in the public domain on two independent grounds. The illustration layer was assessed separately: the frontispiece of the 1850 issue is George Cruikshank's (1792\u20131878) and the seven engraved blocks of Persian and Sanskrit are anonymous work published in 1850 \u2014 all clear. One layer is REFUSED: the ~150 one-letter images the 2012 transcribers made to stand for the insular and Gaelic letterforms are their work, not Keightley's, and this edition replaces every one with its Unicode character instead.",
+  assets: [
+    {
+      id: "words",
+      title: "The Northern Words",
+      description:
+        "Twenty-seven terms — <i>alfar</i>, <i>duergar</i>, <i>elle-folk</i>, <i>nis</i>, <i>tomte</i>, <i>kobold</i>, <i>nix</i>, <i>Servan</i> — with what each means and which language it is. Keightley writes for a reader who has Danish, German and a little Norse; this is the card for the reader who has none of them.",
+      kind: "static",
+      href: "/companion/fairy-mythology-vol-1/words.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 2 pages",
+    },
+    {
+      id: "who-collected-it",
+      title: "Who Collected It",
+      description:
+        "Thiele, Faye, Afzelius, Arndt and Grimm, with what each of them published, when, and which parts of the volume are theirs. Keightley names his sources, which for 1828 is the remarkable thing about him; this sheet turns those citations into a reading list.",
+      kind: "static",
+      href: "/companion/fairy-mythology-vol-1/who-collected-it.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 2 pages",
+    },
+    {
+      id: "scorecard",
+      title: "Right, Wrong, Still Open",
+      description:
+        "Ten claims and what became of each. The collectors, the etymology of <i>fairy</i>, Oberon\u2019s descent from Alberich and the Norse survival in Shetland all held. The Persian derivation, the Eddic elf-orders and the identity of the German and Scandinavian dwarfs did not.",
+      kind: "static",
+      href: "/companion/fairy-mythology-vol-1/scorecard.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 2 pages",
+    },
+    {
+      id: "motifs",
+      title: "A Concordance of Motifs",
+      description:
+        "The changeling, the egg-shell test, the stolen bride, the midwife fetched to the hill, the fairy ointment, the gift of clothes — counted section by section across both volumes. The book is a comparison and never indexes what it compares; this is a measurement, not an argument.",
+      kind: "static",
+      href: "/companion/fairy-mythology-vol-1/motifs.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "the-letters-he-set",
+      title: "The Letters He Set",
+      description:
+        "The insular Anglo-Saxon and Gaelic type of the original, letter by letter, with the word that identifies each one — <i>Munt-ælfen</i>, <i>Wulfes-fist</i>, <i>daine maiṫ</i>, <i>siaḃra</i>. The transcription this edition works from set them as pictures; here they are characters.",
+      kind: "static",
+      href: "/companion/fairy-mythology-vol-1/the-letters-he-set.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+  ],
+};
+
+/**
+ * The Fairy Mythology, Volume II — Valice Classics 18.
+ *
+ * One roadmap title, two product volumes, split at Keightley's own Great Britain division.
+ * The sheets differ per volume because the volumes do.
+ */
+const FAIRY_MYTHOLOGY_VOL_2: Companion = {
+  slug: "fairy-mythology-vol-2",
+  bookSlug: "fairy-mythology-vol-2",
+  bookTitle: "The Fairy Mythology, Volume II",
+  state: "book-not-yet-available",
+  stateNote:
+    "The Valice edition is built and validated \u2014 322 pages, twenty-one sections, Keightley from his Great Britain division to the end of the Appendix \u2014 but its pages have not been deployed and no payment product exists for it yet, so the storefront row is deliberately held back. Everything on this page is free and works today regardless.",
+  intro:
+    "Free material for the second volume: the western vocabulary, the collectors — and the collaborators — behind the English and Irish material, a scorecard of what became of his claims, the shared motif concordance, and the insular and Gaelic alphabet.",
+  newsletterSource: "fairy-mythology-vol-2-companion",
+  assetsHeading: "Print and read",
+  rightsNote:
+    "Thomas Keightley lived 1789\u20131872 and this text is the enlarged edition of 1850, reprinted in 1892, so it is in the public domain on two independent grounds. The illustration layer was assessed separately: the frontispiece of the 1850 issue is George Cruikshank's (1792\u20131878) and the seven engraved blocks of Persian and Sanskrit are anonymous work published in 1850 \u2014 all clear. One layer is REFUSED: the ~150 one-letter images the 2012 transcribers made to stand for the insular and Gaelic letterforms are their work, not Keightley's, and this edition replaces every one with its Unicode character instead.",
+  assets: [
+    {
+      id: "words",
+      title: "The Words of the West",
+      description:
+        "Twenty-six terms — <i>pouke</i>, <i>pixy</i>, <i>brownie</i>, <i>sidhe</i>, <i>banshee</i>, <i>korrigan</i>, <i>lutin</i>, <i>duende</i> — with what each means and which language it is, and where a being also appears in Volume I under a northern name.",
+      kind: "static",
+      href: "/companion/fairy-mythology-vol-2/words.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 2 pages",
+    },
+    {
+      id: "who-collected-it",
+      title: "Who Collected It",
+      description:
+        "Croker, Hone, Scott, the Grimms and the rest — with what each published, which parts of the volume are theirs, and which of them Keightley worked with rather than merely read. That last distinction is why this volume needs the sheet more than Volume I does.",
+      kind: "static",
+      href: "/companion/fairy-mythology-vol-2/who-collected-it.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "scorecard",
+      title: "Right, Wrong, Still Open",
+      description:
+        "Ten claims and what became of each — including one the author withdrew himself. The house-spirit family, the death-warners and the mine-spirits held. Celtic unity did not, and the Irish material is unusable as a record on Keightley\u2019s own evidence.",
+      kind: "static",
+      href: "/companion/fairy-mythology-vol-2/scorecard.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 2 pages",
+    },
+    {
+      id: "motifs",
+      title: "A Concordance of Motifs",
+      description:
+        "The same measured concordance as Volume I, counted across both, so a reader of either can see where a thread begins and where it runs on.",
+      kind: "static",
+      href: "/companion/fairy-mythology-vol-2/motifs.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+    {
+      id: "the-letters-he-set",
+      title: "The Letters He Set",
+      description:
+        "The insular and Gaelic type of the original. The Irish letters matter most in this volume: <i>daine maiṫ</i> and <i>siaḃra</i>, restored with the séimhiú dot Keightley printed.",
+      kind: "static",
+      href: "/companion/fairy-mythology-vol-2/the-letters-he-set.pdf",
+      meta: "PDF \u00b7 US Letter \u00b7 1 page",
+    },
+  ],
+};
+
 const COMPANIONS: readonly Companion[] = [
   HANGUL,
   WORLD_GAMES,
@@ -1948,6 +2084,8 @@ const COMPANIONS: readonly Companion[] = [
   SEA_MONSTERS_UNMASKED,
   BOOK_OF_WERE_WOLVES,
   BRITISH_GOBLINS,
+  FAIRY_MYTHOLOGY_VOL_1,
+  FAIRY_MYTHOLOGY_VOL_2,
 ];
 
 export function listCompanions(): readonly Companion[] {

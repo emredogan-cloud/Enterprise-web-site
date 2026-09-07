@@ -65,7 +65,9 @@ export type NewsletterSource =
   | "kwaidan-companion"
   | "sea-monsters-unmasked-companion"
   | "book-of-were-wolves-companion"
-  | "british-goblins-companion";
+  | "british-goblins-companion"
+  | "fairy-mythology-vol-1-companion"
+  | "fairy-mythology-vol-2-companion";
 
 /** The subset of sources a printed-book companion page may carry. */
 export type CompanionNewsletterSource = Extract<

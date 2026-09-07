@@ -1,13 +1,13 @@
 {
   "tool": "validate-catalog",
   "target": "https://valicepress.com",
-  "startedAt": "2026-09-06T22:57:40.189Z",
-  "finishedAt": "2026-09-06T22:58:30.229Z",
+  "startedAt": "2026-09-07T02:46:24.159Z",
+  "finishedAt": "2026-09-07T02:47:15.650Z",
   "ok": false,
   "counts": {
     "pass": 53,
     "warn": 0,
-    "error": 20,
+    "error": 32,
     "skipped": 2
   },
   "findings": [
@@ -349,6 +349,18 @@
     },
     {
       "level": "error",
+      "check": "companion",
+      "message": "https://valicepress.com/companion/fairy-mythology-vol-1 → 404",
+      "where": "fairy-mythology-vol-1"
+    },
+    {
+      "level": "error",
+      "check": "companion",
+      "message": "https://valicepress.com/companion/fairy-mythology-vol-2 → 404",
+      "where": "fairy-mythology-vol-2"
+    },
+    {
+      "level": "error",
       "check": "companion-asset",
       "message": "/companion/kwaidan/provinces-card.pdf → 404",
       "where": null
@@ -441,6 +453,66 @@
       "level": "error",
       "check": "companion-asset",
       "message": "/companion/british-goblins/gazetteer.pdf → 404",
+      "where": null
+    },
+    {
+      "level": "error",
+      "check": "companion-asset",
+      "message": "/companion/fairy-mythology-vol-1/words.pdf → 404",
+      "where": null
+    },
+    {
+      "level": "error",
+      "check": "companion-asset",
+      "message": "/companion/fairy-mythology-vol-1/who-collected-it.pdf → 404",
+      "where": null
+    },
+    {
+      "level": "error",
+      "check": "companion-asset",
+      "message": "/companion/fairy-mythology-vol-1/scorecard.pdf → 404",
+      "where": null
+    },
+    {
+      "level": "error",
+      "check": "companion-asset",
+      "message": "/companion/fairy-mythology-vol-1/motifs.pdf → 404",
+      "where": null
+    },
+    {
+      "level": "error",
+      "check": "companion-asset",
+      "message": "/companion/fairy-mythology-vol-1/the-letters-he-set.pdf → 404",
+      "where": null
+    },
+    {
+      "level": "error",
+      "check": "companion-asset",
+      "message": "/companion/fairy-mythology-vol-2/words.pdf → 404",
+      "where": null
+    },
+    {
+      "level": "error",
+      "check": "companion-asset",
+      "message": "/companion/fairy-mythology-vol-2/who-collected-it.pdf → 404",
+      "where": null
+    },
+    {
+      "level": "error",
+      "check": "companion-asset",
+      "message": "/companion/fairy-mythology-vol-2/scorecard.pdf → 404",
+      "where": null
+    },
+    {
+      "level": "error",
+      "check": "companion-asset",
+      "message": "/companion/fairy-mythology-vol-2/motifs.pdf → 404",
+      "where": null
+    },
+    {
+      "level": "error",
+      "check": "companion-asset",
+      "message": "/companion/fairy-mythology-vol-2/the-letters-he-set.pdf → 404",
       "where": null
     },
     {
