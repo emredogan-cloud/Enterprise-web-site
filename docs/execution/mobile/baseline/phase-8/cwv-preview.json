@@ -1,0 +1,248 @@
+{
+  "generatedAt": "2026-09-05T12:19:23.335Z",
+  "target": "https://valicepress-book-site-6197xh3x5-emre30283-4955s-projects.vercel.app",
+  "device": {
+    "kind": "device",
+    "browser": "Chrome/152.0.7977.75",
+    "androidPackage": "com.android.chrome"
+  },
+  "conditions": {
+    "cacheDisabled": true,
+    "throttled": true,
+    "downKbps": 1600,
+    "latencyMs": 70,
+    "hardware": "Redmi Note 8 (2021)",
+    "repeats": 3,
+    "statistic": "median"
+  },
+  "caveat": "Lab measurements on one device over an emulated link. Not field data, not a 75th percentile. inpProxyMs is the worst scripted-interaction latency across a fixed tap set, not true INP. Values are the median of `repeats` runs; per-run spread is in lcpSamples/inpSamples. Measuring a REMOTE origin stacks CDP throttling on live network jitter and is much noisier than measuring the local server over adb — prefer local for phase-to-phase comparison.",
+  "thresholds": {
+    "lcpGoodMs": 2500,
+    "clsGood": 0.1,
+    "inpGoodMs": 200
+  },
+  "results": [
+    {
+      "path": "/",
+      "url": "https://vercel.com/login?next=%2Fsso-api%3Furl%3Dhttps%253A%252F%252Fvalicepress-book-site-6197xh3x5-emre30283-4955s-projects.vercel.app%252F%26nonce%3D60805fa3217df4f858743c9da3491d0e7f12af155833c289e3e468de00a856a4",
+      "ttfbMs": 1194,
+      "fcpMs": 5080,
+      "lcp": {
+        "t": 5080,
+        "size": 9270,
+        "el": "H1.text-heading-32",
+        "text": "Log in to Vercel",
+        "url": null
+      },
+      "cls": 0,
+      "topShifts": [],
+      "inpProxyMs": 224,
+      "slowestInteractions": [
+        {
+          "name": "mouseout",
+          "dur": 224,
+          "target": "P.text-[14px] leading-[20px] fon"
+        },
+        {
+          "name": "mouseover",
+          "dur": 224,
+          "target": "INPUT.inline-flex appearance-none we"
+        },
+        {
+          "name": "mousedown",
+          "dur": 224,
+          "target": "INPUT.inline-flex appearance-none we"
+        },
+        {
+          "name": "mouseup",
+          "dur": 224,
+          "target": "INPUT.inline-flex appearance-none we"
+        },
+        {
+          "name": "click",
+          "dur": 224,
+          "target": "INPUT.inline-flex appearance-none we"
+        }
+      ],
+      "interactionCount": 590,
+      "longTasks": 24,
+      "longTaskMs": 3128,
+      "requests": 123,
+      "jsKB": 1202,
+      "jsCount": 81,
+      "cssKB": 257,
+      "cssCount": 9,
+      "fontKB": 91,
+      "fontCount": 2,
+      "imgKB": 7,
+      "imgCount": 8,
+      "totalKB": 1573,
+      "domNodes": 270,
+      "interactionsDriven": 8,
+      "lcpMedianMs": 5080,
+      "lcpSamples": [
+        8364,
+        5080,
+        4216
+      ],
+      "fcpMedianMs": 5080,
+      "clsMax": 0.0035,
+      "inpProxyMedianMs": 224,
+      "inpSamples": [
+        216,
+        224,
+        224
+      ],
+      "totalKBMedian": 1553,
+      "samples": 3
+    },
+    {
+      "path": "/books",
+      "url": "https://vercel.com/login?next=%2Fsso-api%3Furl%3Dhttps%253A%252F%252Fvalicepress-book-site-6197xh3x5-emre30283-4955s-projects.vercel.app%252Fbooks%26nonce%3D60805fa3217df4f858743c9da3491d0e7f12af155833c289e3e468de00a856a4",
+      "ttfbMs": 1590,
+      "fcpMs": 5868,
+      "lcp": {
+        "t": 5868,
+        "size": 9270,
+        "el": "H1.text-heading-32",
+        "text": "Log in to Vercel",
+        "url": null
+      },
+      "cls": 0,
+      "topShifts": [],
+      "inpProxyMs": 184,
+      "slowestInteractions": [
+        {
+          "name": "mouseout",
+          "dur": 184,
+          "target": "P.text-[14px] leading-[20px] fon"
+        },
+        {
+          "name": "mouseover",
+          "dur": 184,
+          "target": "INPUT.inline-flex appearance-none we"
+        },
+        {
+          "name": "mousedown",
+          "dur": 184,
+          "target": "INPUT.inline-flex appearance-none we"
+        },
+        {
+          "name": "mouseup",
+          "dur": 184,
+          "target": "INPUT.inline-flex appearance-none we"
+        },
+        {
+          "name": "click",
+          "dur": 184,
+          "target": "INPUT.inline-flex appearance-none we"
+        }
+      ],
+      "interactionCount": 1180,
+      "longTasks": 36,
+      "longTaskMs": 3232,
+      "requests": 123,
+      "jsKB": 1202,
+      "jsCount": 81,
+      "cssKB": 257,
+      "cssCount": 9,
+      "fontKB": 91,
+      "fontCount": 2,
+      "imgKB": 7,
+      "imgCount": 8,
+      "totalKB": 1573,
+      "domNodes": 270,
+      "interactionsDriven": 8,
+      "lcpMedianMs": 5868,
+      "lcpSamples": [
+        5868,
+        7820,
+        5280
+      ],
+      "fcpMedianMs": 5868,
+      "clsMax": 0,
+      "inpProxyMedianMs": 184,
+      "inpSamples": [
+        184,
+        224,
+        168
+      ],
+      "totalKBMedian": 1573,
+      "samples": 3
+    },
+    {
+      "path": "/books/meditations",
+      "url": "https://vercel.com/login?next=%2Fsso-api%3Furl%3Dhttps%253A%252F%252Fvalicepress-book-site-6197xh3x5-emre30283-4955s-projects.vercel.app%252Fbooks%252Fmeditations%26nonce%3D60805fa3217df4f858743c9da3491d0e7f12af155833c289e3e468de00a856a4",
+      "ttfbMs": 1508,
+      "fcpMs": 4684,
+      "lcp": {
+        "t": 4684,
+        "size": 9270,
+        "el": "H1.text-heading-32",
+        "text": "Log in to Vercel",
+        "url": null
+      },
+      "cls": 0,
+      "topShifts": [],
+      "inpProxyMs": 240,
+      "slowestInteractions": [
+        {
+          "name": "mouseout",
+          "dur": 240,
+          "target": "P.text-[14px] leading-[20px] fon"
+        },
+        {
+          "name": "mouseover",
+          "dur": 240,
+          "target": "INPUT.inline-flex appearance-none we"
+        },
+        {
+          "name": "mousedown",
+          "dur": 240,
+          "target": "INPUT.inline-flex appearance-none we"
+        },
+        {
+          "name": "mouseup",
+          "dur": 240,
+          "target": "INPUT.inline-flex appearance-none we"
+        },
+        {
+          "name": "click",
+          "dur": 240,
+          "target": "INPUT.inline-flex appearance-none we"
+        }
+      ],
+      "interactionCount": 2240,
+      "longTasks": 88,
+      "longTaskMs": 8616,
+      "requests": 121,
+      "jsKB": 1202,
+      "jsCount": 81,
+      "cssKB": 257,
+      "cssCount": 9,
+      "fontKB": 91,
+      "fontCount": 2,
+      "imgKB": 7,
+      "imgCount": 8,
+      "totalKB": 1573,
+      "domNodes": 270,
+      "interactionsDriven": 8,
+      "lcpMedianMs": 4684,
+      "lcpSamples": [
+        4808,
+        4684,
+        4504
+      ],
+      "fcpMedianMs": 4684,
+      "clsMax": 0.0342,
+      "inpProxyMedianMs": 224,
+      "inpSamples": [
+        208,
+        240,
+        224
+      ],
+      "totalKBMedian": 1573,
+      "samples": 3
+    }
+  ]
+}

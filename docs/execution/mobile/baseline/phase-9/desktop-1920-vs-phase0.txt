@@ -1,0 +1,55 @@
+
+> enterprise-web-site@0.1.0 mobile:fingerprint
+> node scripts/mobile/fingerprint.mjs --compare docs/execution/mobile/baseline/phase-0/fingerprint-desktop-1920.json docs/execution/mobile/baseline/phase-9/fingerprint-desktop-1920.json
+
+
+▸ Layout fingerprint diff
+  before: docs/execution/mobile/baseline/phase-0/fingerprint-desktop-1920.json
+  after:  docs/execution/mobile/baseline/phase-9/fingerprint-desktop-1920.json
+
+  ╳ home
+      node count 308→309
+      308 element(s) changed
+      gone: div[2]
+      gone: div[2]>header[0]
+      gone: div[2]>header[0]>div[0]
+      gone: div[2]>header[0]>div[0]>a[0]
+      gone: div[2]>header[0]>div[0]>a[0]>span[0]
+  ╳ catalog
+      node count 434→435
+      434 element(s) changed
+      gone: div[28]
+      gone: div[28]>header[0]
+      gone: div[28]>header[0]>div[0]
+      gone: div[28]>header[0]>div[0]>a[0]
+      gone: div[28]>header[0]>div[0]>a[0]>span[0]
+  ╳ ebooks
+      node count 409→410
+      409 element(s) changed
+      gone: div[28]
+      gone: div[28]>header[0]
+      gone: div[28]>header[0]>div[0]
+      gone: div[28]>header[0]>div[0]>a[0]
+      gone: div[28]>header[0]>div[0]>a[0]>span[0]
+  ╳ book-detail
+      node count 313→314
+      313 element(s) changed
+      gone: div[28]
+      gone: div[28]>header[0]
+      gone: div[28]>header[0]>div[0]
+      gone: div[28]>header[0]>div[0]>a[0]
+      gone: div[28]>header[0]>div[0]>a[0]>span[0]
+  ✓ categories  (identical layout; COLOUR ONLY — -9 rgb(93, 103, 95), +9 rgb(115, 126, 117))
+  ✓ authors  (identical layout; COLOUR ONLY — -15 rgb(93, 103, 95), +15 rgb(115, 126, 117))
+  ✓ blog  (identical layout; COLOUR ONLY — -11 rgb(93, 103, 95), +11 rgb(115, 126, 117))
+  ╳ cart
+      node count 259→262
+      259 element(s) changed
+      gone: div[28]
+      gone: div[28]>header[0]
+      gone: div[28]>header[0]>div[0]
+      gone: div[28]>header[0]>div[0]>a[0]
+      gone: div[28]>header[0]>div[0]>a[0]>span[0]
+  ✓ library  (identical layout; COLOUR ONLY — -9 rgb(93, 103, 95), +9 rgb(115, 126, 117))
+
+▸ 4/9 routes identical

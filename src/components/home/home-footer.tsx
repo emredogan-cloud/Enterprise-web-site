@@ -72,11 +72,17 @@ export function HomeFooter() {
   ];
 
   return (
-    <footer id="about" className="relative border-t border-white/[0.06] px-6 py-16">
+    <footer id="about" className="relative border-t border-white/[0.06] px-6 py-10 sm:py-16">
       <div className="mx-auto max-w-7xl">
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(4,1fr)]">
+        {/* Below `sm:` the four link columns sit 2-up rather than stacking.
+            Five blocks in a single column with 48px gaps made the footer 1086px
+            — 1.5 screens on the Redmi — for content that fits in half that.
+            The brand column spans both cells so its paragraph keeps its measure.
+            `sm:` and `lg:` are restated at their existing values, so the 640px+
+            and desktop compositions are byte-for-byte what they were. */}
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-12 lg:grid-cols-[1.4fr_repeat(4,1fr)]">
           {/* Brand column */}
-          <div>
+          <div className="col-span-2 sm:col-span-1">
             <Link
               href="/"
               className="inline-flex items-center gap-2 text-base font-medium text-fg-hi"
@@ -116,7 +122,7 @@ export function HomeFooter() {
         </div>
 
         {/* Bottom bar — copyright, social, theme indicator */}
-        <div className="mt-16 flex flex-col-reverse items-start justify-between gap-6 border-t border-white/[0.06] pt-8 sm:flex-row sm:items-center">
+        <div className="mt-10 sm:mt-16 flex flex-col-reverse items-start justify-between gap-6 border-t border-white/[0.06] pt-8 sm:flex-row sm:items-center">
           {/* Left: copyright + social */}
           <div className="flex items-center gap-5">
             <p className="text-xs text-fg-fade">
@@ -154,7 +160,7 @@ export function HomeFooter() {
               (no light-mode toggle planned), so the chip's affordance
               was misleading. Reduced to a plain inline note: same icon,
               same tone, no fake button chrome. */}
-          <span className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.12em] text-fg-fade">
+          <span className="inline-flex items-center gap-1.5 text-[12px] lg:text-[11px] uppercase tracking-[0.12em] text-fg-fade">
             <Moon aria-hidden className="h-3 w-3 text-emerald-bright" />
             Dark theme
           </span>

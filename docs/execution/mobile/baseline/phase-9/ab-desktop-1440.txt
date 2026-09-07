@@ -1,0 +1,97 @@
+
+> enterprise-web-site@0.1.0 mobile:fingerprint
+> node scripts/mobile/fingerprint.mjs --compare docs/execution/mobile/baseline/phase-9/ab-fingerprint-phase8code.json docs/execution/mobile/baseline/phase-9/ab-fingerprint-phase9code.json
+
+
+▸ Layout fingerprint diff
+  before: docs/execution/mobile/baseline/phase-9/ab-fingerprint-phase8code.json
+  after:  docs/execution/mobile/baseline/phase-9/ab-fingerprint-phase9code.json
+
+  ╳ home
+      20 element(s) changed
+      div[1]>main[1]>section[3]>div[0]>div[1]>a[0]>div[1]>div[2]>span[0]
+        before 82|3007|99|15|block|static|row|10px|15px|Geist|rgb(115, 126, 117)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+        after  82|3007|101|15|block|static|row|10px|15px|Geist|rgb(115, 126, 117)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+      div[1]>main[1]>section[3]>div[0]>div[1]>a[0]>div[1]>div[2]>span[1]
+        before 236|3004|38|20|block|static|row|14px|20px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+        after  198|3004|77|20|block|static|row|14px|20px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+      div[1]>main[1]>section[3]>div[0]>div[1]>a[2]>div[1]
+        before 513|2957|197|67|block|static|row|16px|24px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/2px/0px/2px|16px/0px|none
+        after  513|2957|197|87|block|static|row|16px|24px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/2px/0px/2px|16px/0px|none
+      div[1]>main[1]>section[3]>div[0]>div[1]>a[2]>div[1]>h3[0]
+        before 515|2957|193|19|flow-root|static|row|14px|19.25px|Fraunces|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+        after  515|2957|193|39|flow-root|static|row|14px|19.25px|Fraunces|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+      div[1]>main[1]>section[3]>div[0]>div[1]>a[2]>div[1]>p[1]
+        before 515|2980|193|16|block|static|row|12px|16px|Geist|rgb(136, 145, 138)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|4px/0px|none
+        after  515|3000|193|16|block|static|row|12px|16px|Geist|rgb(136, 145, 138)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|4px/0px|none
+  ╳ catalog
+      51 element(s) changed
+      div[3]>main[1]>div[1]>section[0]>ul[1]>li[0]>article[0]>div[2]>div[2]>span[1]
+        before 554|876|44|24|block|static|row|16px|24px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+        after  510|876|88|24|block|static|row|16px|24px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+      div[3]>main[1]>div[1]>section[0]>ul[1]>li[2]>article[0]
+        before 906|465|243|452|flex|relative|column|16px|24px|Geist|rgb(230, 230, 224)|rgba(12, 24, 19, 0.6)|12px/12px/12px/12px|0px/0px|none
+        after  906|465|243|473|flex|relative|column|16px|24px|Geist|rgb(230, 230, 224)|rgba(12, 24, 19, 0.6)|12px/12px/12px/12px|0px/0px|none
+      div[3]>main[1]>div[1]>section[0]>ul[1]>li[2]>article[0]>a[0]
+        before 907|466|241|450|block|absolute|row|16px|24px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+        after  907|466|241|471|block|absolute|row|16px|24px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+      div[3]>main[1]>div[1]>section[0]>ul[1]>li[2]>article[0]>div[2]
+        before 919|819|217|85|flex|static|column|16px|24px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/4px/4px/4px|16px/0px|none
+        after  919|819|217|105|flex|static|column|16px|24px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/4px/4px/4px|16px/0px|none
+      div[3]>main[1]>div[1]>section[0]>ul[1]>li[2]>article[0]>div[2]>h4[0]
+        before 923|819|209|21|flow-root|static|row|15px|20.625px|Fraunces|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+        after  923|819|209|41|flow-root|static|row|15px|20.625px|Fraunces|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+  ╳ ebooks
+      31 element(s) changed
+      div[3]>main[1]>div[1]>section[0]>ul[1]>li[0]>article[0]
+        before 372|472|243|452|flex|relative|column|16px|24px|Geist|rgb(230, 230, 224)|rgba(12, 24, 19, 0.6)|12px/12px/12px/12px|0px/0px|none
+        after  372|472|243|473|flex|relative|column|16px|24px|Geist|rgb(230, 230, 224)|rgba(12, 24, 19, 0.6)|12px/12px/12px/12px|0px/0px|none
+      div[3]>main[1]>div[1]>section[0]>ul[1]>li[0]>article[0]>a[0]
+        before 373|473|241|450|block|absolute|row|16px|24px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+        after  373|473|241|471|block|absolute|row|16px|24px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+      div[3]>main[1]>div[1]>section[0]>ul[1]>li[0]>article[0]>div[2]
+        before 385|827|217|85|flex|static|column|16px|24px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/4px/4px/4px|16px/0px|none
+        after  385|827|217|105|flex|static|column|16px|24px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/4px/4px/4px|16px/0px|none
+      div[3]>main[1]>div[1]>section[0]>ul[1]>li[0]>article[0]>div[2]>h4[0]
+        before 389|827|209|21|flow-root|static|row|15px|20.625px|Fraunces|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+        after  389|827|209|41|flow-root|static|row|15px|20.625px|Fraunces|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+      div[3]>main[1]>div[1]>section[0]>ul[1]>li[0]>article[0]>div[2]>p[1]
+        before 389|852|209|16|block|static|row|12px|16px|Geist|rgb(136, 145, 138)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+        after  389|872|209|16|block|static|row|12px|16px|Geist|rgb(136, 145, 138)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+  ╳ book-detail
+      10 element(s) changed
+      div[3]>main[1]>section[6]>div[1]>div[0]>div[2]>div[0]>a[0]>div[2]>div[3]>span[0]
+        before 251|3770|44|24|block|static|row|16px|24px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+        after  207|3770|88|24|block|static|row|16px|24px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+      div[3]>main[1]>section[6]>div[1]>div[0]>div[2]>div[3]>a[0]
+        before 732|3433|180|378|flex|relative|column|16px|24px|Geist|rgb(230, 230, 224)|rgba(12, 24, 19, 0.6)|12px/12px/12px/12px|0px/0px|none
+        after  732|3433|180|399|flex|relative|column|16px|24px|Geist|rgb(230, 230, 224)|rgba(12, 24, 19, 0.6)|12px/12px/12px/12px|0px/0px|none
+      div[3]>main[1]>section[6]>div[1]>div[0]>div[2]>div[3]>a[0]>div[2]
+        before 745|3693|154|105|flex|static|column|16px|24px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/4px/4px/4px|16px/0px|none
+        after  745|3693|154|126|flex|static|column|16px|24px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/4px/4px/4px|16px/0px|none
+      div[3]>main[1]>section[6]>div[1]>div[0]>div[2]>div[3]>a[0]>div[2]>h3[0]
+        before 749|3693|146|21|flow-root|static|row|15px|20.625px|Fraunces|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+        after  749|3693|146|41|flow-root|static|row|15px|20.625px|Fraunces|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+      div[3]>main[1]>section[6]>div[1]>div[0]>div[2]>div[3]>a[0]>div[2]>p[1]
+        before 749|3718|146|16|flow-root|static|row|12px|16px|Geist|rgb(167, 167, 160)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+        after  749|3738|146|16|flow-root|static|row|12px|16px|Geist|rgb(167, 167, 160)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+  ✓ categories  (identical layout; COLOUR ONLY — paint differs)
+  ✓ authors  (identical layout; COLOUR ONLY — paint differs)
+  ✓ blog  (identical layout; COLOUR ONLY — paint differs)
+  ╳ cart
+      node count 260→262
+      20 element(s) changed
+      div[3]>main[1]>section[2]>div[1]>div[0]>div[2]>a[0]>div[2]>div[0]
+        before 74|1257|39|24|flex|static|column|16px|24px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+        after  74|1257|77|24|flex|static|column|16px|24px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+      div[3]>main[1]>section[2]>div[1]>div[0]>div[2]>a[0]>div[2]>div[0]>span[0]
+        before 74|1257|39|0|block|static|row|16px|24px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+        after  74|1257|77|0|block|static|row|16px|24px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+      div[3]>main[1]>section[2]>div[1]>div[0]>div[2]>a[0]>div[2]>div[0]>span[1]
+        before 74|1261|39|20|block|static|row|14px|20px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+        after  74|1261|77|20|block|static|row|14px|20px|Geist|rgb(230, 230, 224)|rgba(0, 0, 0, 0)|0px/0px/0px/0px|0px/0px|none
+      gone: div[3]>main[1]>section[2]>div[1]>div[0]>div[2]>a[0]>div[2]>button[1]
+      gone: div[3]>main[1]>section[2]>div[1]>div[0]>div[2]>a[0]>div[2]>button[1]>svg[0]
+  ✓ library  (identical layout; COLOUR ONLY — paint differs)
+
+▸ 4/9 routes identical

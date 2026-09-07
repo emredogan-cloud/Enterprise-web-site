@@ -61,7 +61,7 @@ export default async function Home() {
     <div className="cinematic-root">
       <CinematicHeader active="home" />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         {/* Site-level JSON-LD — emitted only on the homepage (which carries
             no book graph) so the shared Organization `@id` stays unique. */}
         <script

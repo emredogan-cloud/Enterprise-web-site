@@ -97,7 +97,7 @@ export default async function AuthorPage({
     <div className="cinematic-root">
       <CinematicHeader active="authors" />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         {/* Author entity graph (Organization + Breadcrumb + ProfilePage +
             Person) + visible breadcrumb trail (WS-G / WS-F) */}
         <script
@@ -156,7 +156,7 @@ export default async function AuthorPage({
         {/* Books section */}
         <section className="mx-auto mt-20 max-w-[1320px] px-4 sm:mt-24 sm:px-6">
           <header className="text-center">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+            <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
               Published works
             </p>
 
@@ -204,7 +204,7 @@ export default async function AuthorPage({
         </section>
 
         {/* Editorial closer */}
-        <section className="mx-auto mt-24 max-w-3xl px-6 text-center sm:mt-28">
+        <section className="mx-auto mt-24 max-w-3xl px-4 sm:px-6 text-center sm:mt-28">
           <div className="relative mx-auto flex h-5 w-5 items-center justify-center">
             <div
               aria-hidden

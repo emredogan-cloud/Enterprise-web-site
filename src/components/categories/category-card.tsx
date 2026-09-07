@@ -35,7 +35,17 @@ export function CategoryCard({ item }: { item: CategoryCardData }) {
       href={item.href}
       className="group block rounded-[24px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-bright/60"
     >
-      <article className="home-card-hover home-glass relative aspect-[5/4] overflow-hidden rounded-[24px]">
+      {/*
+        `@container`: the info row below adapts to the CARD's width, not the
+        viewport's. The card's width is not monotonic in viewport width — the
+        grid is 2-up at base, 3-up at `sm:` and 5-up at `lg:` — so a viewport
+        breakpoint cannot express "this card is too narrow for a single row".
+        Measured overhang of the widest title word before this change:
+          320px card136 +87px | 392px card172 +51px | 430px card191 +32px
+          768px card227 +15px | 1024px card179 +63px | 1440px card238 +4px
+        Six of six cards collided at 1024px, the worst case of all.
+      */}
+      <article className="home-card-hover home-glass @container relative aspect-[5/4] overflow-hidden rounded-[24px]">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 z-20 h-px bg-gradient-to-r from-transparent via-emerald-bright/40 to-transparent"
@@ -71,13 +81,25 @@ export function CategoryCard({ item }: { item: CategoryCardData }) {
         />
 
         {/* Info row */}
-        <div className="absolute inset-x-0 bottom-0 z-10 flex items-end gap-3 p-4 sm:p-5">
-          <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl border border-emerald-deep/30 bg-emerald-deep/10 text-emerald-bright shadow-[0_0_12px_-2px_rgba(51,240,170,0.45)] backdrop-blur-sm transition-all duration-300 group-hover:border-emerald-bright/50 group-hover:bg-emerald-deep/20 group-hover:shadow-[0_0_18px_-2px_rgba(51,240,170,0.6)]">
+        {/* Below a 228px card the title takes its own full-width line and the
+            badge/tagline/arrow sit beneath it. At 228px and up — which is every
+            desktop column from 1280px — the original single row is restored
+            unchanged. */}
+        <div className="absolute inset-x-0 bottom-0 z-10 flex flex-wrap items-end gap-2 p-4 @min-[228px]:flex-nowrap @min-[228px]:gap-3 sm:p-5">
+          <span className="order-2 flex h-9 w-9 flex-shrink-0 @min-[228px]:order-none items-center justify-center rounded-xl border border-emerald-deep/30 bg-emerald-deep/10 text-emerald-bright shadow-[0_0_12px_-2px_rgba(51,240,170,0.45)] backdrop-blur-sm transition-all duration-300 group-hover:border-emerald-bright/50 group-hover:bg-emerald-deep/20 group-hover:shadow-[0_0_18px_-2px_rgba(51,240,170,0.6)]">
             <Icon aria-hidden className="h-[18px] w-[18px]" strokeWidth={1.8} />
           </span>
 
-          <div className="min-w-0 flex-1">
-            <h3 className="font-serif text-[18px] font-medium leading-tight text-white transition-colors group-hover:text-emerald-bright sm:text-[20px]">
+          <div className="order-first w-full min-w-0 @min-[228px]:order-none @min-[228px]:w-auto @min-[228px]:flex-1">
+            {/* `hyphens: auto` + `overflow-wrap: anywhere` is the guarantee, not
+                the plan: the stacked layout gives the title room at every width
+                measured, and these two make it impossible for a longer category
+                name added later to paint over the badge again. Proper
+                hyphenation is also what a book would do. */}
+            <h3
+              lang="en"
+              className="font-serif text-[18px] font-medium leading-tight text-white transition-colors [overflow-wrap:anywhere] hyphens-auto group-hover:text-emerald-bright sm:text-[20px]"
+            >
               {item.name}
             </h3>
             <p className="mt-0.5 truncate text-xs text-white/60">
@@ -87,7 +109,7 @@ export function CategoryCard({ item }: { item: CategoryCardData }) {
 
           <span
             aria-hidden
-            className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-white/[0.12] bg-white/[0.04] text-white/70 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:border-emerald-bright/50 group-hover:bg-emerald-bright/10 group-hover:text-emerald-bright"
+            className="order-3 ml-auto flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-white/[0.12] @min-[228px]:ml-0 bg-white/[0.04] text-white/70 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:border-emerald-bright/50 group-hover:bg-emerald-bright/10 group-hover:text-emerald-bright"
           >
             <ArrowUpRight className="h-4 w-4" strokeWidth={2} />
           </span>

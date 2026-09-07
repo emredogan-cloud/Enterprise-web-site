@@ -41,7 +41,7 @@ export default function GlobalError({
           lineHeight: 1.5,
         }}
       >
-        <main style={{ maxWidth: "32rem", margin: "0 auto" }}>
+        <main id="main-content" style={{ maxWidth: "32rem", margin: "0 auto" }}>
           <p
             style={{
               fontSize: "0.75rem",

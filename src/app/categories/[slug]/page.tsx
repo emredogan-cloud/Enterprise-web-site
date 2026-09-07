@@ -90,7 +90,7 @@ export default async function CategoryPage({
     <div className="cinematic-root">
       <CinematicHeader active="genres" />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         {/* Breadcrumb structured data + visible trail (WS-G / WS-F) */}
         <script
           type="application/ld+json"
@@ -133,7 +133,7 @@ export default async function CategoryPage({
 
         {/* Editorial hub copy (categories.description) — rendered when set */}
         {category?.description && (
-          <p className="mx-auto mt-8 max-w-2xl px-6 text-center text-base leading-relaxed text-fg-mid">
+          <p className="mx-auto mt-8 max-w-2xl px-4 sm:px-6 text-center text-base leading-relaxed text-fg-mid">
             {category.description}
           </p>
         )}
@@ -159,7 +159,7 @@ export default async function CategoryPage({
         </section>
 
         {/* Editorial closer */}
-        <section className="mx-auto mt-24 max-w-3xl px-6 text-center sm:mt-28">
+        <section className="mx-auto mt-24 max-w-3xl px-4 sm:px-6 text-center sm:mt-28">
           <div className="relative mx-auto flex h-5 w-5 items-center justify-center">
             <div
               aria-hidden

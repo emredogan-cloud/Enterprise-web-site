@@ -35,10 +35,10 @@ export function UnprovisionedNotice({
     <div className="cinematic-root">
       <CinematicHeader />
 
-      <main className="relative z-10 mx-auto max-w-2xl px-4 py-24 sm:px-6">
+      <main className="relative z-10 mx-auto max-w-2xl px-4 py-14 sm:py-24 sm:px-6">
         <div className="flex flex-col items-center text-center">
           {/* Eyebrow */}
-          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
+          <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-bright">
             Configuration required
           </p>
 
@@ -77,7 +77,7 @@ export function UnprovisionedNotice({
               aria-hidden
               className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/35 to-transparent"
             />
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+            <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
               Set these environment variables
             </p>
             <ul className="mt-4 space-y-1.5 font-mono text-sm text-fg-hi">

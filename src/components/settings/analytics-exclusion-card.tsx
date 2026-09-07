@@ -76,7 +76,7 @@ export function AnalyticsExclusionCard() {
           <EyeOff aria-hidden className="h-5 w-5" strokeWidth={1.8} />
         </span>
         <div className="min-w-0 flex-1">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
+          <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
             Analytics
           </p>
           <h2 className="mt-2 font-serif text-[24px] font-medium leading-tight text-fg-hi sm:text-[26px]">

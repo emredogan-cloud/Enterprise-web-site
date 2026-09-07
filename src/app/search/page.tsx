@@ -78,7 +78,7 @@ export default async function SearchPage({
     <div className="cinematic-root">
       <CinematicHeader />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         <SearchHero />
         {/* `key` remounts the input when the URL `?q=` changes so the
             controlled state reflects back/forward navigation without
@@ -98,7 +98,7 @@ export default async function SearchPage({
             <SuggestionPills suggestions={suggestions} />
 
             {/* Two-panel discovery — 50/50 on lg, stacked below */}
-            <section className="mx-auto mt-14 grid max-w-7xl gap-5 px-6 lg:grid-cols-2 lg:gap-6">
+            <section className="mx-auto mt-14 grid max-w-7xl gap-5 px-4 sm:px-6 lg:grid-cols-2 lg:gap-6">
               <PopularSearchesPanel picks={popularPicks} />
               <CategoryDiscoveryPanel categories={categories} />
             </section>

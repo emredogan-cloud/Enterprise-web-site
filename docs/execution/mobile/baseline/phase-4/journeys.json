@@ -1,0 +1,1083 @@
+{
+  "generatedAt": "2026-09-05T01:07:57.360Z",
+  "results": [
+    {
+      "group": "nav",
+      "name": "home: menu trigger present",
+      "pass": true,
+      "detail": {
+        "w": 44,
+        "h": 44,
+        "label": "Menu",
+        "expanded": "false",
+        "controls": "mobile-nav-panel"
+      }
+    },
+    {
+      "group": "nav",
+      "name": "home: trigger >= 44x44",
+      "pass": true,
+      "detail": "44x44"
+    },
+    {
+      "group": "nav",
+      "name": "home: trigger labelled + aria wired",
+      "pass": true,
+      "detail": {
+        "w": 44,
+        "h": 44,
+        "label": "Menu",
+        "expanded": "false",
+        "controls": "mobile-nav-panel"
+      }
+    },
+    {
+      "group": "nav",
+      "name": "home: panel opens",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "group": "nav",
+      "name": "home: aria-expanded flips to true",
+      "pass": true,
+      "detail": "true"
+    },
+    {
+      "group": "nav",
+      "name": "home: dialog semantics",
+      "pass": true,
+      "detail": {
+        "open": true,
+        "role": "dialog",
+        "modal": "true",
+        "labelled": true,
+        "expanded": "true",
+        "rows": [
+          {
+            "href": "/books",
+            "h": 48
+          },
+          {
+            "href": "/ebooks",
+            "h": 48
+          },
+          {
+            "href": "/authors",
+            "h": 48
+          },
+          {
+            "href": "/categories",
+            "h": 48
+          },
+          {
+            "href": "/blog",
+            "h": 48
+          },
+          {
+            "href": "/account/library",
+            "h": 48
+          },
+          {
+            "href": "/about",
+            "h": 48
+          }
+        ],
+        "current": [],
+        "focusInPanel": true,
+        "bodyOverflow": "hidden",
+        "htmlOverflow": "hidden"
+      }
+    },
+    {
+      "group": "nav",
+      "name": "home: all 7 destinations present",
+      "pass": true,
+      "detail": "/books, /ebooks, /authors, /categories, /blog, /account/library, /about"
+    },
+    {
+      "group": "nav",
+      "name": "home: every row >= 48px tall",
+      "pass": true,
+      "detail": "7 rows"
+    },
+    {
+      "group": "nav",
+      "name": "home: focus moved into panel",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "group": "nav",
+      "name": "home: page scroll locked",
+      "pass": true,
+      "detail": "body=hidden html=hidden"
+    },
+    {
+      "group": "nav",
+      "name": "home: background does not scroll on touch drag",
+      "pass": true,
+      "detail": {
+        "before": 0,
+        "after": 0
+      }
+    },
+    {
+      "group": "nav",
+      "name": "home: Escape closes",
+      "pass": true,
+      "detail": {
+        "panel": false,
+        "expanded": "false",
+        "focusOnTrigger": true,
+        "bodyOverflow": "visible",
+        "htmlOverflow": "visible"
+      }
+    },
+    {
+      "group": "nav",
+      "name": "home: focus returns to trigger",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "group": "nav",
+      "name": "home: scroll lock released",
+      "pass": true,
+      "detail": "body=visible html=visible"
+    },
+    {
+      "group": "nav",
+      "name": "home: backdrop tap closes",
+      "pass": true,
+      "detail": {
+        "panel": false
+      }
+    },
+    {
+      "group": "nav",
+      "name": "catalog: menu trigger present",
+      "pass": true,
+      "detail": {
+        "w": 44,
+        "h": 44,
+        "label": "Menu",
+        "expanded": "false",
+        "controls": "mobile-nav-panel"
+      }
+    },
+    {
+      "group": "nav",
+      "name": "catalog: trigger >= 44x44",
+      "pass": true,
+      "detail": "44x44"
+    },
+    {
+      "group": "nav",
+      "name": "catalog: trigger labelled + aria wired",
+      "pass": true,
+      "detail": {
+        "w": 44,
+        "h": 44,
+        "label": "Menu",
+        "expanded": "false",
+        "controls": "mobile-nav-panel"
+      }
+    },
+    {
+      "group": "nav",
+      "name": "catalog: panel opens",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "group": "nav",
+      "name": "catalog: aria-expanded flips to true",
+      "pass": true,
+      "detail": "true"
+    },
+    {
+      "group": "nav",
+      "name": "catalog: dialog semantics",
+      "pass": true,
+      "detail": {
+        "open": true,
+        "role": "dialog",
+        "modal": "true",
+        "labelled": true,
+        "expanded": "true",
+        "rows": [
+          {
+            "href": "/books",
+            "h": 48
+          },
+          {
+            "href": "/ebooks",
+            "h": 48
+          },
+          {
+            "href": "/authors",
+            "h": 48
+          },
+          {
+            "href": "/categories",
+            "h": 48
+          },
+          {
+            "href": "/blog",
+            "h": 48
+          },
+          {
+            "href": "/account/library",
+            "h": 48
+          },
+          {
+            "href": "/about",
+            "h": 48
+          }
+        ],
+        "current": [
+          "/books"
+        ],
+        "focusInPanel": true,
+        "bodyOverflow": "hidden",
+        "htmlOverflow": "hidden"
+      }
+    },
+    {
+      "group": "nav",
+      "name": "catalog: all 7 destinations present",
+      "pass": true,
+      "detail": "/books, /ebooks, /authors, /categories, /blog, /account/library, /about"
+    },
+    {
+      "group": "nav",
+      "name": "catalog: every row >= 48px tall",
+      "pass": true,
+      "detail": "7 rows"
+    },
+    {
+      "group": "nav",
+      "name": "catalog: focus moved into panel",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "group": "nav",
+      "name": "catalog: page scroll locked",
+      "pass": true,
+      "detail": "body=hidden html=hidden"
+    },
+    {
+      "group": "nav",
+      "name": "catalog: background does not scroll on touch drag",
+      "pass": true,
+      "detail": {
+        "before": 0,
+        "after": 0
+      }
+    },
+    {
+      "group": "nav",
+      "name": "catalog: Escape closes",
+      "pass": true,
+      "detail": {
+        "panel": false,
+        "expanded": "false",
+        "focusOnTrigger": true,
+        "bodyOverflow": "visible",
+        "htmlOverflow": "visible"
+      }
+    },
+    {
+      "group": "nav",
+      "name": "catalog: focus returns to trigger",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "group": "nav",
+      "name": "catalog: scroll lock released",
+      "pass": true,
+      "detail": "body=visible html=visible"
+    },
+    {
+      "group": "nav",
+      "name": "catalog: backdrop tap closes",
+      "pass": true,
+      "detail": {
+        "panel": false
+      }
+    },
+    {
+      "group": "nav",
+      "name": "catalog: aria-current marks /books",
+      "pass": true,
+      "detail": "/books"
+    },
+    {
+      "group": "nav",
+      "name": "blog: menu trigger present",
+      "pass": true,
+      "detail": {
+        "w": 44,
+        "h": 44,
+        "label": "Menu",
+        "expanded": "false",
+        "controls": "mobile-nav-panel"
+      }
+    },
+    {
+      "group": "nav",
+      "name": "blog: trigger >= 44x44",
+      "pass": true,
+      "detail": "44x44"
+    },
+    {
+      "group": "nav",
+      "name": "blog: trigger labelled + aria wired",
+      "pass": true,
+      "detail": {
+        "w": 44,
+        "h": 44,
+        "label": "Menu",
+        "expanded": "false",
+        "controls": "mobile-nav-panel"
+      }
+    },
+    {
+      "group": "nav",
+      "name": "blog: panel opens",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "group": "nav",
+      "name": "blog: aria-expanded flips to true",
+      "pass": true,
+      "detail": "true"
+    },
+    {
+      "group": "nav",
+      "name": "blog: dialog semantics",
+      "pass": true,
+      "detail": {
+        "open": true,
+        "role": "dialog",
+        "modal": "true",
+        "labelled": true,
+        "expanded": "true",
+        "rows": [
+          {
+            "href": "/books",
+            "h": 48
+          },
+          {
+            "href": "/ebooks",
+            "h": 48
+          },
+          {
+            "href": "/authors",
+            "h": 48
+          },
+          {
+            "href": "/categories",
+            "h": 48
+          },
+          {
+            "href": "/blog",
+            "h": 48
+          },
+          {
+            "href": "/account/library",
+            "h": 48
+          },
+          {
+            "href": "/about",
+            "h": 48
+          }
+        ],
+        "current": [
+          "/blog"
+        ],
+        "focusInPanel": true,
+        "bodyOverflow": "hidden",
+        "htmlOverflow": "hidden"
+      }
+    },
+    {
+      "group": "nav",
+      "name": "blog: all 7 destinations present",
+      "pass": true,
+      "detail": "/books, /ebooks, /authors, /categories, /blog, /account/library, /about"
+    },
+    {
+      "group": "nav",
+      "name": "blog: every row >= 48px tall",
+      "pass": true,
+      "detail": "7 rows"
+    },
+    {
+      "group": "nav",
+      "name": "blog: focus moved into panel",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "group": "nav",
+      "name": "blog: page scroll locked",
+      "pass": true,
+      "detail": "body=hidden html=hidden"
+    },
+    {
+      "group": "nav",
+      "name": "blog: background does not scroll on touch drag",
+      "pass": true,
+      "detail": {
+        "before": 0,
+        "after": 0
+      }
+    },
+    {
+      "group": "nav",
+      "name": "blog: Escape closes",
+      "pass": true,
+      "detail": {
+        "panel": false,
+        "expanded": "false",
+        "focusOnTrigger": true,
+        "bodyOverflow": "visible",
+        "htmlOverflow": "visible"
+      }
+    },
+    {
+      "group": "nav",
+      "name": "blog: focus returns to trigger",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "group": "nav",
+      "name": "blog: scroll lock released",
+      "pass": true,
+      "detail": "body=visible html=visible"
+    },
+    {
+      "group": "nav",
+      "name": "blog: backdrop tap closes",
+      "pass": true,
+      "detail": {
+        "panel": false
+      }
+    },
+    {
+      "group": "nav",
+      "name": "cart: menu trigger present",
+      "pass": true,
+      "detail": {
+        "w": 44,
+        "h": 44,
+        "label": "Menu",
+        "expanded": "false",
+        "controls": "mobile-nav-panel"
+      }
+    },
+    {
+      "group": "nav",
+      "name": "cart: trigger >= 44x44",
+      "pass": true,
+      "detail": "44x44"
+    },
+    {
+      "group": "nav",
+      "name": "cart: trigger labelled + aria wired",
+      "pass": true,
+      "detail": {
+        "w": 44,
+        "h": 44,
+        "label": "Menu",
+        "expanded": "false",
+        "controls": "mobile-nav-panel"
+      }
+    },
+    {
+      "group": "nav",
+      "name": "cart: panel opens",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "group": "nav",
+      "name": "cart: aria-expanded flips to true",
+      "pass": true,
+      "detail": "true"
+    },
+    {
+      "group": "nav",
+      "name": "cart: dialog semantics",
+      "pass": true,
+      "detail": {
+        "open": true,
+        "role": "dialog",
+        "modal": "true",
+        "labelled": true,
+        "expanded": "true",
+        "rows": [
+          {
+            "href": "/books",
+            "h": 48
+          },
+          {
+            "href": "/ebooks",
+            "h": 48
+          },
+          {
+            "href": "/authors",
+            "h": 48
+          },
+          {
+            "href": "/categories",
+            "h": 48
+          },
+          {
+            "href": "/blog",
+            "h": 48
+          },
+          {
+            "href": "/account/library",
+            "h": 48
+          },
+          {
+            "href": "/about",
+            "h": 48
+          }
+        ],
+        "current": [],
+        "focusInPanel": true,
+        "bodyOverflow": "hidden",
+        "htmlOverflow": "hidden"
+      }
+    },
+    {
+      "group": "nav",
+      "name": "cart: all 7 destinations present",
+      "pass": true,
+      "detail": "/books, /ebooks, /authors, /categories, /blog, /account/library, /about"
+    },
+    {
+      "group": "nav",
+      "name": "cart: every row >= 48px tall",
+      "pass": true,
+      "detail": "7 rows"
+    },
+    {
+      "group": "nav",
+      "name": "cart: focus moved into panel",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "group": "nav",
+      "name": "cart: page scroll locked",
+      "pass": true,
+      "detail": "body=hidden html=hidden"
+    },
+    {
+      "group": "nav",
+      "name": "cart: background does not scroll on touch drag",
+      "pass": true,
+      "detail": {
+        "before": 0,
+        "after": 0
+      }
+    },
+    {
+      "group": "nav",
+      "name": "cart: Escape closes",
+      "pass": true,
+      "detail": {
+        "panel": false,
+        "expanded": "false",
+        "focusOnTrigger": true,
+        "bodyOverflow": "visible",
+        "htmlOverflow": "visible"
+      }
+    },
+    {
+      "group": "nav",
+      "name": "cart: focus returns to trigger",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "group": "nav",
+      "name": "cart: scroll lock released",
+      "pass": true,
+      "detail": "body=visible html=visible"
+    },
+    {
+      "group": "nav",
+      "name": "cart: backdrop tap closes",
+      "pass": true,
+      "detail": {
+        "panel": false
+      }
+    },
+    {
+      "group": "nav",
+      "name": "legal-terms: menu trigger present",
+      "pass": true,
+      "detail": {
+        "w": 44,
+        "h": 44,
+        "label": "Menu",
+        "expanded": "false",
+        "controls": "mobile-nav-panel"
+      }
+    },
+    {
+      "group": "nav",
+      "name": "legal-terms: trigger >= 44x44",
+      "pass": true,
+      "detail": "44x44"
+    },
+    {
+      "group": "nav",
+      "name": "legal-terms: trigger labelled + aria wired",
+      "pass": true,
+      "detail": {
+        "w": 44,
+        "h": 44,
+        "label": "Menu",
+        "expanded": "false",
+        "controls": "mobile-nav-panel"
+      }
+    },
+    {
+      "group": "nav",
+      "name": "legal-terms: panel opens",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "group": "nav",
+      "name": "legal-terms: aria-expanded flips to true",
+      "pass": true,
+      "detail": "true"
+    },
+    {
+      "group": "nav",
+      "name": "legal-terms: dialog semantics",
+      "pass": true,
+      "detail": {
+        "open": true,
+        "role": "dialog",
+        "modal": "true",
+        "labelled": true,
+        "expanded": "true",
+        "rows": [
+          {
+            "href": "/books",
+            "h": 48
+          },
+          {
+            "href": "/ebooks",
+            "h": 48
+          },
+          {
+            "href": "/authors",
+            "h": 48
+          },
+          {
+            "href": "/categories",
+            "h": 48
+          },
+          {
+            "href": "/blog",
+            "h": 48
+          },
+          {
+            "href": "/account/library",
+            "h": 48
+          },
+          {
+            "href": "/about",
+            "h": 48
+          }
+        ],
+        "current": [],
+        "focusInPanel": true,
+        "bodyOverflow": "hidden",
+        "htmlOverflow": "hidden"
+      }
+    },
+    {
+      "group": "nav",
+      "name": "legal-terms: all 7 destinations present",
+      "pass": true,
+      "detail": "/books, /ebooks, /authors, /categories, /blog, /account/library, /about"
+    },
+    {
+      "group": "nav",
+      "name": "legal-terms: every row >= 48px tall",
+      "pass": true,
+      "detail": "7 rows"
+    },
+    {
+      "group": "nav",
+      "name": "legal-terms: focus moved into panel",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "group": "nav",
+      "name": "legal-terms: page scroll locked",
+      "pass": true,
+      "detail": "body=hidden html=hidden"
+    },
+    {
+      "group": "nav",
+      "name": "legal-terms: background does not scroll on touch drag",
+      "pass": true,
+      "detail": {
+        "before": 0,
+        "after": 0
+      }
+    },
+    {
+      "group": "nav",
+      "name": "legal-terms: Escape closes",
+      "pass": true,
+      "detail": {
+        "panel": false,
+        "expanded": "false",
+        "focusOnTrigger": true,
+        "bodyOverflow": "visible",
+        "htmlOverflow": "visible"
+      }
+    },
+    {
+      "group": "nav",
+      "name": "legal-terms: focus returns to trigger",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "group": "nav",
+      "name": "legal-terms: scroll lock released",
+      "pass": true,
+      "detail": "body=visible html=visible"
+    },
+    {
+      "group": "nav",
+      "name": "legal-terms: backdrop tap closes",
+      "pass": true,
+      "detail": {
+        "panel": false
+      }
+    },
+    {
+      "group": "nav",
+      "name": "drawer link navigates to /categories",
+      "pass": true,
+      "detail": {
+        "path": "/categories",
+        "panel": false,
+        "overflow": "visible"
+      }
+    },
+    {
+      "group": "nav",
+      "name": "drawer closes after navigating",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "group": "nav",
+      "name": "scroll lock released after navigating",
+      "pass": true,
+      "detail": "visible"
+    },
+    {
+      "group": "inputs",
+      "name": "homepage newsletter: input >= 44px tall",
+      "pass": true,
+      "detail": "279x48 (basis auto)"
+    },
+    {
+      "group": "inputs",
+      "name": "article newsletter: input >= 40px tall",
+      "pass": true,
+      "detail": "287x44 (basis auto)"
+    },
+    {
+      "group": "inputs",
+      "name": "companion signup: input >= 40px tall",
+      "pass": true,
+      "detail": "311x45 (basis auto)"
+    },
+    {
+      "group": "inputs",
+      "name": "blog-category sidebar: input >= 36px tall",
+      "pass": true,
+      "detail": "311x40 (basis auto)"
+    },
+    {
+      "group": "theme",
+      "name": "home: theme-color is the cinematic ground",
+      "pass": true,
+      "detail": "#050705"
+    },
+    {
+      "group": "theme",
+      "name": "home: viewport-fit=cover",
+      "pass": true,
+      "detail": "width=device-width, initial-scale=1, viewport-fit=cover"
+    },
+    {
+      "group": "theme",
+      "name": "home: no zoom suppression (WCAG 1.4.4)",
+      "pass": true,
+      "detail": "width=device-width, initial-scale=1, viewport-fit=cover"
+    },
+    {
+      "group": "theme",
+      "name": "home: color-scheme is dark",
+      "pass": true,
+      "detail": "dark"
+    },
+    {
+      "group": "theme",
+      "name": "home: document canvas is dark (no white overscroll)",
+      "pass": true,
+      "detail": "rgb(5, 7, 5)"
+    },
+    {
+      "group": "theme",
+      "name": "home: safe-area gutter applied to header",
+      "pass": true,
+      "detail": "24px"
+    },
+    {
+      "group": "theme",
+      "name": "home: safe-area insets readable",
+      "pass": true,
+      "detail": "{\"top\":\"0px\",\"bottom\":\"0px\",\"left\":\"0px\",\"right\":\"0px\"}"
+    },
+    {
+      "group": "theme",
+      "name": "catalog: theme-color is the cinematic ground",
+      "pass": true,
+      "detail": "#050705"
+    },
+    {
+      "group": "theme",
+      "name": "catalog: viewport-fit=cover",
+      "pass": true,
+      "detail": "width=device-width, initial-scale=1, viewport-fit=cover"
+    },
+    {
+      "group": "theme",
+      "name": "catalog: no zoom suppression (WCAG 1.4.4)",
+      "pass": true,
+      "detail": "width=device-width, initial-scale=1, viewport-fit=cover"
+    },
+    {
+      "group": "theme",
+      "name": "catalog: color-scheme is dark",
+      "pass": true,
+      "detail": "dark"
+    },
+    {
+      "group": "theme",
+      "name": "catalog: document canvas is dark (no white overscroll)",
+      "pass": true,
+      "detail": "rgb(5, 7, 5)"
+    },
+    {
+      "group": "theme",
+      "name": "catalog: safe-area gutter applied to header",
+      "pass": true,
+      "detail": "24px"
+    },
+    {
+      "group": "theme",
+      "name": "catalog: safe-area insets readable",
+      "pass": true,
+      "detail": "{\"top\":\"0px\",\"bottom\":\"0px\",\"left\":\"0px\",\"right\":\"0px\"}"
+    },
+    {
+      "group": "theme",
+      "name": "legal-terms: theme-color is the cinematic ground",
+      "pass": true,
+      "detail": "#050705"
+    },
+    {
+      "group": "theme",
+      "name": "legal-terms: viewport-fit=cover",
+      "pass": true,
+      "detail": "width=device-width, initial-scale=1, viewport-fit=cover"
+    },
+    {
+      "group": "theme",
+      "name": "legal-terms: no zoom suppression (WCAG 1.4.4)",
+      "pass": true,
+      "detail": "width=device-width, initial-scale=1, viewport-fit=cover"
+    },
+    {
+      "group": "theme",
+      "name": "legal-terms: color-scheme is dark",
+      "pass": true,
+      "detail": "dark"
+    },
+    {
+      "group": "theme",
+      "name": "legal-terms: document canvas is dark (no white overscroll)",
+      "pass": true,
+      "detail": "rgb(5, 7, 5)"
+    },
+    {
+      "group": "theme",
+      "name": "legal-terms: safe-area gutter applied to header",
+      "pass": true,
+      "detail": "24px"
+    },
+    {
+      "group": "theme",
+      "name": "legal-terms: safe-area insets readable",
+      "pass": true,
+      "detail": "{\"top\":\"0px\",\"bottom\":\"0px\",\"left\":\"0px\",\"right\":\"0px\"}"
+    },
+    {
+      "group": "cards",
+      "name": "categories @320px: no title ink overflow",
+      "pass": true,
+      "detail": "6 cards clean"
+    },
+    {
+      "group": "cards",
+      "name": "categories @320px: card artwork renders",
+      "pass": true,
+      "detail": "6 images loaded"
+    },
+    {
+      "group": "cards",
+      "name": "categories @360px: no title ink overflow",
+      "pass": true,
+      "detail": "6 cards clean"
+    },
+    {
+      "group": "cards",
+      "name": "categories @360px: card artwork renders",
+      "pass": true,
+      "detail": "6 images loaded"
+    },
+    {
+      "group": "cards",
+      "name": "categories @392px: no title ink overflow",
+      "pass": true,
+      "detail": "6 cards clean"
+    },
+    {
+      "group": "cards",
+      "name": "categories @392px: card artwork renders",
+      "pass": true,
+      "detail": "6 images loaded"
+    },
+    {
+      "group": "cards",
+      "name": "categories @430px: no title ink overflow",
+      "pass": true,
+      "detail": "6 cards clean"
+    },
+    {
+      "group": "cards",
+      "name": "categories @430px: card artwork renders",
+      "pass": true,
+      "detail": "6 images loaded"
+    },
+    {
+      "group": "cards",
+      "name": "categories @600px: no title ink overflow",
+      "pass": true,
+      "detail": "6 cards clean"
+    },
+    {
+      "group": "cards",
+      "name": "categories @600px: card artwork renders",
+      "pass": true,
+      "detail": "6 images loaded"
+    },
+    {
+      "group": "cards",
+      "name": "categories @768px: no title ink overflow",
+      "pass": true,
+      "detail": "6 cards clean"
+    },
+    {
+      "group": "cards",
+      "name": "categories @768px: card artwork renders",
+      "pass": true,
+      "detail": "6 images loaded"
+    },
+    {
+      "group": "cards",
+      "name": "cart recommendation shelf: scrollable",
+      "pass": true,
+      "detail": {
+        "tracks": 1,
+        "cards": 8,
+        "cardW": 180,
+        "trackW": 344,
+        "scrollable": true,
+        "peeking": true
+      }
+    },
+    {
+      "group": "cards",
+      "name": "cart recommendation shelf: next card peeks (touch affordance)",
+      "pass": true,
+      "detail": {
+        "tracks": 1,
+        "cards": 8,
+        "cardW": 180,
+        "trackW": 344,
+        "scrollable": true,
+        "peeking": true
+      }
+    },
+    {
+      "group": "cards",
+      "name": "library shelf: present",
+      "pass": true,
+      "skipped": true,
+      "detail": "route renders UnprovisionedNotice — Clerk not configured in this environment"
+    },
+    {
+      "group": "cards",
+      "name": "related books shelf: scrollable",
+      "pass": true,
+      "detail": {
+        "tracks": 2,
+        "cards": 4,
+        "cardW": 306,
+        "trackW": 361,
+        "scrollable": true,
+        "peeking": true
+      }
+    },
+    {
+      "group": "cards",
+      "name": "related books shelf: next card peeks (touch affordance)",
+      "pass": true,
+      "detail": {
+        "tracks": 2,
+        "cards": 4,
+        "cardW": 306,
+        "trackW": 361,
+        "scrollable": true,
+        "peeking": true
+      }
+    }
+  ]
+}

@@ -81,7 +81,15 @@ export async function listPublishedBooks(): Promise<BookCardData[]> {
     async () => {
       const rows = await db.query.books.findMany({
         where: (b, { eq }) => eq(b.status, "published"),
-        orderBy: (b, { desc }) => desc(b.publishedAt),
+      /* PHASE 9 — `publishedAt` alone is not a total order.
+         Several books share a publication timestamp (they were provisioned in
+         one batch), and Postgres is free to return tied rows in any order it
+         likes. Measured: two adjacent cards on /books and /ebooks swapped
+         places between two builds of identical code, at unchanged geometry —
+         452px and 473px tall exchanged positions — which makes the rendered
+         page irreproducible and any visual regression gate permanently flaky.
+         `id` is the primary key, so it breaks every tie deterministically. */
+        orderBy: (b, { desc, asc }) => [desc(b.publishedAt), asc(b.id)],
         columns: {
           id: true,
           slug: true,
@@ -151,7 +159,15 @@ const _getFeaturedBooksFromDb = unstable_cache(
   async (limit: number): Promise<BookCardData[]> => {
     const rows = await db.query.books.findMany({
       where: (b, { eq }) => eq(b.status, "published"),
-      orderBy: (b, { desc }) => desc(b.publishedAt),
+    /* PHASE 9 — `publishedAt` alone is not a total order.
+       Several books share a publication timestamp (they were provisioned in
+       one batch), and Postgres is free to return tied rows in any order it
+       likes. Measured: two adjacent cards on /books and /ebooks swapped
+       places between two builds of identical code, at unchanged geometry —
+       452px and 473px tall exchanged positions — which makes the rendered
+       page irreproducible and any visual regression gate permanently flaky.
+       `id` is the primary key, so it breaks every tie deterministically. */
+      orderBy: (b, { desc, asc }) => [desc(b.publishedAt), asc(b.id)],
       limit,
       columns: {
         id: true,
@@ -210,7 +226,15 @@ export async function listEbooks(): Promise<BookCardData[]> {
     async () => {
       const rows = await db.query.books.findMany({
         where: (b, { eq }) => eq(b.status, "published"),
-        orderBy: (b, { desc }) => desc(b.publishedAt),
+      /* PHASE 9 — `publishedAt` alone is not a total order.
+         Several books share a publication timestamp (they were provisioned in
+         one batch), and Postgres is free to return tied rows in any order it
+         likes. Measured: two adjacent cards on /books and /ebooks swapped
+         places between two builds of identical code, at unchanged geometry —
+         452px and 473px tall exchanged positions — which makes the rendered
+         page irreproducible and any visual regression gate permanently flaky.
+         `id` is the primary key, so it breaks every tie deterministically. */
+        orderBy: (b, { desc, asc }) => [desc(b.publishedAt), asc(b.id)],
         columns: {
           id: true,
           slug: true,
@@ -437,10 +461,15 @@ export async function searchBooks(query: string): Promise<BookCardData[]> {
             eq(b.status, "published"),
             sql`${b.searchTsv} @@ websearch_to_tsquery('english', ${trimmed})`,
           ),
-        orderBy: (b, { desc }) =>
+        /* Same tie-break as the catalog lists: ts_rank produces plenty of
+           equal scores, and without a total order the results reshuffle
+           between requests. */
+        orderBy: (b, { desc, asc }) => [
           desc(
             sql`ts_rank(${b.searchTsv}, websearch_to_tsquery('english', ${trimmed}))`,
           ),
+          asc(b.id),
+        ],
         columns: {
           id: true,
           slug: true,

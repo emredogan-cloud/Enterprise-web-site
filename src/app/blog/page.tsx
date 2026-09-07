@@ -37,7 +37,7 @@ export default async function BlogIndexPage() {
     <div className="cinematic-root">
       <CinematicHeader active="blog" />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         <BlogHero />
         <BlogShell posts={posts} topics={categories} />
       </main>

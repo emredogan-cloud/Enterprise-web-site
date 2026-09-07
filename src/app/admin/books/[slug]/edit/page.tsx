@@ -111,12 +111,12 @@ export default async function AdminEditBookPage({
     <div className="cinematic-root">
       <CinematicHeader />
 
-      <main className="relative z-10 mx-auto max-w-3xl space-y-12 px-4 py-16 sm:px-6">
+      <main id="main-content" className="relative z-10 mx-auto max-w-3xl space-y-12 px-4 py-10 sm:py-16 sm:px-6">
         <header>
           {/* Breadcrumb */}
           <nav
             aria-label="Breadcrumb"
-            className="text-[11px] uppercase tracking-[0.2em] text-fg-soft"
+            className="text-[12px] lg:text-[11px] uppercase tracking-[0.2em] text-fg-soft"
           >
             <Link
               href="/admin"
@@ -163,7 +163,7 @@ export default async function AdminEditBookPage({
           className="rounded-[24px] border border-dashed border-[#ff7a7a]/30 bg-[#ff7a7a]/[0.04] p-6 sm:p-8"
         >
           <header>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#ff9b9b]">
+            <p className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.2em] text-[#ff9b9b]">
               Danger zone
             </p>
             <h2

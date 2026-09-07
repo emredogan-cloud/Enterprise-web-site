@@ -24,6 +24,7 @@ export function BookCover({
   coverKey,
   coverSrc,
   priority = false,
+  sizes = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 72vw",
 }: {
   title: string;
   coverKey?: string | null;
@@ -36,11 +37,29 @@ export function BookCover({
    */
   coverSrc?: string | null;
   priority?: boolean;
+  /**
+   * Responsive size hint. Defaults to the book-detail hero, which is what this
+   * component was written for. Small consumers — the shelf tiles in
+   * <CinematicBookTile>, which render a 103-211px cover — must pass their own,
+   * or the hero's hint over-fetches them by ~2.7x.
+   */
+  sizes?: string;
 }) {
   const src = coverSrc ?? getCoverImageUrl(coverKey);
 
   return (
-    <div className="relative">
+    /*
+     * Below `sm:` the cover is capped at 72% of the column.
+     *
+     * At full width on the Redmi it rendered 359x540 — 75% of a 718px viewport
+     * — which pushed the price to 695px and the "Add to cart" button to 743px,
+     * below the fold on every book measured. A reader landing on a product page
+     * could not see the buy control without scrolling. Capped, the cover is
+     * still the dominant object on the first screen and both the price and the
+     * CTA clear the fold. `sm:w-full` restores the original at 640px and up, so
+     * the desktop composition is untouched.
+     */
+    <div className="relative mx-auto w-[72%] sm:mx-0 sm:w-full">
       {/* Subtle floor shadow under the cover */}
       <div
         aria-hidden
@@ -70,7 +89,11 @@ export function BookCover({
             src={src}
             alt={`Cover of ${title}`}
             fill
-            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            /* Default is the hero: 72vw below `sm:` because Phase 6 capped the
+               cover at w-[72%]. While this said 100vw, Next's preload picked
+               w=1200 for a slot needing 710 device pixels — the LCP asset on
+               this route, fetched ~1.7x larger than required. */
+            sizes={sizes}
             priority={priority}
             className={coverFit(src) === "contain" ? "object-contain bg-[#0a1410]" : "object-cover"}
           />
@@ -106,7 +129,7 @@ function CinematicCoverPlaceholder({ title }: { title: string }) {
         }}
       />
       <div className="absolute inset-0 flex flex-col justify-between p-6">
-        <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40">
+        <span className="text-[12px] lg:text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40">
           Valice Press
         </span>
         <span

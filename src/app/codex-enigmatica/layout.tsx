@@ -24,7 +24,7 @@ export default function CodexEnigmaticaLayout({
   return (
     <div className="cinematic-root">
       <CinematicHeader />
-      <main className="relative z-10">{children}</main>
+      <main id="main-content" className="relative z-10">{children}</main>
       <HomeFooter />
     </div>
   );

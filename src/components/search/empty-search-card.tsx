@@ -12,7 +12,7 @@ import { Search } from "lucide-react";
  */
 export function EmptySearchCard() {
   return (
-    <div className="mx-auto mt-16 max-w-4xl px-6">
+    <div className="mx-auto mt-10 sm:mt-16 max-w-4xl px-6">
       <div className="home-glass relative overflow-hidden rounded-[32px] px-8 py-12 sm:px-12 sm:py-14">
         {/* Top emerald edge line */}
         <div

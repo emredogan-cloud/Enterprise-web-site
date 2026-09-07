@@ -96,7 +96,7 @@ export function OrderCard({ order }: { order: UserOrderSummary }) {
         <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-6">
           {/* LEFT — metadata */}
           <div className="min-w-0 sm:w-[190px] sm:flex-shrink-0">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-fg-soft">
+            <p className="text-[12px] lg:text-[10px] font-semibold uppercase tracking-[0.24em] text-fg-soft">
               Order
             </p>
             <p className="mt-1.5 font-mono text-[15px] tracking-tight text-fg-hi">
@@ -118,7 +118,7 @@ export function OrderCard({ order }: { order: UserOrderSummary }) {
           {/* RIGHT — status + price + CTA */}
           <div className="flex flex-col gap-3 sm:w-[230px] sm:flex-shrink-0 sm:items-end">
             <span
-              className={`inline-flex items-center gap-1.5 rounded-full border ${status.border} ${status.bg} px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] ${status.text}`}
+              className={`inline-flex items-center gap-1.5 rounded-full border ${status.border} ${status.bg} px-3 py-1 text-[12px] lg:text-[10px] font-semibold uppercase tracking-[0.14em] ${status.text}`}
             >
               <span aria-hidden className={`h-1.5 w-1.5 rounded-full ${status.dot}`} />
               {status.label}

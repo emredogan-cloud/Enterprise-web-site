@@ -52,7 +52,7 @@ export default async function BooksCatalogPage() {
     <div className="cinematic-root">
       <CinematicHeader active="books" />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         <CatalogHero />
         {/* Phase 2.F — `<CatalogShell>` uses `useSearchParams()` (URL-
             synced filter/sort/page state). Next.js requires a Suspense
@@ -77,7 +77,7 @@ export default async function BooksCatalogPage() {
  */
 function CatalogShellFallback() {
   return (
-    <div className="mx-auto grid max-w-[1440px] gap-8 px-6 pb-24 lg:grid-cols-[300px_minmax(0,_1fr)] lg:gap-12">
+    <div className="mx-auto grid max-w-[1440px] gap-8 px-4 sm:px-6 pb-24 lg:grid-cols-[300px_minmax(0,_1fr)] lg:gap-12">
       <div className="hidden h-[400px] rounded-2xl border border-white/[0.05] bg-white/[0.02] lg:block" />
       <div className="min-h-[400px] rounded-2xl border border-white/[0.05] bg-white/[0.02]" />
     </div>
