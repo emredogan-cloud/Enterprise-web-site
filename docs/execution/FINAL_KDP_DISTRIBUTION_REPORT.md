@@ -93,7 +93,7 @@ search was never run again.
 | 1 | Puzzle Book paperback — **Publish** | staged, previewer clean | **Founder** |
 | 2 | World Games LP — title typo **"39 Cultıres"** | live, uncorrected — **KDP: "Subtitle can no longer be edited… publish a new edition"** | **Founder** |
 | 3 | World Games LP — title omits "Large Print" | mitigated: the description now names the edition; the title still cannot | **Founder** |
-| 4 | World Games LP — description printed literal `\n\n` | **FIXED 2026-09-07, saved** — also corrected "160 pages" to 232 (F-047) | done |
+| 4 | World Games LP — description printed literal `\n\n` | **SAVED IN KDP 2026-09-07** (verified across a reload); also corrected "160 pages" → 232 and named the edition. **NOT yet on Amazon** — metadata takes up to 72 h (F-047) | propagating |
 | 5 | Codex Enigmatica — three **Teen & Young Adult** categories on a book whose config says ages 16–99 | evidence gathered, change refused by this environment (F-048) | **Founder** |
 | 6 | Phase 2 + Phase 3 books — no KDP listing | 11 books, Gate 2 unsigned | **Founder** |
 
@@ -124,7 +124,17 @@ generated from their own QA records. **None has been uploaded.** All eleven carr
 "GATE 2 IS UNSIGNED": the rights signature, which no agent can give. No ASIN, ISBN or KDP state
 has been invented for any of them.
 
-## 9. Truthfulness
+## 9. States, exactly
+
+| State | Meaning here |
+|---|---|
+| **LIVE** | confirmed on the KDP bookshelf *and* the Amazon product page |
+| **READY / PENDING OWNER CONFIRMATION** | every agent-performable step done; one owner click remains |
+| **SAVED, PROPAGATING** | written and verified in KDP; Amazon has not caught up (≤72 h) |
+| **BLOCKED** | cannot proceed here — a gate signature, or an action this environment refuses |
+| **NOT APPLICABLE** | the local project has no such format |
+
+## 10. Truthfulness
 
 | Claim | Basis |
 |---|---|

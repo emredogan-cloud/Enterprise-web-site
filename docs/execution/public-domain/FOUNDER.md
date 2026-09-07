@@ -1133,7 +1133,15 @@ KDP both require that answer to match the production history, and it did not.
 
 Acted on 2026-09-07 through the KDP UI.
 
-**Fixed and saved (KDP confirmed "Save Successful"):** the description. It had been pasted as a
+**Fixed and saved in KDP — and NOT yet visible on Amazon.** Both halves matter:
+
+* **KDP: VERIFIED.** "Save Successful", and the change survives a page reload — eight
+  paragraphs, no escape sequences, 232 pages, the edition named.
+* **Amazon: PENDING.** `amazon.com/dp/B0HHNCVQVX` still serves the old text. KDP metadata takes
+  up to 72 hours and goes through review first. Checked at 13:0x on 2026-09-07; it had not
+  propagated. **Do not read this as fixed on the storefront until you see it there.**
+
+What was wrong with it: It had been pasted as a
 **JSON string literal** — wrapped in quotes, with 22 literal `\n` escape sequences and zero real
 newlines — so Amazon printed *"A reference book you play from.\n\nThe Great Book of World
 Games…"* to every visitor. It is now eight proper paragraphs.
