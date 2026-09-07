@@ -1,12 +1,12 @@
 {
   "tool": "validate-catalog",
   "target": "https://valicepress.com",
-  "startedAt": "2026-09-07T10:28:46.040Z",
-  "finishedAt": "2026-09-07T10:29:50.309Z",
+  "startedAt": "2026-09-07T12:59:55.845Z",
+  "finishedAt": "2026-09-07T13:01:00.587Z",
   "ok": true,
   "counts": {
-    "pass": 86,
-    "warn": 0,
+    "pass": 83,
+    "warn": 3,
     "error": 0,
     "skipped": 0
   },
@@ -456,39 +456,39 @@
       "where": null
     },
     {
+      "level": "warn",
+      "check": "r2",
+      "message": "books/codex-bestiarium/master/v1/master.pdf is 103.9 MB (> 20 MB — is this the print interior?)",
+      "where": "codex-bestiarium"
+    },
+    {
+      "level": "warn",
+      "check": "r2",
+      "message": "books/the-great-book-of-world-myths/master/v1/master.pdf is 93.0 MB (> 20 MB — is this the print interior?)",
+      "where": "the-great-book-of-world-myths"
+    },
+    {
       "level": "pass",
       "check": "r2",
-      "message": "books/codex-bestiarium/master/v1/master.pdf 4.62 MB",
+      "message": "books/the-great-book-of-world-games/master/v1/master.pdf 0.85 MB",
       "where": null
     },
     {
       "level": "pass",
       "check": "r2",
-      "message": "books/the-great-book-of-world-myths/master/v1/master.pdf 3.72 MB",
+      "message": "books/greek-alphabet-handwriting-workbook/master/v1/master.pdf 0.47 MB",
       "where": null
     },
     {
       "level": "pass",
       "check": "r2",
-      "message": "books/the-great-book-of-world-games/master/v1/master.pdf 0.58 MB",
+      "message": "books/codex-mythologica-the-puzzle-book/master/v1/master.pdf 0.41 MB",
       "where": null
     },
     {
       "level": "pass",
       "check": "r2",
-      "message": "books/greek-alphabet-handwriting-workbook/master/v1/master.pdf 0.40 MB",
-      "where": null
-    },
-    {
-      "level": "pass",
-      "check": "r2",
-      "message": "books/codex-mythologica-the-puzzle-book/master/v1/master.pdf 0.36 MB",
-      "where": null
-    },
-    {
-      "level": "pass",
-      "check": "r2",
-      "message": "books/the-puzzles-of-henry-dudeney/master/v1/master.pdf 2.10 MB",
+      "message": "books/the-puzzles-of-henry-dudeney/master/v1/master.pdf 2.01 MB",
       "where": null
     },
     {
@@ -500,32 +500,32 @@
     {
       "level": "pass",
       "check": "r2",
-      "message": "books/seneca-selected-dialogues/master/v1/master.pdf 0.54 MB",
+      "message": "books/seneca-selected-dialogues/master/v1/master.pdf 0.55 MB",
       "where": null
     },
     {
       "level": "pass",
       "check": "r2",
-      "message": "books/myths-and-legends-of-china/master/v1/master.pdf 0.40 MB",
+      "message": "books/myths-and-legends-of-china/master/v1/master.pdf 0.33 MB",
       "where": null
     },
     {
       "level": "pass",
       "check": "r2",
-      "message": "books/indian-myth-and-legend/master/v1/master.pdf 0.37 MB",
+      "message": "books/indian-myth-and-legend/master/v1/master.pdf 0.33 MB",
       "where": null
     },
     {
       "level": "pass",
       "check": "r2",
-      "message": "books/mythical-monsters/master/v1/master.pdf 0.32 MB",
+      "message": "books/mythical-monsters/master/v1/master.pdf 0.29 MB",
       "where": null
     },
     {
-      "level": "pass",
+      "level": "warn",
       "check": "r2",
-      "message": "books/codex-enigmatica/master/v1/master.pdf 8.39 MB",
-      "where": null
+      "message": "books/codex-enigmatica/master/v1/master.pdf is 67.5 MB (> 20 MB — is this the print interior?)",
+      "where": "codex-enigmatica"
     }
   ]
 }

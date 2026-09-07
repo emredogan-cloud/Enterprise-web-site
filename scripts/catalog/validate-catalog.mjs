@@ -80,7 +80,12 @@ export function localChecks(book, report) {
   const slug = book.slug;
   for (const f of book.formats) {
     if (f.kdp === "live" && !f.amazonAsin) report.error("asin", `${f.format} is kdp:live without an ASIN`, slug);
-    if (f.amazonAsin && f.kdp !== "live") report.error("asin", `${f.format} has an ASIN but kdp is ${f.kdp}`, slug);
+    // "publishing" carries an ASIN legitimately: Amazon issues one when it ACCEPTS a
+    // title, not when the listing becomes purchasable. Third copy of this rule — the
+    // test and the loader had it too, and all three said an ASIN means live.
+    if (f.amazonAsin && f.kdp !== "live" && f.kdp !== "publishing") {
+      report.error("asin", `${f.format} has an ASIN but kdp is ${f.kdp}`, slug);
+    }
     if (f.fulfillment === "direct" && f.availability === "available") {
       if (!book.paddlePriceId) report.error("paddle", "direct ebook without paddlePriceId", slug);
       if (!f.masterFileKey) report.error("master", "direct ebook without masterFileKey", slug);

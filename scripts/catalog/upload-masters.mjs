@@ -103,6 +103,26 @@ async function upload({ file, key, contentType, missingHint }) {
     return;
   }
 
+  // A MASTER THAT GETS DRAMATICALLY BIGGER IS A DECISION, NOT A DETAIL.
+  // On 2026-09-07 this replaced a 4.62 MB Codex Bestiarium master with a 103.91 MB
+  // one and said only "PUT". Both files were defensible — the small one came from
+  // the ghostscript path that silently dropped 2,245 non-ASCII characters, the large
+  // one is the print interior that build-digital-editions now copies through rather
+  // than corrupt the buyer's text. But the watermark worker reads the whole file into
+  // memory, so the swap traded a fidelity bug for a delivery risk on a book that is
+  // on sale, and nothing in the output said so.
+  //
+  // It still uploads: refusing would leave the corrupted file in place. It just
+  // cannot happen quietly any more.
+  const BIG_MB = 25;
+  const grew = existing !== null && size > existing * 4 && size > BIG_MB * 1024 * 1024;
+  if (grew) {
+    console.log(
+      `  ⚠ ${key}: ${mb(existing)} → ${mb(size)}. The watermark worker reads the whole ` +
+        `file into memory; confirm the function's limit before selling this.`,
+    );
+  }
+
   if (!commit) {
     console.log(
       `WOULD PUT  ${key.padEnd(52)} ${mb(size).padStart(9)}` +
