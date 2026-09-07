@@ -114,6 +114,14 @@
       "entity": "british-goblins"
     },
     {
+      "path": "/images/books/chess-and-playing-cards.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 162416,
+      "slot": "book-cover",
+      "entity": "chess-and-playing-cards"
+    },
+    {
       "path": "/images/books/codex-bestiarium.webp",
       "width": 1000,
       "height": 1600,
@@ -149,7 +157,7 @@
       "path": "/images/books/epictetus-discourses-and-enchiridion.webp",
       "width": 1067,
       "height": 1600,
-      "bytes": 37796,
+      "bytes": 140902,
       "slot": "book-cover",
       "entity": "epictetus-discourses-and-enchiridion"
     },
@@ -173,7 +181,7 @@
       "path": "/images/books/games-ancient-and-oriental.webp",
       "width": 1067,
       "height": 1600,
-      "bytes": 69024,
+      "bytes": 165832,
       "slot": "book-cover",
       "entity": "games-ancient-and-oriental"
     },
@@ -189,9 +197,17 @@
       "path": "/images/books/indian-myth-and-legend.webp",
       "width": 1067,
       "height": 1600,
-      "bytes": 58582,
+      "bytes": 159762,
       "slot": "book-cover",
       "entity": "indian-myth-and-legend"
+    },
+    {
+      "path": "/images/books/korean-games.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 133500,
+      "slot": "book-cover",
+      "entity": "korean-games"
     },
     {
       "path": "/images/books/korean-hangul-handwriting-workbook.webp",
@@ -210,6 +226,14 @@
       "entity": "kwaidan"
     },
     {
+      "path": "/images/books/mancala.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 148052,
+      "slot": "book-cover",
+      "entity": "mancala"
+    },
+    {
       "path": "/images/books/meditations.webp",
       "width": 1024,
       "height": 1536,
@@ -221,7 +245,7 @@
       "path": "/images/books/mythical-monsters.webp",
       "width": 1067,
       "height": 1600,
-      "bytes": 60652,
+      "bytes": 187384,
       "slot": "book-cover",
       "entity": "mythical-monsters"
     },
@@ -229,7 +253,7 @@
       "path": "/images/books/myths-and-legends-of-china.webp",
       "width": 1067,
       "height": 1600,
-      "bytes": 58180,
+      "bytes": 171358,
       "slot": "book-cover",
       "entity": "myths-and-legends-of-china"
     },
@@ -245,7 +269,7 @@
       "path": "/images/books/seneca-selected-dialogues.webp",
       "width": 1067,
       "height": 1600,
-      "bytes": 46032,
+      "bytes": 180024,
       "slot": "book-cover",
       "entity": "seneca-selected-dialogues"
     },
@@ -280,6 +304,14 @@
       "bytes": 180358,
       "slot": "book-cover",
       "entity": "the-puzzles-of-henry-dudeney"
+    },
+    {
+      "path": "/images/books/traditional-games.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 162606,
+      "slot": "book-cover",
+      "entity": "traditional-games"
     },
     {
       "path": "/images/categories/classics-and-philosophy.webp",
@@ -368,6 +400,70 @@
       "bytes": 192688,
       "slot": "page-atmosphere",
       "entity": "order/order_lantern_scene"
+    },
+    {
+      "path": "/images/previews/book-of-were-wolves/p27.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 138826,
+      "slot": "book-preview",
+      "entity": "book-of-were-wolves"
+    },
+    {
+      "path": "/images/previews/book-of-were-wolves/p28.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 91874,
+      "slot": "book-preview",
+      "entity": "book-of-were-wolves"
+    },
+    {
+      "path": "/images/previews/book-of-were-wolves/p29.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 66376,
+      "slot": "book-preview",
+      "entity": "book-of-were-wolves"
+    },
+    {
+      "path": "/images/previews/book-of-were-wolves/p30.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 146672,
+      "slot": "book-preview",
+      "entity": "book-of-were-wolves"
+    },
+    {
+      "path": "/images/previews/british-goblins/p30.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 127780,
+      "slot": "book-preview",
+      "entity": "british-goblins"
+    },
+    {
+      "path": "/images/previews/british-goblins/p31.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 111862,
+      "slot": "book-preview",
+      "entity": "british-goblins"
+    },
+    {
+      "path": "/images/previews/british-goblins/p32.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 102348,
+      "slot": "book-preview",
+      "entity": "british-goblins"
+    },
+    {
+      "path": "/images/previews/british-goblins/p33.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 147666,
+      "slot": "book-preview",
+      "entity": "british-goblins"
     },
     {
       "path": "/images/previews/chess-and-playing-cards/p28.webp",
@@ -562,6 +658,70 @@
       "entity": "epictetus-discourses-and-enchiridion"
     },
     {
+      "path": "/images/previews/fairy-mythology-vol-1/p23.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 114574,
+      "slot": "book-preview",
+      "entity": "fairy-mythology-vol-1"
+    },
+    {
+      "path": "/images/previews/fairy-mythology-vol-1/p24.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 143652,
+      "slot": "book-preview",
+      "entity": "fairy-mythology-vol-1"
+    },
+    {
+      "path": "/images/previews/fairy-mythology-vol-1/p25.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 138762,
+      "slot": "book-preview",
+      "entity": "fairy-mythology-vol-1"
+    },
+    {
+      "path": "/images/previews/fairy-mythology-vol-1/p26.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 130932,
+      "slot": "book-preview",
+      "entity": "fairy-mythology-vol-1"
+    },
+    {
+      "path": "/images/previews/fairy-mythology-vol-2/p15.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 95934,
+      "slot": "book-preview",
+      "entity": "fairy-mythology-vol-2"
+    },
+    {
+      "path": "/images/previews/fairy-mythology-vol-2/p16.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 145966,
+      "slot": "book-preview",
+      "entity": "fairy-mythology-vol-2"
+    },
+    {
+      "path": "/images/previews/fairy-mythology-vol-2/p17.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 135284,
+      "slot": "book-preview",
+      "entity": "fairy-mythology-vol-2"
+    },
+    {
+      "path": "/images/previews/fairy-mythology-vol-2/p18.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 134608,
+      "slot": "book-preview",
+      "entity": "fairy-mythology-vol-2"
+    },
+    {
       "path": "/images/previews/games-ancient-and-oriental/p21.webp",
       "width": 900,
       "height": 1350,
@@ -698,6 +858,38 @@
       "entity": "korean-hangul-handwriting-workbook"
     },
     {
+      "path": "/images/previews/kwaidan/p18.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 145236,
+      "slot": "book-preview",
+      "entity": "kwaidan"
+    },
+    {
+      "path": "/images/previews/kwaidan/p19.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 141930,
+      "slot": "book-preview",
+      "entity": "kwaidan"
+    },
+    {
+      "path": "/images/previews/kwaidan/p20.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 156522,
+      "slot": "book-preview",
+      "entity": "kwaidan"
+    },
+    {
+      "path": "/images/previews/kwaidan/p21.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 141402,
+      "slot": "book-preview",
+      "entity": "kwaidan"
+    },
+    {
       "path": "/images/previews/mancala/p19.webp",
       "width": 900,
       "height": 1350,
@@ -792,6 +984,38 @@
       "bytes": 149820,
       "slot": "book-preview",
       "entity": "myths-and-legends-of-china"
+    },
+    {
+      "path": "/images/previews/sea-monsters-unmasked/p20.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 146000,
+      "slot": "book-preview",
+      "entity": "sea-monsters-unmasked"
+    },
+    {
+      "path": "/images/previews/sea-monsters-unmasked/p21.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 150986,
+      "slot": "book-preview",
+      "entity": "sea-monsters-unmasked"
+    },
+    {
+      "path": "/images/previews/sea-monsters-unmasked/p22.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 150692,
+      "slot": "book-preview",
+      "entity": "sea-monsters-unmasked"
+    },
+    {
+      "path": "/images/previews/sea-monsters-unmasked/p23.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 152560,
+      "slot": "book-preview",
+      "entity": "sea-monsters-unmasked"
     },
     {
       "path": "/images/previews/seneca-selected-dialogues/p45.webp",

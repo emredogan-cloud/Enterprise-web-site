@@ -1,6 +1,6 @@
 # The Myth Hunter's Field Book — paperback — KDP upload package
 
-**Generated:** 2026-09-04 · **ASIN:** B0HFP4KYX5 · **KDP state:** live
+**Generated:** 2026-09-07 · **ASIN:** B0HFP4KYX5 · **KDP state:** live
 
 ## What changed
 
@@ -15,12 +15,12 @@ A dedicated companion page now stands on page **156**: a QR occupying 30 % of th
 ## The file
 
 ```
-/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-MYTH-HUNTERS-FIELD-BOOK/08_OUTPUT/PAPERBACK/interior.pdf
-sha256 47cb2b965c55dc19e54ae63ee9b7b2945ca23ceacc699d39d22ec543c9be3429
+/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/THE-MYTH-HUNTERS-FIELD-BOOK/08_OUTPUT/PAPERBACK/interior.pdf
+sha256 28a4c61c273363a779ebb149d973547f91d42f4710bca7ac66232067269a291c
 33,184,153 bytes · 156 pages
 ```
 
-The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/THE-MYTH-HUNTERS-FIELD-BOOK/08_OUTPUT/PAPERBACK/interior.pre-companion.pdf` and is never deleted.
+The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/THE-MYTH-HUNTERS-FIELD-BOOK/08_OUTPUT/PAPERBACK/interior.pre-companion.pdf` and is never deleted.
 
 ## In KDP
 

@@ -104,6 +104,17 @@ function coverPng(slug) {
   return png;
 }
 
+/**
+ * ReportLab's placeholders are not metadata. A PDF built without /Title and
+ * /Author reads back as "untitled" by "anonymous", and both are non-empty
+ * strings — so any `x || fallback` treats them as values.
+ */
+function placeholderless(v) {
+  const t = (v ?? "").trim();
+  if (!t || /^untitled$/i.test(t) || /^anonymous$/i.test(t)) return "";
+  return t;
+}
+
 function buildSpec(bookSlug, format, edition, book, { skipDoneCheck = false } = {}) {
   const copy = COMPANION_PAGE_COPY[bookSlug];
   const catalogBook = BOOKS.find((b) => b.slug === bookSlug);
@@ -178,7 +189,16 @@ function buildSpec(bookSlug, format, edition, book, { skipDoneCheck = false } = 
       // edition it names both parties — "Edward Falkener · edited and annotated by
       // Emre Dogan" — and overwriting it with the catalogue's author credited the
       // annotator alone for a book whose text is somebody else's.
-      author: info.author || author?.name || "",
+      //
+      // "HAS ONE" MEANS A NAME, NOT A STRING. ReportLab writes `anonymous` into
+      // /Author and `untitled` into /Title when a build sets neither, and both
+      // are truthy — so `info.author || fallback` kept the placeholder and the
+      // fallback never fired. The verification a few lines down already knew
+      // those two words were not values; the assembly did not, and the two
+      // disagreed. Found on the Myth Hunter's hardcover (F-051), whose fresh
+      // interior carried exactly that pair. The same words are excluded here,
+      // by the same rule, so the check and the thing it checks agree.
+      author: placeholderless(info.author) || author?.name || "",
     },
     house: { ...HOUSE_COPY, eyebrow: eyebrowFor(copy.imprint) },
     copy: {
@@ -242,6 +262,38 @@ function verify(spec, outPath, result) {
   ok("qr-matches-url", v.matches, v.detail);
 
   return { info, checks, allPass: checks.every((c) => c.pass), qrVerify: v };
+}
+
+/**
+ * A HARDCOVER SPINE IS READ, NOT DERIVED — and this file used to print the
+ * derived one.
+ *
+ * `spine-check.mjs` computes pages x 0.002252, which is the PAPERBACK
+ * multiplier, and its own header says a case wrap must come from KDP's
+ * calculator because the case adds hinge and wrap allowances no formula here
+ * owns. It knew; the package writer did not, and printed 0.3513 in on the
+ * Myth Hunter's hardcover against the 0.540 in KDP's calculator returns —
+ * 0.19 in narrow, three times the tolerance, on a sheet whose whole job is to
+ * tell somebody which file to upload.
+ *
+ * So for a hardcover the figure comes from the cover registry, where the
+ * calculator's own numbers are recorded, and where none is recorded the sheet
+ * says so instead of showing arithmetic that does not apply.
+ */
+function spineFigure(m) {
+  if (m.format !== "hardcover") return `${m.spine.after.spineWidthIn.toFixed(4)} in`;
+  const read = m.cover?.spineIn;
+  return read
+    ? `${Number(read).toFixed(4)} in — READ from KDP's Cover Calculator, not derived`
+    : "READ IT FROM KDP'S COVER CALCULATOR — a hardcover spine is not derivable here";
+}
+
+function wrapFigure(m) {
+  if (m.format !== "hardcover") return `${m.spine.after.wrapWidthIn.toFixed(4)} in`;
+  const read = m.cover?.wrapIn;
+  return read
+    ? `${read} — READ from KDP's Cover Calculator, not derived`
+    : "READ IT FROM KDP'S COVER CALCULATOR — a hardcover wrap is not derivable here";
 }
 
 function packageDir(bookSlug, format) {
@@ -345,11 +397,11 @@ function uploadInstructions(m, edition) {
     ? `- **Pages:** **${m.interior.pagesAfter}**`
     : `- **Pages:** ${m.interior.pagesBefore} → **${m.interior.pagesAfter}**`);
   lines.push(firstUpload
-    ? `- **Spine:** **${m.spine.after.spineWidthIn.toFixed(4)} in** (${m.spine.paper} paper, ${m.spine.trim})`
-    : `- **Spine:** ${m.spine.before.spineWidthIn.toFixed(4)} in → **${m.spine.after.spineWidthIn.toFixed(4)} in** (${m.spine.paper} paper, ${m.spine.trim})`);
+    ? `- **Spine:** **${spineFigure(m)}** (${m.spine.paper} paper, ${m.spine.trim})`
+    : `- **Spine:** ${m.spine.before.spineWidthIn.toFixed(4)} in → **${spineFigure(m)}** (${m.spine.paper} paper, ${m.spine.trim})`);
   lines.push(firstUpload
-    ? `- **Wrap width:** **${m.spine.after.wrapWidthIn.toFixed(4)} in**`
-    : `- **Wrap width:** ${m.spine.before.wrapWidthIn.toFixed(4)} in → **${m.spine.after.wrapWidthIn.toFixed(4)} in**`);
+    ? `- **Wrap width:** **${wrapFigure(m)}**`
+    : `- **Wrap width:** ${m.spine.before.wrapWidthIn.toFixed(4)} in → **${wrapFigure(m)}**`);
   lines.push(`- **Cover:** ${m.coverAction}`);
   lines.push(`- **Proof:** ${m.proofRecommended ? `recommended — ${m.proofWhy}` : `not required — ${m.proofWhy}`}`);
   lines.push("");
@@ -368,7 +420,7 @@ function uploadInstructions(m, edition) {
   lines.push("## In KDP");
   lines.push("");
   if (firstUpload) {
-    lines.push(`1. KDP → **Create** → **Paperback**. This book is not on the bookshelf; there is nothing to edit.`);
+    lines.push(`1. KDP → **Create** → **${m.format === "hardcover" ? "Hardcover" : m.format === "large_print" ? "Paperback (large print)" : "Paperback"}**. This book is not on the bookshelf; there is nothing to edit.`);
     lines.push(`2. Upload the interior above, and the cover built for **${m.interior.pagesAfter} pages** — see the book's own \`OUTPUT/KDP/KDP_UPLOAD_GUIDE.html\` for the trim, paper and bleed settings, which must match or the file is rejected.`);
     lines.push(`3. **Do not use Cover Creator.** The wrap was computed for this page count; Cover Creator regenerates it and the spine moves.`);
     lines.push(`4. Open the previewer and confirm page ${m.interior.companionPage} shows the code and the address. Scan the code with a phone before you publish — it cannot be changed once it is printed.`);

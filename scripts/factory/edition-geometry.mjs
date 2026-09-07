@@ -69,6 +69,8 @@ export const EDITION_GEOMETRY = {
   },
   "the-myth-hunters-field-book": {
     paperback: { trimWidthIn: 8.5, trimHeightIn: 11, binding: "paperback", paper: "white", paperVerified: "project" },
+    // F-051, 2026-09-07 — 8.25 x 11, the largest trim KDP's hardcover line offers.
+    hardcover: { trimWidthIn: 8.25, trimHeightIn: 11, binding: "hardcover", paper: "white", paperVerified: "project" },
   },
   "korean-hangul-handwriting-workbook": {
     paperback: { trimWidthIn: 8.5, trimHeightIn: 11, binding: "paperback", paper: "white", paperVerified: "project" },
@@ -113,7 +115,7 @@ export const MEASURED_MEDIABOX_PT = {
   "codex-enigmatica": { paperback: [432, 648], hardcover: [432, 648] },
   "the-great-book-of-world-games": { paperback: [612, 792], hardcover: [594, 792], large_print: [612, 792] },
   "the-great-book-of-world-myths": { paperback: [432, 648], hardcover: [432, 648] },
-  "the-myth-hunters-field-book": { paperback: [612, 792] },
+  "the-myth-hunters-field-book": { paperback: [612, 792], hardcover: [594, 792] },
   "korean-hangul-handwriting-workbook": { paperback: [612, 792], hardcover: [594, 792] },
   "the-puzzles-of-henry-dudeney": { paperback: [432, 648] },
   "epictetus-discourses-and-enchiridion": { paperback: [432, 648] },
