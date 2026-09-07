@@ -3,6 +3,13 @@
 **27 catalogue books · 73 (book, format) rows · 25 local projects · 23 live KDP listings ·
 16 books serving 200 on valicepress.com.**
 
+> **SUPERSEDED AGAIN, 2026-09-07 night.** Eleven of the books this file calls DRAFT are on
+> sale: 27 published, 24 buyable direct ebooks, 24 Paddle products, and the Myth Hunter's
+> hardcover — §10's single BLOCKED row — is built. `validate-catalog` reads 127 pass / 0
+> error. Read
+> [EXPANDED_DISTRIBUTION_EXECUTION_REPORT.md](../30-kdp/EXPANDED_DISTRIBUTION_EXECUTION_REPORT.md)
+> first; where it disagrees with anything below, it is later and it was measured.
+>
 > **SUPERSEDED IN PART, 2026-09-07 evening.** Every project now carries a gate record (25, up
 > from 13) and the board reads 146 passed / 79 in_progress / 75 not_started. §13's "12 projects
 > with no gates.json" is closed. Four live Amazon listings were found to overstate a count

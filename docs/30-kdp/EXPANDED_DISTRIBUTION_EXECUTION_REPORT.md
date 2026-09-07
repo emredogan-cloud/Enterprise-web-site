@@ -404,6 +404,30 @@ someone else is not something to chase automatically. **This needs your confirma
 gates 7, 8 and 10 are signed — it does not mean anything has been sent to Amazon, and
 nothing has.
 
+## 16. No book left behind — the whole tree, classified
+
+`MY-DİGİTAL-BOOK/` holds **25 book projects in the two production families** (all 25 are in
+the matrix above and all 25 carry a `gates.json`), plus `COMMON-AREA/` (shared instruments,
+not a book) and **eight projects under `BACKUP/`**. None of the eight is in the catalogue,
+none has a Paddle product or an R2 master, and none is claimed as a Valice product. They
+are listed here because §31 of the brief says nothing may be silently ignored.
+
+| Project | What it is | Measured state | Why it is not in the queue |
+|---|---|---|---|
+| `backup/` | HTML guides and old reports | no manuscript, no build | **NOT APPLICABLE** — not a book |
+| `Fabl` | Turkish children's fables | 5,466 words, 32 content entries, **0 built files** | **BLOCKED** — Turkish; this store sells in English and has no Turkish channel |
+| `intikam-yemini` | Turkish novel | 54,693 words, 19 content entries, 0 built files | same |
+| `tuzun-hafizasi` | Turkish novel | 95,834 words, 38 content entries, 0 built files | same — and the longest manuscript in the tree |
+| `solgun-kitabe` | Turkish novel | 3,670 words, 8 content entries | same, and early |
+| `mendiran-vakayinamesi` | Turkish novel | 3,700 words, **0 content entries** | same — a scaffold |
+| `LICENSE-AND-LAUNCH-CALIFORNIA-LIFE-HEALTH` | US insurance-exam prep | only two 2026-08-24 source PDFs; **no manuscript output** | **BLOCKED** — nothing has been written yet |
+| `TRUE-FIT-SEWING-PATTERN-FITTING-SERIES` | three-book sewing series | BOOK-01 has a built 728 KB PDF and a pilot sheet | **PENDING FOUNDER** — this is the *Before You Cut* line, and the standing item on it is **O9: trademark clearance and testers**, which is yours |
+
+To be exact about the one that could move: **BOOK-01 of the sewing series is the only book
+outside the 25 with a built PDF.** It has no cover, no catalogue row, no gate record and no
+KDP handbook, and O9 stands in front of it. Adding it to a distribution queue is a decision,
+not a build step, so it was not added.
+
 ---
 
 *Written 2026-09-07. Sources: the filesystem, valicepress.com, `neondb`, api.paddle.com,

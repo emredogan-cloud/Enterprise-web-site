@@ -1,5 +1,10 @@
 # Final catalogue distribution report — 2026-09-07
 
+> **SUPERSEDED, 2026-09-07 night.** Set A (local only) is empty and set B has grown: the
+> eleven books this report lists as DRAFT are published and buyable, and set G's one
+> blocked row — the Myth Hunter's hardcover — is built. See
+> [EXPANDED_DISTRIBUTION_EXECUTION_REPORT.md](../30-kdp/EXPANDED_DISTRIBUTION_EXECUTION_REPORT.md).
+
 **27 books · 73 (book, format) rows · 25 local projects, all on one gate model · 16 books live
 on valicepress.com · 23 live KDP listings · 8 print packages validated and ready · zero UNKNOWN
 rows.**
