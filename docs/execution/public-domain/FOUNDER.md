@@ -573,3 +573,113 @@ This is research, not production, and it does not block Phase 1.
 **RESOLVED 2026-09-04.** The Founder approved the split. Volume one is the eight chapters in which Werner sets out the divine order (31,210 words) and measures **22.4%** against the 20% floor. The four legend cycles (31,744 words) are scoped as volume two. Built end to end; see `PHASE-1-REPORT/03-myths-and-legends-of-china/`.
 
 ---
+
+---
+
+### F-033 · P0 · Sign Gate 2 for *The Book of Were-Wolves*
+
+Three rows, and the simplest rights position of the phase: a text of 1865 by an author who
+died in 1924, **no illustration layer at all** — the 1865 book has no plates and this edition
+invents none — and Baring-Gould's own translations, which are part of the 1865 book and carry
+no separate right. Evidence in `PHASE-3-BOOK/03-BOOK-OF-WERE-WOLVES/RIGHTS/RIGHTS.md`.
+
+*(Referenced by that book's report and catalogue row since 2026-09-06; recorded here
+2026-09-07, when the gap between reference and record was noticed.)*
+
+---
+
+### F-034 · P1 · Confirm that seven chapters of murder are printed entire
+
+Chapters VI, VII, IX and XI–XV of *The Book of Were-Wolves* describe the killing and
+mutilation of children, grave-robbing and cannibalism, at length and in the language of the
+trial records Baring-Gould was reading.
+
+They are printed entire, because Article 18 forbids abridging a book to hide what it contains
+and because his argument depends on them. What the edition does instead is say plainly, at the
+front and in each of the seven head-notes, what is in those chapters, so a reader chooses
+knowingly rather than turning a page and meeting it.
+
+**This is the decision to revisit if the Founder wants a different answer.** It is recorded
+rather than taken quietly.
+
+---
+
+### F-035 · P0 · Sign Gate 2 for *British Goblins*
+
+Four rights rows, and the first illustration layer of Phase 3 that is actually **used**:
+twenty of T. H. Thomas's twenty-one drawings are set. One row is **refused** — the six music
+engravings in the Gutenberg file are Lesley Halamek's of 2010, not Sikes's of 1880, and the
+airs are named and placed in the apparatus instead. Evidence is in
+`PHASE-3-BOOK/04-BRITISH-GOBLINS/RIGHTS/RIGHTS.md`, rows S-1 to S-4.
+
+---
+
+### F-036 · P1 · Confirm the price of a 390-page book
+
+$22.99 paperback and $41.99 hardcover for *British Goblins*, $19.99 and $38.99 for each
+Fairy Mythology volume, are `price-engine.mjs`'s own recommendations at the 35% margin target
+for those page counts. No book this press has sold is priced anywhere near them. The engine is
+not wrong; the question is whether the market is there, and that is a Founder call.
+
+---
+
+### F-037 · P0 · Sign Gate 2 for *The Fairy Mythology* (both volumes)
+
+**Five rights rows — the most of any book in the phase, and one of them refused.**
+
+- S-1 text: Keightley 1789–1872, enlarged edition 1850, reprinted 1892. Clear.
+- S-2 the frontispiece: **George Cruikshank, 1792–1878**. Bohn's 1850 issue replaced W. H.
+  Brooke's 1828 plates with a new Cruikshank frontispiece. Clear. **Note the honest limit:**
+  the plate carries a signature but it is not legible at the resolution of the source scan
+  (376 × 600), so the attribution rests on the bibliographic record of the 1850 issue, not on
+  reading the signature. Either candidate — Cruikshank d. 1878, Brooke d. 1860 — is long out
+  of copyright, so nothing turns on it, but the edition says so rather than implying it read
+  the signature.
+- S-3 the seven engraved script blocks (Persian and Sanskrit): anonymous, published 1850.
+  Clear on publication terms.
+- S-4 the Gutenberg transcription of 2012: faithful transcription, no new right.
+- **S-5 REFUSED:** the ~150 one-letter images the 2012 transcribers made to stand for insular
+  Anglo-Saxon and Gaelic letterforms. Their work, not Keightley's. All 141 in the printed text
+  are replaced by their Unicode characters, and the build refuses to run if it meets an image
+  it cannot account for.
+
+Evidence: `PHASE-3-BOOK/05-FAIRY-MYTHOLOGY/RIGHTS/RIGHTS.md` and `SOURCE/glyph-map.json`.
+
+---
+
+### F-038 · P1 · The apparatus of both Fairy Mythology volumes is below the 20% floor
+
+Measured, not padded: **12.5%** in Volume I (14,303 words) and **8.7%** in Volume II (10,661).
+Every other Valice Classic has cleared 20%.
+
+The Founder's standing instruction is that the floor is a **quality floor and not a
+word-count target**, and that where genuine apparatus falls short the measured result is
+documented rather than faked. Article 2 forbids filler. What the volumes carry is a head-note
+for every one of their fifty-one sections, a Register of Evidence and Inference — with a
+fifth column in Volume II that no other book of this phase has needed, *what the author had a
+hand in making* — ninety glossary entries, forty-four beings, thirty-three authorities,
+twenty-nine editorial notes, nine essays, a tale index and a motif concordance measured across
+both volumes.
+
+Reaching 20% would mean writing some 25,000 more words with nothing left to say. **This is the
+decision to revisit if the Founder wants the floor held absolutely**; the alternative is to
+commission genuinely new scholarly matter rather than to pad.
+
+---
+
+### F-039 · P0 · Five Phase 2 books are complete and provisioned, and still not on sale
+
+*Games Ancient and Oriental*, *Korean Games*, *Traditional Games*, *Chess and Playing Cards*
+and *Mancala* are built, priced, their R2 masters uploaded, and — as of a check against
+api.paddle.com on 2026-09-07 — **their Paddle products and prices are live**. The blocker text
+in the catalogue said the environment prevented the Paddle write; that was true when it was
+written and is false now, and has been corrected.
+
+What actually holds all five is **Gate 2 (Rights) and Gate 5 (Facts) — Founder signatures**,
+which no agent can give. `status.mjs` shows all five at QA, 2 of 12 gates passed.
+
+The live price ids are recorded in each row's blockers and are deliberately **not** written
+into `paddlePriceId`: `valice-catalog.test.ts` forbids a price id on a row whose ebook is not
+`available`, and that test is right — a live id on a row that is not for sale fails at the
+till rather than at load. Signing the gates and flipping `websiteStatus` is one action; the
+ids are ready for it.

@@ -1506,7 +1506,7 @@ export const BOOKS = [
     // allow, and routing around that block would defeat it. FOUNDER F-019 holds
     // the one command. Until it runs the ebook is `coming_soon`, not `available`,
     // because a buy button with no price behind it is a lie.
-    directSaleBlockedBy: "paddle-not-provisioned",
+    directSaleBlockedBy: "gate-2-rights-signature",
     paddlePriceId: null,
     onelinePromise:
       "The first serious attempt to make a dead game playable again \u2014 with the seam marked, for the first time, between what the evidence shows and what Falkener supplied.",
@@ -1544,7 +1544,16 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "The ebook is built, priced and ready but not yet on sale: creating the Paddle product and price is a live write that this environment's permission layer blocks, and working around it would defeat the block. One command, in FOUNDER F-019.",
+      "NOT ON SALE, AND PADDLE IS NOT THE REASON ANY MORE. The product and price are live "
+        + "on the Paddle account, verified 2026-09-07 by provision-paddle.mjs against "
+        + "api.paddle.com, and the R2 masters are uploaded. What holds this book is the "
+        + "FOUNDER'S GATE 2 (Rights) AND GATE 5 (Facts) SIGNATURES, which no agent can "
+        + "give. The earlier blocker text said this environment blocked the Paddle write; "
+        + "that was true when it was written and is false now. The live price is "
+        + "pri_01m1v4n69wd2th3pf1cbw8an3n; it is deliberately NOT written into paddlePriceId, because "
+        + "valice-catalog.test.ts forbids a price id on a row whose ebook is not "
+        + "available, and that test is right \u2014 a live id on a row that is not "
+        + "for sale fails at the till rather than at load.",
       "Not on KDP. The interior and wrap are built and packaged; the print upload is a Founder action \u2014 see the KDP upload handbook in PHASE-2-REPORT.",
       "Nine of Falkener's tables are described rather than reproduced. The bowl game's form of throws and entries is read at 88% wrong or absent by the scan's text layer, and setting it would be worse than leaving it out. Each omission is marked in place with its size and its 1892 page. This is stated in the Note on the Text and in the product description's honesty, not hidden.",
       "This is a short volume \u2014 78 pages against 154\u2013176 for the other Classics titles \u2014 because sections I to VI are where the Egyptian argument ends and section VII changes subject to the Greek hiera gramme. Both prices are set for the length rather than for the series.",
@@ -1579,7 +1588,7 @@ export const BOOKS = [
     // live Paddle account is a write this environment's permission layer blocks, and
     // routing around that block would defeat it. FOUNDER F-022 holds the one command.
     // Until it runs the ebook is `coming_soon`, not `available`.
-    directSaleBlockedBy: "paddle-not-provisioned",
+    directSaleBlockedBy: "gate-2-rights-signature",
     paddlePriceId: null,
     onelinePromise:
       "The book that made games evidence \u2014 with the line drawn, for the first time, between what Culin watched and what he concluded, and his Korean made searchable again.",
@@ -1617,7 +1626,16 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "The ebook is built, priced and ready but not yet on sale: creating the Paddle product and price is a live write that this environment's permission layer blocks, and working around it would defeat the block. One command, in FOUNDER F-022.",
+      "NOT ON SALE, AND PADDLE IS NOT THE REASON ANY MORE. The product and price are live "
+        + "on the Paddle account, verified 2026-09-07 by provision-paddle.mjs against "
+        + "api.paddle.com, and the R2 masters are uploaded. What holds this book is the "
+        + "FOUNDER'S GATE 2 (Rights) AND GATE 5 (Facts) SIGNATURES, which no agent can "
+        + "give. The earlier blocker text said this environment blocked the Paddle write; "
+        + "that was true when it was written and is false now. The live price is "
+        + "pri_01m1v4n6zery50yws32dpspqve; it is deliberately NOT written into paddlePriceId, because "
+        + "valice-catalog.test.ts forbids a price id on a row whose ebook is not "
+        + "available, and that test is right \u2014 a live id on a row that is not "
+        + "for sale fails at the till rather than at load.",
       "Not on KDP. The interior and wrap are built and packaged; the print upload is a Founder action \u2014 see the KDP upload handbook in PHASE-2-REPORT.",
       "About a third of Culin's text quotes Korean, Chinese and Japanese in their own scripts, and this scan's text layer reads none of it. Those runs are marked where they stand rather than guessed at: 502 markers in the finished book. The page images are free and are the place to go for them. This is stated in the Note on the Text, not hidden.",
       "Thirty-six passages \u2014 about 598 words \u2014 are the scanner's reading of a line figure, or of the ghost a tissue guard prints onto the facing page, and are marked rather than set as Culin's prose. Every one is listed with what the scanner made of it in QA/debris.json, so the refusal can be checked. Three of Culin's tables are described rather than reproduced for the same reason.",
@@ -2204,7 +2222,7 @@ export const BOOKS = [
     linkageDecision: null,
     kdpSelect: false,
     directSale: true,
-    directSaleBlockedBy: "paddle-not-provisioned",
+    directSaleBlockedBy: "gate-2-rights-signature",
     paddlePriceId: null,
     onelinePromise:
       "The book that wrote down the tunes: forty-three singing games as children sang them in the 1890s, with every version's county and collector, and seventy-eight melodies engraved for this edition.",
@@ -2241,7 +2259,16 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "The ebook is built, priced and ready but not yet on sale: creating the Paddle product and price is a live write that this environment's permission layer blocks. One command, in FOUNDER F-027.",
+      "NOT ON SALE, AND PADDLE IS NOT THE REASON ANY MORE. The product and price are live "
+        + "on the Paddle account, verified 2026-09-07 by provision-paddle.mjs against "
+        + "api.paddle.com, and the R2 masters are uploaded. What holds this book is the "
+        + "FOUNDER'S GATE 2 (Rights) AND GATE 5 (Facts) SIGNATURES, which no agent can "
+        + "give. The earlier blocker text said this environment blocked the Paddle write; "
+        + "that was true when it was written and is false now. The live price is "
+        + "pri_01m1v4n8mdw8dnnsdc2bqwf56d; it is deliberately NOT written into paddlePriceId, because "
+        + "valice-catalog.test.ts forbids a price id on a row whose ebook is not "
+        + "available, and that test is right \u2014 a live id on a row that is not "
+        + "for sale fails at the till rather than at load.",
       "NO KDP LISTING YET. The paperback is built \u2014 interior, companion leaf and wrap \u2014 and has never been uploaded; `kdp: \"not_created\"` says so and no ASIN is invented.",
       "The apparatus is 20.3% of the volume against a 20% floor, which is the tightest margin of the five books of this phase. It is measured from the manuscript by BUILD/measure.py at build time, not estimated.",
       "THE COMPARATIVE TABLES ARE NOT REPRODUCED. 23 of the 43 entries carry one in the original, up to eighteen columns wide and printed sideways; there is no honest way to set them on a 6\u00d79 page. The gazetteer prints what they encode and A Note on the Text says so plainly.",
@@ -2269,7 +2296,7 @@ export const BOOKS = [
     linkageDecision: null,
     kdpSelect: false,
     directSale: true,
-    directSaleBlockedBy: "paddle-not-provisioned",
+    directSaleBlockedBy: "gate-2-rights-signature",
     paddlePriceId: null,
     onelinePromise:
       "A museum catalogue whose ORDER is an argument \u2014 and the first edition to say so, entry group by entry group, so the objects can be read apart from the theory they were arranged to prove.",
@@ -2307,7 +2334,16 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "The ebook is built, priced and ready but not yet on sale: creating the Paddle product and price is a live write that this environment's permission layer blocks. One command, in FOUNDER F-024.",
+      "NOT ON SALE, AND PADDLE IS NOT THE REASON ANY MORE. The product and price are live "
+        + "on the Paddle account, verified 2026-09-07 by provision-paddle.mjs against "
+        + "api.paddle.com, and the R2 masters are uploaded. What holds this book is the "
+        + "FOUNDER'S GATE 2 (Rights) AND GATE 5 (Facts) SIGNATURES, which no agent can "
+        + "give. The earlier blocker text said this environment blocked the Paddle write; "
+        + "that was true when it was written and is false now. The live price is "
+        + "pri_01m1v4n991k3h8x20sbwp9455z; it is deliberately NOT written into paddlePriceId, because "
+        + "valice-catalog.test.ts forbids a price id on a row whose ebook is not "
+        + "available, and that test is right \u2014 a live id on a row that is not "
+        + "for sale fails at the till rather than at load.",
       "Not on KDP. The interior and wrap are built and packaged; the print upload is a Founder action \u2014 see the KDP upload handbook in PHASE-2-REPORT.",
       "Five of the seventy-six entries could not have their headings recovered from the scan, so their descriptions stand within the entry above them. They are printed in their place with their number and title from Culin's own table of contents and a line saying so. Nothing is missing from the text; what is missing is the seam, and it is marked rather than guessed.",
       "Entries 1 to 44 \u2014 the dice, the boards and the race games, 68,849 words \u2014 are not in this volume. They carry the collection but not the thesis and are scoped as a second volume. The decision was recorded before any apparatus was written.",
@@ -2337,7 +2373,7 @@ export const BOOKS = [
     linkageDecision: null,
     kdpSelect: false,
     directSale: true,
-    directSaleBlockedBy: "paddle-not-provisioned",
+    directSaleBlockedBy: "gate-2-rights-signature",
     paddlePriceId: null,
     onelinePromise:
       "The paper that started the study of mancala \u2014 five thousand words, three complete games you can play tonight, and an informant who became the first African diplomat in modern Europe.",
@@ -2362,7 +2398,16 @@ export const BOOKS = [
       },
     ],
     blockers: [
-      "The ebook is built, priced and ready but not yet on sale: creating the Paddle product and price is a live write that this environment's permission layer blocks. One command, in FOUNDER F-026.",
+      "NOT ON SALE, AND PADDLE IS NOT THE REASON ANY MORE. The product and price are live "
+        + "on the Paddle account, verified 2026-09-07 by provision-paddle.mjs against "
+        + "api.paddle.com, and the R2 masters are uploaded. What holds this book is the "
+        + "FOUNDER'S GATE 2 (Rights) AND GATE 5 (Facts) SIGNATURES, which no agent can "
+        + "give. The earlier blocker text said this environment blocked the Paddle write; "
+        + "that was true when it was written and is false now. The live price is "
+        + "pri_01m1v4n9ygd9z3vbgstcjbmvt0; it is deliberately NOT written into paddlePriceId, because "
+        + "valice-catalog.test.ts forbids a price id on a row whose ebook is not "
+        + "available, and that test is right \u2014 a live id on a row that is not "
+        + "for sale fails at the till rather than at load.",
       "NO PAPERBACK, and that is a decision rather than an omission. The volume is 38 pages; with the blank leaf a printed edition needs to keep the block even it would run to 40, giving a spine of 0.090 in. A perfect-bound book that thin is a bad object, it cannot carry spine text, and it invites exactly the review it would deserve. The interior and a cover wrap are built so the arithmetic exists if this is ever revisited, and both are marked not for use.",
       "The source paper is 4,885 words and the apparatus is longer than it \u2014 54.8% of the finished volume against a 20% floor. That inversion is unusual for this series and is stated in the Note on the Text and here rather than discovered on the page.",
       "None of the paper's five plates or fifteen text figures is reproduced (22 captioned pictures in all, since Plates 2 and 4 carry two figures each): no photographer and no draughtsman is named for any of them. All 22 captions are printed where the figures stood, because the caption carries the provenance, and the three boards are drawn for this edition from Culin's descriptions.",
