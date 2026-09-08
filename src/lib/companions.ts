@@ -1574,17 +1574,18 @@ const KWAIDAN: Companion = {
   slug: "kwaidan",
   bookSlug: "kwaidan",
   bookTitle: "Kwaidan: Stories and Studies of Strange Things",
-  state: "book-not-yet-available",
+  state: "book-available",
   stateNote:
-    "The Valice edition is built, validated and priced, and its payment product " +
-    "exists — what is left is that the edition's own pages have not been deployed " +
-    "yet, so the storefront row is deliberately still held back. Everything on " +
-    "this page is free and works today regardless.",
+    "The direct edition is on sale at valicepress.com — a watermarked PDF and an " +
+    "EPUB, yours to keep. The paperback and the hardcover are built and packaged " +
+    "but no Amazon listing exists yet, so nothing here links to one. Everything on " +
+    "this page is free and works whether or not you buy the book.",
   intro:
     "Free material for Hearn's seventeen ghost stories and three insect essays: " +
-    "the old provinces against the prefectures they became, the creatures named " +
-    "by what folklore calls them, the register of what Hearn took and what he was " +
-    "told, and a sheet for reading the book aloud by candlelight.",
+    "the twelve old provinces against the prefectures they became, the creatures " +
+    "named by what folklore calls them, where each of them would sit in Codex " +
+    "Bestiarium, the register of what Hearn took and what he was told, and a sheet " +
+    "for reading the book aloud by candlelight.",
   newsletterSource: "kwaidan-companion",
   assetsHeading: "Print and read",
   rightsNote:
@@ -1592,19 +1593,24 @@ const KWAIDAN: Companion = {
     "on 2 April 1904, so the text is in the public domain on two independent " +
     "grounds. The two plates are by Takeuchi Keishū, born 13 November 1861 and " +
     "dead on 3 January of 1942 or 1943 (Wikidata Q11545824); on either date the " +
-    "term expired more than a decade ago, and the edition reproduces both. The " +
-    "unsigned introduction of March 1904 that stands in the first edition is not " +
-    "by Hearn, names no author anywhere, and is not printed.",
+    "term expired more than a decade ago, and the edition reproduces both. Two " +
+    "neighbouring layers are not printed, on the same reasoning. The unsigned " +
+    "introduction of March 1904 is not by Hearn and names no author anywhere. And " +
+    "thirty-six of the eighty-five notes in the electronic text were written by its " +
+    "transcribers rather than by Hearn — they carry no anchor and no back-link, " +
+    "because no sentence of his calls them — so the edition prints his forty-nine " +
+    "and none of theirs.",
   assets: [
     {
       id: "provinces-card",
       title: "The Provinces",
       description:
-        "The ten old provinces Hearn names — Musashi, Iyo, Mutsu, Tamba, Noto and " +
-        "the rest — against the modern prefectures they became, with the tale each " +
-        "belongs to. It also carries the correction: the text places Niigata in " +
-        "Echizen, and Niigata is in Echigo. That slip has been reprinted for a " +
-        "century and the edition leaves Hearn's sentence alone and tells you instead.",
+        "The twelve old provinces Hearn names — Musashi, Iyo, Mutsu, Tamba, Noto, " +
+        "Kai, Shinano and the rest — against the modern prefectures they became, " +
+        "with the tale each belongs to. It also carries the correction: the text " +
+        "places Niigata in Echizen, and Niigata is in Echigo. That slip has been " +
+        "reprinted for a century and the edition leaves Hearn's sentence alone and " +
+        "tells you instead.",
       kind: "static",
       href: "/companion/kwaidan/provinces-card.pdf",
       meta: "PDF · US Letter · 1 page",
@@ -1616,9 +1622,24 @@ const KWAIDAN: Companion = {
         "Fifteen cards, one for each creature and apparition in the book, named by " +
         "what folklore calls it rather than by Hearn's title — which matters most " +
         "for \u201cMujina\u201d, where the thing on the road is a noppera-bō and the " +
-        "animal in the title never appears.",
+        "animal in the title never appears. Each card carries the class the creature " +
+        "would take in Codex Bestiarium.",
       kind: "static",
       href: "/companion/kwaidan/yokai-cards.pdf",
+      meta: "PDF · US Letter · 1 page",
+    },
+    {
+      id: "codex-concordance",
+      title: "The Codex Concordance",
+      description:
+        "Where the fifteen would sit in the six classes of Codex Bestiarium — and " +
+        "why not one of them is already in it. The Codex gives Japan three creatures " +
+        "with bodies: the tengu, the kappa and Yamata-no-Orochi. Its smallest class, " +
+        "the restless dead, runs to eight entries from eight traditions and none of " +
+        "them is Japanese. Five of these fifteen would go straight into it. The sheet " +
+        "prints all six classes so a reader holding one book can place the other.",
+      kind: "static",
+      href: "/companion/kwaidan/codex-concordance.pdf",
       meta: "PDF · US Letter · 1 page",
     },
     {
