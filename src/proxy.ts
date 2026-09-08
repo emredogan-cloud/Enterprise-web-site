@@ -1,7 +1,9 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import type { NextFetchEvent, NextRequest } from "next/server";
 
 import { canonicalRedirectTarget } from "@/lib/canonical-host";
+import { shouldBypassClerk } from "@/lib/clerk-scope";
 import { printedAddressRedirect } from "@/lib/printed-address";
 import { checkRateLimit } from "@/lib/rate-limit";
 
@@ -19,9 +21,16 @@ import { checkRateLimit } from "@/lib/rate-limit";
  *     are redirected to the sign-in page by `auth.protect()`.
  *
  * Pipeline order (per request):
+ *   0. Canonical-host + printed-address redirects.
  *   1. Rate limit check (perimeter defense — runs before any auth work
  *      so an abusive client cannot exhaust Clerk's API budget).
- *   2. Auth gate for the protected matcher.
+ *   2. Crawler-safe bypass: a cookieless GET/HEAD on a public route is
+ *      served WITHOUT `clerkMiddleware` (see `src/lib/clerk-scope.ts`).
+ *      On a Clerk development instance the middleware otherwise answers
+ *      such requests with a 307 to the Clerk handshake, which Googlebot /
+ *      Bingbot never complete — Search Console showed "Redirect error" on
+ *      `/`, `/sitemap.xml` and `/robots.txt` and zero indexed pages.
+ *   3. Clerk context + auth gate for everything else.
  *
  * Public catalog routes stay statically renderable (SSG, per ADR-1): the
  * middleware only enriches request context and only enforces auth where
@@ -44,7 +53,19 @@ function isClerkConfigured(): boolean {
   );
 }
 
-export default clerkMiddleware(async (auth, req) => {
+const withClerk = clerkMiddleware(async (auth, req) => {
+  // ---- 3. Auth gate ------------------------------------------------------
+  if (isProtectedRoute(req)) {
+    // Defense: when Clerk env keys are missing (local dev before the first
+    // `vercel env pull`, or a CI smoke run), do NOT enforce auth at the
+    // edge — that would 500 the whole route before the page can render
+    // its own graceful "unprovisioned" UI. The page-level guard takes over.
+    if (!isClerkConfigured()) return;
+    await auth.protect();
+  }
+});
+
+export default async function proxy(req: NextRequest, event: NextFetchEvent) {
   // ---- 0. Canonical host --------------------------------------------------
   // The retired `*.vercel.app` production aliases still answer 200 and are
   // indexable. Send them permanently to the canonical origin (path + query
@@ -71,16 +92,25 @@ export default clerkMiddleware(async (auth, req) => {
   const rateLimitResponse = await checkRateLimit(req);
   if (rateLimitResponse) return rateLimitResponse;
 
-  // ---- 2. Auth gate ------------------------------------------------------
-  if (isProtectedRoute(req)) {
-    // Defense: when Clerk env keys are missing (local dev before the first
-    // `vercel env pull`, or a CI smoke run), do NOT enforce auth at the
-    // edge — that would 500 the whole route before the page can render
-    // its own graceful "unprovisioned" UI. The page-level guard takes over.
-    if (!isClerkConfigured()) return;
-    await auth.protect();
+  // ---- 2. Crawler-safe bypass --------------------------------------------
+  // No public page calls `auth()`/`currentUser()` on the server, so a
+  // cookieless GET/HEAD on a public route gains nothing from Clerk and must
+  // never be redirected to the Clerk handshake (crawlers, link previews,
+  // first-time readers). Signed-in visitors, Server Actions, API routes and
+  // the protected matcher still go through `clerkMiddleware` below.
+  if (
+    shouldBypassClerk({
+      method: req.method,
+      pathname: req.nextUrl.pathname,
+      search: req.nextUrl.search,
+      cookie: req.headers.get("cookie"),
+    })
+  ) {
+    return NextResponse.next();
   }
-});
+
+  return withClerk(req, event);
+}
 
 export const config = {
   matcher: [
