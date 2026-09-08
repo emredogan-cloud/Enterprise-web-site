@@ -2,19 +2,29 @@
 #
 # WHY THIS FILE EXISTS
 # `vercel --prod` failed on 2026-09-07 with "File size limit exceeded (100 MB)"
-# after uploading 322 MB. The offender was `scripts/tmp/digital-editions/`,
-# the staging directory `build-digital-editions.mjs` writes into: Codex
-# Bestiarium's master is 109 MB and Vercel's per-file ceiling is 100. The
-# directory is in `.gitignore`, which the CLI does not read once a
-# `.vercelignore` could exist — and none did.
+# after uploading 322 MB. The offender was `scripts/tmp/digital-editions/`, the
+# staging directory `build-digital-editions.mjs` writes into: Codex Bestiarium's
+# master is 109 MB and Vercel's per-file ceiling is 100. That directory is in
+# `.gitignore`, which the CLI does not read.
 #
-# Nothing listed here is read at build time or at runtime. The book
-# repositories, the staging masters and the reports are inputs to the scripts
-# that generate `public/` and the catalogue, and those outputs ARE committed.
-scripts/tmp/
-docs/
-images/
-assets/
-e-book/
-sub-pr-report/
-tsconfig.tsbuildinfo
+# ⭑ EVERY PATTERN HERE IS ROOT-ANCHORED, AND THAT IS THE WHOLE POINT ⭑
+#
+# The first version of this file wrote `images/` and `assets/` without the
+# leading slash. A pattern with no leading slash matches AT ANY DEPTH, so
+# `images/` excluded the 25 MB of root-level mockups it was aimed at AND
+# `public/images/` — 159 files: every book cover, every category card, every
+# preview page. The site deployed with a working catalogue and no pictures, and
+# `assets/` had quietly taken `scripts/assets/` with it.
+#
+#     A path in a deploy-ignore file is a PREFIX, not a directory, unless you
+#     anchor it. The check that would have caught this is fetching one image
+#     from production, not reading the HTML that references it.
+#
+# So: fetch an image, not a page, when verifying a deploy.
+/scripts/tmp/
+/docs/
+/images/
+/assets/
+/e-book/
+/sub-pr-report/
+/tsconfig.tsbuildinfo
