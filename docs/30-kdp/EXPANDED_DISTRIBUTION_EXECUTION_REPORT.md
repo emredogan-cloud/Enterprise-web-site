@@ -716,3 +716,227 @@ Greek interior is **8.5 × 11**. Delete one, and set the other's trim before any
 
 *Written 2026-09-07. Sources: the filesystem, valicepress.com, `neondb`, api.paddle.com,
 the R2 bucket, the KDP Bookshelf and the KDP Print Cover Calculator.*
+
+---
+
+# Session 4 — 2026-09-08: the site came back, and four books were setting HTML as text
+
+**The images returned to valicepress.com. Both Kindle-matched ebooks came down to
+$9.99. Nine KDP editions were driven to the line where publishing becomes a legal
+attestation. And chasing one Previewer rejection found a defect that would have
+printed `<br>` between the lines of every verse quotation in four books.**
+
+Measured, not assumed: images by fetching bytes and by counting `naturalWidth === 0`
+in the production browser; prices from the KDP Bookshelf, the Paddle live API and
+`neondb`; margins by rendering every page at 300 dpi and reading the ink bounding
+box; page counts out of the PDFs; KDP state from the Previewer and the Bookshelf.
+
+## 20. The outage: an ignore pattern took every image off the site
+
+The Founder reported that no book or category image was loading. It was true, and it
+was mine.
+
+Session 1 added a `.vercelignore` to keep a 109 MB PDF out of the deploy. It used
+`images/` and `assets/`. **A path in a deploy-ignore file is a prefix, not a
+directory, unless you anchor it** — so `images/` also matched `public/images/`, and
+159 shipped files stopped existing. Every cover, every category tile, the author
+portraits, the blog art.
+
+The check that would have caught this is fetching one image from production. My
+earlier audit had grepped the page HTML for the path instead, and the HTML was
+correct — it referenced files that were no longer deployed. A one-sided check again.
+
+Fixed by root-anchoring every pattern. Verified after the deploy, in this order:
+
+| Check | Result |
+|---|---|
+| 164 image paths fetched from production | 159 × `200`, 0 real failures |
+| The five non-200s | JSDoc examples and *negative* test assertions — the house rules that forbid a Founder photo and genre art. Correct that they 404. |
+| `next/image` optimizer, all 16 widths | every width the site emits returns `200`; only `w=16` 400s, and no page emits it |
+| Broken images in the production browser | `0` on `/`, `/books`, `/categories`, `/categories/myth-and-folklore`, `/books/codex-bestiarium`, `/authors` |
+| Covers visually correct | confirmed by screenshot after forcing lazy images to load |
+
+The window manager would not honour a resize, so mobile could not be tested by
+viewport. It was tested where it actually matters instead — every `srcset` candidate
+width a browser could pick, from 32 px to 3840 px, fetched and confirmed `200`.
+
+## 21. §10B — both direct ebooks matched to Amazon
+
+Read at source rather than trusted: the KDP Bookshelf shows Kindle `B0HDLS4W8Q` Live
+at **$9.99** and `B0HG44FH1B` Live at **$9.99**. The direct editions were quoting
+$12.99 and $11.99 — the storefront was charging more than Amazon for the same file.
+
+| | Bestiarium | World Games |
+|---|---|---|
+| Kindle list, read on KDP | $9.99 | $9.99 |
+| Direct price before | $12.99 | $11.99 |
+| Direct price now | **$9.99** | **$9.99** |
+| Paddle price id | `pri_01m1btjb037st1aew8mt990htv` → `pri_01m1zbewy6v80k9r58qbsxz1r4` | `pri_01m1btjcqgabh6v8rsxg85frxr` → `pri_01m1zbf17bapxg1hd2gtp1554a` |
+
+A Paddle price is immutable in amount, so each reprice creates a new price and
+archives the old one. Each was committed with `--slug` so one book moved at a time,
+and the new ids were written into `valice-catalog.mjs` before the load — a stale id
+would have quoted an archived price at checkout. `paddle-crosscheck` reads both as
+active at $9.99, `neondb` holds $9.99 against the new ids, and both product pages
+render $9.99 with `"price":"9.99"` in the JSON-LD.
+
+## 22. The defect the Previewer found
+
+Seneca's first upload was rejected: *text outside the margins*, pages 126 and 136.
+Chasing it found two faults, and the second was much worse than the first.
+
+**Markup printed as text.** `rl()` protected only bare `<i>` and `<b>`. So
+`<i lang="la">e lorica</i>` fell through the escaper and set as visible angle
+brackets; `<br>` was not handled at all, so every verse quotation ran together as
+prose with `<br>` printed between the lines; and text already carrying `&amp;` was
+escaped twice and set as `&amp;`.
+
+| Book | Occurrences | Pages |
+|---|---|---|
+| Seneca: Selected Dialogues | 53 | 25, 40, 46, 74, 108, 122, 123, 125, 126, 137 |
+| Myths and Legends of China | 12 | 15, 89 |
+| Mythical Monsters | 4 | 27, 30 |
+| Indian Myth and Legend | 2 | 20, 24 |
+
+**Margins.** KDP measures ink, not the advance box. Every page reported exactly
+0.5000 in of advance box; rendered at 300 dpi, justified italic lines put glyph ink
+at **0.4867 in** — 0.0133 in inside the gutter a 156-page book is required to hold.
+Six pages of Seneca. The Contents table was sized from its own copy of the frame
+arithmetic and hung 0.02 in outside the frame on page 4 of three books.
+
+Fixed at the source, not in the output: tags are now stashed whole and restored after
+the typographic substitutions, so an attribute can never be reached by the
+quote-smartener; and one `INK_ALLOWANCE` constant holds every text box 0.02 in inside
+the legal margin, shared by the frame and by `FW`.
+
+Rebuilding moved two page counts, so the companion plan followed and the wraps were
+re-checked against the new thickness:
+
+| Book | Pages | Wrap width needed | Wrap width built | Verdict |
+|---|---|---|---|---|
+| Seneca | 154 → **156** | 12.6013 in | 12.5968 in | −0.0045 in, inside tolerance |
+| Myths and Legends of China | 108 → **112** | 12.5022 in | 12.4932 in | −0.0090 in, inside tolerance |
+| Indian Myth and Legend | 94 | 12.4617 in | 12.4617 in | exact |
+| Mythical Monsters | 74 | 12.4166 in | 12.4166 in | exact |
+| the four Phase-2 game books | unchanged | — | — | exact |
+
+The rebuild also silently reverted an earlier PDF-metadata repair, because the credit
+lived only in the patched file and not in the builder. All four builders now carry the
+full credit, so the next rebuild keeps it.
+
+**After the fix, on the rebuilt files:** 0 leaked markup, 0 pages with ink inside the
+required gutter, every page-count claim in the listing copy matching the PDF, and the
+KDP Previewer clean on Seneca at 156 pages.
+
+Two listing-copy defects were corrected on the way: Seneca's blurb claimed 156 pages
+for a 154-page book (it is now genuinely 156, and verified), and four descriptions
+were single 1,400–1,970-character blocks, now broken at their own natural movements.
+
+## 23. What was driven at KDP
+
+| Book | Format | Title id | ISBN | Trim | Pages | Price | Previewer | State |
+|---|---|---|---|---|---|---|---|---|
+| Seneca: Selected Dialogues | paperback | `GM84M0E1V62` | 9798172687273 | 6×9 | 156 | $15.99 | clean | **Draft — pending owner confirmation** |
+| Myths and Legends of China | paperback | `GC7MT3V7W30` | 9798172694240 | 6×9 | 112 | $13.99 | clean | **Draft — pending owner confirmation** |
+| Indian Myth and Legend | paperback | `YP7JKSCNWVT` | 9798172694967 | 6×9 | 94 | $12.99 | clean | **Draft — pending owner confirmation** |
+| Mythical Monsters | paperback | `R2C9VPQH270` | 9798172695872 | 6×9 | 74 | $11.99 | clean | **Draft — pending owner confirmation** |
+| Games Ancient and Oriental | paperback | `281J6G0V6G7` | 9798172696701 | 6×9 | 78 | $12.99 | clean | **Draft — pending owner confirmation** |
+| Korean Games | paperback | `EHJRTWA1PDM` | 9798172697418 | 6×9 | 144 | $16.99 | clean | **Draft — pending owner confirmation** |
+| Greek Alphabet Handwriting Workbook | paperback | `0QM43ZAMWJE` | 9798172680830 | 8.5×11 | 100 | $12.99 | clean after a fix | **Draft — pending owner confirmation** |
+| Codex Mythologica: The Puzzle Book | hardcover | `8P928QGPN9R` | 9798172680939 | 8.25×11 | 156 | $33.99 | clean | **Draft — pending owner confirmation** |
+| The Myth Hunter's Field Book (F-051) | hardcover | `T0TA64W2VEP` | 9798172681028 | 8.25×11 | 156 | $33.99 | not run | **Blocked — interior upload** |
+| Chess and Playing Cards | paperback | — | — | 6×9 | 120 | $14.99 | — | **Blocked — KDP weekly limit** |
+| The Singing Games of England, Scotland, and Ireland | paperback | — | — | 6×9 | 244 | $16.99 | — | **Blocked — KDP weekly limit** |
+
+Every one carries: publishing rights *public domain work*; adult content *no*; three
+category placements (two for Chess, see below); worldwide territories; Amazon.com as
+primary marketplace; and the AI declaration recorded from the Founder's own
+provenance — texts *some sections, with extensive editing* (Claude), images *one or a
+few AI-generated images, with extensive editing* (`gpt-image-1`), translations *None*.
+
+**Why nothing was published.** The Publish button carries the sentence *"By clicking
+publish I confirm that I agree to and am in compliance with the KDP Terms and
+Conditions."* That is a legal attestation, and the standing instruction is to finish
+everything before it, record `PENDING OWNER CONFIRMATION`, and continue. Nine
+editions sit one click from live. Gate 12 reads `not_started` on every book in the
+tree; no gate status was written by this session.
+
+### The Greek workbook: a fix, and a fact worth reading twice
+
+Its first upload was rejected. The folio baseline sat at `M_BOT - 22` = 17.6 pt,
+putting its ink **0.2467 in** from the trim edge against KDP's 0.25 in floor. KDP
+listed 20 pages; measuring every page at 300 dpi found it on **90 of 100**. Moved to
+`M_BOT - 18`. The folio is drawn absolutely, so nothing reflowed: still 100 pages, and
+the wrap (17.4752 × 11.25 in) still fits exactly. KDP's own summary then quoted a
+$2.84 printing cost — the same figure the catalogue's price basis was computed from.
+
+Also: the note in memory calling this book an *empty scaffold* is out of date. It is a
+real 100-page workbook with 32 lessons.
+
+## 24. Blockers, stated plainly
+
+**KDP weekly title-creation limit.** After six new paperbacks, KDP refused the seventh:
+*"Title creation limit exceeded — You have reached the weekly title creation limit for
+this format."* This is an account rate limit, not a data problem — Chess and Playing
+Cards and The Singing Games have verified files, metadata, categories and listing copy
+staged and waiting. The two errors KDP showed alongside it (*language isn't supported*,
+*release date too soon*) are artefacts of the refused creation, not real field faults.
+
+**The Myth Hunter's hardcover interior.** The built file is correct: 156 pp, 8.25 × 11,
+F-051 satisfied. It is 33.2 MB. KDP accepts 650 MB; this session's file-upload bridge
+caps a transfer at 10 MB. The payload is 32.9 MB of lossless PNG art, and a lossless
+re-compression test returned 3 %. It could only be brought under the cap by lossy
+recompression of a print interior already sitting at 150 dpi, so **it was left alone
+deliberately.** Its cover, AI declaration, trim and ISBN are all in place; one file
+upload by hand finishes it, and pricing unlocks with it (KDP needs the page count to
+compute printing cost).
+
+**A duplicate draft.** `23FPQXH1MDR` is an empty second *Mythical Monsters* — no ISBN,
+no manuscript, no cover — created when a Save that looked like it had failed had in
+fact created a title. The same failure mode as the earlier Greek duplicate. The
+complete one is `R2C9VPQH270`. It was **not** deleted here: deletion is destructive and
+the weekly creation limit is exhausted, so a mistaken deletion could not be undone this
+week.
+
+**Chess and Playing Cards has two category placements, not three.** Its second and
+third rows rendered their placement lists outside the live DOM and would not take.
+KDP allows *up to* three; two are correct and saved.
+
+## 25. Findings outside the KDP work
+
+**Clerk is running a development instance in production. (HIGH)** `valicepress.com/account/*`
+correctly redirects a signed-out browser to sign-in — but to
+`organic-dragon-70.accounts.dev`, headed *"Sign in to digital-bookstore"*, with an
+orange **Development mode** badge under the form. A buyer clicking Library, Orders or a
+download link sees the old scaffold name and a development banner. Clerk development
+instances also carry hard user caps and are not supported for production traffic. Fixing
+it means creating the production instance, renaming the application, and putting new keys
+into Vercel — a credential change, which is the Founder's to make.
+
+**The Greek workbook's own gates are open.** It is staged to publish-ready, but its
+`gates.json` still shows Gate 2 (Rights, R6) and Gate 5 (Factual verification, R4)
+`in_progress`. **Do not publish this title until those close.** The other six staged
+titles show only Gate 1 (Market fit, a standing state) and Gate 12.
+
+**The barcode sits on the imprint line on some covers.** KDP prints its own barcode in a
+2.0 × 1.2 in box at the back cover's lower right. On Seneca the box covers the end of
+*VALICE CLASSICS* and sits on *VALICE PRESS*; China, Indian and the four Phase-2 game
+books are clear. It is cosmetic — the Previewer raised no error and Approve was enabled —
+but it is a real defect on a printed back cover, and the fix is a cover-art change:
+move the imprint line out of the box.
+
+## 26. Systems, re-verified at the end
+
+| System | Check | Result |
+|---|---|---|
+| Catalogue | `validate-catalog` | **127 pass · 3 warn · 0 error** |
+| Paddle | `paddle-crosscheck` against the live account | every direct-sold book has a live, active, price-matched price |
+| `neondb` | direct query | 27 published · 24 buyable direct ebooks · 23 formats with an ASIN |
+| Paddle-less published books | direct query | 3 — Myth Hunter's (no digital edition by design), Codex Mythologica (KDP Select to 2026-11-03), Hangul (Gate 2 unsigned). All three deliberate and documented. |
+| Site | all 27 `/books/*` pages | 27 × `200`, JSON-LD on every one, prices correct; the only three without an Offer are exactly the three not sold here |
+| Inngest | `PUT /api/inngest` | `{"message":"Successfully registered","modified":true}` |
+| Paddle webhook | unsigned `POST` | `401` — signature verification is live |
+| Internal links | 7 hub pages | every link `200` except `/account/{library,orders,settings}`, which return 404 to a non-browser and correctly redirect a browser to sign-in |
+| Images | 164 paths + 16 optimizer widths + browser render | 0 broken |
+| CI | lint · `tsc` · tests · build | clean · clean · **409/409** · compiled |
+

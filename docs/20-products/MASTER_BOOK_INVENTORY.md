@@ -1,8 +1,22 @@
-# Master book inventory — 2026-09-07
+# Master book inventory — 2026-09-08
 
 **27 catalogue books · 73 (book, format) rows · 25 local projects · 23 live KDP listings ·
 16 books serving 200 on valicepress.com.**
 
+> **SUPERSEDED AGAIN, 2026-09-08.** Nine KDP editions were driven to the line where
+> publishing becomes a legal attestation and now sit as **Draft — pending owner
+> confirmation**: seven paperbacks (Seneca 156 pp, Myths and Legends of China 112 pp,
+> Indian Myth and Legend 94 pp, Mythical Monsters 74 pp, Games Ancient and Oriental
+> 78 pp, Korean Games 144 pp, the Greek Alphabet Workbook 100 pp) and the Codex
+> Mythologica Puzzle Book hardcover; the Myth Hunter's hardcover (F-051, 8.25 × 11)
+> has its cover, ISBN and AI declaration in place and is blocked only on one 33 MB
+> interior upload. Two more paperbacks are blocked on KDP's weekly title-creation
+> limit. Both Kindle-matched direct ebooks came down to **$9.99**. Every image on
+> valicepress.com was 404 for part of the day and is now verified back. Four books
+> were found to be printing raw HTML in their apparatus and were rebuilt. Read
+> [EXPANDED_DISTRIBUTION_EXECUTION_REPORT.md](../30-kdp/EXPANDED_DISTRIBUTION_EXECUTION_REPORT.md)
+> §20–26 first; where it disagrees with anything below, it is later and it was measured.
+>
 > **SUPERSEDED AGAIN, 2026-09-07 night.** Eleven of the books this file calls DRAFT are on
 > sale: 27 published, 24 buyable direct ebooks, 24 Paddle products, and the Myth Hunter's
 > hardcover — §10's single BLOCKED row — is built. `validate-catalog` reads 127 pass / 0
