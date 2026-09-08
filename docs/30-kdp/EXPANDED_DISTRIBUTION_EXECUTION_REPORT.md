@@ -591,5 +591,128 @@ a price is yours; the exact edit is two `priceCents` values plus a Paddle price 
 
 ---
 
+# Session 3 — 2026-09-08 · seven more defects, and the exact shape of the KDP wall
+
+**Epictetus is IN REVIEW — you published it. Seven further data defects were found and fixed
+before anything was uploaded. The queue did not finish, and the reason is specific,
+reproducible and worth writing down rather than retrying blindly.**
+
+## S3.1 Epictetus reached Amazon
+
+| | |
+|---|---|
+| KDP id | `EKPMDVEAJMZ` |
+| Status | **In review** — submitted 2026-09-08 |
+| Price | $16.99 |
+| ISBN | 9798172626982 |
+| ASIN | none yet — assigned when it goes live, and it will not be invented here |
+
+The loop the brief asks for ran in full on this book: upload → Previewer → **real defect** →
+root-cause fix → rebuild → re-upload → Previewer clean → approve → price → your Publish.
+
+## S3.2 Seven defects found by re-validating, before any upload
+
+§1 of the brief says not to assume the twelve are unchanged. They were not. Every one of
+these would have gone to Amazon uncorrected.
+
+| # | Defect | Where | Fix |
+|---|---|---|---|
+| 1–4 | PDF `Title` was the **filename** — `paperback-wrap-v1` — and no author | 4 Phase-2 wraps | re-emitted through `rewrap_clean.py` with the real title, subtitle and author; two wrap widths that were 0.0010 in out are now exact |
+| 5–7 | Interior credited **the annotator alone** for Stewart Culin's and Alice Gomme's text | Korean Games, Chess and Playing Cards, The Singing Games | credit corrected from each project's own rights ledger, then written into the PDFs |
+| 8–11 | The same defect again, one phase earlier: E. T. C. Werner, Donald A. Mackenzie, Charles Gould and Seneca's translator all reduced to *Emre Doğan* | 4 Phase-1 interiors | same fix, names from ledger row S-1 |
+| 12 | `rights.publicDomain: false` with a null differentiation — on a book whose **own RIGHTS.md** says Alice Bertha Gomme died in 1938 and whose listing title already carries *(Annotated)* | The Singing Games | set to `true` / `annotated`. It would have put the wrong **Publishing Rights** answer into KDP |
+
+Every interior edit was metadata-only and **proved** so: each page's content stream was
+hashed before and after and is byte-identical. All 26 files re-preflight clean.
+
+> Four books in two different phases credited the wrong person, and the covers already had it
+> right. Cover and interior disagreed for weeks and nothing compared them.
+
+## S3.3 What actually stops the queue
+
+Not files, not gates, not the AI declaration — all of those are resolved. The obstacle is the
+KDP form itself under browser automation, and it is specific:
+
+**The custom React dropdowns will not open.** They have no underlying `<select>`; the listbox
+never renders for a synthetic click or a keyboard event. That blocks exactly one field —
+**Trim Size** — and only for books that are not KDP's 6 × 9 default.
+
+| Trim | Books | Drivable? |
+|---|---|---|
+| 6 × 9 (default) | Epictetus, Seneca, China, Indian, Mythical Monsters, Games Ancient, Korean Games, Chess & Cards, Singing Games | **yes** — Epictetus proves it |
+| 8.5 × 11 | Greek paperback | no — needs the trim dropdown |
+| 8.25 × 11 | Greek hardcover, Puzzle Book hardcover, Myth Hunter's hardcover | no — same |
+
+Uploading an 8.5 × 11 interior against a 6 × 9 setting is the mismatch KDP rejects, so those
+four were not uploaded rather than uploaded wrongly.
+
+The other UI faults are intermittent rather than absolute: radio buttons and Save buttons
+sometimes take a `ref` click and sometimes a coordinate click, with no discernible rule. That
+unreliability, not any missing artifact, is what consumed the session.
+
+## S3.4 ⚠ Two Greek drafts exist — one must be deleted
+
+Because a Save that appeared to fail had in fact succeeded, **two identical paperback drafts
+were created for the same book**:
+
+| KDP id | Details | Content | Keep? |
+|---|---|---|---|
+| `T7F0P031S9D` | complete — title, 7 keywords, 1,095-char description, own-copyright, 3 categories | empty | either |
+| `0QM43ZAMWJE` | complete, identical | empty | either |
+
+**Neither may be published as it stands.** Both carry KDP's default **6 × 9** trim while the
+Greek interior is **8.5 × 11**. Delete one, and set the other's trim before any upload.
+
+## S3.5 Second independent audit — run fresh
+
+| # | System | Checked | Result |
+|---|---|---|---|
+| 1 | Local files | 13 interiors + 13 covers | **26/26 present**, geometry and page counts as recorded |
+| 2 | Preflight | fonts, metadata, trim, 40 MB cover cap | **0 failures / 26** |
+| 3 | Print geometry | wrap width vs measured pages, all 13 | **13/13 OK** |
+| 4 | Interior credits | 7 public-domain interiors | **7/7 now name the original author** |
+| 5 | R2 | 42 objects: HEAD, size, sha256 of **retrieved** bytes vs local, signed URL | **0 mismatches · 0 URL failures** |
+| 6 | Paddle | live account vs catalogue | 24 products, **0 to create**, webhook active 4/4 |
+| 7 | Production DB | the rows checkout reads | **24 buyable · 0 would fail** |
+| 8 | Website | `/`, `/books`, `/ebooks`, `/categories`, `/cart` | all 200 |
+| 9 | Book pages | all 27, status + cover | **27/27 200 with cover**, 27 in sitemap |
+| 10 | KDP bookshelf | read fresh | 26 rows: 20 Live, 3 Live·updates in review, **1 In review**, 2 Draft |
+| 11 | Gates | 25 projects | 190 passed · 40 in_progress · 70 not_started — **unchanged; nothing written by an agent** |
+| 12 | Git | status, worktrees, secret scan | clean, 1 worktree, 0 credential matches |
+| 13 | CI | lint, tsc, 409 tests | **all green** |
+
+## S3.6 Discrepancy matrix
+
+| System | Expected | Actual | Result |
+|---|---|---|---|
+| 4 Phase-2 wraps | real title + author | filename as title | **FIXED** |
+| 7 PD interiors | original author credited | annotator only | **FIXED**, pages byte-identical |
+| Singing Games rights | public domain / annotated | false / null | **FIXED** |
+| R2 vs local | identical | identical | **PASS** (the session-2 mismatch stays closed) |
+| Paddle | 24 products, no dupes | 24, none to create | **PASS** |
+| Website | 27 pages + covers | 27/27 | **PASS** |
+| Greek at KDP | one draft, 8.5 × 11 | **two drafts, both 6 × 9** | **OPEN — delete one, set the trim** |
+| Greek/Puzzle/Myth-Hunter hardcovers | uploaded | not uploaded | **BLOCKED — trim dropdown will not open** |
+| 8 × 6 × 9 paperbacks | uploaded | not uploaded | **OPEN — no blocker, session ran out** |
+| Kindle Bestiarium B0HDLS4W8Q | $12.99 (catalogue) | **$9.99** | **OPEN — yours** |
+| Kindle World Games B0HG44FH1B | $11.99 (catalogue) | **$9.99** | **OPEN — yours** |
+| Gate 12, 11 published books | signed or waived | `not_started` | **OPEN — yours** |
+| F-047 World Games | untouched | untouched, ASIN B0HHNCVQVX intact | **PRESERVED** |
+| F-052 Codex Bestiarium | untouched | untouched, 3 ASINs intact | **PRESERVED** |
+| F-048 Codex Enigmatica | categories corrected | staged on ebook + paperback; hardcover locked in review | **PARTIAL — awaits your Publish** |
+| F-051 Myth Hunter's hardcover | built + uploaded | **built and verified**; not uploaded | **PARTIAL** |
+
+## S3.7 What the next pass should do first
+
+1. **Delete one Greek draft** (`T7F0P031S9D` or `0QM43ZAMWJE`) and set the survivor's trim to
+   8.5 × 11 by hand. Two drafts of one book is how a book gets published twice.
+2. **The eight 6 × 9 paperbacks** need no dropdown and no decisions — Seneca, China, Indian,
+   Mythical Monsters, Games Ancient, Korean Games, Chess & Cards, Singing Games. Their files,
+   credits, rights answers, AI declarations and prices are all settled and recorded.
+3. **Set the trim by hand once per hardcover**, then the rest of that flow automates.
+4. The two Kindle prices, and Gate 12.
+
+---
+
 *Written 2026-09-07. Sources: the filesystem, valicepress.com, `neondb`, api.paddle.com,
 the R2 bucket, the KDP Bookshelf and the KDP Print Cover Calculator.*
