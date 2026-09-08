@@ -82,6 +82,30 @@
       "entity": "how-to-choose-your-next-book"
     },
     {
+      "path": "/images/blog/mancala-which-game-to-start-with.webp",
+      "width": 1800,
+      "height": 1200,
+      "bytes": 22886,
+      "slot": "blog-image",
+      "entity": "mancala-which-game-to-start-with"
+    },
+    {
+      "path": "/images/blog/royal-game-of-ur-rules.webp",
+      "width": 1800,
+      "height": 1200,
+      "bytes": 22910,
+      "slot": "blog-image",
+      "entity": "royal-game-of-ur-rules"
+    },
+    {
+      "path": "/images/blog/senet-rules-reconstruction.webp",
+      "width": 1800,
+      "height": 1200,
+      "bytes": 25536,
+      "slot": "blog-image",
+      "entity": "senet-rules-reconstruction"
+    },
+    {
       "path": "/images/blog/why-we-built-valice-press.webp",
       "width": 1844,
       "height": 853,
