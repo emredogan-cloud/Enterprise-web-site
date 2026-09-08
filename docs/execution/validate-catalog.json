@@ -1,8 +1,8 @@
 {
   "tool": "validate-catalog",
   "target": "https://valicepress.com",
-  "startedAt": "2026-09-07T19:52:01.889Z",
-  "finishedAt": "2026-09-07T19:53:09.582Z",
+  "startedAt": "2026-09-08T01:53:00.146Z",
+  "finishedAt": "2026-09-08T01:54:42.247Z",
   "ok": true,
   "counts": {
     "pass": 127,
@@ -512,7 +512,7 @@
     {
       "level": "pass",
       "check": "paddle",
-      "message": "pri_01m1btjb037st1aew8mt990htv active, 1299 USD",
+      "message": "pri_01m1zbewy6v80k9r58qbsxz1r4 active, 999 USD",
       "where": null
     },
     {
@@ -524,7 +524,7 @@
     {
       "level": "pass",
       "check": "paddle",
-      "message": "pri_01m1btjcqgabh6v8rsxg85frxr active, 1199 USD",
+      "message": "pri_01m1zbf17bapxg1hd2gtp1554a active, 999 USD",
       "where": null
     },
     {

@@ -363,7 +363,7 @@ export const BOOKS = [
     kdpSelect: false,
     directSale: true,
     directSaleBlockedBy: null,
-    paddlePriceId: "pri_01m1btjb037st1aew8mt990htv",
+    paddlePriceId: "pri_01m1zbewy6v80k9r58qbsxz1r4",
     onelinePromise:
       "A reference bestiary of 112 creatures, organised by what a creature does rather than where it is from.",
     description:
@@ -375,14 +375,14 @@ export const BOOKS = [
         format: "ebook",
         availability: "available",
         fulfillment: "direct",
-        priceCents: usd(12.99),
+        priceCents: usd(9.99),
         pageCount: 435,
         amazonAsin: "B0HDLS4W8Q",
         amazonUrl: amazon("B0HDLS4W8Q"),
         kdp: "live",
         masterFileKey: "books/codex-bestiarium/master/v1/master.pdf",
         priceBasis:
-          "Matched to the live Kindle list price ($12.99, KDP 2026-08-31). Not in KDP Select, so direct sale is permitted.",
+          "Matched to the live Kindle list price ($9.99, KDP 2026-09-08 — Kindle B0HDLS4W8Q reads Live at $9.99 USD on the bookshelf). The direct edition matches Amazon rather than undercutting it. Not in KDP Select, so direct sale is permitted.",
       },
       {
         format: "paperback",
@@ -540,7 +540,7 @@ export const BOOKS = [
     kdpSelect: false,
     directSale: true,
     directSaleBlockedBy: null,
-    paddlePriceId: "pri_01m1btjcqgabh6v8rsxg85frxr",
+    paddlePriceId: "pri_01m1zbf17bapxg1hd2gtp1554a",
     onelinePromise:
       "Fifty-six traditional games with complete rules and boards — arranged by how they play, not where they came from.",
     description:
@@ -552,14 +552,14 @@ export const BOOKS = [
         format: "ebook",
         availability: "available",
         fulfillment: "direct",
-        priceCents: usd(11.99),
+        priceCents: usd(9.99),
         pageCount: 160,
         amazonAsin: "B0HG44FH1B",
         amazonUrl: amazon("B0HG44FH1B"),
         kdp: "live",
         masterFileKey: "books/the-great-book-of-world-games/master/v1/master.pdf",
         priceBasis:
-          "Matched to the live Kindle list price ($11.99, KDP 2026-08-31). Not in KDP Select.",
+          "Matched to the live Kindle list price ($9.99, KDP 2026-09-08 — Kindle B0HG44FH1B reads Live at $9.99 USD on the bookshelf). The direct edition matches Amazon rather than undercutting it. Not in KDP Select.",
       },
       {
         format: "paperback",

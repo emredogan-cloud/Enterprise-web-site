@@ -34,7 +34,7 @@ export const DIRECT_SALE_EBOOKS = [
     name: "Codex Bestiarium: A World Bestiary",
     description:
       "The complete 435-page bestiary as a DRM-free, watermarked PDF. 112 creatures from 40 folk traditions, each with sources, a Thompson motif code and a line-engraved plate.",
-    priceCents: 1299, // Kindle list price, verified on KDP 2026-08-31
+    priceCents: 999, // Kindle list price, re-verified on KDP 2026-09-08 (B0HDLS4W8Q, Live)
   },
   {
     slug: "codex-enigmatica",
@@ -48,7 +48,7 @@ export const DIRECT_SALE_EBOOKS = [
     name: "The Great Book of World Games",
     description:
       "The complete 160-page games book as a DRM-free, watermarked PDF. 56 traditional games from 39 cultures with sourced provenance, playable rules and board diagrams.",
-    priceCents: 1199, // Kindle list price, verified on KDP 2026-08-31
+    priceCents: 999, // Kindle list price, re-verified on KDP 2026-09-08 (B0HG44FH1B, Live)
   },
   {
     slug: "meditations",
