@@ -7,7 +7,7 @@ Working files of the autonomous customer-acquisition mission started 2026-09-08.
 | `VALICE_AUTONOMOUS_CUSTOMER_ACQUISITION_90D_REPORT_TR.html` | The report. Turkish. Executed / tested / observed / recommended, separated. |
 | `FOUNDER_CHECKLIST_TR.md` | What only the account holder can do, in order, with the reason the agent could not. |
 | `AMAZON_ADS_CAMPAIGN_SPEC_2026-09-08.md` | Exact console values for the first $200 (portfolio, C1 auto, C2 exact, negatives, stop rules). |
-| `X_POST_PACK_WORLD_GAMES.md` | One pinned thread + ten posts, drafted, not posted. Images in `assets/`. |
-| `REDDIT_VALUE_FIRST_PLAN.md` | Communities, rules, the order to earn standing, the three posts. Not executed. |
-| `OUTREACH_LOG.md` | Eight partner targets; three Gmail drafts created; none sent. |
+| `X_POST_PACK_WORLD_GAMES.md` | One pinned thread + ten posts, drafted. Two value-first *replies* were posted on 8 Sep (see `EXECUTION_LOG.md`); the pack itself is not posted. Images in `assets/`. |
+| `REDDIT_VALUE_FIRST_PLAN.md` | Communities, rules, the order to earn standing, the three posts. One answer-first comment posted on 8 Sep (no link); the three posts wait for standing. |
+| `OUTREACH_LOG.md` | Eight partner targets; three emails **sent** 8 Sep 15:33 UTC (message ids inside); no replies yet. |
 | `assets/` | Board diagrams (the book's own vector output) rendered to PNG for social use. |
