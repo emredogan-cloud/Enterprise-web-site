@@ -1,0 +1,32 @@
+# Reader communities — Discord, Telegram, forums, subreddits (researched 2026-09-08)
+
+Scope: where the World Games / ancient-games / abstract-games reader actually is. Ranked by fit,
+not size. **No community was joined for promotion; the only participation today was two X replies
+and one Reddit comment, all value-first, all logged in `EXECUTION_LOG.md`.** Platform directory
+pages (disboard.org, discord.me, boardgamegeek.com) refuse automated fetches (403), so member
+counts below are from search snippets or the live page where noted.
+
+| # | Community | Platform | URL | Audience | Activity (observed) | Relevance | Promotion rules | Partnership possible? | Recommended approach |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | r/abstractgames | Reddit | reddit.com/r/abstractgames | Abstract/traditional strategy players, designers | 1.2K weekly visitors · 134 weekly contributions (live sidebar) | **Very high** — tafl, mancala, MSO threads this month | Standard Reddit self-promo norms; "[I made this]" tag culture | Yes (AMA-style post after standing) | Comment first (done once today); a "56 games by mechanism" post in week 3 |
+| 2 | BoardGameGeek — Abstract Games forum / subdomain | Forum | boardgamegeek.com/forum/743500/abstract-games/general | Same as above, older and larger | Blocked to bots; known active | **Very high** | BGG forbids commercial posting outside designated threads; a publisher may post in "Publishers" forums and the game's own entry | Yes — create a BGG entry for the book? (BGG lists books under "Board game accessories"? no — books are not games; skip) | Founder-owned account, value posts in Abstract Games forum; add the book to relevant geeklists only when invited |
+| 3 | Hnefatafl community — aagenielsen.dk forum + World Tafl Federation | Forum | aagenielsen.dk/hnefataflforum | Serious tafl players, rule reconstructors | Active (WTF championship threads) | High for the Hnefatafl/Tablut entries | Forum etiquette; no ads | Yes — newsletter item (cyningstan) | Ask a rules question about the 1732 Linnaeus record; offer the free board |
+| 4 | taflhus.com (new, Sep 2026) and worldtafl.com | Web platforms | taflhus.com · worldtafl.com | New tafl players | Brand new; founder active on Reddit | High | — | Yes — "Learn" section could link a printable board | Reply thread already open on Reddit (comment posted today) |
+| 5 | r/RoyalGameofUr | Reddit | reddit.com/r/RoyalGameofUr | Ur enthusiasts | Tiny (5 weekly visitors; bot "Daily Ur" posts) | Medium — right topic, no people | — | No | Skip |
+| 6 | r/AncientBoardGames | Reddit | reddit.com/r/AncientBoardGames | — | Dead (1 weekly visitor) | — | — | No | Skip |
+| 7 | r/boardgames | Reddit | reddit.com/r/boardgames | General hobby (566K weekly visitors) | Very high | Medium (mostly modern games) | Strict 10:1 / self-promo rules; read wiki before posting | No | Comments only where an "ancient games" thread appears |
+| 8 | Oware Society ("Oware News" quarterly) | Org + newsletter | oware.org (TLS cert expired at research time) | Oware players, tournament circuit | Active tournaments (MSO London Aug 2026 had Oware) | High for the Oware/Bao/Omweso entries | — | Yes — review copy for the newsletter | Email once the site is reachable |
+| 9 | Mind Sports Olympiad | Event | mindsportsolympiad.com | Abstract/traditional game competitors | Annual (August, London) | Medium | — | Maybe (2027 programme) | Later |
+| 10 | Ludii / Digital Ludeme Project (Maastricht) | Research community | ludii.games · ludeme.eu · ludii.games@gmail.com | Academics reconstructing historical games (Dr Walter Crist et al.) | Active publications | High for credibility | Academic | Yes — send the book; ask for corrections | Email after the Gaming with Science reply (Crist was their guest) |
+| 11 | The Homeschooler's Chat | Discord | hsrchat.com · discord.com/invite/the-homeschoolers-chat-398689444296785941 | Homeschool students/parents (2,461 members) | Active (game nights, 170+ free resources) | Medium — the free boards pack fits "free resources" | Ask mods before sharing | Yes — resource share via mods | Message a mod with the boards pack, no book mention |
+| 12 | Board Game Revolution Community | Discord | discord.com/invite/F6hjjjE | General board gamers (3,500+) | Active | Low–Medium | Unknown; typical no-ads | No | Skip unless a "history" channel exists |
+| 13 | DISBOARD tags board-games / history / ancient-history | Discord directory | disboard.org/servers/tag/… | Mixed | Directory blocks bots | Low | — | — | Founder browses; none identified as ancient-games-specific |
+| 14 | Telegram board-game groups (tdirectory.me category, "Board game club", BGA Telegram group) | Telegram | tdirectory.me/category/games-board-games.dhtml · t.me/boardgameclubDD | Modern hobby, trading, game nights | Active but generic | Low | Group-specific; mostly no ads | No | Skip — no history/ancient focus found |
+| 15 | Around the World in Homeschool Days (Jamie) | Blog + newsletter | aroundtheworldinhomeschooldays.com | Homeschool parents; already posts Nine Men's Morris / Hnefatafl with affiliate links | Active | High | Affiliate-friendly | Yes (affiliate + printable boards) | Contact form (no email found) |
+| 16 | What Do We Do All Day (Erica) | Blog | whatdowedoallday.com/traditional-games | Parents; traditional games with printable boards | Active | High | Unknown | Yes | Site 504 during research — retry |
+| 17 | Multicultural Kid Blogs | Blog network | multiculturalkidblogs.com | Family/culture bloggers | Active | Medium–High | Paid promotion service exists; editorial requested | **Email sent today** | Wait for reply |
+| 18 | Gaming with Science podcast | Podcast | gamingwithscience.net | Science-of-games listeners; did an Ur episode with Walter Crist | Active | Very high | — | **Email sent today** | Wait for reply |
+| 19 | Ludology podcast | Podcast | ludology.libsyn.com | Game design/history | Active (ep. 363, 29 Aug 2026) | High | — | **Email sent today** | Wait for reply |
+| 20 | Damian Walker — cyningstan.com / tafl.cyningstan.com newsletter | Newsletter | tafl.cyningstan.com/maillist | Tafl community | Regular newsletter | Very high for Hnefatafl | — | Yes | Site refused connection during research — retry |
+
+**Not found / not recommended:** a dedicated "ancient board games" Discord or Telegram community with real activity does not surface in directories or search; the living communities are Reddit (r/abstractgames), BGG, the tafl forums, and the oware circuit. Time is better spent there than in generic Discord servers.

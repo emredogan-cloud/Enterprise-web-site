@@ -1,13 +1,17 @@
 # Partnership outreach log — 2026-09-08
 
-**Nothing has been sent.** Three Gmail drafts were created in the founder's account for
-review; sending is the founder's click. Report line 42 applies: DRAFTED ≠ CONTACTED.
+**Update 2026-09-08 15:33 UTC — the three emails were SENT** from the founder's Gmail under the
+founder-authorised execution brief (one copy each, drafts trashed afterwards so nothing can go
+out twice). Message ids: Gaming with Science `1a081a7ab7a1cf33` · Ludology `1a081a7afbc3bdee` ·
+Multicultural Kid Blogs `1a081a7b27bbf142`. Caveat: the Gmail connector rewrites every URL in the
+body into a `google.com/url?q=` redirect (visible anchor text stays clean). No reply as of
+18:50 UTC. SENT ≠ ANSWERED ≠ PARTNERSHIP — the table below is the honest state.
 
 | Target | Fit | Channel | Status |
 |---|---|---|---|
-| Gaming with Science podcast (Brian & Jason Wallace, University of Georgia) — did S3E06 on the Royal Game of Ur with Dr Walter Crist | Exact topical match; science-of-games audience | GamingWithSciencePodcast@gmail.com (from their site) | **Gmail draft created** — offers review copy + the free boards pack as listener resource, no ask for a review |
-| Ludology podcast (Erica Bouyouris, Sen-Foong Lim) — game design history | Design-history audience; "games sorted by mechanism" is a design story | hello@ludology.net (from their site) | **Gmail draft created** — episode idea + review copy |
-| Multicultural Kid Blogs — network of family/culture bloggers | Family reference book, cultures named precisely | multiculturalkidblogs@gmail.com (from their contact page) | **Gmail draft created** — editorial review copy; explicitly declines paid-review framing |
+| Gaming with Science podcast (Brian & Jason Wallace, University of Georgia) — did S3E06 on the Royal Game of Ur with Dr Walter Crist | Exact topical match; science-of-games audience | GamingWithSciencePodcast@gmail.com (from their site) | **SENT 2026-09-08 15:33 UTC** (id `1a081a7ab7a1cf33`) — offers review copy + the free boards pack as listener resource, no ask for a review. No reply yet |
+| Ludology podcast (Erica Bouyouris, Sen-Foong Lim) — game design history | Design-history audience; "games sorted by mechanism" is a design story | hello@ludology.net (from their site) | **SENT 2026-09-08 15:33 UTC** (id `1a081a7afbc3bdee`) — episode idea + review copy. No reply yet |
+| Multicultural Kid Blogs — network of family/culture bloggers | Family reference book, cultures named precisely | multiculturalkidblogs@gmail.com (from their contact page) | **SENT 2026-09-08 15:33 UTC** (id `1a081a7b27bbf142`) — editorial review copy; explicitly declines paid-review framing. No reply yet |
 | Around the World in Homeschool Days (Jamie) — historic board games page with printable boards and affiliate links | Homeschool buyer; already links Nine Men's Morris / Hnefatafl products | No email found; site has a newsletter form only | Not drafted — founder to use the site's contact form |
 | What Do We Do All Day (Erica) — traditional games from around the world, printable boards | Same buyer; large parenting audience | Site returned 504 during research | Not drafted — retry |
 | Damian Walker, cyningstan.com / tafl.cyningstan.com — hnefatafl mailing list & newsletter | The tafl community's newsletter; announces new books | Site refused connection during research | Not drafted — retry; this is the single best niche placement for the Hnefatafl/Tablut entries |
