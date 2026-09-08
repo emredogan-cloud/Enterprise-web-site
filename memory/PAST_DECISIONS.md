@@ -83,3 +83,32 @@ constrain code and were being re-derived (and re-got-wrong) each phase.
   presence check passed: a docs placeholder, a notification-setting id in
   place of a signing secret, an invalid signing key, and stale R2 keys. Assert
   behaviour, not `process.env.X !== undefined`.
+
+- **A Project Gutenberg transcription has two authors, and the file says which
+  is which.** Kwaidan shipped with thirty-six notes printed under a heading
+  reading *Hearn's Notes* that PG's volunteers had written, plus thirty-six of
+  their call-marks inside his sentences. An author's footnote carries an anchor
+  and a back-link to the sentence that calls it; a note nobody's sentence calls
+  carries neither. `COMMON-AREA/checks/source_layers.py` does the split, and the
+  factory-wide sweep of 2026-09-08 found Kwaidan is the only book affected.
+
+- **Run a new instrument over every book that predates it.**
+  `check_source_claims.py` was written for British Goblins, after Kwaidan was
+  built, and nobody went back. Running it on Kwaidan found five P0s including
+  twenty glossary cross-references pointing at the wrong tale. A checker only
+  protects the books it has been run on.
+
+- **A count printed on a cover must be read from the data that produced it.**
+  The Kwaidan back cover said "the ten old provinces" while the gazetteer inside
+  the same book had twelve, because the blurb was a string in the cover script.
+  Cover, companion-leaf and companion-sheet counts now read `len(...)`.
+
+- **A refused source is a decision, not a failure.** `rights-lint` reported a RED
+  row as an error, which made a book that had looked at an uncleared layer and
+  declined indistinguishable from one that shipped it. `used: false` on the
+  project's source row earns a PASS; a source marked unused against a GREEN row
+  earns a warning, because that is bookkeeping rather than a refusal.
+
+- **A skipped check reads like a passing one.** `compliance-lint` reported "no
+  built interior registered for kwaidan" as a *skip* for two days. Registering
+  the interior in `print-interiors.mjs` surfaced two real errors immediately.
