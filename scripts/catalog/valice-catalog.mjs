@@ -568,7 +568,12 @@ export const BOOKS = [
         priceCents: usd(22.99),
         pageCount: 160,
         amazonAsin: "B0HG3KMK9L",
-        amazonUrl: amazon("B0HG3KMK9L"),
+        // Amazon Attribution tag, created in the Ads console on 2026-09-08
+        // (campaign 585752812173052673, ad group valicepress-com-world-games-pb,
+        // publisher "Valice Press website"). Same /dp/ page, same ASIN; the
+        // query string is what lets Amazon report site → Amazon purchases.
+        amazonUrl:
+          "https://www.amazon.com/dp/B0HG3KMK9L?maas=maas_adg_464E7BF296979686C0BCF4F5B808E585_afap_abs&ref_=aa_maas&tag=maas",
         kdp: "live",
         masterFileKey: null,
         priceBasis: "Live Amazon list price 2026-08-31 — matches the modelled figure.",
