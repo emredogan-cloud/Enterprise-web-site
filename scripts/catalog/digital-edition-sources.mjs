@@ -73,11 +73,12 @@ export const DIGITAL_EDITION_SOURCES = [
     epub: bookPath("02-KOREAN-GAMES", "OUTPUT", "korean-games.epub"),
   },
   {
-    // Valice Classics 13 (2026-09-06). PHASE 3 book 1. Two 1904 plates and no other
-    // raster matter, so the /ebook pass normalises rather than downsamples.
+    // Valice Classics 13. Built as phase 3 book 1 (2026-09-06), rebuilt as ROADMAP
+    // BOOK 06 (2026-09-08) at 142 pp. Two 1904 plates and no other raster matter, so
+    // the /ebook pass normalises rather than downsamples.
     slug: "kwaidan",
-    printInterior: bookPath("01-KWAIDAN", "OUTPUT", "interior-main.pdf"),
-    epub: bookPath("01-KWAIDAN", "OUTPUT", "kwaidan.epub"),
+    printInterior: bookPath("06-KWAIDAN", "OUTPUT", "interior-main.pdf"),
+    epub: bookPath("06-KWAIDAN", "OUTPUT", "kwaidan.epub"),
   },
   {
     // Valice Classics 12 (2026-09-06). Phase 2 book 5, and the largest: 244 pages with

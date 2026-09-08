@@ -100,6 +100,16 @@ const SPECS = {
   "the-puzzles-of-henry-dudeney": {
     paperback: ["03-THE-PUZZLES-OF-HENRY-DUDENEY", "OUTPUT", "interior-main.pdf"],
   },
+  kwaidan: {
+    // ROADMAP BOOK 06 (built as public-domain phase 3 book 1, 2026-09-06; moved into
+    // ROADMAP-BOOKS/06-KWAIDAN and rebuilt 2026-09-08). 142 pp, even, with the companion
+    // leaf typeset INSIDE build_interior.py rather than appended afterwards — this book
+    // predates build-companion-pages.mjs and its QR is measured in the built file by
+    // COMMON-AREA/checks/measure_qr.py, which is the check that matters. The paperback
+    // and hardcover share one interior; only the wrap differs.
+    paperback: ["06-KWAIDAN", "OUTPUT", "interior-main.pdf"],
+    hardcover: ["06-KWAIDAN", "OUTPUT", "interior-main.pdf"],
+  },
   "epictetus-discourses-and-enchiridion": {
     // Valice Classics 3 (2026-09-04). The first build authored a companion page
     // inside the interior; that was a parallel system with none of the house
