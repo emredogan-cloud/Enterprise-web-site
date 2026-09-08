@@ -1,10 +1,10 @@
 # Indian Myth and Legend — paperback — KDP upload package
 
-**Generated:** 2026-09-04 · **ASIN:** — (not listed) · **KDP state:** not_created
+**Generated:** 2026-09-08 · **ASIN:** — (not listed) · **KDP state:** not_created
 
 ## What this is
 
-This edition has never been uploaded. The file below is its first. A dedicated companion page stands on page **94**: a QR occupying 29 % of the usable page height, the address `valicepress.com/companion/vedic-gods` printed beneath it in display type, and a named list of what is waiting there. It is a new leaf; nothing was removed.
+This edition has never been uploaded. The file below is its first. A dedicated companion page stands on page **94**: a QR occupying 28 % of the usable page height, the address `valicepress.com/companion/vedic-gods` printed beneath it in display type, and a named list of what is waiting there. It is a new leaf; nothing was removed.
 
 - **Pages:** **94**
 - **Spine:** **0.2117 in** (white paper, 6×9 in)
@@ -15,12 +15,12 @@ This edition has never been uploaded. The file below is its first. A dedicated c
 ## The file
 
 ```
-/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf
-sha256 0ac86524968a8782cf4c9c7021084fff72ce3f48cc05af558f8cc7082d1d37d8
-342,965 bytes · 94 pages
+/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf
+sha256 5fbb71344e3cf8c8b89eba48f34933d094b81caf4358417d43bfc0df5d6935d4
+901,496 bytes · 94 pages
 ```
 
-The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pre-companion.pdf` and is never deleted.
+The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pre-companion.pdf` and is never deleted.
 
 ## In KDP
 
@@ -38,9 +38,9 @@ The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1
 - PASS · **headline** — headline present
 - PASS · **eyebrow** — CONTINUE WITH VALICE PRESS
 - PASS · **fonts-embedded** — 3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif
-- PASS · **qr-floor** — 28.9% of usable height
-- PASS · **qr-module-size** — 1.73 mm per module
-- PASS · **pdf-metadata** — title="Indian Myth and Legend: Volume One: The Vedic Gods — 5 Chapters Complete in the 1913 Text, Annotated, with a Register Grading the Author's Comparisons and a Who's-Who of 32 Figures with Verified Chapter References" author="Emre Doğan"
+- PASS · **qr-floor** — 28.4% of usable height
+- PASS · **qr-module-size** — 1.70 mm per module
+- PASS · **pdf-metadata** — title="Indian Myth and Legend: Volume One: The Vedic Gods — 5 Chapters Complete in the 1913 Text, Annotated, with a Register Grading the Author's Comparisons and a Who's-Who of 32 Figures with Verified Chapter References" author="Donald A. Mackenzie · edited and annotated by Emre Doğan"
 - PASS · **qr-matches-url** — 33×33 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/vedic-gods
 
 Regenerate with `node scripts/factory/build-companion-pages.mjs --commit --slug indian-myth-and-legend`.

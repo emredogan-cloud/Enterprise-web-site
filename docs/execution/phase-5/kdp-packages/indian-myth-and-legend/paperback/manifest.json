@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-09-04",
+  "generatedAt": "2026-09-08",
   "book": "indian-myth-and-legend",
   "format": "paperback",
   "title": "Indian Myth and Legend",
   "asin": null,
   "kdpState": "not_created",
   "interior": {
-    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf",
-    "sha256": "0ac86524968a8782cf4c9c7021084fff72ce3f48cc05af558f8cc7082d1d37d8",
-    "bytes": 342965,
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf",
+    "sha256": "5fbb71344e3cf8c8b89eba48f34933d094b81caf4358417d43bfc0df5d6935d4",
+    "bytes": 901496,
     "pagesBefore": 93,
     "pagesAfter": 94,
     "companionPage": 94,
-    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pre-companion.pdf",
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pre-companion.pdf",
     "builtBy": "scripts/factory/companion-page.py (spliced)"
   },
   "companion": {
@@ -20,14 +20,14 @@
     "qrUrl": "https://valicepress.com/companion/vedic-gods",
     "qr": {
       "modules": 33,
-      "module_pt": 4.896418909090911,
-      "module_mm": 1.7273477818181824,
+      "module_pt": 4.804992,
+      "module_mm": 1.6950944,
       "version": 4,
       "error": "M",
-      "side_pt": 161.58182400000004,
-      "fraction_of_usable_height": 0.28920000000000007,
-      "x_pt": 135.20908799999998,
-      "y_pt": 294.89559633371414
+      "side_pt": 158.564736,
+      "fraction_of_usable_height": 0.2838,
+      "x_pt": 136.717632,
+      "y_pt": 307.9257393005712
     },
     "dedicatedPage": true,
     "emailWall": false
@@ -61,7 +61,7 @@
   },
   "cover": {
     "built": true,
-    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/ASSETS/cover/paperback-wrap-v1.pdf",
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/ASSETS/cover/paperback-wrap-v1.pdf",
     "pageCount": 94,
     "spineIn": 0.2117,
     "wrapIn": "12.4617 × 9.2500 (white)",
@@ -111,17 +111,17 @@
     {
       "name": "qr-floor",
       "pass": true,
-      "detail": "28.9% of usable height"
+      "detail": "28.4% of usable height"
     },
     {
       "name": "qr-module-size",
       "pass": true,
-      "detail": "1.73 mm per module"
+      "detail": "1.70 mm per module"
     },
     {
       "name": "pdf-metadata",
       "pass": true,
-      "detail": "title=\"Indian Myth and Legend: Volume One: The Vedic Gods — 5 Chapters Complete in the 1913 Text, Annotated, with a Register Grading the Author's Comparisons and a Who's-Who of 32 Figures with Verified Chapter References\" author=\"Emre Doğan\""
+      "detail": "title=\"Indian Myth and Legend: Volume One: The Vedic Gods — 5 Chapters Complete in the 1913 Text, Annotated, with a Register Grading the Author's Comparisons and a Who's-Who of 32 Figures with Verified Chapter References\" author=\"Donald A. Mackenzie · edited and annotated by Emre Doğan\""
     },
     {
       "name": "qr-matches-url",

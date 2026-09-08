@@ -1,10 +1,10 @@
 # Mythical Monsters — paperback — KDP upload package
 
-**Generated:** 2026-09-04 · **ASIN:** — (not listed) · **KDP state:** not_created
+**Generated:** 2026-09-08 · **ASIN:** — (not listed) · **KDP state:** not_created
 
 ## What this is
 
-This edition has never been uploaded. The file below is its first. A dedicated companion page stands on page **74**: a QR occupying 29 % of the usable page height, the address `valicepress.com/companion/the-dragon` printed beneath it in display type, and a named list of what is waiting there. It is a new leaf; nothing was removed.
+This edition has never been uploaded. The file below is its first. A dedicated companion page stands on page **74**: a QR occupying 28 % of the usable page height, the address `valicepress.com/companion/the-dragon` printed beneath it in display type, and a named list of what is waiting there. It is a new leaf; nothing was removed.
 
 - **Pages:** **74**
 - **Spine:** **0.1666 in** (white paper, 6×9 in)
@@ -15,12 +15,12 @@ This edition has never been uploaded. The file below is its first. A dedicated c
 ## The file
 
 ```
-/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/05-MYTHICAL-MONSTERS/OUTPUT/interior-main.pdf
-sha256 a97c3e4abbd3e7c11ca88c28b8fc933d4bb654fff55e6897a42eab6b26c5fc9c
-306,472 bytes · 74 pages
+/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/05-MYTHICAL-MONSTERS/OUTPUT/interior-main.pdf
+sha256 81b0315e1ade384262bfc76bef9e10231fc5f47716bfdfca006512c611d147fc
+858,894 bytes · 74 pages
 ```
 
-The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/05-MYTHICAL-MONSTERS/OUTPUT/interior-main.pre-companion.pdf` and is never deleted.
+The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/05-MYTHICAL-MONSTERS/OUTPUT/interior-main.pre-companion.pdf` and is never deleted.
 
 ## In KDP
 
@@ -38,9 +38,9 @@ The build it replaces is kept at `/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1
 - PASS · **headline** — headline present
 - PASS · **eyebrow** — CONTINUE WITH VALICE PRESS
 - PASS · **fonts-embedded** — 3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif
-- PASS · **qr-floor** — 28.9% of usable height
-- PASS · **qr-module-size** — 1.73 mm per module
-- PASS · **pdf-metadata** — title="Mythical Monsters: Volume One: The Dragon — 3 Chapters Complete in the 1886 Text, Annotated, with a Register Setting Six of the Author's Claims Against What Is Established and His Sources Graded" author="Emre Doğan"
+- PASS · **qr-floor** — 28.1% of usable height
+- PASS · **qr-module-size** — 1.68 mm per module
+- PASS · **pdf-metadata** — title="Mythical Monsters: Volume One: The Dragon — 3 Chapters Complete in the 1886 Text, Annotated, with a Register Setting Six of the Author's Claims Against What Is Established and His Sources Graded" author="Charles Gould · edited and annotated by Emre Doğan"
 - PASS · **qr-matches-url** — 33×33 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/the-dragon
 
 Regenerate with `node scripts/factory/build-companion-pages.mjs --commit --slug mythical-monsters`.

@@ -628,7 +628,7 @@ export const COMPANION_PAGE_PLAN = {
     editions: {
       paperback: {
         // Interior typeset deliberately ODD so this leaf makes the count even.
-        mode: "append", page: null, pagesBefore: 107, pagesAfter: 108, recto: true,
+        mode: "append", page: null, pagesBefore: 111, pagesAfter: 112, recto: true,
         folio: { style: "centre", offset: 0, size: 8.6, baselineFromBottomPt: 28.8, outerMarginPt: 36 },
         replacing: null,
       },
@@ -707,7 +707,7 @@ export const COMPANION_PAGE_PLAN = {
       paperback: {
         // As above. The interior builder pads to an even count; this pipeline
         // appends the companion leaf and recalculates.
-        mode: "append", page: null, pagesBefore: 153, pagesAfter: 154, recto: true,
+        mode: "append", page: null, pagesBefore: 155, pagesAfter: 156, recto: true,
         folio: { style: "centre", offset: 0, size: 8.6, baselineFromBottomPt: 28.8, outerMarginPt: 36 },
         replacing: null,
       },

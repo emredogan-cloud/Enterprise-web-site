@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-09-04",
+  "generatedAt": "2026-09-08",
   "book": "myths-and-legends-of-china",
   "format": "paperback",
   "title": "Myths and Legends of China",
   "asin": null,
   "kdpState": "not_created",
   "interior": {
-    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pdf",
-    "sha256": "f4738f2a4e0474bb73d16f7fbd9aeea4e92a34ccd17f110690829b9c4f5aa649",
-    "bytes": 347293,
-    "pagesBefore": 107,
-    "pagesAfter": 108,
-    "companionPage": 108,
-    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pre-companion.pdf",
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pdf",
+    "sha256": "5696b1988c3d773bd87750a955927baa3b475218a6d150b224bbec8862f51403",
+    "bytes": 916314,
+    "pagesBefore": 111,
+    "pagesAfter": 112,
+    "companionPage": 112,
+    "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pre-companion.pdf",
     "builtBy": "scripts/factory/companion-page.py (spliced)"
   },
   "companion": {
@@ -20,33 +20,33 @@
     "qrUrl": "https://valicepress.com/companion/china-gods",
     "qr": {
       "modules": 33,
-      "module_pt": 4.850705454545455,
-      "module_mm": 1.7112210909090908,
+      "module_pt": 4.759278545454546,
+      "module_mm": 1.6789677090909092,
       "version": 4,
       "error": "M",
-      "side_pt": 160.07328,
-      "fraction_of_usable_height": 0.28650000000000003,
-      "x_pt": 135.96336,
-      "y_pt": 300.25633913142866
+      "side_pt": 157.056192,
+      "fraction_of_usable_height": 0.2811,
+      "x_pt": 137.471904,
+      "y_pt": 305.96228004114295
     },
     "dedicatedPage": true,
     "emailWall": false
   },
   "spine": {
-    "pagesBefore": 107,
-    "pagesAfter": 108,
+    "pagesBefore": 111,
+    "pagesAfter": 112,
     "paper": "white",
     "binding": "paperback",
     "trim": "6×9 in",
     "before": {
-      "spineWidthIn": 0.240964,
-      "wrapWidthIn": 12.490964,
+      "spineWidthIn": 0.249972,
+      "wrapWidthIn": 12.499972,
       "wrapHeightIn": 9.25,
       "spineTextAllowed": true
     },
     "after": {
-      "spineWidthIn": 0.243216,
-      "wrapWidthIn": 12.493216,
+      "spineWidthIn": 0.252224,
+      "wrapWidthIn": 12.502224,
       "wrapHeightIn": 9.25,
       "spineTextAllowed": true
     },
@@ -61,7 +61,7 @@
   },
   "cover": {
     "built": true,
-    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/ASSETS/cover/paperback-wrap-v1.pdf",
+    "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/ASSETS/cover/paperback-wrap-v1.pdf",
     "pageCount": 108,
     "spineIn": 0.2432,
     "wrapIn": "12.4932 × 9.2500 (white)",
@@ -76,7 +76,7 @@
     {
       "name": "page-count",
       "pass": true,
-      "detail": "108 pages (expected 108)"
+      "detail": "112 pages (expected 112)"
     },
     {
       "name": "printed-url",
@@ -89,6 +89,16 @@
       "detail": "no forbidden host on the page"
     },
     {
+      "name": "no-email-wall",
+      "pass": true,
+      "detail": "the page asks for nothing"
+    },
+    {
+      "name": "headline",
+      "pass": true,
+      "detail": "headline present"
+    },
+    {
       "name": "eyebrow",
       "pass": true,
       "detail": "CONTINUE WITH VALICE PRESS"
@@ -99,9 +109,24 @@
       "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
     },
     {
+      "name": "qr-floor",
+      "pass": true,
+      "detail": "28.1% of usable height"
+    },
+    {
+      "name": "qr-module-size",
+      "pass": true,
+      "detail": "1.68 mm per module"
+    },
+    {
       "name": "pdf-metadata",
       "pass": true,
-      "detail": "title=\"Myths and Legends of China: Volume One: The Gods — Eight Chapters Complete in the 1922 Text, Annotated, with a Register of the Celestial Ministries, a Glossary of 25 Figures with Verified Chapter References, a Note on the Romanisation and a Chronology\" author=\"Emre Doğan\""
+      "detail": "title=\"Myths and Legends of China: Volume One: The Gods — 8 Chapters Complete in the 1922 Text, Annotated, with a Register of the 9 Celestial Ministries, a Glossary of 25 Figures with Verified Chapter References and a Chronology\" author=\"E. T. C. Werner · edited and annotated by Emre Doğan\""
+    },
+    {
+      "name": "qr-matches-url",
+      "pass": true,
+      "detail": "33×33 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/china-gods"
     }
   ]
 }

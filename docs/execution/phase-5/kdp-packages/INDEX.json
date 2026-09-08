@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-07",
+  "generatedAt": "2026-09-08",
   "editions": [
     {
       "generatedAt": "2026-09-05",
@@ -1629,7 +1629,7 @@
       ]
     },
     {
-      "generatedAt": "2026-09-04",
+      "generatedAt": "2026-09-08",
       "book": "indian-myth-and-legend",
       "format": "paperback",
       "title": "Indian Myth and Legend",
@@ -1637,28 +1637,27 @@
       "kdpState": "not_created",
       "interior": {
         "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf",
-        "sha256": "0ac86524968a8782cf4c9c7021084fff72ce3f48cc05af558f8cc7082d1d37d8",
-        "bytes": 342965,
+        "sha256": "5fbb71344e3cf8c8b89eba48f34933d094b81caf4358417d43bfc0df5d6935d4",
+        "bytes": 901496,
         "pagesBefore": 93,
         "pagesAfter": 94,
         "companionPage": 94,
-        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pre-companion.pdf",
-        "builtBy": "scripts/factory/companion-page.py (spliced)",
-        "$pathWasRepaired": "recorded as /home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pdf, which does not exist; relocated 2026-09-07 by matching the filename in the book tree"
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/OUTPUT/interior-main.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
       },
       "companion": {
         "printedUrl": "valicepress.com/companion/vedic-gods",
         "qrUrl": "https://valicepress.com/companion/vedic-gods",
         "qr": {
           "modules": 33,
-          "module_pt": 4.896418909090911,
-          "module_mm": 1.7273477818181824,
+          "module_pt": 4.804992,
+          "module_mm": 1.6950944,
           "version": 4,
           "error": "M",
-          "side_pt": 161.58182400000004,
-          "fraction_of_usable_height": 0.28920000000000007,
-          "x_pt": 135.20908799999998,
-          "y_pt": 294.89559633371414
+          "side_pt": 158.564736,
+          "fraction_of_usable_height": 0.2838,
+          "x_pt": 136.717632,
+          "y_pt": 307.9257393005712
         },
         "dedicatedPage": true,
         "emailWall": false
@@ -1696,8 +1695,7 @@
         "pageCount": 94,
         "spineIn": 0.2117,
         "wrapIn": "12.4617 × 9.2500 (white)",
-        "note": "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 94 — after the companion leaf — so its spine agrees with this pipeline's arithmetic and nothing had to be rebuilt after the splice.",
-        "$pathWasRepaired": "recorded as /home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/04-INDIAN-MYTH-AND-LEGEND/ASSETS/cover/paperback-wrap-v1.pdf, which does not exist; relocated 2026-09-07 by matching the filename in the book tree"
+        "note": "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 94 — after the companion leaf — so its spine agrees with this pipeline's arithmetic and nothing had to be rebuilt after the splice."
       },
       "coverAction": "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior",
       "uploadRequired": true,
@@ -1743,17 +1741,17 @@
         {
           "name": "qr-floor",
           "pass": true,
-          "detail": "28.9% of usable height"
+          "detail": "28.4% of usable height"
         },
         {
           "name": "qr-module-size",
           "pass": true,
-          "detail": "1.73 mm per module"
+          "detail": "1.70 mm per module"
         },
         {
           "name": "pdf-metadata",
           "pass": true,
-          "detail": "title=\"Indian Myth and Legend: Volume One: The Vedic Gods — 5 Chapters Complete in the 1913 Text, Annotated, with a Register Grading the Author's Comparisons and a Who's-Who of 32 Figures with Verified Chapter References\" author=\"Emre Doğan\""
+          "detail": "title=\"Indian Myth and Legend: Volume One: The Vedic Gods — 5 Chapters Complete in the 1913 Text, Annotated, with a Register Grading the Author's Comparisons and a Who's-Who of 32 Figures with Verified Chapter References\" author=\"Donald A. Mackenzie · edited and annotated by Emre Doğan\""
         },
         {
           "name": "qr-matches-url",
@@ -2092,7 +2090,7 @@
       ]
     },
     {
-      "generatedAt": "2026-09-04",
+      "generatedAt": "2026-09-08",
       "book": "mythical-monsters",
       "format": "paperback",
       "title": "Mythical Monsters",
@@ -2100,28 +2098,27 @@
       "kdpState": "not_created",
       "interior": {
         "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/05-MYTHICAL-MONSTERS/OUTPUT/interior-main.pdf",
-        "sha256": "a97c3e4abbd3e7c11ca88c28b8fc933d4bb654fff55e6897a42eab6b26c5fc9c",
-        "bytes": 306472,
+        "sha256": "81b0315e1ade384262bfc76bef9e10231fc5f47716bfdfca006512c611d147fc",
+        "bytes": 858894,
         "pagesBefore": 73,
         "pagesAfter": 74,
         "companionPage": 74,
-        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/05-MYTHICAL-MONSTERS/OUTPUT/interior-main.pre-companion.pdf",
-        "builtBy": "scripts/factory/companion-page.py (spliced)",
-        "$pathWasRepaired": "recorded as /home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/05-MYTHICAL-MONSTERS/OUTPUT/interior-main.pdf, which does not exist; relocated 2026-09-07 by matching the filename in the book tree"
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/05-MYTHICAL-MONSTERS/OUTPUT/interior-main.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
       },
       "companion": {
         "printedUrl": "valicepress.com/companion/the-dragon",
         "qrUrl": "https://valicepress.com/companion/the-dragon",
         "qr": {
           "modules": 33,
-          "module_pt": 4.896418909090911,
-          "module_mm": 1.7273477818181824,
+          "module_pt": 4.759278545454546,
+          "module_mm": 1.6789677090909092,
           "version": 4,
           "error": "M",
-          "side_pt": 161.58182400000004,
-          "fraction_of_usable_height": 0.28920000000000007,
-          "x_pt": 135.20908799999998,
-          "y_pt": 294.89559633371414
+          "side_pt": 157.056192,
+          "fraction_of_usable_height": 0.2811,
+          "x_pt": 137.471904,
+          "y_pt": 312.6087138697144
         },
         "dedicatedPage": true,
         "emailWall": false
@@ -2159,8 +2156,7 @@
         "pageCount": 74,
         "spineIn": 0.1666,
         "wrapIn": "12.4166 × 9.2500 (white)",
-        "note": "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 74 — after the companion leaf — so its spine agrees with this pipeline's arithmetic.",
-        "$pathWasRepaired": "recorded as /home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/05-MYTHICAL-MONSTERS/ASSETS/cover/paperback-wrap-v1.pdf, which does not exist; relocated 2026-09-07 by matching the filename in the book tree"
+        "note": "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 74 — after the companion leaf — so its spine agrees with this pipeline's arithmetic."
       },
       "coverAction": "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior",
       "uploadRequired": true,
@@ -2206,17 +2202,17 @@
         {
           "name": "qr-floor",
           "pass": true,
-          "detail": "28.9% of usable height"
+          "detail": "28.1% of usable height"
         },
         {
           "name": "qr-module-size",
           "pass": true,
-          "detail": "1.73 mm per module"
+          "detail": "1.68 mm per module"
         },
         {
           "name": "pdf-metadata",
           "pass": true,
-          "detail": "title=\"Mythical Monsters: Volume One: The Dragon — 3 Chapters Complete in the 1886 Text, Annotated, with a Register Setting Six of the Author's Claims Against What Is Established and His Sources Graded\" author=\"Emre Doğan\""
+          "detail": "title=\"Mythical Monsters: Volume One: The Dragon — 3 Chapters Complete in the 1886 Text, Annotated, with a Register Setting Six of the Author's Claims Against What Is Established and His Sources Graded\" author=\"Charles Gould · edited and annotated by Emre Doğan\""
         },
         {
           "name": "qr-matches-url",
@@ -2226,7 +2222,7 @@
       ]
     },
     {
-      "generatedAt": "2026-09-04",
+      "generatedAt": "2026-09-08",
       "book": "myths-and-legends-of-china",
       "format": "paperback",
       "title": "Myths and Legends of China",
@@ -2234,47 +2230,46 @@
       "kdpState": "not_created",
       "interior": {
         "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pdf",
-        "sha256": "f4738f2a4e0474bb73d16f7fbd9aeea4e92a34ccd17f110690829b9c4f5aa649",
-        "bytes": 347293,
-        "pagesBefore": 107,
-        "pagesAfter": 108,
-        "companionPage": 108,
-        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pre-companion.pdf",
-        "builtBy": "scripts/factory/companion-page.py (spliced)",
-        "$pathWasRepaired": "recorded as /home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pdf, which does not exist; relocated 2026-09-07 by matching the filename in the book tree"
+        "sha256": "5696b1988c3d773bd87750a955927baa3b475218a6d150b224bbec8862f51403",
+        "bytes": 916314,
+        "pagesBefore": 111,
+        "pagesAfter": 112,
+        "companionPage": 112,
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/OUTPUT/interior-main.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
       },
       "companion": {
         "printedUrl": "valicepress.com/companion/china-gods",
         "qrUrl": "https://valicepress.com/companion/china-gods",
         "qr": {
           "modules": 33,
-          "module_pt": 4.850705454545455,
-          "module_mm": 1.7112210909090908,
+          "module_pt": 4.759278545454546,
+          "module_mm": 1.6789677090909092,
           "version": 4,
           "error": "M",
-          "side_pt": 160.07328,
-          "fraction_of_usable_height": 0.28650000000000003,
-          "x_pt": 135.96336,
-          "y_pt": 300.25633913142866
+          "side_pt": 157.056192,
+          "fraction_of_usable_height": 0.2811,
+          "x_pt": 137.471904,
+          "y_pt": 305.96228004114295
         },
         "dedicatedPage": true,
         "emailWall": false
       },
       "spine": {
-        "pagesBefore": 107,
-        "pagesAfter": 108,
+        "pagesBefore": 111,
+        "pagesAfter": 112,
         "paper": "white",
         "binding": "paperback",
         "trim": "6×9 in",
         "before": {
-          "spineWidthIn": 0.240964,
-          "wrapWidthIn": 12.490964,
+          "spineWidthIn": 0.249972,
+          "wrapWidthIn": 12.499972,
           "wrapHeightIn": 9.25,
           "spineTextAllowed": true
         },
         "after": {
-          "spineWidthIn": 0.243216,
-          "wrapWidthIn": 12.493216,
+          "spineWidthIn": 0.252224,
+          "wrapWidthIn": 12.502224,
           "wrapHeightIn": 9.25,
           "spineTextAllowed": true
         },
@@ -2293,8 +2288,7 @@
         "pageCount": 108,
         "spineIn": 0.2432,
         "wrapIn": "12.4932 × 9.2500 (white)",
-        "note": "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 108 — that is, after the companion leaf. Its spine and wrap agree with this pipeline's own arithmetic to four decimal places (0.243216 / 12.493216), so nothing had to be rebuilt after the splice.",
-        "$pathWasRepaired": "recorded as /home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/03-MYTHS-AND-LEGENDS-OF-CHINA/ASSETS/cover/paperback-wrap-v1.pdf, which does not exist; relocated 2026-09-07 by matching the filename in the book tree"
+        "note": "built 2026-09-04 by the project's own BUILD/build_cover.py at the FINAL page count of 108 — that is, after the companion leaf. Its spine and wrap agree with this pipeline's own arithmetic to four decimal places (0.243216 / 12.493216), so nothing had to be rebuilt after the splice."
       },
       "coverAction": "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior",
       "uploadRequired": true,
@@ -2305,7 +2299,7 @@
         {
           "name": "page-count",
           "pass": true,
-          "detail": "108 pages (expected 108)"
+          "detail": "112 pages (expected 112)"
         },
         {
           "name": "printed-url",
@@ -2318,6 +2312,16 @@
           "detail": "no forbidden host on the page"
         },
         {
+          "name": "no-email-wall",
+          "pass": true,
+          "detail": "the page asks for nothing"
+        },
+        {
+          "name": "headline",
+          "pass": true,
+          "detail": "headline present"
+        },
+        {
           "name": "eyebrow",
           "pass": true,
           "detail": "CONTINUE WITH VALICE PRESS"
@@ -2328,14 +2332,29 @@
           "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
         },
         {
+          "name": "qr-floor",
+          "pass": true,
+          "detail": "28.1% of usable height"
+        },
+        {
+          "name": "qr-module-size",
+          "pass": true,
+          "detail": "1.68 mm per module"
+        },
+        {
           "name": "pdf-metadata",
           "pass": true,
-          "detail": "title=\"Myths and Legends of China: Volume One: The Gods — Eight Chapters Complete in the 1922 Text, Annotated, with a Register of the Celestial Ministries, a Glossary of 25 Figures with Verified Chapter References, a Note on the Romanisation and a Chronology\" author=\"Emre Doğan\""
+          "detail": "title=\"Myths and Legends of China: Volume One: The Gods — 8 Chapters Complete in the 1922 Text, Annotated, with a Register of the 9 Celestial Ministries, a Glossary of 25 Figures with Verified Chapter References and a Chronology\" author=\"E. T. C. Werner · edited and annotated by Emre Doğan\""
+        },
+        {
+          "name": "qr-matches-url",
+          "pass": true,
+          "detail": "33×33 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/china-gods"
         }
       ]
     },
     {
-      "generatedAt": "2026-09-04",
+      "generatedAt": "2026-09-08",
       "book": "seneca-selected-dialogues",
       "format": "paperback",
       "title": "Seneca: Selected Dialogues",
@@ -2343,14 +2362,13 @@
       "kdpState": "not_created",
       "interior": {
         "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pdf",
-        "sha256": "f06fea37a5d083f0a0ea7f89240b42dc8f38c870a85bc3c23f5aee24ea93fa8d",
-        "bytes": 575959,
-        "pagesBefore": 153,
-        "pagesAfter": 154,
-        "companionPage": 154,
-        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pre-companion.pdf",
-        "builtBy": "scripts/factory/companion-page.py (spliced)",
-        "$pathWasRepaired": "recorded as /home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pdf, which does not exist; relocated 2026-09-07 by matching the filename in the book tree"
+        "sha256": "b504a558646f4cbdeb302595662427d30730509004ef3462ea53af3c54c3d3db",
+        "bytes": 577932,
+        "pagesBefore": 155,
+        "pagesAfter": 156,
+        "companionPage": 156,
+        "previousBuildKept": "/home/emre/Downloads/MY-DİGİTAL-BOOK/PUBLIC-BOOKS/PUBLİC-PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/OUTPUT/interior-main.pre-companion.pdf",
+        "builtBy": "scripts/factory/companion-page.py (spliced)"
       },
       "companion": {
         "printedUrl": "valicepress.com/companion/seneca",
@@ -2370,20 +2388,20 @@
         "emailWall": false
       },
       "spine": {
-        "pagesBefore": 153,
-        "pagesAfter": 154,
+        "pagesBefore": 155,
+        "pagesAfter": 156,
         "paper": "white",
         "binding": "paperback",
         "trim": "6×9 in",
         "before": {
-          "spineWidthIn": 0.344556,
-          "wrapWidthIn": 12.594556,
+          "spineWidthIn": 0.34906,
+          "wrapWidthIn": 12.59906,
           "wrapHeightIn": 9.25,
           "spineTextAllowed": true
         },
         "after": {
-          "spineWidthIn": 0.346808,
-          "wrapWidthIn": 12.596808,
+          "spineWidthIn": 0.351312,
+          "wrapWidthIn": 12.601312,
           "wrapHeightIn": 9.25,
           "spineTextAllowed": true
         },
@@ -2402,8 +2420,7 @@
         "pageCount": 154,
         "spineIn": 0.3468,
         "wrapIn": "12.5968 × 9.2500 (white)",
-        "note": "rebuilt 2026-09-04 at the final page count of 154, after the companion leaf. The count moved 156 -> 154 when a markdown-bold rendering defect was fixed and the text reflowed; the cover was rebuilt rather than reused.",
-        "$pathWasRepaired": "recorded as /home/emre/Downloads/MY-DİGİTAL-BOOK/PHASE-1-BOOK/02-SENECA-SELECTED-DIALOGUES/ASSETS/cover/paperback-wrap-v1.pdf, which does not exist; relocated 2026-09-07 by matching the filename in the book tree"
+        "note": "rebuilt 2026-09-04 at the final page count of 154, after the companion leaf. The count moved 156 -> 154 when a markdown-bold rendering defect was fixed and the text reflowed; the cover was rebuilt rather than reused."
       },
       "coverAction": "FIRST UPLOAD — there is no cover at KDP yet; upload the wrap built for this page count alongside the interior",
       "uploadRequired": true,
@@ -2414,7 +2431,7 @@
         {
           "name": "page-count",
           "pass": true,
-          "detail": "154 pages (expected 154)"
+          "detail": "156 pages (expected 156)"
         },
         {
           "name": "printed-url",
@@ -2427,6 +2444,16 @@
           "detail": "no forbidden host on the page"
         },
         {
+          "name": "no-email-wall",
+          "pass": true,
+          "detail": "the page asks for nothing"
+        },
+        {
+          "name": "headline",
+          "pass": true,
+          "detail": "headline present"
+        },
+        {
           "name": "eyebrow",
           "pass": true,
           "detail": "CONTINUE WITH VALICE PRESS"
@@ -2437,9 +2464,24 @@
           "detail": "3 faces: AAAAAA+LiberationSerif-Bold, AAAAAA+LiberationSerif-Italic, AAAAAA+LiberationSerif"
         },
         {
+          "name": "qr-floor",
+          "pass": true,
+          "detail": "28.7% of usable height"
+        },
+        {
+          "name": "qr-module-size",
+          "pass": true,
+          "detail": "1.95 mm per module"
+        },
+        {
           "name": "pdf-metadata",
           "pass": true,
-          "detail": "title=\"Seneca: Selected Dialogues: Five Dialogues Complete in Aubrey Stewart's Translation, Annotated — with an Argument Map of All 79 Chapters, a Glossary, a Biographical Index and a Chronology\" author=\"Emre Doğan\""
+          "detail": "title=\"Seneca: Selected Dialogues: Five Dialogues Complete in Aubrey Stewart's Translation, Annotated — with an Argument Map of All 79 Chapters, a Glossary, a Biographical Index and a Chronology\" author=\"Seneca · translated by Aubrey Stewart · edited and annotated by Emre Doğan\""
+        },
+        {
+          "name": "qr-matches-url",
+          "pass": true,
+          "detail": "29×29 modules read off the printed page at 300 dpi and matched the code for https://valicepress.com/companion/seneca"
         }
       ]
     },
