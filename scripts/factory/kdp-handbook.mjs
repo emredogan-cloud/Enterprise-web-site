@@ -63,12 +63,19 @@ const files = {
   interior: join(PROJ, VOL ? `OUTPUT/interior${S}.pdf` : "OUTPUT/interior-main.pdf"),
   wrap: join(PROJ, `ASSETS/cover/paperback-wrap${S}-v1.pdf`),
   kindle: join(PROJ, `ASSETS/cover/kindle${S}-v1.jpg`),
+  // §06 tells the Founder to upload no file whose checksum is not in §01, and §01 used to
+  // list the paperback wrap only — so the hardcover wrap it names in §03 had no checksum
+  // to check against.
+  hardcoverWrap: join(PROJ, `ASSETS/cover/hardcover-wrap${S}-v1.pdf`),
   epub: join(PROJ, epub.file.startsWith("OUTPUT") ? epub.file : join("OUTPUT", epub.file)),
 };
 const pages = manifest?.interior?.pagesAfter ?? interior.pages;
 // A two-volume build nests the print geometry under `paperback`; a single-volume one
 // keeps it at the top of the record. Same numbers, two shapes.
 const pbk = cover.paperback ?? cover;
+// The trim, read off the built file rather than written out — this line used to say
+// "6.000 × 9.000 in" for every book the handbook was generated for.
+const trimIn = `${(interior.trim?.[0] ?? 6).toFixed(3)} × ${(interior.trim?.[1] ?? 9).toFixed(3)} in`;
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 /**
  * Section 03 used to be one hard-coded sentence — "None planned." — because the first
@@ -165,7 +172,7 @@ ul{margin:7px 0 7px 20px;padding:0} li{margin:4px 0}
 <h2>Status — measured, not claimed</h2>
 <table>
 <tr><th>Check</th><th>Result</th></tr>
-<tr><td>Print preflight</td><td><b>ok</b> — 4 fonts all embedded, 6.000 × 9.000 in, ${pages} pp</td></tr>
+<tr><td>Print preflight</td><td><b>ok</b> — ${esc(interior.fonts)}, ${trimIn}, ${pages} pp</td></tr>
 <tr><td>EPUB</td><td><b>epubcheck ${esc(epub.epubcheck?.tail?.[1] ?? "see QA/epub.json")}</b></td></tr>
 <tr><td>Cover</td><td>3 pass, 0 warn, 0 error; title ${(cover.titleShareOfHeight * 100).toFixed(1)}% of height</td></tr>
 <tr><td>Differentiation</td><td><b>${(diff.editorShare * 100).toFixed(1)}%</b> original matter (${diff.editorWords.toLocaleString("en-US")} words)</td></tr>
@@ -181,6 +188,7 @@ ${manifest ? `<h3>What the companion pipeline verified by reading the finished f
 <table><tr><th>File</th><th>SHA-256</th><th>Facts</th></tr>
 <tr><td>${VOL ? `interior${S}.pdf` : "interior-main.pdf"}</td><td class="f">${sha(files.interior)}</td><td>${bytes(files.interior)} bytes · ${pages} pp</td></tr>
 <tr><td>paperback-wrap${S}-v1.pdf</td><td class="f">${sha(files.wrap)}</td><td>${bytes(files.wrap)} bytes · 1 page</td></tr>
+${existsSync(files.hardcoverWrap) ? `<tr><td>hardcover-wrap${S}-v1.pdf</td><td class="f">${sha(files.hardcoverWrap)}</td><td>${bytes(files.hardcoverWrap)} bytes · 1 page</td></tr>` : ""}
 <tr><td>kindle${S}-v1.jpg</td><td class="f">${sha(files.kindle)}</td><td>${bytes(files.kindle)} bytes · 1600×2560</td></tr>
 <tr><td>epub <span class="k">(not for KDP)</span></td><td class="f">${sha(files.epub)}</td><td>${bytes(files.epub)} bytes</td></tr>
 </table></div>

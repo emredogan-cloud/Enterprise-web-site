@@ -1582,7 +1582,7 @@ const KWAIDAN: Companion = {
     "this page is free and works whether or not you buy the book.",
   intro:
     "Free material for Hearn's seventeen ghost stories and three insect essays: " +
-    "the twelve old provinces against the prefectures they became, the creatures " +
+    "the thirteen old provinces against the prefectures they became, the creatures " +
     "named by what folklore calls them, where each of them would sit in Codex " +
     "Bestiarium, the register of what Hearn took and what he was told, and a sheet " +
     "for reading the book aloud by candlelight.",
@@ -1605,8 +1605,8 @@ const KWAIDAN: Companion = {
       id: "provinces-card",
       title: "The Provinces",
       description:
-        "The twelve old provinces Hearn names — Musashi, Iyo, Mutsu, Tamba, Noto, " +
-        "Kai, Shinano and the rest — against the modern prefectures they became, " +
+        "The thirteen old provinces Hearn names — Musashi, Iyo, Mutsu, Tamba, Noto, " +
+        "Kai, Shinano, Kii and the rest — against the modern prefectures they became, " +
         "with the tale each belongs to. It also carries the correction: the text " +
         "places Niigata in Echizen, and Niigata is in Echigo. That slip has been " +
         "reprinted for a century and the edition leaves Hearn's sentence alone and " +
@@ -1626,7 +1626,7 @@ const KWAIDAN: Companion = {
         "would take in Codex Bestiarium.",
       kind: "static",
       href: "/companion/kwaidan/yokai-cards.pdf",
-      meta: "PDF · US Letter · 1 page",
+      meta: "PDF · US Letter · 2 pages",
     },
     {
       id: "codex-concordance",
@@ -1640,7 +1640,7 @@ const KWAIDAN: Companion = {
         "prints all six classes so a reader holding one book can place the other.",
       kind: "static",
       href: "/companion/kwaidan/codex-concordance.pdf",
-      meta: "PDF · US Letter · 1 page",
+      meta: "PDF · US Letter · 2 pages",
     },
     {
       id: "register-card",

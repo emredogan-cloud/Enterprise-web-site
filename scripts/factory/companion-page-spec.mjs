@@ -121,7 +121,9 @@ const TYPE = {
 export const COMPANION_PAGE_COPY = {
   kwaidan: {
     companionSlug: "kwaidan",
-    imprint: "Vâliçe Press",
+    // VALICE, not Vâliçe: this book's title page and imprint page both read Valice Press,
+    // and its companion leaf now matches them. The other books keep the stylised form.
+    imprint: "Valice Press",
     headline: "The sheets that go with\nthis book",
     promise:
       "Five sheets, free to print: the provinces, the creatures, where each of " +
@@ -502,7 +504,7 @@ export const COMPANION_PAGE_PLAN = {
       paperback: {
         mode: "native", page: 142, pagesBefore: 142, pagesAfter: 142,
         recto: false, folio: null,
-        builtBy: "BUILD/build_interior.py — the book's own companion leaf, on the last verso",
+        builtBy: "BUILD/build_interior.py — the book's own companion leaf, the last page",
       },
       hardcover: {
         mode: "native", page: 142, pagesBefore: 142, pagesAfter: 142,

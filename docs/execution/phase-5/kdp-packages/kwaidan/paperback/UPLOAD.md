@@ -16,11 +16,11 @@ This edition has never been uploaded. The file below is its first. A dedicated c
 
 ```
 /home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/06-KWAIDAN/OUTPUT/interior-main.pdf
-sha256 8b8e7dbc4fe8b74ff13628a5c9f68a49b8a8d40ca1b8f5e6c34b9200ab522618
-1,418,374 bytes · 142 pages
+sha256 7d7b8786aa0005a220908dedc80abd72ef4a3465930dd7d0eb7ecd45ed782110
+1,424,968 bytes · 142 pages
 ```
 
-Nothing was replaced: the companion leaf was set by `BUILD/build_interior.py — the book's own companion leaf, on the last verso` when the book was typeset, so there is no earlier build.
+Nothing was replaced: the companion leaf was set by `BUILD/build_interior.py — the book's own companion leaf, the last page` when the book was typeset, so there is no earlier build.
 
 ## In KDP
 
@@ -34,8 +34,8 @@ Nothing was replaced: the companion leaf was set by `BUILD/build_interior.py —
 - PASS · **page-count** — 142 pages (expected 142)
 - PASS · **printed-url** — valicepress.com/companion/kwaidan
 - PASS · **canonical-host** — no forbidden host on the page
-- PASS · **eyebrow** — CONTINUE WITH VÂLIÇE PRESS
-- PASS · **fonts-embedded** — 5 faces: AAAAAA+Cinzel-Regular, AAAAAA+NotoSerifDisplay-Italic, AAAAAA+NotoSerifDisplay-Bold, AAAAAA+NotoSerifDisplay-Regular, AAAAAA+NotoSerifDisplay-BoldItalic
+- PASS · **eyebrow** — CONTINUE WITH VALICE PRESS
+- PASS · **fonts-embedded** — 6 faces: AAAAAA+Cinzel-Regular, AAAAAA+NotoSerifDisplay-Italic, AAAAAA+NotoSerifDisplay-Bold, AAAAAA+NotoSerifDisplay-Regular, AAAAAA+NotoSerifDisplay-BoldItalic, AAAAAA+NotoSerifCJKjp-Regular
 - PASS · **pdf-metadata** — title="Kwaidan: Stories and Studies of Strange Things" author="Lafcadio Hearn · edited and annotated by Emre Doğan"
 
 Regenerate with `node scripts/factory/build-companion-pages.mjs --commit --slug kwaidan`.
