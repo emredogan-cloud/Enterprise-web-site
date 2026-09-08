@@ -1,0 +1,289 @@
+{
+ "lineBreakHyphensJoined": 103,
+ "tokensSeen": 30124,
+ "tokensCorrected": 6,
+ "correctionRate": 0.0002,
+ "distinctCorrections": 6,
+ "corrections": [
+  {
+   "from": "tha",
+   "to": "the",
+   "class": "e read as a at word end",
+   "count": 1
+  },
+  {
+   "from": "npon",
+   "to": "upon",
+   "class": "u read as n — npon",
+   "count": 1
+  },
+  {
+   "from": "Kow",
+   "to": "Row",
+   "class": "R read as K — Keversed, Kow",
+   "count": 1
+  },
+  {
+   "from": "Begina",
+   "to": "Regina",
+   "class": "R read as B — Beversed, Bhymes",
+   "count": 1
+  },
+  {
+   "from": "Eegina",
+   "to": "Regina",
+   "class": "R read as E at the start of a word — Eemarkable, Eeversible",
+   "count": 1
+  },
+  {
+   "from": "hirn",
+   "to": "him",
+   "class": "m read as rn",
+   "count": 1
+  }
+ ],
+ "residueDistinct": 277,
+ "residueTokens": 326,
+ "residueTop": [
+  {
+   "word": "pennyworth",
+   "count": 6
+  },
+  {
+   "word": "indiarubber",
+   "count": 4
+  },
+  {
+   "word": "fourpence",
+   "count": 4
+  },
+  {
+   "word": "fivepence",
+   "count": 4
+  },
+  {
+   "word": "lOd",
+   "count": 4
+  },
+  {
+   "word": "testator",
+   "count": 3
+  },
+  {
+   "word": "lias",
+   "count": 3
+  },
+  {
+   "word": "Testator",
+   "count": 3
+  },
+  {
+   "word": "Messrs",
+   "count": 3
+  },
+  {
+   "word": "versa",
+   "count": 3
+  },
+  {
+   "word": "qui",
+   "count": 2
+  },
+  {
+   "word": "ye'll",
+   "count": 2
+  },
+  {
+   "word": "Trove",
+   "count": 2
+  },
+  {
+   "word": "haymaking",
+   "count": 2
+  },
+  {
+   "word": "Topers",
+   "count": 2
+  },
+  {
+   "word": "eightpence",
+   "count": 2
+  },
+  {
+   "word": "Ptizzles",
+   "count": 2
+  },
+  {
+   "word": "counterpoise",
+   "count": 2
+  },
+  {
+   "word": "parlourmaid",
+   "count": 2
+  },
+  {
+   "word": "Virgam",
+   "count": 2
+  },
+  {
+   "word": "Mater",
+   "count": 2
+  },
+  {
+   "word": "Vir-gam",
+   "count": 2
+  },
+  {
+   "word": "Ma-ter",
+   "count": 2
+  },
+  {
+   "word": "nnder",
+   "count": 2
+  },
+  {
+   "word": "lOy",
+   "count": 2
+  },
+  {
+   "word": "feefc",
+   "count": 2
+  },
+  {
+   "word": "Tichborne",
+   "count": 2
+  },
+  {
+   "word": "mnst",
+   "count": 2
+  },
+  {
+   "word": "liveth",
+   "count": 2
+  },
+  {
+   "word": "Fio",
+   "count": 2
+  },
+  {
+   "word": "ifc",
+   "count": 2
+  },
+  {
+   "word": "Draper's",
+   "count": 2
+  },
+  {
+   "word": "aaaa",
+   "count": 1
+  },
+  {
+   "word": "bbbb",
+   "count": 1
+  },
+  {
+   "word": "cccc",
+   "count": 1
+  },
+  {
+   "word": "figiires",
+   "count": 1
+  },
+  {
+   "word": "TKe",
+   "count": 1
+  },
+  {
+   "word": "Market-womap",
+   "count": 1
+  },
+  {
+   "word": "hergtock",
+   "count": 1
+  },
+  {
+   "word": "Captiw",
+   "count": 1
+  },
+  {
+   "word": "xxxill",
+   "count": 1
+  },
+  {
+   "word": "thres",
+   "count": 1
+  },
+  {
+   "word": "overpassing",
+   "count": 1
+  },
+  {
+   "word": "Eecueil",
+   "count": 1
+  },
+  {
+   "word": "Problemes",
+   "count": 1
+  },
+  {
+   "word": "plaisants",
+   "count": 1
+  },
+  {
+   "word": "delect",
+   "count": 1
+  },
+  {
+   "word": "ables",
+   "count": 1
+  },
+  {
+   "word": "nombres",
+   "count": 1
+  },
+  {
+   "word": "LYII",
+   "count": 1
+  },
+  {
+   "word": "divil",
+   "count": 1
+  },
+  {
+   "word": "jist",
+   "count": 1
+  },
+  {
+   "word": "tak'",
+   "count": 1
+  },
+  {
+   "word": "awa",
+   "count": 1
+  },
+  {
+   "word": "tottle",
+   "count": 1
+  },
+  {
+   "word": "tould",
+   "count": 1
+  },
+  {
+   "word": "Avalked",
+   "count": 1
+  },
+  {
+   "word": "trove",
+   "count": 1
+  },
+  {
+   "word": "wherewith",
+   "count": 1
+  },
+  {
+   "word": "discoverable",
+   "count": 1
+  }
+ ]
+}

@@ -1,0 +1,37 @@
+{
+ "chapters_in_book": 9,
+ "montauban": 1,
+ "perkins": 1,
+ "cardan": 6,
+ "euler": 2,
+ "bachet": 1,
+ "shilling_selected": 17,
+ "sixpence_selected": 7,
+ "pence_selected": 37,
+ "sovereign_selected": 2,
+ "guinea_selected": 1,
+ "lucifer_selected": 6,
+ "key_chapters": [
+  "II",
+  "III",
+  "IV",
+  "IX",
+  "V",
+  "VI",
+  "VII",
+  "VIII",
+  "X"
+ ],
+ "chapter_openers": [
+  "I",
+  "II",
+  "III",
+  "IV",
+  "IX",
+  "V",
+  "VI",
+  "VII",
+  "VIII",
+  "X"
+ ]
+}

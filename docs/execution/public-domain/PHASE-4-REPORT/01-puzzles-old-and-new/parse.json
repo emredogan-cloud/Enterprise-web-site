@@ -1,0 +1,91 @@
+{
+ "chapters": {
+  "IV": {
+   "puzzles": 96,
+   "keys": 83,
+   "puzzleWords": 7192,
+   "keyWords": 14762
+  },
+  "V": {
+   "puzzles": 16,
+   "keys": 16,
+   "puzzleWords": 2596,
+   "keyWords": 1489
+  },
+  "VI": {
+   "puzzles": 26,
+   "keys": 24,
+   "puzzleWords": 1835,
+   "keyWords": 2263
+  },
+  "VII": {
+   "puzzles": 19,
+   "keys": 15,
+   "puzzleWords": 671,
+   "keyWords": 1186
+  },
+  "IX": {
+   "puzzles": 38,
+   "keys": 42,
+   "puzzleWords": 1380,
+   "keyWords": 1222
+  }
+ },
+ "totalPuzzles": 195,
+ "totalKeys": 180,
+ "totalWords": 34596,
+ "sequenceProblems": [
+  "chapter IV puzzles: 32 -> 34",
+  "chapter IV puzzles: 47 -> 56",
+  "chapter IV puzzles: 56 -> 58",
+  "chapter IV puzzles: 65 -> 84",
+  "chapter IV puzzles: 84 -> 83",
+  "chapter IV puzzles: 83 -> 69",
+  "chapter IV puzzles: 75 -> 74",
+  "chapter IV puzzles: 74 -> 73",
+  "chapter IV puzzles: 73 -> 79",
+  "chapter IV puzzles: 92 -> 94",
+  "chapter IV puzzles: 97 -> 99",
+  "chapter IV puzzles: 105 -> 144",
+  "chapter IV puzzles: 144 -> 109",
+  "chapter IV key: 17 -> 19",
+  "chapter IV key: 25 -> 27",
+  "chapter IV key: 31 -> 34",
+  "chapter IV key: 40 -> 89",
+  "chapter IV key: 89 -> 88",
+  "chapter IV key: 88 -> 44",
+  "chapter IV key: 44 -> 51",
+  "chapter IV key: 52 -> 54",
+  "chapter IV key: 56 -> 55",
+  "chapter IV key: 56 -> 60",
+  "chapter IV key: 65 -> 84",
+  "chapter IV key: 84 -> 83",
+  "chapter IV key: 83 -> 69",
+  "chapter IV key: 71 -> 79",
+  "chapter IV key: 85 -> 88",
+  "chapter IV key: 91 -> 135",
+  "chapter IV key: 135 -> 134",
+  "chapter IV key: 134 -> 133",
+  "chapter IV key: 133 -> 99",
+  "chapter IV key: 108 -> 111",
+  "chapter VI puzzles: 14 -> 16",
+  "chapter VI key: 2 -> 4",
+  "chapter VI key: 13 -> 15",
+  "chapter VI key: 16 -> 18",
+  "chapter VII key: 7 -> 9",
+  "chapter VII key: 12 -> 14",
+  "chapter VII key: 15 -> 17",
+  "chapter IX puzzles: 4 -> 6",
+  "chapter IX puzzles: 23 -> 25",
+  "chapter IX puzzles: 25 -> 32",
+  "chapter IX puzzles: 33 -> 35",
+  "chapter IX puzzles: 38 -> 31",
+  "chapter IX puzzles: 31 -> 27",
+  "chapter IX puzzles: 27 -> 30",
+  "chapter IX puzzles: 30 -> 39",
+  "chapter IX key: 19 -> 21",
+  "chapter IX key: 41 -> 43",
+  "chapter IX key: 43 -> 45"
+ ],
+ "ocrCorrectedMarkers": 52
+}

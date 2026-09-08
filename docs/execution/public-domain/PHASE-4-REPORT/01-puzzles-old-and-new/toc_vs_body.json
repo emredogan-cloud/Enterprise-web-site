@@ -1,0 +1,119 @@
+{
+ "chapters": {
+  "IV": {
+   "method": "title match (fuzzy, ratio >= 0.82)",
+   "tocCount": 103,
+   "bodyMarkers": 96,
+   "titlesNotFoundInBody": [
+    {
+     "n": 18,
+     "title": "Another Way to Make 100",
+     "closest": 0.769
+    },
+    {
+     "n": 28,
+     "title": "The Captives in the Tower",
+     "closest": 0.612
+    },
+    {
+     "n": 48,
+     "title": "A Feat of Divination",
+     "closest": 0.6
+    },
+    {
+     "n": 51,
+     "title": "The Three Legacies",
+     "closest": 0.8
+    },
+    {
+     "n": 54,
+     "title": "Tenth Man Out",
+     "closest": 0.538
+    },
+    {
+     "n": 55,
+     "title": "Ninth Man Out",
+     "closest": 0.519
+    },
+    {
+     "n": 57,
+     "title": "The Wolf, the Goat, and the Cabbages",
+     "closest": 0.586
+    },
+    {
+     "n": 66,
+     "title": "The Farmer and his Three Daughters",
+     "closest": 0.621
+    },
+    {
+     "n": 108,
+     "title": "Profit and Loss t",
+     "closest": 0.452
+    }
+   ],
+   "missingCount": 9
+  },
+  "V": {
+   "method": "title match (fuzzy, ratio >= 0.82)",
+   "tocCount": 14,
+   "bodyMarkers": 16,
+   "titlesNotFoundInBody": [],
+   "missingCount": 0
+  },
+  "VI": {
+   "method": "number sequence (chapter has no puzzle titles)",
+   "tocCount": 25,
+   "bodyMarkers": 26,
+   "titlesNotFoundInBody": [
+    {
+     "n": 15,
+     "title": "With 21 Counters, following the lines of a"
+    }
+   ],
+   "missingCount": 1
+  },
+  "VII": {
+   "method": "number sequence (chapter has no puzzle titles)",
+   "tocCount": 19,
+   "bodyMarkers": 19,
+   "titlesNotFoundInBody": [],
+   "missingCount": 0
+  },
+  "IX": {
+   "method": "title match (fuzzy, ratio >= 0.82)",
+   "tocCount": 42,
+   "bodyMarkers": 38,
+   "titlesNotFoundInBody": [
+    {
+     "n": 24,
+     "title": "The Draper's Puzzle",
+     "closest": 0.524
+    },
+    {
+     "n": 26,
+     "title": "Tue Charmed Circle",
+     "closest": 0.439
+    },
+    {
+     "n": 29,
+     "title": "A Queer Calculation",
+     "closest": 0.562
+    },
+    {
+     "n": 34,
+     "title": "A New Valuation",
+     "closest": 0.562
+    },
+    {
+     "n": 45,
+     "title": "Magic Made Easy . '",
+     "closest": 0.552
+    }
+   ],
+   "missingCount": 5
+  }
+ },
+ "tocTotal": 203,
+ "bodyMarkerTotal": 195,
+ "missingTotal": 15
+}
