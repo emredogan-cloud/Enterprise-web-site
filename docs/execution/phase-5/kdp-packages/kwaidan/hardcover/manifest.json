@@ -7,8 +7,8 @@
   "kdpState": "not_created",
   "interior": {
     "path": "/home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/06-KWAIDAN/OUTPUT/interior-main.pdf",
-    "sha256": "8b8e7dbc4fe8b74ff13628a5c9f68a49b8a8d40ca1b8f5e6c34b9200ab522618",
-    "bytes": 1418374,
+    "sha256": "7d7b8786aa0005a220908dedc80abd72ef4a3465930dd7d0eb7ecd45ed782110",
+    "bytes": 1424968,
     "pagesBefore": 142,
     "pagesAfter": 142,
     "companionPage": 142,
@@ -87,12 +87,12 @@
     {
       "name": "eyebrow",
       "pass": true,
-      "detail": "CONTINUE WITH VÂLIÇE PRESS"
+      "detail": "CONTINUE WITH VALICE PRESS"
     },
     {
       "name": "fonts-embedded",
       "pass": true,
-      "detail": "5 faces: AAAAAA+Cinzel-Regular, AAAAAA+NotoSerifDisplay-Italic, AAAAAA+NotoSerifDisplay-Bold, AAAAAA+NotoSerifDisplay-Regular, AAAAAA+NotoSerifDisplay-BoldItalic"
+      "detail": "6 faces: AAAAAA+Cinzel-Regular, AAAAAA+NotoSerifDisplay-Italic, AAAAAA+NotoSerifDisplay-Bold, AAAAAA+NotoSerifDisplay-Regular, AAAAAA+NotoSerifDisplay-BoldItalic, AAAAAA+NotoSerifCJKjp-Regular"
     },
     {
       "name": "pdf-metadata",
