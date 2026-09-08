@@ -16,7 +16,7 @@ This edition has never been uploaded. The file below is its first. A dedicated c
 
 ```
 /home/emre/Downloads/MY-DİGİTAL-BOOK/ROADMAP-BOOKS/06-KWAIDAN/OUTPUT/interior-main.pdf
-sha256 36a849bf0a126e352b8ad7938be97d6f98b3f81f5db14a2e24c9867b037a941b
+sha256 8b8e7dbc4fe8b74ff13628a5c9f68a49b8a8d40ca1b8f5e6c34b9200ab522618
 1,418,374 bytes · 142 pages
 ```
 
