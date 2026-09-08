@@ -42,6 +42,7 @@ small{color:var(--muted)}
 <div><b>3</b><span>Yayınlanan makale (canlı, 200)</span></div>
 <div><b>86</b><span>IndexNow'a gönderilen URL (HTTP 202)</span></div>
 <div><b>3</b><span>Ortaklık taslağı (gönderilmedi)</span></div>
+<div><b>1</b><span>Amazon Attribution etiketi (oluşturuldu)</span></div>
 </div>
 
 <nav><ol>
@@ -116,6 +117,7 @@ small{color:var(--muted)}
 <h2 id="s5">5. Yürütülen kampanyalar <span class="tag te">TEST</span> <span class="tag no">ENGELLENDİ</span></h2>
 <p><b>Amazon Ads — yapılan:</b> konsola girildi; hesabın var olduğu, US faturalamanın aktif olduğu, sıfır kampanya ve 0 $ ömür boyu harcama olduğu doğrulandı. Sponsored Products oluşturucusu açıldı; <b>B0HG3KMK9L ciltsiz ürün olarak eklendi</b>; hedefleme "otomatik → grup bazlı teklif" olarak seçildi; negatif anahtar kelime paneli açıldı.</p>
 <p><b>Yapılamayan:</b> teklif tutarlarını ve negatif kelimeleri forma yazmak. Bu ortamın izin sınıflandırıcısı önce 17 adımlı toplu girişi, sonra tek bir "0.45" yazma eylemini reddetti. Kurucunun reddi değildir; etrafından dolaşılmadı. <b>Kampanya oluşturulmadı, harcama 0 $.</b> Form, kurucunun Chrome'unda ürün seçili hâlde açık bırakıldı (<code>advertising.amazon.com/cb/sp</code>); her alanın değeri <code>AMAZON_ADS_CAMPAIGN_SPEC_2026-09-08.md</code> içinde.</p>
+<p><b>Amazon Attribution — yapıldı</b> <span class="tag ex">YAPILDI</span>: "Valice site - World Games pb" kampanyası oluşturuldu (ID <code>585752812173052673</code>; ad group <code>valicepress-com-world-games-pb</code>; publisher "Valice Press website (valicepress.com)"; channel Display; ürün B0HG3KMK9L). Etiket URL: <code>https://www.amazon.com/dp/B0HG3KMK9L?maas=maas_adg_464E7BF296979686C0BCF4F5B808E585_afap_abs&amp;ref_=aa_maas&amp;tag=maas</code>. Bu URL kataloğa (<code>valice-catalog.mjs</code> → World Games paperback <code>amazonUrl</code>) yazılıp yükleyici çalıştırıldığında sitedeki "Buy on Amazon" tıklamaları Amazon satışına bağlanır; 14 günlük pencere, ücretsiz.</p>
 <p><b>Deney tasarımı (değişmedi, 7 Eylül raporu):</b> Portfolio 200 $ sert tavan · C1 otomatik, close 0,45 / loose 0,35 / substitutes 0,40 / complements 0,30 $, 4,50 $/gün · C2 exact 10 terim 0,50/0,40 $, 3 $/gün · sabit teklif · yerleşim %0 · "ek ülke" kapalı · durdurma kuralları: hedefte 30 tıklama/0 sipariş → durdur; kampanyada 100 tıklama/0 sipariş → sayfaya bak, teklife değil; TBM &gt; 0,65 $ → −%20; 72 saatten taze veriyle karar yok.</p>
 <p><b>Hipotez:</b> "Sıfır yorumlu, 22,99 $'lık bir ciltsiz, oyun-tarihi rafında ≤ 0,40 $ TBM ile ≥ %4 dönüşüm yapabilir mi?" — 200 $ ≈ 400–500 tıklama, ilk CVR nokta tahmini ±%1,8.</p>
 <div class="note warn"><b>Reklamdan önce iki sayfa kusuru</b> (bugün canlı sayfada bulundu): (1) <b>Kategori</b> — amazon.com kitabı <i>Teen &amp; Young Adult</i> altında gösteriyor, "ilgili ürünler" şeridi çocuk uyku kitapları; reklam bu sayfaya iner. (2) <b>A+ içerik yayında değil</b> — sekiz modül üretilmiş (<code>08_OUTPUT/APLUS/</code>), sayfada yok. Kategori düzelmeden reklam başlamamalı; A+ onayı beklenmeyebilir.</div>
@@ -161,7 +163,7 @@ small{color:var(--muted)}
 <p><b>Ölçülmüş CAC yok</b> (müşteri yok). Kural olarak: World Games ciltsiz için <b>azami edinim maliyeti = 10,07 $</b> (net telif) — reklam sıfır kârla bu kadar taşır; sürdürülebilir hedef ≤ 0,7 × başabaş = <b>≤ 7,05 $/sipariş</b>, yani ≤ %30,7 ACOS / ≥ 3,26× ROAS. TBM tavanı %8 dönüşümde 0,81 $, %5'te 0,50 $. Amazon'un önerdiği 0,75 $ bu yüzden reddedildi.</p>
 
 <h2 id="s14">14–15. Doğrudan satış etkisi · e-posta büyümesi</h2>
-<p>Doğrudan satış: 0 sipariş; 24 satın alınabilir e-kitap, Paddle 19 ürün. Bugünkü üç makale companion'a yönlendiriyor; companion'daki isteğe bağlı e-posta formu <code>source=world-games-companion</code> etiketini taşıyor. <b>Abone artışı: 0</b> (ölçüm başlangıcı bugün). Reklamdan siteye trafik <i>beklenmiyor</i>; köprü ters yönde çalışır (Amazon alıcısı → kitabın 160. sayfasındaki QR → companion). World Games'in QR'lı iç dosyası (A1/A2) KDP'ye <b>hâlâ yüklenmedi</b> — reklam alıcısı kitabın son sayfasında bugün hiçbir şey görmez. Kurucu listesi §1'de.</p>
+<p>Doğrudan satış: 0 sipariş; 24 satın alınabilir e-kitap, Paddle 19 ürün. Bugünkü üç makale companion'a yönlendiriyor; companion'daki isteğe bağlı e-posta formu <code>source=world-games-companion</code> etiketini taşıyor. <b>Abone artışı: 0</b> (ölçüm başlangıcı bugün). Site → Amazon yönü için Attribution etiketi bugün oluşturuldu (§5). Reklamdan siteye trafik <i>beklenmiyor</i>; köprü ters yönde çalışır (Amazon alıcısı → kitabın 160. sayfasındaki QR → companion). World Games'in QR'lı iç dosyası (A1/A2) KDP'ye <b>hâlâ yüklenmedi</b> — reklam alıcısı kitabın son sayfasında bugün hiçbir şey görmez. Kurucu listesi §1'de.</p>
 
 <h2 id="s16">16–17. Kazanan kreatif · kazanan kitle</h2>
 <p><b>Yok.</b> Hiçbir kreatif gösterim almadı. Kreatif adayı: özel metin "56 traditional games from 39 cultures, each with sourced rules and a board you can play from tonight. Sorted by how they work." (123 karakter, fiyat/yorum yok — moderasyon kuralı). Kapak küçük görselde düşük kontrastlı (7 Eylül tespiti); 5.000 gösterimde TTO &lt; %0,15 ise sorun teklif değil kapaktır.</p>
@@ -253,7 +255,7 @@ small{color:var(--muted)}
 <tr><td>Gösterim · tıklama · TBM · TTO · sipariş · ACOS · ROAS</td><td>Ads console → Sponsored ads reports (CSV → <code>data/ads/</code>)</td><td>72 saat</td><td>0</td></tr>
 <tr><td>Birim · telif · KENP</td><td>KDP Reports → Prior Months' Royalties</td><td>Ayın 3'ü</td><td>okunmadı</td></tr>
 <tr><td>TACOS</td><td>reklam ÷ (KDP telif + direct net)</td><td>Aylık</td><td>—</td></tr>
-<tr><td>Site → Amazon</td><td>Amazon Attribution etiketi</td><td>Haftalık</td><td>etiket yok</td></tr>
+<tr><td>Site → Amazon</td><td>Amazon Attribution etiketi</td><td>Haftalık</td><td><b>etiket oluşturuldu</b> — kampanya <code>585752812173052673</code>, ad group <code>valicepress-com-world-games-pb</code>; 0 tıklama</td></tr>
 <tr><td>Companion indirme · abone (source)</td><td><code>analytics_events</code> · Resend</td><td>Haftalık</td><td>1 · 0</td></tr>
 <tr><td>Direct sipariş · tekrar</td><td><code>orders</code></td><td>Haftalık</td><td>0</td></tr>
 <tr><td>Google/Bing gösterimi</td><td>GSC API (<code>scripts/seo/gsc-export.mjs</code>) · Bing WMT</td><td>Haftalık</td><td>0 · bilinmiyor</td></tr>

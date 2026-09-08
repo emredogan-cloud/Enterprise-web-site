@@ -177,7 +177,15 @@ describe("Amazon destinations", () => {
         if (!f.amazonUrl) continue;
         expect(f.amazonAsin, `${b.slug}/${f.format}: URL without an ASIN`).toBeTruthy();
         expect(f.amazonAsin, `${b.slug}/${f.format}: malformed ASIN`).toMatch(ASIN);
-        expect(f.amazonUrl).toBe(`https://www.amazon.com/dp/${f.amazonAsin}`);
+        // The destination is always the verified ASIN's own /dp/ page. An
+        // Amazon Attribution tag (created in the Ads console, 2026-09-08) is
+        // allowed as a query string on that same page: it changes what
+        // Amazon reports, not where the reader lands.
+        const dp = `https://www.amazon.com/dp/${f.amazonAsin}`;
+        expect(
+          f.amazonUrl === dp || f.amazonUrl.startsWith(`${dp}?`),
+          `${b.slug}/${f.format}: amazonUrl must be the ASIN's /dp/ page, optionally with a query string`,
+        ).toBe(true);
       }
     }
   });
