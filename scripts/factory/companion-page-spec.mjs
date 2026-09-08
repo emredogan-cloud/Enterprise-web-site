@@ -119,6 +119,31 @@ const TYPE = {
  * is written for a reader holding the printed book, not for a web page.
  */
 export const COMPANION_PAGE_COPY = {
+  kwaidan: {
+    companionSlug: "kwaidan",
+    // VALICE, not Vâliçe: this book's title page and imprint page both read Valice Press,
+    // and its companion leaf now matches them. The other books keep the stylised form.
+    imprint: "Valice Press",
+    headline: "The sheets that go with\nthis book",
+    promise:
+      "Five sheets, free to print: the provinces, the creatures, where each of " +
+      "them sits in the Codex, the register of what Hearn was told, and a way " +
+      "to read the book aloud by candlelight.",
+    listHeading: "WHAT IS WAITING FOR YOU",
+    bullets: [
+      { asset: "provinces-card", term: "The Provinces Card", gloss: "the twelve old provinces against the prefectures they became — including the one the text gets wrong" },
+      { asset: "yokai-cards", term: "The Yōkai Cards", gloss: "fifteen creatures, one to a card, with the tale each appears in and its class in Codex Bestiarium" },
+      { asset: "codex-concordance", term: "The Codex Concordance", gloss: "the six classes of Codex Bestiarium in full, and why not one of these fifteen is already in it" },
+      { asset: "register-card", term: "The Register of Provenance", gloss: "three stated origins, one evident, sixteen open — on one sheet, to read beside the tales" },
+      { asset: "hundred-candles", term: "The Hundred Candles", gloss: "hyakumonogatari kaidankai played with these seventeen tales, and the instruction to stop at the second-to-last" },
+    ],
+    // THE PAGE IS NOT RENDERED BY THIS MODULE. Kwaidan's companion leaf is typeset by
+    // the book's own builder in its own faces (mode: "native" in the plan below), and
+    // this entry exists so the tests, the linkage lint and the KDP packages can name
+    // the same page. `headline` and `promise` are the copy that page carries in spirit;
+    // the words on the leaf are BACK["companionCopy"] in the project.
+  },
+
   "the-great-book-of-world-games": {
     companionSlug: "world-games",
     imprint: "Vâliçe Press",
@@ -461,6 +486,34 @@ export const COMPANION_PAGE_COPY = {
  *             every file below is produced.
  */
 export const COMPANION_PAGE_PLAN = {
+  kwaidan: {
+    // `native`: the leaf is set by BUILD/build_interior.py, not spliced in, so
+    // pagesBefore and pagesAfter are the same number and there is no spine
+    // movement to account for. Both formats share the one interior.
+    style: {
+      fonts: {
+        regular: "/usr/share/fonts/truetype/noto/NotoSerifDisplay-Regular.ttf",
+        bold: "/usr/share/fonts/truetype/noto/NotoSerifDisplay-Bold.ttf",
+        italic: "/usr/share/fonts/truetype/noto/NotoSerifDisplay-Italic.ttf",
+      },
+      marginIn: 0.72,
+      rule: 0.7,
+      sans: false,
+    },
+    editions: {
+      paperback: {
+        mode: "native", page: 142, pagesBefore: 142, pagesAfter: 142,
+        recto: false, folio: null,
+        builtBy: "BUILD/build_interior.py — the book's own companion leaf, the last page",
+      },
+      hardcover: {
+        mode: "native", page: 142, pagesBefore: 142, pagesAfter: 142,
+        recto: false, folio: null,
+        builtBy: "BUILD/build_interior.py — the same interior as the paperback",
+      },
+    },
+  },
+
   "codex-mythologica-the-puzzle-book": {
     // `native`: the leaf was set by the book's own builder, not spliced in, so
     // pagesBefore and pagesAfter are the same number and the spine arithmetic

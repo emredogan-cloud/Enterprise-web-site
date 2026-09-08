@@ -1,13 +1,13 @@
 {
   "tool": "validate-catalog",
   "target": "https://valicepress.com",
-  "startedAt": "2026-09-08T04:18:25.640Z",
-  "finishedAt": "2026-09-08T04:19:34.551Z",
-  "ok": true,
+  "startedAt": "2026-09-08T10:09:22.023Z",
+  "finishedAt": "2026-09-08T10:10:32.689Z",
+  "ok": false,
   "counts": {
-    "pass": 127,
+    "pass": 126,
     "warn": 3,
-    "error": 0,
+    "error": 1,
     "skipped": 0
   },
   "findings": [
@@ -492,9 +492,9 @@
       "where": null
     },
     {
-      "level": "pass",
+      "level": "error",
       "check": "companion-asset",
-      "message": "95 companion assets answer 200",
+      "message": "/companion/kwaidan/codex-concordance.pdf → 404",
       "where": null
     },
     {
@@ -734,7 +734,7 @@
     {
       "level": "pass",
       "check": "r2",
-      "message": "books/kwaidan/master/v1/master.pdf 1.34 MB",
+      "message": "books/kwaidan/master/v1/master.pdf 1.35 MB",
       "where": null
     },
     {

@@ -63,13 +63,67 @@ const files = {
   interior: join(PROJ, VOL ? `OUTPUT/interior${S}.pdf` : "OUTPUT/interior-main.pdf"),
   wrap: join(PROJ, `ASSETS/cover/paperback-wrap${S}-v1.pdf`),
   kindle: join(PROJ, `ASSETS/cover/kindle${S}-v1.jpg`),
+  // §06 tells the Founder to upload no file whose checksum is not in §01, and §01 used to
+  // list the paperback wrap only — so the hardcover wrap it names in §03 had no checksum
+  // to check against.
+  hardcoverWrap: join(PROJ, `ASSETS/cover/hardcover-wrap${S}-v1.pdf`),
   epub: join(PROJ, epub.file.startsWith("OUTPUT") ? epub.file : join("OUTPUT", epub.file)),
 };
 const pages = manifest?.interior?.pagesAfter ?? interior.pages;
 // A two-volume build nests the print geometry under `paperback`; a single-volume one
 // keeps it at the top of the record. Same numbers, two shapes.
 const pbk = cover.paperback ?? cover;
+// The trim, read off the built file rather than written out — this line used to say
+// "6.000 × 9.000 in" for every book the handbook was generated for.
+const trimIn = `${(interior.trim?.[0] ?? 6).toFixed(3)} × ${(interior.trim?.[1] ?? 9).toFixed(3)} in`;
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+/**
+ * Section 03 used to be one hard-coded sentence — "None planned." — because the first
+ * books it was written for planned nothing beyond a paperback. Kwaidan's hardcover is
+ * built, priced and packaged, and the handbook told the Founder it did not exist. The
+ * section is now written from `formats[]` in project_config.json, which is the same
+ * place the catalogue and the price engine read, so it cannot disagree with them.
+ */
+function otherFormats() {
+  const rest = (cfg.formats ?? []).filter(
+    (f) => !["paperback", "ebook", "companion"].includes(f.format),
+  );
+  const built = rest.filter((f) => f.status === "built");
+  const not = rest.filter((f) => f.status !== "built");
+  if (!built.length) {
+    return `<div class="card"><p><b>None planned.</b> Each decision and its reason is in the `
+      + `catalogue entry's <code>blockers</code> and in the book report. The EPUB exists and is `
+      + `epubcheck-clean; it is for the direct store, not for KDP.</p></div>`;
+  }
+  const rows = built.map((f) => {
+    const g = cover[f.format] ?? null;
+    const wrapFile = join(PROJ, `ASSETS/cover/${f.format}-wrap${S}-v1.pdf`);
+    const geom = g
+      ? `<b>${g.fullIn ? `${g.fullIn.w} × ${g.fullIn.h} in` : `${g.wrapIn?.w} × ${g.wrapIn?.h} in`}</b>`
+        + `, spine <b>${g.spineIn} in</b> at ${pages} pp`
+        + (g.frontCoverIn ? `, case front ${g.frontCoverIn[0]} × ${g.frontCoverIn[1]} in` : "")
+      : `<b class="warn">no geometry recorded in QA/cover.json</b>`;
+    return `<tr><td><b>${esc(f.format)}</b></td>`
+      + `<td>list <b>$${f.listUsd?.toFixed(2) ?? "—"}</b> · ${esc(f.kdp ?? "not_created")}`
+      + `${f.asin ? ` · ASIN ${esc(f.asin)}` : " · no ASIN — nothing is listed"}<br>`
+      + `interior: the SAME file as the paperback, ${pages} pp<br>`
+      + `cover: <span class="f">${esc(wrapFile)}</span>${existsSync(wrapFile) ? "" : ' <b class="warn">MISSING</b>'}<br>`
+      + `${geom}<br><span class="k">${esc(f.priceBasis ?? "")}</span></td></tr>`;
+  }).join("");
+  const skipped = not.map(
+    (f) => `<li><b>${esc(f.format)}</b> — <code>${esc(f.status)}</code>. `
+      + `${esc(f.priceBasis ?? "No price computed; the decision and its reason are in the catalogue entry's blockers.")}</li>`,
+  ).join("");
+  return `<div class="card"><table><tr><th>Format</th><th>What is built, and what is not at KDP</th></tr>`
+    + `${rows}</table>`
+    + (skipped ? `<p class="note">Not built:</p><ul>${skipped}</ul>` : "")
+    + `<p class="note">The hardcover wrap geometry is READ FROM KDP's Cover Calculator, never `
+    + `derived: case laminate adds a wrap and a hinge that no formula here models. If the `
+    + `calculator disagrees with the row above, trust the calculator and rebuild.</p>`
+    + `<p class="note">The EPUB exists and is epubcheck-clean; it is for the direct store, not `
+    + `for KDP.</p></div>`;
+}
+
 const verif = (manifest?.verification ?? []).map(
   (v) => `<tr><td>${esc(v.name)}</td><td>${v.pass ? "<b>pass</b>" : "<b>FAIL</b>"}</td><td>${esc(v.detail ?? "")}</td></tr>`
 ).join("");
@@ -118,7 +172,7 @@ ul{margin:7px 0 7px 20px;padding:0} li{margin:4px 0}
 <h2>Status — measured, not claimed</h2>
 <table>
 <tr><th>Check</th><th>Result</th></tr>
-<tr><td>Print preflight</td><td><b>ok</b> — 4 fonts all embedded, 6.000 × 9.000 in, ${pages} pp</td></tr>
+<tr><td>Print preflight</td><td><b>ok</b> — ${esc(interior.fonts)}, ${trimIn}, ${pages} pp</td></tr>
 <tr><td>EPUB</td><td><b>epubcheck ${esc(epub.epubcheck?.tail?.[1] ?? "see QA/epub.json")}</b></td></tr>
 <tr><td>Cover</td><td>3 pass, 0 warn, 0 error; title ${(cover.titleShareOfHeight * 100).toFixed(1)}% of height</td></tr>
 <tr><td>Differentiation</td><td><b>${(diff.editorShare * 100).toFixed(1)}%</b> original matter (${diff.editorWords.toLocaleString("en-US")} words)</td></tr>
@@ -134,6 +188,7 @@ ${manifest ? `<h3>What the companion pipeline verified by reading the finished f
 <table><tr><th>File</th><th>SHA-256</th><th>Facts</th></tr>
 <tr><td>${VOL ? `interior${S}.pdf` : "interior-main.pdf"}</td><td class="f">${sha(files.interior)}</td><td>${bytes(files.interior)} bytes · ${pages} pp</td></tr>
 <tr><td>paperback-wrap${S}-v1.pdf</td><td class="f">${sha(files.wrap)}</td><td>${bytes(files.wrap)} bytes · 1 page</td></tr>
+${existsSync(files.hardcoverWrap) ? `<tr><td>hardcover-wrap${S}-v1.pdf</td><td class="f">${sha(files.hardcoverWrap)}</td><td>${bytes(files.hardcoverWrap)} bytes · 1 page</td></tr>` : ""}
 <tr><td>kindle${S}-v1.jpg</td><td class="f">${sha(files.kindle)}</td><td>${bytes(files.kindle)} bytes · 1600×2560</td></tr>
 <tr><td>epub <span class="k">(not for KDP)</span></td><td class="f">${sha(files.epub)}</td><td>${bytes(files.epub)} bytes</td></tr>
 </table></div>
@@ -160,7 +215,7 @@ ${manifest ? `<h3>What the companion pipeline verified by reading the finished f
 <p class="note card">If KDP's calculator disagrees with the spine above, <b>trust KDP and rebuild</b> — <code>python3 BUILD/build_cover.py</code> after correcting <code>PAGES</code>. Never stretch the PDF.</p></div>
 
 <h2>03 · Hardcover, large print, Kindle</h2>
-<div class="card"><p><b>None planned.</b> Each decision and its reason is in the catalogue entry's <code>blockers</code> and in the book report. The EPUB exists and is epubcheck-clean; it is for the direct store, not for KDP.</p></div>
+${otherFormats()}
 
 <h2>04 · Metadata</h2>
 <div class="card"><table>

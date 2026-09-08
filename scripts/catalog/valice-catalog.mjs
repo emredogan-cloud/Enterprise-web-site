@@ -1731,9 +1731,9 @@ export const BOOKS = [
     slug: "kwaidan",
     title: "Kwaidan: Stories and Studies of Strange Things",
     subtitle:
-      "The Complete 1904 Text, Annotated \u2014 17 Stories and 3 Insect Studies, with a Register of What Hearn Took, Was Told and Lived, a Y\u014dkai Index and a Glossary",
+      "The Complete 1904 Text, Annotated \u2014 17 Stories, 3 Insect Studies and Hearn\u2019s Own Notes, with a Register of What He Took, Was Told and Lived, a Y\u014dkai Index and a Codex Concordance",
     language: "en",
-    pageCount: 138,
+    pageCount: 142,
     categories: ["myth-and-folklore", "classics-and-philosophy"],
     authors: ["lafcadio-hearn", "emre-dogan"],
     bisac: ["FIC012000", "SOC011000"],
@@ -1753,9 +1753,9 @@ export const BOOKS = [
     directSaleBlockedBy: null,
     paddlePriceId: "pri_01m1v4n80k6g2tba6wt8882ehf",
     onelinePromise:
-      "The book behind the film: seventeen Japanese ghost stories and three essays on insects, complete in the 1904 text, with the three pieces whose origin Hearn states separated from the sixteen he leaves open.",
+      "The book behind the film: seventeen Japanese ghost stories and three essays on insects, complete in the 1904 text and in Hearn's own notes \u2014 and only his.",
     description:
-      "In January 1904 Lafcadio Hearn finished a book of ghost stories in Tokyo and signed the note in front of it with his initials. He had eight months to live. Seventeen tales came out of it \u2014 the blind lute-player who plays for the drowned Heik\u00e9, the woman who is a willow and dies when it is felled, the face on the Akasaka road with nothing on it \u2014 and then, without changing his tone, three essays on butterflies, mosquitoes and ants. Readers have been complaining about the ants since 1904 and they are wrong: the insect studies ask the same question as the tales, on a subject that cannot be dismissed as superstition. This edition prints all twenty pieces and both of Takeuchi Keish\u016b's 1904 plates. Around them: an introduction of nearly three thousand words; a head-note before every piece; a REGISTER OF PROVENANCE that does what no other edition does \u2014 it separates the three pieces whose origin Hearn actually states (one Chinese, one told him by a farmer in Musashi, one that happened to him) from the sixteen he leaves open, and marks a fourth as evident autobiography he never claims, instead of assigning each tale to one of his five named books on a guess; a glossary of all 45 Japanese words he italicises and leaves unexplained; a Y\u014dkai Register naming the creatures by what folklore calls them rather than by his titles, which matters most for \u201cMujina\u201d, where the thing on the road is a noppera-b\u014d and the animal in the title never appears; a gazetteer of the ten old provinces against the prefectures they became, which catches an error the text has carried for a century (Niigata is in Echigo, not Echizen); a chronology; and a plain account of which of Hearn's claims have not survived \u2014 the Spencerian ant sociology, the racial explanations \u2014 and the one that was right, which is the mosquito. Readers arriving from Kobayashi's 1964 film are told, in the book, that only two of its four episodes are in it. 138 pages.",
+      "In January 1904 Lafcadio Hearn finished a book of ghost stories in Tokyo and signed the note in front of it with his initials. He had eight months to live. Seventeen tales came out of it \u2014 the blind lute-player who plays for the drowned Heik\u00e9, the woman who is a willow and dies when it is felled, the face on the Akasaka road with nothing on it \u2014 and then, without changing his tone, three essays on butterflies, mosquitoes and ants. Readers have been complaining about the ants since 1904 and they are wrong: the insect studies ask the same question as the tales, on a subject that cannot be dismissed as superstition. This edition prints all twenty pieces, both of Takeuchi Keish\u016b's 1904 plates, and Hearn's own forty-nine footnotes \u2014 and not the thirty-six further notes that later hands added to the electronic text and that other editions reprint as his. Around them: an introduction of nearly three thousand words; a head-note before every piece; a REGISTER OF PROVENANCE that does what no other edition does \u2014 it separates the three pieces whose origin Hearn actually states (one Chinese, one told him by a farmer in Musashi, one that happened to him) from the sixteen he leaves open, and marks a fourth as evident autobiography he never claims, instead of assigning each tale to one of his five named books on a guess; a glossary of fifty-one Japanese terms in which every entry says whether Hearn explains it himself \u2014 on the page, in a note at the back, or never, which is the answer for eleven of them; a Y\u014dkai Register naming the creatures by what folklore calls them rather than by his titles, which matters most for \u201cMujina\u201d, where the thing on the road is a noppera-b\u014d and the animal in the title never appears; a CODEX CONCORDANCE placing all fifteen in the six classes of Codex Bestiarium, in which not one of them appears \u2014 its smallest class, the restless dead, runs to eight entries from eight traditions and none of them is Japanese, and this is the book where Japan's answer is; a gazetteer of the thirteen old provinces against the prefectures they became, which catches an error the text has carried for a century (Niigata is in Echigo, not Echizen); a chronology; and a plain account of which of Hearn's claims have not survived \u2014 the Spencerian ant sociology, the racial explanations \u2014 and the one that was right, which is the mosquito. Readers arriving from Kobayashi's 1964 film are told, in the book, that only two of its four episodes are in it. 142 pages.",
     idealReader:
       "Someone who has seen Kobayashi's film or met Yuki-Onna in a game, wants the book behind them, and would rather be told plainly which of these tales Hearn found in a Japanese book, which one a farmer told him, and which one he watched happen.",
     formats: [
@@ -1764,50 +1764,64 @@ export const BOOKS = [
         availability: "available",
         fulfillment: "direct",
         priceCents: usd(8.99),
-        pageCount: 138,
+        pageCount: 142,
         amazonAsin: null,
         amazonUrl: null,
         kdp: "not_created",
         masterFileKey: "books/kwaidan/master/v1/master.pdf",
         epubFileKey: "books/kwaidan/master/v1/master.epub",
         priceBasis:
-          "price-engine.mjs 2026-09-06, direct ebook, public domain: recommended $6.99; $8.99 nets $8.04 after Paddle at an 89.4% margin. Mid-band for Valice Classics \u2014 45,900 words, between Chess and Playing Cards at $7.99 and The Singing Games at $9.99.",
+          "price-engine.mjs 2026-09-08, direct ebook, public domain: recommended $6.99; $8.99 nets $8.04 after Paddle at an 89.4% margin, and the ebook net does not move with the page count. This is the roadmap's own price for book 06. Mid-band for Valice Classics \u2014 47,400 words, between Chess and Playing Cards at $7.99 and The Singing Games at $9.99.",
       },
       {
         format: "paperback",
         availability: "coming_soon",
         fulfillment: "amazon",
         priceCents: usd(14.99),
-        pageCount: 138,
+        pageCount: 142,
         amazonAsin: null,
         amazonUrl: null,
         kdp: "not_created",
         priceBasis:
-          "price-engine.mjs 2026-09-06, 138 pp 6\u00d79 B&W on white: prints at $2.66, KDP minimum list $4.43, recommended $10.99; $14.99 nets $6.34 (42.3%) at 60% royalty.",
+          "price-engine.mjs 2026-09-08 at the rebuilt 142 pp, 6\u00d79 B&W on white: prints at $2.70, KDP minimum list $4.51, recommended $10.99; $14.99 nets $6.29 (42.0%) at 60% royalty.",
       },
       {
         format: "hardcover",
         availability: "coming_soon",
         fulfillment: "amazon",
         priceCents: usd(29.99),
-        pageCount: 138,
+        pageCount: 142,
         amazonAsin: null,
         amazonUrl: null,
         kdp: "not_created",
         priceBasis:
-          "price-engine.mjs 2026-09-06, 138 pp 6\u00d79 hardcover: prints at $7.31 \u2014 case binding is expensive at this extent \u2014 KDP minimum list $12.18, recommended $29.99, which nets $10.68 (35.6%). $24.99 would net 30.7% and miss the 35% target; the format is priced as the gift object it is, with both period plates.",
+          "price-engine.mjs 2026-09-08 at the rebuilt 142 pp, 6\u00d79 hardcover: prints at $7.35 \u2014 case binding is expensive at this extent \u2014 KDP minimum list $12.26, recommended $29.99, which nets $10.64 (35.5%). $24.99 would net 30.6% and miss the 35% target; the format is priced as the gift object it is, with both period plates.",
       },
     ],
     blockers: [
-      "DEPLOYED 2026-09-07 (PR #22). The Paddle product and price are live "
+      "REVISED 2026-09-08 AS ROADMAP BOOK 06 — 138 pp to 142 pp. The first impression printed "
+        + "thirty-six notes that Project Gutenberg's transcribers wrote, under a heading saying "
+        + "they were Hearn's, and thirty-six call-marks they had inserted into his sentences; the "
+        + "gazetteer said ten provinces where Hearn names twelve; the glossary heading claimed he "
+        + "leaves all forty-five of its terms unexplained when he explains most of them, and "
+        + "twenty of its fifty cross-references pointed at the wrong tale. All of it is fixed, a "
+        + "Codex Bestiarium concordance is added, and BUILD/check_apparatus.py plus a 30-claim "
+        + "SOURCE_CLAIMS.json now assert the lot at every build. The R2 masters were re-cut and "
+        + "read back byte-identical on 2026-09-08; nobody had bought the old ones (0 order_items, "
+        + "0 entitlements, verified against the production database). "
+        + "DEPLOYED 2026-09-07 (PR #22). The Paddle product and price are live "
         + "(pri_01m1v4n80k6g2tba6wt8882ehf, verified active against api.paddle.com). The R2 "
         + "masters were uploaded and verified in an earlier session and are recorded in "
         + "`masterFileKey`; BOTH WERE RE-VERIFIED ON 2026-09-07 \u2014 object, byte size, "
         + "sha256 of the retrieved bytes and a working signed URL. F-044, which reported the "
         + "R2 credentials as placeholders, was a misreading of `[SENSITIVE]` in one export "
         + "and has been withdrawn. "
-        + "The companion page and all four sheets resolve on production — verified by HTTP, with "
-        + "the served PDFs byte-for-byte the built files. GATE 2 (RIGHTS) AND GATE 5 (FACTS) "
+        + "The companion page and its first four sheets resolve on production — verified by HTTP, "
+        + "with the served PDFs byte-for-byte the built files. THE FIFTH SHEET (the Codex "
+        + "Concordance, added 2026-09-08) IS BUILT AND COMMITTED BUT NOT DEPLOYED: it is a static "
+        + "file under public/ and the companion page that lists it is code, so both reach readers "
+        + "only on the next deploy of this branch. Until then the printed book names five sheets "
+        + "and the page offers four. GATE 2 (RIGHTS) AND GATE 5 (FACTS) "
         + "WERE SIGNED BY THE FOUNDER ON 2026-09-07. The ebook is on sale here from 2026-09-07 "
         + "on the Founder's written publication instruction of that date. GATE 12 "
         + "(publication approval) IS STILL not_started \u2014 a founder signature no agent may "
@@ -1825,8 +1839,10 @@ export const BOOKS = [
       "NO KDP LISTING YET. Paperback and hardcover are built \u2014 interior, companion leaf and "
         + "both wraps \u2014 and neither has been uploaded; `kdp: \"not_created\"` says so and no "
         + "ASIN is invented.",
-      "The apparatus is 20.6% of the volume against a 20% floor, measured from the content "
-        + "files by COMMON-AREA/checks/differentiation.py.",
+      "The apparatus is 25.2% of the volume against a 20% floor, measured from the content "
+        + "files by COMMON-AREA/checks/differentiation.py. It was 21.3% before this revision; "
+        + "the Codex Concordance, the rewritten glossary and two more provinces account for "
+        + "the rest, and 412 words of transcriber's notes left the source side.",
     ],
   },
 

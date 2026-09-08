@@ -166,7 +166,10 @@ const PROJECTS = [
   "ROADMAP-BOOKS/THE-GREAT-BOOK-OF-WORLD-GAMES",
   "ROADMAP-BOOKS/THE-GREAT-BOOK-OF-WORLD-MYTHS",
   "ROADMAP-BOOKS/THE-MYTH-HUNTERS-FIELD-BOOK",
-  "PUBLIC-BOOKS/PHASE-3-BOOK/01-KWAIDAN",
+  // Kwaidan moved out of PHASE-3-BOOK on 2026-09-08 when it became roadmap book 06 —
+  // the move Epictetus made to become book 05. Two Kwaidans under the books root would
+  // make bookDir() throw, so the phase copy is gone rather than duplicated.
+  "ROADMAP-BOOKS/06-KWAIDAN",
   "PUBLIC-BOOKS/PHASE-3-BOOK/02-SEA-MONSTERS-UNMASKED",
   "PUBLIC-BOOKS/PHASE-3-BOOK/03-BOOK-OF-WERE-WOLVES",
   "PUBLIC-BOOKS/PHASE-3-BOOK/04-BRITISH-GOBLINS",

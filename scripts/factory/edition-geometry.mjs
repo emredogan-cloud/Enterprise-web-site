@@ -106,6 +106,13 @@ export const EDITION_GEOMETRY = {
   "mythical-monsters": {
     paperback: { trimWidthIn: 6, trimHeightIn: 9, binding: "paperback", paper: "white", paperVerified: "project" },
   },
+  kwaidan: {
+    // ROADMAP BOOK 06. Both formats share ONE 6 x 9 interior; the case is larger but
+    // the block is not — KDP's calculator returns a 6.197 x 9.236 in hardcover front
+    // for the same 6 x 9 pages. White paper, verified in project_config.production.
+    paperback: { trimWidthIn: 6, trimHeightIn: 9, binding: "paperback", paper: "white", paperVerified: "project" },
+    hardcover: { trimWidthIn: 6, trimHeightIn: 9, binding: "hardcover", paper: "white", paperVerified: "project" },
+  },
 };
 
 /** Measured MediaBox of each edition's built interior, in points. */
@@ -123,4 +130,6 @@ export const MEASURED_MEDIABOX_PT = {
   "myths-and-legends-of-china": { paperback: [432, 648] },
   "indian-myth-and-legend": { paperback: [432, 648] },
   "mythical-monsters": { paperback: [432, 648] },
+  // Measured off OUTPUT/interior-main.pdf p.140 on 2026-09-08, both formats sharing it.
+  kwaidan: { paperback: [432, 648], hardcover: [432, 648] },
 };

@@ -76,16 +76,32 @@ export function lintProjectRights(project, rows, report) {
       allGreen = false;
       continue;
     }
+    // A SOURCE THE BOOK REFUSED IS NOT A DEFECT IN THE BOOK. Kwaidan lists two layers it
+    // deliberately does not print — an unsigned 1904 introduction whose author cannot be
+    // named, and thirty-six notes the transcribers wrote — and both are RED precisely
+    // because the edition looked at them and declined. Reported as errors, the refusals
+    // were indistinguishable from a book shipping uncleared material, which is the
+    // failure mode this check exists to catch. `used: false` says which is which, and a
+    // refusal is only creditable when the row is RED or YELLOW: a source marked unused
+    // against a GREEN row is a bookkeeping mistake and is reported.
+    if (s.used === false) {
+      if (row.status === "GREEN") {
+        report.warn("unused-source", `source ${s.id} → ${row.row_id} is marked unused but the row is GREEN; say why, or drop the row`);
+      } else {
+        report.pass("refused-source", `source ${s.id} → ${row.row_id} is ${row.status} and is NOT USED — the refusal is the decision`);
+      }
+      continue;
+    }
     if (row.status === "RED") {
-      report.error("red-source", `source ${s.id} → ${row.row_id} is RED: ${row.notes}`);
+      report.error("red-source", `source ${s.id} → ${row.row_id} is RED and IS USED: ${row.notes}`);
       allGreen = false;
     } else if (row.status === "YELLOW") {
       report.warn("yellow-source", `source ${s.id} → ${row.row_id} is YELLOW: ${row.notes}`);
       allGreen = false;
     }
   }
-  if (allGreen) report.pass("gate-2-ready", "every source row is GREEN");
-  else report.warn("gate-2-ready", "not ready: a source is YELLOW or RED");
+  if (allGreen) report.pass("gate-2-ready", "every source the book uses is GREEN");
+  else report.warn("gate-2-ready", "not ready: a source the book uses is YELLOW or RED");
   return report;
 }
 
