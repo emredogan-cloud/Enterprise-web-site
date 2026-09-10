@@ -3,6 +3,7 @@
 import { Check, Loader2, X } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 import { CAMPAIGN_REASON } from "@/lib/campaign";
 import { formatCatalogPrice } from "@/lib/format";
@@ -32,6 +33,53 @@ export interface FreeBookSubject {
   edition?: string | null;
 }
 
+/** Viewport coordinates of the gift box that was pressed. */
+export interface BurstOrigin {
+  x: number;
+  y: number;
+}
+
+/**
+ * The little gold burst that plays where the gift box was pressed.
+ *
+ * It is decoration and is treated as decoration: `aria-hidden`,
+ * `pointer-events: none`, no state anybody waits on, and it is simply not
+ * rendered under `prefers-reduced-motion`. Above all it does NOT gate the
+ * dialog — the dialog is already mounted and focusable while this plays. An
+ * animation that has to finish before the content arrives is the "modal
+ * appears after two seconds" bug wearing nicer clothes.
+ *
+ * It lives inside the portal, so like the dialog it cannot be captured by a
+ * transformed ancestor.
+ */
+function CelebrationBurst({ origin }: { origin: BurstOrigin }) {
+  // Fixed angles rather than Math.random(): a burst that differs every render
+  // cannot be diffed in a screenshot test, and randomness buys nothing the eye
+  // can see at 600ms.
+  const spokes = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330];
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none fixed z-[101]"
+      style={{ left: origin.x, top: origin.y }}
+    >
+      {spokes.map((deg, i) => (
+        <span
+          key={deg}
+          className="free-book-spark"
+          style={
+            {
+              "--spark-angle": `${deg}deg`,
+              "--spark-distance": `${i % 2 === 0 ? 58 : 40}px`,
+              animationDelay: `${(i % 3) * 22}ms`,
+            } as React.CSSProperties
+          }
+        />
+      ))}
+    </div>
+  );
+}
+
 type Phase = "form" | "sending" | "done" | "duplicate";
 
 /**
@@ -58,9 +106,12 @@ type Phase = "form" | "sending" | "done" | "duplicate";
 export function FreeBookModal({
   book,
   onClose,
+  burstOrigin,
 }: {
   book: FreeBookSubject;
   onClose: () => void;
+  /** Where the gift box was pressed, for the celebration burst. */
+  burstOrigin?: BurstOrigin | null;
 }) {
   const reduced = usePrefersReducedMotion();
   const panelRef = useRef<HTMLDivElement>(null);
@@ -200,7 +251,44 @@ export function FreeBookModal({
   const priceLabel = formatCatalogPrice(book.priceCents, book.currency ?? "USD");
   const showsRealPrice = book.priceCents > 0;
 
-  return (
+  /**
+   * THE MODAL IS PORTALLED TO <body>, AND THAT IS THE WHOLE BUG FIX.
+   *
+   * `<GiftBox>` renders this component as its own sibling, which put the
+   * dialog inside the catalog card's DOM. A `position: fixed` element is
+   * normally laid out against the viewport — but ANY ancestor with a
+   * `transform`, `filter`, `backdrop-filter`, `perspective`, `will-change` or
+   * `contain` becomes its containing block instead. The catalog card carries
+   *
+   *     .cinematic-root .home-card-hover:hover { transform: translateY(-4px) }
+   *
+   * and you cannot click the gift box without hovering the card. So at the
+   * exact moment of every click the card became the containing block.
+   * Measured on production: a `fixed; inset:0` child of the card is
+   * `0,0,1839,967` at rest and `573,41,241,472` — the card's own rectangle —
+   * while that transform applies. The card also has `overflow: hidden`, which
+   * then clips the panel.
+   *
+   * That one fact explains every symptom that was reported:
+   *   - the dialog appearing *inside the book cover*: the card is the frame;
+   *   - the page "shaking": the transform animates over 0.4s, so the dialog's
+   *     coordinate system slides while it is being read;
+   *   - the mouse behaving as if trapped: the full-screen backdrop was only
+   *     241x472, so clicks outside it fell through to the page beneath;
+   *   - the dialog "arriving after about two seconds": the pointer leaves the
+   *     card, `:hover` ends, the 0.4s transition unwinds, the transform
+   *     becomes `none`, and the dialog finally snaps to the viewport;
+   *   - the product page being fine: its buy panel is `.home-glass` but NOT
+   *     `.home-card-hover`, so nothing ever creates a containing block there.
+   *
+   * A portal is the structural answer rather than a cosmetic one: the dialog's
+   * DOM node is a child of <body>, so no ancestor exists that *could* capture
+   * it, whatever CSS any card grows later. Raising z-index or waiting on a
+   * timer would have treated the symptom and left the trap in place.
+   */
+  if (typeof document === "undefined") return null;
+
+  return createPortal(
     <div
       className="fixed inset-0 z-[100] flex items-end justify-center overflow-y-auto p-0 sm:items-center sm:p-6"
       role="presentation"
@@ -213,6 +301,9 @@ export function FreeBookModal({
         className="fixed inset-0 bg-black/70 backdrop-blur-sm"
         onClick={close}
       />
+
+      {/* Plays over the backdrop and disappears on its own. Never blocks. */}
+      {!reduced && burstOrigin && <CelebrationBurst origin={burstOrigin} />}
 
       <div
         ref={panelRef}
@@ -253,6 +344,12 @@ export function FreeBookModal({
                   alt=""
                   width={320}
                   height={480}
+                  /* Eager, not lazy. This cover is the first thing in a dialog
+                     the reader has just opened deliberately — it is never
+                     below the fold, and lazy-loading it left the left-hand
+                     panel blank for the first seconds of every open. */
+                  priority
+                  sizes="160px"
                   className="h-auto w-full"
                 />
               ) : (
@@ -450,12 +547,16 @@ export function FreeBookModal({
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 
 function errorMessage(status: number, code?: string): string {
   if (status === 409) {
+    if (code === "book-unavailable") {
+      return "That title isn't one we can send from here — its editions are handled by Amazon. Browse the ebooks and pick another; they're all free right now.";
+    }
     return "The promotion has just ended, so we can't take new requests. Sorry — you were very close.";
   }
   if (status === 429) {
