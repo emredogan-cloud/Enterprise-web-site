@@ -2,16 +2,15 @@ import { streamText, stepCountIs, type ModelMessage } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
 import { NextResponse, type NextRequest } from "next/server";
 
+import { ASSISTANT_MODEL, MAX_STEPS, createAssistantTools } from "@/lib/ai/assistant";
+import { bookDetail } from "@/lib/ai/catalog-context";
 import {
-  ASSISTANT_MODEL,
   EXTRACTION_REFUSAL,
-  MAX_STEPS,
   PROVIDER_FALLBACK,
   buildSystemPrompt,
-  createAssistantTools,
   isExtractionAttempt,
-} from "@/lib/ai/assistant";
-import { bookDetail } from "@/lib/ai/catalog-context";
+  sanitize,
+} from "@/lib/ai/guardrails";
 import { db } from "@/lib/db";
 import { analyticsEvents } from "@/lib/db/schema";
 
@@ -51,10 +50,8 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
-/** Hard caps, enforced here rather than requested of the model. */
+/** The one cap this file owns; the message caps live with the other guardrails. */
 const MAX_BODY_BYTES = 16_000;
-const MAX_MESSAGE_CHARS = 1_000;
-const MAX_HISTORY = 12;
 
 /**
  * A per-instance question budget.
@@ -123,34 +120,6 @@ function say(text: string) {
     status: 200,
     headers: { "content-type": "text/plain; charset=utf-8", "cache-control": "no-store" },
   });
-}
-
-interface IncomingMessage {
-  role: "user" | "assistant";
-  content: string;
-}
-
-/**
- * Take only what we recognise from the body.
- *
- * Roles are whitelisted to `user` and `assistant` specifically so a client
- * cannot post a `system` turn and rewrite the assistant's instructions from
- * the browser — the one genuinely dangerous thing an open chat endpoint can
- * be talked into. The system prompt is built here, on every request, and is
- * the only system message that exists.
- */
-function sanitize(raw: unknown): IncomingMessage[] {
-  if (!Array.isArray(raw)) return [];
-  const out: IncomingMessage[] = [];
-  for (const m of raw.slice(-MAX_HISTORY)) {
-    if (typeof m !== "object" || m === null) continue;
-    const { role, content } = m as Record<string, unknown>;
-    if (role !== "user" && role !== "assistant") continue;
-    if (typeof content !== "string") continue;
-    const text = content.trim().slice(0, MAX_MESSAGE_CHARS);
-    if (text) out.push({ role, content: text });
-  }
-  return out;
 }
 
 export async function POST(req: NextRequest) {
