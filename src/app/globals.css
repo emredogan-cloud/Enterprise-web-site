@@ -1132,3 +1132,124 @@ body:has(.cinematic-root) > header {
   width: 45%;
   animation: campaign-sheen 7s ease-in-out infinite;
 }
+
+/* The celebration burst that plays where the gift box was pressed.
+   Drawn inside the modal's portal, so it shares the dialog's immunity to a
+   transformed ancestor. Decorative only: aria-hidden, pointer-events:none,
+   and not rendered at all under prefers-reduced-motion (the component checks
+   in JS, so the element is absent rather than merely instant). */
+@keyframes free-book-spark {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--spark-angle)) translateX(4px) scale(0.4);
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(var(--spark-angle)) translateX(var(--spark-distance)) scale(0.75);
+  }
+}
+
+.free-book-spark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 999px;
+  transform-origin: 3.5px 3.5px;
+  background: radial-gradient(circle, #fbeec2 0%, #e2c074 55%, rgba(214, 178, 102, 0) 100%);
+  animation: free-book-spark 620ms cubic-bezier(0.18, 0.9, 0.3, 1) forwards;
+}
+
+/* The first-visit promotional card. Enters once, leaves on its own.
+   Both animations are dropped (not merely shortened) under reduced motion —
+   the component omits the classes, so nothing repaints. */
+@keyframes promo-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes promo-card-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(8px) scale(0.985);
+  }
+}
+
+.promo-card-in {
+  animation: promo-card-in 0.34s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.promo-card-out {
+  animation: promo-card-out 0.26s ease-in forwards;
+}
+
+/*
+ * The bottom-right corner is shared.
+ *
+ * Two things live there: the assistant launcher (a 56px circle, 16/24px from
+ * each edge) and the first-visit promo card, which must sit above it rather
+ * than on top of it. The card reserves this much room beneath itself; the
+ * launcher owns the corner and does not move. One variable so the two cannot
+ * drift apart when either changes size.
+ */
+:root {
+  --valice-corner-stack: 4.5rem;
+}
+@media (min-width: 640px) {
+  :root {
+    --valice-corner-stack: 5rem;
+  }
+}
+
+/* The "looking that up" dots. Three of them, breathing in sequence. */
+.assistant-dots {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+.assistant-dots i {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(226, 192, 116, 0.85);
+  animation: assistant-dot 1s ease-in-out infinite;
+}
+.assistant-dots i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.assistant-dots i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes assistant-dot {
+  0%,
+  60%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .assistant-dots i {
+    animation: none;
+    opacity: 0.7;
+  }
+}

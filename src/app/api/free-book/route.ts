@@ -43,7 +43,7 @@ import {
  *   200 { ok: true, status: "received" | "duplicate" }
  *   400 { ok: false, error: "invalid-email" | "invalid-book" | "message-too-long" }
  *   404 { ok: false, error: "unknown-book" }
- *   409 { ok: false, error: "campaign-closed" }
+ *   409 { ok: false, error: "campaign-closed" | "book-unavailable" }
  *   429 { ok: false, error: "too-many-requests" }
  *   500 { ok: false, error: "internal-error" }
  */
@@ -140,6 +140,30 @@ export async function POST(req: NextRequest) {
 
   const book = await resolveBookForRequest(slug);
   if (!book) return bad("unknown-book", 404);
+
+  /**
+   * REFUSE A BOOK THIS STORE CANNOT ACTUALLY DELIVER.
+   *
+   * Two independent facts have to hold before a giveaway is honest:
+   *
+   *   - `priceCents > 0`. Zero means "not sold here" in this catalog, not
+   *     "free" (see `formatCatalogPrice`). Codex Mythologica's ebook is
+   *     enrolled in KDP Select, which is an *exclusivity* agreement with
+   *     Amazon — distributing it from here would breach it. The Hangul
+   *     workbook and The Myth Hunter's Field Book simply have no digital
+   *     edition to send.
+   *   - a `masterFileKey`. Fulfilment mints a signed URL for exactly that
+   *     object; with no master there is no file, and accepting the request
+   *     would be promising a delivery that has to fail in the queue later.
+   *
+   * The gift box hides itself for these, but a shelf can sit in a CDN cache
+   * for an hour and a payload can be hand-edited, so the refusal lives here
+   * as well. Answered as `unavailable` rather than `unknown-book`: the title
+   * is real, it is just not ours to give.
+   */
+  if (book.priceCents <= 0 || !book.masterFileKey) {
+    return bad("book-unavailable", 409);
+  }
 
   const ipHash = hashIp(clientIp(req));
   const since = campaignStartMs();

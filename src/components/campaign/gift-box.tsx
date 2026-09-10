@@ -2,7 +2,11 @@
 
 import { useState } from "react";
 
-import { FreeBookModal, type FreeBookSubject } from "./free-book-modal";
+import {
+  FreeBookModal,
+  type BurstOrigin,
+  type FreeBookSubject,
+} from "./free-book-modal";
 import { useCampaign, usePrefersReducedMotion } from "./use-campaign";
 
 /**
@@ -39,8 +43,30 @@ export function GiftBox({
   const { open } = useCampaign();
   const reduced = usePrefersReducedMotion();
   const [modalOpen, setModalOpen] = useState(false);
+  const [burstOrigin, setBurstOrigin] = useState<BurstOrigin | null>(null);
 
   if (!open) return null;
+
+  /**
+   * A BOOK THIS STORE DOES NOT SELL CANNOT BE GIVEN AWAY BY THIS STORE.
+   *
+   * `price_cents = 0` is this catalog's way of saying "not sold here" — see
+   * `formatCatalogPrice`, which renders it as "On Amazon" rather than "$0.00",
+   * and `<BookHero>`, which switches its whole buy panel on the same fact.
+   * Three published titles carry it: Codex Mythologica (its ebook is enrolled
+   * in KDP Select and is therefore *exclusive to Amazon*), the Hangul workbook
+   * and The Myth Hunter's Field Book (no digital edition exists at all). None
+   * of the three has a master file in R2.
+   *
+   * Until this guard, every one of them showed a gift box promising a free
+   * ebook, and the modal printed "$0.00" with no struck-through price beside
+   * it — advertising a giveaway of a file the store does not have, and in
+   * Codex Mythologica's case one it is contractually forbidden to distribute.
+   *
+   * The API refuses these too (a cached shelf must not be able to enqueue
+   * one). This is the courtesy; that is the gate.
+   */
+  if (book.priceCents <= 0) return null;
 
   const lg = size === "lg";
 
@@ -54,6 +80,12 @@ export function GiftBox({
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
+          // The burst is drawn in the portal at <body>, so it needs the
+          // button's position in VIEWPORT coordinates. Read here, at the
+          // moment of the press, because the card is mid-hover-transform and
+          // the number is only true now.
+          const r = e.currentTarget.getBoundingClientRect();
+          setBurstOrigin({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
           setModalOpen(true);
         }}
         aria-haspopup="dialog"
@@ -77,7 +109,11 @@ export function GiftBox({
       </button>
 
       {modalOpen && (
-        <FreeBookModal book={book} onClose={() => setModalOpen(false)} />
+        <FreeBookModal
+          book={book}
+          burstOrigin={burstOrigin}
+          onClose={() => setModalOpen(false)}
+        />
       )}
     </>
   );
