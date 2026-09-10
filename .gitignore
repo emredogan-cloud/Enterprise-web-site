@@ -102,3 +102,11 @@ gcp-*.json
 # Python bytecode from the OCR tooling
 scripts/factory/ocr/__pycache__/
 scripts/factory/__pycache__/
+
+# Google OAuth client secrets.
+#
+# One of these is sitting untracked in the repo root right now, in a PUBLIC
+# repository, matched by nothing. `git add -A` would have published it. The
+# file itself is left alone — it belongs to whoever put it there — but it can
+# no longer be staged by accident.
+client_secret_*.json
