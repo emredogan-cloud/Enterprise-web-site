@@ -16,6 +16,7 @@
 
 import { Resend } from "resend";
 
+import { FreeBookEmail } from "@/emails/free-book";
 import { OrderReadyEmail } from "@/emails/order-ready";
 import { WelcomeEmail } from "@/emails/welcome";
 import type { NewsletterSource } from "@/lib/newsletter-client";
@@ -231,6 +232,63 @@ export async function sendWelcomeEmail(
         ok: false,
         error: result.error.message ?? "Unknown Resend error",
       };
+    }
+    return { ok: true, id: result.data?.id ?? "" };
+  } catch (err) {
+    return {
+      ok: false,
+      error: err instanceof Error ? err.message : "Unknown email error",
+    };
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Free-ebook campaign delivery
+// ---------------------------------------------------------------------------
+
+export interface SendFreeBookArgs {
+  to: string;
+  bookTitle: string;
+  /** A short-lived signed R2 URL, minted per send. Never stored. */
+  downloadUrl: string;
+  expiresInMinutes: number;
+}
+
+/**
+ * Send one free-ebook delivery.
+ *
+ * NO IDEMPOTENCY KEY, DELIBERATELY. Every other send in this module keys on
+ * something stable (`order-ready:{orderId}:{bookId}`) so a retried worker
+ * cannot double-mail. Here the opposite is wanted: the download link expires,
+ * so "send it again" is the normal remedy when a recipient opens the mail a
+ * day later, and a de-duplicating key would make the operator's Resend button
+ * silently do nothing exactly when it is needed most.
+ *
+ * Returns rather than throws, like its siblings — a failed send marks the
+ * request `failed` with the provider's message, so the queue shows what
+ * happened instead of a row that looks untouched.
+ */
+export async function sendFreeBookEmail(
+  args: SendFreeBookArgs,
+): Promise<SendEmailResult> {
+  const resend = getResendClient();
+  if (!resend) {
+    return { ok: false, error: "Resend not configured (RESEND_API_KEY missing)." };
+  }
+
+  try {
+    const result = await resend.emails.send({
+      from: getFromAddress(),
+      to: args.to,
+      subject: `Your copy of ${args.bookTitle}`,
+      react: FreeBookEmail({
+        bookTitle: args.bookTitle,
+        downloadUrl: args.downloadUrl,
+        expiresInMinutes: args.expiresInMinutes,
+      }),
+    });
+    if (result.error) {
+      return { ok: false, error: result.error.message ?? "Unknown Resend error" };
     }
     return { ok: true, id: result.data?.id ?? "" };
   } catch (err) {

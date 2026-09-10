@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 
+import { CampaignCountdown } from "@/components/campaign/campaign-countdown";
 import { CatalogShell } from "@/components/catalog/catalog-shell";
 import { toCatalogItems } from "@/components/catalog/catalog-item";
 import { CinematicHeader } from "@/components/home/cinematic-header";
@@ -53,6 +54,8 @@ export default async function EbooksPage() {
             you&apos;ll find those on each book&apos;s page.
           </p>
         </header>
+
+        <CampaignCountdown />
 
         {ebooks.length === 0 ? (
           <EbooksEmpty />

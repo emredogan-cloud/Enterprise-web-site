@@ -3,6 +3,7 @@ import { Suspense } from "react";
 
 import { buildPageMetadata } from "@/lib/metadata";
 
+import { CampaignCountdown } from "@/components/campaign/campaign-countdown";
 import { CatalogHero } from "@/components/catalog/catalog-hero";
 import { CatalogShell } from "@/components/catalog/catalog-shell";
 import {
@@ -54,6 +55,7 @@ export default async function BooksCatalogPage() {
 
       <main id="main-content" className="relative z-10">
         <CatalogHero />
+        <CampaignCountdown />
         {/* Phase 2.F — `<CatalogShell>` uses `useSearchParams()` (URL-
             synced filter/sort/page state). Next.js requires a Suspense
             boundary around any client subtree that reads searchParams

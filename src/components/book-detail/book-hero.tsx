@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { GiftBox } from "@/components/campaign/gift-box";
+
 import { BookAddToCart } from "@/components/book-detail/book-add-to-cart";
 import { BookCover } from "@/components/book-detail/book-cover";
 import { CinematicStarRating } from "@/components/book-detail/cinematic-star-rating";
@@ -63,6 +65,7 @@ export interface BookHeroProps {
 
 export function BookHero({
   bookId,
+  slug,
   title,
   subtitle,
   description,
@@ -105,6 +108,36 @@ export function BookHero({
                 {directSale ? formatPrice(priceCents, currency) : "In print"}
               </span>
             </div>
+
+            {/* The free-ebook promotion, on the one panel where a reader has
+                already decided they want THIS book.
+
+                Only for titles this store can actually deliver: a book whose
+                every edition is fulfilled by Amazon has no PDF here to give
+                away, and a gift box on it would promise a file that does not
+                exist. `directSale` is the same flag that decides whether the
+                price line above is a price at all. */}
+            {directSale && (
+              <div className="mt-5 flex items-center justify-between gap-3 rounded-xl border px-3.5 py-3"
+                   style={{ borderColor: "rgba(214,178,102,0.3)", background: "rgba(214,178,102,0.06)" }}>
+                <span className="text-[12.5px] leading-snug text-fg-mid">
+                  Free during our limited-time promotion
+                </span>
+                <GiftBox
+                  size="lg"
+                  book={{
+                    slug,
+                    title,
+                    author: authors[0]?.name ?? null,
+                    description,
+                    priceCents,
+                    currency,
+                    coverSrc: coverSrc ?? null,
+                    pageCount,
+                  }}
+                />
+              </div>
+            )}
 
             <div className="mt-5">
               {directSale ? (

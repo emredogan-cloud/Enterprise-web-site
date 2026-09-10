@@ -57,6 +57,13 @@
       "when": 1788370151314,
       "tag": "0007_serious_flatman",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1789033346894,
+      "tag": "0008_stormy_overlord",
+      "breakpoints": true
     }
   ]
 }

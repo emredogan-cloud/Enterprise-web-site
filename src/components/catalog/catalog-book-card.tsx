@@ -2,6 +2,7 @@ import { Heart, Lock, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { GiftBox } from "@/components/campaign/gift-box";
 import { coverFit } from "@/lib/asset-map";
 import { formatCatalogPrice } from "@/lib/format";
 
@@ -192,8 +193,25 @@ export function CatalogBookCard({ book, priority = false }: { book: CatalogItem;
           ) : (
             <span />
           )}
-          <span className="font-semibold tabular-nums text-fg-hi">
-            {priceLabel}
+          {/* Price and gift box travel together.
+
+              The gift box removes itself when the promotion is not running
+              (it consults the server clock, because this card can be served
+              from a CDN an hour after the campaign ended), so outside the
+              window this is exactly the price line it has always been. */}
+          <span className="flex items-center gap-2">
+            <span className="font-semibold tabular-nums text-fg-hi">
+              {priceLabel}
+            </span>
+            <GiftBox
+              book={{
+                slug: book.slug,
+                title: book.title,
+                author: book.author,
+                priceCents: book.priceCents,
+                coverSrc: book.coverSrc ?? null,
+              }}
+            />
           </span>
         </div>
       </div>

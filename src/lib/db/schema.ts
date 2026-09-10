@@ -19,6 +19,7 @@
 
 import { relations, sql } from "drizzle-orm";
 import {
+  boolean,
   customType,
   index,
   jsonb,
@@ -132,6 +133,23 @@ export const formatAvailabilityEnum = pgEnum("format_availability", [
   "coming_soon",
   // Deliberately not offered in this format.
   "unavailable",
+]);
+
+/**
+ * Where a free-ebook request has got to.
+ *
+ * `duplicate` is a real outcome, not an error: the same person asking twice
+ * for the same book is the commonest honest case (a lost email, a second
+ * device) and it must be visible to whoever fulfils rather than silently
+ * merged. `flagged` is for volume that looks automated — it never blocks a
+ * person by itself, it only sorts them to the top of the operator's list.
+ */
+export const freeBookRequestStatusEnum = pgEnum("free_book_request_status", [
+  "pending",
+  "fulfilled",
+  "failed",
+  "duplicate",
+  "flagged",
 ]);
 
 // -----------------------------------------------------------------------------
@@ -610,6 +628,79 @@ export const analyticsEvents = pgTable(
   ],
 );
 
+// -----------------------------------------------------------------------------
+// free_book_requests — the temporary "request an ebook free" promotion
+//
+// This table is a QUEUE, not an entitlement. A row here means "someone asked";
+// it grants nothing on its own, and nothing in the delivery path reads it as
+// permission. Fulfilment is an operator action that mints a short-lived signed
+// R2 URL, so a row can never become a standing right to a file.
+//
+// WHAT IS DELIBERATELY NOT HERE: any column about Amazon reviews. No
+// `reviewUrl`, no `reviewVerified`, no `reviewedAt`. Amazon permits giving a
+// book away and permits asking for an honest review; it forbids requiring one
+// or conditioning anything on it. The cheapest way to keep that line is to
+// have nowhere to write the answer down — a schema with a `reviewVerified`
+// column is one product decision away from gating on it.
+//
+// `email` is stored lowercased and trimmed so "A@b.com" and "a@b.com " are one
+// person for duplicate detection. `ipHash` is a salted hash, never an address:
+// enough to notice a hundred requests from one source, not enough to be a
+// location record for everyone who wanted a book.
+// -----------------------------------------------------------------------------
+export const freeBookRequests = pgTable(
+  "free_book_requests",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    /** Lowercased, trimmed. The person to deliver to. */
+    email: varchar("email", { length: 254 }).notNull(),
+    /**
+     * The book, resolved server-side from the slug the form posted.
+     *
+     * Both the id AND the slug/title are stored. The id is the join; the slug
+     * and title are a snapshot, so a request stays readable after a book is
+     * renamed or unpublished and the operator can still tell what was asked
+     * for. `onDelete: "set null"` rather than cascade for the same reason —
+     * deleting a book must not erase the record that someone wanted it.
+     */
+    bookId: uuid("book_id").references(() => books.id, { onDelete: "set null" }),
+    bookSlug: varchar("book_slug", { length: 200 }).notNull(),
+    bookTitle: text("book_title").notNull(),
+    /** Which edition was asked for. Today always "PDF"; recorded, not assumed. */
+    format: varchar("format", { length: 16 }).notNull().default("PDF"),
+    /** The visitor's optional note. Plain text; never rendered as HTML. */
+    message: text("message"),
+    status: freeBookRequestStatusEnum("status").notNull().default("pending"),
+    /**
+     * Whether they ticked "email me about new books".
+     *
+     * Default false and separate from the request itself: asking for a book is
+     * not consent to a mailing list, and the row records which one they
+     * actually agreed to.
+     */
+    marketingConsent: boolean("marketing_consent").notNull().default(false),
+    /** Salted hash of the request IP. Never the address itself. */
+    ipHash: varchar("ip_hash", { length: 64 }),
+    /** Operator notes and delivery failures — internal only. */
+    notes: text("notes"),
+    fulfilledAt: timestamp("fulfilled_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (t) => [
+    // The operator's list is "newest first, filtered by status".
+    index("free_book_requests_status_created_idx").on(t.status, t.createdAt),
+    // Duplicate detection and per-email history both look up by email.
+    index("free_book_requests_email_idx").on(t.email),
+    index("free_book_requests_email_book_idx").on(t.email, t.bookSlug),
+  ],
+);
+
 // =============================================================================
 // Relations (Drizzle's relational query API)
 // =============================================================================
@@ -629,6 +720,13 @@ export const booksRelations = relations(books, ({ many }) => ({
   reviews: many(reviews),
   bookAuthors: many(bookAuthors),
   bookCategories: many(bookCategories),
+}));
+
+export const freeBookRequestsRelations = relations(freeBookRequests, ({ one }) => ({
+  book: one(books, {
+    fields: [freeBookRequests.bookId],
+    references: [books.id],
+  }),
 }));
 
 export const bookFormatsRelations = relations(bookFormats, ({ one }) => ({

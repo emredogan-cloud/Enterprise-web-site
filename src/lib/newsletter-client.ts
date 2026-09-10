@@ -67,7 +67,11 @@ export type NewsletterSource =
   | "book-of-were-wolves-companion"
   | "british-goblins-companion"
   | "fairy-mythology-vol-1-companion"
-  | "fairy-mythology-vol-2-companion";
+  | "fairy-mythology-vol-2-companion"
+  // The temporary free-ebook promotion (2026-09-10). Its own tag because a
+  // list built during a giveaway behaves nothing like one built from a
+  // printed book, and merging the two would hide that.
+  | "free-ebook-campaign";
 
 /** The subset of sources a printed-book companion page may carry. */
 export type CompanionNewsletterSource = Extract<

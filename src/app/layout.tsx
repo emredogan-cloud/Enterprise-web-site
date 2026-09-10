@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 
 import { AnalyticsGate } from "@/components/analytics/analytics-gate";
+import { CampaignRibbon } from "@/components/campaign/campaign-ribbon";
 import { SiteHeader } from "@/components/site-header";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -143,6 +144,10 @@ export default function RootLayout({
         </noscript>
         <SiteHeader />
         {children}
+        {/* The small campaign indicator. Mounted once; it decides which
+            routes it belongs on and removes itself when the promotion is
+            over. See <CampaignRibbon>. */}
+        <CampaignRibbon />
         {/*
           Vercel Analytics + Speed Insights, behind the `beforeSend` filter
           (see components/analytics/analytics-gate.tsx): a browser marked
