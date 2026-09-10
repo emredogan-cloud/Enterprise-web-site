@@ -99,6 +99,8 @@ const SOURCES = new Set([
   "chess-and-playing-cards-companion",
   "mancala-companion",
   "traditional-games-companion",
+  // The temporary free-ebook promotion (2026-09-10).
+  "free-ebook-campaign",
 ]);
 
 /**

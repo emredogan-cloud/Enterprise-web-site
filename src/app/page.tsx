@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/metadata";
 
+import { CampaignCountdown } from "@/components/campaign/campaign-countdown";
 import { CategoriesSection } from "@/components/home/categories-section";
 import { FeaturedBooksSection } from "@/components/home/featured-books-section";
 import { Hero } from "@/components/home/hero";
@@ -70,6 +71,7 @@ export default async function Home() {
         />
 
         <Hero />
+        <CampaignCountdown />
         <WhyReadersSection />
         <CategoriesSection categories={categories} />
         <FeaturedBooksSection books={featuredBooks} />

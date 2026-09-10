@@ -1027,3 +1027,108 @@ body:has(.cinematic-root) > header {
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
+
+/* ===========================================================================
+ * Free-ebook campaign (2026-09-10) — the gift box, the modal, the banner.
+ *
+ * Motion here is deliberately small. A giveaway is already the loudest thing
+ * on the page; a bouncing box next to twenty book covers turns a shelf into a
+ * fairground. So: one slow shimmer on the box, one short hinge on open, one
+ * pop on success, and nothing that loops forever in the corner of an eye.
+ *
+ * Every rule below is also switched off by the global
+ * `prefers-reduced-motion: reduce` block above, and again in JS by
+ * `usePrefersReducedMotion()`, which drops the animating classes entirely
+ * rather than relying on a duration override. Two layers because the CSS
+ * reset makes an animation instant, not absent — and an instant confetti
+ * burst still repaints the screen.
+ * ======================================================================== */
+
+/* The box's gold catches the light every few seconds. */
+@keyframes gift-box-shimmer {
+  0%,
+  72%,
+  100% {
+    box-shadow:
+      0 6px 16px -8px rgba(214, 178, 102, 0.9),
+      inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  }
+  80% {
+    box-shadow:
+      0 6px 20px -6px rgba(247, 222, 160, 1),
+      0 0 22px -4px rgba(247, 222, 160, 0.75),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+}
+
+.gift-box--alive {
+  animation: gift-box-shimmer 5.5s ease-in-out infinite;
+}
+
+.gift-box:hover {
+  transform: translateY(-1px) scale(1.04);
+}
+
+.gift-box:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* The lid hinges as the dialog arrives. One 320ms motion, no bounce. */
+@keyframes free-book-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.free-book-modal-in {
+  animation: free-book-modal-in 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* The confirmation tick lands. */
+@keyframes free-book-pop {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.free-book-pop {
+  animation: free-book-pop 0.42s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+
+/* A slow gold sweep across the countdown banner. Decorative, aria-hidden,
+   and removed outright under reduced motion (the element is not rendered). */
+@keyframes campaign-sheen {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+.campaign-sheen {
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(247, 222, 160, 0.09) 45%,
+    rgba(247, 222, 160, 0.16) 50%,
+    rgba(247, 222, 160, 0.09) 55%,
+    transparent 100%
+  );
+  width: 45%;
+  animation: campaign-sheen 7s ease-in-out infinite;
+}
