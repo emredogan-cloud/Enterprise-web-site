@@ -2651,6 +2651,85 @@ export const BOOKS = [
       "The project's own kill gate (five external solvers, zero sessions recorded) was never passed. The book was published regardless. No puzzle in it has been solved by anyone other than its author.",
     ],
   },
+  {
+    slug: "how-the-world-began",
+    title: "How the World Began",
+    subtitle:
+      "Thirty Creation Myths from Every Corner of the Earth, Told Whole",
+    language: "en",
+    pageCount: 232,
+    categories: ["mythology-and-folklore"],
+    authors: ["emre-dogan"],
+    bisac: ["SOC011000", "REL051000", "HIS037000"],
+    series: { name: "Under Every Sky", volume: 1 },
+    websiteStatus: "published",
+    linkageDecision: {
+      decision: "built_with_companion",
+      why: "The companion is in the typesetting, not spliced on: the final leaf carries a 1.05 in code beside the full-ledger note, and the code was DECODED OUT OF THE BUILT PDF at 300 dpi with a real detector (OpenCV) rather than checked against the source artwork — 04_BUILD/qa_qr.py. It resolves to valicepress.com/companion/under-every-sky, which serves the complete source ledger and all 726 typed claims as HTML, JSON and CSV.",
+    },
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: null,
+    paddlePriceId: null,
+    onelinePromise:
+      "Thirty creation myths told whole, each one with its source named, dated and taken apart — including the thirteen times the source turned out not to be what it claimed.",
+    description:
+      "Water that was there before anything. A void that is somebody's ancestor. An egg laid in the dark by Night. A giant taken apart and used for parts. A god who is sick and brings up the sun. A world made five times over, each attempt worse than the last. Thirty creation myths retold in full, from Egypt, Babylonia, Greece, India, Iran, China, Japan, Iceland, Finland, Aotearoa, the Society Islands, Samoa, the Congo, Yorubaland, Mexico, Guatemala, Peru and the forests of eastern North America. And with each one, the part other collections leave out: where it actually comes from. Who wrote it down, in what year, for which employer, and what that did to it. Sarmiento's chronicle was commissioned by the viceroy who beheaded the last Inca. Ellis was an army colonel in the country his regiment was subduing. The oldest surviving statement that the world was made by thought and speech was ground up as a millstone and then read backwards for a century. Every source is named, dated and described, including what is wrong with it — and where a source says it does not know, this book says so and supplies nothing. Thirteen corrections were logged while it was made, five of them because a file was not what its name claimed, and they are printed in the book.",
+    idealReader:
+      "Someone who has read a myth anthology and wanted to know who was actually talking — where the version came from, who wrote it down, and what they wanted out of it.",
+    formats: [
+      {
+        format: "paperback",
+        availability: "unavailable",
+        fulfillment: "amazon",
+        priceCents: 1699,
+        pageCount: 232,
+        isbn13: null,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not-uploaded",
+        masterFileKey: null,
+        priceBasis:
+          "MODELED, not confirmed by KDP. 6 × 9 in, white, B&W, 232 pp: KDP US printing is $1.00 + $0.012/page = $3.78, so $16.99 nets $6.42 at the 60 % rate (37.8 %), above the house floor. The figure KDP itself shows at upload replaces this line.",
+      },
+      {
+        format: "hardcover",
+        availability: "unavailable",
+        fulfillment: "amazon",
+        priceCents: 2699,
+        pageCount: 232,
+        isbn13: null,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not-uploaded",
+        masterFileKey: null,
+        priceBasis:
+          "MODELED, not confirmed by KDP. 6 × 9 in case laminate, 232 pp sits inside KDP's 76–550 hardcover range, and the cover geometry for exactly 232 pp was read from the official calculator rather than derived. $26.99 is the house hardcover step over a $16.99 paperback. Replace with KDP's own figure at upload.",
+      },
+      {
+        format: "ebook",
+        availability: "available",
+        fulfillment: "direct",
+        priceCents: 999,
+        pageCount: 232,
+        isbn13: null,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not-uploaded",
+        masterFileKey: "books/how-the-world-began/master/v1/master.pdf",
+        priceBasis:
+          "$9.99. The second original title sold direct before it exists on Amazon, so there is no Kindle list price to match — the number is set here and the Kindle listing will be set to match it. 232 pages and 74,349 words, of which 55 % is the source apparatus: the source note, the historical context and the comparative reading that no other creation-myth anthology carries. Buyers get a DRM-free watermarked PDF and a reflowable EPUB that passes EPUBCheck 5.1.0 with zero messages.",
+      },
+    ],
+    blockers: [
+      "NOT ON AMAZON. No KDP upload has been attempted for this title. The four packages are built and pass preflight — interior, paperback cover, hardcover cover, EPUB — but the same account-level weekly title-creation throttle that blocked Pencil & Paper on 2026-09-10 governs this one too, and PLA-01 has priority in the queue because it was attempted first. No ASIN, and the print editions cannot be bought anywhere yet.",
+      "No ISBN. Nothing is fabricated and no identifier is printed; the covers reserve the barcode keep-out and leave it empty. The print editions will take free KDP-assigned ISBNs at upload.",
+      "The direct checkout is provisioned but NOT transacted. No test purchase has been put through, so Paddle → webhook → signed R2 URL is verified by construction and by the catalogue cross-check, not by a completed order.",
+      "The publishing-rights and AI-content declarations at KDP upload must be made by the account holder. All thirty sources are public domain and the retellings, apparatus and figures are original work; the AI answers are recorded in 05_METADATA/metadata.json as text: AI-assisted, images: No.",
+      "NO ILLUSTRATIONS, and this is a decision rather than a gap. No image model was used anywhere in the book and there is no figurative depiction of any deity, people or scene: a book that spends 74,000 words refusing to invent a voice for a living tradition does not commission a machine to invent its face. The four figures and six ornaments are deterministic vectors generated from the book's own records, and the cover is typographic. If the Founder wants illustrated artwork the cover can be swapped exactly as PLA-01's was, and the KDP image disclosure then becomes Yes.",
+      "The 90-day commercial probe that decides whether Under Every Sky continues has not started. Series gate: ≥ 40 units in 90 days after launch, or the series drops to one volume a year.",
+    ],
+  },
 ];
 
 /**

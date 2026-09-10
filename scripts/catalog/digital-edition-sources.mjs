@@ -194,6 +194,16 @@ export const DIGITAL_EDITION_SOURCES = [
     printInterior: bookPath("05-FAIRY-MYTHOLOGY", "OUTPUT", "interior-vol2.pdf"),
     epub: bookPath("05-FAIRY-MYTHOLOGY", "OUTPUT", "fairy-mythology-vol-2.epub"),
   },
+  {
+    // Under Every Sky 1 (2026-09-11). The 6 x 9 print interior is already
+    // screen-legible and carries its four figures as vectors, so the /ebook pass
+    // mostly normalises; the reflowable EPUB carries the same figures as 300 dpi
+    // rasters produced by the book's own renderer, so the printed figures and the
+    // reflowed figures cannot disagree. EPUBCheck 5.1.0 reports zero messages.
+    slug: "how-the-world-began",
+    printInterior: bookPath("UES-01", "08_OUTPUT", "UES-01-interior.pdf"),
+    epub: bookPath("UES-01", "08_OUTPUT", "UES-01.epub"),
+  },
 ];
 
 /** R2 masters key for a slug. Versioned so a re-cut edition never overwrites. */
