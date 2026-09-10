@@ -2658,7 +2658,7 @@ export const BOOKS = [
       "Thirty Creation Myths from Every Corner of the Earth, Told Whole",
     language: "en",
     pageCount: 232,
-    categories: ["mythology-and-folklore"],
+    categories: ["myth-and-folklore"],
     authors: ["emre-dogan"],
     bisac: ["SOC011000", "REL051000", "HIS037000"],
     series: { name: "Under Every Sky", volume: 1 },
@@ -2680,7 +2680,7 @@ export const BOOKS = [
     formats: [
       {
         format: "paperback",
-        availability: "unavailable",
+        availability: "coming_soon",
         fulfillment: "amazon",
         priceCents: 1699,
         pageCount: 232,
@@ -2694,7 +2694,7 @@ export const BOOKS = [
       },
       {
         format: "hardcover",
-        availability: "unavailable",
+        availability: "coming_soon",
         fulfillment: "amazon",
         priceCents: 2699,
         pageCount: 232,
@@ -2718,7 +2718,7 @@ export const BOOKS = [
         kdp: "not-uploaded",
         masterFileKey: "books/how-the-world-began/master/v1/master.pdf",
         priceBasis:
-          "$9.99. The second original title sold direct before it exists on Amazon, so there is no Kindle list price to match — the number is set here and the Kindle listing will be set to match it. 232 pages and 74,349 words, of which 55 % is the source apparatus: the source note, the historical context and the comparative reading that no other creation-myth anthology carries. Buyers get a DRM-free watermarked PDF and a reflowable EPUB that passes EPUBCheck 5.1.0 with zero messages.",
+          "$9.99. The second original title sold direct before it exists on Amazon, so there is no Kindle list price to match — the number is set here and the Kindle listing will be set to match it. 232 pages and 74,489 words, of which 55 % is the source apparatus: the source note, the historical context and the comparative reading that no other creation-myth anthology carries. Buyers get a DRM-free watermarked PDF and a reflowable EPUB that passes EPUBCheck 5.1.0 with zero messages.",
       },
     ],
     blockers: [
