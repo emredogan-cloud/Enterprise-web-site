@@ -156,7 +156,7 @@ export function WelcomePromoCard() {
         role="status"
         aria-live="polite"
         className={[
-          "home-glass pointer-events-auto flex w-[19rem] max-w-full items-start gap-3 rounded-2xl border p-4 shadow-2xl",
+          "valice-glass pointer-events-auto flex w-[19rem] max-w-full items-start gap-3 rounded-2xl border p-4 shadow-2xl",
           reduced ? "" : leaving ? "promo-card-out" : "promo-card-in",
         ].join(" ")}
         style={{

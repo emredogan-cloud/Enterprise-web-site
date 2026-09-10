@@ -519,7 +519,11 @@ export function FreeBookModal({
                 <button
                   type="submit"
                   disabled={phase === "sending"}
-                  className="home-cta-primary mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-[14px] font-semibold disabled:cursor-not-allowed disabled:opacity-70"
+                  /* `valice-cta` rather than `home-cta-primary`: this markup is
+                     portaled to <body>, and `home-cta-primary` is only defined
+                     beneath `.cinematic-root`. See the CTA block in
+                     globals.css for the whole story. */
+                  className="valice-cta valice-cta-gold mt-5 w-full px-5 py-3 text-[14px]"
                 >
                   {phase === "sending" ? (
                     <>
@@ -642,13 +646,13 @@ function SuccessPanel({
         <button
           type="button"
           onClick={onClose}
-          className="home-cta-primary inline-flex items-center justify-center rounded-full px-5 py-2.5 text-[13px] font-semibold"
+          className="valice-cta valice-cta-gold px-5 py-2.5 text-[13px]"
         >
           Keep browsing
         </button>
         <a
           href="/ebooks"
-          className="home-cta-secondary inline-flex items-center justify-center rounded-full px-5 py-2.5 text-[13px] font-semibold"
+          className="valice-cta valice-cta-gold-ghost px-5 py-2.5 text-[13px]"
         >
           See every ebook
         </a>

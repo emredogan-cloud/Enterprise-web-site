@@ -1253,3 +1253,155 @@ body:has(.cinematic-root) > header {
     opacity: 0.7;
   }
 }
+
+/* =============================================================================
+   VALICE CTA — the gold action button
+   =============================================================================
+   WHY THIS EXISTS, AND WHY IT IS NOT SCOPED.
+
+   The free-book modal's primary button looked dark, flat and disabled while
+   being perfectly functional. Nothing was wrong with the button. The rule that
+   paints it is `.cinematic-root .home-cta-primary`, and the modal is rendered
+   through `createPortal(…, document.body)` — deliberately, because that is what
+   released it from the catalog card's `transform`. `document.body` is outside
+   every `.cinematic-root` wrapper, so the selector stopped matching and the
+   browser was left painting dark text on no background. Measured:
+   `background-color: rgba(0,0,0,0)`, `background-image: none`, `box-shadow:
+   none`, `closest('.cinematic-root') === null`.
+
+   Adding `cinematic-root` to the portal would fix the paint and break something
+   else: `body:has(.cinematic-root) > header { display: none }` would hide the
+   site header on every warm-theme route for as long as the modal was open.
+
+   So the CTA gets its own colours and depends on no ancestor at all. It works
+   in a portal, inside `.cinematic-root`, or anywhere else — which is also what
+   a shared CTA ought to do.
+
+   THE PALETTE is the promotion's own gold, already established by the gift box
+   and the welcome card: #f7dea0 → #d6b266 → #b89248 on #2a1f06 text. Contrast
+   of the dark text on the mid-gold is ~9.7:1, comfortably past WCAG AA for
+   normal text and past AAA for large.
+   ========================================================================== */
+
+.valice-cta {
+  /* Shared geometry. 44px minimum height is the tap target, not a look. */
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* ---- Primary: solid gold ------------------------------------------------ */
+.valice-cta-gold {
+  background: linear-gradient(140deg, #f7dea0 0%, #e2c074 45%, #c9a25c 100%);
+  color: #2a1f06;
+  border: 1px solid rgba(247, 222, 160, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    0 10px 24px -12px rgba(214, 178, 102, 0.85),
+    0 0 22px -10px rgba(226, 192, 116, 0.6);
+}
+
+.valice-cta-gold:hover:not(:disabled) {
+  background: linear-gradient(140deg, #fdeec4 0%, #f0d089 45%, #d6b266 100%);
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    0 14px 30px -12px rgba(214, 178, 102, 0.95),
+    0 0 34px -8px rgba(226, 192, 116, 0.75);
+}
+
+/* A press that is actually visible. The button goes *down* and the glow
+   collapses — without this, a tap on a phone gives no feedback at all,
+   because there is no hover state to have shown anything. */
+.valice-cta-gold:active:not(:disabled) {
+  transform: translateY(1px);
+  background: linear-gradient(140deg, #e8cf92 0%, #d6b266 45%, #b89248 100%);
+  box-shadow:
+    inset 0 2px 5px rgba(90, 66, 18, 0.45),
+    0 4px 10px -8px rgba(214, 178, 102, 0.7);
+}
+
+/* ---- Secondary: gold outline on the dark ground ------------------------- */
+.valice-cta-gold-ghost {
+  background: linear-gradient(150deg, rgba(24, 34, 27, 0.9) 0%, rgba(12, 24, 19, 0.94) 100%);
+  color: #f0dfae;
+  border: 1px solid rgba(214, 178, 102, 0.5);
+  box-shadow:
+    inset 0 1px 0 rgba(247, 222, 160, 0.1),
+    0 8px 20px -14px rgba(0, 0, 0, 0.9);
+}
+
+.valice-cta-gold-ghost:hover:not(:disabled) {
+  color: #fbeec2;
+  border-color: rgba(226, 192, 116, 0.85);
+  background: linear-gradient(150deg, rgba(38, 50, 40, 0.94) 0%, rgba(20, 34, 27, 0.96) 100%);
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(247, 222, 160, 0.16),
+    0 12px 26px -14px rgba(214, 178, 102, 0.55),
+    0 0 24px -12px rgba(226, 192, 116, 0.5);
+}
+
+.valice-cta-gold-ghost:active:not(:disabled) {
+  transform: translateY(1px);
+  background: linear-gradient(150deg, rgba(16, 26, 21, 0.96) 0%, rgba(10, 20, 16, 0.98) 100%);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* ---- Focus ------------------------------------------------------------- */
+/* `.cinematic-root *:focus-visible` does not reach a portal either, so the
+   keyboard ring is defined here too. Offset so it reads against both the gold
+   fill and the dark ground behind it. */
+.valice-cta:focus-visible {
+  outline: 2px solid #f7dea0;
+  outline-offset: 3px;
+}
+
+/* ---- Disabled ---------------------------------------------------------- */
+/* Reached ONLY by a genuinely disabled control — while the request is in
+   flight. It has to read as "not now", which is the opposite of the bug this
+   file was opened to fix: a working button that looked switched off. */
+.valice-cta:disabled,
+.valice-cta[aria-disabled="true"] {
+  cursor: not-allowed;
+  transform: none;
+  background: linear-gradient(140deg, rgba(214, 178, 102, 0.32) 0%, rgba(184, 146, 72, 0.3) 100%);
+  color: rgba(42, 31, 6, 0.72);
+  border-color: rgba(214, 178, 102, 0.28);
+  box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .valice-cta,
+  .valice-cta:hover:not(:disabled),
+  .valice-cta:active:not(:disabled) {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* The glass panel, unscoped, for the surfaces that live outside
+   `.cinematic-root`: the portaled modal and the root-level welcome card.
+   Same values as `.cinematic-root .home-glass`, no ancestor requirement. */
+.valice-glass {
+  background: rgba(12, 24, 19, 0.6);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 20px 40px -20px rgba(0, 0, 0, 0.6);
+}
