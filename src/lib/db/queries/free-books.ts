@@ -16,13 +16,15 @@
  * price the database holds, not one the browser sent back to us.
  */
 
-import { and, desc, eq, gte, sql } from "drizzle-orm";
+import { and, desc, eq, gte, ne, sql } from "drizzle-orm";
 
 import { db } from "@/lib/db";
-import { books, freeBookRequests } from "@/lib/db/schema";
+import { bookFormats, books, freeBookRequests } from "@/lib/db/schema";
 
 export type FreeBookRequestStatus =
   | "pending"
+  /** A send is in flight — see `claimRequestForSending`. */
+  | "sending"
   | "fulfilled"
   | "failed"
   | "duplicate"
@@ -237,6 +239,7 @@ export async function getFreeBookRequestCounts(): Promise<
     .groupBy(freeBookRequests.status);
   const out = {
     pending: 0,
+    sending: 0,
     fulfilled: 0,
     failed: 0,
     duplicate: 0,
@@ -248,6 +251,75 @@ export async function getFreeBookRequestCounts(): Promise<
     out.total += r.n;
   }
   return out;
+}
+
+/**
+ * The Amazon editions of one book that a reader can actually buy today.
+ *
+ * WHY THIS IS A QUERY AND NOT A URL TEMPLATE.
+ * `https://www.amazon.com/dp/<asin>` is trivially constructible, which is
+ * exactly the trap: an ASIN that is null, a listing still in KDP review, or an
+ * edition that only exists in the roadmap all produce a plausible URL that
+ * lands on a dead page. A dead link inside a gift is worse than no link.
+ *
+ * So a format is offered only when the catalog says all three things:
+ *   - `availability = 'available'` — not `coming_soon`, not `unavailable`
+ *   - `amazon_url IS NOT NULL`     — a URL somebody actually recorded
+ *   - the ASIN is present          — the listing has an identity
+ *
+ * In production today that predicate is self-enforcing: every `available`
+ * print format has a URL and every `coming_soon` one has none. It is written
+ * out anyway, because the day those diverge is the day this matters.
+ */
+export interface AmazonEdition {
+  format: string;
+  label: string;
+  url: string;
+  asin: string;
+}
+
+const FORMAT_LABELS: Record<string, string> = {
+  ebook: "Kindle",
+  paperback: "Paperback",
+  hardcover: "Hardcover",
+  large_print: "Large Print",
+};
+
+/** The order a reader expects to see them in, not the order the rows come back. */
+const FORMAT_ORDER = ["paperback", "hardcover", "large_print", "ebook"];
+
+/** The rule itself, separated from the query so a test can hold it to account. */
+export function selectAmazonEditions(
+  rows: ReadonlyArray<{
+    format: string;
+    availability: string;
+    asin: string | null;
+    url: string | null;
+  }>,
+): AmazonEdition[] {
+  return rows
+    .filter((r) => r.availability === "available" && !!r.url && !!r.asin)
+    .map((r) => ({
+      format: r.format,
+      label: FORMAT_LABELS[r.format] ?? r.format,
+      url: r.url!,
+      asin: r.asin!,
+    }))
+    .sort((a, b) => FORMAT_ORDER.indexOf(a.format) - FORMAT_ORDER.indexOf(b.format));
+}
+
+export async function getAmazonEditions(bookId: string | null): Promise<AmazonEdition[]> {
+  if (!bookId) return [];
+  const rows = await db
+    .select({
+      format: bookFormats.format,
+      availability: bookFormats.availability,
+      asin: bookFormats.amazonAsin,
+      url: bookFormats.amazonUrl,
+    })
+    .from(bookFormats)
+    .where(eq(bookFormats.bookId, bookId));
+  return selectAmazonEditions(rows);
 }
 
 export async function markRequestStatus(
@@ -265,6 +337,37 @@ export async function markRequestStatus(
     .where(eq(freeBookRequests.id, id));
 }
 
+/**
+ * Claim a request for sending, atomically.
+ *
+ * THE DOUBLE-SEND GUARD, AND WHY IT IS ONE STATEMENT.
+ *
+ * The obvious version — read the row, check it is not already sending, then
+ * write — has a window between the read and the write. Two operator tabs, a
+ * retry after a slow response, or a refresh mid-send all land in that window
+ * and the reader gets the book twice. The UI's `useTransition` disables the
+ * button, which stops a double *click* and nothing else.
+ *
+ * So the check and the write are the same statement. Postgres takes a row lock
+ * for the UPDATE, the `status <> 'sending'` predicate is evaluated under it,
+ * and exactly one caller gets a row back. The loser is told plainly that a send
+ * is already in flight rather than quietly doing nothing.
+ *
+ * A deliberate re-send ("Send again" on a fulfilled row) is still allowed:
+ * `fulfilled` is not `sending`, so it claims cleanly. The guard is against
+ * accidents, not against the operator.
+ *
+ * Returns null when the row does not exist or a send is already running.
+ */
+export async function claimRequestForSending(id: string) {
+  const rows = await db
+    .update(freeBookRequests)
+    .set({ status: "sending", notes: null })
+    .where(and(eq(freeBookRequests.id, id), ne(freeBookRequests.status, "sending")))
+    .returning({ id: freeBookRequests.id, previousStatus: freeBookRequests.status });
+  return rows[0] ?? null;
+}
+
 /** One request plus the private key needed to deliver it. Operator-only. */
 export async function getRequestForFulfilment(id: string) {
   const rows = await db
@@ -273,8 +376,12 @@ export async function getRequestForFulfilment(id: string) {
       email: freeBookRequests.email,
       bookSlug: freeBookRequests.bookSlug,
       bookTitle: freeBookRequests.bookTitle,
+      message: freeBookRequests.message,
       status: freeBookRequests.status,
+      bookId: freeBookRequests.bookId,
       masterFileKey: books.masterFileKey,
+      bookSubtitle: books.subtitle,
+      bookDescription: books.description,
     })
     .from(freeBookRequests)
     .leftJoin(books, eq(freeBookRequests.bookId, books.id))

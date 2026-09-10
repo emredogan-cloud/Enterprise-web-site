@@ -42,16 +42,29 @@ export function RequestRowActions({
       <div className="flex flex-wrap gap-1.5">
         <button
           type="button"
-          disabled={pending || !hasMaster}
+          /* `sending` disables the button here as well as on the server. The
+             server claim is the real guard; this stops the operator from
+             hammering a row whose send is visibly still running. */
+          disabled={pending || !hasMaster || status === "sending"}
           onClick={() => run(() => fulfilFreeBookRequest(id))}
-          title={hasMaster ? undefined : "This book has no master file in R2"}
+          title={
+            !hasMaster
+              ? "This book has no master file in R2"
+              : status === "sending"
+                ? "A send for this request is already in flight"
+                : undefined
+          }
           className="inline-flex items-center gap-1.5 rounded-full border border-emerald-bright/40 bg-emerald-bright/10 px-3 py-1 text-[11px] font-semibold text-emerald-bright transition-colors hover:bg-emerald-bright/20 disabled:cursor-not-allowed disabled:opacity-40"
         >
           {pending && <Loader2 aria-hidden className="h-3 w-3 animate-spin" />}
-          {status === "fulfilled" ? "Send again" : "Send PDF"}
+          {status === "sending"
+            ? "Sending…"
+            : status === "fulfilled"
+              ? "Send again"
+              : "Send PDF"}
         </button>
 
-        {status !== "fulfilled" && (
+        {status !== "fulfilled" && status !== "sending" && (
           <button
             type="button"
             disabled={pending}
