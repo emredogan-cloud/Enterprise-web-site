@@ -332,7 +332,20 @@ export async function markRequestStatus(
     .set({
       status,
       notes: notes ?? null,
-      fulfilledAt: status === "fulfilled" ? new Date() : null,
+      /**
+       * WHEN THIS BOOK REACHED THIS PERSON — and it is not erased by a later
+       * failure.
+       *
+       * "Send again" on a fulfilled row is a normal operator action (a reader
+       * lost the mail, an attachment bounced). If that second attempt fails,
+       * clearing the timestamp would delete the record that the first one
+       * succeeded, and the queue would then claim the book had never been
+       * delivered. So only an explicit re-queue — the operator saying "treat
+       * this as undelivered" — clears it. Everything else leaves the history
+       * alone.
+       */
+      fulfilledAt:
+        status === "fulfilled" ? new Date() : status === "pending" ? null : undefined,
     })
     .where(eq(freeBookRequests.id, id));
 }
