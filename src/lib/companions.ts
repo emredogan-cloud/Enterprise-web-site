@@ -76,6 +76,12 @@ export type Companion = {
   stateNote: string;
   /** One line, printed under the heading. */
   intro: string;
+  /**
+   * A shorter line for the callout on the book's own page, where the reader
+   * has not yet decided to buy anything. Optional: without it the callout
+   * falls back to a generic sentence.
+   */
+  calloutLabel?: string;
   /** The newsletter tag this page's signups carry. */
   newsletterSource: CompanionNewsletterSource;
   /** Heading over the download list; defaults to "Practice material". */
@@ -190,9 +196,13 @@ const WORLD_GAMES: Companion = {
     "The book is on sale: paperback, hardcover and Kindle on Amazon, and a " +
     "DRM-free PDF here. Everything on this page is free either way.",
   intro:
-    "Free table-side material for the book: a one-glance index of all fifty-six " +
-    "games, cut-out reference cards, score sheets, and thirty-one printable " +
-    "boards drawn from the book's own diagrams.",
+    "Thirty-one printable boards drawn from the book's own diagrams — the Royal " +
+    "Game of Ur, Senet, Hnefatafl, Nine Men's Morris and twenty-seven more, each " +
+    "scaled up to fill a Letter sheet — with a one-glance index of all fifty-six " +
+    "games, cut-out reference cards and score sheets. Free, no sign-up.",
+  calloutLabel:
+    "Thirty-one printable boards — the Royal Game of Ur, Senet, Hnefatafl and " +
+    "the rest — plus a game index, cut-out reference cards and score sheets.",
   newsletterSource: "world-games-companion",
   assetsHeading: "Table-side material",
   rightsNote:
@@ -201,6 +211,20 @@ const WORLD_GAMES: Companion = {
     "the cards and index restate the book's player counts, times, ages and " +
     "page numbers. The full rules and the stories stay in the book.",
   assets: [
+    {
+      id: "boards-pack",
+      title: "Boards pack",
+      description:
+        "Thirty-one boards, one to a page and scaled up to fill a Letter " +
+        "sheet: the Royal Game of Ur and Senet, Hnefatafl and Tablut, Nine " +
+        "Men's Morris, Pachisi, Patolli, Yut Nori and the rest. Print on card " +
+        "or slip the page under glass, add counters, and the game is ready to " +
+        "play. The boards whose rules are a modern reconstruction rather than " +
+        "a surviving rulebook are marked as such on the page.",
+      kind: "static",
+      href: "/companion/world-games/boards-pack.pdf",
+      meta: "PDF · US Letter · 32 pages",
+    },
     {
       id: "game-index",
       title: "Game index",
@@ -234,17 +258,6 @@ const WORLD_GAMES: Companion = {
       kind: "static",
       href: "/companion/world-games/score-sheets.pdf",
       meta: "PDF · US Letter · 8 pages",
-    },
-    {
-      id: "boards-pack",
-      title: "Boards pack",
-      description:
-        "Thirty-one printable boards drawn from the book's own diagrams, one " +
-        "to a page and scaled up to fill a Letter sheet. Print on card or slip " +
-        "the page under glass, add counters, and the game is ready to play.",
-      kind: "static",
-      href: "/companion/world-games/boards-pack.pdf",
-      meta: "PDF · US Letter · 32 pages",
     },
   ],
 };

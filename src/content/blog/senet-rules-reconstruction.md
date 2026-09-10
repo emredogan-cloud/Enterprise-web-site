@@ -109,6 +109,6 @@ Eight and up; six and up without the House of Water.
 
 **[The Great Book of World Games](/books/the-great-book-of-world-games)** prints Senet across two facing pages, with the snake path numbered and the last five squares drawn, and labels every reconstructed rule as reconstructed. It sits with the other race games — the [Royal Game of Ur](/blog/royal-game-of-ur-rules), Patolli, Pachisi, Yut Nori, the Game of the Goose — so you can see how six cultures solved the same problem six ways.
 
-**The board is free.** A printable Senet board at full playing size is in the boards pack at **[valicepress.com/companion/world-games](/companion/world-games)**, with 32 other boards, reference cards and score sheets. No email, no account.
+**The board is free.** A printable Senet board at full playing size is in the boards pack at **[valicepress.com/companion/world-games](/companion/world-games)**, with 30 other boards, reference cards and score sheets. No email, no account.
 
 *Related:* **[The Royal Game of Ur: how to play a 4,600-year-old game](/blog/royal-game-of-ur-rules)** · **[Seven things everyone says about old board games that are not true](/blog/board-game-origin-myths)**

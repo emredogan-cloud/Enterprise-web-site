@@ -107,6 +107,6 @@ Oware from about seven. Olinda Keliya and Pallanguzhi from eight. The four-row g
 
 **[The Great Book of World Games](/books/the-great-book-of-world-games)** prints all five across two facing pages each — the full rules, one action to a line, a board diagram drawn to scale, a shorter first game, and the three rulings every table argues about — and files them together, so that the sowing games of Ghana, Sri Lanka and Buganda sit side by side and you can see what they share and where they part. Every rule set names the work it was read from.
 
-**The boards are free.** Printable boards for the sowing games, with 33 boards in all, cut-out reference cards and score sheets, are at **[valicepress.com/companion/world-games](/companion/world-games)**. No email, no account.
+**The boards are free.** Printable boards for the sowing games, with 31 boards in all, cut-out reference cards and score sheets, are at **[valicepress.com/companion/world-games](/companion/world-games)**. No email, no account.
 
 *Related:* **[Seven things everyone says about old board games that are not true](/blog/board-game-origin-myths)** — including why Kalah is not ancient · **[The Royal Game of Ur: how to play](/blog/royal-game-of-ur-rules)**

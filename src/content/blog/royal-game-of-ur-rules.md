@@ -112,6 +112,6 @@ Eight and up. The rules are simple; the tension is not.
 
 **[The Great Book of World Games](/books/the-great-book-of-world-games)** prints the Royal Game of Ur across two facing pages, with the board drawn to its real shape, alongside 55 other games from 39 cultures — each with its source named, its reconstruction (where there is one) labelled, and a shorter first game. It is filed with the other race games: Senet, Patolli, Pachisi, Hounds and Jackals' cousins, and the Game of the Goose.
 
-**The board is free.** A full-size printable Ur board, one to a Letter sheet, is in the boards pack at **[valicepress.com/companion/world-games](/companion/world-games)** — with 32 other boards, cut-out reference cards and score sheets. Nothing to sign up for, no email asked.
+**The board is free.** A full-size printable Ur board, one to a Letter sheet, is in the boards pack at **[valicepress.com/companion/world-games](/companion/world-games)** — with 30 other boards, cut-out reference cards and score sheets. Nothing to sign up for, no email asked.
 
 *Related:* **[Senet: nobody knows how it was played. Here is one honest way to play it anyway.](/blog/senet-rules-reconstruction)** · **[Seven things everyone says about old board games that are not true](/blog/board-game-origin-myths)**
