@@ -1197,3 +1197,59 @@ body:has(.cinematic-root) > header {
 .promo-card-out {
   animation: promo-card-out 0.26s ease-in forwards;
 }
+
+/*
+ * The bottom-right corner is shared.
+ *
+ * Two things live there: the assistant launcher (a 56px circle, 16/24px from
+ * each edge) and the first-visit promo card, which must sit above it rather
+ * than on top of it. The card reserves this much room beneath itself; the
+ * launcher owns the corner and does not move. One variable so the two cannot
+ * drift apart when either changes size.
+ */
+:root {
+  --valice-corner-stack: 4.5rem;
+}
+@media (min-width: 640px) {
+  :root {
+    --valice-corner-stack: 5rem;
+  }
+}
+
+/* The "looking that up" dots. Three of them, breathing in sequence. */
+.assistant-dots {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+.assistant-dots i {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(226, 192, 116, 0.85);
+  animation: assistant-dot 1s ease-in-out infinite;
+}
+.assistant-dots i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.assistant-dots i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes assistant-dot {
+  0%,
+  60%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .assistant-dots i {
+    animation: none;
+    opacity: 0.7;
+  }
+}

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 
 import { AnalyticsGate } from "@/components/analytics/analytics-gate";
+import { AssistantLauncher } from "@/components/assistant/assistant-launcher";
 import { CampaignRibbon } from "@/components/campaign/campaign-ribbon";
 import { WelcomePromoCard } from "@/components/campaign/welcome-promo-card";
 import { SiteHeader } from "@/components/site-header";
@@ -152,6 +153,9 @@ export default function RootLayout({
         {/* Shown once per campaign, to a first-time visitor only, and it
             retires itself after a few seconds. See <WelcomePromoCard>. */}
         <WelcomePromoCard />
+        {/* The storefront concierge. Ships a button; the panel's chunk is
+            fetched on the first click. See <AssistantLauncher>. */}
+        <AssistantLauncher />
         {/*
           Vercel Analytics + Speed Insights, behind the `beforeSend` filter
           (see components/analytics/analytics-gate.tsx): a browser marked
