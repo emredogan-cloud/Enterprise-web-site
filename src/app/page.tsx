@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/metadata";
 
 import { CampaignCountdown } from "@/components/campaign/campaign-countdown";
+import { BookMarquee } from "@/components/home/book-marquee";
 import { CategoriesSection } from "@/components/home/categories-section";
 import { FeaturedBooksSection } from "@/components/home/featured-books-section";
 import { Hero } from "@/components/home/hero";
@@ -11,6 +12,7 @@ import { NewsletterSection } from "@/components/home/newsletter-section";
 import { WhyReadersSection } from "@/components/home/why-readers-section";
 import {
   getFeaturedBooks,
+  listPublishedBooks,
   listAllCategories,
 } from "@/lib/db/queries/catalog";
 import { buildSiteJsonLd, getBaseUrl } from "@/lib/seo";
@@ -49,9 +51,13 @@ export default async function Home() {
   // Both fetches are SSG-time and safeQuery-wrapped — a missing or empty
   // DB degrades to `[]` and each section drops back to its curated demo
   // fallback (preserves the cinematic atmosphere on a fresh deploy).
-  const [featuredBooks, categories] = await Promise.all([
+  const [featuredBooks, categories, shelfBooks] = await Promise.all([
     getFeaturedBooks(6),
     listAllCategories(),
+    // The whole published catalogue for the moving shelf — real books, real
+    // covers, real URLs, straight from the database. Nothing hard-coded, so a
+    // title published tomorrow is on the shelf tomorrow.
+    listPublishedBooks(),
   ]);
 
   // Site-level structured data (Organization + WebSite + SearchAction),
@@ -60,7 +66,7 @@ export default async function Home() {
 
   return (
     <div className="cinematic-root">
-      <CinematicHeader active="home" />
+      <CinematicHeader active="home" overlay />
 
       <main id="main-content" className="relative z-10">
         {/* Site-level JSON-LD — emitted only on the homepage (which carries
@@ -72,9 +78,22 @@ export default async function Home() {
 
         <Hero />
         <CampaignCountdown />
-        <WhyReadersSection />
-        <CategoriesSection categories={categories} />
+        {/* The shelf sits between the campaign and the reasons to trust us:
+            the promotion says "free", and the very next thing a reader should
+            see is what there is to take. */}
+        <BookMarquee
+          books={shelfBooks.map((b) => ({
+            slug: b.slug,
+            title: b.title,
+            authors: b.authors.map((a) => a.name),
+          }))}
+        />
         <FeaturedBooksSection books={featuredBooks} />
+        <CategoriesSection categories={categories} />
+        {/* Moved below the discovery sections. It answers "why buy from you",
+            which is a question a reader only has after they have seen
+            something they want. */}
+        <WhyReadersSection />
         <NewsletterSection />
       </main>
 

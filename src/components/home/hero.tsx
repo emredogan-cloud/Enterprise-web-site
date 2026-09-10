@@ -1,48 +1,178 @@
 import Link from "next/link";
 
-import { AssetImage } from "@/components/cinematic/asset-image";
-
-import { HeroBook } from "./hero-book";
-import { ScrollCue } from "./scroll-cue";
-import { StatsCard } from "./stats-card";
+import { HeroEditorialNotes } from "./hero-editorial-notes";
 import { TrustRow } from "./trust-row";
 
 /**
- * Cinematic hero — the page's wow moment.
+ * The hero.
  *
- * Two-column layout: text (left, ~45%) + showcase (right, ~55%).
- * On mobile the layout stacks; the showcase scales down to ~520px.
+ * ONE LAYER, NOT TWO COLUMNS. The photograph is the ground the whole section
+ * stands on — full-bleed, running behind the header — and the type sits on top
+ * of it. That is the difference between the old hero and this one: the old
+ * layout put a framed picture in a right-hand column, which reads as a website
+ * with an illustration on it. This reads as a publisher's table you are looking
+ * at.
  *
- * Pure Server Component — `HeroBook` uses CSS-only float + breathe
- * animations from globals.css, so this entire section ships as static
- * HTML with zero JS hydration cost.
+ * THE BOOKS IN THE PHOTOGRAPH ARE REAL.
+ * The Great Book of World Games, Codex Bestiarium, Codex Enigmatica, The Great
+ * Book of World Myths and Pencil & Paper — five published titles, every one of
+ * them in the catalogue and clickable two sections further down. Nothing here
+ * advertises a book that does not exist.
+ *
+ * THE TYPE IS NEVER IN THE IMAGE. Every word on this section is live HTML:
+ * selectable, translatable, searchable, and legible to a screen reader. The
+ * photograph carries no lettering at all.
+ *
+ * THE GRADIENT IS FUNCTIONAL, NOT DECORATIVE. It is what guarantees the
+ * headline's contrast against a photograph whose brightness we do not control
+ * per-pixel. The image was composed with an empty, very dark left third for
+ * exactly this reason, but a gradient that is only a mood would be the wrong
+ * thing to rely on.
+ *
+ * Pure Server Component — no client JS in the hero at all.
  */
 export function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 pb-24 pt-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pb-32 lg:pt-20">
-        {/* LEFT — text + CTAs + trust */}
-        <div className="relative z-10 max-w-[560px]">
-          {/* Eyebrow badge */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 backdrop-blur-md">
+    <section className="relative isolate overflow-hidden">
+      {/* ---------------------------------------------------------------
+          The photograph. `<picture>` rather than next/image because the
+          desktop and mobile crops are two different pictures, not two sizes
+          of one: the phone gets a portrait cut that keeps the books and
+          drops the empty left third the headline sits in.
+          --------------------------------------------------------------- */}
+      <div aria-hidden className="absolute inset-0 -z-10">
+        <picture>
+          <source
+            media="(max-width: 639px)"
+            type="image/avif"
+            srcSet="/images/homepage/hero-library-still-life-portrait.avif"
+          />
+          <source
+            media="(max-width: 639px)"
+            type="image/webp"
+            srcSet="/images/homepage/hero-library-still-life-portrait.webp"
+          />
+          <source
+            type="image/avif"
+            srcSet="/images/homepage/hero-library-still-life-640.avif 640w, /images/homepage/hero-library-still-life-960.avif 960w, /images/homepage/hero-library-still-life-1280.avif 1280w, /images/homepage/hero-library-still-life-1672.avif 1672w"
+            sizes="100vw"
+          />
+          <source
+            type="image/webp"
+            srcSet="/images/homepage/hero-library-still-life-640.webp 640w, /images/homepage/hero-library-still-life-960.webp 960w, /images/homepage/hero-library-still-life-1280.webp 1280w, /images/homepage/hero-library-still-life-1672.webp 1672w"
+            sizes="100vw"
+          />
+          {/*
+            Decorative, so `alt=""`: the headline beside it already says what
+            this is, and a made-up description of a photograph is noise in a
+            screen reader. `fetchPriority="high"` because this is the LCP
+            candidate and nothing else on the page should outrank it.
+          */}
+          <img
+            src="/images/homepage/hero-library-still-life-1672.webp"
+            alt=""
+            fetchPriority="high"
+            decoding="async"
+            className="h-full w-full object-cover object-[62%_50%] sm:object-[65%_50%]"
+          />
+        </picture>
+
+        {/*
+          THE SCRIMS LIVE INSIDE THE IMAGE WRAPPER, not as `-z-10` siblings of
+          the section. As siblings they shared a stacking level with the
+          picture and blacked the whole plate out; in here the order is plain
+          DOM order over one positioned parent, which is unambiguous and
+          survives anyone adding another layer later.
+        */}
+
+        {/* Readability. Strong where the type lives, gone by the middle so the
+            books keep their own light. This is what guarantees the headline's
+            contrast — it is not a mood. */}
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(3,7,5,0.94) 0%, rgba(3,7,5,0.86) 20%, rgba(3,7,5,0.52) 33%, rgba(3,7,5,0.16) 44%, rgba(3,7,5,0) 56%)",
+          }}
+        />
+
+        {/* Two short strips rather than one full-height gradient: the header
+            needs a ground to read against and the section has to hand over to
+            the campaign band, but those are the top 150px and the bottom
+            200px. A gradient spanning the whole section to solve them dims the
+            photograph everywhere in between. */}
+        <div
+          aria-hidden
+          className="absolute inset-x-0 top-0 h-[150px]"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(3,7,5,0.72) 0%, rgba(3,7,5,0.28) 55%, rgba(3,7,5,0) 100%)",
+          }}
+        />
+        <div
+          aria-hidden
+          className="absolute inset-x-0 bottom-0 h-[200px]"
+          style={{
+            background:
+              "linear-gradient(to top, #050705 0%, rgba(5,7,5,0.72) 45%, rgba(5,7,5,0) 100%)",
+          }}
+        />
+
+        {/* On a phone the type sits under the picture rather than over it, so
+            the whole lower half goes dark instead of just the left edge. */}
+        <div
+          aria-hidden
+          className="absolute inset-0 sm:hidden"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(3,7,5,0.25) 0%, rgba(3,7,5,0.55) 38%, rgba(3,7,5,0.93) 62%, rgba(5,7,5,0.98) 100%)",
+          }}
+        />
+      </div>
+
+      {/* The editorial marginalia. Anchored to the section rather than to the
+          centred text column, so they sit in the photograph's own dark margins
+          — at 2000px wide that is the whole point of them. */}
+      <HeroEditorialNotes />
+
+      <div className="relative mx-auto flex min-h-[86vh] max-w-7xl flex-col justify-end px-6 pb-12 pt-[52vw] sm:min-h-[92vh] sm:justify-center sm:pb-16 sm:pt-36 lg:min-h-[94vh] lg:pb-20 lg:pt-40">
+        <div className="max-w-[620px]">
+          {/* Eyebrow — a rule beneath it, not a bordered pill. */}
+          <div className="flex items-center gap-2.5">
             <span
               aria-hidden
-              className="h-1.5 w-1.5 rounded-full bg-[#33f0aa] shadow-[0_0_6px_#33f0aa]"
+              className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#33f0aa] shadow-[0_0_8px_#33f0aa]"
             />
-            <span className="text-[12px] lg:text-[11px] font-medium uppercase tracking-[0.2em] text-fg-mid">
-              New · Curated Digital Library
+            <span className="text-[10px] font-semibold uppercase tracking-[0.26em] text-fg-mid sm:text-[11px]">
+              A Curated Digital Library
             </span>
           </div>
+          <div
+            aria-hidden
+            className="mt-3 h-px w-[min(300px,80%)]"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(255,255,255,0.34) 0%, rgba(255,255,255,0) 100%)",
+            }}
+          />
 
-          {/* Headline */}
-          <h1 className="mt-7 font-serif text-[56px] font-medium leading-[1.02] tracking-[-0.025em] text-fg-hi sm:text-[68px] lg:text-[80px] xl:text-[88px]">
+          {/*
+            THE WORDING IS UNCHANGED. The reference says "Books worth keeping."
+            and it would have been easy to copy — but the headline is the one
+            thing on this page that is Valice Press's rather than the mockup's.
+            What changes is the typography: three lines, tighter leading, and
+            the accent narrowed to the last line alone instead of the last two,
+            so the emphasis lands once.
+          */}
+          <h1 className="mt-6 font-serif text-[44px] font-medium leading-[0.97] tracking-[-0.03em] text-fg-hi sm:text-[62px] lg:text-[76px] xl:text-[84px]">
             <span className="block">Find it.</span>
             <span className="block">Own it.</span>
             <span
               className="block"
               style={{
                 background:
-                  "linear-gradient(135deg, #33f0aa 0%, #1ddf8f 60%, #16c784 100%)",
+                  "linear-gradient(135deg, #4ff7bb 0%, #33f0aa 45%, #16c784 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -52,64 +182,54 @@ export function Hero() {
             </span>
           </h1>
 
-          {/* Supporting copy */}
-          <p className="mt-7 max-w-[480px] text-[17px] leading-[1.65] text-fg-mid sm:text-[18px]">
-            The Valice Press Book Store. Buy once,
-            download a watermarked-free PDF, and read on any device. Yours to
-            keep — never locked.
+          <p className="mt-6 max-w-[470px] text-[15px] leading-[1.7] text-fg-mid sm:mt-7 sm:text-[17px]">
+            Curated digital editions from an independent press. Buy once,
+            download a watermark-free PDF, and read on any device. Yours to
+            keep — forever.
           </p>
 
-          {/* CTA row */}
-          <div className="mt-9 flex flex-wrap items-center gap-3">
+          {/*
+            "Watch Demo" is gone. There is no demo video, and a button that
+            promises one is the same class of untruth as a book with an
+            invented ASIN. Both CTAs now go somewhere real.
+          */}
+          <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap sm:items-center">
             <Link
               href="/books"
-              className="home-cta-primary inline-flex h-12 items-center gap-2 rounded-full px-6 text-sm font-semibold tracking-tight"
+              className="valice-cta valice-cta-gold w-full px-7 text-[14px] sm:w-auto"
             >
-              <span
-                aria-hidden
-                className="text-base leading-none"
-              >
-                ↗
+              Browse the library
+              <span aria-hidden className="text-[15px] leading-none">
+                →
               </span>
-              Browse Catalog
             </Link>
             <Link
-              href="#why"
-              className="home-cta-secondary inline-flex h-12 items-center gap-2 rounded-full px-6 text-sm font-medium tracking-tight"
+              href="/ebooks"
+              className="valice-cta valice-cta-gold-ghost w-full px-7 text-[14px] sm:w-auto"
             >
-              <span aria-hidden className="text-base leading-none">
-                ▶
-              </span>
-              Watch Demo
+              Explore ebooks
             </Link>
           </div>
-
-          {/* Trust row */}
-          <TrustRow />
         </div>
 
-        {/* RIGHT — cinematic showcase. Optional real hero artwork
-            (/images/homepage/homepage_hero_reading_room.webp) renders when
-            present; otherwise the procedural floating-book cluster is the
-            fallback. */}
+        {/* Full width, one row, spanning under the photograph rather than
+            wrapping inside the text column. It crosses the marble tabletop,
+            which is the lightest thing in the frame, so it gets a scrim of its
+            own — contrast measured where the background is brightest, not on
+            the average. */}
         <div className="relative">
-          <div className="relative mx-auto h-[560px] w-full max-w-lg sm:h-[640px]">
-            <AssetImage
-              src="/images/homepage/homepage_hero_reading_room.webp"
-              alt="A cinematic late-night reading room"
-              fallback={<HeroBook />}
-              sizes="(min-width: 1024px) 44vw, 100vw"
-              priority
-              imgClassName="object-contain"
-            />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-[-100vw] bottom-[-2rem] top-[-1.25rem]"
+            style={{
+              background:
+                "linear-gradient(to bottom, rgba(3,7,5,0) 0%, rgba(3,7,5,0.72) 38%, rgba(3,7,5,0.86) 100%)",
+            }}
+          />
+          <div className="relative">
+            <TrustRow />
           </div>
-          <StatsCard />
         </div>
-      </div>
-
-      {/* Scroll cue — centered at bottom of hero */}
-      <div className="pointer-events-none flex justify-center pb-10">
-        <ScrollCue />
       </div>
     </section>
   );

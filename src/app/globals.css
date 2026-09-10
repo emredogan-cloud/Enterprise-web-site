@@ -1405,3 +1405,94 @@ body:has(.cinematic-root) > header {
     inset 0 1px 0 rgba(255, 255, 255, 0.04),
     0 20px 40px -20px rgba(0, 0, 0, 0.6);
 }
+
+/* =============================================================================
+   THE MOVING SHELF
+   =============================================================================
+   One transformed element, one keyframe. The track carries the catalogue twice
+   and slides by exactly half its width, so the frame at the end of a cycle is
+   pixel-identical to the frame at the start — there is no seam to find.
+
+   `translate3d` rather than `translateX` to keep the layer on the compositor,
+   and `will-change` is declared here (and only here) because this element is
+   genuinely, permanently animating.
+   ========================================================================== */
+.marquee {
+  /* Contains the overflowing track without clipping the cards' hover lift. */
+  overflow: hidden;
+  padding-block: 6px;
+}
+
+.marquee-track {
+  animation: marquee-drift var(--marquee-duration, 60s) linear infinite;
+  /*
+   * NO `will-change: transform` HERE, deliberately.
+   *
+   * The track is the whole catalogue twice over — measured at 10,131px wide
+   * with 54 covers. `will-change` promotes that to a permanently rasterised
+   * compositor layer, and at this size Chrome went unresponsive: screenshots
+   * timed out and the hero painted black. It is the textbook case the property
+   * warns about, and the one place it looked most obviously justified.
+   *
+   * Without it the browser promotes the layer for the duration of the
+   * animation and tiles it, which is what we actually wanted. The animation is
+   * still transform-only, so it still never touches layout or paint.
+   */
+  backface-visibility: hidden;
+}
+
+/* Left → right: start half a lane back, arrive at zero, snap, repeat. */
+@keyframes marquee-drift {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Slowed, not stopped. A shelf that freezes under the cursor reads as broken,
+   and parking on it is how you find the seam. */
+.marquee:hover .marquee-track {
+  animation-duration: calc(var(--marquee-duration, 60s) * 2.6);
+}
+
+/*
+ * Reduced motion: the shelf stops and becomes a normal horizontal scroller.
+ * The books stay exactly where they are, still clickable, still keyboard
+ * reachable — the movement is removed, not the content. A moving shelf must
+ * never be the only way to reach a book.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+  .marquee-track,
+  .marquee:hover .marquee-track {
+    animation: none;
+    transform: none;
+  }
+  /* The duplicate lane is decorative once nothing is moving. */
+  .marquee-track > [aria-hidden="true"] {
+    display: none;
+  }
+}
+
+/*
+ * Horizontal card scrollers (the featured shelf).
+ *
+ * `.cinematic-root ::-webkit-scrollbar` paints an emerald thumb, which is
+ * right for the page and wrong for a small inline shelf — there it reads as a
+ * loading bar sitting under the cards. The scroller keeps working exactly as
+ * before; only the chrome goes.
+ */
+.rail-scroll {
+  scrollbar-width: none;
+}
+.rail-scroll::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+  display: none;
+}
