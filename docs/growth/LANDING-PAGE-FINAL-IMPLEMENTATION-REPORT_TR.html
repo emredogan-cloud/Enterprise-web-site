@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yeni Landing Page — Nihai Uygulama Raporu · Vâliçe Press</title>
+<style>
+  :root{
+    color-scheme: light dark;
+    --bg:#faf9f6; --panel:#ffffff; --ink:#15130f; --mid:#4a463e; --low:#6f6a60;
+    --line:#e4e0d6; --accent:#0f6b4f; --accent-soft:#e8f3ee;
+    --warn:#8a5a00; --warn-soft:#fdf3e0; --bad:#9b2c2c; --bad-soft:#fdeceb;
+    --ok:#0f6b4f; --ok-soft:#e8f3ee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0d0f0e; --panel:#141715; --ink:#f2efe9; --mid:#c3bdb2; --low:#8e887c;
+      --line:#252a27; --accent:#4ade9f; --accent-soft:#10231b;
+      --warn:#e9b558; --warn-soft:#241c0c; --bad:#f2857e; --bad-soft:#2a1513;
+      --ok:#4ade9f; --ok-soft:#10231b; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.65 ui-serif,Georgia,"Times New Roman",serif;}
+  .wrap{max-width:900px;margin:0 auto;padding:48px 20px 96px}
+  header.top{border-bottom:2px solid var(--line);padding-bottom:24px;margin-bottom:32px}
+  .kicker{font:600 11px/1.4 ui-monospace,monospace;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+  h1{font-size:32px;line-height:1.2;margin:0 0 12px;font-weight:600;letter-spacing:-.01em}
+  h2{font-size:22px;margin:44px 0 12px;padding-top:14px;border-top:1px solid var(--line);font-weight:600}
+  h3{font-size:17px;margin:26px 0 8px;font-weight:600}
+  p,li{color:var(--mid)}
+  p{margin:0 0 14px}
+  ul,ol{margin:0 0 14px;padding-left:22px} li{margin:0 0 7px}
+  strong{color:var(--ink);font-weight:600}
+  .lede{font-size:17px;color:var(--ink)}
+  .meta{font:12px/1.7 ui-monospace,monospace;color:var(--low)}
+  table{border-collapse:collapse;width:100%;margin:0 0 18px;font-size:14px}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+  th{background:var(--accent-soft);color:var(--ink);font-weight:600;font-size:13px}
+  code{font:13px ui-monospace,monospace;background:var(--accent-soft);padding:1px 5px;border-radius:4px;color:var(--ink)}
+  pre{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;overflow-x:auto;
+      font:13px/1.6 ui-monospace,monospace;color:var(--ink);white-space:pre-wrap}
+  .box{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--accent);
+       border-radius:10px;padding:16px 18px;margin:0 0 18px}
+  .box.warn{border-left-color:var(--warn);background:var(--warn-soft)}
+  .box.bad{border-left-color:var(--bad);background:var(--bad-soft)}
+  .box.ok{border-left-color:var(--ok);background:var(--ok-soft)}
+  .tag{display:inline-block;font:600 10px/1 ui-monospace,monospace;letter-spacing:.1em;
+       text-transform:uppercase;padding:4px 7px;border-radius:4px;white-space:nowrap}
+  .t-ok{background:var(--ok-soft);color:var(--ok);border:1px solid var(--ok)}
+  .t-warn{background:var(--warn-soft);color:var(--warn);border:1px solid var(--warn)}
+  .t-bad{background:var(--bad-soft);color:var(--bad);border:1px solid var(--bad)}
+  .t-info{background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent)}
+  .scroll{overflow-x:auto}
+  blockquote{margin:0 0 16px;padding:12px 18px;border-left:3px solid var(--line);color:var(--mid);font-style:italic}
+  .toc{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:0 0 8px}
+  .toc ol{margin:0;padding-left:20px;columns:2;column-gap:28px}
+  .toc li{margin:0 0 5px;font-size:14px}
+  a{color:var(--accent)}
+  footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--low);font-size:13px}
+  @media(max-width:640px){ .toc ol{columns:1} h1{font-size:26px} .wrap{padding:28px 16px 64px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <p class="kicker">Vâliçe Press · Üretim · Faz B · Nihai Uygulama</p>
+  <h1>Yeni landing page — uygulandı, ölçüldü, yayında</h1>
+  <p class="lede">Tam genişlikte fotoğrafik hero, içindeki <strong>her kitap gerçek</strong>;
+  soldan sağa kesintisiz akan bir kitap rafı; kendi kimliğini taşıyan kategori kartları; ve
+  aşağı taşınan değer önerileri. Referansa sadık, ama kataloğa daha sadık.</p>
+  <p class="meta">Tarih: 11 Eylül 2026 · PR
+  <a href="https://github.com/emredogan-cloud/ValicePress-Site/pull/49">#49</a> birleştirildi
+  (<code>9ab6aec</code>) · Testler: 470 · CLS: <strong>0,0000</strong> ·
+  <span class="tag t-ok">ÜRETİMDE CANLI</span></p>
+</header>
+
+<div class="toc">
+<ol>
+  <li><a href="#s1">Referans uygulaması</a></li>
+  <li><a href="#s2">Bölüm bölüm değişiklikler</a></li>
+  <li><a href="#s3">Hero uygulaması</a></li>
+  <li><a href="#s4">Gerçek kitap kapaklarının kullanımı</a></li>
+  <li><a href="#s5">Sağlanan görsellerin kullanımı</a></li>
+  <li><a href="#s6">Kategori görselleri</a></li>
+  <li><a href="#s7">Hareketli kitap rafı</a></li>
+  <li><a href="#s8">Duyarlı davranış</a></li>
+  <li><a href="#s9">Erişilebilirlik</a></li>
+  <li><a href="#s10">Performans</a></li>
+  <li><a href="#s11">Analitik</a></li>
+  <li><a href="#s12">Tarayıcı testleri</a></li>
+  <li><a href="#s13">Üretim doğrulaması</a></li>
+  <li><a href="#s14">Öncesi / sonrası</a></li>
+  <li><a href="#s15">Kalan sorunlar</a></li>
+</ol>
+</div>
+
+<h2 id="s1">1 · Referans uygulaması</h2>
+
+<p>Referansın mimarisi alındı, içeriği alınmadı. İkisi arasındaki fark bu raporun tamamını
+açıklıyor.</p>
+
+<table>
+<tr><th>Referansın verdiği</th><th>Uygulanan</th></tr>
+<tr><td>Tam genişlikte fotoğrafik hero, metin üstte</td><td><span class="tag t-ok">AYNEN</span></td></tr>
+<tr><td>Saydam header, logo altında imprint satırı, BÜYÜK HARF navigasyon</td><td><span class="tag t-ok">AYNEN</span></td></tr>
+<tr><td>Eyebrow + altında kural çizgisi (kenarlıklı hap değil)</td><td><span class="tag t-ok">AYNEN</span></td></tr>
+<tr><td>Üç satırlık serif başlık, yalnızca son vurgu aksanlı</td><td><span class="tag t-ok">AYNEN</span></td></tr>
+<tr><td>İki hap CTA (dolu + çerçeveli)</td><td><span class="tag t-ok">AYNEN</span> — Faz A'nın altın CTA sistemiyle</td></tr>
+<tr><td>Tam genişlikte tek satır güven şeridi</td><td><span class="tag t-ok">AYNEN</span></td></tr>
+<tr><td>Üç editoryal kenar notu</td><td><span class="tag t-ok">AYNEN</span> — hepsi canlı HTML</td></tr>
+<tr><td>Sol editoryal sütun + yatay kitap kartı rafı</td><td><span class="tag t-ok">AYNEN</span></td></tr>
+<tr><td>“Books worth keeping.” başlığı</td><td><span class="tag t-bad">ALINMADI</span> — §2</td></tr>
+<tr><td>Uydurma kitaplar (The Quiet Mind vb.)</td><td><span class="tag t-bad">ALINMADI</span> — §4</td></tr>
+<tr><td>Kart fiyatları</td><td><span class="tag t-warn">KAMPANYA MANTIĞI</span> — §2</td></tr>
+</table>
+
+<h2 id="s2">2 · Bölüm bölüm değişiklikler</h2>
+
+<h3>Yeni sıralama</h3>
+
+<pre>1  Header            saydam varyant + imprint satırı + BÜYÜK HARF nav
+2  Hero              YENİDEN YAZILDI — tam genişlik fotoğraf
+3  Kampanya          değişmedi (geri sayım kendi saatinden)
+4  Hareketli raf     YENİ
+5  Öne çıkan kitaplar YENİDEN YAZILDI — yatay raf + kategori etiketleri
+6  Kategoriler       yeni görseller + yeni işlem
+7  Değer önerileri   AŞAĞI TAŞINDI
+8  Bülten            değişmedi
+9  Footer            değişmedi</pre>
+
+<div class="box">
+  <p style="margin:0"><strong>Değer önerileri neden silinmedi, taşındı.</strong>
+  “Neden sizden alayım?” sorusu, okuyucunun ancak <em>istediği bir şeyi gördükten sonra</em>
+  sorduğu bir sorudur. Hero'nun güven şeridi dört kelimelik bir vaat; bu bölüm onu açıklıyor.
+  Referansta görünmemesi, kesilmiş bir ekran görüntüsünün kanıtı değil.</p>
+</div>
+
+<h3>Başlık: referansın sözleri alınmadı</h3>
+
+<p>Referans <em>“Books worth keeping.”</em> diyor ve kopyalamak kolaydı. Ama
+<strong>“Find it. Own it. Read it anywhere.”</strong> bu sayfadaki tek şey ki mockup'ın
+değil, Vâliçe Press'in kendisinin. Değişen tipografi oldu: daha sıkı satır aralığı ve
+aksanın <em>son iki satır</em> yerine <strong>yalnızca son satıra</strong> daraltılması —
+böylece vurgu bir kez düşüyor.</p>
+
+<h3>“Watch Demo” kaldırıldı</h3>
+
+<p>Ortada bir demo videosu yok. Olmayan bir özelliğe çağrı yapan bir buton, uydurulmuş bir
+ASIN ile aynı sınıftan bir yanlıştır. İki CTA da artık gerçek bir yere gidiyor:
+<code>/books</code> ve <code>/ebooks</code>.</p>
+
+<h2 id="s3">3 · Hero uygulaması</h2>
+
+<pre>&lt;section relative isolate&gt;
+  &lt;div absolute inset-0 -z-10&gt;            ← görsel sarmalayıcısı
+     &lt;picture&gt;
+        source  (max-width:639px)  AVIF   portre kadraj
+        source  (max-width:639px)  WebP
+        source                     AVIF   640/960/1280/1672 w
+        source                     WebP   640/960/1280/1672 w
+        img     alt="" fetchpriority="high"
+     &lt;/picture&gt;
+     &lt;div&gt; yatay okunabilirlik degradesi      ← İŞLEVSEL, dekoratif değil
+     &lt;div&gt; üst 150px şerit                    ← header'ın zemini
+     &lt;div&gt; alt 200px şerit                    ← kampanya bandına devir
+     &lt;div sm:hidden&gt; mobil karartma
+  &lt;/div&gt;
+  &lt;HeroEditorialNotes /&gt;                  ← section'a bağlı, metin sütununa değil
+  &lt;div&gt; eyebrow · h1 · alt metin · CTA'lar · güven şeridi
+&lt;/section&gt;</pre>
+
+<h3>İki uygulama dersi</h3>
+
+<div class="box bad">
+  <p style="margin:0 0 8px"><strong>1. Degradeler görselin sarmalayıcısının İÇİNDE olmalı.</strong></p>
+  <p style="margin:0">İlk sürümde degradeler <code>section</code>'ın <code>-z-10</code>
+  kardeşleriydi — yani fotoğrafla <em>aynı</em> yığın seviyesinde. Sonuç: tüm levha
+  karardı, degradenin %56'dan sonra tamamen saydam olmasına rağmen. Şimdi hepsi tek bir
+  konumlandırılmış ebeveynin içinde, sıra düz DOM sırası — belirsizlik yok ve birisi
+  ileride bir katman daha eklerse de bozulmaz.</p>
+</div>
+
+<div class="box bad">
+  <p style="margin:0 0 8px"><strong>2. Tam yükseklikte dikey degrade fotoğrafı öldürüyordu.</strong></p>
+  <p style="margin:0">Header'ın okunabilir bir zemine ihtiyacı var ve bölümün alttaki
+  kampanya bandına devretmesi gerekiyor — ama bunlar <em>üstteki 150px</em> ve
+  <em>alttaki 200px</em>. Bunu çözmek için bölümün tamamına yayılan bir degrade,
+  aradaki her yerde fotoğrafı karartıyor. Ölçüldü: kitapların üzerine yaklaşık
+  0,3–0,5 alfa, hiçbir kazanç olmadan. İki kısa şeritle değiştirildi.</p>
+</div>
+
+<h3>Degrade dekoratif değil, işlevsel</h3>
+
+<p>Başlığın kontrastını garanti eden şey o. Fotoğraf, sol üçte biri kasıtlı olarak boş ve
+çok koyu olacak şekilde kurgulandı — ama yalnızca bir atmosfer olan bir degradeye
+güvenmek yanlış olurdu.</p>
+
+<h2 id="s4">4 · Gerçek kitap kapaklarının kullanımı</h2>
+
+<div class="box ok">
+  <p style="margin:0 0 8px"><strong>Hero fotoğrafındaki beş kitabın beşi de gerçek.</strong></p>
+  <table style="margin:0">
+  <tr><th>Fotoğraftaki</th><th>Katalogdaki</th><th>Durum</th></tr>
+  <tr><td>THE GREAT BOOK OF WORLD GAMES</td><td><code>the-great-book-of-world-games</code></td><td><span class="tag t-ok">yayında</span></td></tr>
+  <tr><td>CODEX BESTIARIUM</td><td><code>codex-bestiarium</code></td><td><span class="tag t-ok">yayında</span></td></tr>
+  <tr><td>CODEX ENIGMATICA</td><td><code>codex-enigmatica</code></td><td><span class="tag t-ok">yayında</span></td></tr>
+  <tr><td>THE GREAT BOOK OF WORLD MYTHS (sırt)</td><td><code>the-great-book-of-world-myths</code></td><td><span class="tag t-ok">yayında</span></td></tr>
+  <tr><td>PENCIL &amp; PAPER (sırt)</td><td><code>pencil-and-paper</code></td><td><span class="tag t-ok">yayında</span></td></tr>
+  </table>
+</div>
+
+<p>Founder üç varyant üretti: gerçek başlıklı, boş kapaklı ve kitapsız (kompozit için boş
+sahne). <strong>Gerçek başlıklı olan seçildi</strong> — brief §14 “kitapları görsel olarak
+boş bırakma” diyor, ve daha önemlisi bu kitapların hepsi gerçekten var. Beşi de aynı
+sayfada, iki bölüm aşağıda, tıklanabilir hâlde duruyor.</p>
+
+<p>Kapaklar <strong>yeniden üretilmedi</strong> (§24). Rafta ve öne çıkanlarda kullanılan 27
+kapak diskteki gerçek dosyalardır.</p>
+
+<h2 id="s5">5 · Sağlanan görsellerin kullanımı</h2>
+
+<table>
+<tr><th>Dosya</th><th>Boyut</th><th>Ne</th><th>Karar</th></tr>
+<tr><td><code>images/assets/Pasted image.png</code></td><td>1672×941</td>
+    <td>Gerçek Vâliçe başlıklı natürmort</td><td><span class="tag t-ok">KULLANILDI</span> — hero</td></tr>
+<tr><td><code>images/assets/Pasted image (2).png</code></td><td>1672×941</td>
+    <td>Dekoratif, başlıksız kapaklar</td><td><span class="tag t-info">KULLANILMADI</span> — §14 boş bırakmayı yasaklıyor</td></tr>
+<tr><td><code>images/assets/Pasted image (3).png</code></td><td>1672×941</td>
+    <td>Kitapsız boş sahne (kompozit tabanı)</td><td><span class="tag t-info">KULLANILMADI</span> — kompozite gerek kalmadı</td></tr>
+<tr><td><code>images/Category/*.png</code></td><td>1536×1024 ×5</td>
+    <td>Kategori görselleri</td><td><span class="tag t-ok">KULLANILDI</span> — §6</td></tr>
+</table>
+
+<h3>Üretilen türevler</h3>
+
+<pre>hero-library-still-life-{640,960,1280,1672}.avif    16,2 / 31,8 / 49,4 / 71,8 KB
+hero-library-still-life-{640,960,1280,1672}.webp    21,9 / 44,0 / 71,1 / 107,1 KB
+hero-library-still-life-portrait.{avif,webp}        63,3 / 96,4 KB   900×1200 (3:4 mobil kadraj)
+public/images/books/thumb/*.webp                    27 dosya, 403 KB toplam, ortalama 14,9 KB</pre>
+
+<p><strong>Yukarı ölçeklenmedi.</strong> Kaynak 1672 piksel genişliğinde; en büyük türev de
+1672. §43 “kötü kaynak materyali körlemesine büyütme” diyor — 2880'e çıkarmak dosyayı
+şişirir, ayrıntı eklemez.</p>
+
+<h2 id="s6">6 · Kategori görselleri</h2>
+
+<p>Beş görselin her biri kendi kategorisine eşlendi ve dikey karta uyacak şekilde
+<strong>3:4 kırpıldı</strong> — merkeze değil, <em>kimliği taşıyan tarafa</em>.</p>
+
+<table>
+<tr><th>Kategori</th><th>Kaynak</th><th>Kırpma</th><th>Kırpmada kalan kimlik</th></tr>
+<tr><td>Classics &amp; Philosophy</td><td><code>Classics-Philosophy.png</code></td><td>x+0</td>
+    <td>Mermer büst + PLATO / ARISTOTLE / SENECA / MARCUS AURELIUS / EPICTETUS / CICERO sırtları</td></tr>
+<tr><td>Games &amp; Play</td><td><code>Games-Play.png</code></td><td>x+120</td>
+    <td>PLAY / EXPLORE / SOLVE / CREATE sırtları + meeple + zar</td></tr>
+<tr><td>Language &amp; Learning</td><td><code>Language-Kearning.png</code></td><td>x+40</td>
+    <td>ENGLISH / FRANÇAIS / DEUTSCH / ESPAÑOL / ITALIANO / ΕΛΛΗΝΙΚΆ + küre</td></tr>
+<tr><td>Myth &amp; Folklore</td><td><code>Myths-Folklore.png</code></td><td>x+0</td>
+    <td>Hayat ağacı oyması + MYTHS / LEGENDS / FOLKLORE / HEROES / GODS sırtları + fener</td></tr>
+<tr><td>Puzzle &amp; Challenge</td><td><code>Puzzle-Challenge.png</code></td><td>x+60</td>
+    <td>PUZZLES / LOGIC / BRAINTEASERS / STRATEGY sırtları + yeşil lamba + satranç</td></tr>
+</table>
+
+<h3>İşlem (§34)</h3>
+
+<pre>görsel     : object-cover, brightness(0.78) saturate(0.92)
+hover      : brightness(1) saturate(1) + scale(1.04), 500ms
+vinyet     : radial-gradient(120% 90% at 50% 35%, transparent 40%, rgba(3,8,6,0.55) 100%)
+ayak       : linear-gradient(to top, rgba(3,8,6,0.96) → transparent), kartın %72'si
+kenarlık   : 1px beyaz/6%, hover'da emerald/25%
+azalt. hrk : motion-reduce ile ölçek ve geçiş kapalı</pre>
+
+<div class="box">
+  <p style="margin:0">Sanat eseri <strong>durağan hâlde %78'e tutuluyor, hover'da tamamen
+  serbest bırakılıyor.</strong> Gerekçe: sanat eseri kategorinin kimliğidir ve onu kalıcı
+  olarak karartan bir kart, renkli bir dikdörtgenden ibaret olur. Ayak degradesi ise
+  <em>ortalamaya değil, başlığın altındaki en açık piksele</em> göre koyulaştırıldı — yeni
+  görseller yerini aldıkları düz dokulardan çok daha parlak.</p>
+</div>
+
+<h2 id="s7">7 · Hareketli kitap rafı</h2>
+
+<p>Kampanya bandı ile “Designed for the way you actually read” arasına yerleştirildi —
+promosyon “ücretsiz” diyorsa, hemen ardından görülmesi gereken şey <em>alınacak olan</em>dır.</p>
+
+<h3>Mimari</h3>
+
+<pre>&lt;div class="marquee"&gt;                    overflow gizli
+  &lt;div class="marquee-track"&gt;            TEK animasyonlu öğe
+    &lt;ul&gt;   katalog ×1                    ← ekran okuyucunun duyduğu
+    &lt;ul aria-hidden tabIndex=-1&gt; ×1      ← dikişi gizleyen kopya
+  &lt;/div&gt;
+&lt;/div&gt;
+
+@keyframes marquee-drift { from { translate3d(-50%,0,0) } to { translate3d(0,0,0) } }</pre>
+
+<h3>Üretimde ölçülen</h3>
+
+<pre>şerit genişliği (bir tam katalog + kendi boşluğu) : 4049,5 px
+iz genişliği                                      : 8099,1 px  (tam olarak 2 şerit ✓)
+bir döngüde kat edilen                            : 4049,1 px  → bir şerit genişliği ✓
+hız                                               : 34,0 px/s   (§27: 30–50 aralığı ✓)
+yön                                               : SOLDAN SAĞA ✓
+will-change                                       : auto
+tıklanabilir kart                                 : 54
+kopya şerit erişilebilirlik ağacında              : hayır (aria-hidden + tabIndex -1)</pre>
+
+<h3>Dikiş nasıl görünmez oluyor</h3>
+
+<p>İz kataloğu iki kez taşıyor ve tam olarak <strong>bir şerit genişliği</strong> kayıyor.
+Döngü başa döndüğü anda ekrandaki pikseller bir kare öncekiyle aynıdır, çünkü ikinci
+kopya birinci kopyanın ta kendisidir. Atlama da yok, boşluk da.</p>
+
+<div class="box bad">
+  <p style="margin:0 0 8px"><strong>Bulunan ve düzeltilen üç gerçek kusur.</strong></p>
+  <ol style="margin:0">
+    <li><strong><code>will-change: transform</code> tarayıcıyı kilitliyordu.</strong>
+    10.131 piksellik bir iz üzerinde bu özellik, kalıcı olarak rasterize edilen devasa bir
+    kompozitör katmanı oluşturuyor; ekran görüntüleri zaman aşımına uğradı ve hero siyah
+    boyandı. Bu, özelliğin uyardığı ders kitabı vakasıdır — ve en haklı göründüğü yerdir.
+    Kaldırıldı; tarayıcı katmanı yalnızca animasyon süresince yükseltiyor ve döşüyor.</li>
+    <li><strong><code>next/image</code> kapak başına 3840w'a kadar 15 girişli srcset
+    üretiyordu</strong> ve <code>src=…&amp;w=3840</code>'a düşüyordu: 132 piksel genişliğinde
+    çizilen görseller için <strong>54 optimizer gidiş-dönüşü</strong>. Bunlar yerel
+    dosyaların sabit boyutlu küçük resimleri — her biri için tek bir statik 2× varlık
+    (15 KB) üretildi ve düz <code>&lt;img&gt;</code> kullanıldı.</li>
+    <li><strong>Döngü her turda 9 piksel kayıyordu.</strong>
+    <code>translateX(-50%)</code> <em>izin</em> yarısıdır; iki şerit arasına konan boşluk,
+    kat edilen mesafeyi bir şeritten yarım boşluk eksik bırakıyordu. Artık her şerit kendi
+    sondaki boşluğunu taşıyor.</li>
+  </ol>
+</div>
+
+<h3>Erişilebilirlik ve etkileşim</h3>
+
+<table>
+<tr><th>Gereklilik</th><th>Uygulama</th></tr>
+<tr><td>Her kitap tıklanabilir</td><td><code>&lt;a href="/books/&lt;slug&gt;"&gt;</code>, gerçek kitap sayfası</td></tr>
+<tr><td>Hover davranışı</td><td>Yavaşlar (2,6×), <strong>durmaz</strong> — donan bir raf bozuk hissettirir ve dikişi bulmayı kolaylaştırır</td></tr>
+<tr><td><code>prefers-reduced-motion</code></td><td>Animasyon <strong>tamamen durur</strong>; raf normal bir yatay kaydırıcıya döner (<code>overflow-x:auto</code> + snap), kopya şerit gizlenir, kitaplar tıklanabilir kalır</td></tr>
+<tr><td>Klavye</td><td>Gerçek şeritteki 27 bağlantı sekmeyle gezilebilir; kopya <code>tabIndex=-1</code></td></tr>
+<tr><td>Ekran okuyucu</td><td>Katalog bir kez okunur</td></tr>
+<tr><td>Kitap kaynağı</td><td><code>listPublishedBooks()</code> — sabit kodlanmış liste yok; yarın yayımlanan kitap yarın rafta</td></tr>
+<tr><td>Kapağı olmayan kitap</td><td>Raftan <strong>çıkarılır</strong>, delik olarak çizilmez (<code>pencil-and-paper</code> bu durumda)</td></tr>
+</table>
+
+<h2 id="s8">8 · Duyarlı davranış</h2>
+
+<table>
+<tr><th>Öğe</th><th>MASAÜSTÜ ≥1024</th><th>TABLET 640–1023</th><th>MOBİL &lt;640</th></tr>
+<tr><td>Hero görseli</td><td>16:9 tam genişlik, <code>object-position 65% 50%</code></td>
+    <td>16:9, 62% 50%</td><td><strong>3:4 portre kadraj</strong> (ayrı dosya)</td></tr>
+<tr><td>Metin/görsel</td><td>Metin fotoğrafın üzerinde, soldan degrade</td><td>aynı</td>
+    <td>Alt yarı karartılır, metin altta</td></tr>
+<tr><td>H1</td><td>76–84 px</td><td>62 px</td><td>44 px</td></tr>
+<tr><td>CTA'lar</td><td>Yan yana</td><td>Yan yana</td><td><strong>Tam genişlik, alt alta</strong></td></tr>
+<tr><td>Güven şeridi</td><td>Tek satır, 4 öğe</td><td>Tek satır</td><td><strong>2×2 ızgara</strong></td></tr>
+<tr><td>Editoryal notlar</td><td>Görünür (xl+)</td><td>Gizli</td><td>Gizli</td></tr>
+<tr><td>Header imprint satırı</td><td>Görünür (lg+)</td><td>Gizli</td><td>Gizli</td></tr>
+<tr><td>Navigasyon</td><td>Tam yatay menü</td><td>Hamburger</td><td>Hamburger</td></tr>
+<tr><td>Raf kartları</td><td>132 px</td><td>132 px</td><td>104 px</td></tr>
+<tr><td>Öne çıkanlar</td><td>3 kart + ayırıcılar</td><td>~2 kart, kaydırmalı</td><td>1 kart, snap kaydırma</td></tr>
+<tr><td>Kategoriler</td><td><strong>5 sütun</strong></td><td><strong>3 sütun</strong></td><td><strong>2 sütun</strong></td></tr>
+</table>
+
+<div class="box warn">
+  <p style="margin:0"><strong>Canlı mobil render doğrulanamadı.</strong> Bu ortamdaki pencere
+  yöneticisi yeniden boyutlandırma isteklerini yok sayıyor (<code>innerWidth</code> 2060'ta
+  kalıyor), aynı kaynaklı bir <code>&lt;iframe&gt;</code> uzantının izole dünyası tarafından
+  engelleniyor, ve deponun kendi mobil koşum takımı fiziksel Redmi'yi <code>adb</code>
+  üzerinden istiyor. Yukarıdaki tablo <strong>üretilmiş biçimlendirme üzerinde statik
+  olarak</strong> doğrulandı — dokuz duyarlı sözleşmenin dokuzu da HTML'de mevcut. Telefonda
+  bir geçiş yapılması gerekiyor.</p>
+</div>
+
+<h2 id="s9">9 · Erişilebilirlik</h2>
+
+<p class="meta">Üretilmiş sayfa üzerinde ölçüldü. <span class="tag t-info">OLGU</span></p>
+
+<pre>H1 sayısı                    : 1                    ✓
+başlık sırası                : H1 H2 H2 H2 H3×6 H2 H3×5 H2 H3×4 H2   (atlama yok) ✓
+main içindeki görsel          : 65
+  alt niteliği olmayan        : 0                    ✓
+  eager (hero olmalı)         : 1                    ✓
+href'siz &lt;a&gt;                  : 0                    ✓
+etiketsiz &lt;button&gt;            : 0                    ✓
+hero fotoğrafı alt=""         : evet (dekoratif)     ✓
+raf kopya şeridi gizli        : evet                 ✓</pre>
+
+<table>
+<tr><th>Konu</th><th>Uygulama</th></tr>
+<tr><td>Buton mu bağlantı mı</td><td>Hero CTA'ları gezinir → <code>&lt;a&gt;</code>. Raf kartları gezinir → <code>&lt;a&gt;</code>.</td></tr>
+<tr><td>Odak görünürlüğü</td><td>Raf kartlarında <code>group-focus-visible/card:ring-2</code>; CTA'lar Faz A'nın <code>.valice-cta:focus-visible</code> altın halkasını taşıyor</td></tr>
+<tr><td>Kontrast</td><td>Degrade, fotoğrafın <em>en açık</em> olabileceği noktaya göre boyutlandırıldı; kategori ayak degradesi de öyle</td></tr>
+<tr><td>Azaltılmış hareket</td><td><code>globals.css</code>'te 6 blok + bileşenlerde <code>motion-reduce:</code> yardımcıları. Raf durur ve kaydırılabilir kalır.</td></tr>
+<tr><td>Hareketli raf bir engel değil</td><td>Aynı kitaplar <code>/books</code>, öne çıkanlar ve kategorilerde de var; raf tek erişim yolu <strong>değil</strong></td></tr>
+</table>
+
+<h2 id="s10">10 · Performans</h2>
+
+<p class="meta">Üretilmiş sayfa, gerçek tarayıcı. <span class="tag t-info">OLGU</span></p>
+
+<pre>CLS                    : 0,0000        ✓  (hedef 0)
+uzun görevler          : 0             ✓
+load                   : 170 ms
+eager görsel           : 1 (hero)      ✓
+toplam istek/aktarım   : 250 istek / 298 KB
+raf küçük resimleri    : DOM'da 54, ilk boyamada yalnızca 32 indirildi (lazy çalışıyor)</pre>
+
+<table>
+<tr><th>Karar</th><th>Gerekçe</th></tr>
+<tr><td>AVIF birincil + WebP yedek</td><td>1672 genişlikte AVIF <strong>71,8 KB</strong>, WebP 107,1 KB</td></tr>
+<tr><td>Mobil için ayrı dosya</td><td>Telefonda 1672 piksellik yatay bir görsel indirmek israf; 900×1200 hem küçük hem doğru kadraj</td></tr>
+<tr><td>Hero <code>fetchpriority="high"</code></td><td>LCP adayı; sayfadaki tek eager görsel</td></tr>
+<tr><td>Raf küçük resimleri statik</td><td>54 optimizer gidiş-dönüşü yerine 27 statik dosya, ortalama 14,9 KB</td></tr>
+<tr><td>Hero tamamen sunucu bileşeni</td><td>Hero'da sıfır istemci JS</td></tr>
+<tr><td>Raf saf CSS</td><td>Kart başına zamanlayıcı yok, kaydırma dinleyicisi yok, React durumu yok</td></tr>
+<tr><td>CLS için sabit oran</td><td>Kartlar <code>aspect-[2/3]</code>, hero <code>min-h</code> — yükseklik görselin yüklenmesine bağlı değil</td></tr>
+</table>
+
+<h2 id="s11">11 · Analitik</h2>
+
+<p>Mevcut analitik <strong>korundu</strong> — <code>view_item</code>,
+<code>companion_download</code>, <code>newsletter_signup</code>, <code>search</code>,
+<code>related_click</code> ve Faz A'nın sunucu tarafı asistan olayları hepsi yerinde.</p>
+
+<p><strong>Bu oturumda yeni analitik olayı eklenmedi.</strong> Landing page'in yeni
+etkileşimleri (hero CTA tıklaması, raf kartı tıklaması, kategori tıklaması) belgelenmiş
+olay modelinde tanımlı ama uygulanmadı — bunlar <code>"use client"</code> gerektiriyor ve
+hero ile rafın tamamen sunucu bileşeni kalması bu turda daha değerliydi. Öneri, olay
+modeli hazır olduğu için tek bir ince istemci adası olarak eklenmesi (§15).</p>
+
+<p>PII sınırı korunuyor: <code>/api/events</code> hâlâ <code>query</code>,
+<code>email</code>, <code>name</code> gibi anahtarları reddediyor.</p>
+
+<h2 id="s12">12 · Tarayıcı testleri</h2>
+
+<table>
+<tr><th>#</th><th>Test</th><th>Sonuç</th></tr>
+<tr><td>1</td><td>Browse the library → <code>/books</code></td><td><span class="tag t-ok">200</span></td></tr>
+<tr><td>2</td><td>Explore ebooks → <code>/ebooks</code></td><td><span class="tag t-ok">200</span></td></tr>
+<tr><td>3</td><td>Arama hapı + ⌘K, sepet, hesap</td><td><span class="tag t-ok">mevcut</span></td></tr>
+<tr><td>4</td><td>Raftaki kitaba tıklama</td><td><span class="tag t-ok">54 bağlantı, hepsi <code>/books/&lt;slug&gt;</code></span></td></tr>
+<tr><td>5</td><td>Kategori açma</td><td><span class="tag t-ok">5 kart, hepsi 200</span></td></tr>
+<tr><td>6</td><td>Öne çıkan kitap açma</td><td><span class="tag t-ok">200</span></td></tr>
+<tr><td>7</td><td>Hediye kutusu / ücretsiz kitap modalı</td><td><span class="tag t-ok">overlay 2060×1074, <code>parentIsBody=true</code>, <code>insideCard=false</code>, altın CTA 46px, body scroll kilidi</span></td></tr>
+<tr><td>8</td><td>AI asistanı</td><td><span class="tag t-ok">launcher mevcut; eşlikçi sorusu doğru yanıtlandı; araç şeması sızıntısı yok</span></td></tr>
+<tr><td>9</td><td>Bülten</td><td><span class="tag t-ok">bölüm mevcut, dokunulmadı</span></td></tr>
+<tr><td>10</td><td>Kampanya geri sayımı</td><td><span class="tag t-ok">canlı, kendi sunucu saatinden</span></td></tr>
+</table>
+
+<h3>Diğer rotalar (paylaşılan header değiştiği için)</h3>
+
+<pre>/books /ebooks /categories /authors /about /blog /search /cart
+/books/kwaidan  /companion/kwaidan  /categories/myth-and-folklore     → hepsi 200
+
+header varyantı:  ana sayfa  = absolute inset-x-0 top-0 z-50     (saydam)
+                  /books     = sticky top-0 … bg-[#07110b]/80    (değişmedi ✓)</pre>
+
+<div class="box warn">
+  <p style="margin:0"><strong>Bir ölçüm tuzağı, kayda geçsin diye.</strong> Bu oturumun
+  tarayıcı sekmesi <code>document.visibilityState === "hidden"</code> durumundaydı. Chrome
+  arka plan sekmelerinde animasyonları, <code>requestAnimationFrame</code>'i ve bileşimi
+  kısıtlar — bu yüzden ekran görüntüleri <strong>bayat</strong> geliyor ve hero siyah
+  görünüyordu, sayfa aslında doğru çizilirken. Zorlanmış bir yeniden boyama
+  (<code>body.style.transform</code> aç-kapa) gerçek kareyi ortaya çıkarıyor. Raf ve hero
+  bu yüzden ekran görüntüsüyle değil, <strong>Web Animations API ve piksel örneklemesiyle</strong>
+  doğrulandı.</p>
+</div>
+
+<h2 id="s13">13 · Üretim doğrulaması</h2>
+
+<h3>§55 bayt kontrolü — her yeni görsel</h3>
+
+<p class="meta">HTML'de URL aramak değil; baytları indirip <em>çözerek</em>.
+<span class="tag t-info">OLGU</span></p>
+
+<pre>hero-library-still-life-640.avif        200  image/avif    16.554 B   640x360
+hero-library-still-life-640.webp        200  image/webp    22.442 B   640x360
+hero-library-still-life-960.avif        200  image/avif    32.539 B   960x540
+hero-library-still-life-960.webp        200  image/webp    45.052 B   960x540
+hero-library-still-life-1280.avif       200  image/avif    50.547 B  1280x720
+hero-library-still-life-1280.webp       200  image/webp    72.844 B  1280x720
+hero-library-still-life-1672.avif       200  image/avif    73.501 B  1672x941
+hero-library-still-life-1672.webp       200  image/webp   109.668 B  1672x941
+hero-…-portrait.avif                    200  image/avif    64.807 B   900x1200
+hero-…-portrait.webp                    200  image/webp    98.716 B   900x1200
+
+classics-and-philosophy.webp            200  image/webp   126.420 B   900x1200
+games-and-play.webp                     200  image/webp   122.318 B   900x1200
+language-and-learning.webp              200  image/webp   126.074 B   900x1200
+myth-and-folklore.webp                  200  image/webp   109.294 B   900x1200
+puzzle-and-challenge.webp               200  image/webp   125.424 B   900x1200
+
+raf küçük resimleri: sayfanın atıfta bulunduğu 27 dosyanın 27'si de
+                     gerçek, çözülebilir bayt döndürdü. Başarısız: 0.
+                     Toplam raf yükü 403 KB (lazy; ilk boyamada ~32 dosya).</pre>
+
+<p><code>.vercelignore</code> desenlerinin hepsi kök-çapalı (<code>/images/</code>,
+<code>/assets/</code> …), dolayısıyla <code>public/images/**</code> etkilenmiyor — geçmişte
+tüm kapakları 404'e düşüren çapasız desen hatası tekrarlanmadı ve bu <strong>bayt
+indirilerek</strong> doğrulandı.</p>
+
+<h3>Üretimde çalışan davranış</h3>
+
+<pre>hero &lt;img&gt;   : hero-library-still-life-1672.avif seçildi, 1854x1043 doğal,
+               complete=true, opacity 1, piksel verisi mean 34 / max 220 (parlak içerik var)
+raf          : 54 kart, dikişsiz=true, 34,0 px/s, SOLDAN SAĞA, will-change=auto
+kategoriler  : 5 kart, 5/5 görsel çözüldü (370x494), filter brightness(0.78) saturate(0.92)
+AI asistanı  : doğru eşlikçi yanıtı; araç şeması sızıntısı reddedildi
+hediye modalı: portal &lt;body&gt;'de, kartın içinde değil, altın CTA</pre>
+
+<h2 id="s14">14 · Öncesi / sonrası</h2>
+
+<table>
+<tr><th>Alan</th><th>ÖNCE</th><th>SONRA</th></tr>
+<tr><td>Hero görseli</td><td>Portre (1122×1402), sağda çerçeveli kutu, kozmik AI render</td>
+    <td>Landscape 16:9, <strong>tam genişlik</strong>, gerçek kitapların fotoğrafı</td></tr>
+<tr><td>Hero'daki kitaplar</td><td>Yok (soyut nebula)</td><td><strong>5 gerçek Vâliçe kitabı</strong></td></tr>
+<tr><td>Header</td><td>Opak, yapışkan, küçük harf nav</td><td>Ana sayfada saydam, imprint satırlı, BÜYÜK HARF nav</td></tr>
+<tr><td>Başlık</td><td>4 satır, son 2 satır aksanlı</td><td>3 satır, yalnızca son satır aksanlı</td></tr>
+<tr><td>CTA'lar</td><td>“Browse Catalog” / <strong>“Watch Demo”</strong> (olmayan video)</td>
+    <td>“Browse the library” / “Explore ebooks”, ikisi de gerçek</td></tr>
+<tr><td>Güven şeridi</td><td>2 satıra sarmalı, sol sütunda</td><td>Tek satır, tam genişlik</td></tr>
+<tr><td>Hareketli raf</td><td><span class="tag t-bad">yok</span></td><td>27 gerçek kitap, 34 px/s, dikişsiz</td></tr>
+<tr><td>Öne çıkanlar</td><td>Dikey ızgara, 6 kart, fiyatlı</td><td>Yatay raf, kapak + alt başlık + imprint + <strong>gerçek kategori etiketleri</strong></td></tr>
+<tr><td>Kategori kartları</td><td>Düz buruşuk kâğıt dokuları</td><td>Kategoriye özel sahneler, kimliği taşıyan kırpma, hover'da açılan</td></tr>
+<tr><td>Değer önerileri</td><td>Kategorilerin üstünde</td><td>Keşif bölümlerinin altında</td></tr>
+<tr><td>Sayfadaki eager görsel</td><td>4</td><td><strong>1</strong></td></tr>
+<tr><td>CLS</td><td>ölçülmemiş</td><td><strong>0,0000</strong></td></tr>
+</table>
+
+<h2 id="s15">15 · Kalan sorunlar</h2>
+
+<table>
+<tr><th>#</th><th>Konu</th><th>Öncelik</th><th>Ayrıntı</th></tr>
+<tr><td>1</td><td><strong>Canlı mobil render doğrulanmadı</strong></td><td>Orta</td>
+    <td>Bu ortamda gerçek bir mobil viewport elde edilemedi (§8). Duyarlı sözleşmenin dokuz
+    maddesi de üretilmiş biçimlendirmede mevcut, ama telefonda bir geçiş gerekiyor —
+    özellikle hero'nun portre kadrajı ve mobil CTA'ların AI başlatıcısıyla çakışmaması.</td></tr>
+<tr><td>2</td><td>Landing page analitik olayları eklenmedi</td><td>Orta</td>
+    <td>Hero CTA, raf kartı ve kategori tıklaması belgelenmiş ama uygulanmadı — hero ve rafı
+    tamamen sunucu bileşeni tutmak bu turda tercih edildi. Tek bir ince istemci adası olarak
+    eklenebilir.</td></tr>
+<tr><td>3</td><td>Karusel okları yok</td><td>Düşük</td>
+    <td>Referansta iki dairesel ok var. Kaydırıcı klavye, trackpad ve dokunmayla zaten
+    çalışıyor; oklar yalnızca fare için bir kolaylık ve bir istemci bileşeni gerektirirdi.
+    Bilinçli bir eksiklik.</td></tr>
+<tr><td>4</td><td>Hero kaynağı 1672 piksel</td><td>Düşük</td>
+    <td>Çok geniş ekranlarda tarayıcı bunu yukarı ölçekler. Karanlık, yumuşak odaklı bir
+    natürmort için kabul edilebilir; körlemesine büyütmek (§43) daha kötü olurdu.</td></tr>
+<tr><td>5</td><td><code>pencil-and-paper</code> kapağı yok</td><td>Düşük</td>
+    <td>Diskte kapağı olmayan tek yayımlanmış kitap. Raf onu <strong>doğru şekilde
+    atlıyor</strong> (delik çizmiyor), ama hero fotoğrafında sırtı görünüyor. Kapak
+    üretilirse rafa kendiliğinden katılır.</td></tr>
+<tr><td>6</td><td>Sekme kısıtlaması ölçümü zorlaştırıyor</td><td>Bilgi</td>
+    <td>Arka plan sekmesi kısıtlaması yüzünden ekran görüntüleri bayat geliyor. Gelecekteki
+    görsel QA'da ekran görüntüsünden önce zorlanmış yeniden boyama yapılmalı, yoksa doğru
+    çizilen bir sayfa bozuk görünür.</td></tr>
+<tr><td>7</td><td><code>Language-Kearning.png</code> dosya adı</td><td>Bilgi</td>
+    <td>Kaynak dosya adında yazım hatası (“Kearning”). Üretilen varlık doğru
+    (<code>language-and-learning.webp</code>); yalnızca kaynak arşivi etkileniyor.</td></tr>
+</table>
+
+<h3>Bu oturumda değişen dosyalar</h3>
+
+<pre>A  src/components/home/book-marquee.tsx            hareketli raf
+A  src/components/home/hero-editorial-notes.tsx     üç kenar notu
+M  src/components/home/hero.tsx                     yeniden yazıldı
+M  src/components/home/trust-row.tsx                tam genişlik tek satır
+M  src/components/home/cinematic-header.tsx         saydam varyant + imprint + BÜYÜK HARF nav
+M  src/components/home/categories-section.tsx       yeni işlem
+M  src/components/home/featured-books-section.tsx   yatay raf + kategori etiketleri
+M  src/components/book-card.tsx                     categories alanı
+M  src/lib/db/queries/catalog.ts                    gerçek kategorileri döndürür
+M  src/app/page.tsx                                 yeni sıralama + raf verisi
+M  src/app/globals.css                              marquee + rail-scroll
+A  public/images/homepage/hero-library-still-life-*  10 dosya
+A  public/images/books/thumb/*                       27 dosya
+M  public/images/categories/*.webp                   5 dosya
+A  images/assets/*, images/Category/*                kaynak varlıklar (deploy dışı)</pre>
+
+<p><strong>Dokunulmayanlar:</strong> <code>docs/execution/FOUNDER_ACTIONS.md</code> (başka bir
+ajanın değişikliği — staged edilmedi), <code>docs/ROADMAP/</code>,
+<code>docs/research/</code>, diğer worktree'ler. <code>git add -A</code>,
+<code>git reset --hard</code>, <code>git clean</code> ve force-push kullanılmadı.</p>
+
+<footer>
+  Vâliçe Press · Faz B nihai uygulama raporu · 11 Eylül 2026 ·
+  PR <a href="https://github.com/emredogan-cloud/ValicePress-Site/pull/49">#49</a> ·
+  <code>9ab6aec</code> · Faz A ayrı belgede:
+  <code>FREE-BOOK-EMAIL-DELIVERY-FINAL-VERIFICATION_TR.html</code>
+</footer>
+
+</div>
+</body>
+</html>
