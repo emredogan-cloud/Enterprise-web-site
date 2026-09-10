@@ -322,6 +322,30 @@ export async function getAmazonEditions(bookId: string | null): Promise<AmazonEd
   return selectAmazonEditions(rows);
 }
 
+/**
+ * The queue, shaped for a diagnostic response.
+ *
+ * Deliberately narrower than the admin list: no `message`, because a
+ * visitor's note to the publisher is not diagnostic data and has no business
+ * in an ops payload. Email addresses stay, because an operator chasing a
+ * delivery has to see who it went to.
+ */
+export async function listRequestsForDiagnostics(limit = 12) {
+  return db
+    .select({
+      id: freeBookRequests.id,
+      email: freeBookRequests.email,
+      bookSlug: freeBookRequests.bookSlug,
+      status: freeBookRequests.status,
+      notes: freeBookRequests.notes,
+      fulfilledAt: freeBookRequests.fulfilledAt,
+      createdAt: freeBookRequests.createdAt,
+    })
+    .from(freeBookRequests)
+    .orderBy(desc(freeBookRequests.createdAt))
+    .limit(limit);
+}
+
 export async function markRequestStatus(
   id: string,
   status: FreeBookRequestStatus,
