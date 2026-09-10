@@ -33,6 +33,16 @@ const BUILT = "scripts/tmp/digital-editions";
 
 export const PREVIEW_PAGES = [
   {
+    // Play Anywhere 1 (2026-09-10). The preview is one complete OPENING — the
+    // rules page and its facing diagram-and-notes page — because the whole
+    // promise of the book is that a game never turns a page, and two arbitrary
+    // pages would not show it. 2 of 162, well under one and a half per cent.
+    slug: "pencil-and-paper",
+    source: bookPath("PLA-01", "08_OUTPUT", "PAPERBACK", "PencilAndPaper_interior_paperback.pdf"),
+    pages: [40, 41],
+    note: "One complete opening: Dots and Boxes, with the rules, the diagram, the sourced provenance and the strategy note.",
+  },
+  {
     slug: "meditations",
     // Fetched from R2 — this book has no source project on disk; the master
     // in the bucket is the only copy.

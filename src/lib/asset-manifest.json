@@ -282,6 +282,14 @@
       "entity": "myths-and-legends-of-china"
     },
     {
+      "path": "/images/books/pencil-and-paper.webp",
+      "width": 1000,
+      "height": 1600,
+      "bytes": 36908,
+      "slot": "book-cover",
+      "entity": "pencil-and-paper"
+    },
+    {
       "path": "/images/books/sea-monsters-unmasked.webp",
       "width": 1067,
       "height": 1600,

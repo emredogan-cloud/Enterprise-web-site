@@ -34,7 +34,10 @@ export const BOOKS_ROOT =
  * while a build was running. A resolver that assumes a depth will be rewritten at the
  * next reorganisation, so this one searches instead.
  */
-const MAX_DEPTH = 3;
+// 2026-09-10: raised 3 → 4. The tree grew another level when the original-book
+// factory arrived — BOOK-SERIES/AJAN-A-BOOK/PHASE-3-SERIES/PLA-01 is four deep —
+// which is the fourth shape in a month and exactly what this resolver exists for.
+const MAX_DEPTH = 4;
 const SKIP = new Set(["reports", "BACKUP", "node_modules"]);
 
 function* walk(dir, depth = 0) {

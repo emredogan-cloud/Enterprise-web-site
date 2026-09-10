@@ -2651,6 +2651,84 @@ export const BOOKS = [
       "The project's own kill gate (five external solvers, zero sessions recorded) was never passed. The book was published regardless. No puzzle in it has been solved by anyone other than its author.",
     ],
   },
+  {
+    /**
+     * PENCIL & PAPER — Play Anywhere 1.
+     *
+     * The first original book from the Agent A line and the first Vâliçe title
+     * at a 5 × 8 pocket trim. Built 2026-09-10.
+     *
+     * websiteStatus is "published" and BOTH formats are `unavailable`, which is
+     * deliberate rather than contradictory: the companion QR is printed on page
+     * 150 of the interior and decoded out of the built PDF, so the book's own
+     * page and its companion must resolve from the day a proof is ordered — but
+     * neither format is on sale until the KDP upload clears review, and a price
+     * with no destination is a fabrication. The formats flip to `available` with
+     * the ASIN in the same commit as the upload log.
+     */
+    slug: "pencil-and-paper",
+    title: "Pencil & Paper",
+    subtitle:
+      "60 Games That Need Nothing but a Pencil — with Where Each One Came From and How to Win",
+    language: "en",
+    pageCount: 162,
+    categories: ["games-and-play"],
+    authors: ["emre-dogan"],
+    bisac: ["GAM001000", "GAM019000", "REF000000"],
+    series: { name: "Play Anywhere", volume: 1 },
+    websiteStatus: "published",
+    linkageDecision: {
+      decision: "built_with_companion",
+      why: "The companion leaf is in the typesetting, not spliced on: page 150 is a dedicated leaf carrying a 2.54 in code at 31.8 % of page height with valicepress.com/companion/play-anywhere beneath it. The code was decoded out of the BUILT PDF at 300 dpi with a real detector, not checked against the source artwork — QA/qr.json.",
+    },
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m25nycdntw031qg4sygyt4pw",
+    onelinePromise:
+      "Sixty pencil games with the history of each one sourced to a document, and the real strategy — including the solutions to the nine that are solved.",
+    description:
+      "Sixty games you can play with a pencil and whatever paper is nearest. Every game gets one opening: complete rules on the left, a diagram and two notes on the right. WHERE IT COMES FROM is the part the grid pads leave out and the part that took the longest — each claim is attached to a source, and four of them were read in the original: Dots and Boxes from Édouard Lucas's own text of 1883, where he says plainly that his students at the École Polytechnique devised it and not him; Hangman's ancestor from Alice Gomme's collection of 1894; Kayles from Dudeney's first edition of 1907; the hundred game and the magic square from Bachet in 1612. Where a game's origin is genuinely unrecorded, five of them, the note says so and stops. HOW TO WIN is a real strategy note, and for the nine solved games it gives the solution, because a solved game is not a spoiled game — it is a game with a secret. Six parts, two indexes that sort every game by how many people you have and how long you have, and eight score sheets you may photocopy.",
+    idealReader:
+      "Someone who wants a real game on a train or at a table with the phones face down, and who would rather be told where a game came from and how to win it than handed a pad of pre-printed grids.",
+    formats: [
+      {
+        format: "paperback",
+        availability: "unavailable",
+        fulfillment: "amazon",
+        priceCents: 1299,
+        pageCount: 162,
+        isbn13: null,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not-uploaded",
+        masterFileKey: null,
+        priceBasis:
+          "MODELED, not confirmed by KDP. 5 × 8 in, cream, B&W, 162 pp: KDP US printing is $0.85 + $0.012/page = $2.79, so $12.99 nets $5.00 at the 60 % rate (38.5 %), above the house floor. The figure KDP itself shows at upload replaces this line.",
+      },
+      {
+        format: "ebook",
+        availability: "available",
+        fulfillment: "direct",
+        priceCents: 699,
+        pageCount: 162,
+        isbn13: null,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not-uploaded",
+        masterFileKey: "books/pencil-and-paper/master/v1/master.pdf",
+        priceBasis:
+          "$6.99, the Series Bible price, provisioned in Paddle on 2026-09-10 as pro_01m25nyc7xwpmc82fga984tp2n / pri_01m25nycdntw031qg4sygyt4pw. This is the first direct-sale title with NO Kindle edition to match to the cent — the rule the rest of the list follows — so the number is set now and the Kindle listing will be set to match it, not the other way round. On Kindle the same $6.99 would sit in the 70 % band and net about $4.78 after delivery; direct it nets close to the whole $6.99 less Paddle's fee.",
+      },
+    ],
+    blockers: [
+      "NOT ON AMAZON. The KDP upload has not been performed, so there is no ASIN and the paperback cannot be bought anywhere. The direct ebook IS live: masters are in R2 and the Paddle price exists. The paperback row stays `unavailable` until the upload log records an ASIN.",
+      "The direct checkout has been provisioned but NOT transacted. No test purchase has been put through, so the end-to-end till — Paddle → webhook → signed R2 URL — is verified by construction and by the catalogue cross-check, not by a completed order.",
+      "No ISBN. The paperback will take a free KDP-assigned ISBN at upload, matching CDX-C1 and the World Games large print. The owned 978-625 number is queued as wave 5 of ISBN-QUEUE-PLAN.md and belongs to the IngramSpark edition, because KDP will not change an ISBN after publication.",
+      "The 90-day commercial probe that decides whether Play Anywhere continues has not started. Series Bible gate: ≥ 30 units or ≥ 5 printable-pack sales.",
+      "Hardcover is not eligible at a 5 × 8 trim on KDP and no large print is planned; both decisions are recorded with their reasons in the book's metadata.json rather than left as silent omissions.",
+    ],
+  },
 ];
 
 /**
