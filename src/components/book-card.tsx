@@ -21,6 +21,12 @@ export interface BookCardData {
    * book cannot show a cover on one route and a gradient on another.
    */
   coverSrc?: string | null;
+  /**
+   * Every collection this book belongs to, by name, alphabetical. Real rows
+   * from `book_categories` — a book in one collection has one entry. Optional:
+   * surfaces that do not show chips leave it undefined.
+   */
+  categories?: string[];
   priceCents: number;
   currency: string;
   authors: ReadonlyArray<{ slug: string; name: string }>;

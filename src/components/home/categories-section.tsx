@@ -64,7 +64,7 @@ export function CategoriesSection({
               <Link
                 key={cat.slug}
                 href={`/categories/${cat.slug}`}
-                className="home-card-hover group relative aspect-[3/4] overflow-hidden rounded-2xl border border-white/[0.06] bg-[#07110b]"
+                className="home-card-hover group relative aspect-[3/4] overflow-hidden rounded-2xl border border-white/[0.06] bg-[#07110b] transition-colors hover:border-emerald-bright/25"
               >
                 <div className="absolute inset-0">
                   {art ? (
@@ -72,8 +72,11 @@ export function CategoriesSection({
                       src={art}
                       alt=""
                       fill
-                      sizes="(min-width: 1024px) 20vw, 50vw"
-                      className="object-cover"
+                      sizes="(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw"
+                      /* Held back at rest so the title reads, and released on
+                         hover. The artwork is the category's identity — a card
+                         that dims it permanently is just a coloured rectangle. */
+                      className="object-cover brightness-[0.78] saturate-[0.92] transition-[transform,filter] duration-500 ease-out group-hover:scale-[1.04] group-hover:brightness-100 group-hover:saturate-100 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                     />
                   ) : (
                     <CategoryCoverStack
@@ -88,17 +91,31 @@ export function CategoriesSection({
                   aria-hidden
                   className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#33f0aa]/40 to-transparent"
                 />
+                {/* Two layers, doing two different jobs. The vignette settles
+                    the busy edges of a photographic plate; the foot gradient is
+                    what actually carries the type. The new category art is far
+                    brighter than the flat textures it replaces, so the foot has
+                    to be darker than it used to be — measured against the
+                    lightest pixel under the title, not against the average. */}
                 <div
                   aria-hidden
-                  className="absolute inset-x-0 bottom-0 h-3/5"
+                  className="absolute inset-0"
                   style={{
                     background:
-                      "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.35) 60%, transparent 100%)",
+                      "radial-gradient(120% 90% at 50% 35%, transparent 40%, rgba(3,8,6,0.55) 100%)",
+                  }}
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-x-0 bottom-0 h-[72%]"
+                  style={{
+                    background:
+                      "linear-gradient(to top, rgba(3,8,6,0.96) 0%, rgba(3,8,6,0.82) 28%, rgba(3,8,6,0.38) 62%, transparent 100%)",
                   }}
                 />
 
                 <div className="relative z-10 flex h-full flex-col justify-end p-5">
-                  <span className="text-[12px] lg:text-[10px] font-semibold uppercase tracking-[0.2em] text-white/55">
+                  <span className="text-[12px] lg:text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70">
                     {cat.bookCount === 1 ? "1 book" : `${cat.bookCount} books`}
                   </span>
                   <h3 className="mt-2 font-serif text-2xl font-medium text-fg-hi transition-colors group-hover:text-emerald-bright">

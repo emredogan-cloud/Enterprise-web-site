@@ -1,8 +1,16 @@
 import { Download, FileCheck, Infinity as InfinityIcon, ShieldCheck } from "lucide-react";
 
 /**
- * Four trust micro-features beneath the hero CTAs.
- * Subtle, no chrome — just icon + label aligned in a row.
+ * The four promises under the hero.
+ *
+ * One row spanning the full width of the section rather than wrapping inside
+ * the text column — they run under the photograph, which is what stops them
+ * reading as a footnote to the copy and makes them read as terms of the shop.
+ *
+ * They are a list of claims, not decoration, so they stay in the accessibility
+ * tree and keep real contrast. Every one of them is true: the PDF carries no
+ * visible watermark, delivery is immediate, there is no DRM and no expiry, and
+ * checkout runs through a merchant of record.
  */
 export function TrustRow() {
   const items = [
@@ -13,13 +21,13 @@ export function TrustRow() {
   ];
 
   return (
-    <ul className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3">
+    <ul className="mt-10 grid max-w-[560px] grid-cols-2 gap-x-6 gap-y-4 sm:mt-14 sm:flex sm:max-w-none sm:flex-wrap sm:items-center sm:gap-x-9 lg:mt-16">
       {items.map((item) => {
         const Icon = item.icon;
         return (
           <li
             key={item.label}
-            className="group flex items-center gap-2 text-sm text-fg-mid transition-colors hover:text-fg-hi"
+            className="group flex items-center gap-2.5 text-[13px] text-fg-mid transition-colors hover:text-fg-hi sm:text-sm"
           >
             <span className="flex h-7 w-7 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.02] transition-all group-hover:border-emerald-deep/40 group-hover:bg-emerald-deep/10">
               <Icon

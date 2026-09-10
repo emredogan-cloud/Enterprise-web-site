@@ -185,19 +185,35 @@ const _getFeaturedBooksFromDb = unstable_cache(
             author: { columns: { slug: true, name: true } },
           },
         },
+        /* The homepage card shows the collections a book actually belongs to,
+           as chips. Real rows from `book_categories` — a book in one
+           collection gets one chip, not an invented second. */
+        bookCategories: {
+          with: {
+            category: { columns: { slug: true, name: true } },
+          },
+        },
       },
     });
-    return rows.map((b) => ({
-      id: b.id,
-      slug: b.slug,
-      title: b.title,
-      subtitle: b.subtitle,
-      coverKey: b.coverKey,
-      coverSrc: bookCoverSrc(b.slug),
-      priceCents: b.priceCents,
-      currency: b.currency,
-      authors: b.bookAuthors.map((ba) => ba.author),
-    }));
+    return rows.map((b) => {
+      const cats = b.bookCategories
+        .map((bc) => bc.category)
+        .filter(Boolean)
+        .sort((x, y) => x.name.localeCompare(y.name));
+      return {
+        id: b.id,
+        slug: b.slug,
+        title: b.title,
+        subtitle: b.subtitle,
+        coverKey: b.coverKey,
+        coverSrc: bookCoverSrc(b.slug),
+        priceCents: b.priceCents,
+        currency: b.currency,
+        authors: b.bookAuthors.map((ba) => ba.author),
+        primaryCategory: cats[0]?.name ?? null,
+        categories: cats.map((c) => c.name),
+      };
+    });
   },
   ["catalog:getFeaturedBooks"],
   { revalidate: CACHE_REVALIDATE_SECONDS, tags: [CATALOG_TAG, BOOKS_TAG] },

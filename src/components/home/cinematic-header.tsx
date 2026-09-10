@@ -79,7 +79,14 @@ const MOBILE_NAV_ITEMS: { key: ActiveNavSection; label: string; href: string }[]
   { key: "about", label: "About", href: "/about" },
 ];
 
-export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
+export function CinematicHeader({
+  active,
+  overlay = false,
+}: {
+  active?: ActiveNavSection;
+  /** Float transparently over a full-bleed hero. Homepage only. */
+  overlay?: boolean;
+}) {
   const router = useRouter();
 
   useEffect(() => {
@@ -96,7 +103,22 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
   }, [router]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-[#07110b]/80 backdrop-blur-xl">
+    <header
+      /**
+       * `overlay` is opt-in and only the homepage passes it.
+       *
+       * This header is site-wide chrome for every `.cinematic-root` route —
+       * books, ebooks, categories, authors, admin. Making it transparent
+       * everywhere would put the shelves' own content behind a floating bar
+       * with nothing under it. The homepage is the only page with a full-bleed
+       * photograph for it to float over.
+       */
+      className={
+        overlay
+          ? "absolute inset-x-0 top-0 z-50"
+          : "sticky top-0 z-50 border-b border-white/[0.06] bg-[#07110b]/80 backdrop-blur-xl"
+      }
+    >
       {/* Phase 2 — safe-area gutters. `viewport-fit=cover` makes the insets
           live; max() keeps the existing 1.5rem where there is no cutout, so
           this is a no-op on desktop and on phones without one. Landscape on a
@@ -109,13 +131,25 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
              header. It is the "go home" control, and at 23px tall it was the
              last sub-44px target left in the header. The header is a centred
              flex row, so nothing moves. */
-          className="group flex min-h-11 items-center gap-2 text-[15px] font-medium tracking-tight text-fg-hi sm:min-h-0"
+          className="group flex min-h-11 shrink-0 flex-col justify-center text-[15px] font-medium tracking-tight text-fg-hi sm:min-h-0"
         >
-          <span className="font-serif">Valice Press</span>
+          <span className="flex items-center gap-2">
+            <span className="font-serif text-[17px] sm:text-[19px]">Valice Press</span>
+            <span
+              aria-hidden
+              className="h-1.5 w-1.5 rounded-full bg-[#33f0aa] shadow-[0_0_8px_#33f0aa] transition-shadow group-hover:shadow-[0_0_14px_#33f0aa]"
+            />
+          </span>
+          {/* The imprint line. Desktop only — at 8px it is a texture, and on a
+              phone it is two more lines of noise beside a hamburger. */}
           <span
             aria-hidden
-            className="h-1.5 w-1.5 rounded-full bg-[#33f0aa] shadow-[0_0_8px_#33f0aa] transition-shadow group-hover:shadow-[0_0_14px_#33f0aa]"
-          />
+            className="mt-0.5 hidden text-[7.5px] font-medium uppercase leading-[1.5] tracking-[0.24em] text-fg-soft lg:block"
+          >
+            Independent Ideas
+            <br />
+            A Longer Tomorrow
+          </span>
         </Link>
 
         {/* Center nav — hidden below lg.
@@ -130,7 +164,7 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
             the navigation, which is exactly what it is for. */}
         <nav
           aria-label="Primary"
-          className="ml-6 hidden items-center gap-7 text-sm lg:flex"
+          className="ml-8 hidden items-center gap-6 lg:flex xl:gap-7"
         >
           {NAV_ITEMS.map((item) => {
             const isActive = item.key === active;
@@ -141,7 +175,10 @@ export function CinematicHeader({ active }: { active?: ActiveNavSection }) {
                 // Phase 3.M — aria-current announces the active page to
                 // assistive tech (the underline is purely visual).
                 aria-current={isActive ? "page" : undefined}
-                className={`relative transition-colors ${
+                /* Uppercase with wide tracking, per the reference. The labels
+                   themselves are unchanged — this is letter-spacing, not new
+                   wording, so nothing about the information architecture moves. */
+                className={`relative whitespace-nowrap text-[10.5px] font-medium uppercase tracking-[0.14em] transition-colors xl:text-[11px] ${
                   isActive ? "text-fg-hi" : "text-fg-mid hover:text-fg-hi"
                 }`}
               >
