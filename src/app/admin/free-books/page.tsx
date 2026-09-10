@@ -217,6 +217,10 @@ function Row({ r }: { r: AdminFreeBookRequest }) {
 function StatusPill({ status }: { status: FreeBookRequestStatus }) {
   const tone: Record<FreeBookRequestStatus, string> = {
     pending: "text-sky-300 ring-sky-300/30",
+    // Amber, like `flagged`: both mean "look at this one". A row still saying
+    // SENDING minutes later is a send that died mid-flight, and it needs to be
+    // as visible as a request that needs judgement.
+    sending: "text-amber-200 ring-amber-200/40",
     fulfilled: "text-emerald-bright ring-emerald-bright/30",
     failed: "text-red-300 ring-red-300/30",
     duplicate: "text-fg-soft ring-white/15",

@@ -4,13 +4,16 @@ import { revalidatePath } from "next/cache";
 
 import { AdminAccessError, requireAdmin } from "@/lib/auth";
 import {
+  claimRequestForSending,
+  getAmazonEditions,
   getRequestForFulfilment,
   markRequestStatus,
   type FreeBookRequestStatus,
 } from "@/lib/db/queries/free-books";
+import { getCompanionForBook } from "@/lib/companions";
 import { sendFreeBookEmail } from "@/lib/email";
 import { logger } from "@/lib/logger";
-import { generateSignedDownloadUrl, MASTERS_BUCKET } from "@/lib/storage";
+import { generateSignedDownloadUrl, getObject, headObject, MASTERS_BUCKET } from "@/lib/storage";
 
 /**
  * Fulfilment for the free-ebook promotion.
@@ -56,6 +59,22 @@ function adminMessage(err: AdminAccessError): string {
   }
 }
 
+/**
+ * How large a master may be before we stop trying to attach it.
+ *
+ * Resend's ceiling is 40 MB for the whole message, and base64 inflates a
+ * binary by about a third — so 24 MB of PDF is already ~32 MB on the wire
+ * before any HTML. 20 MB leaves honest headroom. Anything bigger falls back to
+ * the signed link, which is a worse experience but a working one, and the
+ * email says which of the two the reader got.
+ */
+const MAX_ATTACHMENT_BYTES = 20 * 1024 * 1024;
+
+/** `the-great-book-of-world-myths` → `the-great-book-of-world-myths.pdf`. */
+function attachmentFilename(slug: string): string {
+  return `${slug.replace(/[^a-z0-9-]/gi, "-").slice(0, 120)}.pdf`;
+}
+
 export async function fulfilFreeBookRequest(id: string): Promise<FulfilResult> {
   try {
     await requireAdmin();
@@ -64,55 +83,140 @@ export async function fulfilFreeBookRequest(id: string): Promise<FulfilResult> {
     throw err;
   }
 
+  /**
+   * CLAIM THE ROW BEFORE DOING ANYTHING ELSE.
+   *
+   * One atomic UPDATE decides who is sending. A second click — another tab, a
+   * retry, a refresh mid-send — loses the race and is told so rather than
+   * mailing the reader a second copy. See `claimRequestForSending`.
+   */
+  const claim = await claimRequestForSending(id);
+  if (!claim) {
+    return {
+      ok: false,
+      message: "A send for this request is already in flight. Refresh in a moment.",
+    };
+  }
+
+  /** Put the row back where it was found, with a reason, on any failure. */
+  const fail = async (status: FreeBookRequestStatus, note: string, message: string) => {
+    await markRequestStatus(id, status, note);
+    revalidatePath("/admin/free-books");
+    return { ok: false, message };
+  };
+
   const row = await getRequestForFulfilment(id);
-  if (!row) return { ok: false, message: "That request no longer exists." };
+  if (!row) {
+    revalidatePath("/admin/free-books");
+    return { ok: false, message: "That request no longer exists." };
+  }
 
   if (!row.masterFileKey) {
     // Recorded as `failed` with the reason, rather than left pending forever:
     // a queue where the un-fulfillable rows look exactly like the ones nobody
     // has got to yet is a queue that stops being read.
-    await markRequestStatus(
-      id,
+    return fail(
       "failed",
       "no master file on the book row — nothing to deliver",
+      `${row.bookTitle} has no master file in R2, so there is nothing to send. Upload one and try again.`,
     );
-    revalidatePath("/admin/free-books");
-    return {
-      ok: false,
-      message: `${row.bookTitle} has no master file in R2, so there is nothing to send. Upload one and try again.`,
-    };
   }
 
-  let url: string;
+  /**
+   * THE FILE, FETCHED SERVER-SIDE.
+   *
+   * The bytes go from the private bucket into the message and nowhere else —
+   * no public URL, no key in a row, nothing written to disk. If the object is
+   * too big to carry, or R2 will not give it up, the signed link takes over
+   * below rather than the whole send failing.
+   */
+  let attachment: { filename: string; content: Buffer } | null = null;
+  let attachmentNote = "";
   try {
-    url = await generateSignedDownloadUrl({
-      bucket: MASTERS_BUCKET,
-      key: row.masterFileKey,
-      ttlSeconds: DELIVERY_TTL_SECONDS,
-    });
+    const head = await headObject({ bucket: MASTERS_BUCKET, key: row.masterFileKey });
+    if (!head.exists) {
+      return fail(
+        "failed",
+        `master missing in R2: ${head.error ?? "not found"}`,
+        `The master file for ${row.bookTitle} is not in R2. Upload it and try again.`,
+      );
+    }
+    if ((head.contentLength ?? 0) > MAX_ATTACHMENT_BYTES) {
+      attachmentNote = `too large to attach (${Math.round((head.contentLength ?? 0) / 1048576)} MB) — sent as a link`;
+    } else {
+      const obj = await getObject({ bucket: MASTERS_BUCKET, key: row.masterFileKey });
+      attachment = {
+        filename: attachmentFilename(row.bookSlug),
+        content: Buffer.from(obj.body),
+      };
+    }
   } catch (err) {
-    logger.error("[free-books] signed URL failed", { id, err: String(err) });
-    await markRequestStatus(id, "failed", `signed URL failed: ${String(err).slice(0, 200)}`);
-    revalidatePath("/admin/free-books");
-    return { ok: false, message: "Could not create a download link. See the logs." };
+    logger.error("[free-books] master fetch failed", { id, err: String(err) });
+    attachmentNote = "could not read the master — sent as a link";
   }
+
+  /**
+   * The link is minted only when the attachment could not be. Nothing is
+   * stored; it exists for the length of this send.
+   */
+  let url: string | null = null;
+  if (!attachment) {
+    try {
+      url = await generateSignedDownloadUrl({
+        bucket: MASTERS_BUCKET,
+        key: row.masterFileKey,
+        ttlSeconds: DELIVERY_TTL_SECONDS,
+      });
+    } catch (err) {
+      logger.error("[free-books] signed URL failed", { id, err: String(err) });
+      return fail(
+        "failed",
+        `no attachment and signed URL failed: ${String(err).slice(0, 160)}`,
+        "Could not attach the PDF or create a download link. See the logs.",
+      );
+    }
+  }
+
+  // Amazon editions come from the catalog, never from a template. A format
+  // that is `coming_soon`, or has no recorded URL, is simply not offered.
+  const editions = await getAmazonEditions(row.bookId);
+  const companion = getCompanionForBook(row.bookSlug);
 
   const sent = await sendFreeBookEmail({
     to: row.email,
     bookTitle: row.bookTitle,
+    bookSubtitle: row.bookSubtitle,
+    bookPath: `/books/${row.bookSlug}`,
+    companionPath: companion ? `/companion/${companion.slug}` : null,
+    editions,
+    attachment,
     downloadUrl: url,
     expiresInMinutes: Math.round(DELIVERY_TTL_SECONDS / 60),
   });
 
   if (!sent.ok) {
-    await markRequestStatus(id, "failed", `email failed: ${sent.error.slice(0, 200)}`);
-    revalidatePath("/admin/free-books");
-    return { ok: false, message: `Email failed: ${sent.error}` };
+    return fail(
+      "failed",
+      `email failed: ${sent.error.slice(0, 200)}`,
+      `Email failed: ${sent.error}`,
+    );
   }
 
-  await markRequestStatus(id, "fulfilled");
+  // Only now. A row says `fulfilled` when a provider accepted the message and
+  // at no earlier point — the whole reason `sending` exists is so the middle
+  // of this function is never mistaken for either end of it.
+  await markRequestStatus(
+    id,
+    "fulfilled",
+    attachmentNote
+      ? attachmentNote
+      : `PDF attached (${attachment ? Math.round(attachment.content.byteLength / 1024) : 0} KB)` +
+        (editions.length ? `; ${editions.length} Amazon edition(s) linked` : ""),
+  );
   revalidatePath("/admin/free-books");
-  return { ok: true, message: `Sent ${row.bookTitle} to ${row.email}.` };
+
+  const how = attachment ? "with the PDF attached" : "with a download link";
+  return { ok: true, message: `Sent ${row.bookTitle} to ${row.email} ${how}.` };
 }
 
 /** Move a request between states by hand — the operator's escape hatch. */

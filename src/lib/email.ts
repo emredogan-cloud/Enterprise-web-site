@@ -16,7 +16,7 @@
 
 import { Resend } from "resend";
 
-import { FreeBookEmail } from "@/emails/free-book";
+import { FreeBookEmail, type FreeBookEmailEdition } from "@/emails/free-book";
 import { OrderReadyEmail } from "@/emails/order-ready";
 import { WelcomeEmail } from "@/emails/welcome";
 import type { NewsletterSource } from "@/lib/newsletter-client";
@@ -249,9 +249,24 @@ export async function sendWelcomeEmail(
 export interface SendFreeBookArgs {
   to: string;
   bookTitle: string;
-  /** A short-lived signed R2 URL, minted per send. Never stored. */
-  downloadUrl: string;
-  expiresInMinutes: number;
+  bookSubtitle?: string | null;
+  /** Path on the site, e.g. `/books/<slug>`. Made absolute here. */
+  bookPath: string;
+  /** Path of the free companion page, when the book has one. */
+  companionPath?: string | null;
+  /** Live Amazon editions, already filtered by the catalog. Never constructed. */
+  editions?: FreeBookEmailEdition[];
+  /**
+   * The PDF itself. When present it is attached to the message and no link is
+   * offered; the reader keeps the file for as long as they keep the mail.
+   */
+  attachment?: { filename: string; content: Buffer } | null;
+  /**
+   * Fallback only: a short-lived signed R2 URL, minted per send, never stored.
+   * Used when the master is too large to attach or the attachment was refused.
+   */
+  downloadUrl?: string | null;
+  expiresInMinutes?: number;
 }
 
 /**
@@ -277,15 +292,34 @@ export async function sendFreeBookEmail(
   }
 
   try {
+    const site = getAppBaseUrl();
     const result = await resend.emails.send({
       from: getFromAddress(),
       to: args.to,
-      subject: `Your copy of ${args.bookTitle}`,
+      subject: `Your copy of ${args.bookTitle} — from Valice Press`,
       react: FreeBookEmail({
         bookTitle: args.bookTitle,
-        downloadUrl: args.downloadUrl,
+        bookSubtitle: args.bookSubtitle ?? null,
+        // Exactly one of these is set. The template branches on it and tells
+        // the reader which happened, rather than leaving them hunting for an
+        // attachment that is not there.
+        downloadUrl: args.attachment ? null : (args.downloadUrl ?? null),
         expiresInMinutes: args.expiresInMinutes,
+        attachmentFilename: args.attachment?.filename ?? null,
+        editions: args.editions ?? [],
+        bookUrl: `${site}${args.bookPath}`,
+        companionUrl: args.companionPath ? `${site}${args.companionPath}` : null,
+        siteUrl: site,
       }),
+      attachments: args.attachment
+        ? [
+            {
+              filename: args.attachment.filename,
+              content: args.attachment.content,
+              contentType: "application/pdf",
+            },
+          ]
+        : undefined,
     });
     if (result.error) {
       return { ok: false, error: result.error.message ?? "Unknown Resend error" };

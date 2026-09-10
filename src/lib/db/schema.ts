@@ -146,6 +146,18 @@ export const formatAvailabilityEnum = pgEnum("format_availability", [
  */
 export const freeBookRequestStatusEnum = pgEnum("free_book_request_status", [
   "pending",
+  /**
+   * A send is in flight, claimed by exactly one operator click.
+   *
+   * This is the double-send guard, and it is a *state* rather than a flag
+   * because the guard has to be atomic: the fulfilment action moves the row
+   * `pending → sending` with a conditional UPDATE, and a second click loses
+   * that race and is told so. A boolean set after a read would not survive
+   * two tabs, a retry, or a refresh mid-send. The row is left here only if
+   * the process dies between claiming and reporting, which is exactly the
+   * case an operator needs to see rather than have hidden.
+   */
+  "sending",
   "fulfilled",
   "failed",
   "duplicate",
