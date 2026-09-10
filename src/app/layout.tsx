@@ -4,6 +4,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 
 import { AnalyticsGate } from "@/components/analytics/analytics-gate";
 import { CampaignRibbon } from "@/components/campaign/campaign-ribbon";
+import { WelcomePromoCard } from "@/components/campaign/welcome-promo-card";
 import { SiteHeader } from "@/components/site-header";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -148,6 +149,9 @@ export default function RootLayout({
             routes it belongs on and removes itself when the promotion is
             over. See <CampaignRibbon>. */}
         <CampaignRibbon />
+        {/* Shown once per campaign, to a first-time visitor only, and it
+            retires itself after a few seconds. See <WelcomePromoCard>. */}
+        <WelcomePromoCard />
         {/*
           Vercel Analytics + Speed Insights, behind the `beforeSend` filter
           (see components/analytics/analytics-gate.tsx): a browser marked
