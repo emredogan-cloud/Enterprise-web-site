@@ -1,16 +1,22 @@
 {
   "tool": "validate-catalog",
   "target": "https://valicepress.com",
-  "startedAt": "2026-09-08T10:09:22.023Z",
-  "finishedAt": "2026-09-08T10:10:32.689Z",
+  "startedAt": "2026-09-10T22:37:42.585Z",
+  "finishedAt": "2026-09-10T22:38:52.674Z",
   "ok": false,
   "counts": {
-    "pass": 126,
-    "warn": 3,
-    "error": 1,
+    "pass": 107,
+    "warn": 4,
+    "error": 25,
     "skipped": 0
   },
   "findings": [
+    {
+      "level": "warn",
+      "check": "previews",
+      "message": "no preview pages",
+      "where": "how-the-world-began"
+    },
     {
       "level": "pass",
       "check": "page",
@@ -174,10 +180,34 @@
       "where": null
     },
     {
-      "level": "pass",
+      "level": "error",
+      "check": "page",
+      "message": "https://valicepress.com/books/how-the-world-began → 404",
+      "where": "how-the-world-began"
+    },
+    {
+      "level": "error",
       "check": "sitemap",
-      "message": "83 URLs",
+      "message": "missing /books/how-the-world-began",
       "where": null
+    },
+    {
+      "level": "error",
+      "check": "cover-route",
+      "message": "listed on / without its cover",
+      "where": "meditations"
+    },
+    {
+      "level": "error",
+      "check": "cover-route",
+      "message": "listed on / without its cover",
+      "where": "codex-mythologica"
+    },
+    {
+      "level": "error",
+      "check": "cover-route",
+      "message": "listed on / without its cover",
+      "where": "codex-bestiarium"
     },
     {
       "level": "pass",
@@ -186,10 +216,10 @@
       "where": null
     },
     {
-      "level": "pass",
+      "level": "error",
       "check": "cover-route",
-      "message": "same cover on every surface",
-      "where": null
+      "message": "listed on / without its cover",
+      "where": "the-great-book-of-world-games"
     },
     {
       "level": "pass",
@@ -198,10 +228,28 @@
       "where": null
     },
     {
-      "level": "pass",
+      "level": "error",
       "check": "cover-route",
-      "message": "same cover on every surface",
-      "where": null
+      "message": "listed on / without its cover",
+      "where": "greek-alphabet-handwriting-workbook"
+    },
+    {
+      "level": "error",
+      "check": "cover-route",
+      "message": "listed on / without its cover",
+      "where": "codex-mythologica-the-puzzle-book"
+    },
+    {
+      "level": "error",
+      "check": "cover-route",
+      "message": "listed on / without its cover",
+      "where": "korean-hangul-handwriting-workbook"
+    },
+    {
+      "level": "error",
+      "check": "cover-route",
+      "message": "listed on / without its cover",
+      "where": "the-puzzles-of-henry-dudeney"
     },
     {
       "level": "pass",
@@ -210,10 +258,34 @@
       "where": null
     },
     {
-      "level": "pass",
+      "level": "error",
       "check": "cover-route",
-      "message": "same cover on every surface",
-      "where": null
+      "message": "listed on / without its cover",
+      "where": "seneca-selected-dialogues"
+    },
+    {
+      "level": "error",
+      "check": "cover-route",
+      "message": "listed on / without its cover",
+      "where": "myths-and-legends-of-china"
+    },
+    {
+      "level": "error",
+      "check": "cover-route",
+      "message": "listed on / without its cover",
+      "where": "indian-myth-and-legend"
+    },
+    {
+      "level": "error",
+      "check": "cover-route",
+      "message": "listed on / without its cover",
+      "where": "mythical-monsters"
+    },
+    {
+      "level": "error",
+      "check": "cover-route",
+      "message": "listed on / without its cover",
+      "where": "games-ancient-and-oriental"
     },
     {
       "level": "pass",
@@ -222,10 +294,34 @@
       "where": null
     },
     {
-      "level": "pass",
+      "level": "error",
       "check": "cover-route",
-      "message": "same cover on every surface",
-      "where": null
+      "message": "listed on / without its cover",
+      "where": "kwaidan"
+    },
+    {
+      "level": "error",
+      "check": "cover-route",
+      "message": "listed on / without its cover",
+      "where": "fairy-mythology-vol-1"
+    },
+    {
+      "level": "error",
+      "check": "cover-route",
+      "message": "listed on / without its cover",
+      "where": "fairy-mythology-vol-2"
+    },
+    {
+      "level": "error",
+      "check": "cover-route",
+      "message": "listed on / without its cover",
+      "where": "british-goblins"
+    },
+    {
+      "level": "error",
+      "check": "cover-route",
+      "message": "listed on / without its cover",
+      "where": "book-of-were-wolves"
     },
     {
       "level": "pass",
@@ -234,10 +330,16 @@
       "where": null
     },
     {
-      "level": "pass",
+      "level": "error",
       "check": "cover-route",
-      "message": "same cover on every surface",
-      "where": null
+      "message": "listed on / without its cover",
+      "where": "traditional-games"
+    },
+    {
+      "level": "error",
+      "check": "cover-route",
+      "message": "listed on / without its cover",
+      "where": "chess-and-playing-cards"
     },
     {
       "level": "pass",
@@ -246,100 +348,22 @@
       "where": null
     },
     {
-      "level": "pass",
+      "level": "error",
       "check": "cover-route",
-      "message": "same cover on every surface",
-      "where": null
+      "message": "listed on / without its cover",
+      "where": "codex-enigmatica"
     },
     {
-      "level": "pass",
+      "level": "error",
       "check": "cover-route",
-      "message": "same cover on every surface",
-      "where": null
+      "message": "listed on /books without its cover",
+      "where": "how-the-world-began"
     },
     {
-      "level": "pass",
+      "level": "error",
       "check": "cover-route",
-      "message": "same cover on every surface",
-      "where": null
-    },
-    {
-      "level": "pass",
-      "check": "cover-route",
-      "message": "same cover on every surface",
-      "where": null
-    },
-    {
-      "level": "pass",
-      "check": "cover-route",
-      "message": "same cover on every surface",
-      "where": null
-    },
-    {
-      "level": "pass",
-      "check": "cover-route",
-      "message": "same cover on every surface",
-      "where": null
-    },
-    {
-      "level": "pass",
-      "check": "cover-route",
-      "message": "same cover on every surface",
-      "where": null
-    },
-    {
-      "level": "pass",
-      "check": "cover-route",
-      "message": "same cover on every surface",
-      "where": null
-    },
-    {
-      "level": "pass",
-      "check": "cover-route",
-      "message": "same cover on every surface",
-      "where": null
-    },
-    {
-      "level": "pass",
-      "check": "cover-route",
-      "message": "same cover on every surface",
-      "where": null
-    },
-    {
-      "level": "pass",
-      "check": "cover-route",
-      "message": "same cover on every surface",
-      "where": null
-    },
-    {
-      "level": "pass",
-      "check": "cover-route",
-      "message": "same cover on every surface",
-      "where": null
-    },
-    {
-      "level": "pass",
-      "check": "cover-route",
-      "message": "same cover on every surface",
-      "where": null
-    },
-    {
-      "level": "pass",
-      "check": "cover-route",
-      "message": "same cover on every surface",
-      "where": null
-    },
-    {
-      "level": "pass",
-      "check": "cover-route",
-      "message": "same cover on every surface",
-      "where": null
-    },
-    {
-      "level": "pass",
-      "check": "cover-route",
-      "message": "same cover on every surface",
-      "where": null
+      "message": "listed on /ebooks without its cover",
+      "where": "how-the-world-began"
     },
     {
       "level": "pass",
@@ -492,9 +516,9 @@
       "where": null
     },
     {
-      "level": "error",
+      "level": "pass",
       "check": "companion-asset",
-      "message": "/companion/kwaidan/codex-concordance.pdf → 404",
+      "message": "96 companion assets answer 200",
       "where": null
     },
     {
@@ -649,6 +673,12 @@
     },
     {
       "level": "pass",
+      "check": "paddle",
+      "message": "pri_01m26qf1088bc4fssshphw2x3m active, 999 USD",
+      "where": null
+    },
+    {
+      "level": "pass",
       "check": "r2",
       "message": "books/meditations/master/v1/master.pdf 0.37 MB",
       "where": null
@@ -734,7 +764,7 @@
     {
       "level": "pass",
       "check": "r2",
-      "message": "books/kwaidan/master/v1/master.pdf 1.35 MB",
+      "message": "books/kwaidan/master/v1/master.pdf 1.36 MB",
       "where": null
     },
     {
@@ -790,6 +820,12 @@
       "check": "r2",
       "message": "books/codex-enigmatica/master/v1/master.pdf is 67.5 MB (> 20 MB — is this the print interior?)",
       "where": "codex-enigmatica"
+    },
+    {
+      "level": "pass",
+      "check": "r2",
+      "message": "books/how-the-world-began/master/v1/master.pdf 1.30 MB",
+      "where": null
     }
   ]
 }

@@ -2670,7 +2670,7 @@ export const BOOKS = [
     kdpSelect: false,
     directSale: true,
     directSaleBlockedBy: null,
-    paddlePriceId: null,
+    paddlePriceId: "pri_01m26qf1088bc4fssshphw2x3m",
     onelinePromise:
       "Thirty creation myths told whole, each one with its source named, dated and taken apart — including the thirteen times the source turned out not to be what it claimed.",
     description:

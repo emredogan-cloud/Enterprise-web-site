@@ -286,4 +286,17 @@ export const PREVIEW_PAGES = [
     pages: [15, 18],
     note: "England: the longest section in the whole work, with the edition's head-note in front of it.",
   },
+  {
+    // The first story's opening spread and the transparency note that governs the
+    // whole book. Pages 26-27 are the first two pages of "The One Who Made Himself";
+    // page 11 is the Turkish and English note on what this book is and is not, which
+    // is the honest thing to show a buyer before they pay for it.
+    slug: "how-the-world-began",
+    source: `${BUILT}/how-the-world-began.pdf`,
+    // [from, to], not a list - the first attempt passed four page numbers and got a
+    // sixteen-page range. This is a story opening and the prose that follows it, which
+    // is what a buyer needs to judge: pp. 25-28, "Chaos First".
+    pages: [25, 28],
+    note: "A story opening and the prose that follows it — Hesiod's Chaos, and why the usual translation of the word is wrong.",
+  },
 ];
