@@ -10,6 +10,7 @@ import { ExploreStrip } from "@/components/book-detail/explore-strip";
 import { DirectEditionPanel } from "@/components/book-detail/direct-edition-panel";
 import { FormatTable } from "@/components/book-detail/format-table";
 import { RelatedBooksShelf } from "@/components/book-detail/related-books-shelf";
+import { CompanionCallout } from "@/components/book-detail/companion-callout";
 import { bundlesContaining } from "@/lib/bundles";
 import { CinematicHeader } from "@/components/home/cinematic-header";
 import { HomeFooter } from "@/components/home/home-footer";
@@ -219,6 +220,24 @@ export default async function BookDetailPage({
               f.availability === "available",
           )}
         />
+
+        {/* The free companion, before any buy route. A reader arriving from
+            outside — a podcast, a forum, a printed QR code — is offered the
+            free material first; it is free whether or not they ever buy, and
+            <DirectEditionPanel> below only renders for books we sell here. */}
+        {(() => {
+          const companion = getCompanionForBook(slug);
+          if (!companion) return null;
+          return (
+            <CompanionCallout
+              companionSlug={companion.slug}
+              label={
+                companion.calloutLabel ??
+                "Printable material for this book — free, no sign-up."
+              }
+            />
+          );
+        })()}
 
         {/* Editions — every format this title exists in, with the buy
             route each one actually supports. Print goes to Amazon because
