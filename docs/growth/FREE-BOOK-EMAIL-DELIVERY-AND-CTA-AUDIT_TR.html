@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ücretsiz Kitap E-posta Teslimi ve CTA Denetimi · Vâliçe Press</title>
+<style>
+  :root{
+    color-scheme: light dark;
+    --bg:#faf9f6; --panel:#ffffff; --ink:#15130f; --mid:#4a463e; --low:#6f6a60;
+    --line:#e4e0d6; --accent:#0f6b4f; --accent-soft:#e8f3ee;
+    --warn:#8a5a00; --warn-soft:#fdf3e0; --bad:#9b2c2c; --bad-soft:#fdeceb;
+    --ok:#0f6b4f; --ok-soft:#e8f3ee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0d0f0e; --panel:#141715; --ink:#f2efe9; --mid:#c3bdb2; --low:#8e887c;
+      --line:#252a27; --accent:#4ade9f; --accent-soft:#10231b;
+      --warn:#e9b558; --warn-soft:#241c0c; --bad:#f2857e; --bad-soft:#2a1513;
+      --ok:#4ade9f; --ok-soft:#10231b; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.65 ui-serif,Georgia,"Times New Roman",serif;}
+  .wrap{max-width:900px;margin:0 auto;padding:48px 20px 96px}
+  header.top{border-bottom:2px solid var(--line);padding-bottom:24px;margin-bottom:32px}
+  .kicker{font:600 11px/1.4 ui-monospace,monospace;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+  h1{font-size:32px;line-height:1.2;margin:0 0 12px;font-weight:600;letter-spacing:-.01em}
+  h2{font-size:22px;margin:44px 0 12px;padding-top:14px;border-top:1px solid var(--line);font-weight:600}
+  h3{font-size:17px;margin:26px 0 8px;font-weight:600}
+  p,li{color:var(--mid)}
+  p{margin:0 0 14px}
+  ul,ol{margin:0 0 14px;padding-left:22px} li{margin:0 0 7px}
+  strong{color:var(--ink);font-weight:600}
+  .lede{font-size:17px;color:var(--ink)}
+  .meta{font:12px/1.7 ui-monospace,monospace;color:var(--low)}
+  table{border-collapse:collapse;width:100%;margin:0 0 18px;font-size:14px}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+  th{background:var(--accent-soft);color:var(--ink);font-weight:600;font-size:13px}
+  code{font:13px ui-monospace,monospace;background:var(--accent-soft);padding:1px 5px;border-radius:4px;color:var(--ink)}
+  pre{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;overflow-x:auto;
+      font:13px/1.6 ui-monospace,monospace;color:var(--ink);white-space:pre-wrap}
+  .box{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--accent);
+       border-radius:10px;padding:16px 18px;margin:0 0 18px}
+  .box.warn{border-left-color:var(--warn);background:var(--warn-soft)}
+  .box.bad{border-left-color:var(--bad);background:var(--bad-soft)}
+  .box.ok{border-left-color:var(--ok);background:var(--ok-soft)}
+  .tag{display:inline-block;font:600 10px/1 ui-monospace,monospace;letter-spacing:.1em;
+       text-transform:uppercase;padding:4px 7px;border-radius:4px;white-space:nowrap}
+  .t-ok{background:var(--ok-soft);color:var(--ok);border:1px solid var(--ok)}
+  .t-warn{background:var(--warn-soft);color:var(--warn);border:1px solid var(--warn)}
+  .t-bad{background:var(--bad-soft);color:var(--bad);border:1px solid var(--bad)}
+  .t-info{background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent)}
+  .scroll{overflow-x:auto}
+  blockquote{margin:0 0 16px;padding:12px 18px;border-left:3px solid var(--line);color:var(--mid);font-style:italic}
+  .toc{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:0 0 8px}
+  .toc ol{margin:0;padding-left:20px;columns:2;column-gap:28px}
+  .toc li{margin:0 0 5px;font-size:14px}
+  a{color:var(--accent)}
+  footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--low);font-size:13px}
+  @media(max-width:640px){ .toc ol{columns:1} h1{font-size:26px} .wrap{padding:28px 16px 64px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <p class="kicker">Vâliçe Press · Üretim · Faz A</p>
+  <h1>Ücretsiz kitap e-posta teslimi ve CTA denetimi</h1>
+  <p class="lede">Çalışan bir butonun neden kapalı göründüğü, kitabın bağlantı yerine neden
+  <strong>ek olarak</strong> gönderilmesi gerektiği, Amazon bağlantılarının neden
+  kurgulanmayıp <strong>çözümlendiği</strong>, ve aynı isteği iki kez göndermenin neden artık
+  mümkün olmadığı.</p>
+  <p class="meta">Tarih: 10 Eylül 2026 · Dal: <code>fix/free-book-email-delivery-and-cta</code> ·
+  PR <a href="https://github.com/emredogan-cloud/ValicePress-Site/pull/46">#46</a> birleştirildi
+  (<code>0966277</code>) · Testler: 470 geçti (öncesi 462) ·
+  Durum: <strong>üretimde canlı</strong> ·
+  <span class="tag t-warn">CANLI GÖNDERİM TESTİ BEKLİYOR</span></p>
+</header>
+
+<div class="box warn">
+  <p style="margin:0"><strong>Bu raporun tek eksiği, baştan söylenmelidir.</strong>
+  Gerçek bir “Send PDF” gönderimi <em>yapılmadı</em>. R2 ve Resend kimlik bilgileri bu ajanın
+  ortamında <code>[SENSITIVE]</code> olarak maskeleniyor ve <code>/admin/free-books</code>
+  Clerk oturumu istiyor — parola girmek bu ajanın yapmayacağı bir işlemdir. Sağlayıcı
+  çağrısına <em>kadar</em> olan her şey doğrulandı (kitap→PDF eşlemesi, ek hazırlama, Amazon
+  sürüm çözümleme, 8 yollu yarış testi, gerçek katalog verisiyle üretilen HTML). Gelen
+  mesajın kendisi, ekin baytları ve posta kutusundaki görünümü <strong>tek bir tıklamanızı</strong>
+  bekliyor. Yordam §11'de.</p>
+</div>
+
+<div class="toc">
+<ol>
+  <li><a href="#s1">CTA düzeltmeleri</a></li>
+  <li><a href="#s2">Buton tasarımı</a></li>
+  <li><a href="#s3">Admin “Send PDF” mimarisi</a></li>
+  <li><a href="#s4">Gerçek e-posta servisi</a></li>
+  <li><a href="#s5">PDF eki sonucu</a></li>
+  <li><a href="#s6">E-posta şablonu</a></li>
+  <li><a href="#s7">Amazon format bağlantıları</a></li>
+  <li><a href="#s8">İstek → PDF eşlemesi</a></li>
+  <li><a href="#s9">Çift gönderim koruması</a></li>
+  <li><a href="#s10">Hata yönetimi</a></li>
+  <li><a href="#s11">Test kanıtları</a></li>
+  <li><a href="#s12">Kalan sorunlar</a></li>
+</ol>
+</div>
+
+<h2 id="s1">1 · CTA düzeltmeleri</h2>
+
+<p>Şikâyet şuydu: “Send me the ebook” butonu <em>kırmızı, koyu, soluk, devre dışı</em> görünüyor
+— ama çalışıyor. Bu, kullanıcıya yanlış psikolojik sinyal veriyor.</p>
+
+<h3>Kök neden: portal, stil sayfasını geride bıraktı</h3>
+
+<p class="meta">Kanıt: canlı biçimlendirme üzerinde ölçüldü. <span class="tag t-info">OLGU</span></p>
+
+<pre>background-color : rgba(0, 0, 0, 0)
+background-image : none
+box-shadow       : none
+opacity          : 1
+closest('.cinematic-root') === null</pre>
+
+<p>Butonu boyayan kural <code>.cinematic-root .home-cta-primary</code>. Geçen oturumdaki
+hediye-modal düzeltmesi, modalı katalog kartının <code>transform</code>'undan kurtarmak için
+<code>createPortal(…, document.body)</code>'ye taşımıştı. <code>document.body</code>,
+sitedeki <em>her</em> <code>.cinematic-root</code> sarmalayıcısının <strong>dışındadır</strong>
+— seçici eşleşmeyi bıraktı ve tarayıcı hiçbir zemin üzerine koyu metin boyamaya başladı.
+<code>opacity</code> 1'di; sorun saydamlık değildi.</p>
+
+<div class="box bad">
+  <p style="margin:0"><strong>Bu bir gerileme (regression), önceden var olan bir hata değil.</strong>
+  Geçen oturumun portal düzeltmesi kendi getirdiği yan etkidir ve raporda böyle
+  kaydedilmiştir. Aynı sebeple iki başarı butonu ve karşılama kartının cam paneli de
+  stilsiz kalmıştı.</p>
+</div>
+
+<h3>Neden portale <code>cinematic-root</code> eklenmedi</h3>
+
+<p>En kısa düzeltme portal kabına <code>cinematic-root</code> sınıfını eklemek olurdu. Boyamayı
+düzeltir, başka bir şeyi kırardı:</p>
+
+<pre>body:has(.cinematic-root) &gt; header { display: none }</pre>
+
+<p>Portal <code>&lt;body&gt;</code>'nin doğrudan çocuğu olduğu için, modal açık kaldığı sürece
+bu seçici <em>her</em> sıcak temalı rotada doğru olurdu ve site başlığı kaybolurdu. Bir hatayı
+düzeltip başka bir hata üretmek çözüm değildir.</p>
+
+<h3>Yapılan: hiçbir ataya bağlı olmayan bir CTA ailesi</h3>
+
+<p><code>.valice-cta</code> + <code>.valice-cta-gold</code> + <code>.valice-cta-gold-ghost</code>
+kendi renklerini taşır ve hiçbir ata gerektirmez. Portalın içinde, <code>.cinematic-root</code>
+içinde veya başka herhangi bir yerde çalışır — paylaşılan bir CTA'nın zaten yapması gereken
+budur (§2: “tek tutarlı CTA bileşeni/stili”).</p>
+
+<p>Aynı gerekçeyle karşılama kartının <code>home-glass</code> sınıfı, ataya bağlı olmayan
+<code>valice-glass</code> ile değiştirildi.</p>
+
+<h2 id="s2">2 · Buton tasarımı</h2>
+
+<p>Palet uydurulmadı: promosyonun hediye kutusu ve karşılama kartı tarafından zaten
+kurulmuş olan altın kullanıldı — <code>#f7dea0 → #e2c074 → #c9a25c</code> üzerine
+<code>#2a1f06</code> metin. <strong>Bir kitabı hediye eden buton, bir kitabı satan butona
+benzememelidir</strong>; birincil CTA emerald yeşilden altına geçti.</p>
+
+<table>
+<tr><th>Durum</th><th>Görsel davranış</th><th>Ölçüm</th></tr>
+<tr><td><strong>Normal</strong></td>
+    <td>Altın degrade, iç üst parlaklık, yumuşak altın gölge</td>
+    <td>Kontrast <strong>9,27:1</strong> <span class="tag t-ok">AAA</span></td></tr>
+<tr><td><strong>Hover</strong></td>
+    <td>1 px yükselir, degrade açılır, hâle güçlenir</td>
+    <td><code>translateY(-1px)</code></td></tr>
+<tr><td><strong>Active</strong></td>
+    <td>1 px <em>aşağı</em> iner, iç gölge, hâle söner</td>
+    <td><code>translateY(1px)</code> + <code>inset</code></td></tr>
+<tr><td><strong>Focus-visible</strong></td>
+    <td>3 px offsetli düz altın çerçeve</td>
+    <td><code>solid rgb(247,222,160) off=2.2px</code> <span class="tag t-ok">DOĞRULANDI</span></td></tr>
+<tr><td><strong>Disabled</strong></td>
+    <td>Soluk altın, <code>cursor:not-allowed</code>, hâle yok, hareket yok</td>
+    <td>Yalnızca istek <em>gerçekten</em> uçuştayken</td></tr>
+<tr><td><strong>İkincil (ghost)</strong></td>
+    <td>Koyu yeşil zemin, altın kenar, altın metin</td>
+    <td>Kontrast <strong>12,37:1</strong> <span class="tag t-ok">AAA</span></td></tr>
+</table>
+
+<h3>Neden bir <code>:active</code> durumu şart</h3>
+
+<p>Telefonda <em>hover durumu yoktur</em>. Aktif durum olmadan bir dokunuş hiçbir geri
+bildirim vermez ve kullanıcı butonun çalışmadığını sanır — düzeltilmeye çalışılan
+algının aynısı. Bu yüzden basış aşağı iner ve hâle söner.</p>
+
+<h3>Başarı durumu butonları (§2)</h3>
+
+<p>“Keep browsing” ve “See every ebook” artık ikisi de altın <strong>buton</strong>: biri dolu
+altın, diğeri altın çerçeveli. İkisi de düz köprü metni, gri yardımcı buton veya devre dışı
+kontrol gibi görünmüyor.</p>
+
+<h3>Erişilebilirlik (§3)</h3>
+
+<table>
+<tr><th>Gereklilik</th><th>Sonuç</th><th>Kanıt</th></tr>
+<tr><td>Klavye odağı</td><td><span class="tag t-ok">GEÇTİ</span></td>
+    <td>Gerçek <kbd>Tab</kbd> ile; <code>matches(':focus-visible') === true</code>.
+    Programatik <code>.focus()</code> Chrome'da <code>:focus-visible</code> tetiklemez —
+    ilk ölçüm bu yüzden yanıltıcıydı ve gerçek klavye girdisiyle tekrarlandı.</td></tr>
+<tr><td>Kontrast</td><td><span class="tag t-ok">AAA</span></td><td>9,27:1 ve 12,37:1</td></tr>
+<tr><td>Mobil dokunma alanı</td><td><span class="tag t-ok">GEÇTİ</span></td>
+    <td>Üç butonun üçü de <strong>44 px</strong> (<code>min-height:44px</code>)</td></tr>
+<tr><td>Azaltılmış hareket</td><td><span class="tag t-ok">GEÇTİ</span></td>
+    <td><code>@media (prefers-reduced-motion: reduce)</code> içinde
+    <code>transition:none; transform:none</code></td></tr>
+<tr><td>Yalnızca gerçekten devre dışıyken devre dışı görünüm</td><td><span class="tag t-ok">GEÇTİ</span></td>
+    <td><code>:disabled</code> yalnızca <code>phase === "sending"</code> iken;
+    her hover/active kuralı <code>:not(:disabled)</code> ile korunuyor</td></tr>
+</table>
+
+<h2 id="s3">3 · Admin “Send PDF” mimarisi</h2>
+
+<p class="meta">Varsayılmadı; kod okundu ve akış uçtan uca izlendi. <span class="tag t-info">OLGU</span></p>
+
+<pre>ADMIN BUTONU        src/app/admin/free-books/row-actions.tsx
+      │             (useTransition → çift tıklamayı engeller, yalnızca onu)
+      ▼
+SUNUCU EYLEMİ       fulfilFreeBookRequest(id)   ← "use server"
+      │             src/app/admin/free-books/actions.ts
+      ├─ requireAdmin()                     Clerk oturumu + ADMIN_EMAILS izin listesi
+      ├─ claimRequestForSending(id)         ATOMİK: status='sending' WHERE status &lt;&gt; 'sending'
+      ├─ getRequestForFulfilment(id)        istek satırı + books.master_file_key (JOIN)
+      ├─ headObject(MASTERS, key)           dosya var mı, ne kadar büyük
+      ├─ getObject(MASTERS, key)            baytlar — sunucu içinde, diske yazılmadan
+      ├─ getAmazonEditions(bookId)          book_formats'tan, YALNIZCA canlı olanlar
+      ├─ getCompanionForBook(slug)          varsa ücretsiz eşlikçi sayfa
+      ▼
+E-POSTA             sendFreeBookEmail()     src/lib/email.ts
+      │             Resend · react şablonu + attachments[]
+      ▼
+ALICI               row.email               (istek satırından, başka hiçbir yerden)
+      ▼
+GERİ YAZIM          markRequestStatus(id, 'fulfilled' | 'failed', not)</pre>
+
+<h3>§4'ün on beş sorusu</h3>
+
+<table>
+<tr><th>#</th><th>Soru</th><th>Cevap</th></tr>
+<tr><td>1</td><td>Hangi e-posta servisi?</td>
+    <td><strong>Resend</strong> (<code>resend.emails.send</code>), <code>RESEND_API_KEY</code>.
+    Anahtar yoksa gönderim <code>{ok:false}</code> döner ve süreç başına bir kez uyarı loglanır.</td></tr>
+<tr><td>2</td><td>Hangi sunucu fonksiyonu gönderir?</td>
+    <td><code>fulfilFreeBookRequest(id)</code> — bir Next.js <em>server action</em> →
+    <code>sendFreeBookEmail()</code></td></tr>
+<tr><td>3</td><td>Gönderen adres?</td>
+    <td><code>process.env.EMAIL_FROM</code>; tanımsızsa
+    <code>Valice Press &lt;onboarding@resend.dev&gt;</code>. Üretimde <code>EMAIL_FROM</code>
+    tanımlı (değeri bu ajana maskeli).</td></tr>
+<tr><td>4</td><td>PDF'i gerçekten ekliyor mu?</td>
+    <td><strong>Önce: HAYIR.</strong> <span class="tag t-bad">DÜZELTİLDİ</span>
+    Yalnızca imzalı bir bağlantı gönderiyordu. <strong>Şimdi: EVET</strong> — ek olarak.</td></tr>
+<tr><td>5</td><td>Nasıl gönderiliyor?</td>
+    <td>HTML e-posta + <code>attachments[{filename, content, contentType:"application/pdf"}]</code>.
+    Ek taşınamazsa imzalı bağlantıya düşer ve gövde hangisinin olduğunu <em>söyler</em>.</td></tr>
+<tr><td>6</td><td>Hangi PDF seçiliyor?</td>
+    <td><code>books.master_file_key</code>, isteğin <code>book_id</code>'si üzerinden JOIN ile.
+    Örn. <code>books/&lt;slug&gt;/master/v1/master.pdf</code></td></tr>
+<tr><td>7</td><td>Eşleme deterministik mi?</td>
+    <td><strong>Evet.</strong> Tek yol: <code>free_book_requests.book_id → books.id →
+    books.master_file_key</code>. “Katalogdaki ilk kitap”, “varsayılan PDF”, “en son PDF”
+    gibi hiçbir yedek yol yok; anahtar yoksa gönderim <code>failed</code> olur.</td></tr>
+<tr><td>8</td><td>E-postada doğru kitap var mı?</td>
+    <td>Evet — <code>row.book_title</code> ve <code>books.subtitle</code>, aynı satırdan.</td></tr>
+<tr><td>9</td><td>Alıcı istek satırından mı?</td>
+    <td>Evet — <code>row.email</code>. Başka hiçbir kaynak yok.</td></tr>
+<tr><td>10</td><td>İsteğe bağlı mesaj kullanılıyor mu?</td>
+    <td><strong>Hayır.</strong> Saklanıyor ve admin kuyruğunda görünüyor, ama e-postaya
+    girmiyor. <span class="tag t-info">BİLİNÇLİ</span> — okuyucuya kendi yazdığı notu geri
+    okutmak, bir insanın okuduğu izlenimini zayıflatır; operatör isterse elle yanıtlar.</td></tr>
+<tr><td>11</td><td>Teslimat kaydediliyor mu?</td>
+    <td>Evet — <code>status='fulfilled'</code> + <code>fulfilled_at</code> + <code>notes</code>
+    (ek boyutu ve bağlanan Amazon sürüm sayısı).</td></tr>
+<tr><td>12</td><td>Hangi durum geri yazılıyor?</td>
+    <td><code>fulfilled</code> veya <code>failed</code> (sebebiyle). Arada
+    <code>sending</code>.</td></tr>
+<tr><td>13</td><td>Hata durumunda ne olur?</td>
+    <td>Satır <code>failed</code> olur, <code>notes</code>'a sebep yazılır, operatöre satır
+    yanında mesaj gösterilir. <strong>Asla yanlışlıkla <code>fulfilled</code> yazılmaz.</strong></td></tr>
+<tr><td>14</td><td>Aynı istek kazara iki kez gönderilebilir mi?</td>
+    <td><strong>Önce: evet</strong> (yarış koşuluyla). <span class="tag t-bad">DÜZELTİLDİ</span>
+    Artık atomik talep ile hayır — §9.</td></tr>
+<tr><td>15</td><td>PDF bağlantısı özel/süreli mi?</td>
+    <td>Evet — yalnızca yedek yolda üretilir, imzalı, <strong>900 saniye</strong>, hiçbir yere
+    kaydedilmez. Ana yolda artık bağlantı bile yok: dosya ekte.</td></tr>
+</table>
+
+<h2 id="s4">4 · Gerçek e-posta servisi</h2>
+
+<table>
+<tr><th>Alan</th><th>Değer</th></tr>
+<tr><td>Sağlayıcı</td><td>Resend (<code>resend</code> npm paketi v6.12.4)</td></tr>
+<tr><td>Anahtar</td><td><code>RESEND_API_KEY</code> — yalnızca sunucuda, Vercel ortamında</td></tr>
+<tr><td>Gönderen</td><td><code>EMAIL_FROM</code></td></tr>
+<tr><td>Konu</td><td><code>Your copy of {BOOK TITLE} — from Valice Press</code></td></tr>
+<tr><td>Gövde</td><td>React Email şablonu (<code>src/emails/free-book.tsx</code>) → HTML</td></tr>
+<tr><td>Ek</td><td><code>attachments[]</code>, mesaj başına <strong>40 MB</strong> tavanı</td></tr>
+<tr><td>Idempotency key</td><td><strong>Yok, bilinçli.</strong> “Tekrar gönder” operatörün
+    meşru bir eylemi; sağlayıcı düzeyinde tekilleştirme onu sessizce etkisiz kılardı.
+    Kazara çift gönderim veritabanı düzeyinde engelleniyor (§9).</td></tr>
+<tr><td>Abonelikten çık bağlantısı</td><td><strong>Yok, bilinçli.</strong> Bu işlemsel bir
+    e-posta: kişi bu dosyayı istedi. Bülten kutusunu işaretleyenler ayrı bir pazarlama
+    karşılama postası ve kendi abonelikten çıkma bağlantısını alır.</td></tr>
+</table>
+
+<h2 id="s5">5 · PDF eki sonucu</h2>
+
+<div class="box bad">
+  <p style="margin:0 0 8px"><strong>BULGU: PDF ekli DEĞİLDİ.</strong></p>
+  <p style="margin:0">Sistem yalnızca <strong>15 dakika</strong> ömürlü imzalı bir R2 bağlantısı
+  gönderiyordu. Bu TTL, ödemeden saniyeler sonra tıklanan bir satın alma indirmesi için
+  doğrudur; yarın sabah açılan bir hediye için yanlıştır. Brief §6.4 kitabın PDF'ini
+  <em>içermesini</em> istiyor. Düzeltildi.</p>
+</div>
+
+<h3>Şimdi nasıl çalışıyor</h3>
+
+<pre>headObject(MASTERS, key)
+   ├─ dosya yok            → status='failed', "master missing in R2"
+   ├─ boyut &gt; 20 MB        → EK YOK; imzalı bağlantıya düş, notes'a sebep yaz
+   └─ boyut ≤ 20 MB        → getObject() → Buffer → attachments[]
+                              hiçbir genel URL, hiçbir satıra yazılan anahtar,
+                              diske yazılan hiçbir şey</pre>
+
+<h3>20 MB sınırı nereden geliyor</h3>
+
+<p>Resend'in tavanı mesaj başına <strong>40 MB</strong>. Base64 kodlaması bir ikili dosyayı
+yaklaşık üçte bir büyütür: 24 MB'lık bir PDF, HTML gövde eklenmeden önce zaten ~32 MB olur.
+20 MB dürüst bir pay bırakır. Daha büyüğü bağlantıya düşer — daha kötü bir deneyim ama
+<em>çalışan</em> bir deneyim — ve e-posta gövdesi okuyucuya hangisini aldığını söyler,
+olmayan bir eki aramasına bırakmaz.</p>
+
+<div class="box warn">
+  <p style="margin:0"><strong>Ölçülemedi:</strong> master PDF'lerin gerçek boyutları.
+  R2 kimlik bilgileri bu ajanın ortamında maskeli olduğu için <code>HeadObject</code>
+  çalıştırılamadı. Bu yüzden sınır <em>çalışma zamanında</em> kontrol ediliyor ve aşılırsa
+  otomatik olarak bağlantıya düşülüyor — boyutlar ne çıkarsa çıksın doğru davranış budur.
+  Canlı gönderim testi (§11) ekin gerçek boyutunu da gösterecektir.</p>
+</div>
+
+<h2 id="s6">6 · E-posta şablonu</h2>
+
+<p>Tek bir yeniden kullanılabilir şablon: <code>src/emails/free-book.tsx</code>. Kitap başına
+kopya yok. Dinamik olarak alır: alıcı, kitap başlığı, alt başlık, ek (veya yedek bağlantı),
+Amazon sürümleri, kitap sayfası, eşlikçi sayfa, site adresi.</p>
+
+<h3>§6'nın yedi gerekliliği — üretilen HTML üzerinde doğrulandı</h3>
+
+<p class="meta">Gerçek üretim kataloğu verisiyle render edildi, çıktı HTML'i tarandı.
+<span class="tag t-info">OLGU</span></p>
+
+<table>
+<tr><th>#</th><th>Gereklilik</th><th>Durum</th></tr>
+<tr><td>1</td><td>Sıcak karşılama / teşekkür</td><td><span class="tag t-ok">VAR</span> “Thank you for finding Valice Press…”</td></tr>
+<tr><td>2</td><td>İstenen kitabın tanımlanması</td><td><span class="tag t-ok">VAR</span> “You requested <strong>{başlık}</strong> — {alt başlık}.”</td></tr>
+<tr><td>3</td><td>Diğer kitapları keşfe davet</td><td><span class="tag t-ok">VAR</span> “More from Valice Press” + <code>/books</code></td></tr>
+<tr><td>4</td><td>İstenen kitabın PDF'i</td><td><span class="tag t-ok">VAR</span> ek olarak, dosya adı gövdede yazılı</td></tr>
+<tr><td>5</td><td>O kitabın canlı Amazon formatları</td><td><span class="tag t-ok">VAR</span> §7</td></tr>
+<tr><td>6</td><td>Teşekkür mesajı</td><td><span class="tag t-ok">VAR</span> “Thank you again for reading with us…”</td></tr>
+<tr><td>7</td><td>ValicePress.com'a dönüş bağlantısı</td><td><span class="tag t-ok">VAR</span> imza altında</td></tr>
+<tr><td>+</td><td>Eşlikçi sayfa (varsa)</td><td><span class="tag t-ok">VAR</span> koşullu blok</td></tr>
+<tr><td>+</td><td>İnceleme koşulu <strong>yok</strong></td><td><span class="tag t-ok">KORUNDU</span> “completely optional and do not affect your eligibility”</td></tr>
+</table>
+
+<h3>Üretilen e-postadaki her giden bağlantı</h3>
+
+<pre>https://valicepress.com                                        → 200
+https://valicepress.com/books                                  → 200
+https://valicepress.com/books/the-great-book-of-world-myths    → 200
+https://www.amazon.com/dp/B0HDTL5V2H   (Paperback)             → 200
+https://www.amazon.com/dp/B0HDZJ4PHQ   (Hardcover)             → 200
+https://www.amazon.com/dp/B0HDQRPKST   (Kindle)                → 200</pre>
+
+<p>Eşlikçi sayfaların örneklemi de denendi: <code>/companion/book-of-were-wolves</code>,
+<code>/companion/british-goblins</code>, <code>/companion/codex-bestiarium</code>,
+<code>/companion/epictetus</code> ve diğerleri — <strong>tümü 200</strong>.</p>
+
+<h2 id="s7">7 · Amazon format bağlantıları</h2>
+
+<div class="box">
+  <p style="margin:0"><strong>Kural:</strong> bir format yalnızca üç şey birden doğruysa
+  gösterilir — <code>availability = 'available'</code>, <code>amazon_url IS NOT NULL</code>,
+  ve <code>amazon_asin IS NOT NULL</code>. Aksi hâlde e-postada o satır <em>yoktur</em>.</p>
+</div>
+
+<h3>Neden ASIN'den URL kurmuyoruz</h3>
+
+<p><code>https://www.amazon.com/dp/${asin}</code> tek satırdır ve <em>duyurulmuş ama
+listelenmemiş</em> her sürüm için yanlıştır. Bu katalogda şu anda:</p>
+
+<table>
+<tr><th>Format</th><th>Durum</th><th>Satır</th><th>URL'si olan</th></tr>
+<tr><td>ebook</td><td>available</td><td>25</td><td>5</td></tr>
+<tr><td>paperback</td><td>available</td><td>9</td><td><strong>9</strong></td></tr>
+<tr><td>paperback</td><td>coming_soon</td><td>16</td><td><strong>0</strong></td></tr>
+<tr><td>hardcover</td><td>available</td><td>6</td><td><strong>6</strong></td></tr>
+<tr><td>hardcover</td><td>coming_soon</td><td>9</td><td><strong>0</strong></td></tr>
+<tr><td>large_print</td><td>available</td><td>3</td><td><strong>3</strong></td></tr>
+</table>
+
+<p>Yani <strong>16 karton kapak ve 9 ciltli</strong> sürüm gerçek ama henüz listede değil.
+Kurgulanmış bir URL bunların hepsinde ölü bir sayfaya iner. Bir hediyenin içindeki ölü
+bağlantı, hiç bağlantı olmamasından kötüdür.</p>
+
+<h3>Gerçek veriyle iki uçtan doğrulama</h3>
+
+<table>
+<tr><th>Kitap</th><th>Katalog satırları</th><th>E-postanın sunduğu</th></tr>
+<tr><td><strong>The Great Book of World Myths</strong></td>
+    <td>hardcover/available/URL var · ebook/available/URL var · paperback/available/URL var</td>
+    <td><span class="tag t-ok">Paperback, Hardcover, Kindle</span> — üç URL de katalog
+    satırlarıyla <strong>bayt bayt aynı</strong>, üçü de <strong>200</strong></td></tr>
+<tr><td><strong>Epictetus: The Discourses and Enchiridion</strong></td>
+    <td>ebook/available/<em>ASIN yok, URL yok</em> · paperback/<em>coming_soon</em></td>
+    <td><span class="tag t-ok">Amazon bölümü hiç yok</span> — üretilen HTML'de
+    <code>amazon.com</code> geçen <strong>0</strong> bağlantı</td></tr>
+</table>
+
+<p>Sıralama okuyucunun beklediği gibi sabitlendi: Paperback → Hardcover → Large Print →
+Kindle. Etiketler de öyle: <code>ebook</code> okuyucuya <strong>“Kindle”</strong> diye
+görünür, veritabanı adıyla değil.</p>
+
+<p>Kural saf bir fonksiyona ayrıldı (<code>selectAmazonEditions</code>) ve <strong>8 testle</strong>
+sabitlendi — canlı olmayanı sunmama, URL'siz ASIN'i sunmama, ASIN'siz URL'yi sunmama,
+katalogdaki URL'yi <em>olduğu gibi</em> geçirme (kendisi kurmama) dâhil.</p>
+
+<h2 id="s8">8 · İstek → PDF eşlemesi</h2>
+
+<pre>free_book_requests.book_id   (istek anında sunucuda slug'dan çözüldü)
+        │  LEFT JOIN books ON books.id = free_book_requests.book_id
+        ▼
+books.master_file_key        →  books/&lt;slug&gt;/master/v1/master.pdf
+        │
+        ▼
+getObject(MASTERS, key)      →  attachments[0].content
+attachmentFilename(slug)     →  &lt;slug&gt;.pdf</pre>
+
+<p><strong>Tek yol budur.</strong> “Katalogdaki ilk kitap”, “rastgele slug”, “varsayılan PDF”,
+“en son PDF” veya “önbellekten kalan PDF” gibi hiçbir yedek yol yoktur. Anahtar yoksa
+gönderim yapılmaz — satır <code>failed</code> olur ve operatöre “bu kitabın R2'de master
+dosyası yok, yükleyin ve tekrar deneyin” denir.</p>
+
+<p>Dosya adı slug'dan üretilir ve temizlenir
+(<code>replace(/[^a-z0-9-]/gi,"-").slice(0,120)</code>), böylece alıcının indirdiği dosya
+<code>master.pdf</code> değil <code>the-great-book-of-world-myths.pdf</code> olur.</p>
+
+<p>Ek, e-postada olduğu için <em>genel erişime açılmaz</em>: R2 nesnesi özel kalır, imzalı URL
+ana yolda hiç üretilmez, ve hiçbir anahtar bir satıra, bir gövdeye veya bir sayfaya yazılmaz.</p>
+
+<h2 id="s9">9 · Çift gönderim koruması</h2>
+
+<div class="box bad">
+  <p style="margin:0 0 8px"><strong>BULGU: sunucu tarafında koruma yoktu.</strong></p>
+  <p style="margin:0">Arayüzdeki <code>useTransition</code> butonu devre dışı bırakır ve
+  <em>çift tıklamayı</em> engeller — başka hiçbir şeyi değil. İki sekme, yavaş bir yanıttan
+  sonraki bir yeniden deneme, veya gönderim ortasında bir yenileme; hepsi
+  oku-sonra-yaz kontrolünün penceresine düşer ve okuyucu kitabı iki kez alır.</p>
+</div>
+
+<h3>Düzeltme: kontrol ile yazma aynı ifade</h3>
+
+<pre>UPDATE free_book_requests
+   SET status = 'sending', notes = NULL
+ WHERE id = $1 AND status &lt;&gt; 'sending'
+RETURNING id</pre>
+
+<p>Postgres bu UPDATE için satır kilidi alır, koşul kilit altında değerlendirilir ve tam olarak
+<strong>bir</strong> çağıran satırı geri alır. Kaybeden sessizce hiçbir şey yapmaz değil —
+operatöre “bu istek için bir gönderim zaten uçuşta, biraz sonra yenileyin” denir.</p>
+
+<h3>Gerçek eşzamanlılık testi</h3>
+
+<p class="meta">Sandbox veritabanında gerçek bir satıra 8 eşzamanlı talep gönderildi.
+<span class="tag t-info">OLGU</span></p>
+
+<pre>concurrent claims fired : 8
+claims that won         : 1
+claims refused          : 7
+PASS — exactly one send would have gone out
+
+deliberate re-send of a fulfilled row: allowed — correct</pre>
+
+<p>Kasıtlı “Send again” hâlâ çalışır: <code>fulfilled</code>, <code>sending</code> değildir,
+dolayısıyla temiz şekilde talep eder. <strong>Koruma kazalara karşıdır, operatöre karşı
+değil.</strong></p>
+
+<h3>Yeni <code>sending</code> durumu</h3>
+
+<p>Şema enum'una eklendi (<code>drizzle/0009_equal_wendell_rand.sql</code>). Üretim
+veritabanına <strong>kod dağıtılmadan önce elle</strong> uygulandı — bu değeri <em>yazan</em>
+kod, onu <em>kabul eden</em> tipin önünde canlıya çıkmamalıydı. Migration
+<code>IF NOT EXISTS</code> taşır, yani tekrar çalıştırılması zararsızdır.</p>
+
+<pre>önce : pending, fulfilled, failed, duplicate, flagged
+sonra: pending, sending, fulfilled, failed, duplicate, flagged
+mevcut satırlar etkilenmedi: pending=1, fulfilled=2, duplicate=1</pre>
+
+<h2 id="s10">10 · Hata yönetimi</h2>
+
+<p><strong>Hiçbir satır, bir sağlayıcı mesajı kabul etmeden önce <code>fulfilled</code>
+yazılmaz.</strong> Yeni <code>sending</code> durumunun bütün amacı budur: bir gönderimin
+ortası, artık iki ucundan hiçbirine benzemiyor.</p>
+
+<table>
+<tr><th>Ne oldu</th><th>Yazılan durum</th><th><code>notes</code></th><th>Operatöre ne denir</th></tr>
+<tr><td>Başka bir gönderim uçuşta</td><td><em>değişmez</em></td><td>—</td>
+    <td>“A send for this request is already in flight. Refresh in a moment.”</td></tr>
+<tr><td>İstek satırı yok</td><td><em>değişmez</em></td><td>—</td><td>“That request no longer exists.”</td></tr>
+<tr><td>Kitapta master anahtarı yok</td><td><code>failed</code></td>
+    <td>“no master file on the book row — nothing to deliver”</td>
+    <td>“… has no master file in R2, so there is nothing to send. Upload one and try again.”</td></tr>
+<tr><td>R2'de dosya bulunamadı</td><td><code>failed</code></td>
+    <td>“master missing in R2: NoSuchKey”</td>
+    <td>“The master file for … is not in R2. Upload it and try again.”</td></tr>
+<tr><td>Dosya 20 MB'tan büyük</td><td><code>fulfilled</code></td>
+    <td>“too large to attach (N MB) — sent as a link”</td>
+    <td>“Sent … with a download link.”</td></tr>
+<tr><td>R2 okuması başarısız</td><td><code>fulfilled</code> (bağlantıyla)</td>
+    <td>“could not read the master — sent as a link”</td>
+    <td>“Sent … with a download link.”</td></tr>
+<tr><td>Ek yok <em>ve</em> imzalı URL de başarısız</td><td><code>failed</code></td>
+    <td>“no attachment and signed URL failed: …”</td>
+    <td>“Could not attach the PDF or create a download link. See the logs.”</td></tr>
+<tr><td>Resend reddetti</td><td><code>failed</code></td>
+    <td>“email failed: {sağlayıcı mesajı}”</td><td>“Email failed: {mesaj}”</td></tr>
+<tr><td>Gönderildi</td><td><code>fulfilled</code> + <code>fulfilled_at</code></td>
+    <td>“PDF attached (812 KB); 3 Amazon edition(s) linked”</td>
+    <td>“Sent … to … with the PDF attached.”</td></tr>
+</table>
+
+<h3>Ek bulgu: başarısız bir tekrar gönderim teslimat geçmişini siliyordu</h3>
+
+<div class="box bad">
+  <p style="margin:0"><code>markRequestStatus</code>, <code>fulfilled</code> olmayan her durum
+  için <code>fulfilled_at</code>'i <code>null</code>'luyordu. “Send again” teslim edilmiş bir
+  satırda normal bir operatör eylemidir (okuyucu postayı kaybetti, ek geri döndü). O ikinci
+  deneme başarısız olursa satır <code>failed</code> oluyor ve <strong>ilk teslimatın zaman
+  damgası siliniyordu</strong> — kuyruk kitabın hiç teslim edilmediğini iddia eder hâle
+  geliyordu.</p>
+</div>
+
+<p>Artık yalnızca <em>açık bir yeniden kuyruğa alma</em> (operatörün “bunu teslim edilmemiş
+say” demesi) damgayı temizler. Bir başarısızlık geçmişe dokunmaz.</p>
+
+<p class="meta">Gerçek bir satır üzerinde tüm durum makinesi yürütüldü. <span class="tag t-info">OLGU</span></p>
+
+<pre>1. new request              status=pending    fulfilled_at=null
+2. claimed for sending      status=sending    fulfilled_at=null
+3. delivered                status=fulfilled  fulfilled_at=set   notes=PDF attached (812 KB)
+4. re-send claimed          status=sending    fulfilled_at=set
+5. re-send FAILED           status=failed     fulfilled_at=set   notes=email failed: …
+
+PASS — the first delivery is still on the record
+
+6. operator re-queued       status=pending    fulfilled_at=null</pre>
+
+<h3>Admin kuyruğu (§14)</h3>
+
+<p>Satır artık şunları gösterir: alıcı, kitap, tarih/saat, durum rozeti, ve son gönderim
+sonucu satırın yanında satır içi mesaj olarak. <code>SENDING</code> rozeti kehribar rengidir
+— <code>flagged</code> gibi, çünkü ikisi de “buna bak” demektir: dakikalar sonra hâlâ
+<code>SENDING</code> diyen bir satır, ortasında ölmüş bir gönderimdir ve görünmesi gerekir.
+Buton o sırada <em>“Sending…”</em> yazar ve devre dışıdır.</p>
+
+<h2 id="s11">11 · Test kanıtları</h2>
+
+<h3>Otomatik</h3>
+
+<pre>npm run lint       → temiz
+npx tsc --noEmit   → temiz
+npm test           → 28 dosya, 470 test, hepsi geçti   (öncesi: 27 dosya, 462 test)
+npm run build      → başarılı
+CI (GitHub Actions) → Lint · Typecheck · Test · Build  PASS (2m 04s)
+Vercel Preview      → PASS
+Vercel Production   → dağıtıldı, canlı</pre>
+
+<h3>§15 kontrol listesi</h3>
+
+<table>
+<tr><th>#</th><th>Test</th><th>Sonuç</th><th>Kanıt</th></tr>
+<tr><td>1</td><td>Seçilen kitap doğru</td><td><span class="tag t-ok">GEÇTİ</span></td>
+    <td>Tek eşleme yolu: <code>book_id → books.master_file_key</code>; yedek yol yok (§8)</td></tr>
+<tr><td>2</td><td>E-posta adresi doğru</td><td><span class="tag t-ok">GEÇTİ</span></td>
+    <td><code>row.email</code>, istek satırından; başka kaynak yok</td></tr>
+<tr><td>3</td><td>PDF eki doğru</td><td><span class="tag t-warn">KISMEN</span></td>
+    <td>Ek hazırlama ve dosya adı doğrulandı; <strong>gerçek baytlar canlı gönderim
+    bekliyor</strong></td></tr>
+<tr><td>4</td><td>PDF açılıyor</td><td><span class="tag t-warn">BEKLİYOR</span></td>
+    <td>Canlı gönderim gerekiyor</td></tr>
+<tr><td>5</td><td>Amazon bağlantıları tam o kitaba ait</td><td><span class="tag t-ok">GEÇTİ</span></td>
+    <td>World Myths: 3 URL katalogla bayt bayt aynı, üçü de 200</td></tr>
+<tr><td>6</td><td>Yalnızca geçerli formatlar gösteriliyor</td><td><span class="tag t-ok">GEÇTİ</span></td>
+    <td>Epictetus: 0 amazon.com bağlantısı, Amazon bölümü yok</td></tr>
+<tr><td>7</td><td>Valice bağlantısı çalışıyor</td><td><span class="tag t-ok">GEÇTİ</span></td>
+    <td>3/3 site bağlantısı ve 8/8 eşlikçi sayfası 200</td></tr>
+<tr><td>8</td><td>Çift tıklama çift teslimat üretmiyor</td><td><span class="tag t-ok">GEÇTİ</span></td>
+    <td>8 eşzamanlı talep → 1 kazandı, 7 reddedildi</td></tr>
+<tr><td>9</td><td>Hata durumu dürüst</td><td><span class="tag t-ok">GEÇTİ</span></td>
+    <td>Durum makinesi yürütüldü; hiçbir yol yanlışlıkla <code>fulfilled</code> yazmıyor</td></tr>
+<tr><td>10</td><td>Admin durumu doğru güncelleniyor</td><td><span class="tag t-ok">GEÇTİ</span></td>
+    <td>Durum + <code>fulfilled_at</code> + <code>notes</code> + satır içi mesaj</td></tr>
+</table>
+
+<h3>Üretimde canlı doğrulama (CTA)</h3>
+
+<p class="meta">https://valicepress.com/ebooks üzerinde, gerçek tarayıcıda. <span class="tag t-info">OLGU</span></p>
+
+<pre>submit butonu: bgImage = linear-gradient(140deg, rgb(247,222,160) 0% …)
+               color   = rgb(42, 31, 6)
+               height  = 46px
+               shadow  = var
+               disabled = false</pre>
+
+<h3 id="sendtest">Kalan tek test: sizin bir tıklamanız</h3>
+
+<div class="box warn">
+  <p style="margin:0 0 10px"><strong>Neden ben yapamadım:</strong> R2 ve Resend kimlik
+  bilgileri bu ajanın ortamında <code>[SENSITIVE]</code> olarak maskeleniyor (yerelde gönderim
+  imkânsız), ve <code>/admin/free-books</code> Clerk oturumu istiyor — parola girmek bu ajanın
+  yapmayacağı bir işlemdir.</p>
+  <p style="margin:0 0 10px"><strong>Yordam:</strong></p>
+  <ol style="margin:0">
+    <li><a href="https://valicepress.com/admin/free-books">valicepress.com/admin/free-books</a>
+        adresine admin hesabıyla girin.</li>
+    <li>Kuyruktaki <strong>bekleyen</strong> istek: <em>Sea Monsters Unmasked, and Sea Fables
+        Explained</em>. Master PDF'i R2'de <strong>var</strong>, eşlikçi sayfası
+        <strong>var</strong>, canlı Amazon sürümü <strong>yok</strong> — yani bu gönderim
+        <em>ek + eşlikçi bağlantısı + Amazon bölümünün doğru şekilde hiç görünmemesi</em>
+        durumunu test eder.</li>
+    <li><strong>Send PDF</strong>'e basın. Satır <code>SENDING</code> → <code>FULFILLED</code>
+        olmalı ve yanında “Sent … with the PDF attached.” yazmalı.</li>
+    <li>Amazon bölümünü de test etmek için: <code>/ebooks</code> üzerinden
+        <strong>The Great Book of World Myths</strong> için kendi adresinize bir istek
+        oluşturun, sonra onu da gönderin. Bu gönderimde Paperback + Hardcover + Kindle
+        satırları görünmelidir.</li>
+  </ol>
+</div>
+
+<h3>Gelen e-postada kontrol edilecekler</h3>
+
+<table>
+<tr><th>Kontrol</th><th>Beklenen</th></tr>
+<tr><td>Gönderen</td><td><code>EMAIL_FROM</code> değeriniz (Resend'de doğrulanmış alan adı)</td></tr>
+<tr><td>Konu</td><td><code>Your copy of {KİTAP ADI} — from Valice Press</code></td></tr>
+<tr><td>Ek var mı</td><td><strong>Evet</strong>, tek dosya</td></tr>
+<tr><td>Ek dosya adı</td><td><code>&lt;slug&gt;.pdf</code> — örn. <code>sea-monsters-unmasked.pdf</code></td></tr>
+<tr><td>Ek türü / boyutu</td><td><code>application/pdf</code>, birkaç yüz KB – birkaç MB</td></tr>
+<tr><td>Ek açılıyor mu</td><td>Evet, ve <strong>doğru kitap</strong> olmalı</td></tr>
+<tr><td>Gövde</td><td>“The PDF is attached to this email as <code>…pdf</code>”</td></tr>
+<tr><td>Amazon bölümü</td><td>Sea Monsters: <strong>hiç olmamalı</strong> · World Myths: üç satır</td></tr>
+<tr><td>Bozuk bağlantı</td><td>Olmamalı — hepsi mutlak <code>https://valicepress.com/…</code></td></tr>
+<tr><td>Admin satırı</td><td><code>FULFILLED</code> + tarih/saat + “PDF attached (N KB)”</td></tr>
+</table>
+
+<div class="box bad">
+  <p style="margin:0"><strong>Eğer ek gelmezse</strong> ve gövdede “Your copy is waiting here”
+  yazıyorsa: dosya 20 MB'tan büyük demektir veya R2 okuması başarısız olmuştur. Admin
+  satırındaki <code>notes</code> alanı hangisi olduğunu söyler
+  (“too large to attach (N MB)” veya “could not read the master”). Bu bir hata değil,
+  tasarlanmış geri çekilmedir — ama boyutu bilmek isterseniz not oradadır.</p>
+</div>
+
+<h2 id="s12">12 · Kalan sorunlar</h2>
+
+<table>
+<tr><th>#</th><th>Konu</th><th>Öncelik</th><th>Not</th></tr>
+<tr><td>1</td><td><strong>Canlı gönderim testi yapılmadı</strong></td><td>Yüksek</td>
+    <td>§11'deki yordam. Sağlayıcı çağrısına kadar her şey doğrulandı; gelen mesaj bekliyor.</td></tr>
+<tr><td>2</td><td>Master PDF boyutları bilinmiyor</td><td>Orta</td>
+    <td>R2 maskeli olduğu için ölçülemedi. 20 MB üstü otomatik olarak bağlantıya düşer;
+    ilk gönderim gerçek boyutu <code>notes</code>'ta gösterecek.</td></tr>
+<tr><td>3</td><td><code>drizzle-kit migrate</code> üretimin yolu değil</td><td>Orta</td>
+    <td><code>drizzle.__drizzle_migrations</code> tablosunda <strong>0</strong> kayıt var ama
+    dosya günlüğünde 10 giriş — şema başka bir yolla (muhtemelen <code>db:push</code> veya
+    loader) yönetiliyor. Bu yüzden enum elle uygulandı. Şema yönetim yolunun netleştirilmesi
+    ileride bir sürprizi önler.</td></tr>
+<tr><td>4</td><td>İsteğe bağlı mesaj e-postada kullanılmıyor</td><td>Düşük</td>
+    <td>Bilinçli (§4/10). İstenirse operatörün elle yanıtlaması için admin kuyruğunda duruyor.</td></tr>
+<tr><td>5</td><td><code>ebook</code> formatında 25 satırın yalnızca 5'inde Amazon URL'si var</td><td>Düşük</td>
+    <td>Doğru davranış (çoğu e-kitap yalnızca burada satılıyor), ama Kindle listesi olan
+    kitaplarda URL'nin kaydedilmiş olması e-postayı zenginleştirir.</td></tr>
+<tr><td>6</td><td>Ek e-posta istemcisi testi yapılmadı</td><td>Düşük</td>
+    <td>Gmail/Apple Mail/Outlook'ta ekin ve HTML'in görünümü canlı gönderimden sonra
+    kontrol edilmeli.</td></tr>
+</table>
+
+<h3>Bu oturumda değişen dosyalar</h3>
+
+<pre>M  src/app/globals.css                          valice-cta ailesi + valice-glass
+M  src/components/campaign/free-book-modal.tsx   üç CTA yeni sınıflara geçti
+M  src/components/campaign/welcome-promo-card.tsx  home-glass → valice-glass
+M  src/emails/free-book.tsx                      şablon baştan yazıldı
+M  src/lib/email.ts                              ek + zengin içerik desteği
+M  src/lib/db/schema.ts                          'sending' durumu
+M  src/lib/db/queries/free-books.ts              atomik talep, Amazon çözümleme,
+                                                 fulfilled_at korunması
+A  src/lib/db/queries/free-books.test.ts         8 test
+M  src/app/admin/free-books/actions.ts           yeniden yazıldı
+M  src/app/admin/free-books/page.tsx             SENDING rozeti
+M  src/app/admin/free-books/row-actions.tsx      SENDING durumu
+A  drizzle/0009_equal_wendell_rand.sql           idempotent enum migration
+A  drizzle/meta/0009_snapshot.json
+M  drizzle/meta/_journal.json</pre>
+
+<p><strong>Dokunulmayanlar:</strong> <code>docs/execution/FOUNDER_ACTIONS.md</code> (başka bir
+ajanın değişikliği — staged edilmedi), <code>docs/ROADMAP/</code>, <code>docs/research/</code>,
+ekran görüntüleri, diğer worktree'ler (<code>valice-book06</code>, <code>valice-gws</code>,
+<code>valice-merge</code>, <code>valice-pla01</code>). <code>git add -A</code>,
+<code>git reset --hard</code>, <code>git clean</code> ve force-push <strong>kullanılmadı</strong>.</p>
+
+<footer>
+  Vâliçe Press · Faz A raporu · 10 Eylül 2026 ·
+  PR <a href="https://github.com/emredogan-cloud/ValicePress-Site/pull/46">#46</a> ·
+  <code>0966277</code> · Faz B ayrı bir belgede:
+  <code>NEW-LANDING-PAGE-IMPLEMENTATION-BLUEPRINT_TR.html</code>
+</footer>
+
+</div>
+</body>
+</html>
