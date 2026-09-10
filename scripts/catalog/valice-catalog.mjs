@@ -2727,6 +2727,7 @@ export const BOOKS = [
       "No ISBN. The paperback will take a free KDP-assigned ISBN at upload, matching CDX-C1 and the World Games large print. The owned 978-625 number is queued as wave 5 of ISBN-QUEUE-PLAN.md and belongs to the IngramSpark edition, because KDP will not change an ISBN after publication.",
       "The 90-day commercial probe that decides whether Play Anywhere continues has not started. Series Bible gate: ≥ 30 units or ≥ 5 printable-pack sales.",
       "Hardcover is not eligible at a 5 × 8 trim on KDP and no large print is planned; both decisions are recorded with their reasons in the book's metadata.json rather than left as silent omissions.",
+      "COVERS REPLACED 2026-09-10 with the Founder's artwork. Four defects were fixed before it was accepted — a fabricated, checksum-invalid ISBN barcode printed on the back; wrap geometry matching no printable book; the 60 GAMES badge sitting on the trim line; and PNG-with-alpha where KDP needs PDF and JPEG. One is reported and unfixed: the E in PAPER is set at x-height among full caps, baked into the raster. The cover artwork is AI-generated and is the only AI imagery in the product — the sixty interior diagrams are vector code. See PLA-01/docs/PLA-01-COVER-UPDATE-REPORT.md.",
     ],
   },
 ];
