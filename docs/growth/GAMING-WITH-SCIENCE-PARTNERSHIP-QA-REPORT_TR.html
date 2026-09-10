@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gaming with Science — Ortaklık Hazırlığı ve QA Raporu · Vâliçe Press</title>
+<style>
+  :root{
+    color-scheme: light dark;
+    --bg:#faf9f6; --panel:#ffffff; --ink:#15130f; --mid:#4a463e; --low:#6f6a60;
+    --line:#e4e0d6; --accent:#0f6b4f; --accent-soft:#e8f3ee;
+    --warn:#8a5a00; --warn-soft:#fdf3e0; --bad:#9b2c2c; --bad-soft:#fdeceb;
+    --ok:#0f6b4f; --ok-soft:#e8f3ee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0d0f0e; --panel:#141715; --ink:#f2efe9; --mid:#c3bdb2; --low:#8e887c;
+      --line:#252a27; --accent:#4ade9f; --accent-soft:#10231b;
+      --warn:#e9b558; --warn-soft:#241c0c; --bad:#f2857e; --bad-soft:#2a1513;
+      --ok:#4ade9f; --ok-soft:#10231b; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.65 ui-serif,Georgia,"Times New Roman",serif;}
+  .wrap{max-width:900px;margin:0 auto;padding:48px 20px 96px}
+  header.top{border-bottom:2px solid var(--line);padding-bottom:24px;margin-bottom:32px}
+  .kicker{font:600 11px/1.4 ui-monospace,monospace;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+  h1{font-size:32px;line-height:1.2;margin:0 0 12px;font-weight:600;letter-spacing:-.01em}
+  h2{font-size:22px;margin:44px 0 12px;padding-top:14px;border-top:1px solid var(--line);font-weight:600}
+  h3{font-size:17px;margin:26px 0 8px;font-weight:600}
+  p,li{color:var(--mid)}
+  p{margin:0 0 14px}
+  ul,ol{margin:0 0 14px;padding-left:22px} li{margin:0 0 7px}
+  strong{color:var(--ink);font-weight:600}
+  .lede{font-size:17px;color:var(--ink)}
+  .meta{font:12px/1.7 ui-monospace,monospace;color:var(--low)}
+  table{border-collapse:collapse;width:100%;margin:0 0 18px;font-size:14px}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+  th{background:var(--accent-soft);color:var(--ink);font-weight:600;font-size:13px}
+  code{font:13px ui-monospace,monospace;background:var(--accent-soft);padding:1px 5px;border-radius:4px;color:var(--ink)}
+  pre{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;overflow-x:auto;
+      font:13px/1.6 ui-monospace,monospace;color:var(--ink);white-space:pre-wrap}
+  .box{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--accent);
+       border-radius:10px;padding:16px 18px;margin:0 0 18px}
+  .box.warn{border-left-color:var(--warn);background:var(--warn-soft)}
+  .box.bad{border-left-color:var(--bad);background:var(--bad-soft)}
+  .box.ok{border-left-color:var(--ok);background:var(--ok-soft)}
+  .tag{display:inline-block;font:600 10px/1 ui-monospace,monospace;letter-spacing:.1em;
+       text-transform:uppercase;padding:4px 7px;border-radius:4px;white-space:nowrap}
+  .t-ok{background:var(--ok-soft);color:var(--ok);border:1px solid var(--ok)}
+  .t-warn{background:var(--warn-soft);color:var(--warn);border:1px solid var(--warn)}
+  .t-bad{background:var(--bad-soft);color:var(--bad);border:1px solid var(--bad)}
+  .t-info{background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent)}
+  .scroll{overflow-x:auto}
+  blockquote{margin:0 0 16px;padding:12px 18px;border-left:3px solid var(--line);color:var(--mid);font-style:italic}
+  .toc{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:0 0 8px}
+  .toc ol{margin:0;padding-left:20px;columns:2;column-gap:28px}
+  .toc li{margin:0 0 5px;font-size:14px}
+  a{color:var(--accent)}
+  footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--low);font-size:13px}
+  @media(max-width:640px){ .toc ol{columns:1} h1{font-size:26px} .wrap{padding:28px 16px 64px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <p class="kicker">Vâliçe Press · Büyüme · Ortaklık Dosyası</p>
+  <h1>Gaming with Science — Brian Kvitko yanıtı, gönderim hazırlığı ve tam QA</h1>
+  <p class="lede">Brian Kvitko kitabı PDF olarak istedi ve yazdırılabilir tahtaların bağlantısını
+  Discord'larında paylaşmayı teklif etti. Bu rapor o paylaşımın ineceği yüzeyleri denetler,
+  gönderilecek PDF'i bağımsız olarak inceler ve yanıtı <strong>gönderilmeden</strong> hazır bırakır.</p>
+  <p class="meta">Tarih: 10 Eylül 2026 · Hazırlayan: büyüme ajanı · Durum: <strong>E-POSTA GÖNDERİLMEDİ</strong> ·
+  Site değişikliği: PR #41 birleştirildi ve üretimde doğrulandı · Kanıt etiketleri:
+  <span class="tag t-info">OLGU</span> ölçüldü/okundu ·
+  <span class="tag t-info">MODEL</span> hesaplandı ·
+  <span class="tag t-info">ÖNERİ</span> karar tavsiyesi</p>
+</header>
+
+<div class="toc">
+<ol>
+  <li><a href="#s1">Brian'ın yanıtının analizi</a></li>
+  <li><a href="#s2">Önerilen yanıt</a></li>
+  <li><a href="#s3">Landing sayfası denetimi</a></li>
+  <li><a href="#s4">Yapılan değişiklikler</a></li>
+  <li><a href="#s5">PDF denetimi</a></li>
+  <li><a href="#s6">Yazdırılabilir tahta denetimi</a></li>
+  <li><a href="#s7">Bağlantı denetimi</a></li>
+  <li><a href="#s8">Analitik / Attribution denetimi</a></li>
+  <li><a href="#s9">Mobil / masaüstü denetimi</a></li>
+  <li><a href="#s10">Bulunan sorunlar</a></li>
+  <li><a href="#s11">Çözülen sorunlar</a></li>
+  <li><a href="#s12">Kalan sorunlar</a></li>
+  <li><a href="#s13">Önerilen sonraki adımlar</a></li>
+  <li><a href="#s14">Gönderim kontrol listesi</a></li>
+</ol>
+</div>
+
+<h2 id="s1">1 · Brian'ın yanıtının analizi</h2>
+
+<p class="meta">Kaynak: Gmail iş parçacığı <code>1a081a7ab7a1cf33</code>, mesaj
+<code>1a08693f41246765</code>, 9 Eylül 2026 14:29 UTC, gönderen <code>bkvitko@gmail.com</code>,
+Cc <code>GamingwithSciencePodcast@gmail.com</code> ve <code>jason.wallace@uga.edu</code>.
+<span class="tag t-info">OLGU</span></p>
+
+<blockquote>“I'm glad you enjoyed the episode. Having Walter Crist on is what really made that
+episode work as well as it did. I'd love to check out your book and pdf would be perfect.
+I'll also point our listeners your way on our discord and share the link to the printable
+boards. Thanks so much for reaching out! By the way, if you'd like to provide a mailing
+address some GwS swag may find its way to you.”</blockquote>
+
+<p>İmza: Brian H. Kvitko, Doçent, Bitki Patolojisi Bölümü, Georgia Üniversitesi;
+Gaming with Science podcast'inin eş sunucusu.</p>
+
+<table>
+<tr><th>Brian ne dedi</th><th>Ne anlama geliyor</th><th>Yanıtın karşılığı</th></tr>
+<tr><td>Bölümü beğenmene sevindim; Walter Crist'in katkısı belirleyiciydi</td>
+<td>Sohbeti başlatan konuya sahip çıkıyor; nezaket değil, içerik konuşuyor</td>
+<td>Aynı noktadan devam et, tek cümle, yağcılık yok</td></tr>
+<tr><td>“I'd love to check out your book and <strong>pdf would be perfect</strong>”</td>
+<td>Format kararı verildi: PDF. Kargo, adres, bekleme yok</td>
+<td>PDF ekli gider; baskı teklifi tekrar edilmez</td></tr>
+<tr><td>“I'll point our listeners your way <strong>on our discord</strong> and share the link to the <strong>printable boards</strong>”</td>
+<td>Somut, gönüllü bir dağıtım taahhüdü. Paylaşılacak varlık <em>tahtalar</em>, kitap değil</td>
+<td>Tahtaların bağlantısı kendi satırında, temiz ve paylaşılabilir; companion sayfası tahtalarla açılacak biçimde düzenlendi</td></tr>
+<tr><td>“some GwS swag may find its way to you” (posta adresi karşılığında)</td>
+<td>Kişisel bir jest; ilişkiyi ısıtıyor</td>
+<td>Teşekkür edilir; <strong>adres uydurulmaz</strong> — Kurucu'nun dolduracağı yer tutucu bırakıldı</td></tr>
+</table>
+
+<div class="box ok">
+<p style="margin:0"><strong>Doğrulanmış durum, fazlası değil.</strong> Brian ilgi belirtti ve
+tahtaların bağlantısını Discord'da paylaşmayı teklif etti. <strong>Bölüm sözü yok, inceleme sözü
+yok, olumlu yorum sözü yok.</strong> Sitede, raporda ve yanıtta hiçbir yerde “Gaming with Science
+tarafından öne çıkarıldı” türü bir ifade kullanılmadı ve Brian'ın adı onay olarak
+kullanılmadı.</p>
+</div>
+
+<h2 id="s2">2 · Önerilen yanıt</h2>
+
+<p>Tam metin, gerekçesi ve gönderim öncesi adımlar ayrı dosyada:
+<code>docs/growth/GAMING-WITH-SCIENCE-BRIAN-REPLY-DRAFT.md</code>. Özet:</p>
+
+<table>
+<tr><th>Alan</th><th>Değer</th></tr>
+<tr><td>Konu</td><td><code>Re: Your Royal Game of Ur episode — a book that plays 55 more of them, and a free boards pack for listeners</code> (mevcut iş parçacığında kalır)</td></tr>
+<tr><td>Kime</td><td><code>bkvitko@gmail.com</code></td></tr>
+<tr><td>Cc</td><td><code>GamingwithSciencePodcast@gmail.com</code>, <code>jason.wallace@uga.edu</code> (Brian ikisini de eklemişti)</td></tr>
+<tr><td>Ek</td><td><code>The-Great-Book-of-World-Games-Valice-Press.pdf</code> — 868 KB, 160 sayfa</td></tr>
+<tr><td>Bağlantı 1 (paylaşılacak olan)</td><td><code>valicepress.com/companion/world-games</code></td></tr>
+<tr><td>Bağlantı 2 (kitabın kendisi)</td><td><code>valicepress.com/books/the-great-book-of-world-games</code></td></tr>
+<tr><td>Uzunluk</td><td>~200 kelime</td></tr>
+<tr><td>İstenen şey</td><td><strong>Hiçbir şey.</strong> İnceleme, puan, bölüm, satın alma talebi yok</td></tr>
+</table>
+
+<h3>Üç bilinçli karar</h3>
+<ul>
+<li><strong>Bağlantı sırası ters çevrildi.</strong> Brief'in önerdiği sıra “önce landing sayfası”
+idi. Brian'ın paylaşacağını söylediği şey tahtalar olduğu için companion sayfası öne alındı;
+kitabın sayfası “eğer kitabın kendisini istersen” çerçevesiyle sonra geliyor. Ona istemediği
+şeyi ilk sıraya koymak, başka bir e-postayı yanıtlamak olurdu.</li>
+<li><strong>İki bağlantı, ikisi de temiz.</strong> UTM veya <code>?ref=</code> eklenmedi: Brian bu
+bağlantıyı yabancıların göreceği bir Discord'a yapıştıracak ve izleme parametresi güvene binen
+küçük bir vergidir. Ölçüm zaten referrer ve <code>companion_download</code> olayıyla alınabiliyor
+(§8).</li>
+<li><strong>Sayı hatası açıkça düzeltildi.</strong> İlk e-posta “33 printable boards” dedi; pakette
+<strong>31</strong> tahta var. Bu kitle bir bilim podcast'i ve Kurna tahtasının tarihini
+tartışan bir Discord; sessizce doğru sayıyı yazmak yeterli olurdu, “yanlış saymışım, her yerde
+düzelttim” demek daha iyi ve bir parantez maliyeti var. Düzeltme gerçek: üç blog yazısı bu sayıyı
+yanlış taşıyordu, artık taşımıyor (§4).</li>
+</ul>
+
+<h2 id="s3">3 · Landing sayfası denetimi</h2>
+
+<p>Bir Gaming with Science dinleyicisinin izleyeceği yol, brief §5'teki soru sırasıyla değerlendirildi.
+Değişiklik <em>öncesi</em> durum:</p>
+
+<table>
+<tr><th>Soru</th><th>Companion sayfası (paylaşılacak)</th><th>Kitap sayfası</th></tr>
+<tr><td>Bu ne?</td><td><span class="tag t-ok">İYİ</span> başlık + tek paragraf</td><td><span class="tag t-ok">İYİ</span> kapak, alt başlık, açıklama</td></tr>
+<tr><td>Neden ilginç?</td><td><span class="tag t-warn">ZAYIF</span> “table-side material” diyordu; tarihsel oyun bağlamı yoktu</td><td><span class="tag t-ok">İYİ</span> mekanik ailelere göre dizilim, yeniden kurgu vurgusu</td></tr>
+<tr><td>Bedava ne alırım?</td><td><span class="tag t-warn">GÖMÜLÜ</span> tahtalar dört karttan <strong>sonuncusuydu</strong></td><td><span class="tag t-bad">GİZLİ</span> yalnızca “satın alınca ne gelir” panelinin <strong>6. maddesi</strong></td></tr>
+<tr><td>Kitap neden var?</td><td><span class="tag t-ok">İYİ</span> “About this material” bölümü</td><td><span class="tag t-ok">İYİ</span> açıklama + önizleme</td></tr>
+<tr><td>Nereden alırım?</td><td><span class="tag t-ok">İYİ</span> tek sakin bağlantı</td><td><span class="tag t-ok">İYİ</span> 4 edisyon, canlı fiyat, Amazon CTA</td></tr>
+</table>
+
+<div class="box bad">
+<p style="margin:0 0 8px"><strong>En ciddi bulgu.</strong> Ücretsiz companion, kitap sayfasında
+yalnızca <em>“What arrives when you buy the Valice edition”</em> panelinin altıncı maddesi olarak
+bağlanıyordu. İki yönden yanlıştı:</p>
+<ul style="margin:0">
+<li>Materyal, kimse satın almasa da ücretsiz — satın alma faydası gibi sunulması yanlış çerçeve.</li>
+<li>O panel yalnızca doğrudan sattığımız kitaplarda render ediliyor; dolayısıyla
+<em>The Myth Hunter's Field Book</em> gibi yalnızca-baskı başlıklar kendi ücretsiz materyalini
+<strong>tamamen gizliyordu</strong>.</li>
+</ul>
+</div>
+
+<p>Ayrıca denetlenenler: <strong>ana sayfa</strong> (HTTP 200; World Games'e hiçbir bağlantı
+taşımıyor — §12'de kayıtlı, kapsam dışı bırakıldı), <strong>üç blog yazısı</strong> (Ur, Senet,
+mancala — hepsi 200 ve hepsi companion'a bağlanıyor), <strong>önizleme görselleri</strong>
+(<code>p16.webp</code> … 200), <strong>kanonik host</strong> (<code>www</code> → apex, tek 308).</p>
+
+<h2 id="s4">4 · Yapılan değişiklikler</h2>
+
+<p class="meta">Dal <code>growth/gws-partnership-2026-09-09</code> · PR #41 · birleştirildi
+10 Eylül 2026 07:19 UTC · üretim dağıtımı <code>dpl_CqGJCY7r2aAr3xZU3v6d71k7xcDL</code> ·
+canlı doğrulandı. <span class="tag t-info">OLGU</span></p>
+
+<h3>4.1 Yanlış sayı — üç canlı sayfa</h3>
+<p>Yer gerçeği: paket <strong>31 tahta</strong> taşıyor. 32 sayfa = 1 kapak + 31 tahta;
+<code>companion-manifest.json</code> → <code>boards.count: 31</code>; paketin kendi kapak sayfası
+“31 printable boards”; <strong>kitabın 160. sayfası da “Thirty-one boards” diyor.</strong>
+Yani kitap baştan doğruydu, yalnızca blog yazıları yanlıştı.</p>
+<table>
+<tr><th>Sayfa</th><th>Önce</th><th>Sonra</th></tr>
+<tr><td><code>/blog/royal-game-of-ur-rules</code></td><td>“32 other boards”</td><td>“30 other boards”</td></tr>
+<tr><td><code>/blog/senet-rules-reconstruction</code></td><td>“32 other boards”</td><td>“30 other boards”</td></tr>
+<tr><td><code>/blog/mancala-which-game-to-start-with</code></td><td>“33 boards in all”</td><td>“31 boards in all”</td></tr>
+</table>
+<p>Ur yazısı, o podcast'ten gelen birinin okuyacağı <em>tek en olası sayfa</em>; bastığı sayının
+doğru olması gerekiyordu.</p>
+
+<h3>4.2 Tahtalar companion sayfasının başına alındı</h3>
+<p>Dört karttan sonuncusuydu; oysa bağlantının paylaşılma sebebi tam olarak o. Artık ilk kart.
+Metin de bu kitlenin aradığı tahtaları adıyla anıyor (Ur, Senet, Hnefatafl, Tablut, Nine Men's
+Morris, Pachisi, Patolli, Yut Nori) ve <strong>hangi kural setlerinin yeniden kurgu olduğunu</strong>
+söylüyor — çünkü paket zaten her ilgili sayfada bunu işaretliyor ve dürüst iddia bu.</p>
+
+<h3>4.3 Ücretsiz companion artık satın alma maddesi değil</h3>
+<p>Kitap sayfasında, hero'nun altında, editions tablosundan <em>önce</em> tek sakin satır:
+yeni <code>&lt;CompanionCallout&gt;</code> bileşeni, companion kaydına eklenen isteğe bağlı
+<code>calloutLabel</code> alanıyla. Companion'ı olan <strong>her</strong> kitapta görünür.</p>
+<div class="box warn">
+<p style="margin:0"><strong>Kapsam notu.</strong> Bu değişiklik paylaşılan kitap-sayfası şablonunu
+etkiler, dolayısıyla companion'ı olan diğer başlıklarda da görünür. Bilinçli: hiçbirine zarar
+vermiyor, hepsinde aynı yanlış çerçeveyi düzeltiyor ve brief §8'in “ücretsiz kaynağı dev bir
+satın alma CTA'sının altına saklama” kuralının doğrudan karşılığı. Başka hiçbir sayfa,
+katalog mimarisi, başka kitap veya üretim sistemi değiştirilmedi.</p>
+</div>
+
+<h3>4.4 Kontroller</h3>
+<table>
+<tr><th>Kontrol</th><th>Sonuç</th></tr>
+<tr><td><code>tsc --noEmit</code></td><td><span class="tag t-ok">TEMİZ</span></td></tr>
+<tr><td><code>eslint src --max-warnings=0</code></td><td><span class="tag t-ok">TEMİZ</span> (çıkış 0)</td></tr>
+<tr><td><code>next build</code></td><td><span class="tag t-ok">BAŞARILI</span> — çıktı HTML'i incelendi, iki sayfa da doğru</td></tr>
+<tr><td><code>vitest run</code></td><td><span class="tag t-warn">426/427</span> — tek hata <code>scripts/factory/kdp-linkage-lint.test.js</code></td></tr>
+</table>
+<div class="box">
+<p style="margin:0"><strong>O tek hata bu daldan gelmiyor.</strong> Temiz bir
+<code>origin/main</code> checkout'unda aynı test aynı şekilde başarısız oluyor (ayrı worktree'de
+çalıştırılarak doğrulandı). Kitap fabrikası betiğine ait, bu görevle ilgisiz, dokunulmadı.
+Ayrıca CI'ın kendi <code>npm test</code> adımı yorum satırıyla “şu an echo edip 0 dönüyor”
+diyor — yani test paketi CI'da hiç çalışmıyor; bu yüzden hata daha önce görünmemiş (§12).</p>
+</div>
+
+<h2 id="s5">5 · PDF denetimi — Brian'a gidecek dosya</h2>
+
+<p class="meta">Denetlenen dosya, gönderilecek dosyanın <em>kendisi</em>:
+<code>GWS-SEND-PACKAGE/The-Great-Book-of-World-Games-Valice-Press.pdf</code>. Preflight çıktısına
+güvenilmedi; sayfalar görüntü olarak render edilip incelendi. <span class="tag t-info">OLGU</span></p>
+
+<table>
+<tr><th>Alan</th><th>Ölçüm</th><th>Değerlendirme</th></tr>
+<tr><td>Dosya adı</td><td><code>The-Great-Book-of-World-Games-Valice-Press.pdf</code></td><td><span class="tag t-ok">İYİ</span> indirilince ne olduğu belli</td></tr>
+<tr><td>Başlık (metadata)</td><td>The Great Book of World Games: 56 Games from 4,600 Years of Human Play — …</td><td><span class="tag t-ok">İYİ</span></td></tr>
+<tr><td>Yazar</td><td>Emre Doğan</td><td><span class="tag t-ok">İYİ</span> Türkçe karakter doğru</td></tr>
+<tr><td>Yayıncı (künye sayfası)</td><td>Vâliçe Press</td><td><span class="tag t-warn">NOT</span> site “Valice Press” yazıyor; kanonik ad kararı hâlâ açık</td></tr>
+<tr><td>Sayfa sayısı</td><td>160</td><td><span class="tag t-ok">İYİ</span> katalogla birebir</td></tr>
+<tr><td>PDF sürümü</td><td>1.4</td><td><span class="tag t-ok">İYİ</span> her okuyucu açar</td></tr>
+<tr><td>Boyut</td><td>888.869 bayt (868 KB)</td><td><span class="tag t-ok">MÜKEMMEL</span> Gmail 25 MB sınırının çok altında</td></tr>
+<tr><td>Fontlar</td><td>7 alt küme, hepsi <strong>gömülü</strong>, WinAnsi, ToUnicode var</td><td><span class="tag t-ok">İYİ</span> kopyalama ve arama çalışır</td></tr>
+<tr><td>Metin katmanı</td><td>Var; <code>pdftotext</code> tüm kitabı çıkarıyor</td><td><span class="tag t-ok">İYİ</span> ekran okuyucu dostu</td></tr>
+<tr><td>Görseller</td><td><strong>Tüm kitapta tek bitmap</strong> (s.160, QR, 675 ppi). 56 tahta diyagramının hepsi <strong>vektör</strong></td><td><span class="tag t-ok">MÜKEMMEL</span> sonsuz çözünürlük, küçük dosya</td></tr>
+<tr><td>Kenar boşlukları / kırpma</td><td>Letter 612×792 pt; render edilen sayfalarda taşma/kırpma yok</td><td><span class="tag t-ok">İYİ</span></td></tr>
+<tr><td>Köprüler</td><td><strong>Yok</strong> — <code>/Annots</code> 0, <code>/URI</code> 0</td><td><span class="tag t-warn">KÜÇÜK</span> companion adresi tıklanabilir değil, yazı ve QR olarak var</td></tr>
+<tr><td>QR kod</td><td>s.160, çerçeveli, <code>valicepress.com/companion/world-games</code> adresi altında yazılı</td><td><span class="tag t-ok">İYİ</span> adres canlı ve 200</td></tr>
+<tr><td>Boş sayfalar</td><td>17 (2, 8, 10, 12, 14, 26, 40, 66, 86, 116, 124, 140, 142, 146, 152, 156, 158)</td><td><span class="tag t-ok">TASARIM</span> her oyun iki sayfalık açılım; bölümler tek sayfadan başlıyor</td></tr>
+<tr><td>Şifreleme / JavaScript</td><td>Yok / Yok</td><td><span class="tag t-ok">İYİ</span></td></tr>
+<tr><td>ISBN satırı</td><td>“ISBN (paperback): <strong>PENDING — KDP-PROVIDED ISBN</strong>”</td><td><span class="tag t-warn">KÜÇÜK</span> §12'de kayıtlı</td></tr>
+<tr><td>Bütünlük</td><td>SHA-256 <code>9a41…cace</code>, dijital edisyon master'ıyla <strong>birebir aynı</strong></td><td><span class="tag t-ok">İYİ</span> özel sürüm değil, ürünün kendisi</td></tr>
+</table>
+
+<h3>5.1 Bir Gaming with Science dinleyicisi gözüyle (brief §11)</h3>
+<table>
+<tr><th>Soru</th><th>Yanıt</th></tr>
+<tr><td>İlk sayfa anlaşılır mı?</td><td>Evet — yarım başlık, sonra tam başlık sayfası, künye, içindekiler</td></tr>
+<tr><td>Profesyonel duruyor mu?</td><td>Evet — tutarlı serif dizgi, temiz açılımlar, vektör diyagramlar</td></tr>
+<tr><td>Tarihsel oyunlarla bağ belli mi?</td><td>Evet — içindekiler kültür kültür: Senet · Ancient Egyptian, Royal Game of Ur · Sumerian, Patolli · Nahua (Aztec), Tablut · Sámi</td></tr>
+<tr><td>İçerik ulaşılabilir mi?</td><td>Evet — her oyunda oyuncu sayısı, süre, yaş, malzeme başta</td></tr>
+<tr><td>Tahtalar kullanılabilir mi?</td><td>Evet — kitapta diyagram, pakette tam oyun boyutunda basılabilir hâli</td></tr>
+<tr><td>Kaynaklar inandırıcı mı?</td><td><strong>Bu kitabın en güçlü yanı.</strong> Murray 1952, Culin 1895/1907, Lane 1846, Linnaeus 1732, Falkener 1892 — sayfa numarasıyla</td></tr>
+<tr><td>Kafa karıştıran iddia var mı?</td><td>Hayır — aksine <em>“On Sources, and What This Book Does Not Know”</em> sayfası, okunamayan kaynakları (Finkel, Piccione, Kendall, Pollux) tek tek itiraf ediyor</td></tr>
+<tr><td>Dosya kolay açılıyor / gereksiz büyük mü?</td><td>Kolay / hayır — 868 KB</td></tr>
+</table>
+<div class="box ok">
+<p style="margin:0">Bu kitle için en ikna edici sayfa satış metni değil, <strong>s.157 “On Sources,
+and What This Book Does Not Know”</strong>: yedi oyunun kuralının yeniden kurgu olduğunu, Tien
+Gow'un tek basılı kaynağı bulunmayan tek oyun olduğunu ve “eğer basılı bir kaynak biliyorsanız
+görmek isteriz” dediğini yazıyor. Walter Crist'li bir bölümü yapan insanların tam olarak
+duymak isteyeceği ton budur.</p>
+</div>
+
+<h2 id="s6">6 · Yazdırılabilir tahta denetimi</h2>
+
+<p class="meta">Brian'ın Discord'da paylaşacağı dosya. En yüksek öncelikli denetim.
+<span class="tag t-info">OLGU</span></p>
+
+<table>
+<tr><th>Test</th><th>Sonuç</th></tr>
+<tr><td>PDF açılıyor mu</td><td><span class="tag t-ok">EVET</span> ReportLab, 154.056 bayt</td></tr>
+<tr><td>Kâğıt boyutu</td><td><span class="tag t-ok">US Letter</span> 612×792 dikey; geniş tahtalarda 792×612 yatay (Ur, Tab, Pachisi vb.)</td></tr>
+<tr><td>Doğru tahta / sayı</td><td><span class="tag t-ok">31 tahta</span> + 1 kapak = 32 sayfa; manifest ve kapak metniyle birebir</td></tr>
+<tr><td>Kırpma</td><td><span class="tag t-ok">YOK</span> render edilen sayfalarda kenar taşması yok</td></tr>
+<tr><td>Eksik sembol / bozuk metin</td><td><span class="tag t-ok">YOK</span> fontlar gömülü; Mū Tōrere, K'i, Awithlaknannai doğru</td></tr>
+<tr><td>%100'de okunabilirlik</td><td><span class="tag t-ok">EVET</span> tahta sayfayı dolduruyor, açıklama alt kısımda büyük punto</td></tr>
+<tr><td>Koyu zemin</td><td><span class="tag t-ok">YOK</span> beyaz zemin, siyah çizgi — mürekkep dostu</td></tr>
+<tr><td>Talimatlar açık mı</td><td><span class="tag t-ok">EVET</span> her sayfada kitaptaki sayfa numarası, ölçek katsayısı ve gerekliyse başlangıç dizilimi</td></tr>
+<tr><td>Yeniden kurgu işareti</td><td><span class="tag t-ok">VAR</span> Ur, Senet, Patolli sayfalarında “† rules presented as a reconstruction”</td></tr>
+<tr><td>Bozuk bağlantı</td><td><span class="tag t-ok">YOK</span> alt bilgi <code>valicepress.com/companion/world-games</code> → 200</td></tr>
+<tr><td>Canlı erişim</td><td><span class="tag t-ok">200</span> <code>/companion/world-games/boards-pack.pdf</code>, 154.056 bayt</td></tr>
+</table>
+
+<p>Örnek olarak <strong>15. sayfa (The Royal Game of Ur)</strong> görüntü olarak incelendi:
+başlık, kitaptaki sayfa referansı (s.58), yeniden kurgu işareti, ×3,66 ölçek notu, tam boy
+yatay tahta, rozet ve ortak şerit için üç maddelik açıklama, alt bilgi ve sayfa numarası.
+Baskıya hazır.</p>
+
+<h2 id="s7">7 · Bağlantı denetimi</h2>
+
+<p class="meta">Canlı URL'ler <code>curl</code> ile (kod içi varsayım değil) ve tarayıcıda
+test edildi. <span class="tag t-info">OLGU</span></p>
+
+<div class="scroll">
+<table>
+<tr><th>URL</th><th>Durum</th><th>Not</th></tr>
+<tr><td><code>/</code></td><td>200</td><td>World Games'e bağlantı taşımıyor (§12)</td></tr>
+<tr><td><code>/books/the-great-book-of-world-games</code></td><td>200</td><td>kapak render oluyor, 4 edisyon, canlı fiyat</td></tr>
+<tr><td><code>/companion/world-games</code></td><td>200</td><td>ücretsiz, kapısız; tahtalar artık ilk sırada</td></tr>
+<tr><td><code>/companion/world-games/boards-pack.pdf</code></td><td>200</td><td>application/pdf, 154.056 bayt</td></tr>
+<tr><td><code>/companion/world-games/game-index.pdf</code></td><td>200</td><td>76.962 bayt</td></tr>
+<tr><td><code>/companion/world-games/quick-reference-cards.pdf</code></td><td>200</td><td>89.531 bayt</td></tr>
+<tr><td><code>/companion/world-games/score-sheets.pdf</code></td><td>200</td><td>76.999 bayt</td></tr>
+<tr><td><code>/blog/royal-game-of-ur-rules</code></td><td>200</td><td>sayı düzeltildi</td></tr>
+<tr><td><code>/blog/senet-rules-reconstruction</code></td><td>200</td><td>sayı düzeltildi</td></tr>
+<tr><td><code>/blog/mancala-which-game-to-start-with</code></td><td>200</td><td>sayı düzeltildi</td></tr>
+<tr><td>Amazon ciltsiz CTA</td><td>200</td><td><code>amazon.com/dp/B0HG3KMK9L?maas=…&amp;tag=maas</code> — Attribution etiketi canlı</td></tr>
+<tr><td>Doğrudan satın alma (Add to cart)</td><td>200</td><td>$9.99, DRM'siz filigranlı PDF</td></tr>
+<tr><td><code>www.valicepress.com/…</code></td><td>200</td><td>tek 308 ile apex'e</td></tr>
+<tr><td><code>/go/amazon/the-great-book-of-world-games</code></td><td><strong>404</strong></td><td>böyle bir rota yok; bağlantılar doğrudan Amazon'a etiketle gidiyor — hata değil, yol haritasındaki öneri uygulanmamış</td></tr>
+<tr><td><code>/series/the-great-book-of</code></td><td><strong>404</strong></td><td>seri sayfaları henüz yok (§12)</td></tr>
+</table>
+</div>
+
+<div class="box warn">
+<p style="margin:0"><strong>Önbellek notu.</strong> Dağıtımdan sonra tarayıcı sekmesi bir süre eski
+kopyayı gösterdi; <code>curl</code> ve önbellek kırıcı parametreyle yapılan yükleme yeni sürümü
+döndürdü. Yani CDN güncel, tarayıcı önbelleği doğal gecikme. Brian'a gönderilmeden önce
+telefondan bir kez açmak yeterli (§14).</p>
+</div>
+
+<h2 id="s8">8 · Analitik / Attribution denetimi</h2>
+
+<table>
+<tr><th>Mekanizma</th><th>Durum</th><th>Brian'ın trafiğini ölçer mi?</th></tr>
+<tr><td><strong>Amazon Attribution</strong> etiketi</td><td><span class="tag t-ok">CANLI</span> ciltsiz bağlantısında <code>maas=…afap_abs</code></td><td>Evet — site → Amazon → satın alma. Yalnızca ciltsizde; ciltli ve büyük punto etiketsiz</td></tr>
+<tr><td><strong><code>companion_download</code></strong> olayı</td><td><span class="tag t-ok">BAĞLI</span> <code>&lt;CompanionDownloadLink&gt;</code> her indirmede <code>trackEvent</code> çağırıyor</td><td>Evet — hangi companion, hangi dosya. Discord'dan gelen indirmeler burada görünür</td></tr>
+<tr><td><strong>Birinci taraf olay deposu</strong> <code>/api/events</code></td><td><span class="tag t-ok">CANLI</span> GET → 405 (yalnızca POST); <code>analytics_events</code> tablosuna yazıyor</td><td>Evet — Referer <em>host</em>'u da kaydediliyor (URL değil), yani discord.com ayırt edilebilir</td></tr>
+<tr><td><strong>Vercel Web Analytics</strong></td><td><span class="tag t-bad">KAPALI</span> API “Web Analytics not found” döndü</td><td><strong>Hayır</strong> — sayfa görüntüleme ölçümü yok. Master Roadmap P0-3, 2 Eylül'den beri açık</td></tr>
+<tr><td><strong>Taban çizgisi</strong></td><td><span class="tag t-bad">YOK</span></td><td>Değişiklik öncesi sayfa görüntüleme sayısı alınamadı; kıyas noktası olmayacak</td></tr>
+</table>
+
+<div class="box">
+<p style="margin:0"><strong>Yeni izleme altyapısı kurulmadı ve kurulmamalı (brief §16).</strong>
+Gereken üç mekanizmadan ikisi zaten çalışıyor. Eksik olan tek şey Vercel panelinde <em>tek bir
+düğme</em>: Analytics → Enable. Ondan sonra <code>requestPath</code> ve
+<code>referrerHostname</code> ile Discord trafiği doğrudan görünür. Ayrı bir ortaklık UTM'i
+tasarlanmadı: paylaşılacak bağlantının temiz kalması, izleme parametresinden daha değerli
+ve ölçüm zaten iki kanaldan alınabiliyor.</p>
+</div>
+
+<h2 id="s9">9 · Mobil / masaüstü denetimi</h2>
+
+<table>
+<tr><th>Yüzey</th><th>Masaüstü (1440×900)</th><th>Mobil</th></tr>
+<tr><td>Kitap sayfası</td><td><span class="tag t-ok">DOĞRULANDI</span> ekran görüntüsüyle: kapak, başlık, açıklama, fiyat paneli, edisyon tablosu</td><td><span class="tag t-warn">KISMİ</span> aşağıya bakınız</td></tr>
+<tr><td>Companion sayfası</td><td><span class="tag t-ok">DOĞRULANDI</span> ekran görüntüsüyle</td><td><span class="tag t-warn">KISMİ</span></td></tr>
+</table>
+
+<div class="box warn">
+<p style="margin:0 0 8px"><strong>Dürüst sınır.</strong> Tarayıcı eklentisi pencere 414 ve 420 px'e
+küçültüldüğünde de ekran görüntüsünü masaüstü genişliğinde döndürdü; <strong>gerçek bir mobil
+render görüntüsü alınamadı.</strong> Mobil, görüntü yerine yapısal olarak doğrulandı:</p>
+<ul style="margin:0">
+<li>Her iki sayfa da duyarlı Tailwind sınıfları kullanıyor (<code>px-4 sm:px-6</code>,
+<code>max-w-3xl</code>, <code>grid lg:grid-cols-…</code>, <code>text-[34px] sm:text-[42px]</code>).</li>
+<li>Yeni <code>&lt;CompanionCallout&gt;</code> <code>flex-wrap</code> ve
+<code>gap-y-1</code> ile sarmalanıyor; dar ekranda iki satıra iniyor, taşmıyor.</li>
+<li>İndirme kontrolü zaten mobil için ölçülendirilmiş: bileşenin kendi yorumu
+<code>min-h-11</code> (44 px) altında <code>sm:</code>, üstünde 37 px olduğunu ve bunun basılı
+QR kodundan gelen okuyucu için bilinçli olduğunu yazıyor.</li>
+<li><code>www</code> → apex yönlendirmesi tek adımda, mobil tarayıcıda da aynı.</li>
+</ul>
+</div>
+<p><span class="tag t-info">ÖNERİ</span> Gönderim öncesi Kurucu iki bağlantıyı kendi telefonundan
+bir kez açsın (§14). Bir dakikalık iş ve bu boşluğu tamamen kapatır.</p>
+
+<h2 id="s10">10 · Bulunan sorunlar</h2>
+
+<div class="scroll">
+<table>
+<tr><th>#</th><th>Sorun</th><th>Nerede</th><th>Şiddet</th></tr>
+<tr><td>P1</td><td>Tahta sayısı üç canlı sayfada yanlış (32/32/33 yerine 31)</td><td>Ur, Senet, mancala yazıları</td><td><span class="tag t-bad">YÜKSEK</span> paylaşılacak varlık hakkında yanlış olgu</td></tr>
+<tr><td>P2</td><td>Tahtalar companion sayfasında dört karttan sonuncusu</td><td><code>/companion/world-games</code></td><td><span class="tag t-warn">ORTA</span> paylaşımın hedefi gömülü</td></tr>
+<tr><td>P3</td><td>Ücretsiz companion yalnızca “satın alınca ne gelir” panelinin 6. maddesi; yalnızca-baskı kitaplarda hiç görünmüyor</td><td>kitap sayfası şablonu</td><td><span class="tag t-warn">ORTA</span> brief §8 ihlali</td></tr>
+<tr><td>P4</td><td>Vercel Web Analytics kapalı; taban çizgisi yok</td><td>Vercel projesi</td><td><span class="tag t-warn">ORTA</span> ölçüm boşluğu</td></tr>
+<tr><td>P5</td><td>Test paketi CI'da çalışmıyor (<code>npm test</code> echo edip 0 dönüyor); bir test <code>main</code>'de kırık</td><td><code>.github/workflows/ci.yml</code></td><td><span class="tag t-warn">ORTA</span> yeşil CI yanıltıcı</td></tr>
+<tr><td>P6</td><td>PDF künyesinde “ISBN: PENDING — KDP-PROVIDED ISBN”</td><td>kitap iç bloğu</td><td><span class="tag t-info">DÜŞÜK</span></td></tr>
+<tr><td>P7</td><td>PDF'te tıklanabilir köprü yok</td><td>kitap iç bloğu</td><td><span class="tag t-info">DÜŞÜK</span> QR ve yazılı adres var</td></tr>
+<tr><td>P8</td><td>Yayıncı adı ikiliği: kitapta “Vâliçe Press”, sitede “Valice Press”</td><td>her yerde</td><td><span class="tag t-info">DÜŞÜK</span> ISBN başvurusundan önce karar gerekiyor</td></tr>
+<tr><td>P9</td><td>Ana sayfa World Games'e hiç bağlanmıyor</td><td><code>/</code></td><td><span class="tag t-info">DÜŞÜK</span> bu huni için gerekmiyor</td></tr>
+<tr><td>P10</td><td>Attribution etiketi yalnızca ciltsizde</td><td>katalog</td><td><span class="tag t-info">DÜŞÜK</span> kasıtlı olabilir</td></tr>
+<tr><td>P11</td><td><code>/series/…</code> ve <code>/go/amazon/…</code> 404</td><td>site</td><td><span class="tag t-info">DÜŞÜK</span> planlanmış ama yapılmamış</td></tr>
+</table>
+</div>
+
+<h2 id="s11">11 · Çözülen sorunlar</h2>
+<table>
+<tr><th>#</th><th>Ne yapıldı</th><th>Doğrulama</th></tr>
+<tr><td>P1</td><td>Üç yazıda sayı düzeltildi (30 / 30 / 31)</td><td>Üretimde <code>curl</code> ile üçü de doğrulandı</td></tr>
+<tr><td>P2</td><td>Tahtalar ilk karta alındı; metin tahtaları adıyla anıyor ve yeniden kurgu işaretini söylüyor</td><td>Üretimde önbellek kırıcıyla doğrulandı</td></tr>
+<tr><td>P3</td><td><code>&lt;CompanionCallout&gt;</code> hero altında, editions tablosundan önce</td><td>Üretim HTML'inde “Free companion … Open it →” görünüyor</td></tr>
+</table>
+<p>Ek olarak, gönderilecek dosya <strong>açıkça adlandırılmış bir çalışma kopyası</strong> olarak
+hazırlandı; <strong>kanonik master'a dokunulmadı</strong> (değişiklik zamanı 6 Eylül 13:23, aynı
+SHA-256). <code>-final2</code> / <code>-latest</code> türü sürüm üretilmedi.</p>
+
+<h2 id="s12">12 · Kalan sorunlar</h2>
+<table>
+<tr><th>#</th><th>Neden bu görevde çözülmedi</th><th>Kimin işi</th></tr>
+<tr><td>P4 Web Analytics</td><td>Vercel panelinde tek tık; kodla açılmıyor</td><td><strong>Kurucu</strong></td></tr>
+<tr><td>P5 CI testleri</td><td>Bu görevin kapsamı dışı; kırık test kitap fabrikası betiğine ait ve <code>main</code>'de zaten kırıktı</td><td>ayrı iş</td></tr>
+<tr><td>P6 ISBN “PENDING”</td><td>Kitap iç bloğunun yeniden derlenmesi gerekir — üretim sistemi, bu görevde değiştirilmez. Ayrıca ciltsiz ISBN'i katalogda kayıtlı değil; “PENDING” şu an <em>dürüst</em></td><td>kitap fabrikası + Kurucu</td></tr>
+<tr><td>P7 Köprüsüz PDF</td><td>Aynı sebep. QR ve yazılı adres işlevi karşılıyor</td><td>kitap fabrikası</td></tr>
+<tr><td>P8 Yayıncı adı</td><td>Marka kararı; ISBN kaydından önce verilmeli</td><td><strong>Kurucu</strong></td></tr>
+<tr><td>P9 Ana sayfa</td><td>Brief §17 ilgisiz sayfaların yeniden tasarımını yasaklıyor; bu huni için de gerekmiyor</td><td>opsiyonel</td></tr>
+<tr><td>P10 Attribution kapsamı</td><td>Katalog verisi; ciltli/büyük punto etiketi ayrı bir reklam kararı</td><td>opsiyonel</td></tr>
+<tr><td>P11 404 rotalar</td><td>Yeni sayfa mimarisi; kapsam dışı</td><td>opsiyonel</td></tr>
+</table>
+
+<h2 id="s13">13 · Önerilen sonraki adımlar</h2>
+
+<h3>A · GÖNDERMEDEN ÖNCE ZORUNLU</h3>
+<table>
+<tr><th>Aksiyon</th><th>Neden</th><th>Etki</th><th>Efor</th><th>Risk</th></tr>
+<tr><td>PDF'i ekle</td><td>Brian açıkça PDF istedi; eksik ek, e-postanın tek somut vaadini boşa çıkarır</td><td>Yüksek</td><td>1 dk</td><td>Yok</td></tr>
+<tr><td>Posta adresini doldur <em>veya</em> o cümleyi sil</td><td>Yer tutucu metin gönderilirse amatörce görünür; adres uydurulamaz</td><td>Yüksek</td><td>1 dk</td><td>Yok</td></tr>
+<tr><td>Yanıtla-tümüne kontrolü (Brian + podcast adresi + Jason)</td><td>Jason eş sunucu ve Brian onu eklemişti</td><td>Orta</td><td>10 sn</td><td>Yok</td></tr>
+<tr><td>İki bağlantıyı telefondan aç</td><td>Mobil render görüntüsü alınamadı (§9)</td><td>Orta</td><td>1 dk</td><td>Yok</td></tr>
+</table>
+
+<h3>B · KUVVETLE ÖNERİLEN (gönderimden hemen sonra)</h3>
+<table>
+<tr><th>Aksiyon</th><th>Neden</th><th>Etki</th><th>Efor</th><th>Risk</th></tr>
+<tr><td><strong>Vercel → Analytics → Enable</strong></td><td>Discord paylaşımı ölçülemezse bu ortaklığın işe yarayıp yaramadığı bilinemez; P0-3 zaten 2 Eylül'den beri açık</td><td>Yüksek</td><td>1 dk</td><td>Yok</td></tr>
+<tr><td>Paylaşımdan sonraki 7 gün <code>companion_download</code> satırlarını oku</td><td>Discord trafiğinin tek doğrudan kanıtı; referrer host'u kayıtlı</td><td>Yüksek</td><td>10 dk</td><td>Yok</td></tr>
+<tr><td>Yayıncı adı kararı</td><td>ISBN kaydındaki ad dünyadaki her katalogda görünür ve değiştirilmesi zor</td><td>Yüksek</td><td>5 dk</td><td>Yok</td></tr>
+</table>
+
+<h3>C · OPSİYONEL</h3>
+<table>
+<tr><th>Aksiyon</th><th>Neden</th><th>Etki</th><th>Efor</th><th>Risk</th></tr>
+<tr><td>Ana sayfaya World Games / ücretsiz tahtalar bağlantısı</td><td>Ana sayfa şu an bu kitaba hiç bağlanmıyor</td><td>Orta</td><td>1 sa</td><td>Düşük — ama ilgisiz sayfa değişikliği</td></tr>
+<tr><td>Ciltli ve büyük punto için Attribution etiketi</td><td>Ölçüm kapsamı</td><td>Düşük</td><td>30 dk</td><td>Düşük</td></tr>
+<tr><td>Sonraki baskıda ISBN ve tıklanabilir köprüler</td><td>Küçük profesyonellik kazancı</td><td>Düşük</td><td>Fabrika işi</td><td>Orta — yeniden derleme</td></tr>
+<tr><td>Jason'a ayrı kopya</td><td>Yanıtta zaten teklif ediliyor; isterse gönderilir</td><td>Düşük</td><td>2 dk</td><td>Yok</td></tr>
+</table>
+
+<h3>D · DEĞİŞTİRİLMEMESİ GEREKENLER</h3>
+<table>
+<tr><th>Şey</th><th>Neden dokunulmamalı</th></tr>
+<tr><td><strong>Companion sayfasının kapısız oluşu</strong></td><td>E-posta kapısı yok, olmamalı. Opsiyonel abonelik formu zaten var ve doğru konumda. Kapı koymak brief §8/§9'a ve evin kendi ilkesine aykırı</td></tr>
+<tr><td><strong>Kitabın “kaynaklar ve bilmediklerimiz” bölümü</strong></td><td>Bu kitle için en güçlü varlık. Kısaltmak, yumuşatmak, satış diline çevirmek kitabın tek gerçek hendeğini yok eder</td></tr>
+<tr><td><strong>Yeniden kurgu işaretleri</strong></td><td>Ur/Senet/Hnefatafl/Patolli sayfalarındaki uyarılar hem kitapta hem pakette kalmalı</td></tr>
+<tr><td><strong>Kanonik master PDF</strong></td><td>Değiştirilmedi ve değiştirilmemeli; gönderim için ayrı adlandırılmış kopya var</td></tr>
+<tr><td><strong>Brian'ın adı ve GwS markası</strong></td><td>Sitede, metadata'da, pazarlamada kullanılmaz. Doğrulanmış tek şey: ilgi ve paylaşım teklifi</td></tr>
+<tr><td><strong>Fiyatlar ve edisyon yapısı</strong></td><td>Bu görev bir fiyat görevi değil</td></tr>
+</table>
+
+<h2 id="s14">14 · Gönderim kontrol listesi</h2>
+<pre>
+[ ] 1. Taslağı oku: docs/growth/GAMING-WITH-SCIENCE-BRIAN-REPLY-DRAFT.md
+[ ] 2. Gmail'de iş parçacığı 1a081a7ab7a1cf33 içinde "Yanıtla-tümüne"
+[ ] 3. To: bkvitko@gmail.com
+       Cc: GamingWithSciencePodcast@gmail.com, jason.wallace@uga.edu
+[ ] 4. Gövdeyi yapıştır
+[ ] 5. EKLE: GWS-SEND-PACKAGE/The-Great-Book-of-World-Games-Valice-Press.pdf   (868 KB)
+[ ] 6. Posta adresini yaz VEYA o cümleyi ve bir üstündeki teşekkürü sil
+[ ] 7. Köşeli parantezli yer tutucu kalmadığını gözle doğrula
+[ ] 8. Telefondan aç:  valicepress.com/companion/world-games
+                       valicepress.com/books/the-great-book-of-world-games
+[ ] 9. Gönder
+[ ] 10. Gönderdikten sonra: Vercel → Analytics → Enable
+[ ] 11. 7 gün sonra: companion_download satırları + Attribution raporu
+[ ] 12. OUTREACH_LOG.md'yi "SENT" olarak güncelle (mesaj id'siyle)
+</pre>
+
+<div class="box ok">
+<p style="margin:0"><strong>Bu görevde e-posta gönderilmedi, Gmail taslağı oluşturulmadı ve
+hiçbir onay uydurulmadı.</strong> Site değişiklikleri izole bir dalda yapıldı, tüm kontroller
+çalıştırıldı, PR #41 birleştirildi ve üretimde bağımsız olarak doğrulandı. Kamu malı ajanının,
+A ajanının ve C ajanının çalışma alanlarına dokunulmadı.</p>
+</div>
+
+<footer>
+<p>Vâliçe Press · Gaming with Science ortaklık dosyası · 10 Eylül 2026 ·
+Kaynaklar: Gmail iş parçacığı <code>1a081a7ab7a1cf33</code>;
+<code>public/companion/world-games/companion-manifest.json</code>;
+<code>scripts/tmp/digital-editions/the-great-book-of-world-games.pdf</code>;
+<code>scripts/catalog/valice-catalog.mjs</code>; canlı <code>valicepress.com</code>;
+PR&nbsp;#41; Vercel dağıtımı <code>dpl_CqGJCY7r2aAr3xZU3v6d71k7xcDL</code>.</p>
+<p>Bu rapordaki hiçbir onay, öneri veya podcast bölümü iddiası yoktur. Brian Kvitko ilgi
+belirtti ve yazdırılabilir tahtaların bağlantısını Discord'da paylaşmayı teklif etti;
+doğrulanmış durum budur.</p>
+</footer>
+
+</div>
+</body>
+</html>
