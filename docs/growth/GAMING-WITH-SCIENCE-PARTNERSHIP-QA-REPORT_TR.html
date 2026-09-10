@@ -92,6 +92,7 @@
   <li><a href="#s12">Kalan sorunlar</a></li>
   <li><a href="#s13">Önerilen sonraki adımlar</a></li>
   <li><a href="#s14">Gönderim kontrol listesi</a></li>
+  <li><a href="#s15">Nihai gönderim sonucu</a></li>
 </ol>
 </div>
 
@@ -510,6 +511,114 @@ SHA-256). <code>-final2</code> / <code>-latest</code> türü sürüm üretilmedi
 hiçbir onay uydurulmadı.</strong> Site değişiklikleri izole bir dalda yapıldı, tüm kontroller
 çalıştırıldı, PR #41 birleştirildi ve üretimde bağımsız olarak doğrulandı. Kamu malı ajanının,
 A ajanının ve C ajanının çalışma alanlarına dokunulmadı.</p>
+</div>
+
+
+<h2 id="s15">15 · Nihai Gönderim Sonucu</h2>
+
+<p class="meta">Eklenmiştir, önceki kanıtlar değiştirilmemiştir. 10 Eylül 2026, 10:11 UTC.
+<span class="tag t-info">OLGU</span></p>
+
+<div class="box bad">
+<p style="margin:0 0 8px"><strong>DURUM: GÖNDERİLMEDİ.</strong> Yanıt, Brian'ın kendi iş
+parçacığında <strong>gerçek bir Gmail taslağı olarak hazır duruyor</strong> — nihai metin, doğru
+alıcılar, yer tutucu yok. Gönderilmemesinin tek bir sebebi var ve o sebep bir tercih değil,
+bir yetenek sınırı:</p>
+<p style="margin:0"><strong>Bu ortamdaki Gmail ve Drive araçları bir eki yalnızca çağrının
+içine gömülü base64 olarak kabul ediyor.</strong> Bu PDF 888.869 bayt, yani
+<strong>1.185.160 karakter</strong> base64 — bir araç çağrısında taşınamaz. İki aracın da
+dosya yolu veya Drive referansı alan bir alanı yok. Kurucu'nun talimatı ekin mümkün olduğunu
+varsayıyordu; değil.</p>
+</div>
+
+<h3>15.1 Taslağın doğrulanmış hâli</h3>
+<table>
+<tr><th>Alan</th><th>Değer</th><th>Doğrulama</th></tr>
+<tr><td>Gmail taslak id</td><td><code>r2529886918775238308</code></td><td><span class="tag t-ok">OLUŞTU</span></td></tr>
+<tr><td>Taslak mesaj id</td><td><code>1a08acccc8bdd2f3</code></td><td><span class="tag t-ok">OKUNDU</span></td></tr>
+<tr><td>İş parçacığı</td><td><code>1a081a7ab7a1cf33</code> — Brian'ın kendi zinciri</td><td><span class="tag t-ok">DOĞRU</span></td></tr>
+<tr><td>Kime</td><td><code>bkvitko@gmail.com</code></td><td><span class="tag t-ok">DOĞRU</span></td></tr>
+<tr><td>Cc</td><td><code>GamingWithSciencePodcast@gmail.com</code>, <code>jason.wallace@uga.edu</code></td><td><span class="tag t-ok">DOĞRU</span></td></tr>
+<tr><td>Konu</td><td><code>Re: Your Royal Game of Ur episode …</code></td><td><span class="tag t-ok">ZİNCİRDE</span></td></tr>
+<tr><td>Yer tutucu metin</td><td>yok — posta adresi cümlesi talimat gereği kaldırıldı, teklif yine de nazikçe karşılandı</td><td><span class="tag t-ok">TEMİZ</span></td></tr>
+<tr><td>Bağlantılar</td><td>companion sayfası + kitap sayfası, ikisi de temiz, izleme parametresi yok</td><td><span class="tag t-ok">200</span></td></tr>
+<tr><td>Ek</td><td><strong>YOK</strong></td><td><span class="tag t-bad">YAPILAMADI</span></td></tr>
+</table>
+
+<h3>15.2 Denenen üç alternatif</h3>
+<p>Varsayılmadı, tek tek denendi:</p>
+<table>
+<tr><th>Deneme</th><th>Sonuç</th><th>Neden kullanılmadı</th></tr>
+<tr><td>Gmail'e gömülü base64 ek</td><td><span class="tag t-bad">İMKÂNSIZ</span></td><td>1,19 milyon karakter bir araç çağrısına sığmaz</td></tr>
+<tr><td>Google Drive'a yükleyip bağlantı paylaşmak</td><td><span class="tag t-bad">İMKÂNSIZ</span></td><td><code>create_file</code> da yalnızca gömülü base64 alıyor</td></tr>
+<tr><td>R2 master'ına imzalı (presigned) bağlantı</td><td><span class="tag t-warn">TEKNİK OLARAK ÇALIŞTI</span> — üretildi, indirildi, SHA-256 incelenen dosyayla <strong>birebir aynı</strong> çıktı</td><td>650 karakterlik URL, <code>bookstore-masters-dev…r2.cloudflarestorage.com</code> alan adı, içinde bucket adı ve erişim anahtarı kimliği; 7 gün sonra (SigV4 tavanı) ölüyor. Yetki verilen şey bu değildi ve özenle kurulan bir ilişkinin ilk izlenimi için doğru değil</td></tr>
+</table>
+<p>Dördüncü seçenek — PDF'i <code>valicepress.com</code> altında herkese açık bir adrese
+koymak — değerlendirilip <strong>reddedildi</strong>: 9,99 $'lık ürünü kalıcı olarak, herkesin
+paylaşabileceği bir adreste ücretsiz yapardı. Bu, kimsenin istemediği ticari bir karardır.</p>
+
+<div class="box warn">
+<p style="margin:0"><strong>Dürüst bir not.</strong> İmzalı bağlantı, <code>curl</code> ile
+çekildiğinde Google'ın "Yeniden Yönlendirme Bildirimi" ara sayfasına düşüyor —
+<em>ama aynı şey <code>valicepress.com</code> bağlantıları için de oluyor</em>, ve Brian ilk
+e-postadaki companion bağlantısını sorunsuz kullandı. Yani ara sayfa, bağlantının kötü
+olduğunun kanıtı değil, oturumsuz bir isteğin doğal sonucu. Kullanmama gerekçesi ara sayfa
+değil: <strong>ek değil, kurum içi altyapı adını dışarı veriyor ve süresi doluyor.</strong></p>
+</div>
+
+<h3>15.3 Gönderim öncesi son doğrulamalar (yapıldı)</h3>
+<table>
+<tr><th>Kontrol</th><th>Sonuç</th></tr>
+<tr><td>Brian'ın gerçek iş parçacığı yeniden okundu</td><td><span class="tag t-ok">EVET</span> mesaj <code>1a08693f41246765</code>, içerik §1 ile aynı</td></tr>
+<tr><td>Ek dosyası var mı</td><td><span class="tag t-ok">EVET</span> 888.869 bayt</td></tr>
+<tr><td>868 KB sınıfı, beklenmedik değişiklik yok</td><td><span class="tag t-ok">EVET</span></td></tr>
+<tr><td>Sayfa sayısı 160</td><td><span class="tag t-ok">EVET</span></td></tr>
+<tr><td>SHA-256 incelenen dosyayla aynı</td><td><span class="tag t-ok">EVET</span> <code>9a419300…a70cbace</code></td></tr>
+<tr><td>R2'deki master ile aynı mı</td><td><span class="tag t-ok">EVET</span> MD5/ETag <code>a9b3a473…d91f</code> iki tarafta da aynı</td></tr>
+<tr><td>companion URL</td><td><span class="tag t-ok">200</span></td></tr>
+<tr><td>boards PDF</td><td><span class="tag t-ok">200</span> 154.056 bayt</td></tr>
+<tr><td>kitap sayfası</td><td><span class="tag t-ok">200</span></td></tr>
+<tr><td><code>/api/events</code> (birinci taraf olay kaydı)</td><td><span class="tag t-ok">CANLI</span> GET → 405, yalnızca POST</td></tr>
+<tr><td><code>companion_download</code> bağlı mı</td><td><span class="tag t-ok">EVET</span> bileşende iki çağrı noktası</td></tr>
+<tr><td>Amazon Attribution etiketi</td><td><span class="tag t-ok">CANLI</span> <code>maas=maas_adg_464E…abs</code></td></tr>
+<tr><td>Discord'da paylaşılacak URL değiştirildi mi</td><td><span class="tag t-ok">HAYIR</span> temiz kaldı</td></tr>
+<tr><td>Brian'a dönük içerikte kaza eseri değişiklik</td><td><span class="tag t-ok">YOK</span></td></tr>
+</table>
+
+<h3>15.4 Brian'ın durumu</h3>
+<pre>
+BRIAN KVITKO / GAMING WITH SCIENCE
+STATUS: REPLY PREPARED — NOT YET SENT (attachment blocked)
+Doğrulanmış: ilgi belirtti + tahtaların bağlantısını Discord'da paylaşmayı teklif etti.
+Doğrulanmamış ve iddia EDİLMEYEN: tanıtım, bölüm, inceleme, Discord paylaşımının
+gerçekleşmesi. Bunlar ancak gerçekten olduğunda kaydedilir.
+</pre>
+
+<h3>15.5 Kurucu için kalan tek adım</h3>
+<pre>
+1. Gmail → Taslaklar → Brian'ın zincirindeki yanıt (taslak r2529886918775238308)
+2. Ataç → şu dosyayı ekle:
+   /home/emre/Downloads/MY-DİGİTAL-BOOK/GWS-SEND-PACKAGE/
+   The-Great-Book-of-World-Games-Valice-Press.pdf      (868 KB · 160 sayfa)
+3. Gönder.
+
+Alıcılar, konu, zincir ve metin zaten doğru ve doğrulandı — başka düzenleme gerekmiyor.
+</pre>
+
+<h3>15.6 Bloklamayan, hâlâ açık kalemler</h3>
+<table>
+<tr><th>Kalem</th><th>Durum</th></tr>
+<tr><td>Vercel Web Analytics</td><td>Hâlâ kapalı. Panel işlemi; koddan açılamıyor, bu ortamdan yapılamadı. <strong>Uydurulmadı, açık kaydedildi.</strong></td></tr>
+<tr><td>CI test komutu ve <code>kdp-linkage-lint.test.js</code></td><td>Dokunulmadı. Talimat gereği bu görevde değiştirilmedi; <code>main</code>'de zaten kırmızıydı</td></tr>
+<tr><td>Yayıncı adı (Vâliçe / Valice)</td><td>Kurucu kararı bekliyor</td></tr>
+<tr><td>PDF künyesindeki "ISBN: PENDING"</td><td>Kitap fabrikası işi</td></tr>
+</table>
+
+<div class="box ok">
+<p style="margin:0"><strong>Hiçbir onay, inceleme, bölüm veya Discord paylaşımı iddia
+edilmedi. Sahte teslimat onayı üretilmedi. E-posta gönderilmedi ve gönderilmiş gibi
+kaydedilmedi.</strong> İç test amacıyla Kurucu'nun kendi adresine gönderilen tek teknik
+deneme mesajı, içinde canlı bir imzalı bağlantı taşıdığı için çöp kutusuna taşındı.</p>
 </div>
 
 <footer>

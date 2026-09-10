@@ -94,3 +94,28 @@ ISBN registration · read `companion_download` for the 7 days after Brian's Disc
 
 **Not claimed anywhere:** no endorsement, no review, no podcast feature, no Discord publication.
 The verified state is that Brian expressed interest and offered to share the printable-boards link.
+
+## 2026-09-10 — session 4 (final send attempt)
+
+Founder confirmed the phone check and authorised the send. **The email was NOT sent**, for one
+reason, recorded exactly rather than worked around: this environment cannot attach a file.
+
+| Time | Channel | Action | Status | Evidence |
+|---|---|---|---|---|
+| 10:0x | Gmail | Re-read Brian's thread `1a081a7ab7a1cf33` / message `1a08693f41246765` before touching anything. Content unchanged from session 3. | DONE | thread read |
+| 10:0x | Files | Re-verified the exact file: 888,869 bytes, 160 pages, SHA-256 `9a419300…a70cbace` — matches the reviewed copy. | DONE | `sha256sum`, `pdfinfo` |
+| 10:0x | Files | Cross-checked against the R2 master `books/the-great-book-of-world-games/master/v1/master.pdf`: same size, same MD5/ETag `a9b3a473…d91f`. The send copy is the shipping master. | DONE | S3 HeadObject |
+| 10:0x | **Blocker** | **Attachment is not possible from this environment.** Gmail `send_message`/`create_draft` and Drive `create_file` all take attachment content only as inline base64 in the tool call. 888,869 bytes → **1,185,160 base64 characters**, which cannot be emitted. Neither tool accepts a file path or a Drive file reference. | BLOCKED (named) | tool schemas |
+| 10:07 | R2 | Substitute tested rather than assumed: presigned GET URL (7-day max) for the identical master. Generated, fetched end-to-end, downloaded file's SHA-256 **matched exactly**. | OBSERVED | `curl` + `sha256sum` |
+| 10:08 | Gmail | Self-test to `emre30283@gmail.com` to see how that link survives the connector. The URL is rewritten to `google.com/url?q=…`; decoding it returns the original byte-for-byte. Fetching the rewritten link with `curl` lands on Google's "Redirect Notice" interstitial — **but so does a plain `valicepress.com` link fetched the same way**, and Brian used the companion link from the first email without trouble, so the interstitial is an artefact of a session-less fetch, not evidence the link would alarm him. | OBSERVED | sent MIME (RAW), `curl` |
+| 10:09 | Gmail | Internal test message moved to Trash — it carried a live signed URL to the master and should not sit in the inbox. | DONE | message `1a08aca9315251f6` trashed |
+| 10:1x | Decision | **Presigned link rejected for the real email.** Not because of the interstitial, but because it is not an attachment, it exposes the bucket name and access-key id to an external contact, and it dies after 7 days. Publishing the paid PDF at a public `valicepress.com` path was also rejected: it would give a $9.99 product away permanently, which is a commercial decision nobody authorised. | DECIDED | — |
+| 10:11 | Gmail | **Reply created as a real Gmail draft inside Brian's thread**, final wording, **postal-address placeholder removed** as instructed (the swag offer is still thanked, the address deferred to a later reply). Draft `r2529886918775238308`, message `1a08acccc8bdd2f3`, thread `1a081a7ab7a1cf33`. To `bkvitko@gmail.com`; Cc `GamingWithSciencePodcast@gmail.com`, `jason.wallace@uga.edu`. Verified by reading the created draft back. | DRAFTED | `get_draft` |
+| 10:1x | Site | Post-checks: companion 200 · boards-pack.pdf 200 (154,056 bytes) · book page 200 · attachment file unchanged · `/api/events` alive (GET 405) · `companion_download` wired · Attribution tag `maas=maas_adg_464E…abs` live · the Discord-share URL untouched. | DONE | `curl` |
+
+**Outcome: NOT SENT.** One manual step remains: open the draft, attach
+`GWS-SEND-PACKAGE/The-Great-Book-of-World-Games-Valice-Press.pdf`, press Send.
+
+**Brian status: `REPLY PREPARED — NOT YET SENT`.** Not claimed: delivery, promotion, podcast
+feature, review, or that the Discord share happened. Verified state is unchanged from
+session 3: interest, plus an offer to share the printable-boards link.
