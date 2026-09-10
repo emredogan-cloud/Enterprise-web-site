@@ -434,6 +434,14 @@
       "entity": "greek-alphabet-handwriting-workbook"
     },
     {
+      "path": "/images/books/thumb/how-the-world-began.webp",
+      "width": 264,
+      "height": 396,
+      "bytes": 6322,
+      "slot": "book-thumb",
+      "entity": "how-the-world-began"
+    },
+    {
       "path": "/images/books/thumb/indian-myth-and-legend.webp",
       "width": 264,
       "height": 396,
