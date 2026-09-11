@@ -542,5 +542,26 @@
         "page": 41
       }
     ]
+  },
+  "how-the-world-began": {
+    "note": "A story opening and the prose that follows it — Hesiod's Chaos, and why the usual translation of the word is wrong.",
+    "pages": [
+      {
+        "src": "/images/previews/how-the-world-began/p25.webp",
+        "page": 25
+      },
+      {
+        "src": "/images/previews/how-the-world-began/p26.webp",
+        "page": 26
+      },
+      {
+        "src": "/images/previews/how-the-world-began/p27.webp",
+        "page": 27
+      },
+      {
+        "src": "/images/previews/how-the-world-began/p28.webp",
+        "page": 28
+      }
+    ]
   }
 }

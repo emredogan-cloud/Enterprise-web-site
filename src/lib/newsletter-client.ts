@@ -70,6 +70,9 @@ export type NewsletterSource =
   | "british-goblins-companion"
   | "fairy-mythology-vol-1-companion"
   | "fairy-mythology-vol-2-companion"
+  // Agent A original, Under Every Sky 1 (2026-09-11). The QR printed on the
+  // last page of How the World Began. One tag per printed book, same rule.
+  | "under-every-sky-companion"
   // The temporary free-ebook promotion (2026-09-10). Its own tag because a
   // list built during a giveaway behaves nothing like one built from a
   // printed book, and merging the two would hide that.

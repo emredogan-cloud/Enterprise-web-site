@@ -2179,6 +2179,102 @@ const PLAY_ANYWHERE: Companion = {
   ],
 };
 
+/**
+ * ── HOW THE WORLD BEGAN (Under Every Sky 1) ───────────────────────────────
+ *
+ * The QR code on the last page of the paperback points here. It was printed
+ * before the book was on sale anywhere, which is exactly the case the rule at
+ * the top of this file was written for: the route exists now, in the
+ * not-yet-available state, and it will still exist when the state changes.
+ *
+ * The companion is unusual in what it carries. It is not practice material —
+ * it is the book's own apparatus, published in full and free: the thirteen
+ * corrections made while the book was written, the source ledger, all 726
+ * typed claims with the kind of claim each one is, and the bibliography.
+ * The book's argument is that a retelling should show its work, and a
+ * companion that withheld the work would undercut it.
+ */
+const UNDER_EVERY_SKY: Companion = {
+  slug: "under-every-sky",
+  bookSlug: "how-the-world-began",
+  bookTitle: "How the World Began",
+  state: "book-not-yet-available",
+  stateNote:
+    "The book is finished but is not on sale yet — the Kindle, paperback " +
+    "and hardcover editions have not been listed. Everything on this page " +
+    "is free and stays free whether or not you ever buy it.",
+  intro:
+    "The book's whole apparatus, published in full: the thirteen corrections " +
+    "made while it was written, every source behind the thirty stories, and " +
+    "all 726 claims with the kind of claim each one is.",
+  calloutLabel: "See every source and every claim, free",
+  newsletterSource: "under-every-sky-companion",
+  assetsHeading: "Sources, claims and corrections",
+  rightsNote:
+    "Everything on this page is Vâliçe Press's own editorial work — ledgers, " +
+    "citations and corrections generated from the book's own records. The " +
+    "underlying texts it cites are public-domain collections and scholarship " +
+    "published between the nineteenth and early twentieth centuries; those " +
+    "are named and dated here rather than reproduced. The retellings " +
+    "themselves stay in the book. These are historical and academic sources, " +
+    "not the direct practice of any living tradition, and no community or " +
+    "outside reviewer has read this material.",
+  assets: [
+    {
+      id: "sources-and-ledgers",
+      title: "Every source and every claim, on one page",
+      description:
+        "The whole apparatus as one browsable page: the thirteen corrections, " +
+        "the source ledger, all 726 typed claims, and the bibliography.",
+      kind: "static",
+      href: "/companion/under-every-sky/sources-and-ledgers.html",
+      meta: "HTML · one page",
+    },
+    {
+      id: "corrections",
+      title: "The thirteen corrections",
+      description:
+        "Every place the plan turned out to be wrong and what was done about " +
+        "it — five of them because a downloaded file was not the edition its " +
+        "filename claimed. The same list is printed in the back of the book.",
+      kind: "static",
+      href: "/companion/under-every-sky/corrections.json",
+      meta: "JSON · 13 records",
+    },
+    {
+      id: "source-ledger",
+      title: "Source ledger",
+      description:
+        "Every source record behind the thirty stories: work, author, " +
+        "edition, the file it was read from, and that file's hash.",
+      kind: "static",
+      href: "/companion/under-every-sky/source-ledger.json",
+      meta: "JSON · 33 records",
+    },
+    {
+      id: "claim-ledger",
+      title: "Claim ledger",
+      description:
+        "All 726 claims, each tagged as a primary or historical source, as " +
+        "scholarship, or as this book's own editorial interpretation, with " +
+        "the story it appears in.",
+      kind: "static",
+      href: "/companion/under-every-sky/claim-ledger.json",
+      meta: "JSON · 726 claims",
+    },
+    {
+      id: "claims",
+      title: "Claim ledger, as a spreadsheet",
+      description:
+        "The same 726 claims as a CSV, for anyone who would rather sort and " +
+        "filter them somewhere else.",
+      kind: "static",
+      href: "/companion/under-every-sky/claims.csv",
+      meta: "CSV · 726 rows",
+    },
+  ],
+};
+
 const COMPANIONS: readonly Companion[] = [
   HANGUL,
   WORLD_GAMES,
@@ -2206,6 +2302,7 @@ const COMPANIONS: readonly Companion[] = [
   FAIRY_MYTHOLOGY_VOL_1,
   FAIRY_MYTHOLOGY_VOL_2,
   PLAY_ANYWHERE,
+  UNDER_EVERY_SKY,
 ];
 
 export function listCompanions(): readonly Companion[] {

@@ -171,7 +171,19 @@ async function coverConsistencyCheck(origin, published, report) {
   for (const b of published) {
     const needle = encodeURIComponent(`/images/books/${b.slug}.webp`);
     const plain = `/images/books/${b.slug}.webp`;
-    const shows = (path) => html[path] && (html[path].includes(needle) || html[path].includes(plain));
+    // The homepage marquee renders the small copy instead
+    // (book-marquee.tsx swaps /images/books/ for /images/books/thumb/), so the
+    // full-size path never appears on "/" and this check reported every book
+    // on the shelf as missing its cover. The thumb is still evidence the cover
+    // resolved: the marquee derives it from bookCoverSrc() and emits nothing
+    // when that returns null, so a book with no cover still fails.
+    const thumb = `/images/books/thumb/${b.slug}.webp`;
+    const shows = (path) =>
+      html[path] &&
+      (html[path].includes(needle) ||
+        html[path].includes(plain) ||
+        (path === "/" &&
+          (html[path].includes(thumb) || html[path].includes(encodeURIComponent(thumb)))));
     // The homepage features the six newest; a book absent from it is not a
     // defect, but a book present WITHOUT its cover is.
     const onHome = html["/"] && html["/"].includes(`/books/${b.slug}`);

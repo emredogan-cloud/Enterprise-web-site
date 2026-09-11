@@ -63,6 +63,14 @@ export function slotFor(publicPath) {
   const base = rest.replace(/\.[a-z0-9]+$/i, "");
   switch (dir) {
     case "books":
+      // /images/books/thumb/<slug>.webp is the small copy the homepage
+      // marquee swaps in (see book-marquee.tsx). It is a second rendition of
+      // a cover, not a cover, and reporting it as one invents the book slug
+      // "thumb/<slug>" — which is what made `has no cover file the catalogue
+      // does not know about` fail the first time these files were manifested.
+      if (base.startsWith("thumb/")) {
+        return { slot: "book-thumb", entity: base.slice("thumb/".length) };
+      }
       return { slot: "book-cover", entity: base };
     case "previews":
       return { slot: "book-preview", entity: rest.split("/")[0] };

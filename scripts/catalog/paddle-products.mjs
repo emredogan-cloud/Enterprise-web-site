@@ -314,4 +314,17 @@ export const DIRECT_SALE_EBOOKS = [
       "The complete 162-page book as a DRM-free, watermarked PDF and a reflowable EPUB. Sixty pencil-and-paper games, each with a sourced provenance note and a real strategy note, and eight score sheets you may print as often as you like.",
     priceCents: 699,
   },
+  {
+    // Under Every Sky 1 (2026-09-11). Like Pencil & Paper, an ORIGINAL title sold
+    // direct before it exists on Amazon, so there is no Kindle list price to match
+    // to the cent. $9.99 is set here and the Kindle listing will be set to match
+    // it, not the other way round: 232 pages, 74,000 words, and half of it is the
+    // source apparatus, which is the thing no other creation-myth anthology has.
+    // Never in Select - house policy for every original title.
+    slug: "how-the-world-began",
+    name: "How the World Began: Thirty Creation Myths from Every Corner of the Earth, Told Whole",
+    description:
+      "The complete 232-page book as a DRM-free, watermarked PDF and a reflowable EPUB. Thirty creation myths retold in full, each with the source named, dated and described - including what is wrong with it - plus the full source ledger and all 726 typed claims.",
+    priceCents: 999,
+  },
 ];
