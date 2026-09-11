@@ -169,4 +169,37 @@ constrain code and were being re-derived (and re-got-wrong) each phase.
 
 - **"The provider accepted it" and "the reader got it" are different claims.**
   Record the provider's message id on the row; without it an empty mailbox leaves
-  nothing to pull on.
+  nothing to pull on. And a provider that says `delivered` still is not a
+  mailbox: the only proof that the right bytes reached the right person is
+  opening the inbox and reading the message. Two of four test sends this session
+  could be read; the other two are reported as provider-confirmed only, because
+  that is what was actually established.
+
+- **A formula that is its own reciprocal at 1 will pass every test written at
+  1.** The shelf's speed calibration was `(lane / PX_PER_SECOND) * 1000 /
+  duration` where the answer is `PX_PER_SECOND * duration / (lane * 1000)` — the
+  reciprocal. The two agree at exactly one point, and the desktop lane sits there
+  (6534px over 192s is 34.03 px/s), so every desktop measurement read 34.06 px/s
+  and the line looked right for as long as nobody measured anything else. A real
+  Redmi Note 8 read 16.07 px/s, and the error ran the wrong way: the narrower the
+  screen, the slower the shelf, when a narrower lane should ask for a *faster*
+  rate. **Test a scaling law at two points that disagree**, and prefer a real
+  second device over a second synthetic width — this is [[agreement-does-not-identify]]
+  applied to arithmetic.
+
+- **A link that expires is not yet a link that is private.** A 72-hour download
+  URL is, for three days, a public mirror of whatever it points at; the reader who
+  pastes it into a group chat never finds out. Cap the *opens* as well as the
+  clock. But do not make it single-use: an endpoint that answers Range requests
+  is asked for byte 0 by a resuming download, seven more times by a download
+  manager, and once more by a mail client generating a preview. Count only a
+  fresh start — no `Range`, or a `Range` from byte 0 — and set the ceiling where
+  no real reader reaches it and a posted link stops paying out.
+
+- **A broken instrument reports a defect that is not there, and that costs more
+  than silence.** A background tab measured "11 covers inside the viewport have
+  not loaded", which would have meant an empty shelf in production. On the phone,
+  genuinely visible and focused, the same measurement returned 0 — Chrome
+  suspends `loading="lazy"` fetches in a hidden tab. Before reporting a defect
+  found by a measurement, check that the measurement itself was taken in a state
+  where the answer can be true. See [[measuring-instruments-fail-safe]].

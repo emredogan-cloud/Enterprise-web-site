@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raf, Öne Çıkanlar ve Büyük PDF Teslimi — Nihai Rapor · Vâliçe Press</title>
+<style>
+  :root{
+    color-scheme: light dark;
+    --bg:#faf9f6; --panel:#ffffff; --ink:#15130f; --mid:#4a463e; --low:#6f6a60;
+    --line:#e4e0d6; --accent:#0f6b4f; --accent-soft:#e8f3ee;
+    --warn:#8a5a00; --warn-soft:#fdf3e0; --bad:#9b2c2c; --bad-soft:#fdeceb;
+    --ok:#0f6b4f; --ok-soft:#e8f3ee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0d0f0e; --panel:#141715; --ink:#f2efe9; --mid:#c3bdb2; --low:#8e887c;
+      --line:#252a27; --accent:#4ade9f; --accent-soft:#10231b;
+      --warn:#e9b558; --warn-soft:#241c0c; --bad:#f2857e; --bad-soft:#2a1513;
+      --ok:#4ade9f; --ok-soft:#10231b; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.65 ui-serif,Georgia,"Times New Roman",serif;}
+  .wrap{max-width:900px;margin:0 auto;padding:48px 20px 96px}
+  header.top{border-bottom:2px solid var(--line);padding-bottom:24px;margin-bottom:32px}
+  .kicker{font:600 11px/1.4 ui-monospace,monospace;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+  h1{font-size:32px;line-height:1.2;margin:0 0 12px;font-weight:600;letter-spacing:-.01em}
+  h2{font-size:22px;margin:44px 0 12px;padding-top:14px;border-top:1px solid var(--line);font-weight:600}
+  h3{font-size:17px;margin:26px 0 8px;font-weight:600}
+  p,li{color:var(--mid)}
+  p{margin:0 0 14px}
+  ul,ol{margin:0 0 14px;padding-left:22px} li{margin:0 0 7px}
+  strong{color:var(--ink);font-weight:600}
+  .lede{font-size:17px;color:var(--ink)}
+  .meta{font:12px/1.7 ui-monospace,monospace;color:var(--low)}
+  table{border-collapse:collapse;width:100%;margin:0 0 18px;font-size:14px}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+  th{background:var(--accent-soft);color:var(--ink);font-weight:600;font-size:13px}
+  code{font:13px ui-monospace,monospace;background:var(--accent-soft);padding:1px 5px;border-radius:4px;color:var(--ink)}
+  pre{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;overflow-x:auto;
+      font:13px/1.6 ui-monospace,monospace;color:var(--ink);white-space:pre-wrap}
+  .box{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--accent);
+       border-radius:10px;padding:16px 18px;margin:0 0 18px}
+  .box.warn{border-left-color:var(--warn);background:var(--warn-soft)}
+  .box.bad{border-left-color:var(--bad);background:var(--bad-soft)}
+  .box.ok{border-left-color:var(--ok);background:var(--ok-soft)}
+  .tag{display:inline-block;font:600 10px/1 ui-monospace,monospace;letter-spacing:.1em;
+       text-transform:uppercase;padding:4px 7px;border-radius:4px;white-space:nowrap}
+  .t-ok{background:var(--ok-soft);color:var(--ok);border:1px solid var(--ok)}
+  .t-warn{background:var(--warn-soft);color:var(--warn);border:1px solid var(--warn)}
+  .t-bad{background:var(--bad-soft);color:var(--bad);border:1px solid var(--bad)}
+  .t-info{background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent)}
+  .scroll{overflow-x:auto}
+  blockquote{margin:0 0 16px;padding:12px 18px;border-left:3px solid var(--line);color:var(--mid);font-style:italic}
+  .toc{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:0 0 8px}
+  .toc ol{margin:0;padding-left:20px;columns:2;column-gap:28px}
+  .toc li{margin:0 0 5px;font-size:14px}
+  a{color:var(--accent)}
+  footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--low);font-size:13px}
+  @media(max-width:640px){ .toc ol{columns:1} h1{font-size:26px} .wrap{padding:28px 16px 64px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <p class="kicker">Vâliçe Press · Üretim · Arayüz + Büyük PDF Teslimi · Nihai Rapor</p>
+  <h1>Boş sol alan, zıplayan raf, küçük kalan öne çıkanlar ve postaya sığmayan kitaplar</h1>
+  <p class="lede">Dört kusur vardı, altı tane bulundu. Bu rapor hiçbirini
+  <em>iddia etmiyor</em> — her birini <strong>ölçülmüş sayılarla</strong> gösteriyor:
+  ana sayfanın kendi DOM&#39;undan, gerçek bir Redmi Note 8&#39;den, gerçek bir Gmail
+  gelen kutusundan ve üretimdeki gerçek baytlardan.</p>
+  <p class="meta">Tarih: 11 Eylül 2026 · Dal: <code>main</code> · PR
+  <a href="https://github.com/emredogan-cloud/ValicePress-Site/pull/51">#51</a> +
+  <a href="https://github.com/emredogan-cloud/ValicePress-Site/pull/53">#53</a> ·
+  Cihaz: Redmi Note 8 (M1908C3JGG), adb + CDP · Tarayıcı: Chrome 1854&times;967 ·
+  Sağlayıcı: Resend · Depolama: Cloudflare R2 (özel masters kovası)</p>
+</header>
+
+<div class="toc">
+<p class="meta" style="margin:0 0 8px">İÇİNDEKİLER</p>
+<ol>
+<li><a href="#s1">Boş sol alanın kök nedeni</a></li>
+<li><a href="#s2">Önce/sonra ölçümleri</a></li>
+<li><a href="#s3">Hareketli rafın kök nedeni</a></li>
+<li><a href="#s4">Yeni görünür kitap yoğunluğu</a></li>
+<li><a href="#s5">Kart boyutları</a></li>
+<li><a href="#s6">Hover zıplamasının kök nedeni</a></li>
+<li><a href="#s7">Hover yavaşlatmasının uygulanışı</a></li>
+<li><a href="#s8">Döngü matematiği</a></li>
+<li><a href="#s9">Öne çıkanlar bölümünün yeniden tasarımı</a></li>
+<li><a href="#s10">Büyük PDF sorununun kök nedeni</a></li>
+<li><a href="#s11">Büyük PDF mimarisi</a></li>
+<li><a href="#s12">Güvenlik modeli</a></li>
+<li><a href="#s13">Jeton süresi ve açılma tavanı</a></li>
+<li><a href="#s14">Küçük ve büyük teslim yolları</a></li>
+<li><a href="#s15">Gerçek e-posta testleri</a></li>
+<li><a href="#s16">Gerçek posta kutusu kanıtı</a></li>
+<li><a href="#s17">Mobil doğrulama durumu</a></li>
+<li><a href="#s18">Tarayıcı testleri</a></li>
+<li><a href="#s19">Performans ölçümleri</a></li>
+<li><a href="#s20">Üretime dağıtım</a></li>
+<li><a href="#s21">Kalan sorunlar</a></li>
+</ol>
+</div>
+
+<div class="box ok">
+<p style="margin:0"><strong>Özet.</strong> Hover zıplaması, bir CSS animasyonunun
+<code>animation-duration</code>&#39;ını çalışırken değiştirmekten kaynaklanıyordu; ölçülen
+sıçrama <strong>&minus;623,1&nbsp;px</strong>, yani <strong>4,2 kart</strong>. Artık
+<strong>0,00&nbsp;px</strong>. Ana sayfanın solundaki ölü boşluk kenar başına
+<strong>279,5&nbsp;px</strong>&#39;ten <strong>69,5&nbsp;px</strong>&#39;e indi. Raf
+masaüstünde <strong>12,3 kitaptan 7,6 kitaba</strong> düştü, kapaklar
+<strong>132&nbsp;px&#39;ten 216&nbsp;px&#39;e</strong> büyüdü. 104&nbsp;MB&#39;lık kitap artık
+e-postada <strong>700 karakterlik imzalı R2 adresi</strong> yerine
+<strong><code>valicepress.com/download/&lt;jeton&gt;</code></strong> olarak gidiyor ve
+<strong>108.961.076 baytın tamamı</strong> üretimden akıtılarak geri alındı.</p>
+</div>
+
+<h2 id="s1">1. Boş sol alanın kök nedeni</h2>
+
+<p>Sebep genişlik değil, <strong>ortalama</strong>ydı. Kahraman bölümünün iç kabı şuydu:</p>
+
+<pre>&lt;div class="relative mx-auto flex min-h-[86vh] max-w-7xl flex-col justify-end px-6 …"&gt;</pre>
+
+<p><code>max-w-7xl</code> 1280&nbsp;px demek. <code>mx-auto</code> ise artan genişliği
+<strong>iki kenara eşit</strong> dağıtır. 1854&nbsp;px&#39;lik bir ekranda (kaydırma çubuğu
+düşülünce 1839&nbsp;px içerik) hesap şudur:</p>
+
+<pre>(1839 &minus; 1280) / 2  =  279,5 px   her iki kenarda ölü pay
+279,5 + 24 (px-6)     =  303,5 px   başlığın başladığı yer</pre>
+
+<p>Arka plandaki kütüphane fotoğrafı ise <strong>tam genişlikte</strong> duruyordu. Yani
+ekranın sol %15&#39;i görüntüydü ve üzerinde hiçbir şey yoktu: metin oraya
+<em>varamıyordu</em>, çünkü kap oraya varamıyordu. Gözün gördüğü &ldquo;aşırı boşluk&rdquo;
+tam olarak bu 279,5&nbsp;px&#39;ti.</p>
+
+<p><strong>Düzeltme.</strong> Kap <code>max-w-[1700px]</code>&#39;e genişletildi ve ölçekle
+büyüyen bir iç kenar boşluğu verildi (<code>px-6 lg:px-12 xl:px-16 2xl:px-20</code>).
+Metin sütunu <code>max-w-[620px] xl:max-w-[700px]</code> ile <strong>sınırlı bırakıldı</strong>
+— satır uzunluğu okunabilir kalsın diye. Yani boşluk metni yayarak değil,
+<strong>kabı görüntüye yaklaştırarak</strong> kapatıldı.</p>
+
+<div class="box">
+<p style="margin:0"><strong>Ne yapılmadı.</strong> Başlık daraltılmadı, görüntünün üstüne
+taşınmadı, editoryal notlar (<em>IDEAS TRAVEL FURTHER HERE</em>, sağdaki
+<em>INDEPENDENT PUBLISHING / CURATED EDITIONS / YOURS TO KEEP</em>) silinmedi, başlık
+çubuğu denetimlerine dokunulmadı. Hepsi üretimde yerinde duruyor.</p>
+</div>
+
+<h2 id="s2">2. Önce/sonra ölçümleri</h2>
+
+<p>Aşağıdaki &ldquo;sonra&rdquo; değerleri <strong>üretimdeki sayfanın kendi DOM&#39;undan</strong>
+okundu (<code>getBoundingClientRect</code>, <code>getComputedStyle</code>), ekran
+görüntüsünden tahmin edilmedi. &ldquo;Önce&rdquo; değerleri <code>9ab6aec</code>
+işlemesindeki kaynak koddan ve aynı 1839&nbsp;px içerik genişliğinden hesaplandı.</p>
+
+<div class="scroll">
+<table>
+<tr><th>Ölçü (1854&nbsp;px ekran, 1839&nbsp;px içerik)</th><th>Önce</th><th>Sonra</th><th>Değişim</th></tr>
+<tr><td>Kahraman kabı genişliği</td><td>1280&nbsp;px (<code>max-w-7xl</code>)</td><td>1700&nbsp;px</td><td>+420&nbsp;px</td></tr>
+<tr><td>Kenar başına ölü pay</td><td>279,5&nbsp;px</td><td>69,5&nbsp;px</td><td><strong>&minus;210&nbsp;px</strong></td></tr>
+<tr><td>Başlığın sol kenarı</td><td>303,5&nbsp;px</td><td><strong>150&nbsp;px</strong> (ölçüldü)</td><td>&minus;153,5&nbsp;px</td></tr>
+<tr><td>Başlık genişliği</td><td>620&nbsp;px</td><td><strong>700&nbsp;px</strong> (ölçüldü)</td><td>+80&nbsp;px</td></tr>
+<tr><td>Başlık punto (xl)</td><td>84&nbsp;px</td><td><strong>88&nbsp;px</strong> (ölçüldü)</td><td>+4&nbsp;px</td></tr>
+<tr><td>Gövde metni genişliği</td><td>470&nbsp;px</td><td>500&nbsp;px</td><td>+30&nbsp;px</td></tr>
+<tr><td>Yatay taşma</td><td>yok</td><td><strong>yok</strong> (1839 &le; 1854)</td><td>&mdash;</td></tr>
+</table>
+</div>
+
+<p class="meta">Ölçüm komutu: <code>document.querySelector("h1").getBoundingClientRect()</code>
+→ <code>{left: 150, width: 700}</code>, <code>getComputedStyle(h1).fontSize</code> →
+<code>"88px"</code>, <code>document.documentElement.scrollWidth</code> →
+<code>1839</code>. Üretim, 11 Eylül 2026.</p>
+
+<h2 id="s3">3. Hareketli rafın kök nedeni</h2>
+
+<p>Raf kalabalıktı çünkü kartlar küçüktü. Eski ölçüler:</p>
+
+<pre>class="group/card block w-[104px] … sm:w-[132px]"      /* kart */
+class="flex shrink-0 list-none gap-[18px] pe-[18px]"    /* şerit */
+&lt;img width={264} …&gt;                                    /* küçük resim */</pre>
+
+<p>1839&nbsp;px içerik genişliğinde bir kart + boşluk 132 + 18 = 150&nbsp;px yer kaplıyordu:</p>
+
+<pre>1839 / 150  =  12,26 kitap aynı anda görünür</pre>
+
+<p>Üstelik küçük resimler <strong>264&nbsp;px</strong> genişliğindeydi; 132&nbsp;px&#39;lik
+bir kartta 2&times; ekranlar için zaten sınırdaydılar, büyütülecek yer yoktu.</p>
+
+<p><strong>Düzeltme iki katmanlı.</strong> Kartlar her kırılma noktasında büyütüldü
+(150 / 170 / 190 / 216&nbsp;px), boşluk 18&nbsp;px&#39;ten 16–26&nbsp;px&#39;e ölçeklendi ve
+<strong>27 kapağın tamamı 432&nbsp;px genişliğinde yeniden üretildi</strong> — yani
+216&nbsp;px&#39;lik kart 2&times; ekranda hâlâ tam çözünürlükte. Şerit kabı da kahraman
+bölümüyle aynı <code>max-w-[1700px]</code> ızgarasına oturtuldu, böylece raf ile başlık
+aynı sol kenardan başlıyor.</p>
+
+<div class="box">
+<p style="margin:0"><strong>Katalog korundu.</strong> Sıra hâlâ veri katmanından geliyor;
+27 yayımlanmış kitabın tamamı dizide. Hiçbir kitap listesi koda gömülmedi, hiçbir sahte
+kapak veya yer tutucu eklenmedi. Üretimde ölçülen: <code>cardsPerLane: 27</code>.</p>
+</div>
+
+<h2 id="s4">4. Yeni görünür kitap yoğunluğu</h2>
+
+<div class="scroll">
+<table>
+<tr><th>Ekran</th><th>Kart</th><th>Önce (görünür kitap)</th><th>Sonra (görünür kitap)</th><th>Hedef</th><th></th></tr>
+<tr><td>392&nbsp;px (Redmi Note 8, gerçek cihaz)</td><td>150&nbsp;px</td><td>~3,2</td><td><strong>2,36</strong></td><td>1,5–2,5</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>768&nbsp;px (tablet)</td><td>170&nbsp;px</td><td>~5,1</td><td><strong>4,0</strong></td><td>3–5</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>1280&nbsp;px</td><td>190&nbsp;px</td><td>~8,5</td><td><strong>6,1</strong></td><td>6–9</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>1854&nbsp;px (masaüstü, ölçüldü)</td><td>216&nbsp;px</td><td>12,26</td><td><strong>7,60</strong></td><td>6–9</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>1920&nbsp;px</td><td>216&nbsp;px</td><td>12,8</td><td><strong>7,9</strong></td><td>6–9</td><td><span class="tag t-ok">tamam</span></td></tr>
+</table>
+</div>
+
+<p class="meta">392&nbsp;px ve 1854&nbsp;px değerleri bugün <strong>görünür, odaklanmış</strong>
+bir tarayıcıda ölçüldü. 768 / 1280 / 1920 değerleri bu oturumun erken bölümünde, aynı
+kart ölçüleriyle, aynı yöntemle ölçüldü. Hiçbiri tahmin değil; hepsi
+<code>marqueeGenişliği / (kartGenişliği + boşluk)</code> hesabının canlı DOM&#39;daki
+karşılığı.</p>
+
+<h2 id="s5">5. Kart boyutları</h2>
+
+<div class="scroll">
+<table>
+<tr><th>Kırılma noktası</th><th>Kart genişliği</th><th>Kart yüksekliği (2:3)</th><th>Şerit boşluğu</th></tr>
+<tr><td>varsayılan (mobil)</td><td>150&nbsp;px <span class="meta">(önce 104)</span></td><td>225&nbsp;px</td><td>16&nbsp;px</td></tr>
+<tr><td><code>sm</code> &ge;640</td><td>170&nbsp;px <span class="meta">(önce 132)</span></td><td>255&nbsp;px</td><td>20&nbsp;px</td></tr>
+<tr><td><code>lg</code> &ge;1024</td><td>190&nbsp;px</td><td>285&nbsp;px</td><td>20&nbsp;px</td></tr>
+<tr><td><code>xl</code> &ge;1280</td><td><strong>216&nbsp;px</strong></td><td>324&nbsp;px</td><td>26&nbsp;px</td></tr>
+</table>
+</div>
+
+<p><strong>Küçük resimler.</strong> 27 kapağın tamamı <code>264&nbsp;px</code>&#39;ten
+<code>432&nbsp;px</code> genişliğe yeniden üretildi ve <code>&lt;img width={432}
+height={648}&gt;</code> ile <code>sizes</code> özniteliği gerçek kart ölçülerine göre
+yazıldı. Toplam maliyet <strong>933.436&nbsp;bayt</strong>, kapak başına ortalama
+<strong>34,6&nbsp;KB</strong> — 216&nbsp;px&#39;lik bir kartın 2&times; ekranda
+ihtiyaç duyduğu tam çözünürlük.</p>
+
+<p>Üretimde <strong>27 dosyanın 27&#39;si de</strong> HTTP 200, <code>image/webp</code>,
+depodaki baytla <strong>bayt bayt aynı</strong> ve çözülüyor. Tam liste
+&sect;19&#39;da.</p>
+
+<h2 id="s6">6. Hover zıplamasının kök nedeni</h2>
+
+<p>Yavaşlatma tek satır CSS&#39;ti:</p>
+
+<pre>.marquee:hover .marquee-track { animation-duration: calc(var(--marquee-duration) * 2.6) }</pre>
+
+<p>Bir CSS animasyonunun ilerlemesi <strong>oran</strong>dır:</p>
+
+<pre>ilerleme  =  currentTime  &divide;  duration</pre>
+
+<p>İmleç rafa değdiğinde <code>duration</code> 2,6 katına çıkıyor ama
+<code>currentTime</code> <strong>aynı kalıyor</strong>. Yani payda büyüyor, pay
+değişmiyor: ilerleme <strong>2,6&#39;ya bölünüyor</strong> ve şerit anında
+<em>geriye ışınlanıyor</em>. Hızın yavaşlaması istenmişti; olan, saatin geri
+alınmasıydı.</p>
+
+<p>Canlı sayfada, animasyon döngünün tam dörtte birinde park edilerek ölçüldü:</p>
+
+<pre>hover öncesi translateX : &minus;3037,5 px
+hover sonrası translateX: &minus;3660,6 px
+anlık sıçrama           : &minus;  623,1 px   =  &minus;4,2 kart</pre>
+
+<div class="box ok">
+<p style="margin:0">Bildirilen belirti &ldquo;kitap dört sıra atlıyor&rdquo;dı. Ölçülen
+<strong>4,2 kart</strong>. Hiçbir şey yeniden sıralanmıyordu — <strong>veri hiç
+kıpırdamadı</strong>; atılan şey şeridin tamamıydı.</p>
+</div>
+
+<h2 id="s7">7. Hover yavaşlatmasının uygulanışı</h2>
+
+<p>Çözüm <strong>Web Animations API</strong>&#39;nin <code>playbackRate</code>&#39;i.
+Şartnameye göre <code>playbackRate</code> atandığında tarayıcı animasyonun
+<code>startTime</code>&#39;ını <strong>yeniden hesaplayarak <code>currentTime</code>&#39;ı
+korur</strong>. Yani hız değişir, konum <em>değişemez</em>. Bu bir hile değil,
+garanti.</p>
+
+<pre>const step = () => {
+  const k = 1 - Math.exp((-1000 / 60) * (5 / RAMP_MS));   // üstel yumuşatma
+  current += (target - current) * k;
+  if (Math.abs(target - current) &lt; 0.002) current = target;
+  a.playbackRate = current;
+  raf = current === target ? 0 : requestAnimationFrame(step);
+};</pre>
+
+<div class="scroll">
+<table>
+<tr><th>Karar</th><th>Neden</th></tr>
+<tr><td>450&nbsp;ms üstel rampa</td><td>Ani hız değişimi vites değiştirme gibi okunuyor; rampa yavaşlama gibi.</td></tr>
+<tr><td>Tek bir <code>rAF</code>, rampa bitince duruyor</td><td>Kalıcı kare döngüsü yok, kart başına zamanlayıcı yok, kare başına React durumu yok.</td></tr>
+<tr><td><code>pointerenter</code>/<code>pointerleave</code> <strong>kapta</strong></td><td>Bu olaylar <em>kabarmaz</em>. İmleç kartlar arasında gezerken tekrar tetiklenmez — kart başına takılma olmaz.</td></tr>
+<tr><td><code>focusin</code>/<code>focusout</code> de bağlı</td><td>Klavye kullanıcısı da kartı okurken aynı yavaşlamayı alır.</td></tr>
+<tr><td><code>animation-play-state: paused</code> <strong>kullanılmadı</strong></td><td>İmlecin altında tamamen duran raf bozuk görünür, üstelik dikiş yerini bulmanın en kolay yolu odur.</td></tr>
+<tr><td>Dev şeritte <code>will-change</code> <strong>yok</strong></td><td>Ölçüldü: <code>getComputedStyle(track).willChange === "auto"</code>. 13.068&nbsp;px&#39;lik kalıcı bir katman zorlamak bellek maliyeti demek.</td></tr>
+</table>
+</div>
+
+<h3>Üretimde ölçülen §14 testleri</h3>
+
+<div class="scroll">
+<table>
+<tr><th>Test</th><th>Sonuç</th></tr>
+<tr><td>Kartın üstüne gelme (döngünün ¼&#39;ünde park edilmiş)</td><td><strong>0,00&nbsp;px</strong> sıçrama</td></tr>
+<tr><td>Rampa boyunca kayma</td><td><strong>0,00&nbsp;px</strong></td></tr>
+<tr><td>12 kez arka arkaya girip çıkma</td><td>en kötü <strong>0,00&nbsp;px</strong></td></tr>
+<tr><td><code>animation-duration</code> hover sırasında</td><td><strong>192000&nbsp;ms → 192000&nbsp;ms</strong> (değişmiyor)</td></tr>
+<tr><td>Hız geçişi</td><td>34,06 → <strong>12,94&nbsp;px/sn</strong> → 34,06</td></tr>
+<tr><td>Klavye odağı yolu</td><td>34,00 → <strong>12,92&nbsp;px/sn</strong> → 34,00</td></tr>
+<tr><td>Kart sırası hover altında</td><td><strong>27 kart, sıra değişmedi</strong></td></tr>
+<tr><td>Azaltılmış hareket (gerçek cihazda emüle edildi)</td><td>3&nbsp;sn&#39;de <strong>0&nbsp;px</strong>, animasyon yok, 27 kapak yerinde</td></tr>
+</table>
+</div>
+
+<h2 id="s8">8. Döngü matematiği</h2>
+
+<p>Şerit <strong>iki özdeş şerit</strong>ten oluşuyor; ikincisi <code>aria-hidden</code>
+kopya. Animasyon <code>translate3d(-50%)</code>&#39;ten <code>translate3d(0)</code>&#39;a
+gidiyor, yani bir döngüde <strong>tam olarak bir şerit boyu</strong> yol alıyor. Dikişin
+görünmez olmasının koşulu budur ve <strong>sabit bir <code>-50%</code> varsaymak yerine
+ölçüldü</strong>:</p>
+
+<div class="scroll">
+<table>
+<tr><th>Ölçü</th><th>392&nbsp;px (gerçek cihaz)</th><th>1854&nbsp;px (masaüstü)</th></tr>
+<tr><td>Şerit boyu (27 kart + boşluk)</td><td>4482,00&nbsp;px</td><td>6534,00&nbsp;px</td></tr>
+<tr><td>Toplam raf genişliği</td><td>8964,00&nbsp;px</td><td>13068,00&nbsp;px</td></tr>
+<tr><td>Tam olarak iki şerit mi?</td><td><span class="tag t-ok">evet</span></td><td><span class="tag t-ok">evet</span></td></tr>
+<tr><td>Bir döngüde alınan yol</td><td><strong>4482,00&nbsp;px</strong></td><td>&mdash;</td></tr>
+<tr><td>Yolun yarısında konum</td><td><strong>2241,00&nbsp;px</strong> (doğrusal)</td><td>&mdash;</td></tr>
+<tr><td>Şerit içi boşluk</td><td>16,0&nbsp;px</td><td>26,0&nbsp;px</td></tr>
+<tr><td><strong>Dikiş yerindeki boşluk</strong></td><td><strong>16,0&nbsp;px</strong> — birebir aynı</td><td>&mdash;</td></tr>
+<tr><td>54 kart boyunca en büyük boşluk</td><td>16,0&nbsp;px — <strong>delik yok</strong></td><td>&mdash;</td></tr>
+</table>
+</div>
+
+<h3>Kalibrasyon hatası — telefon bulmasaydı görülmeyecekti</h3>
+
+<div class="box bad">
+<p style="margin:0 0 10px"><strong>Bulunan ikinci kusur.</strong> Hızı ayarlayan satır
+tersine yazılmıştı:</p>
+<pre style="margin:0 0 10px">base = (lane / PX_PER_SECOND) * 1000 / duration;      // yanlış (ters)
+base = (PX_PER_SECOND * duration) / (lane * 1000);   // doğru</pre>
+<p style="margin:0">Doğru oran <code>istenen ÷ doğal</code>; doğal hız
+<code>şerit ÷ süre</code>. İki ifade <strong>yalnızca sonuç tam olarak 1 olduğunda</strong>
+birbirine eşittir — ve masaüstü şeridi tam oraya düşüyor (6534&nbsp;px / 192&nbsp;sn =
+34,03&nbsp;px/sn). Bu yüzden her masaüstü ölçümü 34,06&nbsp;px/sn okudu ve satır doğru
+göründü. Gerçek telefon <strong>16,07&nbsp;px/sn</strong> okudu; dahası hata
+<em>ters yönde</em> işliyordu: ekran daraldıkça raf yavaşlıyordu, oysa dar şerit
+<strong>daha hızlı</strong> bir oran istemeliydi.</p>
+</div>
+
+<div class="scroll">
+<table>
+<tr><th>Ekran</th><th>Şerit</th><th>Düzeltme öncesi</th><th>Düzeltme sonrası</th><th><code>playbackRate</code></th></tr>
+<tr><td>Redmi Note 8, 392&nbsp;px</td><td>4482&nbsp;px</td><td>16,06&nbsp;px/sn</td><td><strong>33,96&nbsp;px/sn</strong></td><td>1,4565</td></tr>
+<tr><td>Masaüstü, 1854&nbsp;px</td><td>6534&nbsp;px</td><td>34,00&nbsp;px/sn</td><td><strong>34,00&nbsp;px/sn</strong></td><td>0,9991</td></tr>
+</table>
+</div>
+
+<p>Formül artık <code>calibratedPlaybackRate()</code> adlı saf bir işlevde ve
+<strong>dört kırılma noktasının şerit boyuyla da</strong> test ediliyor — yalnızca hatayı
+gizleyen tek noktayla değil.</p>
+
+<h3>Takılma, kayma, dikiş: 240 kare</h3>
+
+<pre>kare sayısı              : 240
+geri giden kare          : 0
+donmuş (0 px) kare       : 0
+kare aralığı, ortanca    : 16,6 ms        (~60 fps)
+kare aralığı, en kötü    : 22,6 ms
+ortalama hız             : 34,05 px/sn</pre>
+
+<p>Kare başına anlık hız 24,8–52,3&nbsp;px/sn arasında salınıyor; bu, bileşicinin kare
+zamanlamasıdır (uzun kare daha çok piksel taşır), takılma değil — geri giden veya donan
+tek bir kare yok.</p>
+
+<h2 id="s9">9. Öne çıkanlar bölümünün yeniden tasarımı</h2>
+
+<p>&ldquo;Thoughtful reads for a brighter tomorrow.&rdquo; küçük kalıyordu çünkü editoryal
+sütun <strong>sabit 300&nbsp;px</strong>&#39;ti ve bölüm 1280&nbsp;px&#39;lik bir kaba
+sıkışmıştı.</p>
+
+<div class="scroll">
+<table>
+<tr><th>Ölçü</th><th>Önce</th><th>Sonra</th></tr>
+<tr><td>Bölüm kabı</td><td><code>max-w-7xl</code> (1280&nbsp;px)</td><td><code>max-w-[1700px]</code></td></tr>
+<tr><td>Izgara</td><td><code>[minmax(0,300px)_minmax(0,1fr)]</code></td><td><code>[minmax(0,0.34fr)_minmax(0,0.66fr)]</code></td></tr>
+<tr><td>Editoryal sütun</td><td>300&nbsp;px = %24,4</td><td><strong>501,8&nbsp;px = %34,0</strong> (ölçüldü)</td></tr>
+<tr><td>Kitap rafı</td><td>~932&nbsp;px = %75,6</td><td><strong>974,2&nbsp;px = %66,0</strong> (ölçüldü)</td></tr>
+<tr><td>Başlık punto</td><td>30 / 36&nbsp;px</td><td>34 / 44 / 52 / <strong>58&nbsp;px</strong> (ölçüldü)</td></tr>
+<tr><td>Kapak genişliği</td><td>74 / 84&nbsp;px</td><td>112 / 124 / 136 / <strong>148&nbsp;px</strong> <span class="meta">(+%76)</span></td></tr>
+<tr><td>Kart genişliği</td><td>260 / 300&nbsp;px</td><td>290 / 330 / rafın 1/3&#39;ü (min 300&nbsp;px)</td></tr>
+<tr><td>Sütun aralığı</td><td>40 / 48&nbsp;px</td><td>40 / 56 / 64&nbsp;px</td></tr>
+</table>
+</div>
+
+<p>Hedef %30–35 / %65–70 idi; ölçülen <strong>%34,0 / %66,0</strong>. Oklar
+eklenmedi — yatay kaydırma rayı zaten dokunmatikte ve tekerlekte temiz çalışıyor,
+temiz olmayan bir kontrol eklemek yerine hiç eklememek tercih edildi (&sect;20 bunu
+isteğe bağlı bırakıyordu).</p>
+
+<div class="box">
+<p style="margin:0"><strong>Mobil kusur burada bulundu.</strong> <code>lg</code>&#39;nin
+altında ızgaranın <strong>açık bir sütunu yoktu</strong>. CSS Grid&#39;de bir ızgara
+öğesinin <code>min-width</code>&#39;i <code>auto</code>&#39;dur, yani içeriğe göre
+boyutlanır — bu yüzden <code>overflow-x: auto</code> rayı sınırlayamıyor, ray da
+belgeyi 1848&nbsp;px&#39;e genişletiyordu. 393&nbsp;px&#39;lik telefon sayfayı
+1571&nbsp;px&#39;e uzaklaştırarak gösteriyordu. <code>grid-cols-1</code> + <code>min-w-0</code>
+ile düzeltildi; gerçek cihazda doğrulandı: görünüm alanı 392&nbsp;px, belge 392&nbsp;px,
+<strong>taşma yok</strong>.</p>
+</div>
+
+<h2 id="s10">10. Büyük PDF sorununun kök nedeni</h2>
+
+<p>Katalogdaki üç ana dosya her e-posta sağlayıcısının tavanının üstünde:</p>
+
+<pre>codex-bestiarium              103,91 MB   (108.961.076 bayt)
+the-great-book-of-world-myths  93,02 MB
+codex-enigmatica               67,49 MB</pre>
+
+<p>Resend&#39;in sınırı <strong>iletinin tamamı için 40&nbsp;MB</strong>, base64 ise ikili
+dosyayı <strong>~%33 şişiriyor</strong>. Gmail&#39;in kendi sınırı 25&nbsp;MB. Yani bu üç
+kitap ek olarak <em>gidemez</em>.</p>
+
+<p><strong>Eski davranış:</strong> ek atılamayınca ham <strong>imzalı R2 adresi</strong>
+gönderiliyordu — yaklaşık 700 karakter:</p>
+
+<pre>https://&lt;hesap-kimliği&gt;.r2.cloudflarestorage.com/&lt;özel-kova-adı&gt;/books/
+  &lt;slug&gt;/master/v1/master.pdf?X-Amz-Algorithm=…&amp;X-Amz-Credential=…&amp;X-Amz-Signature=…</pre>
+
+<p>Bunun dört ayrı sorunu vardı: müşteriye <strong>depolama hesabı kimliğini ve özel
+kova adını</strong> gösteriyordu; bir oltalama filtresinin güvenmemek üzere eğitildiği
+şekle sahipti; <strong>15 dakikada</strong> sönüyordu (yarın sabah açılan bir posta için
+yanlış); ve markanın kendi alan adından çıkıyordu.</p>
+
+<h2 id="s11">11. Büyük PDF mimarisi</h2>
+
+<p>Okur artık şunu alıyor:</p>
+
+<pre>https://valicepress.com/download/X-0XrVT5wwwoVB3cdQTnduyUDN40TrBiQISlMM-3NH8</pre>
+
+<p>Yol: <code>src/app/download/[token]/route.ts</code>, <code>runtime = "nodejs"</code>,
+<code>maxDuration = 300</code>.</p>
+
+<pre>jeton  →  talep satırı  →  kitap  →  masterFileKey  →  R2 akışı  →  yanıt gövdesi</pre>
+
+<ol>
+<li><strong>Jeton bir dosyayı değil, bir talebi adlandırır.</strong> Adreste slug,
+kimlik, kova veya yol yok — kurcalanacak hiçbir şey yok.</li>
+<li><strong>Anahtar satırdan bulunur.</strong> İsteğin hiçbir parçası bir depolama
+anahtarına ulaşmaz; dolayısıyla <code>..</code> kaçacak bir yer bulamaz.</li>
+<li><strong>Dosya akıtılır, tamponlanmaz.</strong> <code>streamObject</code> S3 gövdesini
+<code>transformToWebStream()</code> ile doğrudan yanıta verir. 104&nbsp;MB&#39;ı bir
+<code>Buffer</code>&#39;a okumak, sunucusuz işlevin bellek tavanına çarpmanın yoludur.</li>
+<li><strong>Range istekleri geçirilir.</strong> Büyük indirme kaldığı yerden devam
+edebilir; sunucu <code>206</code> ve <code>content-range</code> döndürür.</li>
+</ol>
+
+<h3>Üretimde ölçülen</h3>
+
+<pre>$ curl -H 'Range: bytes=0-1023' https://valicepress.com/download/&lt;jeton&gt;
+HTTP/2 206
+accept-ranges: bytes
+cache-control: private, no-store, max-age=0
+content-disposition: attachment; filename="codex-bestiarium.pdf"
+content-range: bytes 0-1023/108961076
+content-type: application/pdf
+referrer-policy: no-referrer
+x-content-type-options: nosniff
+content-length: 1024
+ilk baytlar: 255044462d312e34  (%PDF-)
+
+$ curl -o /dev/null https://valicepress.com/download/&lt;jeton&gt;
+status=200  bytes=108961076  2.083.637 B/sn  toplam=52,29 sn</pre>
+
+<div class="box ok">
+<p style="margin:0"><strong>108.961.076 baytın tamamı</strong> geri geldi — R2&#39;deki
+<code>HeadObject</code> ile <strong>bire bir aynı</strong>. Yanıt başlıklarında
+<code>amz</code>, <code>r2</code>, <code>cloudflare</code>, <code>bucket</code>,
+<code>signature</code> veya <code>s3</code> geçen tek bir satır yok.</p>
+</div>
+
+<h2 id="s12">12. Güvenlik modeli</h2>
+
+<div class="scroll">
+<table>
+<tr><th>Gereksinim (&sect;24)</th><th>Nasıl karşılandı</th><th>Durum</th></tr>
+<tr><td>Kriptografik olarak tahmin edilemez</td><td><code>randomBytes(32)</code> → 256 bit → 43 karakter base64url</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>Ham e-posta adresi içermez</td><td>Jeton opak; adres yalnızca veritabanı satırında</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>R2 kimlik bilgisi içermez</td><td>Jeton imza değil, saklanan rastgele dizi</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>Özel kova adı içermez</td><td>Adreste hiçbir depolama kavramı yok</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>Süresi dolar</td><td>72 saat + 25 taze açılış</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>Tam olarak istenen kitabı gösterir</td><td>Satır, okurun istediği kitapla birlikte sunucu tarafından yazıldı</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>Yol geçişini (path traversal) engeller</td><td>İstekten depolama anahtarına giden hiçbir yol yok</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>Olmayan dosyayı reddeder</td><td>Ana dosya yoksa 500, depolama okunamazsa 502</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>Doğru içerik türü</td><td><code>application/pdf</code>, <code>nosniff</code></td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>İndirmeyi destekler</td><td><code>content-disposition: attachment</code>, dosya adı kitabın slug&#39;ı</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>Güvenli erişim üstverisi tutar</td><td>Açılış sayısı, ilk ve son açılış zamanı — <strong>PII yok</strong></td><td><span class="tag t-ok">tamam</span></td></tr>
+</table>
+</div>
+
+<h3>&sect;31 reddetme matrisi — üretimde çalıştırıldı</h3>
+
+<div class="scroll">
+<table>
+<tr><th>Saldırı</th><th>Yanıt</th><th></th></tr>
+<tr><td>Sahte, doğru biçimli, hiç verilmemiş jeton</td><td>404</td><td><span class="tag t-ok">RED</span></td></tr>
+<tr><td>Gerçek jetonun tek karakteri değiştirilmiş</td><td>404</td><td><span class="tag t-ok">RED</span></td></tr>
+<tr><td>Gerçek jetonun sonuna ek yapılmış</td><td>404</td><td><span class="tag t-ok">RED</span></td></tr>
+<tr><td>Süresi dolmuş jeton (verilmiş, TTL&#39;i 2 saat geçmiş)</td><td>410</td><td><span class="tag t-ok">RED</span></td></tr>
+<tr><td>Yol geçişi, kodlanmış <code>..%2F..%2F..%2Fetc%2Fpasswd</code></td><td>400</td><td><span class="tag t-ok">RED</span></td></tr>
+<tr><td>Yol geçişi, ham noktalar <code>....//....//etc/passwd</code></td><td>308 → 403</td><td><span class="tag t-ok">RED</span></td></tr>
+<tr><td>Jeton yerine depolama anahtarı</td><td>404</td><td><span class="tag t-ok">RED</span></td></tr>
+<tr><td>SQL biçimi <code>&#39; OR 1=1 --</code></td><td>404</td><td><span class="tag t-ok">RED</span></td></tr>
+<tr><td>Biçimlendirme biçimi <code>&lt;script&gt;…&lt;/script&gt;</code></td><td>404</td><td><span class="tag t-ok">RED</span></td></tr>
+<tr><td>Boş jeton</td><td>308 → 404</td><td><span class="tag t-ok">RED</span></td></tr>
+<tr><td>Tek nokta <code>.</code></td><td>308 → 404</td><td><span class="tag t-ok">RED</span></td></tr>
+<tr><td>URL-güvenli olmayan base64 alfabesi</td><td>404</td><td><span class="tag t-ok">RED</span></td></tr>
+<tr><td>İmzasız doğrudan R2 okuması</td><td>400 <code>InvalidArgument</code></td><td><span class="tag t-ok">RED</span></td></tr>
+<tr><td>R2 kova listeleme</td><td>400 <code>InvalidArgument</code></td><td><span class="tag t-ok">RED</span></td></tr>
+<tr><td>Ana dosyanın genel adresi</td><td><strong>Böyle bir adres tanımlı değil</strong></td><td><span class="tag t-ok">RED</span></td></tr>
+</table>
+</div>
+
+<p><strong>Bilgi sızdırmama.</strong> İki farklı bilinmeyen jeton
+<strong>bayt bayt aynı</strong> sayfayı döndürüyor — yani bir yoklayıcı &ldquo;hiç var
+olmadı&rdquo; ile &ldquo;başkasına ait&rdquo; arasını ayırt edemiyor. Hiçbir yanıt gövdesinde
+alıcının adresi, kova adı, anahtar veya imza geçmiyor (düzenli ifadeyle arandı).</p>
+
+<div class="box warn">
+<p style="margin:0"><strong>&ldquo;Tekrar kullanılan jeton&rdquo; kalemi bilinçli olarak
+farklı ele alındı.</strong> &sect;31 bunu da RED bekliyordu. Tek kullanımlık bir bağlantı,
+&sect;24&#39;ün istediği <em>devam ettirilebilir indirmeyi</em> imkânsız kılar: 104&nbsp;MB&#39;lık
+bir indirme kesilirse okur bir daha alamaz, bir indirme yöneticisi sekiz bağlantı açarsa
+yedisi reddedilir, posta istemcisi bağlantıyı önizleme için çekerse bağlantı okur açmadan
+ölür. Bunun yerine <strong>25 taze açılış</strong> tavanı kondu: yalnızca <em>yeni
+başlayan</em> bir indirme sayılıyor (<code>Range</code> yok ya da 0. bayttan başlıyor),
+devam eden ve paralel bacaklar sayılmıyor. Gerçek okur bu tavana ulaşamaz; bir foruma
+yapıştırılan bağlantı ilk birkaç kişiden sonra kapanır. Tavanı aşan istek
+<strong>429</strong> ile sakin bir sayfaya düşer.</p>
+</div>
+
+<h2 id="s13">13. Jeton süresi ve açılma tavanı</h2>
+
+<div class="scroll">
+<table>
+<tr><th>Parametre</th><th>Değer</th><th>Neden</th></tr>
+<tr><td><code>DOWNLOAD_TTL_HOURS</code></td><td><strong>72 saat</strong></td><td>&sect;27 aralığı 24–72 saatti. Ücretsiz kitap postası ertesi sabah, bazen hafta sonu açılır; 72 saat okurun hafta sonunu kapsar.</td></tr>
+<tr><td><code>DOWNLOAD_MAX_OPENS</code></td><td><strong>25 taze açılış</strong></td><td>Sekiz bağlantılı bir indirme yöneticisi + yeniden denemeler bile 25&#39;in çok altında; buna karşılık açık bir foruma düşen bağlantı ilk avuç dolusu kişiden sonra işe yaramaz.</td></tr>
+<tr><td>Sayım kuralı</td><td><code>Range</code> yok <em>veya</em> 0. bayttan</td><td>Devam eden indirme ve paralel bacaklar aynı okurdur — onları saymak bağlantıyı sahibine kapatır.</td></tr>
+<tr><td>Çözümlenemeyen <code>Range</code></td><td><strong>Sayılır</strong></td><td>Güvenli hata, sayılmayan bir indirme dağıtmak değil, bir açılış fazladan yazmaktır.</td></tr>
+<tr><td>Yeni jeton</td><td>Öncekini geçersiz kılar, sayacı sıfırlar</td><td>Okur yanıt verip yeni bağlantı isteyebilir; eski bağlantı aynı anda ölür.</td></tr>
+</table>
+</div>
+
+<p><strong>Süre dolması üretimde gerçekten test edildi.</strong> Testin bir satıra
+ihtiyacı vardı, bu yüzden geçici bir talep satırı oluşturuldu, jetonu
+<strong>2 saat geriye tarihlendirildi</strong>, adres çağrıldı — <code>410</code> —
+ve satır hemen silindi. Testten sonra üretimde kalan iz: <code>rows left: 0</code>.</p>
+
+<p>Canlı satırların durumu (11 Eylül 2026, gönderimden hemen sonra):</p>
+
+<pre>codex-bestiarium  → emre30283@gmail.com   jeton 43 karakter   süre 71,9 sa   açılış 3
+codex-enigmatica  → ed897854@gmail.com    jeton 43 karakter   süre 71,9 sa   açılış 0</pre>
+
+<h2 id="s14">14. Küçük ve büyük teslim yolları</h2>
+
+<pre>headObject(masterFileKey)              // önce yalnızca boyuta bakılır
+  ├─ &le; 20 MB  → getObject → Buffer → e-postaya EK
+  └─ &gt;  20 MB  → issueDownloadToken → valicepress.com/download/&lt;jeton&gt;</pre>
+
+<p><strong>Eşik neden 20&nbsp;MB.</strong> Resend&#39;in tavanı iletinin tamamı için
+40&nbsp;MB; base64 ikili dosyayı ~%33 şişirir, yani 24&nbsp;MB&#39;lık bir PDF HTML
+eklenmeden önce zaten ~32&nbsp;MB. 20&nbsp;MB dürüst bir pay bırakıyor.</p>
+
+<div class="box ok">
+<p style="margin:0"><strong>Kritik ayrıntı:</strong> önce <code>headObject</code> çağrılır.
+104&nbsp;MB&#39;lık dosya için <code>getObject</code> <em>hiç çağrılmaz</em> — yani büyük
+ana dosya sunucusuz işlevin belleğine <strong>hiçbir zaman yüklenmez</strong>. &sect;29&#39;un
+istediği tam olarak budur.</p>
+</div>
+
+<div class="scroll">
+<table>
+<tr><th></th><th>Küçük yol</th><th>Büyük yol</th></tr>
+<tr><td>Okurun gördüğü</td><td>&ldquo;The PDF is attached to this email as <code>&lt;slug&gt;.pdf</code>&rdquo;</td><td>Altın &ldquo;Download your book&rdquo; düğmesi</td></tr>
+<tr><td>Süre</td><td>Süresiz — posta kutusunda durur</td><td>72 saat / 25 açılış</td></tr>
+<tr><td>Kayda düşen not</td><td><code>PDF attached (1816 KB); provider …</code></td><td><code>too large to attach (104 MB) — secure download link, 72h; provider …</code></td></tr>
+<tr><td>Süre dolarsa</td><td>&mdash;</td><td>&ldquo;yanıt verin, yenisini gönderelim — kitap yine sizin&rdquo;</td></tr>
+</table>
+</div>
+
+<h2 id="s15">15. Gerçek e-posta testleri</h2>
+
+<p>Dört gerçek gönderim, iki gerçek adres, iki yol. Hiçbiri daha önce istenmemiş
+kitaplarla yapıldı, böylece &ldquo;yinelenen&rdquo; durumuna düşmediler ve üretim kuyruğu
+kirlenmedi.</p>
+
+<div class="scroll">
+<table>
+<tr><th>Kitap</th><th>Boyut</th><th>Alıcı</th><th>Yol</th><th>Sağlayıcı durumu</th></tr>
+<tr><td><em>British Goblins</em></td><td>1,77&nbsp;MB</td><td>emre30283@gmail.com</td><td><strong>EK</strong></td><td><span class="tag t-ok">delivered</span></td></tr>
+<tr><td><em>The Puzzles of Henry Dudeney</em></td><td>2,01&nbsp;MB</td><td>ed897854@gmail.com</td><td><strong>EK</strong></td><td><span class="tag t-ok">delivered</span></td></tr>
+<tr><td><em>Codex Enigmatica</em></td><td>67,49&nbsp;MB</td><td>ed897854@gmail.com</td><td><strong>BAĞLANTI</strong></td><td><span class="tag t-ok">delivered</span></td></tr>
+<tr><td><em>Codex Bestiarium</em></td><td>103,91&nbsp;MB</td><td>emre30283@gmail.com</td><td><strong>BAĞLANTI</strong></td><td><span class="tag t-ok">delivered</span></td></tr>
+</table>
+</div>
+
+<p>Bunlardan biri — <em>Codex Bestiarium</em> — <strong>üretimdeki gerçek hediye
+kutusundan</strong>, görünür bir tarayıcıda, elle dolduruldu. Kutu doğru kapağı, doğru
+alt başlığı, üstü çizili <code>$9.99</code> ile <code>$0.00</code>&#39;ı ve
+&ldquo;WATERMARKED PDF · 435 PAGES&rdquo; satırını gösterdi; gönderimden sonra
+&ldquo;Request received. &mdash; You&#39;ll receive your PDF by email within 24 hours.&rdquo;
+ekranına geçti. Diğer üçü hediye kutusunun çağırdığı aynı genel uç noktaya
+(<code>POST /api/free-book</code>) gönderildi.</p>
+
+<h2 id="s16">16. Gerçek posta kutusu kanıtı</h2>
+
+<div class="box ok">
+<p style="margin:0">&sect;30 açıkça &ldquo;API başarı döndürdü diye çalıştığını iddia
+etme&rdquo; diyor. Aşağıdakiler <strong>Gmail gelen kutusundan okundu</strong>.</p>
+</div>
+
+<h3>Büyük yol — <em>Codex Bestiarium</em>, 103,91&nbsp;MB</h3>
+
+<div class="scroll">
+<table>
+<tr><th>Alan</th><th>Gelen kutusundaki gerçek değer</th></tr>
+<tr><td>Konu</td><td>Your copy of Codex Bestiarium — from Valice Press</td></tr>
+<tr><td>Gönderen</td><td><code>hello@valicepress.com</code></td></tr>
+<tr><td>İleti boyutu</td><td>22.248 bayt — <strong>ek yok</strong>, olması gerektiği gibi</td></tr>
+<tr><td>Gövde kitabı adlandırıyor mu</td><td>Evet, alt başlığıyla birlikte: <em>&ldquo;A World Bestiary: 112 Legendary Creatures from 40 Traditions…&rdquo;</em></td></tr>
+<tr><td>Düğme</td><td><strong>Download your book</strong></td></tr>
+<tr><td>Adres</td><td><code>https://valicepress.com/download/X-0XrVT5wwwoVB3cdQTnduyUDN40TrBiQISlMM-3NH8</code></td></tr>
+<tr><td>Adreste <code>X-Amz-</code>, kova, anahtar</td><td><strong>Yok</strong></td></tr>
+<tr><td>Süre dili</td><td>&ldquo;Your private download link works for <strong>3 days</strong>.&rdquo;</td></tr>
+<tr><td>Amazon baskıları</td><td>4 gerçek ASIN (Paperback, Hardcover, Large Print, Kindle)</td></tr>
+<tr><td>Eşlik eden sayfa</td><td><code>/companion/codex-bestiarium</code></td></tr>
+<tr><td>İndirme gerçekten çalışıyor mu</td><td><strong>Evet</strong> — 108.961.076 bayt, <code>206</code> Range desteğiyle</td></tr>
+</table>
+</div>
+
+<h3>Küçük yol — <em>British Goblins</em>, 1,77&nbsp;MB</h3>
+
+<div class="scroll">
+<table>
+<tr><th>Alan</th><th>Gelen kutusundaki gerçek değer</th></tr>
+<tr><td>Konu</td><td>Your copy of British Goblins — from Valice Press</td></tr>
+<tr><td>İleti boyutu</td><td>2.564.197 bayt — <strong>ek taşınmış</strong></td></tr>
+<tr><td>Ek adı</td><td><code>british-goblins.pdf</code></td></tr>
+<tr><td>Ek MIME türü</td><td><code>application/pdf</code></td></tr>
+<tr><td>Gövde</td><td>&ldquo;The PDF is attached to this email as <code>british-goblins.pdf</code>.&rdquo;</td></tr>
+<tr><td>İndirme bağlantısı</td><td><strong>Yok</strong> — doğru, çünkü ek var</td></tr>
+<tr><td>Amazon bölümü</td><td>Yok — bu kitabın canlı Amazon baskısı yok, şablon uydurmuyor</td></tr>
+</table>
+</div>
+
+<div class="box warn">
+<p style="margin:0"><code>ed897854@gmail.com</code> için <strong>gelen kutusu okunamadı</strong>
+— bu oturumdan erişilebilen tek posta kutusu <code>emre30283@gmail.com</code>. O iki
+gönderim için elimdeki kanıt sağlayıcının <code>delivered</code> kaydıdır, gelen kutusu
+değil. Bu, &sect;30&#39;un &ldquo;mevcutsa&rdquo; koşuluna göre dürüstçe raporlanıyor:
+<strong>fiziksel posta kutusu doğrulaması yalnızca iki gönderim için yapıldı.</strong></p>
+</div>
+
+<h3>Kuyruk durumu (&sect;32)</h3>
+
+<pre>fulfilled  codex-bestiarium              too large to attach (104 MB) — secure download link, 72h; 4 Amazon edition(s) linked; provider 1c55a4a0-…
+fulfilled  codex-enigmatica              too large to attach (67 MB) — secure download link, 72h; 3 Amazon edition(s) linked; provider f5a3ac6f-…
+fulfilled  the-puzzles-of-henry-dudeney  PDF attached (2062 KB); 1 Amazon edition(s) linked; provider 0d8510d9-…
+fulfilled  british-goblins               PDF attached (1816 KB); provider 9572a18e-…</pre>
+
+<p>Her satır <strong>FULFILLED</strong>, <strong>teslim yöntemini</strong> ve
+<strong>sağlayıcı ileti kimliğini</strong> taşıyor. Hiçbir notta alıcının adresi
+geçmiyor.</p>
+
+<h2 id="s17">17. Mobil doğrulama durumu</h2>
+
+<div class="box ok">
+<p style="margin:0"><strong>Gerçek cihaz kullanıldı.</strong> Redmi Note 8
+(<code>M1908C3JGG</code>), USB ile bağlı, <code>adb</code> üzerinden Chrome DevTools
+Protocol. Ölçümler cihazın kendi Chrome&#39;unda, <code>visibilityState: "visible"</code>
+ve <code>hasFocus: true</code> iken alındı. Bu bir emülatör değil, tarayıcı
+küçültmesi de değil.</p>
+</div>
+
+<p><strong>Gerçek cihaz iki kusuru buldu; ikisi de masaüstü ölçümüyle görünmüyordu.</strong></p>
+
+<div class="scroll">
+<table>
+<tr><th>Cihazda bulunan</th><th>Kök neden</th><th>Düzeltme</th><th>Doğrulama</th></tr>
+<tr><td>Sayfa 393&nbsp;px ekranda 1571&nbsp;px&#39;e uzaklaştırılmış görünüyordu; belge 1848&nbsp;px</td><td>Öne çıkanlar rayının ızgarasında <code>lg</code> altında açık sütun yoktu; ızgara öğesinin <code>min-width: auto</code>&#39;su içeriğe göre boyutlanıyordu</td><td><code>grid-cols-1</code> + <code>min-w-0</code></td><td>Görünüm 392&nbsp;px, belge 392&nbsp;px, <strong>taşma yok</strong></td></tr>
+<tr><td>Yapay zekâ başlatıcısı &ldquo;Explore ebooks&rdquo; düğmesini örtüyordu</td><td>Kahraman bölümü 718&nbsp;px&#39;lik görünüm alanında 859&nbsp;px yer kaplıyordu</td><td><code>pt-[52vw]</code> → <code>pt-[38vw]</code>, <code>pb-[88px]</code></td><td>42&nbsp;px açıklık</td></tr>
+<tr><td><strong>Raf 16,07&nbsp;px/sn hızla akıyordu</strong> (hedef 34)</td><td>Kalibrasyon formülü tersti; masaüstünde sonucun tam 1 olması hatayı gizliyordu</td><td><code>calibratedPlaybackRate()</code></td><td><strong>33,96&nbsp;px/sn</strong> cihazda ölçüldü</td></tr>
+</table>
+</div>
+
+<h3>Cihazda ölçülen son durum</h3>
+
+<pre>görünüm alanı            : 392 x 718
+belge kaydırma genişliği : 392        (yatay taşma yok)
+görünür kitap            : 2,36
+şerit hızı               : 33,96 px/sn
+şerit boyu               : 4482 px, toplam 8964 px = tam iki şerit
+döngü başına yol         : 4482 px    (tam bir şerit)
+dikiş boşluğu            : 16,0 px    (şerit içi boşlukla aynı)
+54 kartta en büyük delik : 16,0 px    (delik yok)
+kare sayısı / geri giden : 240 / 0
+ekranda yüklenmemiş kapak: 0          (15 saniyelik izlemede de 0)
+azaltılmış hareket       : 3 sn'de 0 px hareket, 27 kapak yerinde</pre>
+
+<div class="box">
+<p style="margin:0"><strong>Bir yanlış bulguyu raporlamaktan dönüldü.</strong> Masaüstü
+sekmesinde &ldquo;görünüm alanındaki 11 kapak yüklenmemiş&rdquo; ölçüldü. Bu gerçek bir
+kusur olsaydı raf boş görünürdü. Ancak o sekme <code>visibilityState: "hidden"</code>
+durumundaydı ve Chrome arka plan sekmesinde <code>loading="lazy"</code> görsellerini
+askıya alır. Gerçekten görünür olan cihazda aynı ölçüm <strong>0</strong> verdi —
+üstelik 15 saniye boyunca kartlar ekrana girerken de 0. Kusur rapor edilmedi çünkü
+kusur yoktu; ölçüm aracı bozuktu.</p>
+</div>
+
+<h2 id="s18">18. Tarayıcı testleri</h2>
+
+<p>Hepsi <strong>üretimde</strong> (<code>valicepress.com</code>), gerçek bir Chrome
+penceresinde. Ekran görüntüsüne bakmadan önce her ölçümde düzen zorla yeniden
+hesaplandı.</p>
+
+<div class="scroll">
+<table>
+<tr><th>#</th><th>&sect;42 kalemi</th><th>Bulgu</th><th></th></tr>
+<tr><td>1</td><td>Ana sayfa yükleme</td><td>200, TTFB 0,373&nbsp;sn</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>2</td><td>Kahraman</td><td>Başlık 150&nbsp;px&#39;te, 700&nbsp;px genişlik, 88&nbsp;px punto; kütüphane görseli yüklü (1672 AVIF), örtüler yerinde</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>3</td><td>Kütüphaneye göz atma (<code>/books</code>)</td><td>&ldquo;Showing 1-12 of 27 books&rdquo;, 12 kitap bağlantısı, 10 hediye düğmesi, gerçek fiyatlar, taşma yok</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>4</td><td>Hareketli raf</td><td>2 şerit &times; 27 kart, 216&nbsp;px, 7,60 görünür, 34,00&nbsp;px/sn, <code>willChange: auto</code></td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>5</td><td>Raf üzerinde hover</td><td>12 geçişte en kötü <strong>0,00&nbsp;px</strong>; sıra değişmedi; süre sabit</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>6</td><td>Öne çıkanlar rafı</td><td>%34,0 / %66,0; başlık 58&nbsp;px; kapaklar 148&nbsp;px</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>7</td><td>Kategori</td><td>6 kategori; 6 görsel 200; her sayfadaki kitap bağlantısı sayısı listelenen sayıyla birebir (18/18, 6/6, 2/2, 12/12, 4/4, 2/2)</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>8</td><td>Hediye kutusu</td><td>Doğru kapak, alt başlık, <code>$9.99</code> → <code>$0.00</code>, &ldquo;435 PAGES&rdquo;</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>9</td><td>Ücretsiz kitap talebi</td><td>&ldquo;Request received.&rdquo; ekranı; satır kuyruğa düştü</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>10</td><td>Yapay zekâ asistanı</td><td>&ldquo;Welsh folklore&rdquo; sorusuna <em>British Goblins</em>&#39;i doğru fiyat ve doğru kampanya durumuyla yanıtladı</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>11</td><td>Kampanya sayacı</td><td>&ldquo;Every ebook free · 1d 9h&rdquo; — çalışıyor</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>12</td><td>Arama</td><td><code>?q=goblins</code> → <em>British Goblins</em></td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>13</td><td>Sepet</td><td>Ekle → düğme &ldquo;Added to cart&rdquo;, rozet &ldquo;Cart 1&rdquo;; <code>/cart</code> kitabı, yazarı ve <code>$9.99</code>&#39;u gösteriyor; kaldır → boş. <em>Test sonrası sepet boşaltıldı.</em></td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>14</td><td>Küçük PDF e-postası</td><td>Gelen kutusunda ek olarak okundu</td><td><span class="tag t-ok">tamam</span></td></tr>
+<tr><td>+</td><td>Hesap / Kütüphane (kapsam dışıydı, yine de bakıldı)</td><td>Gerçek tarayıcıda <code>accounts.valicepress.com/sign-in</code>&#39;e doğru yönlendiriyor; yalnızca uygulama adı eski (&sect;21 #1)</td><td><span class="tag t-warn">kısmi</span></td></tr>
+<tr><td>15</td><td>Büyük PDF e-postası</td><td>Gelen kutusunda bağlantı olarak okundu; 108.961.076 bayt indirildi</td><td><span class="tag t-ok">tamam</span></td></tr>
+</table>
+</div>
+
+<h3>Rafa özel beş koşul</h3>
+
+<div class="scroll">
+<table>
+<tr><th>Koşul</th><th>Kanıt</th><th></th></tr>
+<tr><td><strong>Kart yeniden sıralanması yok</strong></td><td>Hover öncesi ve sonrası 27 <code>alt</code> metni aynı dizide</td><td><span class="tag t-ok">yok</span></td></tr>
+<tr><td><strong>Konum sıçraması yok</strong></td><td>12 geçişte en kötü 0,00&nbsp;px</td><td><span class="tag t-ok">yok</span></td></tr>
+<tr><td><strong>Takılma yok</strong></td><td>240 karede 0 geri giden, 0 donmuş kare; ortanca 16,6&nbsp;ms</td><td><span class="tag t-ok">yok</span></td></tr>
+<tr><td><strong>Döngü dikişi yok</strong></td><td>Dikiş boşluğu 16,0&nbsp;px = şerit içi boşluk; döngü yolu tam bir şerit</td><td><span class="tag t-ok">yok</span></td></tr>
+<tr><td><strong>Boş aralık yok</strong></td><td>54 kart yüründü, en büyük boşluk 16,0&nbsp;px, 40&nbsp;px&#39;ten büyük delik sayısı 0</td><td><span class="tag t-ok">yok</span></td></tr>
+</table>
+</div>
+
+<h2 id="s19">19. Performans ölçümleri</h2>
+
+<div class="scroll">
+<table>
+<tr><th>Ölçü</th><th>Değer</th></tr>
+<tr><td>Ana sayfa HTML</td><td>24.288 bayt, TTFB <strong>0,373&nbsp;sn</strong>, toplam 0,381&nbsp;sn</td></tr>
+<tr><td>Kahraman görseli (LCP adayı), AVIF</td><td>640&rarr;16.554&nbsp;B · 960&rarr;32.539&nbsp;B · 1280&rarr;50.547&nbsp;B · 1672&rarr;73.501&nbsp;B</td></tr>
+<tr><td>27 raf küçük resmi</td><td><strong>933.436&nbsp;B</strong> toplam, ortalama 34.571&nbsp;B, hepsi 432&nbsp;px genişlik</td></tr>
+<tr><td>Kare hızı (gerçek telefon)</td><td>ortanca <strong>16,6&nbsp;ms</strong>, en kötü 22,6&nbsp;ms, 240 karede 0 düşük</td></tr>
+<tr><td>İndirme çıkışı (104&nbsp;MB)</td><td>2.083.637&nbsp;B/sn, 52,29&nbsp;sn, tek akış</td></tr>
+</table>
+</div>
+
+<h3>Yol yanıt süreleri (üretim)</h3>
+
+<pre>200  0,33 s  /                       200  0,59 s  /about
+200  0,52 s  /books                   200  1,42 s  /search?q=myths
+200  0,55 s  /ebooks                  200  0,58 s  /cart
+200  0,53 s  /categories              200  0,59 s  /categories/myth-and-folklore
+200  0,56 s  /authors                 200  0,53 s  /companion/codex-bestiarium
+200  0,58 s  /blog                    200  0,22 s  /books/codex-bestiarium</pre>
+
+<h3>&sect;41 bayt doğrulaması</h3>
+
+<p><strong>27 küçük resmin 27&#39;si de</strong> üretimde HTTP 200,
+<code>image/webp</code>, çözülüyor ve <strong>depodaki dosyayla bayt bayt aynı</strong>.
+HTML içinde adres aramakla yetinilmedi; her dosya indirildi, <code>identify</code> ile
+çözüldü ve boyutu diskteki karşılığıyla karşılaştırıldı.</p>
+
+<pre>432x648  book-of-were-wolves · british-goblins · chess-and-playing-cards · codex-enigmatica
+432x648  codex-mythologica-the-puzzle-book · epictetus-… · fairy-mythology-vol-1 / -2
+432x648  games-ancient-and-oriental · greek-alphabet-… · indian-myth-and-legend · korean-games
+432x648  kwaidan · mancala · meditations · mythical-monsters · myths-and-legends-of-china
+432x648  sea-monsters-unmasked · seneca-selected-dialogues · the-great-book-of-world-myths
+432x648  traditional-games
+432x691  codex-bestiarium · codex-mythologica · korean-hangul-… · the-great-book-of-world-games
+432x691  the-puzzles-of-henry-dudeney
+432x567  the-myth-hunters-field-book</pre>
+
+<p>Ayrıca 6 kategori görselinin 6&#39;sı da 200 ve çözülüyor (5 tanesi 900&times;1200,
+<em>young-explorers</em> 1024&times;1536), ve kahraman görselinin dört AVIF boyutu da 200
+ve doğru boyutlarda. Bu, geçmişteki <code>.vercelignore</code> olayının bir daha
+sessizce tekrarlanmamasını sağlayan kontrol.</p>
+
+<h2 id="s20">20. Üretime dağıtım</h2>
+
+<div class="scroll">
+<table>
+<tr><th>Adım</th><th>Durum</th></tr>
+<tr><td><code>npm run lint</code></td><td><span class="tag t-ok">temiz</span></td></tr>
+<tr><td><code>npx tsc --noEmit</code></td><td><span class="tag t-ok">temiz</span></td></tr>
+<tr><td><code>npm test</code></td><td><span class="tag t-ok">30 dosya, 488 test</span></td></tr>
+<tr><td><code>npm run build</code></td><td><span class="tag t-ok">temiz</span></td></tr>
+<tr><td>PR <a href="https://github.com/emredogan-cloud/ValicePress-Site/pull/51">#51</a></td><td>CI yeşil, birleştirildi → <code>9ba0db8</code></td></tr>
+<tr><td>PR <a href="https://github.com/emredogan-cloud/ValicePress-Site/pull/53">#53</a></td><td>CI yeşil (2 dk 53 sn), birleştirildi → <code>f480caf</code> — açılma tavanı + kalibrasyon düzeltmesi</td></tr>
+<tr><td>Üretim doğrulaması</td><td><code>/download/&lt;sahte&gt;</code> → 404 <em>ve</em> ana sayfa HTML&#39;inde <code>w-[216px]</code> — dağıtımın indiğinin iki işareti</td></tr>
+</table>
+</div>
+
+<p><strong>Sıkı kurallara uyuldu.</strong> <code>git add -A</code> kullanılmadı; her
+işleme dosyaları tek tek eklendi. <code>git reset --hard</code>, <code>git clean</code>
+ve force-push <strong>kullanılmadı</strong>. İlgisiz çalışma
+(<code>docs/execution/FOUNDER_ACTIONS.md</code>, <code>docs/ROADMAP/</code>,
+<code>docs/research/</code> ve iki ekran görüntüsü) <strong>hiç ellenmedi</strong> ve
+çalışma ağacında olduğu gibi duruyor.</p>
+
+<div class="box warn">
+<p style="margin:0"><strong>Dal yeniden kuruldu, force-push edilmedi.</strong> PR #51
+&ldquo;squash&rdquo; ile birleştiği için ilk düzeltme dalı hâlâ #51&#39;in squash öncesi
+işlemelerini taşıyordu ve <code>main</code> ile çakışıyordu. Yeniden temellendirme
+(<em>rebase</em>) bir force-push gerektirirdi — &sect;2 bunu yasaklıyor. Bunun yerine
+<code>origin/main</code>&#39;den temiz bir dal açıldı, iki işleme <em>cherry-pick</em>
+edildi ve eski PR kapatıldı.</p>
+</div>
+
+<h2 id="s21">21. Kalan sorunlar</h2>
+
+<p>Bu bölüm bilinçli olarak uzun. Hiçbiri bu çalışmanın yol açtığı bir gerileme değil;
+hepsi bu çalışma sırasında ölçülerek bulundu.</p>
+
+<div class="scroll">
+<table>
+<tr><th>#</th><th>Sorun</th><th>Kanıt</th><th>Değerlendirme</th></tr>
+<tr><td>1</td><td><strong>Giriş ekranı hâlâ &ldquo;digital-bookstore&rdquo; adını taşıyor.</strong> Başlıktaki &ldquo;LIBRARY&rdquo; bağlantısı, <code>/account/*</code> ve <code>/admin/*</code> doğru çalışıyor; ancak varılan sayfanın başlığı <em>&ldquo;Sign in to digital-bookstore&rdquo;</em>, sekme adı ise <em>&ldquo;My account | digital-bookstore&rdquo;</em>.</td><td>Gerçek tarayıcıda <code>/account/library</code> → <code>accounts.valicepress.com/sign-in?redirect_url=…</code> yönlendirmesi <strong>çalışıyor</strong> (ekran görüntüsüyle doğrulandı); <code>/admin/free-books</code> için de aynı. Clerk uygulamasının <strong>adı</strong> hâlâ eski iskele adı.</td><td><span class="tag t-warn">önceden var, kısmen düzelmiş</span> Clerk artık imprintin kendi alan adından (<code>accounts.valicepress.com</code>) sunuluyor ve <strong>&ldquo;Development mode&rdquo; rozeti görünmüyor</strong> — bu, 2026-09-08&#39;deki duruma göre iyileşme. Kalan tek kalem uygulama adı; bu bir Clerk hesap ayarı, <strong>Kurucu kararı</strong>.</td></tr>
+<tr><td>2</td><td><strong>Kategori sayıları iki sayfada farklı.</strong> <code>/books</code> kenar çubuğu &ldquo;Myth &amp; Folklore 3&rdquo; diyor; <code>/categories</code> &ldquo;12&rdquo; diyor.</td><td><code>/books</code> <code>row.primaryCategory</code> üzerinden sayıyor (kitap başına bir kategori; toplam tam 27). <code>/categories</code> çoka-çok üyeliğin tamamını sayıyor (toplam 44). <code>/books</code> kenar çubuğunda <em>Young Explorers</em> satırı hiç yok.</td><td><span class="tag t-warn">önceden var</span> İkisi de kendi içinde tutarlı, ama aynı etiketle farklı soruyu yanıtlıyorlar. Okur için kafa karıştırıcı.</td></tr>
+<tr><td>3</td><td><code>ed897854@gmail.com</code> gelen kutusu okunamadı.</td><td>Bu oturumdan erişilebilen tek hesap <code>emre30283@gmail.com</code>.</td><td><span class="tag t-info">dürüstçe bildiriliyor</span> O iki gönderim için kanıt sağlayıcının <code>delivered</code> kaydı; <strong>gelen kutusu doğrulaması yapılmadı</strong>.</td></tr>
+<tr><td>4</td><td>GitHub Actions bir süre hiç iş başlatmadı.</td><td>2026-09-11T02:30Z ile PR #53 arasında <strong>hiçbir dalda</strong> tek bir çalıştırma yok. Muhtemel sebep: ilk düzeltme dalı <code>main</code> ile çakışıyordu (<code>mergeable: CONFLICTING</code>) ve GitHub çakışan bir PR için <code>pull_request</code> olayını göndermiyordu.</td><td><span class="tag t-ok">çözüldü</span> Dal <code>origin/main</code>&#39;den temiz açılınca CI hemen çalıştı ve <strong>2 dk 53 sn&#39;de yeşil</strong> bitti. PR #53 CI yeşiliyle birleştirildi.</td></tr>
+<tr><td>5</td><td>Eski bir kuyruk satırı hâlâ eski notu taşıyor.</td><td><em>The Great Book of World Myths</em> satırında <code>too large to attach (93 MB) — sent as a link</code> yazıyor; bu, imzalı R2 adresi dönemine ait.</td><td><span class="tag t-info">zararsız</span> Tarihsel kayıt; yeni gönderimler <code>secure download link, 72h</code> yazıyor. Geçmişi değiştirmemek için elle düzeltilmedi.</td></tr>
+<tr><td>6</td><td>Masaüstü tarayıcı penceresi oturum boyunca öne getirilemedi.</td><td><code>visibilityState</code> ısrarla <code>"hidden"</code> kaldı; pencere yeniden boyutlandırma da uygulanmadı.</td><td><span class="tag t-info">yöntem notu</span> Bu yüzden masaüstü ölçümleri ekran görüntüsüne değil DOM&#39;a ve elle döndürülen <code>rAF</code>&#39;a dayanıyor; gerçekten görünür kare doğrulaması <strong>telefonda</strong> yapıldı. 768 / 1280 / 1920&nbsp;px yoğunlukları bu oturumun erken bölümünden alınmıştır, bugün yeniden ölçülmemiştir.</td></tr>
+</table>
+</div>
+
+<h3>&sect;45 başarı ölçütleri</h3>
+
+<div class="scroll">
+<table>
+<tr><th>Ölçüt</th><th></th><th>Ölçüt</th><th></th></tr>
+<tr><td>Boş kahraman alanı belirgin şekilde azaldı</td><td><span class="tag t-ok">✓</span></td><td>Gerçek kapaklar korundu</td><td><span class="tag t-ok">✓</span></td></tr>
+<tr><td>Kahraman okunabilir kaldı</td><td><span class="tag t-ok">✓</span></td><td>Gerçek katalog verisi korundu</td><td><span class="tag t-ok">✓</span></td></tr>
+<tr><td>Masaüstünde ~6–9 kitap</td><td><span class="tag t-ok">✓ 7,6</span></td><td>Küçük PDF hâlâ ek olarak gidiyor</td><td><span class="tag t-ok">✓</span></td></tr>
+<tr><td>Kitaplar gözle görülür büyüdü</td><td><span class="tag t-ok">✓ +%64</span></td><td>Büyük PDF birinci taraf güvenli yol kullanıyor</td><td><span class="tag t-ok">✓</span></td></tr>
+<tr><td>Tablet yoğunluğu makul</td><td><span class="tag t-ok">✓ 4,0</span></td><td>Müşteri postasında ham R2 adresi yok</td><td><span class="tag t-ok">✓</span></td></tr>
+<tr><td>Mobil yoğunluğu makul</td><td><span class="tag t-ok">✓ 2,36</span></td><td>Jeton güvenliği test edildi</td><td><span class="tag t-ok">✓ 15 vaka</span></td></tr>
+<tr><td>Hover asla yeniden sıralamıyor</td><td><span class="tag t-ok">✓</span></td><td>Süre dolması test edildi</td><td><span class="tag t-ok">✓ 410</span></td></tr>
+<tr><td>Hover asla sıçratmıyor</td><td><span class="tag t-ok">✓ 0,00 px</span></td><td>Gerçek e-posta alındı</td><td><span class="tag t-ok">✓ 2 posta kutusundan okundu</span></td></tr>
+<tr><td>Hover yavaşlaması akıcı</td><td><span class="tag t-ok">✓ 450 ms rampa</span></td><td>PDF / bağlantı doğrulandı</td><td><span class="tag t-ok">✓</span></td></tr>
+<tr><td>Takılma yok</td><td><span class="tag t-ok">✓</span></td><td>Yönetim durumu doğrulandı</td><td><span class="tag t-ok">✓ ops görünümünden</span></td></tr>
+<tr><td>Döngü dikişi yok</td><td><span class="tag t-ok">✓</span></td><td>Yapay zekâ asistanı çalışıyor</td><td><span class="tag t-ok">✓</span></td></tr>
+<tr><td>Kayma yok</td><td><span class="tag t-ok">✓</span></td><td>Hediye kutusu çalışıyor</td><td><span class="tag t-ok">✓</span></td></tr>
+<tr><td>Azaltılmış hareket çalışıyor</td><td><span class="tag t-ok">✓ cihazda</span></td><td>Kampanya sayacı çalışıyor</td><td><span class="tag t-ok">✓</span></td></tr>
+<tr><td>Öne çıkanlar belirgin büyüdü</td><td><span class="tag t-ok">✓ %24,4 → %34,0</span></td><td>Arama / sepet çalışıyor</td><td><span class="tag t-ok">✓</span></td></tr>
+<tr><td>Üretim varlıkları bayt doğrulandı</td><td><span class="tag t-ok">✓ 27/27</span></td><td><strong>Hesap sayfaları</strong></td><td><span class="tag t-ok">✓ giriş yönlendirmesi çalışıyor</span></td></tr>
+<tr><td>Mobil durumu dürüstçe bildirildi</td><td><span class="tag t-ok">✓</span></td><td>lint / typecheck / test / build</td><td><span class="tag t-ok">✓</span></td></tr>
+<tr><td>Üretim doğrulandı</td><td><span class="tag t-ok">✓</span></td><td>CI yeşil</td><td><span class="tag t-ok">✓ 2 dk 53 sn</span></td></tr>
+<tr><td>Nihai bağımsız denetim tamamlandı</td><td><span class="tag t-ok">✓ 15/15</span></td><td>Türkçe nihai rapor yazıldı</td><td><span class="tag t-ok">✓ bu belge</span></td></tr>
+</table>
+</div>
+
+<footer>
+<p>Vâliçe Press · Üretim mühendisliği raporu · 11 Eylül 2026<br>
+Bu belgedeki her sayı ya üretimdeki sayfanın kendi DOM&#39;undan, ya gerçek bir
+Redmi Note 8&#39;den, ya gerçek bir Gmail gelen kutusundan, ya da
+<code>valicepress.com</code>&#39;dan indirilen gerçek baytlardan alınmıştır.
+Yapılmayan hiçbir test yapılmış gibi yazılmamıştır.</p>
+</footer>
+
+</div>
+</body>
+</html>
