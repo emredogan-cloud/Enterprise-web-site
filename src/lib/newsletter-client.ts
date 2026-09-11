@@ -68,6 +68,8 @@ export type NewsletterSource =
   | "british-goblins-companion"
   | "fairy-mythology-vol-1-companion"
   | "fairy-mythology-vol-2-companion"
+  // Under Every Sky 2 (2026-09-11). The QR printed in The Trickster's Table.
+  | "tricksters-table-companion"
   // The temporary free-ebook promotion (2026-09-10). Its own tag because a
   // list built during a giveaway behaves nothing like one built from a
   // printed book, and merging the two would hide that.

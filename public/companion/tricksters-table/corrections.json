@@ -1,0 +1,26 @@
+[
+ {
+  "id": "UES02-C-1",
+  "lesson": "Do not guess Gutenberg IDs. Search the index, then verify the downloaded file's Title line.",
+  "what": "Four of five Gutenberg IDs guessed from memory returned entirely different books",
+  "found": "48911 is F. W. Bain's 'A Mine of Faults' (1910), not West African Folk-Tales; 38238 is 'The Old Yellow Book'; 6338 is 'Boy Scouts in the Coal Caverns'; 40453 is 'Tom Ossington's Ghost'. All four were downloaded under plausible filenames and all four were wrong.",
+  "action": "Deleted. The GUTINDEX.ALL master index was downloaded and searched, and every ID re-derived from it. Correct IDs: West African Folk-Tales 66923, Jamaica Anansi Stories 72735, The Turkish Jester 16244, Journey to the West 23962, Reynard in South Africa 73413.",
+  "resolved": true
+ },
+ {
+  "id": "UES02-C-2",
+  "lesson": "Check the Language: line, not just the title.",
+  "what": "Journey to the West downloaded in Chinese",
+  "found": "Gutenberg 23962 is the original 西遊記, not a translation. 11% ASCII.",
+  "action": "Marked REJECTED FOR USE. Sun Wukong is reachable in English through Werner's Myths and Legends of China, already held.",
+  "resolved": true
+ },
+ {
+  "id": "UES02-C-3",
+  "lesson": "A fetch that returns HTTP 200 can still be an error page. Check the content type, not the status code.",
+  "what": "An Internet Archive error page is sitting in the UES-01 source library",
+  "found": "UES-01/01_SOURCE/primary/mar12-egyptian.txt is 134 KB of HTML titled 'Internet Archive: Page Not Found', listed in the UES-01 file inventory.",
+  "action": "No UES-01 story cites it and it is not claimed as a verified source, so no shipped text is affected. Flagged for deletion. Do not reuse it for UES-02.",
+  "resolved": true
+ }
+]

@@ -2651,6 +2651,92 @@ export const BOOKS = [
       "The project's own kill gate (five external solvers, zero sessions recorded) was never passed. The book was published regardless. No puzzle in it has been solved by anyone other than its author.",
     ],
   },
+  {
+    slug: "the-tricksters-table",
+    title: "The Trickster's Table",
+    subtitle:
+      "Eighteen Trickster Tales from Eleven Traditions, and What Each One Cost",
+    language: "en",
+    pageCount: 112,
+    categories: ["myth-and-folklore"],
+    authors: ["emre-dogan"],
+    bisac: ["SOC011000"],
+    series: { name: "Under Every Sky", volume: 2 },
+    // DRAFT ON PURPOSE. Writing "published" here IS the publication decision — the
+    // loader's own design is that publication is data, reviewable in a diff. Agent A's
+    // website publication is frozen by the Founder, so this row is prepared and left
+    // draft. Flip it to "published" and run load-catalog.mjs --commit when the
+    // deployment window opens; nothing else about the row needs to change.
+    websiteStatus: "draft",
+    kdpSelect: false,
+    directSale: false,
+    directSaleBlockedBy:
+      "No Paddle price has been created and no R2 master has been uploaded. Both are live " +
+      "writes to external services and the book is not cleared to sell: it has no ISBN, no " +
+      "KDP listing, and the direct checkout has never been transacted for any title.",
+    paddlePriceId: null,
+    blockers: [
+      "Agent A website publication is frozen by the Founder; this row is prepared and left draft.",
+      "KDP: the account-level weekly title-creation limit is in force. PLA-01 has queue priority, then UES-01, then this book.",
+      "No Paddle price and no R2 master: both are live writes to external services and the book is not cleared to sell.",
+      "No ISBN. None has been fabricated.",
+      "Cover geometry for 112 pages is DERIVED from KDP's published formula and cross-checked against eighteen calculator-read rows, not read from the calculator. Confirm against KDP's own template at upload.",
+      "Ebook price $9.99 is carried from the directive and is the same price as the 232-page Volume One. Founder call.",
+    ],
+    onelinePromise:
+      "Eighteen tales of cunning, retold in full from named historical sources, with who wrote each one down and what that did to it.",
+    description:
+      "A spider borrows a coat and does not give it back. A god cuts off a woman's hair for no reason anyone wrote down, loses a bet about it, and has his mouth sewn shut with a thread that has a name. A day-old baby steals fifty cattle and reverses their hoofprints so the tracks point the wrong way. A wife bakes iron griddles into twenty-one loaves and waits for a giant.\n\nEighteen tales of cunning from the Akan of the Gold Coast, Jamaica, Norse Iceland, archaic Greece, Ireland, ancient Egypt, the Khoikhoi and Nama of Namaqualand, Türkiye, Japan, Māori Aotearoa and the Tamil country — each retold in full, and each followed by where it actually came from: who wrote it down, in what year, for which employer, and what that did to it.\n\nThe most famous trickster in the world is not in this book. Coyote is told only in winter across a great many nations, and a printed book is read in July. Every tradition this book declined is listed in the back with the reason.\n\nVolume Two of Under Every Sky.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "coming_soon",
+        fulfillment: "direct",
+        priceCents: usd(9.99),
+        pageCount: 112,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not-uploaded",
+        masterFileKey: null,
+        priceBasis:
+          "$9.99, carried from the production directive. FLAGGED: this is the same price as " +
+          "Volume One, which has 232 pages and thirty stories against this book's 112 and " +
+          "eighteen, and the two sit on the same storefront. $6.99-7.99 would be easier to " +
+          "defend. Not changed unilaterally; see the distribution handbook, B-7.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(12.99),
+        pageCount: 112,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not-uploaded",
+        masterFileKey: null,
+        priceBasis:
+          "MODELLED, not confirmed by KDP. 6 x 9 in, white, B&W, 112 pp: KDP US printing is " +
+          "$1.00 + $0.012/page = $2.34, so $12.99 nets $5.45 at the 60% rate. Not $16.99 like " +
+          "Volume One, because that book is 232 pages. KDP's own figure at upload replaces this.",
+      },
+      {
+        format: "hardcover",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(21.99),
+        pageCount: 112,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not-uploaded",
+        masterFileKey: null,
+        priceBasis:
+          "MODELLED, not confirmed by KDP. 112 pp is above KDP's 75-page hardcover minimum; " +
+          "printing is $5.65 + $0.012/page = $6.99, so $21.99 nets $6.20. FLAGGED: a 112-page " +
+          "case-laminate hardcover has a 0.44 in spine and is physically slight. Whether to " +
+          "sell this title in hardcover at all is a positioning call, not a production one.",
+      },
+    ],
+  },
 ];
 
 /**
