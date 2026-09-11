@@ -112,3 +112,61 @@ constrain code and were being re-derived (and re-got-wrong) each phase.
 - **A skipped check reads like a passing one.** `compliance-lint` reported "no
   built interior registered for kwaidan" as a *skip* for two days. Registering
   the interior in `print-interiors.mjs` surfaced two real errors immediately.
+
+## Web front end — animation, measurement and delivery
+
+- **Changing a CSS `animation-duration` moves the clock, it does not change the
+  speed.** A CSS animation's progress is `currentTime ÷ duration`. The shelf's
+  hover slowdown was `animation-duration: calc(var(--d) * 2.6)` on `:hover`,
+  which keeps `currentTime` and multiplies the denominator — so progress is
+  divided by 2.6 and the track teleports. Measured a quarter of the way through
+  the cycle: a -623px jump, 4.2 card positions, on every hover in and out. It
+  read as "the book jumps four places when I touch it", and it was blamed on
+  reordering, which never happened. **Change speed with the Web Animations API
+  `playbackRate`**, which by specification updates the start time so
+  `currentTime` is preserved: the pace changes and the position cannot. Ramp it
+  over a few hundred ms with one short-lived rAF if you want deceleration rather
+  than a gear change. Never `animation-play-state: paused` on a looping marquee —
+  a shelf that stops dead reads as broken, and parking on it is how a visitor
+  finds the duplicated seam.
+
+- **`will-change: transform` on a very large animated element is the trap it
+  warns about.** On a 10,131px marquee track it pinned a permanently rasterised
+  compositor layer and made the renderer unresponsive — screenshots timed out and
+  an unrelated hero painted black. Leave it off and let the browser promote and
+  tile the layer for the duration of the animation.
+
+- **`overflow-x: auto` cannot constrain a box its own content is allowed to
+  widen.** A grid item's `min-width` is `auto`, i.e. content-based, so a
+  horizontally scrolling rail inside an implicit (auto-sized) grid column sizes
+  the *column* instead of scrolling. On a phone the document went 1848px wide
+  against a 393px screen and Chrome zoomed the whole page out — `innerWidth`
+  read 1571 on a 1080px device. Give the track an explicit column and `min-w-0`.
+
+- **A fixed corner control owns the bottom of every screen.** The AI launcher is
+  `fixed bottom-4` and 56px tall, so nothing interactive may sit in the bottom
+  ~88px at rest. On a phone the hero's bottom-anchored CTAs landed there. Budget
+  for it in the section's own spacing.
+
+- **Visual QA in a background tab measures nothing.**
+  `document.visibilityState === "hidden"` throttles animation, rAF and
+  compositing: screenshots come back stale, correctly-painted sections look
+  black, and a pending rAF never fires (which also masks event handlers that
+  guard on `if (!raf)`). Force a repaint before judging a screenshot, and verify
+  motion through the Web Animations API and pixel sampling rather than images.
+  Better: attach the Redmi over `adb` — it found two mobile defects in one
+  session that no desktop measurement could have.
+
+- **A gift email cannot carry a big book, and must not carry a storage URL.**
+  Three masters are past every provider's ceiling (104MB, 93MB, 67MB; Gmail
+  itself stops at 25MB). The old fallback pasted ~700 characters of signed R2 URL
+  into the body, exposing the account id, bucket name and object path, and it
+  expired in fifteen minutes. Deliver a first-party `/download/<token>` instead:
+  the token names a *request row*, never a file, so editing the URL cannot select
+  another book and `..` cannot escape anything. Store it rather than signing it
+  so it can be expired, counted and audited. Stream the object — reading 104MB
+  into a Buffer inside a serverless function finds its memory ceiling.
+
+- **"The provider accepted it" and "the reader got it" are different claims.**
+  Record the provider's message id on the row; without it an empty mailbox leaves
+  nothing to pull on.
