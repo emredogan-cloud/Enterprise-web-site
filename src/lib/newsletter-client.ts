@@ -68,6 +68,8 @@ export type NewsletterSource =
   | "british-goblins-companion"
   | "fairy-mythology-vol-1-companion"
   | "fairy-mythology-vol-2-companion"
+  // Agent A original book 4 (2026-09-11): Etymon vol. 1.
+  | "etymon-companion"
   // The temporary free-ebook promotion (2026-09-10). Its own tag because a
   // list built during a giveaway behaves nothing like one built from a
   // printed book, and merging the two would hide that.
