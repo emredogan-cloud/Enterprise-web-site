@@ -215,6 +215,15 @@ export const DIGITAL_EDITION_SOURCES = [
     printInterior: bookPath("UES-01", "08_OUTPUT", "UES-01-interior.pdf"),
     epub: bookPath("UES-01", "08_OUTPUT", "UES-01.epub"),
   },
+  {
+    // Under Every Sky 2 (2026-09-11). Same two files and the same reasoning as Volume
+    // One: the 6 x 9 print interior is already screen-legible and carries its four
+    // figures as vectors, and the reflowable EPUB carries the same figures as rasters
+    // from the same renderer, so the printed and the on-screen figures cannot disagree.
+    slug: "the-tricksters-table",
+    printInterior: bookPath("UES-02", "08_OUTPUT", "UES-02-interior.pdf"),
+    epub: bookPath("UES-02", "08_OUTPUT", "UES-02.epub"),
+  },
 ];
 
 

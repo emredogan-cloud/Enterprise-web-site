@@ -563,5 +563,22 @@
         "page": 28
       }
     ]
+  },
+  "the-tricksters-table": {
+    "note": "A whole tale and everything the book puts around it — Anansi and Thunder, then who wrote it down, when, and what that did to it.",
+    "pages": [
+      {
+        "src": "/images/previews/the-tricksters-table/p21.webp",
+        "page": 21
+      },
+      {
+        "src": "/images/previews/the-tricksters-table/p22.webp",
+        "page": 22
+      },
+      {
+        "src": "/images/previews/the-tricksters-table/p23.webp",
+        "page": 23
+      }
+    ]
   }
 }

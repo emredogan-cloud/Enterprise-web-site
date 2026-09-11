@@ -327,4 +327,17 @@ export const DIRECT_SALE_EBOOKS = [
       "The complete 232-page book as a DRM-free, watermarked PDF and a reflowable EPUB. Thirty creation myths retold in full, each with the source named, dated and described - including what is wrong with it - plus the full source ledger and all 726 typed claims.",
     priceCents: 999,
   },
+  {
+    // Under Every Sky 2 (2026-09-11). Same shape as Volume One and the same reason —
+    // an ORIGINAL title sold direct before it exists on Amazon, so there is no Kindle
+    // list price to match to the cent. The price is $6.99, SET BY THE FOUNDER, and it
+    // is deliberately BELOW Volume One's $9.99: this book is 112 pages and eighteen
+    // tales against 232 and thirty, the two sit on the same storefront, and a buyer
+    // compares them in one glance. Not in Select, and never will be.
+    slug: "the-tricksters-table",
+    name: "The Trickster's Table: Eighteen Trickster Tales from Eleven Traditions, and What Each One Cost",
+    description:
+      "The complete 112-page book as a DRM-free, watermarked PDF and a reflowable EPUB. Eighteen trickster tales from eleven traditions, each retold in full and each followed by who wrote it down, in what year, for which employer, and what that did to it - plus the full source ledger, all 224 typed claims, and the three corrections logged during the work.",
+    priceCents: 699,
+  },
 ];

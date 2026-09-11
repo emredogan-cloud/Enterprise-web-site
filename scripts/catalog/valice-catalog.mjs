@@ -2820,26 +2820,20 @@ export const BOOKS = [
     authors: ["emre-dogan"],
     bisac: ["SOC011000"],
     series: { name: "Under Every Sky", volume: 2 },
-    // DRAFT ON PURPOSE. Writing "published" here IS the publication decision — the
-    // loader's own design is that publication is data, reviewable in a diff. Agent A's
-    // website publication is frozen by the Founder, so this row is prepared and left
-    // draft. Flip it to "published" and run load-catalog.mjs --commit when the
-    // deployment window opens; nothing else about the row needs to change.
-    websiteStatus: "draft",
+    // PUBLISHED 2026-09-11. The Founder opened the deployment window in the final
+    // distribution directive. Writing "published" here IS the publication decision —
+    // the loader's design is that publication is data, reviewable in a diff — and it
+    // still does nothing on its own until load-catalog.mjs --commit runs.
+    websiteStatus: "published",
     kdpSelect: false,
-    directSale: false,
-    directSaleBlockedBy:
-      "No Paddle price has been created and no R2 master has been uploaded. Both are live " +
-      "writes to external services and the book is not cleared to sell: it has no ISBN, no " +
-      "KDP listing, and the direct checkout has never been transacted for any title.",
-    paddlePriceId: null,
+    directSale: true,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m285tsm54yf4tnme163800ga",
     blockers: [
-      "Agent A website publication is frozen by the Founder; this row is prepared and left draft.",
-      "KDP: the account-level weekly title-creation limit is in force. PLA-01 has queue priority, then UES-01, then this book.",
-      "No Paddle price and no R2 master: both are live writes to external services and the book is not cleared to sell.",
+      "KDP paperback: WAITING KDP WEEKLY TITLE LIMIT. Determined 2026-09-11 by a real save attempt, which KDP refused with \"You have reached the weekly title creation limit for this format.\" The Kindle slot was open the same day and a draft exists.",
+      "KDP: the publishing-rights attestation and the three AI answers are the account holder's to make and have deliberately not been made.",
       "No ISBN. None has been fabricated.",
-      "Cover geometry for 112 pages is DERIVED from KDP's published formula and cross-checked against eighteen calculator-read rows, not read from the calculator. Confirm against KDP's own template at upload.",
-      "Ebook price $9.99 is carried from the directive and is the same price as the 232-page Volume One. Founder call.",
+      "THERE IS NO HARDCOVER. Cancelled by the Founder 2026-09-11: 112 pages makes the spine too thin and destroys the economics. Do not add one back.",
     ],
     onelinePromise:
       "Eighteen tales of cunning, retold in full from named historical sources, with who wrote each one down and what that did to it.",
@@ -2848,19 +2842,19 @@ export const BOOKS = [
     formats: [
       {
         format: "ebook",
-        availability: "coming_soon",
+        availability: "available",
         fulfillment: "direct",
-        priceCents: usd(9.99),
+        priceCents: usd(6.99),
         pageCount: 112,
         amazonAsin: null,
         amazonUrl: null,
-        kdp: "not-uploaded",
-        masterFileKey: null,
+        kdp: "draft",
+        masterFileKey: "books/the-tricksters-table/master/v1/master.pdf",
         priceBasis:
-          "$9.99, carried from the production directive. FLAGGED: this is the same price as " +
-          "Volume One, which has 232 pages and thirty stories against this book's 112 and " +
-          "eighteen, and the two sit on the same storefront. $6.99-7.99 would be easier to " +
-          "defend. Not changed unilaterally; see the distribution handbook, B-7.",
+          "$6.99, SET BY THE FOUNDER on 2026-09-11, replacing the $9.99 carried from the " +
+          "production directive. The flag raised in the Stage-2 report is answered: $9.99 " +
+          "was the same price as the 232-page Volume One on the same storefront and a buyer " +
+          "can compare them in one glance. $9.99 must not reappear for this title.",
       },
       {
         format: "paperback",
@@ -2875,23 +2869,8 @@ export const BOOKS = [
         priceBasis:
           "MODELLED, not confirmed by KDP. 6 x 9 in, white, B&W, 112 pp: KDP US printing is " +
           "$1.00 + $0.012/page = $2.34, so $12.99 nets $5.45 at the 60% rate. Not $16.99 like " +
-          "Volume One, because that book is 232 pages. KDP's own figure at upload replaces this.",
-      },
-      {
-        format: "hardcover",
-        availability: "coming_soon",
-        fulfillment: "amazon",
-        priceCents: usd(21.99),
-        pageCount: 112,
-        amazonAsin: null,
-        amazonUrl: null,
-        kdp: "not-uploaded",
-        masterFileKey: null,
-        priceBasis:
-          "MODELLED, not confirmed by KDP. 112 pp is above KDP's 75-page hardcover minimum; " +
-          "printing is $5.65 + $0.012/page = $6.99, so $21.99 nets $6.20. FLAGGED: a 112-page " +
-          "case-laminate hardcover has a 0.44 in spine and is physically slight. Whether to " +
-          "sell this title in hardcover at all is a positioning call, not a production one.",
+          "Volume One, because that book is 232 pages. The $12.99 is the Founder's, set " +
+          "2026-09-11. KDP's own printing figure at upload replaces the cost model, not the price.",
       },
     ],
   },

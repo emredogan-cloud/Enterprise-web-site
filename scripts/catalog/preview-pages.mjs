@@ -309,4 +309,18 @@ export const PREVIEW_PAGES = [
     pages: [25, 28],
     note: "A story opening and the prose that follows it — Hesiod's Chaos, and why the usual translation of the word is wrong.",
   },
+  {
+    slug: "the-tricksters-table",
+    source: `${BUILT}/the-tricksters-table.pdf`,
+    // A WHOLE STORY AND ITS APPARATUS, not a sampler. pp. 21-24 are Anansi's
+    // "Thunder's Two Gifts" complete, then "Where this came from", the historical
+    // context and the comparative reading - the four-part structure that is the only
+    // reason to buy this book rather than any other trickster collection. Showing
+    // three story openings would show the prose and hide the argument.
+    // 21-23, not 21-24. Page 24 is the last, sparse page of the reading — 0.56% ink —
+    // and a near-blank sheet as the final preview image makes the book look thin on a
+    // product page. Measured, not eyeballed.
+    pages: [21, 23],
+    note: "A whole tale and everything the book puts around it — Anansi and Thunder, then who wrote it down, when, and what that did to it.",
+  },
 ];
