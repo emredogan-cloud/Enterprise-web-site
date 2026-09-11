@@ -301,4 +301,43 @@ export const DIRECT_SALE_EBOOKS = [
     priceBasis:
       "price-engine.mjs 2026-09-07, direct ebook, public domain: $9.99 nets $8.99 after Paddle at a 90% margin. Priced level with Volume I because neither volume is the lesser half \u2014 they come out at 101,835 and 101,612 of Keightley's words without being adjusted.",
   },
+  {
+    // Play Anywhere 1 (2026-09-10). The first ORIGINAL Vâliçe book sold direct
+    // before it exists on Amazon, so there is no Kindle list price to match to
+    // the cent — the rule the rest of this list follows. $6.99 is the Series
+    // Bible price and is what the Kindle edition will be listed at, so the two
+    // will agree the day the KDP upload clears. Not enrolled in Select and never
+    // will be: house policy forbids it for every original title.
+    slug: "pencil-and-paper",
+    name: "Pencil & Paper: 60 Games That Need Nothing but a Pencil",
+    description:
+      "The complete 162-page book as a DRM-free, watermarked PDF and a reflowable EPUB. Sixty pencil-and-paper games, each with a sourced provenance note and a real strategy note, and eight score sheets you may print as often as you like.",
+    priceCents: 699,
+  },
+  {
+    // Under Every Sky 1 (2026-09-11). Like Pencil & Paper, an ORIGINAL title sold
+    // direct before it exists on Amazon, so there is no Kindle list price to match
+    // to the cent. $9.99 is set here and the Kindle listing will be set to match
+    // it, not the other way round: 232 pages, 74,000 words, and half of it is the
+    // source apparatus, which is the thing no other creation-myth anthology has.
+    // Never in Select - house policy for every original title.
+    slug: "how-the-world-began",
+    name: "How the World Began: Thirty Creation Myths from Every Corner of the Earth, Told Whole",
+    description:
+      "The complete 232-page book as a DRM-free, watermarked PDF and a reflowable EPUB. Thirty creation myths retold in full, each with the source named, dated and described - including what is wrong with it - plus the full source ledger and all 726 typed claims.",
+    priceCents: 999,
+  },
+  {
+    // Under Every Sky 2 (2026-09-11). Same shape as Volume One and the same reason —
+    // an ORIGINAL title sold direct before it exists on Amazon, so there is no Kindle
+    // list price to match to the cent. The price is $6.99, SET BY THE FOUNDER, and it
+    // is deliberately BELOW Volume One's $9.99: this book is 112 pages and eighteen
+    // tales against 232 and thirty, the two sit on the same storefront, and a buyer
+    // compares them in one glance. Not in Select, and never will be.
+    slug: "the-tricksters-table",
+    name: "The Trickster's Table: Eighteen Trickster Tales from Eleven Traditions, and What Each One Cost",
+    description:
+      "The complete 112-page book as a DRM-free, watermarked PDF and a reflowable EPUB. Eighteen trickster tales from eleven traditions, each retold in full and each followed by who wrote it down, in what year, for which employer, and what that did to it - plus the full source ledger, all 224 typed claims, and the three corrections logged during the work.",
+    priceCents: 699,
+  },
 ];

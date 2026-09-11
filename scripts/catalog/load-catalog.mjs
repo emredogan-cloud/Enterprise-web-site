@@ -70,9 +70,23 @@ if (db === "neondb" && commit && !prodOk) {
 // Run before any write, on every run including dry runs. Each of these has
 // been a real production defect at some point in this project's history.
 const PADDLE_PRICE_RE = /^pri_[a-z0-9]{20,}$/;
+const CATEGORY_SLUGS = new Set(CATEGORIES.map((c) => c.slug));
 const problems = [];
 
 for (const b of BOOKS) {
+  // A category slug that matches nothing resolves to a null category_id and
+  // fails mid-load on the book_categories NOT NULL constraint — after the
+  // preceding books have already been written. "mythology-and-folklore" for
+  // "myth-and-folklore" got that far once. Catch it before the first write.
+  for (const c of b.categories ?? []) {
+    if (!CATEGORY_SLUGS.has(c)) {
+      problems.push(
+        `${b.slug}: category "${c}" is not in CATEGORIES. ` +
+          `Known: ${[...CATEGORY_SLUGS].join(", ")}.`,
+      );
+    }
+  }
+
   const ebook = b.formats.find((f) => f.format === "ebook");
   const sellsDirect =
     ebook?.fulfillment === "direct" && ebook.availability === "available";

@@ -33,6 +33,16 @@ const BUILT = "scripts/tmp/digital-editions";
 
 export const PREVIEW_PAGES = [
   {
+    // Play Anywhere 1 (2026-09-10). The preview is one complete OPENING — the
+    // rules page and its facing diagram-and-notes page — because the whole
+    // promise of the book is that a game never turns a page, and two arbitrary
+    // pages would not show it. 2 of 162, well under one and a half per cent.
+    slug: "pencil-and-paper",
+    source: bookPath("PLA-01", "08_OUTPUT", "PAPERBACK", "PencilAndPaper_interior_paperback.pdf"),
+    pages: [40, 41],
+    note: "One complete opening: Dots and Boxes, with the rules, the diagram, the sourced provenance and the strategy note.",
+  },
+  {
     slug: "meditations",
     // Fetched from R2 — this book has no source project on disk; the master
     // in the bucket is the only copy.
@@ -285,5 +295,32 @@ export const PREVIEW_PAGES = [
     source: `${BUILT}/fairy-mythology-vol-2.pdf`,
     pages: [15, 18],
     note: "England: the longest section in the whole work, with the edition's head-note in front of it.",
+  },
+  {
+    // The first story's opening spread and the transparency note that governs the
+    // whole book. Pages 26-27 are the first two pages of "The One Who Made Himself";
+    // page 11 is the Turkish and English note on what this book is and is not, which
+    // is the honest thing to show a buyer before they pay for it.
+    slug: "how-the-world-began",
+    source: `${BUILT}/how-the-world-began.pdf`,
+    // [from, to], not a list - the first attempt passed four page numbers and got a
+    // sixteen-page range. This is a story opening and the prose that follows it, which
+    // is what a buyer needs to judge: pp. 25-28, "Chaos First".
+    pages: [25, 28],
+    note: "A story opening and the prose that follows it — Hesiod's Chaos, and why the usual translation of the word is wrong.",
+  },
+  {
+    slug: "the-tricksters-table",
+    source: `${BUILT}/the-tricksters-table.pdf`,
+    // A WHOLE STORY AND ITS APPARATUS, not a sampler. pp. 21-24 are Anansi's
+    // "Thunder's Two Gifts" complete, then "Where this came from", the historical
+    // context and the comparative reading - the four-part structure that is the only
+    // reason to buy this book rather than any other trickster collection. Showing
+    // three story openings would show the prose and hide the argument.
+    // 21-23, not 21-24. Page 24 is the last, sparse page of the reading — 0.56% ink —
+    // and a near-blank sheet as the final preview image makes the book look thin on a
+    // product page. Measured, not eyeballed.
+    pages: [21, 23],
+    note: "A whole tale and everything the book puts around it — Anansi and Thunder, then who wrote it down, when, and what that did to it.",
   },
 ];

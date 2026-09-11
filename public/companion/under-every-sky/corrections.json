@@ -1,0 +1,81 @@
+[
+ {
+  "id": "C-1",
+  "what": "Ṛgveda 10.129 (Nāsadīya) planned for S03",
+  "found": "no public-domain English Mandala 10 obtainable — Griffith vols III and IV fetched and neither contains it; Wikisource and sacred-texts.com both refuse automated requests; Mackenzie does not quote it",
+  "action": "S03 moved to the Prajāpati creation Mackenzie does quote. The Nāsadīya is named in the story, never quoted.",
+  "resolved": "RESOLVED 10 Sep 2026. Griffith's volume IV (Books IX-X) was located on archive.org (india.history.resource.112166) and downloaded; it contains RV 10.129 in full with Griffith's notes, and RV 10.90. The earlier finding — that volumes III and IV as then fetched lacked Mandala 10 — was wrong about volume IV; the file fetched under that name at the time was a different volume. S03 now QUOTES the Nāsadīya Sūkta instead of naming it, and S14 is upgraded from Mackenzie's paraphrase to Griffith's translation. The re-planning of S03 onto the Prajāpati cosmogony is kept, because that story is now written and is the better one for its place in the book; the Nāsadīya closes it as its own voice rather than as a report."
+ },
+ {
+  "id": "C-2",
+  "what": "the Poetic Edda file was named for Bellows",
+  "found": "Gutenberg #14726 is the Norrœna Society edition. Its title page reads: 'THE ELDER EDDAS OF SAEMUND SIGFUSSON … BY BENJAMIN THORPE, AND THE YOUNGER EDDAS OF SNORRE STURLESON … BY I. A. BLACKWELL', with Rasmus B. Anderson as editor in chief. The verse quoted in this book is Thorpe's, not Bellows's.",
+  "action": "citations corrected in plan.json; the filename kept so it still matches disk"
+ },
+ {
+  "id": "C-3",
+  "what": "S06 was planned as '*Enūma Eliš* tablets I–IV, in George Smith, *The Chaldean Account of Genesis* (London, 1876)'",
+  "found": "the file enuma-elish-king.txt is Gutenberg #60559 = Smith's *Chaldean Account of Genesis* in A. H. Sayce's new revised edition (New York: Charles Scribner's Sons), preface dated 21 May 1880 — not the 1876 London first edition. Smith also had no tablets II–IV: chapter V prints the top fifteen lines of tablet I, the upper part of tablet V, a four-line fragment he assigns to VII, and two doubtful scraps; the battle survives only as six detached fragments in chapter VI whose order Smith says cannot be decided.",
+  "action": "citation corrected in plan.json (edition and tablet range) and stated in the S06 source note. The filename is kept so it still matches disk; the ledger records that the file's name promises L. W. King and delivers Smith/Sayce. No material from King 1902 is used."
+ },
+ {
+  "id": "C-4",
+  "what": "S07 was to be written from hewitt-iroquoian-cosmology.txt",
+  "found": "that file (archive.org iroquoiancosmolo00hewi, the separately issued 1904 extract) is an uncorrected OCR so degraded that it renders the report's own title as 'IROQIOTAN COSMOLOGY' and Hewitt's 'five different versions' as 'five ditterent versions'. Verbatim quotation from it would not have been safe.",
+  "action": "a cleaner scan of the same text was located and downloaded — the full Twenty-first Annual Report (archive.org annualreportofbu21smithso, GPO 1903) — verified by its title page and letter of transmittal, hashed, and registered as bae21-hewitt-iroquoian-cosmology.txt. All S07 quotations are taken from it and were checked character by character. The degraded file is kept on disk, not deleted. Disclosed in the S07 source note."
+ },
+ {
+  "id": "C-5",
+  "what": "S11 was planned as '*Mahābhārata*, Ādi Parva, as retold with quotation in Mackenzie, *Indian Myth and Legend* (1913)' — kind PRIMARY-QUOTED-IN-SECONDARY",
+  "found": "Kisari Mohan Ganguli's complete prose Mahābhārata is public domain and the Ādi Parva is available in full. Working from Mackenzie's paraphrase when the primary translation is obtainable would have been a needless remove, and would also have made Mackenzie the source of three stories.",
+  "action": "S11 upgraded to PRIMARY-IN-TRANSLATION and rewritten from Ganguli, Astika Parva sections XVII-XIX. plan.json source and cite corrected. Mackenzie remains the source for S03 only."
+ },
+ {
+  "id": "C-6",
+  "what": "the Prose Edda file was named prose-edda-brodeur.txt",
+  "found": "Gutenberg #18947 is Rasmus B. Anderson's *The Younger Edda* (Chicago: Scott, Foresman, 1901; copyright 1879, S. C. Griggs), not Arthur Gilchrist Brodeur's 1916 translation. The Gutenberg header names Anderson as translator and the title page carries his name and titles; his distinctive spellings confirm it — Ginungagap, Ymer, Audhumbla, Ganglere, Har, Jafnhar, Thride, where Brodeur has Ginnungagap, Ymir, Audhumla, Gangleri, Hárr, Jafnhárr, Thridi.",
+  "action": "S12 cites Anderson. plan.json source and cite corrected. Filename kept so it still matches disk, with the mismatch recorded here and disclosed in the S12 source note. This is the third filename-vs-content mismatch in the project; production standards rule 14 already covers it."
+ },
+ {
+  "id": "C-7",
+  "what": "S13 was planned as PRIMARY-QUOTED-IN-SECONDARY — a Chinese primary text reached through a quotation in Werner",
+  "found": "Werner does not quote any primary text in his Pangu section. He summarises in his own English from sources he does not name there. He does quote a named primary author, the eighth-century historian Sima Zhen, but only for Nüwa.",
+  "action": "S13 re-labelled SCHOLARSHIP SUMMARISING A TRADITION in the source ledger and in plan.json. Nothing in the retelling is presented as a quotation from a Chinese text; the one quoted phrase is identified in the source note as Werner's own English."
+ },
+ {
+  "id": "C-8",
+  "what": "S16 was planned as 'The Earth Torn in Two' — the Aztec account in which the earth-monster Tlaltecuhtli is pulled apart to make the world",
+  "found": "Alexander's Latin-American volume does not contain it. His Mexican cosmogony chapter gives the Tarascan Tucupacha, the Mixtec account quoted from Fray Gregorio García, the Zapotec Coqui-Xee, and the Four Suns in five mutually incompatible orderings. The earth-from-a-monster survives only as one clause — the gods make Cipactli in the sea, 'from which they shaped the earth'. The Tlaltecuhtli dismemberment reaches modern readers chiefly through the Histoyre du Mechique, for which no public-domain English translation could be found.",
+  "action": "S16 re-scoped to the account Alexander actually prints in full — the Historia de los Mexicanos por sus pinturas — and re-titled 'The Suns That Failed'. plan.json title, cite and kind corrected. The absence of Tlaltecuhtli is disclosed in the S16 source note. Production standards rule 15 (when a source cannot be reached, change the book) applied."
+ },
+ {
+  "id": "C-9",
+  "what": "S18 was planned as 'Seven Eggs on a Knee' (Finland/Karelia, Kalevala Rune I)",
+  "found": "S09 'Ilmatar in the Water' is drawn from the same Rune I and already tells the duck, the knee, the six golden eggs and the seventh of iron, their fall and the making of the world from the fragments. S18 would have retold the same passage of the same poem from the same translation — an internal duplicate inside one book, which is worse than a duplicate across two.",
+  "action": "S18 replaced. The Part Four theme is 'From an Egg', so the slot needed a cosmic egg from a tradition not already used. It is now the Orphic egg as preserved in Aristophanes' *Birds* — a rival Greek cosmogony explicitly at odds with Hesiod's, which makes the point that 'the Greek creation myth' is not one thing. plan.json culture, title, source, cite and kind corrected."
+ },
+ {
+  "id": "C-10",
+  "what": "S28 was planned as 'The Suns Before This One' (Aztec, from Alexander's Latin-American volume)",
+  "found": "This duplicate was created by correction C-8. S16 had been planned as the Tlaltecuhtli dismemberment, which is not in the source; re-scoping S16 onto the Four Suns made S28 a retelling of the story S16 now tells.",
+  "action": "S28 replaced with the Mixtec cosmogony from the same volume — a different people, a different source document (Fray Gregorio García, whom Alexander quotes directly), and a different shape: the Deer-God and Deer-Goddess raising a cliff above the water and setting an axe edge-upward for the heavens to rest on. plan.json corrected. Both remaining Mesoamerican entries now come from separate documents about separate peoples."
+ },
+ {
+  "id": "C-11",
+  "what": "S22 was planned to be written from popol-vuh-brasseur-1861.txt",
+  "found": "that file is Brasseur de Bourbourg's 1861 edition — the K'iche' text with a FRENCH translation, not English. Writing the story from it would have meant this book making its own English translation of a nineteenth-century French translation of a colonial-era Spanish copy, with no published English to check against; and the scan's optical character recognition is too poor to quote safely, rendering the book's own running head as 'IWYTHES DE L'AN lOUITE AMERICAINE'.",
+  "action": "S22 written instead from Hartley Burr Alexander's English of the same chapter in *Latin-American Mythology* (1920), which is already held and registered. The chain K'iche' → Ximénez's Spanish → Brasseur's French → Alexander's English is stated in the source note, and Alexander's dependence on Brasseur was VERIFIED by comparing the Hurakan passage in both files. Brasseur's volume is retained and cited for the verification, never quoted."
+ },
+ {
+  "id": "C-12",
+  "what": "S24 was planned as 'The Sand, the Hen, and the Chain' — Obatala descending on a chain with a snail shell of sand and a five-toed hen",
+  "found": "that account is not in Ellis 1894. It reaches modern readers through later works, chiefly Samuel Johnson's *History of the Yorubas* and twentieth-century writers, none obtainable in public domain for this edition. Ellis does carry a palm-nut and a scratching fowl, but in his MIGRATION tradition and as the founding of Ife, which he himself reads as a memory of a real southward movement into the lagoon country.",
+  "action": "S24 re-scoped to the cosmogony Ellis does record — Obatala and Odudua as the two halves of a closed calabash, their confinement, the quarrel, the blinding and the curse of snails — and re-titled 'Two Halves of a Closed Calabash'. plan.json title, cite and kind corrected. The absence of the chain and hen, and the location of Ellis's nearest equivalent, are disclosed in the S24 source note. Production standards rule 15 applied. Internal duplicate scan re-run per rule 18: no new collision."
+ },
+ {
+  "id": "C-13",
+  "what": "S29 was planned as 'The Diver Who Kept Some Back' (Slavic, from mar03-slavic-celtic.txt)",
+  "found": "Jan Máchal's Slavic half of The Mythology of All Races vol. III contains no cosmogony. Its chapters run: belief in soul and genii, worship of the dead, household gods, and onward through nature spirits and deities. The dualist earth-diver legend in which God and the devil dive for mud and the devil keeps some in his mouth is a folk-legend type Máchal does not print, and no other public-domain source for it was held.",
+  "action": "S29 replaced with the Samoan and Tongan creation sequences from Dixon's *Oceanic Mythology*, which are already held and registered, and which fit the Part Six theme exactly: a series of provisional fixes each of which creates the next problem. Western Polynesia was otherwise absent from the book. plan.json culture, title, source, cite and kind corrected. Internal duplicate scan re-run per rule 18: Dixon now supplies three stories — S05 Māori, S20 Society Islands, S29 Samoa and Tonga — which is at the audit's limit and not over it; the three are different archipelagos with different cosmological plans and share no material."
+ }
+]
