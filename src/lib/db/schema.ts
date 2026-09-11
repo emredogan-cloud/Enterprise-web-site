@@ -691,6 +691,27 @@ export const freeBookRequests = pgTable(
      * actually agreed to.
      */
     marketingConsent: boolean("marketing_consent").notNull().default(false),
+    /**
+     * The secure first-party download, for books too large to attach.
+     *
+     * WHY A STORED TOKEN AND NOT A SIGNED JWT
+     * A self-describing token cannot be revoked, cannot be counted, and grows
+     * with everything you put in it. A random 256-bit string that means
+     * nothing on its own and is looked up here can be expired early, audited,
+     * and carries no information at all if it leaks from a mail archive — it
+     * is a claim check, not a document.
+     *
+     * The token NEVER contains the email address, the book, the bucket or the
+     * key. All of those are found by looking the row up. That also makes path
+     * traversal structurally impossible: the URL cannot name a file, only a
+     * request that already exists.
+     */
+    downloadToken: varchar("download_token", { length: 64 }).unique(),
+    downloadExpiresAt: timestamp("download_expires_at", { withTimezone: true }),
+    /** How many times the link was used. Abuse signal, and a delivery receipt. */
+    downloadCount: integer("download_count").notNull().default(0),
+    firstDownloadedAt: timestamp("first_downloaded_at", { withTimezone: true }),
+    lastDownloadedAt: timestamp("last_downloaded_at", { withTimezone: true }),
     /** Salted hash of the request IP. Never the address itself. */
     ipHash: varchar("ip_hash", { length: 64 }),
     /** Operator notes and delivery failures — internal only. */

@@ -248,6 +248,54 @@ export async function getObject({
   };
 }
 
+export interface StreamObjectArgs extends GetObjectArgs {
+  /** Verbatim HTTP Range header, when the client sent one. */
+  range?: string | null;
+}
+
+export interface StreamObjectResult {
+  body: ReadableStream<Uint8Array>;
+  contentLength?: number;
+  contentType?: string;
+  /** Present only when the request was a range request S3 honoured. */
+  contentRange?: string;
+  status: 200 | 206;
+}
+
+/**
+ * Stream an object out of a private bucket without materialising it.
+ *
+ * `getObject` above reads the whole body into memory, which is right for a
+ * 4 MB master going into an email attachment and catastrophic for a 104 MB
+ * one going down a response: a serverless function has a memory ceiling and a
+ * Buffer of that size will find it. This returns the S3 body as a web stream
+ * instead, so the bytes pass through the function rather than piling up in it.
+ *
+ * Range requests are forwarded to S3 untouched, so a browser or download
+ * manager can resume a big file rather than starting again.
+ */
+export async function streamObject({
+  bucket,
+  key,
+  range,
+}: StreamObjectArgs): Promise<StreamObjectResult> {
+  const response = await getClient().send(
+    new GetObjectCommand({
+      Bucket: resolveBucketName(bucket),
+      Key: key,
+      ...(range ? { Range: range } : {}),
+    }),
+  );
+  if (!response.Body) throw new Error("empty body from storage");
+  return {
+    body: response.Body.transformToWebStream(),
+    contentLength: response.ContentLength,
+    contentType: response.ContentType,
+    contentRange: response.ContentRange,
+    status: response.ContentRange ? 206 : 200,
+  };
+}
+
 export interface HeadObjectResult {
   exists: boolean;
   contentLength?: number;

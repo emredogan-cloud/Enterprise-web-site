@@ -1,16 +1,19 @@
 import "server-only";
 
 import {
+  DOWNLOAD_TTL_HOURS,
   claimRequestForSending,
   getAmazonEditions,
   getRequestForFulfilment,
+  issueDownloadToken,
   markRequestStatus,
   type FreeBookRequestStatus,
 } from "@/lib/db/queries/free-books";
+import { getSiteUrl } from "@/lib/site-url";
 import { getCompanionForBook } from "@/lib/companions";
 import { sendFreeBookEmail } from "@/lib/email";
 import { logger } from "@/lib/logger";
-import { generateSignedDownloadUrl, getObject, headObject, MASTERS_BUCKET } from "@/lib/storage";
+import { getObject, headObject, MASTERS_BUCKET } from "@/lib/storage";
 
 /**
  * Delivering one free-ebook request.
@@ -26,12 +29,14 @@ import { generateSignedDownloadUrl, getObject, headObject, MASTERS_BUCKET } from
  * Both callers check their own gate BEFORE calling this. Nothing here checks
  * authorisation, so nothing here may be exported to a public route.
  *
- * WHY THE LINK IS MINTED HERE AND NOT STORED
- * The delivered file lives in the private masters bucket. Nothing in this
- * feature ever writes an R2 key, a bucket name or a public URL into a row, an
- * email body or a page — a signed URL is created for one send only, and it
- * expires. A request row is a record of an ask, never a standing right to a
- * file.
+ * WHERE THE FILE COMES FROM, AND WHAT THE READER SEES
+ * The delivered file lives in the private masters bucket, and nothing in this
+ * feature ever writes an R2 key, a bucket name or a storage URL into a row, an
+ * email body or a page. Small books travel as an attachment. Books past the
+ * attachment ceiling get a first-party `valicepress.com/download/<token>`
+ * link, where the token names this request row and nothing else — see
+ * `src/app/download/[token]/route.ts`. A request row is a record of an ask,
+ * never a standing right to a file: the token expires.
  *
  * WHY IT IS AN OPERATOR ACTION AT ALL
  * The modal promises delivery "within 24 hours", and that is the honest
@@ -46,7 +51,6 @@ export interface FulfilResult {
   providerId?: string;
 }
 
-const DELIVERY_TTL_SECONDS = 900; // the bucket's hard ceiling — see storage/index.ts
 
 /**
  * How large a master may be before we stop trying to attach it.
@@ -122,7 +126,7 @@ export async function deliverFreeBookRequest(id: string): Promise<FulfilResult> 
       );
     }
     if ((head.contentLength ?? 0) > MAX_ATTACHMENT_BYTES) {
-      attachmentNote = `too large to attach (${Math.round((head.contentLength ?? 0) / 1048576)} MB) — sent as a link`;
+      attachmentNote = `too large to attach (${Math.round((head.contentLength ?? 0) / 1048576)} MB) — secure download link, ${DOWNLOAD_TTL_HOURS}h`;
     } else {
       const obj = await getObject({ bucket: MASTERS_BUCKET, key: row.masterFileKey });
       attachment = {
@@ -132,26 +136,30 @@ export async function deliverFreeBookRequest(id: string): Promise<FulfilResult> 
     }
   } catch (err) {
     logger.error("[free-books] master fetch failed", { id, err: String(err) });
-    attachmentNote = "could not read the master — sent as a link";
+    attachmentNote = `could not read the master — secure download link, ${DOWNLOAD_TTL_HOURS}h`;
   }
 
   /**
-   * The link is minted only when the attachment could not be. Nothing is
-   * stored; it exists for the length of this send.
+   * Too large to attach → a first-party download link.
+   *
+   * The reader gets `valicepress.com/download/<token>` instead of 700
+   * characters of signed storage URL. The token names this request row and
+   * nothing else: no bucket, no key, no slug, nothing to tamper with. See
+   * `src/app/download/[token]/route.ts`.
    */
   let url: string | null = null;
   if (!attachment) {
     try {
-      url = await generateSignedDownloadUrl({
-        bucket: MASTERS_BUCKET,
-        key: row.masterFileKey,
-        ttlSeconds: DELIVERY_TTL_SECONDS,
-      });
+      const { token } = await issueDownloadToken(id);
+      url = `${getSiteUrl()}/download/${token}`;
     } catch (err) {
-      logger.error("[free-books] signed URL failed", { id, err: String(err) });
+      logger.error("[free-books] could not issue a download token", {
+        id,
+        err: String(err),
+      });
       return fail(
         "failed",
-        `no attachment and signed URL failed: ${String(err).slice(0, 160)}`,
+        `no attachment and no download token: ${String(err).slice(0, 160)}`,
         "Could not attach the PDF or create a download link. See the logs.",
       );
     }
@@ -171,7 +179,7 @@ export async function deliverFreeBookRequest(id: string): Promise<FulfilResult> 
     editions,
     attachment,
     downloadUrl: url,
-    expiresInMinutes: Math.round(DELIVERY_TTL_SECONDS / 60),
+    expiresInHours: DOWNLOAD_TTL_HOURS,
   });
 
   if (!sent.ok) {
@@ -194,7 +202,9 @@ export async function deliverFreeBookRequest(id: string): Promise<FulfilResult> 
     (sent.id ? `; provider ${sent.id}` : "");
   await markRequestStatus(id, "fulfilled", note);
 
-  const how = attachment ? "with the PDF attached" : "with a download link";
+  const how = attachment
+    ? "with the PDF attached"
+    : `with a secure download link (valid ${DOWNLOAD_TTL_HOURS}h)`;
   return {
     ok: true,
     message: `Sent ${row.bookTitle} to ${row.email} ${how}.`,
