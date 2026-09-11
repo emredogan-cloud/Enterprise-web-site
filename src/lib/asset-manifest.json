@@ -221,7 +221,7 @@
       "path": "/images/books/how-the-world-began.webp",
       "width": 1067,
       "height": 1600,
-      "bytes": 40272,
+      "bytes": 223376,
       "slot": "book-cover",
       "entity": "how-the-world-began"
     },
@@ -437,7 +437,7 @@
       "path": "/images/books/thumb/how-the-world-began.webp",
       "width": 264,
       "height": 396,
-      "bytes": 6322,
+      "bytes": 23074,
       "slot": "book-thumb",
       "entity": "how-the-world-began"
     },
