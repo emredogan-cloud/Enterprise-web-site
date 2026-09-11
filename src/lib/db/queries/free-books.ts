@@ -360,6 +360,44 @@ export async function listRequestsForDiagnostics(limit = 12) {
  */
 export const DOWNLOAD_TTL_HOURS = 72;
 
+/**
+ * How many times one link may be *opened* before it stops working.
+ *
+ * A download link is for one reader, not for a forum post. Expiry alone does
+ * not say that: for 72 hours an uncapped link is a public mirror of a private
+ * master, and the reader who pasted it into a group chat never finds out.
+ *
+ * It is not a one-shot, though, and deliberately so. This endpoint answers
+ * Range requests so a 104 MB download can resume, a download manager may open
+ * eight connections at once, and a mail client may fetch the link to preview
+ * it. A link that died on first contact would fail the honest reader far more
+ * often than the dishonest one. So the cap counts only *fresh starts* — a
+ * request with no Range, or one asking from byte 0 — and sets the ceiling high
+ * enough that no real reader meets it and low enough that a published link
+ * stops being useful within the first few takers.
+ */
+export const DOWNLOAD_MAX_OPENS = 25;
+
+/**
+ * Does this request begin a new download, or continue one already in flight?
+ *
+ * Only the first kind is charged against `DOWNLOAD_MAX_OPENS`. A `Range` that
+ * starts anywhere but byte 0 is a resume or one leg of a parallel fetch — the
+ * same reader, the same book, already counted. Anything malformed is treated
+ * as a fresh start, because the safe mistake here is to charge an open, not to
+ * hand out an uncounted one.
+ */
+export function isFreshDownloadStart(range: string | null | undefined): boolean {
+  if (!range) return true;
+  const m = /^bytes\s*=\s*(\d+)\s*-/.exec(range.trim());
+  // Not a byte range we recognise — a suffix range, a typo, another unit.
+  // Count it. Erring towards charging an open costs a reader nothing (the
+  // ceiling is far above real use) and erring the other way hands out an
+  // uncounted download to anyone who sends a header we did not parse.
+  if (!m) return true;
+  return Number(m[1]) === 0;
+}
+
 /** Mint a fresh download token for one request. Replaces any previous one. */
 export async function issueDownloadToken(id: string): Promise<{
   token: string;
