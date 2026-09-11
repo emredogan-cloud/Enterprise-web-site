@@ -529,5 +529,18 @@
         "page": 18
       }
     ]
+  },
+  "pencil-and-paper": {
+    "note": "One complete opening: Dots and Boxes, with the rules, the diagram, the sourced provenance and the strategy note.",
+    "pages": [
+      {
+        "src": "/images/previews/pencil-and-paper/p40.webp",
+        "page": 40
+      },
+      {
+        "src": "/images/previews/pencil-and-paper/p41.webp",
+        "page": 41
+      }
+    ]
   }
 }

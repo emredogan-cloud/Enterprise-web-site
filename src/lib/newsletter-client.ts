@@ -62,6 +62,8 @@ export type NewsletterSource =
   | "mancala-companion"
   | "traditional-games-companion"
   // Phase 3 of the public-domain factory (2026-09-06): the Bestiarium expansion.
+  // Play Anywhere 1 — the first Agent A original (2026-09-10).
+  | "play-anywhere-companion"
   | "kwaidan-companion"
   | "sea-monsters-unmasked-companion"
   | "book-of-were-wolves-companion"

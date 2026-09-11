@@ -301,4 +301,17 @@ export const DIRECT_SALE_EBOOKS = [
     priceBasis:
       "price-engine.mjs 2026-09-07, direct ebook, public domain: $9.99 nets $8.99 after Paddle at a 90% margin. Priced level with Volume I because neither volume is the lesser half \u2014 they come out at 101,835 and 101,612 of Keightley's words without being adjusted.",
   },
+  {
+    // Play Anywhere 1 (2026-09-10). The first ORIGINAL Vâliçe book sold direct
+    // before it exists on Amazon, so there is no Kindle list price to match to
+    // the cent — the rule the rest of this list follows. $6.99 is the Series
+    // Bible price and is what the Kindle edition will be listed at, so the two
+    // will agree the day the KDP upload clears. Not enrolled in Select and never
+    // will be: house policy forbids it for every original title.
+    slug: "pencil-and-paper",
+    name: "Pencil & Paper: 60 Games That Need Nothing but a Pencil",
+    description:
+      "The complete 162-page book as a DRM-free, watermarked PDF and a reflowable EPUB. Sixty pencil-and-paper games, each with a sourced provenance note and a real strategy note, and eight score sheets you may print as often as you like.",
+    priceCents: 699,
+  },
 ];

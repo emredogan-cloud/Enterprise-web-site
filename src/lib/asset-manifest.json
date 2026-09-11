@@ -282,6 +282,14 @@
       "entity": "myths-and-legends-of-china"
     },
     {
+      "path": "/images/books/pencil-and-paper.webp",
+      "width": 1000,
+      "height": 1600,
+      "bytes": 137568,
+      "slot": "book-cover",
+      "entity": "pencil-and-paper"
+    },
+    {
       "path": "/images/books/sea-monsters-unmasked.webp",
       "width": 1067,
       "height": 1600,
@@ -1008,6 +1016,22 @@
       "bytes": 149820,
       "slot": "book-preview",
       "entity": "myths-and-legends-of-china"
+    },
+    {
+      "path": "/images/previews/pencil-and-paper/p40.webp",
+      "width": 750,
+      "height": 1200,
+      "bytes": 41962,
+      "slot": "book-preview",
+      "entity": "pencil-and-paper"
+    },
+    {
+      "path": "/images/previews/pencil-and-paper/p41.webp",
+      "width": 750,
+      "height": 1200,
+      "bytes": 57164,
+      "slot": "book-preview",
+      "entity": "pencil-and-paper"
     },
     {
       "path": "/images/previews/sea-monsters-unmasked/p20.webp",
