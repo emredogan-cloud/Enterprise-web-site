@@ -149,7 +149,17 @@ export function Hero() {
         gutter becomes a margin instead of a void. The ceiling is still there,
         because at 2500px a truly full-bleed text column would be unreadable.
       */}
-      <div className="relative mx-auto flex min-h-[86vh] w-full max-w-[1700px] flex-col justify-end px-6 pb-12 pt-[52vw] sm:min-h-[92vh] sm:justify-center sm:pb-16 sm:pt-36 lg:min-h-[94vh] lg:px-12 lg:pb-20 lg:pt-40 xl:px-16 2xl:px-20">
+      {/*
+        `pb-[88px]` and `pt-[38vw]` on mobile are the AI launcher's parking
+        space, not padding taste. The launcher is `fixed bottom-4` and 56px
+        tall, so it owns the bottom 72px of every screen. The hero stacks its
+        CTAs at the bottom on a phone, and at 52vw of top padding the hero
+        stood 859px tall in a 718px viewport — which put "Explore ebooks"
+        underneath the launcher. Trimming the top padding lifts the whole
+        bottom-anchored block clear. Measured on a real Redmi Note 8, not in a
+        simulator.
+      */}
+      <div className="relative mx-auto flex min-h-[86vh] w-full max-w-[1700px] flex-col justify-end px-6 pb-[88px] pt-[38vw] sm:min-h-[92vh] sm:justify-center sm:pb-16 sm:pt-36 lg:min-h-[94vh] lg:px-12 lg:pb-20 lg:pt-40 xl:px-16 2xl:px-20">
         <div className="max-w-[620px] xl:max-w-[700px]">
           {/* Eyebrow — a rule beneath it, not a bordered pill. */}
           <div className="flex items-center gap-2.5">

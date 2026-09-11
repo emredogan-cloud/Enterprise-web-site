@@ -47,7 +47,19 @@ export function FeaturedBooksSection({
         rather than a fixed 300px, so the balance holds at every width.
       */}
       <div className="mx-auto w-full max-w-[1700px] px-6 lg:px-12 xl:px-16 2xl:px-20">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.34fr)_minmax(0,0.66fr)] lg:gap-14 xl:gap-16">
+        {/*
+          `grid-cols-1` and `min-w-0` are load-bearing, not tidying.
+
+          Below `lg` there was no explicit column, so the single implicit
+          column was auto-sized — and a grid item's `min-width` is `auto`,
+          which means content-based. The rail's six cards then sized the
+          column instead of scrolling inside it: measured on a real Redmi,
+          the document went 1848px wide against a 393px screen and Chrome
+          zoomed the whole page out to fit, which is why the shelf looked
+          like nine tiny cards on a phone. `overflow-x: auto` cannot
+          constrain a box that its own content is allowed to widen.
+        */}
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,0.34fr)_minmax(0,0.66fr)] lg:gap-14 xl:gap-16">
           {/* Editorial column */}
           <div className="lg:pt-2">
             <div className="flex items-center gap-2.5">
@@ -78,7 +90,7 @@ export function FeaturedBooksSection({
           </div>
 
           {/* The shelf of cards */}
-          <RevealOnScroll>
+          <RevealOnScroll className="min-w-0">
             <div
               className="rail-scroll -mx-6 overflow-x-auto px-6 pb-2 lg:mx-0 lg:rounded-[20px] lg:border lg:border-white/[0.07] lg:bg-white/[0.015] lg:px-3 lg:py-3"
               style={{ scrollSnapType: "x proximity" }}
