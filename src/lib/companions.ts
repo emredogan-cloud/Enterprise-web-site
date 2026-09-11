@@ -2120,9 +2120,10 @@ const ETYMON: Companion = {
     "The book is finished but not yet on sale — it has not been uploaded to " +
     "KDP. Everything on this page is free now and stays free afterwards.",
   intro:
-    "The apparatus behind the book: every word tested and what happened to " +
-    "it, the authorities quoted for each entry, and a direct link to every " +
-    "source scan so you can check any quotation against the page it came from.",
+    "The apparatus behind the 314-page book: every word tested and what " +
+    "happened to it, the authorities quoted for each entry, and a direct link " +
+    "to every source scan so you can check any quotation against the page it " +
+    "came from.",
   calloutLabel: "See every word the method tested — including the rejects",
   newsletterSource: "etymon-companion",
   assetsHeading: "Check the book yourself",
@@ -2137,23 +2138,23 @@ const ETYMON: Companion = {
       id: "evidence-table",
       title: "The evidence table",
       description:
-        "All seventy words in the book, the authorities quoted for each, how " +
+        "All 145 words in the book, the authorities quoted for each, how " +
         "many separate claims the entry makes, and which entries end in an " +
         "open question rather than an answer.",
       kind: "static",
       href: "/companion/etymon/etymon-evidence-table.pdf",
-      meta: "PDF · US Letter · 2 pages",
+      meta: "PDF · US Letter · 4 pages",
     },
     {
       id: "candidate-pool",
       title: "Every word tested — including the ones that failed",
       description:
-        "All 191 words put through the two-authority gate, by theme, showing " +
+        "All 348 words put through the two-authority gate, by theme, showing " +
         "which dictionaries carried each one and whether it passed. The book " +
-        "prints seventy of them; this is the other 121 as well.",
+        "prints 145 of them; this is everything else as well.",
       kind: "static",
       href: "/companion/etymon/etymon-candidate-pool.pdf",
-      meta: "PDF · US Letter · 4 pages",
+      meta: "PDF · US Letter · 8 pages",
     },
     {
       id: "sources",
