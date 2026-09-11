@@ -562,6 +562,21 @@ ihtiyacı vardı, bu yüzden geçici bir talep satırı oluşturuldu, jetonu
 <strong>2 saat geriye tarihlendirildi</strong>, adres çağrıldı — <code>410</code> —
 ve satır hemen silindi. Testten sonra üretimde kalan iz: <code>rows left: 0</code>.</p>
 
+<h3>Açılma tavanı üretimde kanıtlandı</h3>
+
+<p>PR #53 üretime indikten sonra, gerçek jeton üzerinde, gerçek adrese karşı:</p>
+
+<pre>download_count başlangıç                        : 3
+devam eden Range (54.480.538. bayttan)  → 206  , sayaç 3   (sayılmadı ✓)
+taze Range (0. bayttan)                 → 206  , sayaç 4   (sayıldı   ✓)
+sayaç 25'e ayarlandı, istek             → <strong>429</strong>            (bağlantı kapandı ✓)
+sayaç 24'e ayarlandı, istek             → 206              (hâlâ çalışıyor ✓)
+sayaç okurun gerçek değerine geri alındı: 4</pre>
+
+<p>Yani bir indirmeyi kaldığı yerden sürdürmek bedava; bağlantıyı yeniden açmak bir
+hak yiyor; 25&#39;te bağlantı kapanıyor; 24&#39;te hâlâ çalışıyor. Okurun elindeki
+bağlantıda <strong>21 açılış</strong> kaldı.</p>
+
 <p>Canlı satırların durumu (11 Eylül 2026, gönderimden hemen sonra):</p>
 
 <pre>codex-bestiarium  → emre30283@gmail.com   jeton 43 karakter   süre 71,9 sa   açılış 3
@@ -822,6 +837,20 @@ sessizce tekrarlanmamasını sağlayan kontrol.</p>
 <tr><td>Üretim doğrulaması</td><td><code>/download/&lt;sahte&gt;</code> → 404 <em>ve</em> ana sayfa HTML&#39;inde <code>w-[216px]</code> — dağıtımın indiğinin iki işareti</td></tr>
 </table>
 </div>
+
+<h3>PR #53 sonrası üretim doğrulaması</h3>
+
+<p>Üretim dağıtımı <code>f480caf</code>&#39;a geçtikten sonra, <strong>gerçek Redmi Note
+8&#39;de, <code>valicepress.com</code>&#39;un kendisinde</strong> ölçüldü:</p>
+
+<pre>url               : https://valicepress.com/?prod=1
+visibilityState   : visible      hasFocus : true
+görünüm alanı     : 392 px       belge    : 392 px    (yatay taşma yok)
+kart              : 150 px       görünür  : 2,36 kitap
+şerit             : 4482 px      2 şerit x 27 kart
+playbackRate      : 1,4565
+<strong>ölçülen hız       : 33,96 px/sn</strong>   (düzeltme öncesi 16,06)
+ekrandaki kapak   : 3           yüklenmemiş : 0</pre>
 
 <p><strong>Sıkı kurallara uyuldu.</strong> <code>git add -A</code> kullanılmadı; her
 işleme dosyaları tek tek eklendi. <code>git reset --hard</code>, <code>git clean</code>
