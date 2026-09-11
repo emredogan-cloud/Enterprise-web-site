@@ -32,8 +32,8 @@ export function CategoriesSection({
   if (cards.length === 0) return null;
 
   return (
-    <section className="relative px-6 py-14 sm:py-24 lg:py-28">
-      <div className="mx-auto max-w-7xl">
+    <section className="relative px-6 py-14 sm:py-24 lg:px-12 lg:py-28 xl:px-16 2xl:px-20">
+      <div className="mx-auto w-full max-w-[1700px]">
         <RevealOnScroll>
           <header className="flex flex-col items-start gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>

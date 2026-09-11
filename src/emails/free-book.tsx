@@ -55,7 +55,8 @@ export interface FreeBookEmailProps {
   bookSubtitle?: string | null;
   /** Present when the PDF could not be attached; null when it is attached. */
   downloadUrl?: string | null;
-  expiresInMinutes?: number;
+  /** How long the download link lives, in hours. */
+  expiresInHours?: number;
   attachmentFilename?: string | null;
   /** Live Amazon editions, already filtered and ordered. */
   editions?: FreeBookEmailEdition[];
@@ -70,7 +71,7 @@ export function FreeBookEmail({
   bookTitle,
   bookSubtitle,
   downloadUrl,
-  expiresInMinutes,
+  expiresInHours,
   attachmentFilename,
   editions = [],
   bookUrl,
@@ -115,16 +116,29 @@ export function FreeBookEmail({
             </Text>
           ) : (
             <>
+              {/*
+                This book is too large to travel as an attachment — every mail
+                provider stops well below its size. It is a real Valice Press
+                link on the imprint's own domain, not a signed storage URL:
+                the reader never sees a bucket name or a query string, and a
+                filter never sees a URL that looks like one.
+              */}
               <Text style={callout}>
-                Your copy is waiting here:{" "}
-                <Link href={downloadUrl!} style={inlineLink}>
-                  Download the PDF
-                </Link>
+                <strong>Your copy is ready for you here.</strong> This one is a
+                large, heavily illustrated book — too big to travel as an
+                attachment — so it is waiting on a private download page.
               </Text>
+              <Section style={{ margin: "22px 0 0" }}>
+                <Link href={downloadUrl!} style={button}>
+                  Download your book
+                </Link>
+              </Section>
               <Text style={small}>
-                This link expires in about {expiresInMinutes ?? 15} minutes for
-                security. If it has already expired, just reply to this email
-                and we&apos;ll send a fresh one straight away.
+                Your private download link works for{" "}
+                {expiresInHours ? `${Math.round(expiresInHours / 24)} days` : "3 days"}.
+                If it has expired by the time you get to it, just reply to this
+                email and we&apos;ll send a fresh one — the book is yours either
+                way.
               </Text>
             </>
           )}
@@ -290,6 +304,20 @@ const editionRow: React.CSSProperties = {
   fontSize: "15px",
   lineHeight: 1.6,
   margin: "6px 0 0",
+};
+
+/* The one thing the reader is here to press. Gold, like the gift box that
+   started this on the site. */
+const button: React.CSSProperties = {
+  backgroundColor: "#d6b266",
+  backgroundImage: "linear-gradient(140deg, #f7dea0 0%, #e2c074 45%, #c9a25c 100%)",
+  borderRadius: "999px",
+  color: "#2a1f06",
+  display: "inline-block",
+  fontSize: "15px",
+  fontWeight: 700,
+  padding: "14px 30px",
+  textDecoration: "none",
 };
 
 const inlineLink: React.CSSProperties = {

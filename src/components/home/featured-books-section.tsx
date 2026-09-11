@@ -39,9 +39,27 @@ export function FeaturedBooksSection({
   if (cards.length === 0) return null;
 
   return (
-    <section className="relative py-14 sm:py-20 lg:py-24" aria-labelledby="featured-heading">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,300px)_minmax(0,1fr)] lg:gap-12">
+    <section className="relative py-16 sm:py-24 lg:py-32" aria-labelledby="featured-heading">
+      {/*
+        Same container as the hero, for the same reason: `max-w-7xl` left a
+        280px gutter and squeezed the editorial column to a measured 16% of
+        the section — the brief asks for 30-35%. The grid is now a fraction
+        rather than a fixed 300px, so the balance holds at every width.
+      */}
+      <div className="mx-auto w-full max-w-[1700px] px-6 lg:px-12 xl:px-16 2xl:px-20">
+        {/*
+          `grid-cols-1` and `min-w-0` are load-bearing, not tidying.
+
+          Below `lg` there was no explicit column, so the single implicit
+          column was auto-sized — and a grid item's `min-width` is `auto`,
+          which means content-based. The rail's six cards then sized the
+          column instead of scrolling inside it: measured on a real Redmi,
+          the document went 1848px wide against a 393px screen and Chrome
+          zoomed the whole page out to fit, which is why the shelf looked
+          like nine tiny cards on a phone. `overflow-x: auto` cannot
+          constrain a box that its own content is allowed to widen.
+        */}
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,0.34fr)_minmax(0,0.66fr)] lg:gap-14 xl:gap-16">
           {/* Editorial column */}
           <div className="lg:pt-2">
             <div className="flex items-center gap-2.5">
@@ -55,13 +73,16 @@ export function FeaturedBooksSection({
             </div>
             <h2
               id="featured-heading"
-              className="mt-4 font-serif text-[30px] font-medium leading-[1.12] tracking-[-0.02em] text-fg-hi sm:text-[36px]"
+              className="mt-5 font-serif text-[34px] font-medium leading-[1.08] tracking-[-0.025em] text-fg-hi sm:text-[44px] lg:text-[52px] xl:text-[58px]"
             >
               Thoughtful reads for a brighter tomorrow.
             </h2>
+            <p className="mt-5 max-w-[330px] text-[14px] leading-relaxed text-fg-soft sm:text-[15px]">
+              Six from the shelf, chosen for people who keep what they read.
+            </p>
             <Link
               href="/books"
-              className="mt-5 inline-flex items-center gap-1.5 border-b border-white/20 pb-1 text-[13px] font-medium text-fg-mid transition-colors hover:border-emerald-bright/60 hover:text-fg-hi focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#33f0aa]"
+              className="mt-7 inline-flex items-center gap-1.5 border-b border-white/20 pb-1.5 text-[14px] font-medium text-fg-mid transition-colors hover:border-emerald-bright/60 hover:text-fg-hi focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#33f0aa]"
             >
               View all books
               <span aria-hidden>→</span>
@@ -69,9 +90,9 @@ export function FeaturedBooksSection({
           </div>
 
           {/* The shelf of cards */}
-          <RevealOnScroll>
+          <RevealOnScroll className="min-w-0">
             <div
-              className="rail-scroll -mx-6 overflow-x-auto px-6 pb-2 lg:mx-0 lg:rounded-2xl lg:border lg:border-white/[0.07] lg:bg-white/[0.015] lg:px-2 lg:py-2"
+              className="rail-scroll -mx-6 overflow-x-auto px-6 pb-2 lg:mx-0 lg:rounded-[20px] lg:border lg:border-white/[0.07] lg:bg-white/[0.015] lg:px-3 lg:py-3"
               style={{ scrollSnapType: "x proximity" }}
             >
               <ul className="flex list-none gap-3 lg:gap-0">
@@ -80,7 +101,7 @@ export function FeaturedBooksSection({
                     key={b.slug}
                     style={{ scrollSnapAlign: "start" }}
                     className={
-                      "w-[260px] shrink-0 sm:w-[300px] lg:w-[calc(100%/3)] lg:min-w-[260px]" +
+                      "w-[290px] shrink-0 sm:w-[330px] lg:w-[calc(100%/3)] lg:min-w-[300px]" +
                       // Hairline dividers between cards, like the reference —
                       // but only where cards actually sit side by side.
                       (i > 0 ? " lg:border-l lg:border-white/[0.06]" : "")
@@ -88,27 +109,29 @@ export function FeaturedBooksSection({
                   >
                     <Link
                       href={`/books/${b.slug}`}
-                      className="group flex h-full gap-3.5 rounded-xl p-3 transition-colors hover:bg-white/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#33f0aa] lg:gap-4"
+                      className="group flex h-full gap-4 rounded-xl p-3.5 transition-colors hover:bg-white/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#33f0aa] lg:gap-5 lg:p-4"
                     >
-                      <div className="relative aspect-[2/3] w-[74px] shrink-0 overflow-hidden rounded-md border border-white/[0.07] shadow-[0_10px_22px_-14px_rgba(0,0,0,0.9)] sm:w-[84px]">
+                      {/* The cover was a measured 82px — a thumbnail, not a
+                          book. A discovery shelf has to show the artwork. */}
+                      <div className="relative aspect-[2/3] w-[112px] shrink-0 overflow-hidden rounded-lg border border-white/[0.07] shadow-[0_14px_30px_-16px_rgba(0,0,0,0.95)] transition-transform duration-300 group-hover:-translate-y-0.5 motion-reduce:transition-none sm:w-[124px] lg:w-[136px] xl:w-[148px]">
                         <CoverArt
                           src={b.coverSrc ?? null}
                           title={b.title}
                           alt={`${b.title} — cover`}
-                          sizes="84px"
+                          sizes="(min-width: 1280px) 148px, (min-width: 1024px) 136px, (min-width: 640px) 124px, 112px"
                         />
                       </div>
 
                       <div className="flex min-w-0 flex-1 flex-col">
-                        <h3 className="font-serif text-[15px] font-medium leading-snug text-fg-hi transition-colors group-hover:text-emerald-bright sm:text-base">
+                        <h3 className="font-serif text-[17px] font-medium leading-snug text-fg-hi transition-colors group-hover:text-emerald-bright sm:text-[18px] xl:text-[19px]">
                           {b.title}
                         </h3>
                         {b.subtitle ? (
-                          <p className="mt-1.5 line-clamp-2 text-[12px] leading-snug text-fg-soft">
+                          <p className="mt-2 line-clamp-3 text-[13px] leading-snug text-fg-soft">
                             {b.subtitle}
                           </p>
                         ) : null}
-                        <p className="mt-2 text-[11px] uppercase tracking-[0.14em] text-fg-soft/80">
+                        <p className="mt-2.5 text-[11px] uppercase tracking-[0.16em] text-fg-soft/80">
                           Valice Press
                         </p>
 
@@ -117,7 +140,7 @@ export function FeaturedBooksSection({
                             {b.categories.slice(0, 2).map((c) => (
                               <li
                                 key={c}
-                                className="rounded-full border border-white/[0.12] px-2.5 py-1 text-[10.5px] leading-none text-fg-mid"
+                                className="rounded-full border border-white/[0.12] px-3 py-1.5 text-[11px] leading-none text-fg-mid"
                               >
                                 {c}
                               </li>

@@ -2,6 +2,8 @@ import Link from "next/link";
 
 import { bookCoverSrc } from "@/lib/asset-map";
 
+import { MarqueeMotion } from "./marquee-motion";
+
 /**
  * A shelf that keeps moving.
  *
@@ -36,8 +38,14 @@ export interface MarqueeBook {
   authors: string[];
 }
 
-/** Card width + gap, in px, at desktop. Used to derive the duration. */
-const CARD_ADVANCE = 132 + 18;
+/**
+ * The card advance at the widest breakpoint (card + gap), used only to give
+ * the server a sensible starting duration. The real pace is calibrated in the
+ * browser from the measured lane width, because the card size is
+ * breakpoint-dependent and one fixed duration would mean a different speed at
+ * every width. See `<MarqueeMotion>`.
+ */
+const CARD_ADVANCE = 216 + 26;
 const PIXELS_PER_SECOND = 34;
 
 export function BookMarquee({ books }: { books: MarqueeBook[] }) {
@@ -69,24 +77,23 @@ export function BookMarquee({ books }: { books: MarqueeBook[] }) {
 
   return (
     <section className="relative overflow-hidden py-12 sm:py-16" aria-labelledby="shelf-heading">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto w-full max-w-[1700px] px-6 lg:px-12 xl:px-16 2xl:px-20">
         <h2
           id="shelf-heading"
           className="text-[10px] font-semibold uppercase tracking-[0.3em] text-emerald-bright/70 sm:text-[11px]"
         >
           The shelf
         </h2>
-        <p className="mt-2 max-w-[520px] text-[13px] leading-relaxed text-fg-soft sm:text-sm">
+        <p className="mt-2.5 max-w-[560px] text-[14px] leading-relaxed text-fg-soft sm:text-[15px]">
           Every book Valice Press publishes, moving past. Pick one up.
         </p>
       </div>
 
-      {/*
-        `group` so hover can slow the track. Slow, not stop: a shelf that
-        freezes under the cursor feels broken, and pausing outright makes the
-        seam findable by parking on it.
-      */}
-      <div className="marquee group relative mt-8">
+      {/* The wrapper is `<MarqueeMotion>`: it owns the speed, and nothing
+          else. Hover slows the track by changing `playbackRate`, which the
+          spec guarantees preserves position — see that file for what the old
+          CSS-duration approach did instead. */}
+      <MarqueeMotion>
         <div
           /* No gap BETWEEN the lanes — each lane carries its own trailing
              gap instead. `translateX(-50%)` is half the track, so a gap
@@ -99,14 +106,21 @@ export function BookMarquee({ books }: { books: MarqueeBook[] }) {
             <ul
               key={li}
               aria-hidden={l.hidden || undefined}
-              className="flex shrink-0 list-none gap-[18px] pe-[18px]"
+              className="flex shrink-0 list-none gap-4 pe-4 sm:gap-5 sm:pe-5 xl:gap-[26px] xl:pe-[26px]"
             >
               {l.copy.map((b) => (
                 <li key={`${li}-${b.slug}`} className="shrink-0">
                   <Link
                     href={`/books/${b.slug}`}
                     tabIndex={l.hidden ? -1 : undefined}
-                    className="group/card block w-[104px] focus-visible:outline-none sm:w-[132px]"
+                    /*
+                      FEWER BOOKS, BIGGER BOOKS. The old shelf put 12+ covers
+                      on a desktop screen at 132px each, which is a contact
+                      sheet, not a bookshelf. Measured targets at these sizes:
+                      ~7.7 visible at 1854px, ~6.0 at 1280, ~4.0 at 768,
+                      ~2.3 at 390.
+                    */
+                    className="group/card block w-[150px] focus-visible:outline-none sm:w-[170px] lg:w-[190px] xl:w-[216px]"
                   >
                     <div className="relative aspect-[2/3] overflow-hidden rounded-lg border border-white/[0.07] bg-[#07110b] shadow-[0_12px_28px_-18px_rgba(0,0,0,0.9)] transition-[transform,border-color] duration-300 group-hover/card:-translate-y-1 group-hover/card:border-emerald-bright/30 group-focus-visible/card:ring-2 group-focus-visible/card:ring-[#33f0aa] motion-reduce:transition-none motion-reduce:group-hover/card:translate-y-0">
                       {/*
@@ -126,14 +140,14 @@ export function BookMarquee({ books }: { books: MarqueeBook[] }) {
                       <img
                         src={b.cover}
                         alt={l.hidden ? "" : `${b.title} — cover`}
-                        width={264}
-                        height={396}
+                        width={432}
+                        height={648}
                         loading="lazy"
                         decoding="async"
                         className="h-full w-full object-cover"
                       />
                     </div>
-                    <p className="mt-2.5 line-clamp-2 text-[12px] leading-snug text-fg-mid transition-colors group-hover/card:text-fg-hi sm:text-[13px]">
+                    <p className="mt-3 line-clamp-2 text-[13px] leading-snug text-fg-mid transition-colors group-hover/card:text-fg-hi sm:text-[14px]">
                       {b.title}
                     </p>
                   </Link>
@@ -154,7 +168,7 @@ export function BookMarquee({ books }: { books: MarqueeBook[] }) {
           className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-28"
           style={{ background: "linear-gradient(270deg, #050705 0%, rgba(5,7,5,0) 100%)" }}
         />
-      </div>
+      </MarqueeMotion>
     </section>
   );
 }

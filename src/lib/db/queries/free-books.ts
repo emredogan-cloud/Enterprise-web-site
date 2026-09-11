@@ -16,6 +16,8 @@
  * price the database holds, not one the browser sent back to us.
  */
 
+import { randomBytes } from "node:crypto";
+
 import { and, desc, eq, gte, ne, sql } from "drizzle-orm";
 
 import { db } from "@/lib/db";
@@ -344,6 +346,95 @@ export async function listRequestsForDiagnostics(limit = 12) {
     .from(freeBookRequests)
     .orderBy(desc(freeBookRequests.createdAt))
     .limit(limit);
+}
+
+/**
+ * How long a first-party download link lives.
+ *
+ * The old signed R2 link lasted fifteen minutes — right for a checkout
+ * download clicked seconds after paying, wrong for a gift that may be opened
+ * after a weekend. Three days covers "I saw it on Friday evening and got to
+ * it on Monday", which is the realistic worst case for an unprompted email,
+ * while still being short enough that a link forwarded or leaked from an
+ * archive is dead long before anyone finds it.
+ */
+export const DOWNLOAD_TTL_HOURS = 72;
+
+/** Mint a fresh download token for one request. Replaces any previous one. */
+export async function issueDownloadToken(id: string): Promise<{
+  token: string;
+  expiresAt: Date;
+}> {
+  // 32 bytes of CSPRNG, base64url. Unguessable, and meaningless on its own —
+  // it names a row, not a file.
+  const token = randomBytes(32).toString("base64url");
+  const expiresAt = new Date(Date.now() + DOWNLOAD_TTL_HOURS * 3_600_000);
+  await db
+    .update(freeBookRequests)
+    .set({ downloadToken: token, downloadExpiresAt: expiresAt, downloadCount: 0 })
+    .where(eq(freeBookRequests.id, id));
+  return { token, expiresAt };
+}
+
+/**
+ * Resolve a download token to the one thing it is allowed to hand over.
+ *
+ * Returns the book's master key only when the token exists AND has not
+ * expired. The caller cannot influence which file comes back: there is no
+ * slug, id or path in the URL, so there is nothing to tamper with.
+ */
+/**
+ * Is this string even shaped like one of our tokens?
+ *
+ * Cheap, pure, and it runs before the database does: a URL carrying dot-dot,
+ * an empty segment, or a hand-typed guess is rejected without a query. It is
+ * not the security boundary — 256 bits of entropy and a row lookup are — but
+ * it is the reason a URL can never be read as a path, and a test can hold it.
+ */
+export function isWellFormedDownloadToken(token: string): boolean {
+  return (
+    typeof token === "string" &&
+    token.length >= 32 &&
+    token.length <= 64 &&
+    // base64url only: no slash, no dot, no percent.
+    /^[A-Za-z0-9_-]+$/.test(token)
+  );
+}
+
+export async function resolveDownloadToken(token: string) {
+  if (!isWellFormedDownloadToken(token)) return null;
+  const rows = await db
+    .select({
+      id: freeBookRequests.id,
+      bookSlug: freeBookRequests.bookSlug,
+      bookTitle: freeBookRequests.bookTitle,
+      expiresAt: freeBookRequests.downloadExpiresAt,
+      downloadCount: freeBookRequests.downloadCount,
+      masterFileKey: books.masterFileKey,
+    })
+    .from(freeBookRequests)
+    .leftJoin(books, eq(freeBookRequests.bookId, books.id))
+    .where(eq(freeBookRequests.downloadToken, token))
+    .limit(1);
+  const row = rows[0];
+  if (!row) return null;
+  if (!row.expiresAt || row.expiresAt.getTime() < Date.now()) {
+    return { ...row, expired: true as const };
+  }
+  return { ...row, expired: false as const };
+}
+
+/** Record a successful hand-over. Best-effort; never blocks the download. */
+export async function recordDownload(id: string) {
+  const now = new Date();
+  await db
+    .update(freeBookRequests)
+    .set({
+      downloadCount: sql`${freeBookRequests.downloadCount} + 1`,
+      lastDownloadedAt: now,
+      firstDownloadedAt: sql`coalesce(${freeBookRequests.firstDownloadedAt}, ${now})`,
+    })
+    .where(eq(freeBookRequests.id, id));
 }
 
 export async function markRequestStatus(

@@ -262,11 +262,12 @@ export interface SendFreeBookArgs {
    */
   attachment?: { filename: string; content: Buffer } | null;
   /**
-   * Fallback only: a short-lived signed R2 URL, minted per send, never stored.
-   * Used when the master is too large to attach or the attachment was refused.
+   * Fallback for a book too large to attach: a first-party
+   * `valicepress.com/download/<token>` link. Never a storage URL.
    */
   downloadUrl?: string | null;
-  expiresInMinutes?: number;
+  /** Lifetime of that link, in hours. */
+  expiresInHours?: number;
 }
 
 /**
@@ -304,7 +305,7 @@ export async function sendFreeBookEmail(
         // the reader which happened, rather than leaving them hunting for an
         // attachment that is not there.
         downloadUrl: args.attachment ? null : (args.downloadUrl ?? null),
-        expiresInMinutes: args.expiresInMinutes,
+        expiresInHours: args.expiresInHours,
         attachmentFilename: args.attachment?.filename ?? null,
         editions: args.editions ?? [],
         bookUrl: `${site}${args.bookPath}`,

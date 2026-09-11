@@ -1451,11 +1451,21 @@ body:has(.cinematic-root) > header {
   }
 }
 
-/* Slowed, not stopped. A shelf that freezes under the cursor reads as broken,
-   and parking on it is how you find the seam. */
-.marquee:hover .marquee-track {
-  animation-duration: calc(var(--marquee-duration, 60s) * 2.6);
-}
+/*
+ * NOTE: the hover slowdown is NOT here any more, and must never come back
+ * here.
+ *
+ * It used to be `animation-duration: calc(var(--marquee-duration) * 2.6)` on
+ * `:hover`. A CSS animation's progress is `currentTime ÷ duration`, so
+ * changing the duration divides progress by 2.6 and throws the track
+ * backwards. Measured on the live page at a quarter of the way through the
+ * cycle: a -623px jump, which is 4.2 card positions — the "book jumps four
+ * places when I hover it" defect exactly.
+ *
+ * Speed is changed through the Web Animations API `playbackRate` instead,
+ * which by specification updates the start time so `currentTime` is
+ * preserved. See `marquee-motion.tsx`.
+ */
 
 /*
  * Reduced motion: the shelf stops and becomes a normal horizontal scroller.

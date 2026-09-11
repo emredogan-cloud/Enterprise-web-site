@@ -71,6 +71,13 @@
       "when": 1789068340632,
       "tag": "0009_equal_wendell_rand",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1789091724972,
+      "tag": "0010_sweet_kid_colt",
+      "breakpoints": true
     }
   ]
 }
