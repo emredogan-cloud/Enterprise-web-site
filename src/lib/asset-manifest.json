@@ -346,6 +346,14 @@
       "entity": "the-puzzles-of-henry-dudeney"
     },
     {
+      "path": "/images/books/the-tricksters-table.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 31710,
+      "slot": "book-cover",
+      "entity": "the-tricksters-table"
+    },
+    {
       "path": "/images/books/thumb/book-of-were-wolves.webp",
       "width": 264,
       "height": 396,
@@ -560,6 +568,14 @@
       "bytes": 13844,
       "slot": "book-thumb",
       "entity": "the-puzzles-of-henry-dudeney"
+    },
+    {
+      "path": "/images/books/thumb/the-tricksters-table.webp",
+      "width": 264,
+      "height": 396,
+      "bytes": 6294,
+      "slot": "book-thumb",
+      "entity": "the-tricksters-table"
     },
     {
       "path": "/images/books/thumb/traditional-games.webp",
@@ -906,38 +922,6 @@
       "entity": "codex-enigmatica"
     },
     {
-      "path": "/images/previews/codex-mythologica/p24.webp",
-      "width": 900,
-      "height": 1350,
-      "bytes": 98972,
-      "slot": "book-preview",
-      "entity": "codex-mythologica"
-    },
-    {
-      "path": "/images/previews/codex-mythologica/p25.webp",
-      "width": 900,
-      "height": 1350,
-      "bytes": 91570,
-      "slot": "book-preview",
-      "entity": "codex-mythologica"
-    },
-    {
-      "path": "/images/previews/codex-mythologica/p26.webp",
-      "width": 900,
-      "height": 1350,
-      "bytes": 113112,
-      "slot": "book-preview",
-      "entity": "codex-mythologica"
-    },
-    {
-      "path": "/images/previews/codex-mythologica/p27.webp",
-      "width": 900,
-      "height": 1350,
-      "bytes": 103148,
-      "slot": "book-preview",
-      "entity": "codex-mythologica"
-    },
-    {
       "path": "/images/previews/codex-mythologica-the-puzzle-book/p59.webp",
       "width": 1100,
       "height": 1424,
@@ -968,6 +952,38 @@
       "bytes": 2856,
       "slot": "book-preview",
       "entity": "codex-mythologica-the-puzzle-book"
+    },
+    {
+      "path": "/images/previews/codex-mythologica/p24.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 98972,
+      "slot": "book-preview",
+      "entity": "codex-mythologica"
+    },
+    {
+      "path": "/images/previews/codex-mythologica/p25.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 91570,
+      "slot": "book-preview",
+      "entity": "codex-mythologica"
+    },
+    {
+      "path": "/images/previews/codex-mythologica/p26.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 113112,
+      "slot": "book-preview",
+      "entity": "codex-mythologica"
+    },
+    {
+      "path": "/images/previews/codex-mythologica/p27.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 103148,
+      "slot": "book-preview",
+      "entity": "codex-mythologica"
     },
     {
       "path": "/images/previews/epictetus-discourses-and-enchiridion/p60.webp",

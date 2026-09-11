@@ -2275,6 +2275,101 @@ const UNDER_EVERY_SKY: Companion = {
   ],
 };
 
+/**
+ * ── THE TRICKSTER'S TABLE (Under Every Sky 2) ─────────────────────────────
+ *
+ * Registered before the QR code was generated, which is the order this house
+ * now works in: UES-01 printed a code on page 231 pointing at a route that did
+ * not exist, and only a gate written afterwards caught it. The book's QR gate
+ * fails unless this entry is here.
+ *
+ * The companion carries the book's apparatus in full and free — the source
+ * ledger, all 224 typed claims, the corrections, and the list of traditions
+ * the book declined with the reason for each. That last list is the most
+ * useful thing this particular volume can publish, because the declines are
+ * what a reader is most likely to question.
+ */
+const TRICKSTERS_TABLE: Companion = {
+  slug: "tricksters-table",
+  bookSlug: "the-tricksters-table",
+  bookTitle: "The Trickster's Table",
+  state: "book-not-yet-available",
+  stateNote:
+    "The book is finished but is not on sale yet — no edition has been listed " +
+    "anywhere. Everything on this page is free and stays free either way.",
+  intro:
+    "The book's apparatus in full: the eighteen sources behind the eighteen " +
+    "tales, all 224 claims with the kind of claim each one is, the three " +
+    "corrections logged while it was made, and every tradition the book " +
+    "declined, with the reason.",
+  calloutLabel: "See every source and every claim, free",
+  newsletterSource: "tricksters-table-companion",
+  assetsHeading: "Sources, claims and corrections",
+  rightsNote:
+    "Everything on this page is Vâliçe Press's own editorial work — ledgers, " +
+    "citations and corrections generated from the book's own records. The " +
+    "underlying texts it cites are public-domain collections and scholarship " +
+    "published between the seventeenth and early twentieth centuries; those " +
+    "are named and dated here rather than reproduced. The retellings stay in " +
+    "the book. These are historical and academic sources, not the direct " +
+    "practice of any living tradition, and no community or outside reviewer " +
+    "has read this material.",
+  assets: [
+    {
+      id: "sources-and-ledgers",
+      title: "Every source and every claim, on one page",
+      description:
+        "The whole apparatus as one browsable page: the three corrections, the " +
+        "source ledger, all 224 typed claims, and the bibliography.",
+      kind: "static",
+      href: "/companion/tricksters-table/sources-and-ledgers.html",
+      meta: "HTML · one page",
+    },
+    {
+      id: "corrections",
+      title: "The three corrections",
+      description:
+        "Four of five Project Gutenberg identifiers guessed from memory returned " +
+        "a completely different book; one download of a Chinese classic arrived " +
+        "in Chinese; and an Internet Archive error page was found sitting in the " +
+        "previous volume's source library. All three are printed in the book.",
+      kind: "static",
+      href: "/companion/tricksters-table/corrections.json",
+      meta: "JSON · 3 records",
+    },
+    {
+      id: "source-ledger",
+      title: "Source ledger",
+      description:
+        "Every source behind the eighteen tales: work, author, edition, the file " +
+        "it was read from, and that file's hash.",
+      kind: "static",
+      href: "/companion/tricksters-table/source-ledger.json",
+      meta: "JSON · 18 records",
+    },
+    {
+      id: "claim-ledger",
+      title: "Claim ledger",
+      description:
+        "All 224 claims, each tagged as a primary or historical source, as " +
+        "scholarship, or as this book's own editorial reading.",
+      kind: "static",
+      href: "/companion/tricksters-table/claim-ledger.json",
+      meta: "JSON · 224 claims",
+    },
+    {
+      id: "claims",
+      title: "Claim ledger, as a spreadsheet",
+      description:
+        "The same 224 claims as a CSV, for anyone who would rather sort and " +
+        "filter them somewhere else.",
+      kind: "static",
+      href: "/companion/tricksters-table/claims.csv",
+      meta: "CSV · 224 rows",
+    },
+  ],
+};
+
 const COMPANIONS: readonly Companion[] = [
   HANGUL,
   WORLD_GAMES,
@@ -2303,6 +2398,7 @@ const COMPANIONS: readonly Companion[] = [
   FAIRY_MYTHOLOGY_VOL_2,
   PLAY_ANYWHERE,
   UNDER_EVERY_SKY,
+  TRICKSTERS_TABLE,
 ];
 
 export function listCompanions(): readonly Companion[] {
