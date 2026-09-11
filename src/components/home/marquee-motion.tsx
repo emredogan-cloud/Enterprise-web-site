@@ -38,11 +38,37 @@ import { useEffect, useRef } from "react";
  */
 
 /** Shelf speed at rest, in CSS pixels per second. */
-const PX_PER_SECOND = 34;
+export const PX_PER_SECOND = 34;
 /** Speed under the pointer, as a fraction of the resting speed (~13 px/s). */
 const HOVER_FACTOR = 0.38;
 /** How long the change of pace takes. */
 const RAMP_MS = 450;
+
+/**
+ * The playback rate that makes one lane take `laneWidth / pxPerSecond` seconds.
+ *
+ * A lane crosses its own width once per `duration`, so its natural speed is
+ * `laneWidth / duration`. Multiplying the rate multiplies the speed, so the
+ * rate we want is simply `wanted ÷ natural`.
+ *
+ * THE TRAP, BECAUSE IT ALREADY CAUGHT US ONCE. The reciprocal of this —
+ * `(laneWidth / pxPerSecond) * 1000 / duration` — is dimensionally plausible
+ * and agrees with the right answer at exactly one point: when the rate is 1.
+ * The desktop lane happens to land there (6534px over 192s is 34.03 px/s), so
+ * a desktop measurement read 34.06 px/s and looked perfect while the phone
+ * ran at 16.07 px/s — half speed, and slower the narrower the screen got,
+ * when a narrower lane should ask for a *faster* rate. Found by measuring a
+ * real device, not by reading the line.
+ */
+export function calibratedPlaybackRate(
+  laneWidthPx: number,
+  durationMs: number,
+  pxPerSecond = PX_PER_SECOND,
+): number {
+  if (!(laneWidthPx > 0) || !(durationMs > 0)) return 1;
+  const naturalPxPerSecond = laneWidthPx / (durationMs / 1000);
+  return pxPerSecond / naturalPxPerSecond;
+}
 
 export function MarqueeMotion({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -65,6 +91,10 @@ export function MarqueeMotion({ children }: { children: React.ReactNode }) {
      * multiplier instead keeps the shelf at the same real-world pace on a
      * phone and on a widescreen — and, unlike rewriting the duration, cannot
      * move the track, because that is what `playbackRate` guarantees.
+     *
+     * Measured on a real Redmi Note 8 at 392px and on a 1854px desktop, which
+     * is the only way the first version of this formula was caught being
+     * upside down. See `calibratedPlaybackRate`.
      */
     let base = 1;
     let current = 1;
@@ -78,7 +108,7 @@ export function MarqueeMotion({ children }: { children: React.ReactNode }) {
         .width;
       const duration = Number(a?.effect?.getTiming().duration ?? 0);
       if (!a || !lane || !duration) return;
-      base = (lane / PX_PER_SECOND) * 1000 / duration;
+      base = calibratedPlaybackRate(lane, duration);
       current = target = base;
       a.playbackRate = base;
     };
