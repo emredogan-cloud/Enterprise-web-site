@@ -1,0 +1,868 @@
+{
+  "takenAt": "2026-09-12T15:04:19.099Z",
+  "purpose": "Pre-change storefront snapshot before the temporary public-domain isolation for Paddle domain review. Rollback reference.",
+  "totals": {
+    "books": 30,
+    "published": 30,
+    "publicDomainPublished": 18,
+    "originalPublished": 12,
+    "withPaddlePrice": 9,
+    "withMaster": 27
+  },
+  "rows": [
+    {
+      "book": "Meditations",
+      "slug": "meditations",
+      "categories": [
+        "Classics & Philosophy"
+      ],
+      "provenance": "PUBLIC DOMAIN",
+      "series": "Valice Classics",
+      "digital": "direct/available",
+      "physical": [],
+      "paddlePriceId": null,
+      "paddlePriceIdBeforeGate": "pri_01m1btwjzqvest52bwde6mqqam",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 0,
+        "hasPaddle": false,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/meditations/master/v1/master.pdf",
+      "epubFileKey": null
+    },
+    {
+      "book": "Codex Mythologica",
+      "slug": "codex-mythologica",
+      "categories": [
+        "Myth & Folklore"
+      ],
+      "provenance": "ORIGINAL",
+      "series": "Codex",
+      "digital": "amazon/available",
+      "physical": [
+        "paperback→amazon(B0HCY8KY3X)",
+        "hardcover→amazon(B0HDBFZRQ4)",
+        "large_print→amazon(B0HDDR84MF)"
+      ],
+      "paddlePriceId": null,
+      "paddlePriceIdBeforeGate": null,
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 0,
+        "hasPaddle": false,
+        "hasMaster": false,
+        "isbn": null
+      },
+      "masterFileKey": null,
+      "epubFileKey": null
+    },
+    {
+      "book": "Codex Bestiarium",
+      "slug": "codex-bestiarium",
+      "categories": [
+        "Myth & Folklore"
+      ],
+      "provenance": "ORIGINAL",
+      "series": "Codex",
+      "digital": "direct/available",
+      "physical": [
+        "paperback→amazon(B0HDLQHQ7H)",
+        "hardcover→amazon(B0HDLLPG5M)",
+        "large_print→amazon(B0HDLT1V3P)"
+      ],
+      "paddlePriceId": "pri_01m1zbewy6v80k9r58qbsxz1r4",
+      "paddlePriceIdBeforeGate": "pri_01m1zbewy6v80k9r58qbsxz1r4",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 999,
+        "hasPaddle": true,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/codex-bestiarium/master/v1/master.pdf",
+      "epubFileKey": null
+    },
+    {
+      "book": "The Great Book of World Myths",
+      "slug": "the-great-book-of-world-myths",
+      "categories": [
+        "Myth & Folklore",
+        "Young Explorers"
+      ],
+      "provenance": "ORIGINAL",
+      "series": "The Great Book of…",
+      "digital": "direct/available",
+      "physical": [
+        "paperback→amazon(B0HDTL5V2H)",
+        "hardcover→amazon(B0HDZJ4PHQ)"
+      ],
+      "paddlePriceId": "pri_01m1hjdhhvq98v2pdxxenh8q1z",
+      "paddlePriceIdBeforeGate": "pri_01m1hjdhhvq98v2pdxxenh8q1z",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 699,
+        "hasPaddle": true,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/the-great-book-of-world-myths/master/v1/master.pdf",
+      "epubFileKey": null
+    },
+    {
+      "book": "The Great Book of World Games",
+      "slug": "the-great-book-of-world-games",
+      "categories": [
+        "Games & Play"
+      ],
+      "provenance": "ORIGINAL",
+      "series": "The Great Book of…",
+      "digital": "direct/available",
+      "physical": [
+        "paperback→amazon(B0HG3KMK9L)",
+        "hardcover→amazon(B0HG41F21F)",
+        "large_print→amazon(B0HHNCVQVX)"
+      ],
+      "paddlePriceId": "pri_01m1zbf17bapxg1hd2gtp1554a",
+      "paddlePriceIdBeforeGate": "pri_01m1zbf17bapxg1hd2gtp1554a",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 999,
+        "hasPaddle": true,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/the-great-book-of-world-games/master/v1/master.pdf",
+      "epubFileKey": null
+    },
+    {
+      "book": "The Myth Hunter's Field Book",
+      "slug": "the-myth-hunters-field-book",
+      "categories": [
+        "Puzzle & Challenge",
+        "Young Explorers"
+      ],
+      "provenance": "ORIGINAL",
+      "series": null,
+      "digital": "direct/unavailable",
+      "physical": [
+        "paperback→amazon(B0HFP4KYX5)"
+      ],
+      "paddlePriceId": null,
+      "paddlePriceIdBeforeGate": null,
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 0,
+        "hasPaddle": false,
+        "hasMaster": false,
+        "isbn": null
+      },
+      "masterFileKey": null,
+      "epubFileKey": null
+    },
+    {
+      "book": "The Greek Alphabet Handwriting Workbook",
+      "slug": "greek-alphabet-handwriting-workbook",
+      "categories": [
+        "Language & Learning"
+      ],
+      "provenance": "ORIGINAL",
+      "series": null,
+      "digital": "direct/available",
+      "physical": [],
+      "paddlePriceId": "pri_01m1pmtds9p93zm735432kv98x",
+      "paddlePriceIdBeforeGate": "pri_01m1pmtds9p93zm735432kv98x",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 699,
+        "hasPaddle": true,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/greek-alphabet-handwriting-workbook/master/v1/master.pdf",
+      "epubFileKey": "books/greek-alphabet-handwriting-workbook/master/v1/master.epub"
+    },
+    {
+      "book": "Codex Mythologica: The Puzzle Book",
+      "slug": "codex-mythologica-the-puzzle-book",
+      "categories": [
+        "Puzzle & Challenge"
+      ],
+      "provenance": "ORIGINAL",
+      "series": null,
+      "digital": "direct/available",
+      "physical": [
+        "paperback→amazon(B0HJ2TPX4T)"
+      ],
+      "paddlePriceId": "pri_01m1sbkq3qsjyfx3tzwctay664",
+      "paddlePriceIdBeforeGate": "pri_01m1sbkq3qsjyfx3tzwctay664",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 1199,
+        "hasPaddle": true,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/codex-mythologica-the-puzzle-book/master/v1/master.pdf",
+      "epubFileKey": "books/codex-mythologica-the-puzzle-book/master/v1/master.epub"
+    },
+    {
+      "book": "Korean Hangul Handwriting Workbook",
+      "slug": "korean-hangul-handwriting-workbook",
+      "categories": [
+        "Language & Learning"
+      ],
+      "provenance": "ORIGINAL",
+      "series": null,
+      "digital": "direct/unavailable",
+      "physical": [
+        "paperback→amazon(B0HHHWXGG4)",
+        "hardcover→amazon(B0HHLZ31CV)"
+      ],
+      "paddlePriceId": null,
+      "paddlePriceIdBeforeGate": null,
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 0,
+        "hasPaddle": false,
+        "hasMaster": false,
+        "isbn": null
+      },
+      "masterFileKey": null,
+      "epubFileKey": null
+    },
+    {
+      "book": "The Puzzles of Henry Dudeney",
+      "slug": "the-puzzles-of-henry-dudeney",
+      "categories": [
+        "Puzzle & Challenge",
+        "Classics & Philosophy"
+      ],
+      "provenance": "PUBLIC DOMAIN",
+      "series": "Valice Classics",
+      "digital": "direct/available",
+      "physical": [
+        "paperback→amazon(B0HHS2JW9N)"
+      ],
+      "paddlePriceId": null,
+      "paddlePriceIdBeforeGate": "pri_01m1ha3tdx5bbyfqhe8k6qrep4",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 0,
+        "hasPaddle": false,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/the-puzzles-of-henry-dudeney/master/v1/master.pdf",
+      "epubFileKey": "books/the-puzzles-of-henry-dudeney/master/v1/master.epub"
+    },
+    {
+      "book": "Epictetus: The Discourses and Enchiridion",
+      "slug": "epictetus-discourses-and-enchiridion",
+      "categories": [
+        "Classics & Philosophy"
+      ],
+      "provenance": "PUBLIC DOMAIN",
+      "series": "Valice Classics",
+      "digital": "direct/available",
+      "physical": [],
+      "paddlePriceId": null,
+      "paddlePriceIdBeforeGate": "pri_01m1pttdvakbj8p0vb8tc86nj5",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 0,
+        "hasPaddle": false,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/epictetus-discourses-and-enchiridion/master/v1/master.pdf",
+      "epubFileKey": "books/epictetus-discourses-and-enchiridion/master/v1/master.epub"
+    },
+    {
+      "book": "Seneca: Selected Dialogues",
+      "slug": "seneca-selected-dialogues",
+      "categories": [
+        "Classics & Philosophy"
+      ],
+      "provenance": "PUBLIC DOMAIN",
+      "series": "Valice Classics",
+      "digital": "direct/available",
+      "physical": [],
+      "paddlePriceId": null,
+      "paddlePriceIdBeforeGate": "pri_01m1pttekkh73w3rjewmv1p2cy",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 0,
+        "hasPaddle": false,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/seneca-selected-dialogues/master/v1/master.pdf",
+      "epubFileKey": "books/seneca-selected-dialogues/master/v1/master.epub"
+    },
+    {
+      "book": "Myths and Legends of China",
+      "slug": "myths-and-legends-of-china",
+      "categories": [
+        "Myth & Folklore",
+        "Classics & Philosophy"
+      ],
+      "provenance": "PUBLIC DOMAIN",
+      "series": "Valice Classics",
+      "digital": "direct/available",
+      "physical": [],
+      "paddlePriceId": null,
+      "paddlePriceIdBeforeGate": "pri_01m1pttfb8fj469accf8znvjb7",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 0,
+        "hasPaddle": false,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/myths-and-legends-of-china/master/v1/master.pdf",
+      "epubFileKey": "books/myths-and-legends-of-china/master/v1/master.epub"
+    },
+    {
+      "book": "Indian Myth and Legend",
+      "slug": "indian-myth-and-legend",
+      "categories": [
+        "Myth & Folklore",
+        "Classics & Philosophy"
+      ],
+      "provenance": "PUBLIC DOMAIN",
+      "series": "Valice Classics",
+      "digital": "direct/available",
+      "physical": [],
+      "paddlePriceId": null,
+      "paddlePriceIdBeforeGate": "pri_01m1pttg3r2nd796vhmh7t22j5",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 0,
+        "hasPaddle": false,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/indian-myth-and-legend/master/v1/master.pdf",
+      "epubFileKey": "books/indian-myth-and-legend/master/v1/master.epub"
+    },
+    {
+      "book": "Mythical Monsters",
+      "slug": "mythical-monsters",
+      "categories": [
+        "Myth & Folklore",
+        "Classics & Philosophy"
+      ],
+      "provenance": "PUBLIC DOMAIN",
+      "series": "Valice Classics",
+      "digital": "direct/available",
+      "physical": [],
+      "paddlePriceId": null,
+      "paddlePriceIdBeforeGate": "pri_01m1pttgx4axvwt4tzkz73tz68",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 0,
+        "hasPaddle": false,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/mythical-monsters/master/v1/master.pdf",
+      "epubFileKey": "books/mythical-monsters/master/v1/master.epub"
+    },
+    {
+      "book": "Games Ancient and Oriental: The Egyptian Games",
+      "slug": "games-ancient-and-oriental",
+      "categories": [
+        "Games & Play",
+        "Classics & Philosophy"
+      ],
+      "provenance": "PUBLIC DOMAIN",
+      "series": "Valice Classics",
+      "digital": "direct/available",
+      "physical": [],
+      "paddlePriceId": null,
+      "paddlePriceIdBeforeGate": "pri_01m1v4n69wd2th3pf1cbw8an3n",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 0,
+        "hasPaddle": false,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/games-ancient-and-oriental/master/v1/master.pdf",
+      "epubFileKey": "books/games-ancient-and-oriental/master/v1/master.epub"
+    },
+    {
+      "book": "Korean Games: The Games of Chance and Divination",
+      "slug": "korean-games",
+      "categories": [
+        "Games & Play",
+        "Classics & Philosophy"
+      ],
+      "provenance": "PUBLIC DOMAIN",
+      "series": "Valice Classics",
+      "digital": "direct/available",
+      "physical": [],
+      "paddlePriceId": null,
+      "paddlePriceIdBeforeGate": "pri_01m1v4n6zery50yws32dpspqve",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 0,
+        "hasPaddle": false,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/korean-games/master/v1/master.pdf",
+      "epubFileKey": "books/korean-games/master/v1/master.epub"
+    },
+    {
+      "book": "Kwaidan: Stories and Studies of Strange Things",
+      "slug": "kwaidan",
+      "categories": [
+        "Myth & Folklore",
+        "Classics & Philosophy"
+      ],
+      "provenance": "PUBLIC DOMAIN",
+      "series": "Valice Classics",
+      "digital": "direct/available",
+      "physical": [],
+      "paddlePriceId": null,
+      "paddlePriceIdBeforeGate": "pri_01m1v4n80k6g2tba6wt8882ehf",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 0,
+        "hasPaddle": false,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/kwaidan/master/v1/master.pdf",
+      "epubFileKey": "books/kwaidan/master/v1/master.epub"
+    },
+    {
+      "book": "The Fairy Mythology, Volume I",
+      "slug": "fairy-mythology-vol-1",
+      "categories": [
+        "Myth & Folklore",
+        "Classics & Philosophy"
+      ],
+      "provenance": "PUBLIC DOMAIN",
+      "series": "Valice Classics",
+      "digital": "direct/available",
+      "physical": [],
+      "paddlePriceId": null,
+      "paddlePriceIdBeforeGate": "pri_01m1ygdhj80yaesd4xzsf05hby",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 0,
+        "hasPaddle": false,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/fairy-mythology-vol-1/master/v1/master.pdf",
+      "epubFileKey": "books/fairy-mythology-vol-1/master/v1/master.epub"
+    },
+    {
+      "book": "The Fairy Mythology, Volume II",
+      "slug": "fairy-mythology-vol-2",
+      "categories": [
+        "Myth & Folklore",
+        "Classics & Philosophy"
+      ],
+      "provenance": "PUBLIC DOMAIN",
+      "series": "Valice Classics",
+      "digital": "direct/available",
+      "physical": [],
+      "paddlePriceId": null,
+      "paddlePriceIdBeforeGate": "pri_01m1ygdm5f4zfcsh3zd4a1pv1s",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 0,
+        "hasPaddle": false,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/fairy-mythology-vol-2/master/v1/master.pdf",
+      "epubFileKey": "books/fairy-mythology-vol-2/master/v1/master.epub"
+    },
+    {
+      "book": "British Goblins",
+      "slug": "british-goblins",
+      "categories": [
+        "Myth & Folklore",
+        "Classics & Philosophy"
+      ],
+      "provenance": "PUBLIC DOMAIN",
+      "series": "Valice Classics",
+      "digital": "direct/available",
+      "physical": [],
+      "paddlePriceId": null,
+      "paddlePriceIdBeforeGate": "pri_01m1ygdfd1x5hv5ps20c5zzkg1",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 0,
+        "hasPaddle": false,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/british-goblins/master/v1/master.pdf",
+      "epubFileKey": "books/british-goblins/master/v1/master.epub"
+    },
+    {
+      "book": "The Book of Were-Wolves",
+      "slug": "book-of-were-wolves",
+      "categories": [
+        "Myth & Folklore",
+        "Classics & Philosophy"
+      ],
+      "provenance": "PUBLIC DOMAIN",
+      "series": "Valice Classics",
+      "digital": "direct/available",
+      "physical": [],
+      "paddlePriceId": null,
+      "paddlePriceIdBeforeGate": "pri_01m1ygdddc64qsn9kervbdz2kk",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 0,
+        "hasPaddle": false,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/book-of-were-wolves/master/v1/master.pdf",
+      "epubFileKey": "books/book-of-were-wolves/master/v1/master.epub"
+    },
+    {
+      "book": "Sea Monsters Unmasked, and Sea Fables Explained",
+      "slug": "sea-monsters-unmasked",
+      "categories": [
+        "Myth & Folklore",
+        "Classics & Philosophy"
+      ],
+      "provenance": "PUBLIC DOMAIN",
+      "series": "Valice Classics",
+      "digital": "direct/available",
+      "physical": [],
+      "paddlePriceId": null,
+      "paddlePriceIdBeforeGate": "pri_01m1ygdbp4rk8vb0b87tebaq09",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 0,
+        "hasPaddle": false,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/sea-monsters-unmasked/master/v1/master.pdf",
+      "epubFileKey": "books/sea-monsters-unmasked/master/v1/master.epub"
+    },
+    {
+      "book": "The Singing Games of England, Scotland, and Ireland",
+      "slug": "traditional-games",
+      "categories": [
+        "Games & Play",
+        "Classics & Philosophy"
+      ],
+      "provenance": "PUBLIC DOMAIN",
+      "series": "Valice Classics",
+      "digital": "direct/available",
+      "physical": [],
+      "paddlePriceId": null,
+      "paddlePriceIdBeforeGate": "pri_01m1v4n8mdw8dnnsdc2bqwf56d",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 0,
+        "hasPaddle": false,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/traditional-games/master/v1/master.pdf",
+      "epubFileKey": "books/traditional-games/master/v1/master.epub"
+    },
+    {
+      "book": "Chess and Playing Cards: The Chess, Divination and Card Collections",
+      "slug": "chess-and-playing-cards",
+      "categories": [
+        "Games & Play",
+        "Classics & Philosophy"
+      ],
+      "provenance": "PUBLIC DOMAIN",
+      "series": "Valice Classics",
+      "digital": "direct/available",
+      "physical": [],
+      "paddlePriceId": null,
+      "paddlePriceIdBeforeGate": "pri_01m1v4n991k3h8x20sbwp9455z",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 0,
+        "hasPaddle": false,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/chess-and-playing-cards/master/v1/master.pdf",
+      "epubFileKey": "books/chess-and-playing-cards/master/v1/master.epub"
+    },
+    {
+      "book": "Mancala, the National Game of Africa",
+      "slug": "mancala",
+      "categories": [
+        "Games & Play",
+        "Classics & Philosophy"
+      ],
+      "provenance": "PUBLIC DOMAIN",
+      "series": "Valice Classics",
+      "digital": "direct/available",
+      "physical": [],
+      "paddlePriceId": null,
+      "paddlePriceIdBeforeGate": "pri_01m1v4n9ygd9z3vbgstcjbmvt0",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 0,
+        "hasPaddle": false,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/mancala/master/v1/master.pdf",
+      "epubFileKey": "books/mancala/master/v1/master.epub"
+    },
+    {
+      "book": "Codex Enigmatica",
+      "slug": "codex-enigmatica",
+      "categories": [
+        "Puzzle & Challenge"
+      ],
+      "provenance": "ORIGINAL",
+      "series": "Codex",
+      "digital": "direct/available",
+      "physical": [
+        "paperback→amazon(B0HGSVF15Q)",
+        "hardcover→amazon(B0HH3B4HQ7)"
+      ],
+      "paddlePriceId": "pri_01m1btjc0bp4phgs7vrqhq4g18",
+      "paddlePriceIdBeforeGate": "pri_01m1btjc0bp4phgs7vrqhq4g18",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 999,
+        "hasPaddle": true,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/codex-enigmatica/master/v1/master.pdf",
+      "epubFileKey": null
+    },
+    {
+      "book": "Pencil & Paper",
+      "slug": "pencil-and-paper",
+      "categories": [
+        "Games & Play"
+      ],
+      "provenance": "ORIGINAL",
+      "series": "Play Anywhere",
+      "digital": "direct/available",
+      "physical": [],
+      "paddlePriceId": "pri_01m25nycdntw031qg4sygyt4pw",
+      "paddlePriceIdBeforeGate": "pri_01m25nycdntw031qg4sygyt4pw",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 699,
+        "hasPaddle": true,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/pencil-and-paper/master/v1/master.pdf",
+      "epubFileKey": null
+    },
+    {
+      "book": "How the World Began",
+      "slug": "how-the-world-began",
+      "categories": [
+        "Myth & Folklore"
+      ],
+      "provenance": "ORIGINAL",
+      "series": "Under Every Sky",
+      "digital": "direct/available",
+      "physical": [],
+      "paddlePriceId": "pri_01m26qf1088bc4fssshphw2x3m",
+      "paddlePriceIdBeforeGate": "pri_01m26qf1088bc4fssshphw2x3m",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 999,
+        "hasPaddle": true,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/how-the-world-began/master/v1/master.pdf",
+      "epubFileKey": null
+    },
+    {
+      "book": "The Trickster's Table",
+      "slug": "the-tricksters-table",
+      "categories": [
+        "Myth & Folklore"
+      ],
+      "provenance": "ORIGINAL",
+      "series": "Under Every Sky",
+      "digital": "direct/available",
+      "physical": [],
+      "paddlePriceId": "pri_01m285tsm54yf4tnme163800ga",
+      "paddlePriceIdBeforeGate": "pri_01m285tsm54yf4tnme163800ga",
+      "publicStorefront": true,
+      "search": true,
+      "recommendations": true,
+      "featured": true,
+      "status": "published",
+      "db": {
+        "status": "published",
+        "priceCents": 699,
+        "hasPaddle": true,
+        "hasMaster": true,
+        "isbn": null
+      },
+      "masterFileKey": "books/the-tricksters-table/master/v1/master.pdf",
+      "epubFileKey": null
+    }
+  ]
+}

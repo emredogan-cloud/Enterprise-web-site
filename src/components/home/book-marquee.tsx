@@ -85,7 +85,12 @@ export function BookMarquee({ books }: { books: MarqueeBook[] }) {
           The shelf
         </h2>
         <p className="mt-2.5 max-w-[560px] text-[14px] leading-relaxed text-fg-soft sm:text-[15px]">
-          Every book Valice Press publishes, moving past. Pick one up.
+          {/* Not "every book Valice Press publishes". It was, until the
+              public-domain series came off the storefront on 2026-09-12 for
+              the Paddle domain review and the shelf went from twenty-seven
+              books to twelve — at which point the line was a claim the shelf
+              no longer kept. This wording is true at either size. */}
+          What&apos;s on the Valice Press shelf right now, moving past. Pick one up.
         </p>
       </div>
 

@@ -47,6 +47,7 @@ interface Book {
   directSaleBlockedBy: string | null;
   paddlePriceId: string | null;
   series?: { name: string; volume?: number } | null;
+  description?: string | null;
   categories: string[];
   authors: string[];
   formats: Format[];
@@ -154,18 +155,28 @@ describe("Paddle compliance gate", () => {
     ).toEqual([]);
   });
 
-  it("still lets held-out titles be delivered, so the free campaign survives", () => {
-    // The bug this guards: tying master_file_key to "is it on sale" nulls the
-    // key for every held-out book and breaks free delivery for two thirds of
-    // the catalogue.
-    const classics = books.filter(
-      (b) => b.series?.name === PUBLIC_DOMAIN_SERIES && b.websiteStatus === "published",
-    );
-    expect(classics.length).toBeGreaterThan(0);
+  /**
+   * THE ISOLATION IS A CURTAIN, NOT A BULLDOZER.
+   *
+   * On 2026-09-12 the public-domain series was taken off the public storefront
+   * for the duration of the Paddle domain review. The whole value of doing it
+   * that way rather than by deletion is that every book comes back by flipping
+   * one boolean — so what has to be true is that nothing was lost on the way
+   * out. If a future change starts stripping fields from hidden books, the
+   * rollback quietly stops working and nobody finds out until it is tried.
+   */
+  it("hides the public-domain series without losing anything it needs back", () => {
+    const classics = books.filter((b) => b.series?.name === PUBLIC_DOMAIN_SERIES);
+    expect(classics.length).toBeGreaterThanOrEqual(18);
     for (const b of classics) {
+      expect(b.websiteStatus, `${b.slug} should be hidden during the review`).toBe("draft");
       const ebook = directEbook(b);
-      expect(ebook, `${b.slug} lost its deliverable ebook`).toBeDefined();
-      expect(ebook!.masterFileKey, `${b.slug} has no master to deliver`).toBeTruthy();
+      expect(ebook, `${b.slug} lost its ebook format`).toBeDefined();
+      expect(ebook!.masterFileKey, `${b.slug} lost its master file key`).toBeTruthy();
+      expect(b.title, `${b.slug} lost its title`).toBeTruthy();
+      expect(b.description, `${b.slug} lost its description`).toBeTruthy();
+      expect(b.categories?.length, `${b.slug} lost its categories`).toBeGreaterThan(0);
+      expect(b.paddlePriceId, `${b.slug} must carry no Paddle price`).toBeNull();
     }
   });
 
@@ -186,20 +197,18 @@ describe("Paddle compliance gate", () => {
    * eighteen titles silently stop being requestable — the modal opens and the
    * submission answers 409.
    */
-  it("leaves every held-out title giftable, and every unfillable title not", () => {
+  it("keeps the deliverable/buyable split intact for what is still on the shelf", () => {
     const published = books.filter((b) => b.websiteStatus === "published");
-    const withMaster = published.filter((b) => directEbook(b)?.masterFileKey);
-    const withoutMaster = published.filter((b) => !directEbook(b)?.masterFileKey);
-
-    // Held out of the paid checkout, still ours to give.
-    for (const b of published.filter((x) => x.series?.name === PUBLIC_DOMAIN_SERIES)) {
-      expect(withMaster, `${b.slug} must stay giftable`).toContain(b);
+    // Every visible title that has a file can be given away; every visible
+    // title that can be charged for has a Paddle price. The two questions stay
+    // separate — that separation is what kept the free campaign alive when the
+    // gate went in, and it must not quietly re-merge.
+    for (const b of published) {
+      if (b.paddlePriceId) {
+        expect(directEbook(b)?.masterFileKey, `${b.slug} is sold with no master`).toBeTruthy();
+      }
     }
-    // The only books that must never be offered are the ones with no file.
-    for (const b of withoutMaster) {
-      expect(directEbook(b)?.masterFileKey ?? null, `${b.slug}`).toBeFalsy();
-    }
-    expect(withMaster.length).toBeGreaterThanOrEqual(18);
+    expect(published.length).toBeGreaterThanOrEqual(12);
   });
 
   it("advertises no print edition that does not exist", () => {

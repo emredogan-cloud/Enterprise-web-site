@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { buildPageMetadata } from "@/lib/metadata";
 import { withLangRuns } from "@/lib/lang-runs";
 import { getCompanion, listCompanions } from "@/lib/companions";
+import { getPublishedBookBySlug } from "@/lib/db/queries/catalog";
 import { CompanionSignup } from "@/components/companion/companion-signup";
 import { CompanionDownloadLink } from "@/components/companion/companion-download-link";
 import { AnswerChecker } from "@/components/companion/answer-checker";
@@ -76,7 +77,28 @@ export default async function CompanionPage({
   const companion = getCompanion(slug);
   if (!companion) notFound();
 
-  const bookIsBuyable = companion.state === "book-available";
+  /**
+   * IS THE BOOK ACTUALLY ON THE STOREFRONT RIGHT NOW?
+   *
+   * `companion.state` is a hand-maintained field and it is right about the
+   * book's commercial life — published, in review, withdrawn. It cannot know
+   * about the temporary isolation of 2026-09-12, which took the public-domain
+   * series off the storefront for the Paddle domain review without changing
+   * anything about the books themselves.
+   *
+   * Seventeen of these companions belong to a hidden title. Trusting the
+   * hand-maintained field alone would print "See the book, its formats and
+   * where to buy it" pointing at a page that now 404s — a dead link under a QR
+   * code printed inside books already sold on Amazon.
+   *
+   * So the storefront is asked directly. `getPublishedBookBySlug` returns null
+   * for a hidden book, and it fails in the safe direction: if the query cannot
+   * run at build time it also returns null, and the page offers no buy route
+   * rather than a broken one.
+   */
+  const bookOnStorefront = Boolean(await getPublishedBookBySlug(companion.bookSlug));
+  const bookIsBuyable = companion.state === "book-available" && bookOnStorefront;
+  const temporarilyUnlisted = companion.state === "book-available" && !bookOnStorefront;
 
   return (
     <div className="cinematic-root min-h-screen">
@@ -99,7 +121,12 @@ export default async function CompanionPage({
         {!bookIsBuyable && (
           <div className="mt-8 rounded-2xl border border-amber-300/25 bg-amber-300/[0.06] p-5">
             <p className="text-sm leading-relaxed text-fg-mid">
-              {companion.stateNote}
+              {temporarilyUnlisted
+                ? // Says only what is true and checkable. It does not give a
+                  // reason, because the reason is our business with a payment
+                  // provider and not something a reader needs.
+                  "This edition isn’t listed on valicepress.com at the moment. Everything on this page is free and works today regardless."
+                : companion.stateNote}
             </p>
           </div>
         )}

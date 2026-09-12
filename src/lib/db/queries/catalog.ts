@@ -742,7 +742,23 @@ export async function listAllCategories(): Promise<CategorySummary[]> {
             .filter((src): src is string => Boolean(src))
             .slice(0, 3),
         };
-      });
+      })
+      /**
+       * A genre hub with nothing in it is a promise the catalogue cannot keep.
+       *
+       * The loader already deletes a category no book is filed under at all;
+       * this is the other half — a category whose books all exist but none of
+       * which are currently PUBLISHED. It became real on 2026-09-12, when the
+       * public-domain series was hidden for the Paddle domain review and
+       * "Classics & Philosophy" went to eighteen books, none of them visible.
+       * Its card would have rendered with a zero and three empty cover slots.
+       *
+       * Filtering here rather than in the component keeps every surface
+       * agreeing: the hub grid, the count in the hero line and the sitemap all
+       * read the same list. The category row itself is untouched, so the card
+       * returns by itself when the books do.
+       */
+      .filter((c) => c.bookCount > 0);
     },
     [],
   );
