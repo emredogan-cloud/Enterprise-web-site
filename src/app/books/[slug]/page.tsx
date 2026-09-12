@@ -274,7 +274,7 @@ export default async function BookDetailPage({
             route each one actually supports. Print goes to Amazon because
             Amazon is what fulfils it; see <FormatTable>. */}
         <div className="mx-auto max-w-[900px] px-4 sm:px-6">
-          <FormatTable formats={book.formats} />
+          <FormatTable formats={book.formats} sellsDirectEbook={sellsHere} />
         </div>
 
         {/* Only for a book we actually sell here. A reader whose only route is
