@@ -59,12 +59,28 @@ function shape(b: {
   title: string;
   subtitle: string | null;
   priceCents: number;
+  deliverableFree?: boolean;
   currency: string;
   authors: ReadonlyArray<{ slug: string; name: string }>;
   primaryCategory?: string | null;
 }): AiBook {
   const companion = getCompanionForBook(b.slug);
+  /**
+   * TWO QUESTIONS, AND THE ASSISTANT MUST NOT CONFLATE THEM.
+   *
+   * `soldHere` — will we take money for it? `giveableHere` — do we hold a file
+   * we can hand over? Both were `priceCents > 0` until 2026-09-12, and on that
+   * day the Paddle compliance gate separated them: eighteen public-domain
+   * titles are unpriced and still free to request.
+   *
+   * Measured, the first time this shipped conflated: the assistant was asked
+   * "Can I buy Meditations from you?" and answered "it is not part of our
+   * free-ebook promotion and cannot be requested as a PDF from us" — which was
+   * false, and false in the direction that turns a reader away from a book we
+   * would have given them.
+   */
   const soldHere = b.priceCents > 0;
+  const giveableHere = b.deliverableFree ?? soldHere;
   return {
     slug: b.slug,
     title: b.title,
@@ -73,9 +89,8 @@ function shape(b: {
     category: b.primaryCategory ?? null,
     price: formatCatalogPrice(b.priceCents, b.currency || "USD"),
     soldHere,
-    // The same predicate the gift box and the API use. A book this store does
-    // not sell has no file here to give away, so it is not part of the offer.
-    freeDuringCampaign: soldHere,
+    // The same predicate the gift box and the API use: do we hold the file?
+    freeDuringCampaign: giveableHere,
     /**
      * WHY THIS IS A SENTENCE AND NOT A FLAG.
      *
@@ -90,8 +105,15 @@ function shape(b: {
      * reader needs, and naming a business arrangement is not the assistant's
      * job.
      */
-    unavailableReason: soldHere
-      ? null
+    unavailableReason: giveableHere
+      ? soldHere
+        ? null
+        : // Not for sale here, but ours to give. Saying only the first half is
+          // what made the assistant turn a reader away from a free book.
+          "valicepress.com is not selling a digital edition of this title through " +
+          "its own checkout at the moment, but it IS free to request during the " +
+          "promotion while that is running. Any printed edition it has is listed " +
+          "on the book's page."
       : "valicepress.com does not sell a digital edition of this title, so it is not " +
         "part of the free-ebook promotion and cannot be requested here. The editions " +
         "that do exist, and where each one is bought, are listed on the book's page.",

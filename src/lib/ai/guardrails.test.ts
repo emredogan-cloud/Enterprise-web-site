@@ -296,3 +296,20 @@ describe("buildSystemPrompt — the page's book is stated in full", () => {
     expect(p).toContain("ebook");
   });
 });
+
+/**
+ * The regression this guards, measured on production 2026-09-12: asked
+ * "Can I buy Meditations from you?", the assistant answered "it is not part of
+ * our free-ebook promotion and cannot be requested as a PDF from us". Both
+ * halves were wrong — the book is free to request — and wrong in the direction
+ * that turns a reader away from a book we would have given them. The cause was
+ * `freeDuringCampaign` being derived from price rather than from whether we
+ * hold the file.
+ */
+describe("a title that is not sold here can still be free to request", () => {
+  it("tells the model to read the flag, never the price", () => {
+    const prompt = buildSystemPrompt({ path: "/" });
+    expect(prompt).toMatch(/Never infer availability from the price/i);
+    expect(prompt).toMatch(/freeDuringCampaign/);
+  });
+});
