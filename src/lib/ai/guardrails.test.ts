@@ -24,7 +24,7 @@ function book(over: Partial<AiBookDetail> = {}): AiBookDetail {
     subtitle: null,
     authors: ["Emre Doğan"],
     category: "Myth & Folklore",
-    price: "On Amazon",
+    price: "Not sold here",
     soldHere: false,
     freeDuringCampaign: false,
     unavailableReason:

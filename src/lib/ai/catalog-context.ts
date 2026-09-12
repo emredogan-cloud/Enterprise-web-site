@@ -42,7 +42,7 @@ export interface AiBook {
   subtitle: string | null;
   authors: string[];
   category: string | null;
-  /** Human price, or "On Amazon" when this store does not sell it. */
+  /** Human price, or "Not sold here" when this store does not sell it. */
   price: string;
   /** False when `price_cents = 0` — the edition is fulfilled by Amazon. */
   soldHere: boolean;

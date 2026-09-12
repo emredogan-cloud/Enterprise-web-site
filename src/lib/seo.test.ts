@@ -182,6 +182,44 @@ describe("buildSiteJsonLd", () => {
   });
 });
 
+describe("buildBookJsonLd — Offer emission for a held-out title", () => {
+  /**
+   * The Paddle compliance case: a public-domain title that still has a page,
+   * still has a recorded price, and is no longer sold here. Emitting an Offer
+   * for it would tell Google and every aggregator that we will sell something
+   * we will not.
+   */
+  const base = {
+    baseUrl: "https://valicepress.com",
+    slug: "meditations",
+    title: "Meditations",
+    subtitle: null,
+    description: null,
+    isbn: null,
+    language: "en",
+    pageCount: 148,
+    currency: "USD",
+    authors: [{ name: "Marcus Aurelius" }],
+    coverImageUrl: null,
+  };
+  const productOf = (args: Parameters<typeof buildBookJsonLd>[0]) =>
+    buildBookJsonLd(args)["@graph"].find(
+      (n) => (n as Record<string, unknown>)["@type"] === "Product",
+    ) as Record<string, unknown>;
+
+  it("emits no Offer when the store does not sell it, even with a price", () => {
+    expect(productOf({ ...base, priceCents: 999, sellsDirect: false }).offers).toBeUndefined();
+  });
+
+  it("still emits an Offer when the store does sell it", () => {
+    expect(productOf({ ...base, priceCents: 999, sellsDirect: true }).offers).toBeDefined();
+  });
+
+  it("defaults to emitting, so existing callers are unchanged", () => {
+    expect(productOf({ ...base, priceCents: 999 }).offers).toBeDefined();
+  });
+});
+
 describe("buildBookJsonLd — Offer emission", () => {
   const base = {
     baseUrl: "https://example.test",

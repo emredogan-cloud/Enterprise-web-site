@@ -48,25 +48,34 @@ export function GiftBox({
   if (!open) return null;
 
   /**
-   * A BOOK THIS STORE DOES NOT SELL CANNOT BE GIVEN AWAY BY THIS STORE.
+   * A BOOK THIS STORE HAS NO FILE FOR CANNOT BE GIVEN AWAY BY THIS STORE.
    *
-   * `price_cents = 0` is this catalog's way of saying "not sold here" — see
-   * `formatCatalogPrice`, which renders it as "On Amazon" rather than "$0.00",
-   * and `<BookHero>`, which switches its whole buy panel on the same fact.
-   * Three published titles carry it: Codex Mythologica (its ebook is enrolled
-   * in KDP Select and is therefore *exclusive to Amazon*), the Hangul workbook
-   * and The Myth Hunter's Field Book (no digital edition exists at all). None
-   * of the three has a master file in R2.
+   * Three published titles are in that position: Codex Mythologica (its ebook
+   * is enrolled in KDP Select and is therefore *exclusive to Amazon*), the
+   * Hangul workbook and The Myth Hunter's Field Book (no digital edition
+   * exists at all). None of the three has a master file in R2.
    *
    * Until this guard, every one of them showed a gift box promising a free
    * ebook, and the modal printed "$0.00" with no struck-through price beside
    * it — advertising a giveaway of a file the store does not have, and in
    * Codex Mythologica's case one it is contractually forbidden to distribute.
    *
+   * THE TEST USED TO BE `priceCents <= 0`, AND THAT WAS A PROXY. It picked out
+   * the same three books only because "unpriced" and "no file" happened to
+   * coincide. The Paddle compliance gate of 2026-09-12 separated them:
+   * eighteen public-domain titles are now unpriced and still perfectly
+   * deliverable, and the price test would have quietly removed the free offer
+   * from two thirds of the catalogue. `deliverableFree` carries the real fact —
+   * `books.master_file_key is not null` — from the query layer.
+   *
+   * It defaults to the old behaviour when a caller does not supply it, so a
+   * surface that has not been taught the difference fails closed rather than
+   * offering a file that may not exist.
+   *
    * The API refuses these too (a cached shelf must not be able to enqueue
    * one). This is the courtesy; that is the gate.
    */
-  if (book.priceCents <= 0) return null;
+  if (!(book.deliverableFree ?? book.priceCents > 0)) return null;
 
   const lg = size === "lg";
 
