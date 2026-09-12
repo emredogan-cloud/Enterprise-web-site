@@ -34,12 +34,15 @@ const FORMAT_LABELS: Record<BookFormat["format"], string> = {
  * Mythologica's Kindle edition is enrolled in KDP Select and therefore can
  * only ever be bought from Amazon.
  */
-function formatNote(f: BookFormat): string {
+function formatNote(f: BookFormat, sellsDirectEbook: boolean): string {
   switch (f.format) {
     case "ebook":
-      return f.fulfillment === "direct"
+      if (f.fulfillment !== "direct") return "Kindle edition, sold by Amazon";
+      // A price beside a row nobody can buy is the contradiction this fixes:
+      // the panel above says "Not sold here" while this line offered $9.99.
+      return sellsDirectEbook
         ? "DRM-free watermarked PDF — yours to keep, readable on any device"
-        : "Kindle edition, sold by Amazon";
+        : "DRM-free watermarked PDF — not sold through this site at the moment";
     case "paperback":
       return "Printed and shipped by Amazon";
     case "hardcover":
@@ -57,9 +60,18 @@ function amazonHref(f: BookFormat): string | null {
 
 export function FormatTable({
   formats,
+  sellsDirectEbook = true,
   addToCartSlot,
 }: {
   formats: BookFormat[];
+  /**
+   * Whether the direct ebook row is one this site will actually take money
+   * for. False for the public-domain titles held out of the paid checkout on
+   * 2026-09-12 — they keep their row, their description and their page count,
+   * and lose the price, because the price is the one part that stopped being
+   * true. Amazon rows are unaffected: that price is Amazon's and it is real.
+   */
+  sellsDirectEbook?: boolean;
   /**
    * The real add-to-cart island, rendered for the direct ebook row. Passed
    * in rather than imported so this stays a Server Component and the
@@ -94,13 +106,17 @@ export function FormatTable({
                   {FORMAT_LABELS[f.format]}
                 </p>
                 <p className="mt-0.5 text-[13px] text-fg-soft">
-                  {formatNote(f)}
+                  {formatNote(f, sellsDirectEbook)}
                   {f.pageCount ? ` · ${f.pageCount} pages` : ""}
                 </p>
               </div>
 
               <div className="flex items-center gap-4">
-                {f.priceCents !== null && (
+                {/* Only a price we would actually charge. For a direct ebook
+                    we no longer sell, the number is a leftover list price and
+                    printing it contradicts the panel above. Amazon rows keep
+                    theirs — that is Amazon's price and it is real. */}
+                {f.priceCents !== null && (!isDirect || sellsDirectEbook) && (
                   <span className="font-serif text-[17px] tabular-nums text-fg-hi">
                     {formatPrice(f.priceCents, f.currency)}
                   </span>

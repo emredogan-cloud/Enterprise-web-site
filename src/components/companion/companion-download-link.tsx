@@ -8,6 +8,33 @@ import { trackEvent } from "@/lib/analytics";
  * ordinary anchor: if scripting fails the download still works, which is the
  * whole point of a page that a printed QR code points at.
  */
+/**
+ * Name the file type from its extension. Every companion was a PDF until
+ * Under Every Sky, whose assets are an HTML page and four data files, and a
+ * button reading "Open PDF" above a CSV is simply wrong. Unknown extensions
+ * fall back to "Open file" rather than guessing.
+ */
+function openLabel(href: string): string {
+  const ext = href.split("?")[0].split("#")[0].split(".").pop()?.toLowerCase();
+  switch (ext) {
+    case "pdf":
+      return "Open PDF";
+    case "html":
+    case "htm":
+      return "Open page";
+    case "csv":
+      return "Open CSV";
+    case "json":
+      return "Open JSON";
+    case "txt":
+      return "Open text";
+    case "zip":
+      return "Download zip";
+    default:
+      return "Open file";
+  }
+}
+
 export function CompanionDownloadLink({
   companionSlug,
   assetId,
@@ -30,7 +57,7 @@ export function CompanionDownloadLink({
          composition is untouched. */
       className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-xl border border-emerald-bright/40 px-4 py-2 text-sm font-medium text-emerald-bright transition hover:bg-emerald-bright/10 sm:min-h-0"
     >
-      Open PDF
+      {openLabel(href)}
       <span aria-hidden>↓</span>
     </a>
   );

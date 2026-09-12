@@ -22,7 +22,7 @@ import { formatCatalogPrice } from "@/lib/format";
  *  2. A title this store does not sell — `priceCents === 0`, every edition
  *     fulfilled by Amazon — gets no add-to-cart button. It used to get one,
  *     and pressing it put a $0 line in the cart for a book nobody could check
- *     out. Such a card says "On Amazon" and links to the book page, where the
+ *     out. Such a card says "Not sold here" and links to the book page, where the
  *     real Amazon editions are listed.
  */
 export function RecommendationCard({ book }: { book: CatalogItem }) {

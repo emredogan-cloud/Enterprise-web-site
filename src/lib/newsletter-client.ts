@@ -62,6 +62,8 @@ export type NewsletterSource =
   | "mancala-companion"
   | "traditional-games-companion"
   // Phase 3 of the public-domain factory (2026-09-06): the Bestiarium expansion.
+  // Play Anywhere 1 — the first Agent A original (2026-09-10).
+  | "play-anywhere-companion"
   | "kwaidan-companion"
   | "sea-monsters-unmasked-companion"
   | "book-of-were-wolves-companion"
@@ -70,6 +72,11 @@ export type NewsletterSource =
   | "fairy-mythology-vol-2-companion"
   // Agent A original book 4 (2026-09-11): Etymon vol. 1.
   | "etymon-companion"
+  // Agent A original, Under Every Sky 1 (2026-09-11). The QR printed on the
+  // last page of How the World Began. One tag per printed book, same rule.
+  | "under-every-sky-companion"
+  // Under Every Sky 2 (2026-09-11). The QR printed in The Trickster's Table.
+  | "tricksters-table-companion"
   // The temporary free-ebook promotion (2026-09-10). Its own tag because a
   // list built during a giveaway behaves nothing like one built from a
   // printed book, and merging the two would hide that.

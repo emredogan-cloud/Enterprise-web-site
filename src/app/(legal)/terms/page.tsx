@@ -29,12 +29,12 @@ export default function TermsPage() {
     <LegalShell
       eyebrow="Legal"
       title="Terms of service"
-      lastUpdated="2026-05-30"
+      lastUpdated="2026-09-12"
       intro={
         <p>
-          These terms describe the agreement between you and Digital
-          Bookstore when you create an account, buy a book, or use any
-          part of this site. We&apos;ve kept the language direct because
+          These terms describe the agreement between you and Valice Press
+          when you create an account, buy a book, or use any part of this
+          site. We&apos;ve kept the language direct because
           legal pages no one reads protect no one.
         </p>
       }
@@ -63,7 +63,31 @@ export default function TermsPage() {
         applicable accounting law.
       </p>
 
-      <h2>3. Buying a book</h2>
+      <h2>3. What is sold here, and what is not</h2>
+      <p>
+        Everything bought through this site is a <strong>digital
+        edition</strong> — a watermarked PDF, and an EPUB where the edition
+        has one. It is delivered as a download to the email address and
+        library attached to your account. <strong>Nothing bought on this
+        site is printed, packed, posted or shipped,</strong> and this
+        checkout never asks you for a delivery address.
+      </p>
+      <p>
+        Valice Press does publish printed books. Paperback, hardcover and
+        large-print editions are printed, sold and shipped by Amazon under
+        their own terms, and where one exists we link to it from the book&apos;s
+        page. Buying a printed edition is a transaction between you and
+        Amazon; it does not pass through this site&apos;s checkout, and these
+        terms do not govern it.
+      </p>
+      <p>
+        Some titles listed here are not sold through this site at all. A
+        book&apos;s page says so plainly and lists whatever editions it does
+        have. During a free promotion a title may be available to request at
+        no charge; that is a gift, not a sale, and no payment is taken.
+      </p>
+
+      <h2>4. Buying a book</h2>
       <p>
         When you click Checkout, you&apos;re redirected to Paddle, our
         Merchant of Record. Paddle handles the transaction, collects any
@@ -79,7 +103,7 @@ export default function TermsPage() {
         redistribute, or upload it for others to access.
       </p>
 
-      <h2>4. What you download</h2>
+      <h2>5. What you download</h2>
       <p>
         Files are PDF artifacts watermarked with a small footer line that
         encodes your purchase id. The watermark is the only protection;
@@ -89,7 +113,7 @@ export default function TermsPage() {
         figure out what happened.
       </p>
 
-      <h2>5. Returns</h2>
+      <h2>6. Returns</h2>
       <p>
         Refunds are governed by our{" "}
         <Link href="/refund">Refund Policy</Link>. The short version: if
@@ -99,7 +123,7 @@ export default function TermsPage() {
         purchase is non-refundable.
       </p>
 
-      <h2>6. Acceptable use</h2>
+      <h2>7. Acceptable use</h2>
       <p>
         Don&apos;t do anything illegal with the service. In particular:
       </p>
@@ -115,7 +139,7 @@ export default function TermsPage() {
         not retroactively un-fulfill purchases.
       </p>
 
-      <h2>7. Reviews and user-submitted content</h2>
+      <h2>8. Reviews and user-submitted content</h2>
       <p>
         When you post a review, you grant Valice Press a
         non-exclusive license to display it on the book&apos;s page and
@@ -124,7 +148,7 @@ export default function TermsPage() {
         content.
       </p>
 
-      <h2>8. Changes to the service</h2>
+      <h2>9. Changes to the service</h2>
       <p>
         We may add features, change prices for new purchases, or
         discontinue parts of the site. Books you&apos;ve already bought
@@ -132,7 +156,7 @@ export default function TermsPage() {
         keep&rdquo; promise, and it survives any product change.
       </p>
 
-      <h2>9. Disclaimers and liability</h2>
+      <h2>10. Disclaimers and liability</h2>
       <p>
         The service is provided &ldquo;as is.&rdquo; We work hard to keep
         it reliable but we don&apos;t guarantee uninterrupted access.
@@ -141,7 +165,7 @@ export default function TermsPage() {
         months preceding the claim.
       </p>
 
-      <h2>10. Governing law</h2>
+      <h2>11. Governing law</h2>
       <p>
         These terms are governed by the laws of Turkey. Disputes that
         can&apos;t be resolved by email will be heard by the courts of
@@ -149,7 +173,7 @@ export default function TermsPage() {
         rights given to you by your local consumer-protection law.
       </p>
 
-      <h2>11. Changes to these terms</h2>
+      <h2>12. Changes to these terms</h2>
       <p>
         We&apos;ll update this page when material changes happen and
         bump the &ldquo;last updated&rdquo; date at the top. For

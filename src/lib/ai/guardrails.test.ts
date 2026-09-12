@@ -24,7 +24,7 @@ function book(over: Partial<AiBookDetail> = {}): AiBookDetail {
     subtitle: null,
     authors: ["Emre Doğan"],
     category: "Myth & Folklore",
-    price: "On Amazon",
+    price: "Not sold here",
     soldHere: false,
     freeDuringCampaign: false,
     unavailableReason:
@@ -251,5 +251,48 @@ describe("sanitize", () => {
   it("rejects non-string content, including objects that stringify", () => {
     expect(sanitize([{ role: "user", content: { toString: () => "sneaky" } }])).toEqual([]);
     expect(sanitize([{ role: "user", content: ["a", "b"] }])).toEqual([]);
+  });
+});
+
+describe("buildSystemPrompt — the page's book is stated in full", () => {
+  /**
+   * The model is told the in-prompt book object is authoritative, so anything
+   * missing from it is a fact it will decline to give. It declined to say how
+   * many tales The Trickster's Table holds — on that book's own page, with the
+   * answer sitting in the subtitle it had not been handed.
+   */
+  const book = {
+    slug: "the-tricksters-table",
+    title: "The Trickster's Table",
+    subtitle: "Eighteen Trickster Tales from Eleven Traditions, and What Each One Cost",
+    description: "Eighteen tales of cunning from the Akan of the Gold Coast, Jamaica…",
+    authors: ["Emre Doğan"],
+    category: "myth-and-folklore",
+    price: "$6.99",
+    soldHere: true,
+    freeDuringCampaign: true,
+    unavailableReason: null,
+    companionUrl: "/companion/tricksters-table",
+    pageCount: 112,
+    isbn: null,
+    formats: [{ format: "ebook", availability: "available", price: "$6.99", buyAt: "valicepress.com" }],
+    hasDownloadablePdf: true,
+  } as unknown as Parameters<typeof buildSystemPrompt>[0]["book"];
+
+  it("carries the subtitle, where the counts live", () => {
+    const p = buildSystemPrompt({ path: "/books/the-tricksters-table", book });
+    expect(p).toContain("Eighteen Trickster Tales from Eleven Traditions");
+  });
+
+  it("carries the description", () => {
+    const p = buildSystemPrompt({ path: "/books/the-tricksters-table", book });
+    expect(p).toContain("Eighteen tales of cunning");
+  });
+
+  it("still carries price, page count and formats", () => {
+    const p = buildSystemPrompt({ path: "/books/the-tricksters-table", book });
+    expect(p).toContain("$6.99");
+    expect(p).toContain("112");
+    expect(p).toContain("ebook");
   });
 });

@@ -70,12 +70,45 @@ if (db === "neondb" && commit && !prodOk) {
 // Run before any write, on every run including dry runs. Each of these has
 // been a real production defect at some point in this project's history.
 const PADDLE_PRICE_RE = /^pri_[a-z0-9]{20,}$/;
+const CATEGORY_SLUGS = new Set(CATEGORIES.map((c) => c.slug));
 const problems = [];
 
 for (const b of BOOKS) {
+  // A category slug that matches nothing resolves to a null category_id and
+  // fails mid-load on the book_categories NOT NULL constraint — after the
+  // preceding books have already been written. "mythology-and-folklore" for
+  // "myth-and-folklore" got that far once. Catch it before the first write.
+  for (const c of b.categories ?? []) {
+    if (!CATEGORY_SLUGS.has(c)) {
+      problems.push(
+        `${b.slug}: category "${c}" is not in CATEGORIES. ` +
+          `Known: ${[...CATEGORY_SLUGS].join(", ")}.`,
+      );
+    }
+  }
+
   const ebook = b.formats.find((f) => f.format === "ebook");
-  const sellsDirect =
+
+  /**
+   * TWO DIFFERENT QUESTIONS, AND THEY STOPPED HAVING THE SAME ANSWER.
+   *
+   * `deliverableHere` — do we hold this file and can we hand it over? That is
+   * what the free-ebook campaign needs, and what `books.master_file_key` is for.
+   *
+   * `sellsDirect` — may we CHARGE for it on this site? Since the Paddle
+   * compliance gate (see `valice-catalog.mjs`), eighteen public-domain titles
+   * answer yes to the first and no to the second: still ours to give away
+   * during the campaign, no longer Paddle transactions.
+   *
+   * Conflating the two is not academic. `master_file_key` used to be written
+   * only when `sellsDirect`, so switching the gate on would have nulled the key
+   * for all eighteen and broken free delivery for two thirds of the catalogue —
+   * the fulfilment path fails with "no master file on the book row" and the
+   * reader gets nothing.
+   */
+  const deliverableHere =
     ebook?.fulfillment === "direct" && ebook.availability === "available";
+  const sellsDirect = deliverableHere && b.directSale !== false;
 
   if (b.paddlePriceId && !PADDLE_PRICE_RE.test(b.paddlePriceId)) {
     problems.push(
@@ -86,14 +119,27 @@ for (const b of BOOKS) {
   if (sellsDirect && !b.paddlePriceId) {
     problems.push(`${b.slug}: sold directly but has no Paddle price id — checkout would fail.`);
   }
-  if (sellsDirect && !ebook.masterFileKey) {
+  // The inverse rule, which is the Paddle compliance invariant: a title held
+  // out of the paid checkout must not keep a live Paddle price, or a later
+  // edit could quietly put it back on sale without anybody deciding to.
+  if (!sellsDirect && b.paddlePriceId) {
     problems.push(
-      `${b.slug}: sold directly but has no master file in R2 — fulfillment would have nothing to watermark.`,
+      `${b.slug}: not sold directly (directSale=${b.directSale}) yet still carries ` +
+        `paddlePriceId ${b.paddlePriceId}. Held-out titles must have no Paddle price.`,
     );
   }
-  if (sellsDirect && b.kdpSelect) {
+  if (deliverableHere && !ebook.masterFileKey) {
     problems.push(
-      `${b.slug}: sold directly while enrolled in KDP Select. That is an exclusivity breach.`,
+      `${b.slug}: deliverable here but has no master file in R2 — fulfillment would have nothing to watermark.`,
+    );
+  }
+  // Exclusivity is about DISTRIBUTION, not about money: giving a Select-
+  // enrolled ebook away from this site breaches it exactly as selling it
+  // would. This check was on `sellsDirect`, which stopped being the right
+  // question the moment a book could be deliverable without being sold.
+  if (deliverableHere && b.kdpSelect) {
+    problems.push(
+      `${b.slug}: distributed from this site while enrolled in KDP Select. That is an exclusivity breach.`,
     );
   }
   for (const f of b.formats) {
@@ -134,9 +180,14 @@ console.log("catalog integrity : OK\n");
 
 if (!commit) {
   for (const b of BOOKS) {
-    const buyable = b.formats.filter(
-      (f) => f.fulfillment === "direct" && f.availability === "available",
-    ).length;
+    // "buyable" means we can take money for it, which since the Paddle
+    // compliance gate is narrower than "we hold the file" — a held-out
+    // public-domain title is deliverable (free campaign) but not buyable.
+    const buyable =
+      b.directSale !== false &&
+      b.formats.some((f) => f.format === "ebook" && f.fulfillment === "direct" && f.availability === "available")
+        ? 1
+        : 0;
     const amazonLinks = b.formats.filter((f) => f.amazonUrl).length;
     console.log(
       `WOULD UPSERT  ${b.slug.padEnd(36)} ${b.websiteStatus.padEnd(9)} ` +
@@ -185,8 +236,10 @@ for (const b of BOOKS) {
   // price of ours; storing Amazon's list price here would mean the cart
   // could quote a number we never charge.
   const ebook = b.formats.find((f) => f.format === "ebook");
-  const sellsDirect =
+  // See the validation block above for why these are two questions now.
+  const deliverableHere =
     ebook?.fulfillment === "direct" && ebook.availability === "available";
+  const sellsDirect = deliverableHere && b.directSale !== false;
   const canonicalPrice = sellsDirect ? ebook.priceCents : 0;
 
   // The fulfillment worker reads `books.master_file_key`, NOT the per-format
@@ -195,11 +248,11 @@ for (const b of BOOKS) {
   // entitlement is created, and the watermark step then fails with "book has
   // no masterFileKey" while the buyer's entitlement sits at `pending`
   // forever. Both are written from the one source of truth.
-  const masterFileKey = sellsDirect ? ebook.masterFileKey : null;
+  const masterFileKey = deliverableHere ? ebook.masterFileKey : null;
   // The second delivered artifact, same rule. Null unless the edition is
   // actually sold here AND actually has an EPUB — the worker branches on this
   // column, and the storefront must never advertise a format it names as null.
-  const epubFileKey = sellsDirect ? (ebook.epubFileKey ?? null) : null;
+  const epubFileKey = deliverableHere ? (ebook.epubFileKey ?? null) : null;
 
   const [book] = await sql`
     insert into books (slug, title, subtitle, description, language,
@@ -308,8 +361,20 @@ const orphans = await sql`
 for (const o of orphans) console.log(`category  removed (empty)  ${o.slug}`);
 
 const published = BOOKS.filter((b) => b.websiteStatus === "published").length;
-const buyable = BOOKS.filter((b) =>
-  b.formats.some((f) => f.fulfillment === "direct" && f.availability === "available"),
+// Deliverable and buyable are different questions since the Paddle compliance
+// gate; reporting the first under the second's name is how a summary line
+// quietly says eighteen public-domain titles are still on sale.
+const deliverable = BOOKS.filter((b) =>
+  b.formats.some(
+    (f) => f.format === "ebook" && f.fulfillment === "direct" && f.availability === "available",
+  ),
+).length;
+const buyable = BOOKS.filter(
+  (b) =>
+    b.directSale !== false &&
+    b.formats.some(
+      (f) => f.format === "ebook" && f.fulfillment === "direct" && f.availability === "available",
+    ),
 ).length;
 const amazonFormats = BOOKS.reduce(
   (n, b) => n + b.formats.filter((f) => f.amazonUrl).length,
@@ -318,5 +383,6 @@ const amazonFormats = BOOKS.reduce(
 
 console.log(`\nloaded ${BOOKS.length} books into ${db}.`);
 console.log(`  published on the site      : ${published}`);
-console.log(`  buyable here (direct ebook): ${buyable}`);
+console.log(`  deliverable here (we hold the file): ${deliverable}`);
+console.log(`  buyable here (paid checkout)      : ${buyable}`);
 console.log(`  formats linking to Amazon  : ${amazonFormats} (all ASIN-verified)`);

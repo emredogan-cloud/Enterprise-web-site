@@ -218,6 +218,14 @@
       "entity": "greek-alphabet-handwriting-workbook"
     },
     {
+      "path": "/images/books/how-the-world-began.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 223376,
+      "slot": "book-cover",
+      "entity": "how-the-world-began"
+    },
+    {
       "path": "/images/books/indian-myth-and-legend.webp",
       "width": 1067,
       "height": 1600,
@@ -282,6 +290,14 @@
       "entity": "myths-and-legends-of-china"
     },
     {
+      "path": "/images/books/pencil-and-paper.webp",
+      "width": 1000,
+      "height": 1600,
+      "bytes": 137568,
+      "slot": "book-cover",
+      "entity": "pencil-and-paper"
+    },
+    {
       "path": "/images/books/sea-monsters-unmasked.webp",
       "width": 1067,
       "height": 1600,
@@ -330,6 +346,246 @@
       "entity": "the-puzzles-of-henry-dudeney"
     },
     {
+      "path": "/images/books/the-tricksters-table.webp",
+      "width": 1067,
+      "height": 1600,
+      "bytes": 262528,
+      "slot": "book-cover",
+      "entity": "the-tricksters-table"
+    },
+    {
+      "path": "/images/books/thumb/book-of-were-wolves.webp",
+      "width": 432,
+      "height": 648,
+      "bytes": 13864,
+      "slot": "book-thumb",
+      "entity": "book-of-were-wolves"
+    },
+    {
+      "path": "/images/books/thumb/british-goblins.webp",
+      "width": 432,
+      "height": 648,
+      "bytes": 10252,
+      "slot": "book-thumb",
+      "entity": "british-goblins"
+    },
+    {
+      "path": "/images/books/thumb/chess-and-playing-cards.webp",
+      "width": 432,
+      "height": 648,
+      "bytes": 43626,
+      "slot": "book-thumb",
+      "entity": "chess-and-playing-cards"
+    },
+    {
+      "path": "/images/books/thumb/codex-bestiarium.webp",
+      "width": 432,
+      "height": 691,
+      "bytes": 55962,
+      "slot": "book-thumb",
+      "entity": "codex-bestiarium"
+    },
+    {
+      "path": "/images/books/thumb/codex-enigmatica.webp",
+      "width": 432,
+      "height": 648,
+      "bytes": 20318,
+      "slot": "book-thumb",
+      "entity": "codex-enigmatica"
+    },
+    {
+      "path": "/images/books/thumb/codex-mythologica-the-puzzle-book.webp",
+      "width": 432,
+      "height": 648,
+      "bytes": 55144,
+      "slot": "book-thumb",
+      "entity": "codex-mythologica-the-puzzle-book"
+    },
+    {
+      "path": "/images/books/thumb/codex-mythologica.webp",
+      "width": 432,
+      "height": 691,
+      "bytes": 33198,
+      "slot": "book-thumb",
+      "entity": "codex-mythologica"
+    },
+    {
+      "path": "/images/books/thumb/epictetus-discourses-and-enchiridion.webp",
+      "width": 432,
+      "height": 648,
+      "bytes": 36846,
+      "slot": "book-thumb",
+      "entity": "epictetus-discourses-and-enchiridion"
+    },
+    {
+      "path": "/images/books/thumb/fairy-mythology-vol-1.webp",
+      "width": 432,
+      "height": 648,
+      "bytes": 12444,
+      "slot": "book-thumb",
+      "entity": "fairy-mythology-vol-1"
+    },
+    {
+      "path": "/images/books/thumb/fairy-mythology-vol-2.webp",
+      "width": 432,
+      "height": 648,
+      "bytes": 12054,
+      "slot": "book-thumb",
+      "entity": "fairy-mythology-vol-2"
+    },
+    {
+      "path": "/images/books/thumb/games-ancient-and-oriental.webp",
+      "width": 432,
+      "height": 648,
+      "bytes": 46912,
+      "slot": "book-thumb",
+      "entity": "games-ancient-and-oriental"
+    },
+    {
+      "path": "/images/books/thumb/greek-alphabet-handwriting-workbook.webp",
+      "width": 432,
+      "height": 648,
+      "bytes": 35552,
+      "slot": "book-thumb",
+      "entity": "greek-alphabet-handwriting-workbook"
+    },
+    {
+      "path": "/images/books/thumb/how-the-world-began.webp",
+      "width": 264,
+      "height": 396,
+      "bytes": 23074,
+      "slot": "book-thumb",
+      "entity": "how-the-world-began"
+    },
+    {
+      "path": "/images/books/thumb/indian-myth-and-legend.webp",
+      "width": 432,
+      "height": 648,
+      "bytes": 43404,
+      "slot": "book-thumb",
+      "entity": "indian-myth-and-legend"
+    },
+    {
+      "path": "/images/books/thumb/korean-games.webp",
+      "width": 432,
+      "height": 648,
+      "bytes": 37954,
+      "slot": "book-thumb",
+      "entity": "korean-games"
+    },
+    {
+      "path": "/images/books/thumb/korean-hangul-handwriting-workbook.webp",
+      "width": 432,
+      "height": 691,
+      "bytes": 30316,
+      "slot": "book-thumb",
+      "entity": "korean-hangul-handwriting-workbook"
+    },
+    {
+      "path": "/images/books/thumb/kwaidan.webp",
+      "width": 432,
+      "height": 648,
+      "bytes": 14060,
+      "slot": "book-thumb",
+      "entity": "kwaidan"
+    },
+    {
+      "path": "/images/books/thumb/mancala.webp",
+      "width": 432,
+      "height": 648,
+      "bytes": 41652,
+      "slot": "book-thumb",
+      "entity": "mancala"
+    },
+    {
+      "path": "/images/books/thumb/meditations.webp",
+      "width": 432,
+      "height": 648,
+      "bytes": 20830,
+      "slot": "book-thumb",
+      "entity": "meditations"
+    },
+    {
+      "path": "/images/books/thumb/mythical-monsters.webp",
+      "width": 432,
+      "height": 648,
+      "bytes": 49140,
+      "slot": "book-thumb",
+      "entity": "mythical-monsters"
+    },
+    {
+      "path": "/images/books/thumb/myths-and-legends-of-china.webp",
+      "width": 432,
+      "height": 648,
+      "bytes": 45172,
+      "slot": "book-thumb",
+      "entity": "myths-and-legends-of-china"
+    },
+    {
+      "path": "/images/books/thumb/sea-monsters-unmasked.webp",
+      "width": 432,
+      "height": 648,
+      "bytes": 11938,
+      "slot": "book-thumb",
+      "entity": "sea-monsters-unmasked"
+    },
+    {
+      "path": "/images/books/thumb/seneca-selected-dialogues.webp",
+      "width": 432,
+      "height": 648,
+      "bytes": 50456,
+      "slot": "book-thumb",
+      "entity": "seneca-selected-dialogues"
+    },
+    {
+      "path": "/images/books/thumb/the-great-book-of-world-games.webp",
+      "width": 432,
+      "height": 691,
+      "bytes": 39428,
+      "slot": "book-thumb",
+      "entity": "the-great-book-of-world-games"
+    },
+    {
+      "path": "/images/books/thumb/the-great-book-of-world-myths.webp",
+      "width": 432,
+      "height": 648,
+      "bytes": 55554,
+      "slot": "book-thumb",
+      "entity": "the-great-book-of-world-myths"
+    },
+    {
+      "path": "/images/books/thumb/the-myth-hunters-field-book.webp",
+      "width": 432,
+      "height": 567,
+      "bytes": 35944,
+      "slot": "book-thumb",
+      "entity": "the-myth-hunters-field-book"
+    },
+    {
+      "path": "/images/books/thumb/the-puzzles-of-henry-dudeney.webp",
+      "width": 432,
+      "height": 691,
+      "bytes": 35224,
+      "slot": "book-thumb",
+      "entity": "the-puzzles-of-henry-dudeney"
+    },
+    {
+      "path": "/images/books/thumb/the-tricksters-table.webp",
+      "width": 264,
+      "height": 396,
+      "bytes": 30496,
+      "slot": "book-thumb",
+      "entity": "the-tricksters-table"
+    },
+    {
+      "path": "/images/books/thumb/traditional-games.webp",
+      "width": 432,
+      "height": 648,
+      "bytes": 46192,
+      "slot": "book-thumb",
+      "entity": "traditional-games"
+    },
+    {
       "path": "/images/books/traditional-games.webp",
       "width": 1067,
       "height": 1600,
@@ -339,41 +595,41 @@
     },
     {
       "path": "/images/categories/classics-and-philosophy.webp",
-      "width": 1024,
-      "height": 1536,
-      "bytes": 146440,
+      "width": 900,
+      "height": 1200,
+      "bytes": 126420,
       "slot": "category-art",
       "entity": "classics-and-philosophy"
     },
     {
       "path": "/images/categories/games-and-play.webp",
-      "width": 1024,
-      "height": 1536,
-      "bytes": 223392,
+      "width": 900,
+      "height": 1200,
+      "bytes": 122318,
       "slot": "category-art",
       "entity": "games-and-play"
     },
     {
       "path": "/images/categories/language-and-learning.webp",
-      "width": 1024,
-      "height": 1536,
-      "bytes": 192202,
+      "width": 900,
+      "height": 1200,
+      "bytes": 126074,
       "slot": "category-art",
       "entity": "language-and-learning"
     },
     {
       "path": "/images/categories/myth-and-folklore.webp",
-      "width": 1024,
-      "height": 1536,
-      "bytes": 101972,
+      "width": 900,
+      "height": 1200,
+      "bytes": 109294,
       "slot": "category-art",
       "entity": "myth-and-folklore"
     },
     {
       "path": "/images/categories/puzzle-and-challenge.webp",
-      "width": 1024,
-      "height": 1536,
-      "bytes": 93888,
+      "width": 900,
+      "height": 1200,
+      "bytes": 125424,
       "slot": "category-art",
       "entity": "puzzle-and-challenge"
     },
@@ -392,6 +648,86 @@
       "bytes": 152010,
       "slot": "page-atmosphere",
       "entity": "companion/og-default"
+    },
+    {
+      "path": "/images/homepage/hero-library-still-life-1280.avif",
+      "width": 1280,
+      "height": 720,
+      "bytes": 50547,
+      "slot": "page-atmosphere",
+      "entity": "homepage/hero-library-still-life-1280"
+    },
+    {
+      "path": "/images/homepage/hero-library-still-life-1280.webp",
+      "width": 1280,
+      "height": 720,
+      "bytes": 72844,
+      "slot": "page-atmosphere",
+      "entity": "homepage/hero-library-still-life-1280"
+    },
+    {
+      "path": "/images/homepage/hero-library-still-life-1672.avif",
+      "width": 1672,
+      "height": 941,
+      "bytes": 73501,
+      "slot": "page-atmosphere",
+      "entity": "homepage/hero-library-still-life-1672"
+    },
+    {
+      "path": "/images/homepage/hero-library-still-life-1672.webp",
+      "width": 1672,
+      "height": 941,
+      "bytes": 109668,
+      "slot": "page-atmosphere",
+      "entity": "homepage/hero-library-still-life-1672"
+    },
+    {
+      "path": "/images/homepage/hero-library-still-life-640.avif",
+      "width": 640,
+      "height": 360,
+      "bytes": 16554,
+      "slot": "page-atmosphere",
+      "entity": "homepage/hero-library-still-life-640"
+    },
+    {
+      "path": "/images/homepage/hero-library-still-life-640.webp",
+      "width": 640,
+      "height": 360,
+      "bytes": 22442,
+      "slot": "page-atmosphere",
+      "entity": "homepage/hero-library-still-life-640"
+    },
+    {
+      "path": "/images/homepage/hero-library-still-life-960.avif",
+      "width": 960,
+      "height": 540,
+      "bytes": 32539,
+      "slot": "page-atmosphere",
+      "entity": "homepage/hero-library-still-life-960"
+    },
+    {
+      "path": "/images/homepage/hero-library-still-life-960.webp",
+      "width": 960,
+      "height": 540,
+      "bytes": 45052,
+      "slot": "page-atmosphere",
+      "entity": "homepage/hero-library-still-life-960"
+    },
+    {
+      "path": "/images/homepage/hero-library-still-life-portrait.avif",
+      "width": 900,
+      "height": 1200,
+      "bytes": 64807,
+      "slot": "page-atmosphere",
+      "entity": "homepage/hero-library-still-life-portrait"
+    },
+    {
+      "path": "/images/homepage/hero-library-still-life-portrait.webp",
+      "width": 900,
+      "height": 1200,
+      "bytes": 98716,
+      "slot": "page-atmosphere",
+      "entity": "homepage/hero-library-still-life-portrait"
     },
     {
       "path": "/images/homepage/homepage_hero_reading_room.webp",
@@ -786,6 +1122,38 @@
       "entity": "greek-alphabet-handwriting-workbook"
     },
     {
+      "path": "/images/previews/how-the-world-began/p25.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 97204,
+      "slot": "book-preview",
+      "entity": "how-the-world-began"
+    },
+    {
+      "path": "/images/previews/how-the-world-began/p26.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 120142,
+      "slot": "book-preview",
+      "entity": "how-the-world-began"
+    },
+    {
+      "path": "/images/previews/how-the-world-began/p27.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 114048,
+      "slot": "book-preview",
+      "entity": "how-the-world-began"
+    },
+    {
+      "path": "/images/previews/how-the-world-began/p28.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 113772,
+      "slot": "book-preview",
+      "entity": "how-the-world-began"
+    },
+    {
       "path": "/images/previews/indian-myth-and-legend/p30.webp",
       "width": 900,
       "height": 1350,
@@ -1008,6 +1376,22 @@
       "bytes": 149820,
       "slot": "book-preview",
       "entity": "myths-and-legends-of-china"
+    },
+    {
+      "path": "/images/previews/pencil-and-paper/p40.webp",
+      "width": 750,
+      "height": 1200,
+      "bytes": 41962,
+      "slot": "book-preview",
+      "entity": "pencil-and-paper"
+    },
+    {
+      "path": "/images/previews/pencil-and-paper/p41.webp",
+      "width": 750,
+      "height": 1200,
+      "bytes": 57164,
+      "slot": "book-preview",
+      "entity": "pencil-and-paper"
     },
     {
       "path": "/images/previews/sea-monsters-unmasked/p20.webp",

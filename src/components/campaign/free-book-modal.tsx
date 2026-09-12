@@ -26,6 +26,12 @@ export interface FreeBookSubject {
   /** Short description. Trimmed for the modal; the full text is on the page. */
   description?: string | null;
   priceCents: number;
+  /**
+   * Whether this store actually holds a file to give away — see the guard in
+   * `<GiftBox>`. Undefined means "not supplied", and the guard then falls back
+   * to the old price proxy, which fails closed.
+   */
+  deliverableFree?: boolean;
   currency?: string;
   coverSrc?: string | null;
   pageCount?: number | null;

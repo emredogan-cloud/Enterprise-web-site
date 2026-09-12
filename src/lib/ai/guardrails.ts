@@ -76,6 +76,25 @@ export function buildSystemPrompt(page: {
         {
           title: b.title,
           slug: b.slug,
+          /**
+           * SUBTITLE AND DESCRIPTION BELONG HERE, and their absence was a real
+           * wrong answer. Asked on The Trickster's Table's own page "how many
+           * trickster tales and how many traditions does it cover?", the model
+           * replied that the numbers "are not detailed in the information I
+           * have" — while the subtitle it was not being given read "Eighteen
+           * Trickster Tales from Eleven Traditions".
+           *
+           * The cause is the instruction three paragraphs below: facts come
+           * from a tool result OR FROM THE BOOK ABOVE. Handing the model a
+           * partial object and telling it the object is authoritative teaches
+           * it to stop looking, so every fact that lives only in the prose —
+           * how many stories, which cultures, what the apparatus is — became
+           * unreachable on the one page where the visitor is most likely to
+           * ask. It is the same failure as the Codex Mythologica one this
+           * block was written to fix, one field further in.
+           */
+          subtitle: b.subtitle,
+          description: b.description,
           authors: b.authors,
           price: b.price,
           soldHere: b.soldHere,
@@ -125,7 +144,7 @@ export function buildSystemPrompt(page: {
     "alone — if you do not have the book, look it up first.",
     "",
     "PRICES",
-    'A price shown as "On Amazon" means this store does not sell that edition; it is not free and',
+    'A price shown as "Not sold here" means this store does not sell that edition; it is not free and',
     "it is not $0. Point the visitor to the book's page, which lists where each edition is bought.",
     "",
     "WHAT YOU WILL NOT DO",

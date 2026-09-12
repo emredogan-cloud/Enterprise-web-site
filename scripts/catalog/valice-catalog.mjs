@@ -188,7 +188,7 @@ export const AUTHORS = [
  * @property {string} priceBasis  Why this number is what it is.
  */
 
-export const BOOKS = [
+const RAW_BOOKS = [
   {
     // The one title that was already published and already selling — except
     // that it carried `pri_test_meditations_999`, a Paddle price id that
@@ -2651,7 +2651,347 @@ export const BOOKS = [
       "The project's own kill gate (five external solvers, zero sessions recorded) was never passed. The book was published regardless. No puzzle in it has been solved by anyone other than its author.",
     ],
   },
+  {
+    /**
+     * PENCIL & PAPER — Play Anywhere 1.
+     *
+     * The first original book from the Agent A line and the first Vâliçe title
+     * at a 5 × 8 pocket trim. Built 2026-09-10.
+     *
+     * websiteStatus is "published" and BOTH formats are `unavailable`, which is
+     * deliberate rather than contradictory: the companion QR is printed on page
+     * 150 of the interior and decoded out of the built PDF, so the book's own
+     * page and its companion must resolve from the day a proof is ordered — but
+     * neither format is on sale until the KDP upload clears review, and a price
+     * with no destination is a fabrication. The formats flip to `available` with
+     * the ASIN in the same commit as the upload log.
+     */
+    slug: "pencil-and-paper",
+    title: "Pencil & Paper",
+    subtitle:
+      "60 Games That Need Nothing but a Pencil — with Where Each One Came From and How to Win",
+    language: "en",
+    pageCount: 162,
+    categories: ["games-and-play"],
+    authors: ["emre-dogan"],
+    bisac: ["GAM001000", "GAM019000", "REF000000"],
+    series: { name: "Play Anywhere", volume: 1 },
+    websiteStatus: "published",
+    linkageDecision: {
+      decision: "built_with_companion",
+      why: "The companion leaf is in the typesetting, not spliced on: page 150 is a dedicated leaf carrying a 2.54 in code at 31.8 % of page height with valicepress.com/companion/play-anywhere beneath it. The code was decoded out of the BUILT PDF at 300 dpi with a real detector, not checked against the source artwork — QA/qr.json.",
+    },
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m25nycdntw031qg4sygyt4pw",
+    onelinePromise:
+      "Sixty pencil games with the history of each one sourced to a document, and the real strategy — including the solutions to the nine that are solved.",
+    description:
+      "Sixty games you can play with a pencil and whatever paper is nearest. Every game gets one opening: complete rules on the left, a diagram and two notes on the right. WHERE IT COMES FROM is the part the grid pads leave out and the part that took the longest — each claim is attached to a source, and six of them were read in the original: Dots and Boxes from Édouard Lucas's own text of 1883, where he says plainly that his students at the École Polytechnique devised it and not him; Hangman's ancestor from Alice Gomme's collection of 1894; Doublets from Lewis Carroll's own letter of 1879; Kayles from Dudeney's first edition of 1907; the hundred game and the magic square from Bachet in 1612. Where a game's origin is genuinely unrecorded, eight of them, the note says so and stops. HOW TO WIN is a real strategy note, and for the thirteen solved games it gives the solution, because a solved game is not a spoiled game — it is a game with a secret. Six parts, two indexes that sort every game by how many people you have and how long you have, and eight score sheets you may photocopy.",
+    idealReader:
+      "Someone who wants a real game on a train or at a table with the phones face down, and who would rather be told where a game came from and how to win it than handed a pad of pre-printed grids.",
+    formats: [
+      {
+        format: "paperback",
+        availability: "unavailable",
+        fulfillment: "amazon",
+        priceCents: 1299,
+        pageCount: 162,
+        isbn13: null,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not-uploaded",
+        masterFileKey: null,
+        priceBasis:
+          "MODELED, not confirmed by KDP. 5 × 8 in, cream, B&W, 162 pp: KDP US printing is $0.85 + $0.012/page = $2.79, so $12.99 nets $5.00 at the 60 % rate (38.5 %), above the house floor. The figure KDP itself shows at upload replaces this line.",
+      },
+      {
+        format: "ebook",
+        availability: "available",
+        fulfillment: "direct",
+        priceCents: 699,
+        pageCount: 162,
+        isbn13: null,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not-uploaded",
+        masterFileKey: "books/pencil-and-paper/master/v1/master.pdf",
+        priceBasis:
+          "$6.99, the Series Bible price, provisioned in Paddle on 2026-09-10 as pro_01m25nyc7xwpmc82fga984tp2n / pri_01m25nycdntw031qg4sygyt4pw. This is the first direct-sale title with NO Kindle edition to match to the cent — the rule the rest of the list follows — so the number is set now and the Kindle listing will be set to match it, not the other way round. On Kindle the same $6.99 would sit in the 70 % band and net about $4.78 after delivery; direct it nets close to the whole $6.99 less Paddle's fee.",
+      },
+    ],
+    blockers: [
+      "NOT ON AMAZON, and blocked rather than merely undone. The paperback setup was attempted on 2026-09-10 and KDP refused the save: \"Title creation limit exceeded — You have reached the weekly title creation limit for this format.\" That is an account-level throttle, not a file problem: all four packages pass preflight, and the details form had accepted the whole metadata set before the refusal. No draft was created and the bookshelf holds no orphan record. The cause is on the same bookshelf — three other paperbacks went into review the same day. Retry after the weekly reset. Until then there is no ASIN and the paperback cannot be bought anywhere. The direct ebook IS live: masters are in R2 and the Paddle price exists.",
+      "The direct checkout has been provisioned but NOT transacted. No test purchase has been put through, so the end-to-end till — Paddle → webhook → signed R2 URL — is verified by construction and by the catalogue cross-check, not by a completed order.",
+      "No ISBN. The paperback will take a free KDP-assigned ISBN at upload, matching CDX-C1 and the World Games large print. The owned 978-625 number is queued as wave 5 of ISBN-QUEUE-PLAN.md and belongs to the IngramSpark edition, because KDP will not change an ISBN after publication.",
+      "The 90-day commercial probe that decides whether Play Anywhere continues has not started. Series Bible gate: ≥ 30 units or ≥ 5 printable-pack sales.",
+      "Hardcover is not eligible at a 5 × 8 trim on KDP and no large print is planned; both decisions are recorded with their reasons in the book's metadata.json rather than left as silent omissions.",
+      "COVERS REPLACED 2026-09-10 with the Founder's artwork. Four defects were fixed before it was accepted — a fabricated, checksum-invalid ISBN barcode printed on the back; wrap geometry matching no printable book; the 60 GAMES badge sitting on the trim line; and PNG-with-alpha where KDP needs PDF and JPEG. One is reported and unfixed: the E in PAPER is set at x-height among full caps, baked into the raster. The cover artwork is AI-generated and is the only AI imagery in the product — the sixty interior diagrams are vector code. See PLA-01/docs/PLA-01-COVER-UPDATE-REPORT.md.",
+    ],
+  },
+  {
+    slug: "how-the-world-began",
+    title: "How the World Began",
+    subtitle:
+      "Thirty Creation Myths from Every Corner of the Earth, Told Whole",
+    language: "en",
+    pageCount: 232,
+    categories: ["myth-and-folklore"],
+    authors: ["emre-dogan"],
+    bisac: ["SOC011000", "REL051000", "HIS037000"],
+    series: { name: "Under Every Sky", volume: 1 },
+    websiteStatus: "published",
+    linkageDecision: {
+      decision: "built_with_companion",
+      why: "The companion is in the typesetting, not spliced on: the final leaf carries a 1.05 in code beside the full-ledger note, and the code was DECODED OUT OF THE BUILT PDF at 300 dpi with a real detector (OpenCV) rather than checked against the source artwork — 04_BUILD/qa_qr.py. It resolves to valicepress.com/companion/under-every-sky, which serves the complete source ledger and all 726 typed claims as HTML, JSON and CSV.",
+    },
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m26qf1088bc4fssshphw2x3m",
+    onelinePromise:
+      "Thirty creation myths told whole, each one with its source named, dated and taken apart — including the thirteen times the source turned out not to be what it claimed.",
+    description:
+      "Water that was there before anything. A void that is somebody's ancestor. An egg laid in the dark by Night. A giant taken apart and used for parts. A god who is sick and brings up the sun. A world made five times over, each attempt worse than the last. Thirty creation myths retold in full, from Egypt, Babylonia, Greece, India, Iran, China, Japan, Iceland, Finland, Aotearoa, the Society Islands, Samoa, the Congo, Yorubaland, Mexico, Guatemala, Peru and the forests of eastern North America. And with each one, the part other collections leave out: where it actually comes from. Who wrote it down, in what year, for which employer, and what that did to it. Sarmiento's chronicle was commissioned by the viceroy who beheaded the last Inca. Ellis was an army colonel in the country his regiment was subduing. The oldest surviving statement that the world was made by thought and speech was ground up as a millstone and then read backwards for a century. Every source is named, dated and described, including what is wrong with it — and where a source says it does not know, this book says so and supplies nothing. Thirteen corrections were logged while it was made, five of them because a file was not what its name claimed, and they are printed in the book.",
+    idealReader:
+      "Someone who has read a myth anthology and wanted to know who was actually talking — where the version came from, who wrote it down, and what they wanted out of it.",
+    formats: [
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: 1699,
+        pageCount: 232,
+        isbn13: null,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not-uploaded",
+        masterFileKey: null,
+        priceBasis:
+          "MODELED, not confirmed by KDP. 6 × 9 in, white, B&W, 232 pp: KDP US printing is $1.00 + $0.012/page = $3.78, so $16.99 nets $6.42 at the 60 % rate (37.8 %), above the house floor. The figure KDP itself shows at upload replaces this line.",
+      },
+      {
+        format: "hardcover",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: 2699,
+        pageCount: 232,
+        isbn13: null,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not-uploaded",
+        masterFileKey: null,
+        priceBasis:
+          "MODELED, not confirmed by KDP. 6 × 9 in case laminate, 232 pp sits inside KDP's 76–550 hardcover range, and the cover geometry for exactly 232 pp was read from the official calculator rather than derived. $26.99 is the house hardcover step over a $16.99 paperback. Replace with KDP's own figure at upload.",
+      },
+      {
+        format: "ebook",
+        availability: "available",
+        fulfillment: "direct",
+        priceCents: 999,
+        pageCount: 232,
+        isbn13: null,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not-uploaded",
+        masterFileKey: "books/how-the-world-began/master/v1/master.pdf",
+        priceBasis:
+          "$9.99. The second original title sold direct before it exists on Amazon, so there is no Kindle list price to match — the number is set here and the Kindle listing will be set to match it. 232 pages and 74,489 words, of which 55 % is the source apparatus: the source note, the historical context and the comparative reading that no other creation-myth anthology carries. Buyers get a DRM-free watermarked PDF and a reflowable EPUB that passes EPUBCheck 5.1.0 with zero messages.",
+      },
+    ],
+    blockers: [
+      "NOT ON AMAZON. No KDP upload has been attempted for this title. The four packages are built and pass preflight — interior, paperback cover, hardcover cover, EPUB — but the same account-level weekly title-creation throttle that blocked Pencil & Paper on 2026-09-10 governs this one too, and PLA-01 has priority in the queue because it was attempted first. No ASIN, and the print editions cannot be bought anywhere yet.",
+      "No ISBN. Nothing is fabricated and no identifier is printed; the covers reserve the barcode keep-out and leave it empty. The print editions will take free KDP-assigned ISBNs at upload.",
+      "The direct checkout is provisioned but NOT transacted. No test purchase has been put through, so Paddle → webhook → signed R2 URL is verified by construction and by the catalogue cross-check, not by a completed order.",
+      "The publishing-rights and AI-content declarations at KDP upload must be made by the account holder. All thirty sources are public domain and the retellings, apparatus and figures are original work; the AI answers are recorded in 05_METADATA/metadata.json as text: AI-assisted, images: No.",
+      "NO ILLUSTRATIONS, and this is a decision rather than a gap. No image model was used anywhere in the book and there is no figurative depiction of any deity, people or scene: a book that spends 74,000 words refusing to invent a voice for a living tradition does not commission a machine to invent its face. The four figures and six ornaments are deterministic vectors generated from the book's own records, and the cover is typographic. If the Founder wants illustrated artwork the cover can be swapped exactly as PLA-01's was, and the KDP image disclosure then becomes Yes.",
+      "The 90-day commercial probe that decides whether Under Every Sky continues has not started. Series gate: ≥ 40 units in 90 days after launch, or the series drops to one volume a year.",
+    ],
+  },
+  {
+    slug: "the-tricksters-table",
+    title: "The Trickster's Table",
+    subtitle:
+      "Eighteen Trickster Tales from Eleven Traditions, and What Each One Cost",
+    language: "en",
+    pageCount: 112,
+    categories: ["myth-and-folklore"],
+    authors: ["emre-dogan"],
+    bisac: ["SOC011000"],
+    series: { name: "Under Every Sky", volume: 2 },
+    // PUBLISHED 2026-09-11. The Founder opened the deployment window in the final
+    // distribution directive. Writing "published" here IS the publication decision —
+    // the loader's design is that publication is data, reviewable in a diff — and it
+    // still does nothing on its own until load-catalog.mjs --commit runs.
+    websiteStatus: "published",
+    kdpSelect: false,
+    directSale: true,
+    directSaleBlockedBy: null,
+    paddlePriceId: "pri_01m285tsm54yf4tnme163800ga",
+    blockers: [
+      "KDP paperback: WAITING KDP WEEKLY TITLE LIMIT. Determined 2026-09-11 by a real save attempt, which KDP refused with \"You have reached the weekly title creation limit for this format.\" The Kindle slot was open the same day and a draft exists.",
+      "KDP: the publishing-rights attestation and the three AI answers are the account holder's to make and have deliberately not been made.",
+      "No ISBN. None has been fabricated.",
+      "THERE IS NO HARDCOVER. Cancelled by the Founder 2026-09-11: 112 pages makes the spine too thin and destroys the economics. Do not add one back.",
+    ],
+    onelinePromise:
+      "Eighteen tales of cunning, retold in full from named historical sources, with who wrote each one down and what that did to it.",
+    description:
+      "A spider borrows a coat and does not give it back. A god cuts off a woman's hair for no reason anyone wrote down, loses a bet about it, and has his mouth sewn shut with a thread that has a name. A day-old baby steals fifty cattle and reverses their hoofprints so the tracks point the wrong way. A wife bakes iron griddles into twenty-one loaves and waits for a giant.\n\nEighteen tales of cunning from the Akan of the Gold Coast, Jamaica, Norse Iceland, archaic Greece, Ireland, ancient Egypt, the Khoikhoi and Nama of Namaqualand, Türkiye, Japan, Māori Aotearoa and the Tamil country — each retold in full, and each followed by where it actually came from: who wrote it down, in what year, for which employer, and what that did to it.\n\nThe most famous trickster in the world is not in this book. Coyote is told only in winter across a great many nations, and a printed book is read in July. Every tradition this book declined is listed in the back with the reason.\n\nVolume Two of Under Every Sky.",
+    formats: [
+      {
+        format: "ebook",
+        availability: "available",
+        fulfillment: "direct",
+        priceCents: usd(6.99),
+        pageCount: 112,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "draft",
+        masterFileKey: "books/the-tricksters-table/master/v1/master.pdf",
+        priceBasis:
+          "$6.99, SET BY THE FOUNDER on 2026-09-11, replacing the $9.99 carried from the " +
+          "production directive. The flag raised in the Stage-2 report is answered: $9.99 " +
+          "was the same price as the 232-page Volume One on the same storefront and a buyer " +
+          "can compare them in one glance. $9.99 must not reappear for this title.",
+      },
+      {
+        format: "paperback",
+        availability: "coming_soon",
+        fulfillment: "amazon",
+        priceCents: usd(12.99),
+        pageCount: 112,
+        amazonAsin: null,
+        amazonUrl: null,
+        kdp: "not-uploaded",
+        masterFileKey: null,
+        priceBasis:
+          "MODELLED, not confirmed by KDP. 6 x 9 in, white, B&W, 112 pp: KDP US printing is " +
+          "$1.00 + $0.012/page = $2.34, so $12.99 nets $5.45 at the 60% rate. Not $16.99 like " +
+          "Volume One, because that book is 232 pages. The $12.99 is the Founder's, set " +
+          "2026-09-11. KDP's own printing figure at upload replaces the cost model, not the price.",
+      },
+    ],
+  },
 ];
+
+/* ===========================================================================
+ * PADDLE COMPLIANCE GATE — added 2026-09-12
+ * ===========================================================================
+ *
+ * WHY THIS EXISTS
+ * Paddle reviewed valicepress.com on 2026-09-09 and again on 2026-09-11 and
+ * declined the application twice. The second review named two findings:
+ *
+ *     "Reselling/redistribution of third party content."
+ *     "Physical goods sold or otherwise provided as part of the product."
+ *
+ * Paddle is the Merchant of Record; it takes legal and tax responsibility for
+ * every transaction, so what may pass through its checkout is its decision and
+ * not ours to argue past. This gate is how the catalog answers both findings
+ * WITHOUT changing a single fact about any book.
+ *
+ * WHAT IT DOES NOT DO — and this is the point
+ * It does not unpublish anything, hide the public-domain series, relabel a
+ * public-domain text as an original work, or delete an Amazon link. Every book
+ * keeps its page, its description, its authors, its real provenance and its
+ * free-campaign availability. The ONLY thing that changes is which titles carry
+ * a paid checkout on this site.
+ *
+ * RULE 1 — public-domain series leave the paid checkout.
+ *   "Valice Classics" is, by its own series bible, the public-domain series.
+ *   Those editions are ours in typesetting and apparatus, but the underlying
+ *   texts are third-party public-domain works, which is plainly what Paddle's
+ *   first finding is about. They keep their pages and stay free to request
+ *   during the campaign; they simply are not Paddle transactions. This is
+ *   reversed by deleting one line here if Paddle confirms the model.
+ *
+ * RULE 2 — stop advertising print editions that do not exist.
+ *   A print format marked `coming_soon` with no ASIN is not an edition; it is
+ *   an intention. Displaying it next to a digital buy button is the most
+ *   likely source of Paddle's second finding, and it is also simply inaccurate
+ *   under our own rule that we never advertise a format that does not exist.
+ *   Print editions that DO exist keep their Amazon links untouched — Valice
+ *   Press does sell printed books, through Amazon, and this file continues to
+ *   say so.
+ *
+ * The pre-gate Paddle price ids are recorded in PADDLE_PRICE_IDS_BEFORE_GATE
+ * below so that nothing needed for an audit is lost by nulling them here.
+ * =========================================================================== */
+
+/** The series whose underlying texts are public domain, hence not Paddle-eligible. */
+const PADDLE_INELIGIBLE_SERIES = new Set(["Valice Classics"]);
+
+const PRINT_FORMATS = new Set(["paperback", "hardcover", "large_print"]);
+
+/** Audit record: what each title's Paddle price was before the gate nulled it. */
+export const PADDLE_PRICE_IDS_BEFORE_GATE = Object.freeze(
+  Object.fromEntries(
+    RAW_BOOKS.filter((b) => b.paddlePriceId).map((b) => [b.slug, b.paddlePriceId]),
+  ),
+);
+
+/** Why a given book is not sold through this site's checkout, or null. */
+function paddleGateReason(book) {
+  if (PADDLE_INELIGIBLE_SERIES.has(book.series?.name)) {
+    return (
+      "Paddle compliance (2026-09-12): this is a Valice Classics edition of a " +
+      "public-domain text. Paddle's 2026-09-11 review named " +
+      '"reselling/redistribution of third party content" as a finding, so ' +
+      "public-domain titles are held out of the paid checkout until Paddle " +
+      "confirms in writing that this series is acceptable. The book stays " +
+      "published, stays free to request during the campaign, and keeps every " +
+      "print edition it really has."
+    );
+  }
+  return null;
+}
+
+/**
+ * Apply both rules to the raw catalog.
+ *
+ * The `@template` is load-bearing, not decoration: without it this returns
+ * `any[]`, every consumer of `BOOKS` loses inference, and TypeScript starts
+ * reporting implicit-any in unrelated test files that only ever did
+ * `BOOKS.filter(x => x.websiteStatus === "published")`.
+ *
+ * @template T
+ * @param {T[]} books
+ * @returns {T[]}
+ */
+function applyPaddleComplianceGate(books) {
+  return books.map((book) => {
+    const reason = paddleGateReason(book);
+
+    // RULE 2 applies to every book, gated or not: an unbuilt print edition is
+    // not an edition. `unavailable` is the value the loader deletes, so the
+    // storefront stops listing it rather than showing "not yet available".
+    const formats = (book.formats ?? []).map((f) =>
+      PRINT_FORMATS.has(f.format) && f.availability === "coming_soon" && !f.amazonAsin
+        ? { ...f, availability: "unavailable" }
+        : f,
+    );
+
+    if (!reason) return { ...book, formats };
+
+    return {
+      ...book,
+      formats,
+      // No Paddle price means no paid checkout anywhere: `cart/actions.ts`
+      // already refuses a book without one, and the product page now hides the
+      // buy control instead of offering a button that would fail.
+      paddlePriceId: null,
+      directSale: false,
+      directSaleBlockedBy: book.directSaleBlockedBy
+        ? `${book.directSaleBlockedBy} ALSO: ${reason}`
+        : reason,
+    };
+  });
+}
+
+export const BOOKS = applyPaddleComplianceGate(RAW_BOOKS);
+
 
 /**
  * Titles deliberately NOT loaded into the storefront, and why. Kept here so

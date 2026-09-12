@@ -209,6 +209,7 @@ export function CatalogBookCard({ book, priority = false }: { book: CatalogItem;
                 title: book.title,
                 author: book.author,
                 priceCents: book.priceCents,
+                deliverableFree: book.deliverableFree,
                 coverSrc: book.coverSrc ?? null,
               }}
             />

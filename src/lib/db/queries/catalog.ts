@@ -97,6 +97,7 @@ export async function listPublishedBooks(): Promise<BookCardData[]> {
           subtitle: true,
           coverKey: true,
           priceCents: true,
+          masterFileKey: true,
           currency: true,
         },
         with: {
@@ -121,6 +122,7 @@ export async function listPublishedBooks(): Promise<BookCardData[]> {
         coverKey: b.coverKey,
         coverSrc: bookCoverSrc(b.slug),
         priceCents: b.priceCents,
+        deliverableFree: Boolean(b.masterFileKey),
         currency: b.currency,
         authors: b.bookAuthors.map((ba) => ba.author),
         // Primary collection for the catalog card — first by name when a book
@@ -176,6 +178,7 @@ const _getFeaturedBooksFromDb = unstable_cache(
         subtitle: true,
         coverKey: true,
         priceCents: true,
+        masterFileKey: true,
         currency: true,
       },
       with: {
@@ -208,6 +211,7 @@ const _getFeaturedBooksFromDb = unstable_cache(
         coverKey: b.coverKey,
         coverSrc: bookCoverSrc(b.slug),
         priceCents: b.priceCents,
+        deliverableFree: Boolean(b.masterFileKey),
         currency: b.currency,
         authors: b.bookAuthors.map((ba) => ba.author),
         primaryCategory: cats[0]?.name ?? null,
@@ -258,6 +262,7 @@ export async function listEbooks(): Promise<BookCardData[]> {
           subtitle: true,
           coverKey: true,
           priceCents: true,
+          masterFileKey: true,
           currency: true,
         },
         with: {
@@ -355,6 +360,18 @@ export interface BookDetail extends BookCardData {
    * once advertised an EPUB nothing delivered.
    */
   hasEpub: boolean;
+  /**
+   * The Paddle price behind this book's checkout, or null when there is none.
+   *
+   * This is the storefront's single answer to "may we charge for this here?".
+   * It is deliberately NOT the same question as "do we hold the file" — since
+   * the Paddle compliance gate of 2026-09-12, eighteen public-domain titles
+   * answer yes to the second and no to the first: still free to request during
+   * the campaign, no longer a paid transaction. `cart/actions.ts` has always
+   * refused a book without one; the product page now declines to offer the
+   * button at all rather than showing one that would fail at the till.
+   */
+  paddlePriceId: string | null;
 }
 
 /** Display order: what we sell ourselves first, then print by weight. */
@@ -382,12 +399,14 @@ export async function getPublishedBookBySlug(
           description: true,
           coverKey: true,
           priceCents: true,
+          masterFileKey: true,
           currency: true,
           pageCount: true,
           language: true,
           isbn: true,
           publishedAt: true,
           epubFileKey: true,
+          paddlePriceId: true,
         },
         with: {
           bookAuthors: {
@@ -414,12 +433,14 @@ export async function getPublishedBookBySlug(
         coverKey: book.coverKey,
         coverSrc: bookCoverSrc(book.slug),
         priceCents: book.priceCents,
+        deliverableFree: Boolean(book.masterFileKey),
         currency: book.currency,
         pageCount: book.pageCount,
         language: book.language,
         isbn: book.isbn,
         publishedAt: book.publishedAt,
         hasEpub: Boolean(book.epubFileKey),
+        paddlePriceId: book.paddlePriceId,
         authors: book.bookAuthors.map((ba) => ba.author),
         primaryCategory:
           book.bookCategories
@@ -493,6 +514,7 @@ export async function searchBooks(query: string): Promise<BookCardData[]> {
           subtitle: true,
           coverKey: true,
           priceCents: true,
+          masterFileKey: true,
           currency: true,
         },
         with: {
@@ -513,6 +535,7 @@ export async function searchBooks(query: string): Promise<BookCardData[]> {
         coverKey: b.coverKey,
         coverSrc: bookCoverSrc(b.slug),
         priceCents: b.priceCents,
+        deliverableFree: Boolean(b.masterFileKey),
         currency: b.currency,
         authors: b.bookAuthors.map((ba) => ba.author),
       }));
@@ -579,6 +602,7 @@ export async function getCartBooks(bookIds: string[]): Promise<BookCardData[]> {
           subtitle: true,
           coverKey: true,
           priceCents: true,
+          masterFileKey: true,
           currency: true,
         },
         with: {
@@ -598,6 +622,7 @@ export async function getCartBooks(bookIds: string[]): Promise<BookCardData[]> {
         coverKey: b.coverKey,
         coverSrc: bookCoverSrc(b.slug),
         priceCents: b.priceCents,
+        deliverableFree: Boolean(b.masterFileKey),
         currency: b.currency,
         authors: b.bookAuthors.map((ba) => ba.author),
       }));
@@ -637,6 +662,7 @@ export async function getCheckoutItems(
           slug: true,
           title: true,
           priceCents: true,
+          masterFileKey: true,
           currency: true,
           paddlePriceId: true,
         },
@@ -749,6 +775,7 @@ export async function getCategoryPageBySlug(
                   subtitle: true,
                   coverKey: true,
                   priceCents: true,
+          masterFileKey: true,
                   currency: true,
                   status: true,
                   publishedAt: true,
@@ -783,6 +810,7 @@ export async function getCategoryPageBySlug(
           coverKey: b.coverKey,
           coverSrc: bookCoverSrc(b.slug),
           priceCents: b.priceCents,
+          deliverableFree: Boolean(b.masterFileKey),
           currency: b.currency,
           authors: b.bookAuthors.map((ba) => ba.author),
         }));
@@ -886,6 +914,7 @@ export async function getAuthorPageBySlug(
                   subtitle: true,
                   coverKey: true,
                   priceCents: true,
+          masterFileKey: true,
                   currency: true,
                   status: true,
                   publishedAt: true,
@@ -920,6 +949,7 @@ export async function getAuthorPageBySlug(
           coverKey: b.coverKey,
           coverSrc: bookCoverSrc(b.slug),
           priceCents: b.priceCents,
+          deliverableFree: Boolean(b.masterFileKey),
           currency: b.currency,
           authors: b.bookAuthors.map((ba) => ba.author),
         }));

@@ -529,5 +529,56 @@
         "page": 18
       }
     ]
+  },
+  "pencil-and-paper": {
+    "note": "One complete opening: Dots and Boxes, with the rules, the diagram, the sourced provenance and the strategy note.",
+    "pages": [
+      {
+        "src": "/images/previews/pencil-and-paper/p40.webp",
+        "page": 40
+      },
+      {
+        "src": "/images/previews/pencil-and-paper/p41.webp",
+        "page": 41
+      }
+    ]
+  },
+  "how-the-world-began": {
+    "note": "A story opening and the prose that follows it — Hesiod's Chaos, and why the usual translation of the word is wrong.",
+    "pages": [
+      {
+        "src": "/images/previews/how-the-world-began/p25.webp",
+        "page": 25
+      },
+      {
+        "src": "/images/previews/how-the-world-began/p26.webp",
+        "page": 26
+      },
+      {
+        "src": "/images/previews/how-the-world-began/p27.webp",
+        "page": 27
+      },
+      {
+        "src": "/images/previews/how-the-world-began/p28.webp",
+        "page": 28
+      }
+    ]
+  },
+  "the-tricksters-table": {
+    "note": "A whole tale and everything the book puts around it — Anansi and Thunder, then who wrote it down, when, and what that did to it.",
+    "pages": [
+      {
+        "src": "/images/previews/the-tricksters-table/p21.webp",
+        "page": 21
+      },
+      {
+        "src": "/images/previews/the-tricksters-table/p22.webp",
+        "page": 22
+      },
+      {
+        "src": "/images/previews/the-tricksters-table/p23.webp",
+        "page": 23
+      }
+    ]
   }
 }

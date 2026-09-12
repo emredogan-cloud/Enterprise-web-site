@@ -122,6 +122,29 @@ export default async function BookDetailPage({
   // hard-coded bestsellers; it advertised books Valice Press cannot sell.
   if (!book) notFound();
 
+  /**
+   * THE TWO QUESTIONS THIS PAGE HAS TO KEEP APART.
+   *
+   * `deliverableHere` — this site holds the file and may hand it over. That is
+   * what the free-ebook campaign runs on.
+   *
+   * `sellsHere` — this site may take money for it, which additionally requires
+   * a Paddle price. Paddle declined valicepress.com on 2026-09-09 and
+   * 2026-09-11, the second time naming "reselling/redistribution of third
+   * party content", so the eighteen Valice Classics editions of public-domain
+   * texts were taken off the paid checkout (see the compliance gate in
+   * `scripts/catalog/valice-catalog.mjs`). They keep their pages, their real
+   * provenance and their free-campaign availability; they have no Paddle price
+   * and therefore no buy button.
+   */
+  const deliverableHere = book.formats.some(
+    (f) =>
+      f.format === "ebook" &&
+      f.fulfillment === "direct" &&
+      f.availability === "available",
+  );
+  const sellsHere = deliverableHere && Boolean(book.paddlePriceId);
+
   // Reviews + aggregate + related books in parallel — all `safeQuery`-
   // wrapped so a missing DB degrades to `{count: 0, average: null}` /
   // `[]` / `[]` respectively. The related-books query is the simplest
@@ -163,6 +186,10 @@ export default async function BookDetailPage({
     language: book.language,
     pageCount: book.pageCount,
     priceCents: book.priceCents,
+    // No Offer for a title this store does not sell — see `sellsDirect` in
+    // `buildBookJsonLd`. The print editions below stay: they exist, they are
+    // on Amazon, and saying so is accurate.
+    sellsDirect: sellsHere,
     currency: book.currency,
     authors: book.authors,
     coverImageUrl,
@@ -210,15 +237,19 @@ export default async function BookDetailPage({
           isbn={book.isbn}
           authors={book.authors}
           ratingAggregate={ratingAggregate}
-          // Only a book with an ebook we may actually sell gets a price and
-          // an add-to-cart. For the rest the panel points at the editions
-          // table, which is where their real buy routes live.
-          directSale={book.formats.some(
-            (f) =>
-              f.format === "ebook" &&
-              f.fulfillment === "direct" &&
-              f.availability === "available",
-          )}
+          // Two questions, two answers.
+          //
+          // `directSale` — may we CHARGE here? Only with a Paddle price
+          // behind the button. Since the compliance gate of 2026-09-12 the
+          // eighteen public-domain titles have none, so they get no
+          // add-to-cart rather than a button that fails at the till.
+          //
+          // `deliverableHere` — do we hold the file? That is what the
+          // free-ebook campaign runs on, and it is still true for all of
+          // them. Gating the gift box on `directSale` would have taken the
+          // free offer off two thirds of the catalogue.
+          directSale={sellsHere}
+          deliverableHere={deliverableHere}
         />
 
         {/* The free companion, before any buy route. A reader arriving from
@@ -243,18 +274,13 @@ export default async function BookDetailPage({
             route each one actually supports. Print goes to Amazon because
             Amazon is what fulfils it; see <FormatTable>. */}
         <div className="mx-auto max-w-[900px] px-4 sm:px-6">
-          <FormatTable formats={book.formats} />
+          <FormatTable formats={book.formats} sellsDirectEbook={sellsHere} />
         </div>
 
         {/* Only for a book we actually sell here. A reader whose only route is
             Amazon does not need to be told what our library would have given
             them. */}
-        {book.formats.some(
-          (f) =>
-            f.format === "ebook" &&
-            f.fulfillment === "direct" &&
-            f.availability === "available",
-        ) && (
+        {sellsHere && (
           <DirectEditionPanel
             title={book.title}
             pageCount={book.pageCount}
