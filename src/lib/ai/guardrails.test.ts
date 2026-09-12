@@ -313,3 +313,24 @@ describe("a title that is not sold here can still be free to request", () => {
     expect(prompt).toMatch(/freeDuringCampaign/);
   });
 });
+
+/**
+ * Measured on production 2026-09-12, right after the public-domain series was
+ * hidden for the Paddle domain review. Asked "Do you sell Meditations by
+ * Marcus Aurelius?", the assistant answered "Valice Press does not publish
+ * Meditations by Marcus Aurelius."
+ *
+ * It did the important half right — it did not offer a hidden book. But the
+ * sentence is false: Valice Press does publish that edition, it is simply not
+ * on the storefront. A reader holding the printed Dudeney would be told their
+ * own copy does not exist. The assistant sees the storefront, not the
+ * catalogue, and must not mistake the first for the second.
+ */
+describe("a book missing from the storefront is not a book that does not exist", () => {
+  it("forbids denying publication, and forbids offering what it cannot see", () => {
+    const prompt = buildSystemPrompt({ path: "/" });
+    expect(prompt).toMatch(/not part of the current storefront/i);
+    expect(prompt).toMatch(/Do NOT say Valice Press does not publish it/i);
+    expect(prompt).toMatch(/never guess a checkout URL/i);
+  });
+});
