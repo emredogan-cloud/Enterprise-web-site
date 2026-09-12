@@ -111,7 +111,12 @@ export function BookAddToCart({ bookId }: { bookId: string }) {
       ) : failed ? (
         <>Try again</>
       ) : (
-        <>Add to cart</>
+        /* "Add to cart" alone never said what was in the cart. Paddle
+           declined this domain twice for looking like it sells physical
+           goods, and a buy button on a page that also lists a paperback is
+           exactly the ambiguity a reviewer sees. The button now names the
+           thing it adds. */
+        <>Add digital edition</>
       )}
     </button>
     {failed && (

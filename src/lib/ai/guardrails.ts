@@ -144,7 +144,7 @@ export function buildSystemPrompt(page: {
     "alone — if you do not have the book, look it up first.",
     "",
     "PRICES",
-    'A price shown as "On Amazon" means this store does not sell that edition; it is not free and',
+    'A price shown as "Not sold here" means this store does not sell that edition; it is not free and',
     "it is not $0. Point the visitor to the book's page, which lists where each edition is bought.",
     "",
     "WHAT YOU WILL NOT DO",

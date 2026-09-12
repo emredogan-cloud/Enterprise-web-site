@@ -46,6 +46,7 @@ interface Book {
   directSale: boolean;
   directSaleBlockedBy: string | null;
   paddlePriceId: string | null;
+  series?: { name: string; volume?: number } | null;
   categories: string[];
   authors: string[];
   formats: Format[];
@@ -53,6 +54,7 @@ interface Book {
 }
 
 const books = BOOKS as Book[];
+/** Has an ebook this site holds and can hand over — the free campaign's test. */
 const directEbook = (b: Book) =>
   b.formats.find(
     (f) =>
@@ -60,6 +62,13 @@ const directEbook = (b: Book) =>
       f.fulfillment === "direct" &&
       f.availability === "available",
   );
+
+/**
+ * May we CHARGE for it here? Narrower than `directEbook` since the Paddle
+ * compliance gate: eighteen public-domain titles are deliverable (the free
+ * campaign still works) but are deliberately not Paddle transactions.
+ */
+const soldHere = (b: Book) => Boolean(directEbook(b)) && b.directSale !== false;
 
 describe("catalog structure", () => {
   it("has unique book slugs", () => {
@@ -116,6 +125,112 @@ describe("KDP Select exclusivity", () => {
   });
 });
 
+/**
+ * The Paddle compliance gate, asserted rather than trusted.
+ *
+ * Paddle declined valicepress.com on 2026-09-09 and 2026-09-11, the second
+ * time naming "reselling/redistribution of third party content" and "physical
+ * goods sold or otherwise provided as part of the product". The catalog answers
+ * both by holding the public-domain series out of the paid checkout and by
+ * refusing to advertise print editions that do not exist.
+ *
+ * These tests exist so that neither can be undone by accident — by a new book
+ * copied from an old template, or by somebody restoring a price id without
+ * knowing why it was removed. If Paddle later approves the public-domain model
+ * in writing, the gate comes out of `valice-catalog.mjs` and these come out
+ * with it, deliberately and together.
+ */
+describe("Paddle compliance gate", () => {
+  const PUBLIC_DOMAIN_SERIES = "Valice Classics";
+
+  it("keeps every public-domain title out of the paid checkout", () => {
+    const offenders = books
+      .filter((b) => b.series?.name === PUBLIC_DOMAIN_SERIES)
+      .filter((b) => b.paddlePriceId || b.directSale !== false)
+      .map((b) => b.slug);
+    expect(
+      offenders,
+      `public-domain titles must not be Paddle-wired: ${offenders.join(", ")}`,
+    ).toEqual([]);
+  });
+
+  it("still lets held-out titles be delivered, so the free campaign survives", () => {
+    // The bug this guards: tying master_file_key to "is it on sale" nulls the
+    // key for every held-out book and breaks free delivery for two thirds of
+    // the catalogue.
+    const classics = books.filter(
+      (b) => b.series?.name === PUBLIC_DOMAIN_SERIES && b.websiteStatus === "published",
+    );
+    expect(classics.length).toBeGreaterThan(0);
+    for (const b of classics) {
+      const ebook = directEbook(b);
+      expect(ebook, `${b.slug} lost its deliverable ebook`).toBeDefined();
+      expect(ebook!.masterFileKey, `${b.slug} has no master to deliver`).toBeTruthy();
+    }
+  });
+
+  it("records why every held-out title is held out", () => {
+    for (const b of books.filter((x) => x.series?.name === PUBLIC_DOMAIN_SERIES)) {
+      expect(b.directSaleBlockedBy, `${b.slug} records no reason`).toMatch(/Paddle/i);
+    }
+  });
+
+  /**
+   * The free campaign must survive the gate.
+   *
+   * Everything that decides "can this be given away" used to ask about price,
+   * because until 2026-09-12 an unpriced book was always also a book with no
+   * file. The gate separated those, and three separate places had to be taught
+   * the difference: the API (`/api/free-book`), the gift box, and the loader's
+   * `master_file_key` write. If any one of them reverts to the price test,
+   * eighteen titles silently stop being requestable — the modal opens and the
+   * submission answers 409.
+   */
+  it("leaves every held-out title giftable, and every unfillable title not", () => {
+    const published = books.filter((b) => b.websiteStatus === "published");
+    const withMaster = published.filter((b) => directEbook(b)?.masterFileKey);
+    const withoutMaster = published.filter((b) => !directEbook(b)?.masterFileKey);
+
+    // Held out of the paid checkout, still ours to give.
+    for (const b of published.filter((x) => x.series?.name === PUBLIC_DOMAIN_SERIES)) {
+      expect(withMaster, `${b.slug} must stay giftable`).toContain(b);
+    }
+    // The only books that must never be offered are the ones with no file.
+    for (const b of withoutMaster) {
+      expect(directEbook(b)?.masterFileKey ?? null, `${b.slug}`).toBeFalsy();
+    }
+    expect(withMaster.length).toBeGreaterThanOrEqual(18);
+  });
+
+  it("advertises no print edition that does not exist", () => {
+    const phantom = books.flatMap((b) =>
+      b.formats
+        .filter(
+          (f) =>
+            (f.format === "paperback" ||
+              f.format === "hardcover" ||
+              f.format === "large_print") &&
+            f.availability !== "unavailable" &&
+            !f.amazonAsin,
+        )
+        .map((f) => `${b.slug}/${f.format}`),
+    );
+    expect(
+      phantom,
+      `print editions shown without a real ASIN: ${phantom.join(", ")}`,
+    ).toEqual([]);
+  });
+
+  it("keeps the print editions that DO exist, with their Amazon links", () => {
+    // The other half of the rule: Valice Press really does sell printed books
+    // through Amazon, and this separation must not quietly delete that.
+    const live = books.flatMap((b) =>
+      b.formats.filter((f) => f.amazonUrl && f.amazonAsin).map((f) => `${b.slug}/${f.format}`),
+    );
+    expect(live.length).toBeGreaterThanOrEqual(20);
+  });
+});
+
 describe("Paddle wiring", () => {
   // The shape Paddle actually issues. `pri_test_meditations_999` passes a
   // naive startsWith("pri_") check, which is precisely how it survived.
@@ -123,7 +238,7 @@ describe("Paddle wiring", () => {
 
   it("gives every directly-sold book a real-looking Paddle price id", () => {
     for (const b of books) {
-      if (!directEbook(b)) continue;
+      if (!soldHere(b)) continue;
       expect(b.paddlePriceId, `${b.slug} is on sale with no Paddle price`).toBeTruthy();
       expect(
         b.paddlePriceId,
@@ -134,7 +249,7 @@ describe("Paddle wiring", () => {
 
   it("does not carry a Paddle price for a book that is not sold here", () => {
     for (const b of books) {
-      if (directEbook(b)) continue;
+      if (soldHere(b)) continue;
       expect(
         b.paddlePriceId,
         `${b.slug} is not sold here but carries a Paddle price id`,

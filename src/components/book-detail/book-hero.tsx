@@ -61,6 +61,17 @@ export interface BookHeroProps {
    * then fails. So the panel switches instead of formatting a zero.
    */
   directSale?: boolean;
+  /**
+   * Do we hold this book's file and may we hand it over?
+   *
+   * Separate from `directSale` since the Paddle compliance gate of
+   * 2026-09-12. Eighteen public-domain titles are deliverable but not sold:
+   * the free-ebook campaign still gives them away, and no money changes hands
+   * on this site for them. Before the split, the gift box was gated on
+   * `directSale`, so taking those titles off the paid checkout would have
+   * silently removed the free offer from two thirds of the catalogue.
+   */
+  deliverableHere?: boolean;
 }
 
 export function BookHero({
@@ -79,6 +90,7 @@ export function BookHero({
   authors,
   ratingAggregate,
   directSale = true,
+  deliverableHere = directSale,
 }: BookHeroProps) {
   return (
     <section className="mx-auto mt-6 max-w-[1320px] px-4 sm:mt-10 sm:px-6">
@@ -102,10 +114,14 @@ export function BookHero({
             {/* Price line — only when there is a price of ours to state. */}
             <div className="flex items-baseline justify-between">
               <span className="text-[12px] lg:text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-soft">
-                {directSale ? "Price" : "Editions"}
+                {directSale ? "Digital edition" : deliverableHere ? "Edition" : "Editions"}
               </span>
               <span className="font-serif text-[28px] font-medium leading-none text-fg-hi">
-                {directSale ? formatPrice(priceCents, currency) : "In print"}
+                {directSale
+                  ? formatPrice(priceCents, currency)
+                  : deliverableHere
+                    ? "Not sold here"
+                    : "In print"}
               </span>
             </div>
 
@@ -117,7 +133,7 @@ export function BookHero({
                 away, and a gift box on it would promise a file that does not
                 exist. `directSale` is the same flag that decides whether the
                 price line above is a price at all. */}
-            {directSale && (
+            {deliverableHere && (
               <div className="mt-5 flex items-center justify-between gap-3 rounded-xl border px-3.5 py-3"
                    style={{ borderColor: "rgba(214,178,102,0.3)", background: "rgba(214,178,102,0.06)" }}>
                 <span className="text-[12.5px] leading-snug text-fg-mid">
@@ -131,6 +147,9 @@ export function BookHero({
                     author: authors[0]?.name ?? null,
                     description,
                     priceCents,
+                    // The hero already knows; pass it rather than let the
+                    // gift box fall back to the price proxy.
+                    deliverableFree: deliverableHere,
                     currency,
                     coverSrc: coverSrc ?? null,
                     pageCount,
@@ -154,34 +173,38 @@ export function BookHero({
             </div>
             {!directSale && (
               <p className="mt-3 text-center text-[12px] lg:text-[11px] leading-relaxed text-fg-soft">
-                This title isn&apos;t sold on this site. Every edition it
-                exists in is listed below, with where to buy it.
+                {deliverableHere
+                  ? "We aren’t selling this edition through this site’s checkout at the moment. Any printed edition it has is listed below."
+                  : "This title isn’t sold on this site. Every edition it exists in is listed below, with where to buy it."}
               </p>
             )}
 
-            {/* Trust microcopy — the "buy once, yours to keep" promise + refund link */}
+            {/* Trust microcopy.
+                The refund promise belongs to a purchase, so it is only shown
+                where a purchase is possible — printing "14-day refund" beside
+                a title nobody can buy here is a promise about nothing. The
+                delivery line is stated explicitly because this checkout is
+                digital and Paddle's review turned on exactly that point. */}
             <ul className="mt-5 space-y-2 text-[12px] text-fg-mid">
-              <li className="flex items-center gap-2">
-                <span
-                  aria-hidden
-                  className="h-1 w-1 rounded-full bg-[#33f0aa] shadow-[0_0_4px_#33f0aa]"
-                />
-                Yours to keep — never locked
-              </li>
-              <li className="flex items-center gap-2">
-                <span
-                  aria-hidden
-                  className="h-1 w-1 rounded-full bg-[#33f0aa] shadow-[0_0_4px_#33f0aa]"
-                />
-                Watermarked PDF, no DRM
-              </li>
-              <li className="flex items-center gap-2">
-                <span
-                  aria-hidden
-                  className="h-1 w-1 rounded-full bg-[#33f0aa] shadow-[0_0_4px_#33f0aa]"
-                />
-                14-day refund before download
-              </li>
+              {(directSale
+                ? [
+                    "Instant download — nothing is shipped",
+                    "Yours to keep — never locked",
+                    "Watermarked PDF, no DRM",
+                    "14-day refund before download",
+                  ]
+                : deliverableHere
+                  ? ["Digital download — nothing is shipped", "Yours to keep — never locked"]
+                  : ["Printed editions are sold and shipped by Amazon"]
+              ).map((line) => (
+                <li key={line} className="flex items-center gap-2">
+                  <span
+                    aria-hidden
+                    className="h-1 w-1 rounded-full bg-[#33f0aa] shadow-[0_0_4px_#33f0aa]"
+                  />
+                  {line}
+                </li>
+              ))}
             </ul>
           </div>
         </div>

@@ -26,7 +26,7 @@ export default function RefundPage() {
     <LegalShell
       eyebrow="Legal"
       title="Refund policy"
-      lastUpdated="2026-05-30"
+      lastUpdated="2026-09-12"
       intro={
         <p>
           We sell digital books. Once you download one, the file is
@@ -129,7 +129,19 @@ export default function RefundPage() {
         in your account are unaffected.
       </p>
 
-      <h2>7. Disputes</h2>
+      <h2>7. Printed editions are not covered by this policy</h2>
+      <p>
+        This policy covers digital editions bought through this site, which
+        is everything this site sells. Paperback, hardcover and large-print
+        editions of Valice Press books are printed, sold and shipped by
+        Amazon, and a return or refund for one of those is handled by Amazon
+        under Amazon&apos;s own returns policy — we cannot refund a purchase
+        we did not take payment for. If you are unsure which you bought:
+        anything with a delivery address came from Amazon, and anything you
+        downloaded came from us.
+      </p>
+
+      <h2>8. Disputes</h2>
       <p>
         If you&apos;d rather not contact us directly, you can also open
         a dispute through Paddle (your receipt has the link) or through

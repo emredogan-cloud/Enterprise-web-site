@@ -45,7 +45,27 @@ export interface Bundle {
   blurb: string;
 }
 
-export const BUNDLES: Bundle[] = [
+/**
+ * SUSPENDED 2026-09-12 — PADDLE COMPLIANCE.
+ *
+ * The one bundle we had, The Stoic Library, is Meditations plus Epictetus.
+ * Both are Valice Classics — editions of public-domain texts — and both came
+ * off the paid checkout when Paddle's 2026-09-11 review named
+ * "reselling/redistribution of third party content" as a finding. Neither can
+ * be added to a cart any more, so the bundle can no longer be bought: leaving
+ * it live would advertise a discount on a transaction that cannot complete,
+ * and would advertise it for exactly the products under review.
+ *
+ * The definition is kept below rather than deleted, because it is correct and
+ * it is wanted back. Restoring it is moving one entry from SUSPENDED_BUNDLES
+ * into BUNDLES, and that may only happen once those two titles are sellable
+ * again — which means Paddle confirming the public-domain model in writing.
+ * The Paddle discount id is preserved so the restore does not need re-issuing.
+ *
+ * `matchBundle` over an empty list returns null, so every consumer already
+ * behaves as though there is simply no bundle today.
+ */
+export const SUSPENDED_BUNDLES: Bundle[] = [
   {
     slug: "stoic-library",
     name: "The Stoic Library",
@@ -60,6 +80,9 @@ export const BUNDLES: Bundle[] = [
       "passages where Long's two translations touch.",
   },
 ];
+
+/** Bundles a cart can actually qualify for today. */
+export const BUNDLES: Bundle[] = [];
 
 /** Cents saved by buying the set together. */
 export function bundleSaving(b: Bundle): number {

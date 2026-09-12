@@ -188,7 +188,7 @@ export const AUTHORS = [
  * @property {string} priceBasis  Why this number is what it is.
  */
 
-export const BOOKS = [
+const RAW_BOOKS = [
   {
     // The one title that was already published and already selling — except
     // that it carried `pri_test_meditations_999`, a Paddle price id that
@@ -2875,6 +2875,123 @@ export const BOOKS = [
     ],
   },
 ];
+
+/* ===========================================================================
+ * PADDLE COMPLIANCE GATE — added 2026-09-12
+ * ===========================================================================
+ *
+ * WHY THIS EXISTS
+ * Paddle reviewed valicepress.com on 2026-09-09 and again on 2026-09-11 and
+ * declined the application twice. The second review named two findings:
+ *
+ *     "Reselling/redistribution of third party content."
+ *     "Physical goods sold or otherwise provided as part of the product."
+ *
+ * Paddle is the Merchant of Record; it takes legal and tax responsibility for
+ * every transaction, so what may pass through its checkout is its decision and
+ * not ours to argue past. This gate is how the catalog answers both findings
+ * WITHOUT changing a single fact about any book.
+ *
+ * WHAT IT DOES NOT DO — and this is the point
+ * It does not unpublish anything, hide the public-domain series, relabel a
+ * public-domain text as an original work, or delete an Amazon link. Every book
+ * keeps its page, its description, its authors, its real provenance and its
+ * free-campaign availability. The ONLY thing that changes is which titles carry
+ * a paid checkout on this site.
+ *
+ * RULE 1 — public-domain series leave the paid checkout.
+ *   "Valice Classics" is, by its own series bible, the public-domain series.
+ *   Those editions are ours in typesetting and apparatus, but the underlying
+ *   texts are third-party public-domain works, which is plainly what Paddle's
+ *   first finding is about. They keep their pages and stay free to request
+ *   during the campaign; they simply are not Paddle transactions. This is
+ *   reversed by deleting one line here if Paddle confirms the model.
+ *
+ * RULE 2 — stop advertising print editions that do not exist.
+ *   A print format marked `coming_soon` with no ASIN is not an edition; it is
+ *   an intention. Displaying it next to a digital buy button is the most
+ *   likely source of Paddle's second finding, and it is also simply inaccurate
+ *   under our own rule that we never advertise a format that does not exist.
+ *   Print editions that DO exist keep their Amazon links untouched — Valice
+ *   Press does sell printed books, through Amazon, and this file continues to
+ *   say so.
+ *
+ * The pre-gate Paddle price ids are recorded in PADDLE_PRICE_IDS_BEFORE_GATE
+ * below so that nothing needed for an audit is lost by nulling them here.
+ * =========================================================================== */
+
+/** The series whose underlying texts are public domain, hence not Paddle-eligible. */
+const PADDLE_INELIGIBLE_SERIES = new Set(["Valice Classics"]);
+
+const PRINT_FORMATS = new Set(["paperback", "hardcover", "large_print"]);
+
+/** Audit record: what each title's Paddle price was before the gate nulled it. */
+export const PADDLE_PRICE_IDS_BEFORE_GATE = Object.freeze(
+  Object.fromEntries(
+    RAW_BOOKS.filter((b) => b.paddlePriceId).map((b) => [b.slug, b.paddlePriceId]),
+  ),
+);
+
+/** Why a given book is not sold through this site's checkout, or null. */
+function paddleGateReason(book) {
+  if (PADDLE_INELIGIBLE_SERIES.has(book.series?.name)) {
+    return (
+      "Paddle compliance (2026-09-12): this is a Valice Classics edition of a " +
+      "public-domain text. Paddle's 2026-09-11 review named " +
+      '"reselling/redistribution of third party content" as a finding, so ' +
+      "public-domain titles are held out of the paid checkout until Paddle " +
+      "confirms in writing that this series is acceptable. The book stays " +
+      "published, stays free to request during the campaign, and keeps every " +
+      "print edition it really has."
+    );
+  }
+  return null;
+}
+
+/**
+ * Apply both rules to the raw catalog.
+ *
+ * The `@template` is load-bearing, not decoration: without it this returns
+ * `any[]`, every consumer of `BOOKS` loses inference, and TypeScript starts
+ * reporting implicit-any in unrelated test files that only ever did
+ * `BOOKS.filter(x => x.websiteStatus === "published")`.
+ *
+ * @template T
+ * @param {T[]} books
+ * @returns {T[]}
+ */
+function applyPaddleComplianceGate(books) {
+  return books.map((book) => {
+    const reason = paddleGateReason(book);
+
+    // RULE 2 applies to every book, gated or not: an unbuilt print edition is
+    // not an edition. `unavailable` is the value the loader deletes, so the
+    // storefront stops listing it rather than showing "not yet available".
+    const formats = (book.formats ?? []).map((f) =>
+      PRINT_FORMATS.has(f.format) && f.availability === "coming_soon" && !f.amazonAsin
+        ? { ...f, availability: "unavailable" }
+        : f,
+    );
+
+    if (!reason) return { ...book, formats };
+
+    return {
+      ...book,
+      formats,
+      // No Paddle price means no paid checkout anywhere: `cart/actions.ts`
+      // already refuses a book without one, and the product page now hides the
+      // buy control instead of offering a button that would fail.
+      paddlePriceId: null,
+      directSale: false,
+      directSaleBlockedBy: book.directSaleBlockedBy
+        ? `${book.directSaleBlockedBy} ALSO: ${reason}`
+        : reason,
+    };
+  });
+}
+
+export const BOOKS = applyPaddleComplianceGate(RAW_BOOKS);
+
 
 /**
  * Titles deliberately NOT loaded into the storefront, and why. Kept here so

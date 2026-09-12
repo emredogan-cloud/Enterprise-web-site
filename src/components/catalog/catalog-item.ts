@@ -34,6 +34,12 @@ export interface CatalogItem {
   title: string;
   author: string;
   priceCents: number;
+  /**
+   * Does this store hold a file it can give away? Carried through from
+   * `books.master_file_key`; each card's gift box reads it. Separate from
+   * price since the Paddle compliance gate of 2026-09-12 — see `<GiftBox>`.
+   */
+  deliverableFree?: boolean;
   /** 0 when the title has no reviews yet. Never invent a rating. */
   rating: number;
   /** Primary category name, as stored on the book. */
@@ -129,6 +135,8 @@ export interface CatalogRow {
   slug: string;
   title: string;
   priceCents: number;
+  /** `books.master_file_key is not null` — see `CatalogItem.deliverableFree`. */
+  deliverableFree?: boolean;
   currency: string;
   authors: ReadonlyArray<{ name: string }>;
   primaryCategory?: string | null;
@@ -149,6 +157,7 @@ export function toCatalogItems(rows: readonly CatalogRow[]): CatalogItem[] {
     title: row.title,
     author: row.authors[0]?.name ?? "—",
     priceCents: row.priceCents,
+    deliverableFree: row.deliverableFree,
     rating: 0,
     category: row.primaryCategory ?? "",
     formats: ["PDF"] as const,

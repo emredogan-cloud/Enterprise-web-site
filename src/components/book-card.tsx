@@ -28,6 +28,18 @@ export interface BookCardData {
    */
   categories?: string[];
   priceCents: number;
+  /**
+   * Does this store hold a file it can give away for this book?
+   *
+   * `books.master_file_key is not null`, and nothing else. The gift box used
+   * to infer it from `priceCents > 0`, which was a sound proxy only while
+   * "priced" and "we have the file" were the same set. The Paddle compliance
+   * gate of 2026-09-12 separated them: eighteen public-domain titles are
+   * unpriced and still deliverable. Checked against the database that day —
+   * exactly three published books have no master, and they are exactly the
+   * three that must never be offered free.
+   */
+  deliverableFree?: boolean;
   currency: string;
   authors: ReadonlyArray<{ slug: string; name: string }>;
   /**

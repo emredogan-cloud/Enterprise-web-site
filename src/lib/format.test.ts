@@ -13,7 +13,7 @@ describe("formatCatalogPrice", () => {
     // Mythologica (Kindle edition in KDP Select) and The Myth Hunter's Field
     // Book (no digital edition exists). Both are published, both were
     // rendering "$0.00" beside an add-to-cart button.
-    expect(formatCatalogPrice(0, "USD")).toBe("On Amazon");
+    expect(formatCatalogPrice(0, "USD")).toBe("Not sold here");
     expect(formatCatalogPrice(0, "USD")).not.toContain("0.00");
   });
 

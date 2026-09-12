@@ -77,6 +77,20 @@ interface BookJsonLdArgs {
   priceCents: number;
   /** ISO-4217 currency code (e.g., "USD"). */
   currency: string;
+  /**
+   * Does THIS STORE sell this book, today?
+   *
+   * An Offer is a statement that we will take money for this at this price, so
+   * it may only be emitted when that is true. It used to be inferred from
+   * `priceCents > 0`, which was a safe proxy only while the two always moved
+   * together. They stopped on 2026-09-12: Paddle's review declined the domain
+   * for "reselling/redistribution of third party content", eighteen
+   * public-domain titles came off the paid checkout, and a price left in place
+   * for any reason would have gone on advertising an offer nobody can accept.
+   * Passing the fact explicitly is the difference between markup that is
+   * accurate and markup that happens to be accurate.
+   */
+  sellsDirect?: boolean;
   authors: ReadonlyArray<{ name: string }>;
   coverImageUrl: string | null;
   /**
@@ -227,7 +241,7 @@ export function buildBookJsonLd(args: BookJsonLdArgs): Graph {
         // `price: "0.00"` + `InStock` for those told Google, and any
         // aggregator reading the markup, that Codex Mythologica was a free
         // download. No offer is the accurate markup when there is no offer.
-        ...(args.priceCents > 0
+        ...((args.sellsDirect ?? true) && args.priceCents > 0
           ? {
               offers: {
                 "@type": "Offer" as const,

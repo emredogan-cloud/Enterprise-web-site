@@ -144,24 +144,33 @@ export async function POST(req: NextRequest) {
   /**
    * REFUSE A BOOK THIS STORE CANNOT ACTUALLY DELIVER.
    *
-   * Two independent facts have to hold before a giveaway is honest:
+   * The test is `masterFileKey`, and only that: fulfilment hands over exactly
+   * that object, so with no master there is no file, and accepting the request
+   * would promise a delivery that has to fail in the queue later.
    *
-   *   - `priceCents > 0`. Zero means "not sold here" in this catalog, not
-   *     "free" (see `formatCatalogPrice`). Codex Mythologica's ebook is
-   *     enrolled in KDP Select, which is an *exclusivity* agreement with
-   *     Amazon — distributing it from here would breach it. The Hangul
-   *     workbook and The Myth Hunter's Field Book simply have no digital
-   *     edition to send.
-   *   - a `masterFileKey`. Fulfilment mints a signed URL for exactly that
-   *     object; with no master there is no file, and accepting the request
-   *     would be promising a delivery that has to fail in the queue later.
+   * THIS USED TO ALSO REQUIRE `priceCents > 0`, AND THAT WAS A PROXY, NOT A
+   * REASON. Zero meant "not sold here", which until 2026-09-12 was only ever
+   * true of three titles that also had no master — Codex Mythologica (its
+   * ebook is enrolled in KDP Select, an exclusivity agreement with Amazon),
+   * the Hangul workbook and The Myth Hunter's Field Book. The proxy and the
+   * reason agreed, so nobody had to choose between them.
+   *
+   * The Paddle compliance gate broke the agreement. Eighteen public-domain
+   * titles now carry price 0 because they are no longer sold here, while still
+   * holding their master and still being ours to give away. Keeping the price
+   * test would have silently ended the free campaign for two thirds of the
+   * catalogue — the modal would open and the submission would answer 409.
+   *
+   * Checked against the database on 2026-09-12: exactly three published books
+   * have no master, and they are exactly the three that must never be given
+   * away. The file test alone is therefore both necessary and sufficient.
    *
    * The gift box hides itself for these, but a shelf can sit in a CDN cache
    * for an hour and a payload can be hand-edited, so the refusal lives here
    * as well. Answered as `unavailable` rather than `unknown-book`: the title
    * is real, it is just not ours to give.
    */
-  if (book.priceCents <= 0 || !book.masterFileKey) {
+  if (!book.masterFileKey) {
     return bad("book-unavailable", 409);
   }
 
