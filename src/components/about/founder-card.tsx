@@ -55,6 +55,23 @@ export function FounderCard() {
               </Link>
               .
             </p>
+            {/*
+              Said plainly, and on purpose.
+
+              Valice Press publishes two different things, and only one of them
+              is on the storefront today. Omitting that would be a kind of
+              claim: the companion pages are public and openly name Epictetus,
+              Kwaidan and the rest, so anyone can already see the other half
+              exists. Better this page says so than that someone concludes it
+              was hidden. It does not say when the collection returns, because
+              that is not settled.
+            */}
+            <p>
+              Valice Press publishes original books, and separately maintains a
+              collection of public-domain classics in its own editions. The
+              classics collection is not part of the storefront at the moment;
+              what you can buy here is the original list.
+            </p>
             <p>
               Payments run through Paddle, our Merchant of Record — they
               process the card and handle the tax owed in your jurisdiction, so

@@ -2932,6 +2932,30 @@ export const PADDLE_PRICE_IDS_BEFORE_GATE = Object.freeze(
   ),
 );
 
+/**
+ * TEMPORARY STOREFRONT ISOLATION — 2026-09-12, for the Paddle domain review.
+ *
+ * Flip to `false` to put the public-domain series back on the storefront. That
+ * is the whole rollback: one boolean, then `load-catalog.mjs --commit` and a
+ * deploy. Nothing is deleted, so nothing has to be rebuilt.
+ *
+ * WHY IT EXISTS. Paddle declined the domain twice, the second time naming
+ * "reselling/redistribution of third party content". Holding those titles out
+ * of the paid checkout (the gate below) did not change what a reviewer sees
+ * when they open /books: eighteen public-domain reprints sitting in the shop
+ * window. The Founder's decision is to show Paddle one unambiguous proposition
+ * for the length of the review — original Valice Press digital books — and to
+ * put the rest back afterwards.
+ *
+ * WHAT IT IS NOT. It is not a deletion and not a claim. The rows stay, the
+ * masters stay in R2, the ISBNs stay in this file, the companion pages stay up
+ * (printed QR codes point at them), and nothing anywhere says these books are
+ * original Valice Press works. `websiteStatus: "draft"` is the same mechanism
+ * an unfinished book uses; every storefront query already filters on
+ * `status = 'published'`, so this hides them in the query rather than in CSS.
+ */
+const HIDE_PUBLIC_DOMAIN_DURING_PADDLE_REVIEW = true;
+
 /** Why a given book is not sold through this site's checkout, or null. */
 function paddleGateReason(book) {
   if (PADDLE_INELIGIBLE_SERIES.has(book.series?.name)) {
@@ -2978,6 +3002,12 @@ function applyPaddleComplianceGate(books) {
     return {
       ...book,
       formats,
+      // The isolation. `draft` keeps every field of this row — master key,
+      // ISBN, categories, description, blockers — and removes the book from
+      // every public query, because all of them filter on `published`.
+      websiteStatus: HIDE_PUBLIC_DOMAIN_DURING_PADDLE_REVIEW
+        ? "draft"
+        : book.websiteStatus,
       // No Paddle price means no paid checkout anywhere: `cart/actions.ts`
       // already refuses a book without one, and the product page now hides the
       // buy control instead of offering a button that would fail.

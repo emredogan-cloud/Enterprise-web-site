@@ -18,7 +18,15 @@ describe("reader bundles", () => {
         const book = BOOKS.find((x) => x.slug === slug);
         expect(book, `${b.slug} names an unknown book ${slug}`).toBeTruthy();
         if (!book) continue;
-        expect(book.websiteStatus, `${slug} is not published`).toBe("published");
+        // Not `published`: the Stoic Library's two members are public-domain
+        // titles, hidden from the storefront for the Paddle review. The
+        // definition still has to name real books that still exist, which is
+        // what makes it restorable — but it cannot require them to be visible
+        // while they are deliberately not.
+        expect(
+          ["published", "draft"],
+          `${slug} is neither published nor draft`,
+        ).toContain(book.websiteStatus);
       }
     }
   });
